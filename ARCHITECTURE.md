@@ -114,6 +114,22 @@ def render_image_segments(pdf_doc: pymupdf.Document, doc: TranslatedDocument, *,
   boxes), then `page.replace_image(xref, stream=png_bytes)` (keep the original pixel size; keep
   alpha if the source had it). Store what was done in `seg.render`.
 
+### `mathtrans/scanned.py` (scanned pages, overlay mode)
+```python
+def is_scanned_page(page) -> bool                      # no text layer and one image covering >= 85 % of the page
+def scanned_pages(pdf, pages=None) -> set[int]
+def group_ocr_lines(lines, page_index, source_lang) -> list[TextSegment]   # IMAGE_TEXT lines -> paragraph TEXT segments (origin="ocr", members=[line ids])
+def build_overlay_segments(doc, scanned) -> list[TextSegment]
+def erase_merged_lines(pdf_doc, doc) -> int            # erase the merged lines' pixels (flat fill / inpaint) and replace the page images
+```
+* `PipelineOptions.scanned_mode`: `overlay` (default) groups the OCR lines of scanned pages into homogeneous
+  paragraphs (prose only; formula / number lines stay in the picture), marks the lines
+  `translate=False, skip_reason="merged into paragraph <id>"`, erases them from the image after the layout stage
+  and lets the paragraphs flow through translation, QA and `layout.render_document` like native text
+  (editable output). `repaint` keeps the old behaviour (`images.render_image_segments` paints into the image).
+* Paragraph style: font size = 0.82 × median line height, line height from the line pitch, centred when every
+  line is centred in the union box, role heading / label / body by size and length.
+
 ### `mathtrans/translate/` (translation backends)
 ```python
 # translate/base.py
