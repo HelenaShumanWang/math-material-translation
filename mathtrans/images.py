@@ -80,6 +80,8 @@ class LoadedImage:
     ext: str = "png"
     smask_xref: int = 0
     is_mask: bool = False  # stencil mask (``/ImageMask true``): alpha = painted pixels
+    jpeg_qtables: Optional[dict] = None  # quantisation tables of a JPEG source (reused on re-encoding)
+    jpeg_subsampling: int = -1  # chroma subsampling of a JPEG source (-1 = unknown)
 
     @property
     def width(self) -> int:
@@ -181,11 +183,23 @@ def load_image(pdf_doc: pymupdf.Document, xref: int) -> LoadedImage:
         return LoadedImage(xref=xref, rgb=rgb, alpha=alpha, ext="png", smask_xref=smask, is_mask=True)
     alpha: Optional[np.ndarray] = None
     rgb: Optional[np.ndarray] = None
+    qtables: Optional[dict] = None
+    subsampling = -1
     try:
         pil = Image.open(io.BytesIO(info["image"]))
         pil.load()
+        if ext in ("jpeg", "jpg") and getattr(pil, "quantization", None):
+            # Remember how the source was compressed so the replaced image stays the same size.
+            qtables = {int(k): list(v) for k, v in pil.quantization.items()}
+            try:
+                from PIL import JpegImagePlugin
+
+                subsampling = int(JpegImagePlugin.get_sampling(pil))
+            except Exception:  # pragma: no cover - defensive
+                subsampling = -1
         if pil.mode == "CMYK" or int(info.get("colorspace", 3)) == 4 or pil.mode not in _PIL_SAFE_MODES:
             rgb = _pixmap_rgb(pdf_doc, xref)
+            qtables, subsampling = None, -1  # tables of a CMYK source do not transfer to RGB
         else:
             if pil.mode in ("RGBA", "LA", "PA") or (pil.mode == "P" and "transparency" in pil.info):
                 rgba = np.array(pil.convert("RGBA"))
@@ -202,18 +216,32 @@ def load_image(pdf_doc: pymupdf.Document, xref: int) -> LoadedImage:
         mask_alpha = _smask_alpha(pdf_doc, smask, rgb.shape[1], rgb.shape[0])
         if mask_alpha is not None:
             alpha = mask_alpha
-    return LoadedImage(xref=xref, rgb=np.ascontiguousarray(rgb), alpha=alpha, ext=ext, smask_xref=smask)
+    return LoadedImage(xref=xref, rgb=np.ascontiguousarray(rgb), alpha=alpha, ext=ext, smask_xref=smask,
+                       jpeg_qtables=qtables, jpeg_subsampling=subsampling)
 
 
-def encode_image(rgb: np.ndarray, alpha: Optional[np.ndarray], ext: str) -> bytes:
-    """PNG bytes (RGBA when ``alpha`` is given); JPEG sources without alpha stay JPEG."""
+def encode_image(rgb: np.ndarray, alpha: Optional[np.ndarray], ext: str, *,
+                 qtables: Optional[dict] = None, subsampling: int = -1) -> bytes:
+    """PNG bytes (RGBA when ``alpha`` is given); JPEG sources without alpha stay JPEG,
+    re-encoded with the source's own quantisation tables and chroma subsampling when
+    known (so a scanned page keeps its size and quality), else at quality 90."""
     buf = io.BytesIO()
     if alpha is not None:
         rgba = np.dstack([rgb, alpha])
         Image.fromarray(rgba, "RGBA").save(buf, format="PNG")
     elif ext in ("jpeg", "jpg"):
-        # quality 90 with 4:2:0 chroma keeps scanned pages close to their original size
-        Image.fromarray(rgb, "RGB").save(buf, format="JPEG", quality=90, optimize=True)
+        img = Image.fromarray(rgb, "RGB")
+        if qtables:
+            try:
+                kwargs = {"qtables": qtables}
+                if subsampling in (0, 1, 2):
+                    kwargs["subsampling"] = subsampling
+                img.save(buf, format="JPEG", optimize=True, **kwargs)
+                return buf.getvalue()
+            except Exception as exc:  # odd tables (e.g. 16-bit) - fall back to a fixed quality
+                logger.debug("cannot reuse JPEG quantisation tables (%s); using quality 90", exc)
+                buf = io.BytesIO()
+        img.save(buf, format="JPEG", quality=90, optimize=True)
     else:
         Image.fromarray(rgb, "RGB").save(buf, format="PNG")
     return buf.getvalue()
@@ -916,7 +944,8 @@ def render_image_segments(pdf_doc: pymupdf.Document, doc: TranslatedDocument, *,
                                         notes=f"drawing failed: {exc}")
         if drawn == 0:
             continue
-        stream = encode_image(canvas, alpha, loaded.ext)
+        stream = encode_image(canvas, alpha, loaded.ext, qtables=loaded.jpeg_qtables,
+                              subsampling=loaded.jpeg_subsampling)
         try:
             page.replace_image(placement.xref, stream=stream)
         except Exception as exc:

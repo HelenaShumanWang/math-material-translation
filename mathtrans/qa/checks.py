@@ -655,10 +655,19 @@ def _formatting_issues(seg: TextSegment) -> list[QAIssue]:
         if src_cls == cls and tr_cls != cls:
             add(f"The source ends with a {mark}; end the translation with a {mark} too",
                 source_ending=src_cls, translation_ending=tr_cls)
-        elif tr_cls == cls and src_cls != cls:
+        elif tr_cls == cls and src_cls != cls and not _contains_mark(src, cls):
+            # a mark that occurs inside the source (fill-in-the-blank "？个", "How many ... ?" phrased
+            # differently) may legitimately move to the end of the translation
             add(f"The source does not end with a {mark}; do not end the translation with one",
                 source_ending=src_cls, translation_ending=tr_cls)
     return issues
+
+
+_MARKS = {"question": "?？", "exclamation": "!！"}
+
+
+def _contains_mark(text: str, cls: str) -> bool:
+    return any(ch in text for ch in _MARKS.get(cls, ""))
 
 
 def formatting(doc: TranslatedDocument, options: PipelineOptions,
