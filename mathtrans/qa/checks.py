@@ -683,6 +683,12 @@ def formatting(doc: TranslatedDocument, options: PipelineOptions,
 # ---- layout -----------------------------------------------------------------
 
 
+IMAGE_MIN_FEASIBLE_CHARS = 4
+"""An image label shorter than this cannot be asked for; the fit is reported as a warning."""
+IMAGE_MIN_FEASIBLE_SHARE = 0.35
+"""A shorten request below this share of the current length is considered infeasible."""
+
+
 def layout_fit(doc: TranslatedDocument, options: PipelineOptions,
                pairs: Optional[GlossaryPairs] = None) -> list[QAIssue]:
     """Rendered native-text translations must fit their boxes without shrinking below
@@ -693,22 +699,27 @@ def layout_fit(doc: TranslatedDocument, options: PipelineOptions,
         if seg.kind != SegmentKind.TEXT or r is None:
             continue
         if r.overflow or r.scale < options.min_font_scale:
+            current = len((seg.translated_text or "").strip())
             max_chars = shorten_hint(seg.translated_text or "", r.scale, options.min_font_scale)
             why = "overflows its box" if r.overflow else f"had to be shrunk to {r.scale:.0%} of the original size"
+            if max_chars < max(IMAGE_MIN_FEASIBLE_CHARS, int(IMAGE_MIN_FEASIBLE_SHARE * current)):
+                # No translation this short can carry the meaning (tiny OCR box, huge expansion):
+                # report it for a human instead of blocking the export on a hopeless re-translation.
+                issues.append(_issue(
+                    "layout_fit", "warning", seg,
+                    f"The translation {why} and was rendered at {r.scale:.0%} of the original size; even a "
+                    f"much shorter text would not fit, check this box in the preview",
+                    fixable=False, max_chars=max_chars, scale=round(r.scale, 3), overflow=r.overflow,
+                    min_font_scale=options.min_font_scale))
+                continue
             issues.append(_issue(
                 "layout_fit", "error", seg,
                 f"Shorten the translation to at most {max_chars} characters so it fits the original box "
-                f"(the current translation of {len((seg.translated_text or '').strip())} characters {why}; "
+                f"(the current translation of {current} characters {why}; "
                 f"the minimum allowed size is {options.min_font_scale:.0%})",
                 max_chars=max_chars, scale=round(r.scale, 3), overflow=r.overflow,
                 min_font_scale=options.min_font_scale))
     return issues
-
-
-IMAGE_MIN_FEASIBLE_CHARS = 4
-"""An image label shorter than this cannot be asked for; the fit is reported as a warning."""
-IMAGE_MIN_FEASIBLE_SHARE = 0.35
-"""A shorten request below this share of the current length is considered infeasible."""
 
 
 def image_text(doc: TranslatedDocument, options: PipelineOptions,

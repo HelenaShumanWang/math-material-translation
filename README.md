@@ -33,6 +33,7 @@ Web UI (bilingual labels):
 | Preview | ✅ | PNG previews of every page are generated after translation (`/api/projects/{id}/preview/{page}`); download when satisfied |
 | Bilingual side-by-side version | ✅ | `--bilingual` / "Bilingual side-by-side PDF": original page on the left, translation on the right |
 | Skip pages | ✅ | `--skip-pages 2` / "Skip pages" leaves selected pages untouched (e.g. a page with a QR code or legal notice) |
+| Scanned textbooks | ✅ | Pages without a text layer go through OCR; `--scanned-mode overlay` erases the recognised text in the page image and places the translation as real, editable text (OCR lines are grouped into paragraphs so sentences are translated in context); the default `repaint` draws it into the image |
 
 ---
 
@@ -65,6 +66,9 @@ mathtrans translate book.pdf --from zh --to pt --glossary my_terms.csv --max-rou
 # Without an API key the offline mock translator exercises the whole pipeline
 # (demo / testing only — it is not a real translation)
 mathtrans translate examples/sample_zh.pdf --to en --translator mock
+
+# Scanned textbook: erase the recognised text in the page images and place editable text
+mathtrans translate scanned_book.pdf --to en --scanned-mode overlay --skip-pages 2
 
 # Pick a model and subset the embedded fonts (smaller file; editors can only reuse embedded glyphs)
 mathtrans translate book.pdf --to ja --model claude-opus-5-5 --subset-fonts
@@ -177,7 +181,7 @@ A `Dockerfile` is included (`docker build -t mathtrans . && docker run -p 8000:8
 
 ### Known limitations
 
-* **Scanned PDFs** (each page is one image, no text layer) are handled through the OCR / image path: text is recognised, erased and repainted inside the page image, so the result is a picture-based PDF rather than editable text. Slanted decorative text and watermarks are left untouched.
+* **Scanned PDFs** (each page is one image, no text layer) are handled through OCR. The default `repaint` mode draws the translation into the page image (picture-based result); `--scanned-mode overlay` produces editable text instead, but the boxes are as tight as the scan, so long translations are shrunk (the QA report lists them). Slanted decorative text and watermarks are left untouched.
 * RapidOCR ships Chinese + English recognition models; for Japanese, Korean, Portuguese or Spanish text inside images use the Claude vision OCR (`MATHTRANS_OCR_ENGINE=claude`) for best results. Superscripts inside images may be recognised as plain digits.
 * Vertical (Japanese) writing is treated as rotated text; complex vertical layouts may need manual touch-up.
 * The offline mock translator only demonstrates the pipeline; it is not a real translation.

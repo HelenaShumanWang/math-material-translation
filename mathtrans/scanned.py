@@ -253,10 +253,10 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
         except ValueError as exc:
             log.warning("page %d: cannot decode image xref %d: %s", page_index, placement.xref, exc)
             continue
-        original = loaded.rgb.copy()
-        original_alpha = loaded.alpha.copy() if loaded.alpha is not None else None
-        canvas = loaded.rgb
-        alpha = loaded.alpha
+        original = np.array(loaded.rgb, copy=True)
+        original_alpha = np.array(loaded.alpha, copy=True) if loaded.alpha is not None else None
+        canvas = np.array(loaded.rgb, copy=True)  # MuPDF-decoded buffers are read-only
+        alpha = np.array(loaded.alpha, copy=True) if loaded.alpha is not None else None
         for seg in segs:
             assert seg.image is not None
             x0, y0, x1, y1 = seg.image.pixel_box
