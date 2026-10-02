@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mathtrans · 数学资料翻译 / Math Material Translation</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #f5f6f8; --panel: #ffffff; --text: #1d2433; --muted: #5c6678; --border: #d8dce3;
+    --accent: #1f5fbf; --accent-text: #ffffff; --soft: #eef3fb;
+    --ok: #1a8f4f; --warn: #b7791f; --err: #c53030; --run: #1f5fbf; --queued: #6b7280;
+    --shadow: 0 1px 3px rgba(0,0,0,.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1419; --panel: #1a2029; --text: #e6e9ef; --muted: #9aa4b5; --border: #2e3745;
+      --accent: #4f8ef7; --accent-text: #0b1220; --soft: #202a3a;
+      --ok: #3ccf7a; --warn: #e0a43a; --err: #f06a6a; --run: #4f8ef7; --queued: #8b94a5;
+      --shadow: 0 1px 3px rgba(0,0,0,.4);
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; }
+  header { padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  header h1 { font-size: 18px; margin: 0; }
+  header .sub { color: var(--muted); font-size: 13px; }
+  main { display: grid; grid-template-columns: 380px 1fr; gap: 16px; padding: 16px 20px; max-width: 1500px; margin: 0 auto; }
+  @media (max-width: 960px) { main { grid-template-columns: 1fr; } }
+  .panel { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; box-shadow: var(--shadow); padding: 14px 16px; }
+  .panel h2 { font-size: 15px; margin: 0 0 10px; }
+  .panel h3 { font-size: 13px; margin: 14px 0 6px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 4px; }
+  label.inline { display: flex; align-items: center; gap: 8px; color: var(--text); margin: 6px 0; cursor: pointer; }
+  input[type=text], input[type=number], select, textarea { width: 100%; padding: 7px 9px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
+  textarea { min-height: 80px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; }
+  .row { display: flex; gap: 10px; }
+  .row > * { flex: 1; }
+  button { font: inherit; padding: 7px 12px; border-radius: 6px; border: 1px solid var(--border); background: var(--panel); color: var(--text); cursor: pointer; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:disabled { opacity: .45; cursor: not-allowed; }
+  button.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+  button.danger { color: var(--err); }
+  button.small { padding: 3px 8px; font-size: 12px; }
+  .drop { border: 2px dashed var(--border); border-radius: 8px; padding: 18px; text-align: center; color: var(--muted); cursor: pointer; transition: border-color .15s, background .15s; }
+  .drop.over { border-color: var(--accent); background: var(--soft); }
+  .drop input { display: none; }
+  .files { list-style: none; padding: 0; margin: 8px 0 0; font-size: 12px; }
+  .files li { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-bottom: 1px dotted var(--border); }
+  .files li span.size { color: var(--muted); }
+  .tabs { display: flex; gap: 4px; margin: 6px 0; }
+  .tabs button { padding: 4px 10px; font-size: 12px; }
+  .tabs button.active { background: var(--soft); border-color: var(--accent); color: var(--accent); }
+  .msg { margin-top: 10px; font-size: 13px; min-height: 18px; }
+  .msg.err { color: var(--err); }
+  .msg.ok { color: var(--ok); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; }
+  tr.sel td { background: var(--soft); }
+  tr.clickable { cursor: pointer; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; color: #fff; white-space: nowrap; }
+  .badge.queued { background: var(--queued); } .badge.running { background: var(--run); }
+  .badge.completed { background: var(--ok); } .badge.qa_failed { background: var(--warn); } .badge.error { background: var(--err); }
+  .bar { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; margin-top: 4px; min-width: 120px; }
+  .bar > div { height: 100%; background: var(--accent); transition: width .4s; }
+  .stage { font-size: 11px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 260px; }
+  .muted { color: var(--muted); }
+  .kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; font-size: 13px; }
+  .kv dt { color: var(--muted); } .kv dd { margin: 0; word-break: break-all; }
+  .qa-sum { display: flex; gap: 14px; flex-wrap: wrap; margin: 6px 0; }
+  .qa-sum .stat { padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; min-width: 80px; }
+  .qa-sum .stat b { display: block; font-size: 18px; }
+  .qa-sum .stat.pass b { color: var(--ok); } .qa-sum .stat.fail b { color: var(--err); }
+  .issues { max-height: 260px; overflow: auto; border: 1px solid var(--border); border-radius: 6px; }
+  .issues table { font-size: 12px; }
+  .sev-error { color: var(--err); font-weight: 600; } .sev-warning { color: var(--warn); font-weight: 600; } .sev-ok { color: var(--ok); font-weight: 600; }
+  .strip { display: flex; gap: 10px; overflow-x: auto; padding: 6px 2px; }
+  .strip figure { margin: 0; flex: 0 0 auto; text-align: center; cursor: zoom-in; }
+  .strip img { height: 170px; border: 1px solid var(--border); border-radius: 4px; background: #fff; box-shadow: var(--shadow); }
+  .strip figcaption { font-size: 11px; color: var(--muted); margin-top: 3px; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+  .actions a.btn { text-decoration: none; display: inline-block; }
+  .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,.82); display: none; align-items: center; justify-content: center; z-index: 50; flex-direction: column; gap: 10px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 94vw; max-height: 86vh; background: #fff; border-radius: 4px; }
+  .lightbox .nav { display: flex; gap: 10px; align-items: center; color: #fff; }
+  .lightbox .nav button { background: #fff; color: #000; }
+  .toast { position: fixed; bottom: 18px; right: 18px; background: var(--err); color: #fff; padding: 10px 14px; border-radius: 6px; box-shadow: var(--shadow); display: none; max-width: 420px; z-index: 60; }
+  .toast.show { display: block; }
+  .empty { color: var(--muted); padding: 18px 0; text-align: center; }
+  code { background: var(--soft); padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+  details summary { cursor: pointer; color: var(--muted); font-size: 12px; }
+  pre.md { white-space: pre-wrap; font-size: 12px; max-height: 300px; overflow: auto; background: var(--bg); padding: 8px; border-radius: 6px; border: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<header>
+  <h1>mathtrans · 数学资料翻译 / Math Material Translation</h1>
+  <span class="sub">保留版式 · 图内文字翻译 · 自动质检 · 可编辑 PDF &nbsp;|&nbsp; layout-preserving · in-image text · automatic QA · editable PDF</span>
+</header>
+
+<main>
+  <!-- ============================ upload form ============================ -->
+  <section class="panel" id="upload-panel">
+    <h2>新建翻译任务 / New translation</h2>
+    <form id="upload-form">
+      <div class="drop" id="drop">
+        <input type="file" id="file-input" multiple accept=".pdf,application/pdf">
+        <div><b>拖放或点击选择 PDF（可多选）</b></div>
+        <div>Drop PDF files here or click to choose (multiple allowed)</div>
+      </div>
+      <ul class="files" id="file-list"></ul>
+
+      <div class="row">
+        <div>
+          <label for="source-lang">源语言 / Source language</label>
+          <select id="source-lang"><option value="auto">自动检测 / Auto-detect</option></select>
+        </div>
+        <div>
+          <label for="target-lang">目标语言 / Target language</label>
+          <select id="target-lang"></select>
+        </div>
+      </div>
+
+      <label>术语库 / Glossary</label>
+      <div class="tabs" id="glossary-tabs">
+        <button type="button" data-mode="select" class="active">选择 / Select</button>
+        <button type="button" data-mode="paste">粘贴 CSV / Paste CSV</button>
+        <button type="button" data-mode="upload">上传文件 / Upload file</button>
+      </div>
+      <div data-gmode="select">
+        <select id="glossary-select"></select>
+      </div>
+      <div data-gmode="paste" hidden>
+        <textarea id="glossary-text" placeholder="zh,en,pt,es,ja,ko,note&#10;勾股定理,Pythagorean theorem,Teorema de Pitágoras,Teorema de Pitágoras,三平方の定理,피타고라스 정리,"></textarea>
+        <div class="muted" style="font-size:12px">表头为语言代码，至少两列；自定义条目优先于内置术语库。<a href="/api/glossaries/template">下载模板 / template</a></div>
+      </div>
+      <div data-gmode="upload" hidden>
+        <input type="file" id="glossary-file" accept=".csv,.tsv,.txt,.json">
+      </div>
+      <input type="text" id="glossary-name" placeholder="术语库名称（可选）/ glossary name (optional)" hidden style="margin-top:6px">
+
+      <label>选项 / Options</label>
+      <label class="inline"><input type="checkbox" id="opt-images" checked> 翻译图片内文字 / Translate text in images</label>
+      <label class="inline"><input type="checkbox" id="opt-bilingual"> 生成双语对照版 / Bilingual side-by-side PDF</label>
+      <label class="inline"><input type="checkbox" id="opt-docx"> 导出 Word / Export DOCX</label>
+      <label class="inline"><input type="checkbox" id="opt-require-qa" checked> 质检全部通过才允许下载 / Require QA pass</label>
+      <div class="row" style="align-items:center">
+        <label for="opt-rounds" style="margin:0">最大质检轮数 / Max QA rounds</label>
+        <input type="number" id="opt-rounds" min="1" max="10" value="3" style="max-width:90px">
+      </div>
+
+      <div style="margin-top:14px">
+        <button type="submit" class="primary" id="submit-btn">开始翻译 / Start translation</button>
+      </div>
+      <div class="msg" id="upload-msg"></div>
+    </form>
+  </section>
+
+  <div style="display:flex; flex-direction:column; gap:16px; min-width:0">
+    <!-- ============================ project table ============================ -->
+    <section class="panel">
+      <h2>任务列表 / Projects <span class="muted" id="poll-state" style="font-weight:normal;font-size:12px"></span></h2>
+      <div style="overflow-x:auto">
+        <table id="projects">
+          <thead>
+            <tr>
+              <th>名称 / Name</th><th>语言 / Langs</th><th>状态 / Status</th><th>进度 / Progress</th><th>质检 / QA</th><th>创建 / Created</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="projects-body"><tr><td colspan="7" class="empty">暂无任务 / No projects yet</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============================ detail panel ============================ -->
+    <section class="panel" id="detail" hidden>
+      <h2 id="detail-title"></h2>
+      <dl class="kv" id="detail-kv"></dl>
+
+      <h3>质检报告 / QA report</h3>
+      <div id="qa-box"></div>
+
+      <h3>页面预览 / Page previews</h3>
+      <div class="strip" id="strip"></div>
+
+      <h3>下载 / Downloads</h3>
+      <div class="actions" id="downloads"></div>
+
+      <h3>重新翻译 / Retranslate</h3>
+      <form id="retranslate-form" class="row" style="align-items:flex-end; flex-wrap:wrap">
+        <div style="min-width:150px">
+          <label for="re-target">目标语言 / Target</label>
+          <select id="re-target"></select>
+        </div>
+        <div style="min-width:180px">
+          <label for="re-glossary">术语库 / Glossary</label>
+          <select id="re-glossary"></select>
+        </div>
+        <div style="flex:2 1 260px">
+          <label>选项 / Options</label>
+          <div style="display:flex; gap:12px; flex-wrap:wrap">
+            <label class="inline"><input type="checkbox" id="re-images" checked> 图内文字 / images</label>
+            <label class="inline"><input type="checkbox" id="re-bilingual"> 双语 / bilingual</label>
+            <label class="inline"><input type="checkbox" id="re-docx"> Word</label>
+            <label class="inline"><input type="checkbox" id="re-require" checked> 要求质检通过 / require QA</label>
+            <label class="inline">轮数 / rounds <input type="number" id="re-rounds" min="1" max="10" value="3" style="width:64px"></label>
+          </div>
+        </div>
+        <div style="flex:0 0 auto"><button type="submit" class="primary" id="re-btn">重新翻译 / Retranslate</button></div>
+      </form>
+      <div class="msg" id="re-msg"></div>
+
+      <div class="actions" style="margin-top:14px">
+        <button type="button" class="danger" id="delete-btn">删除任务 / Delete project</button>
+      </div>
+    </section>
+  </div>
+</main>
+
+<div class="lightbox" id="lightbox">
+  <img id="lightbox-img" alt="preview">
+  <div class="nav">
+    <button type="button" id="lb-prev">‹ 上一页 / Prev</button>
+    <span id="lb-label"></span>
+    <button type="button" id="lb-next">下一页 / Next ›</button>
+    <button type="button" id="lb-close">关闭 / Close</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  const $ = (id) => document.getElementById(id);
+  const state = { languages: [], glossaries: [], projects: [], selected: null, detail: null, glossaryMode: "select", lbPage: 1, pollTimer: null };
+  const STATUS_LABEL = { queued: "排队中 / queued", running: "进行中 / running", completed: "完成 / completed", qa_failed: "质检未通过 / QA failed", error: "出错 / error" };
+
+  // ------------------------------------------------------------ helpers
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])); }
+  function fmtSize(n) { return n > 1048576 ? (n / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB"; }
+  function fmtTime(iso) { if (!iso) return ""; const d = new Date(iso); return isNaN(d) ? iso : d.toLocaleString(); }
+  function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 6000); }
+  async function api(url, opts) {
+    const r = await fetch(url, opts);
+    const ct = r.headers.get("content-type") || "";
+    const body = ct.includes("application/json") ? await r.json() : await r.text();
+    if (!r.ok) {
+      const detail = body && body.detail ? body.detail : (typeof body === "string" ? body : JSON.stringify(body));
+      throw new Error(`${r.status}: ${detail}`);
+    }
+    return body;
+  }
+  function langName(code) { const l = state.languages.find((x) => x.code === code); return l ? `${l.native} (${code})` : (code || "auto"); }
+  function fillLangSelect(sel, selected) {
+    sel.innerHTML = state.languages.map((l) => `<option value="${l.code}">${esc(l.native)} · ${esc(l.name)}</option>`).join("");
+    if (selected) sel.value = selected;
+  }
+  function fillGlossarySelect(sel, selected) {
+    sel.innerHTML = state.glossaries.map((g) => `<option value="${esc(g.id)}">${esc(g.name)} (${g.entries})${g.builtin ? " · 内置 / built-in" : ""}</option>`).join("");
+    sel.value = selected && state.glossaries.some((g) => g.id === selected) ? selected : "default";
+  }
+
+  // ------------------------------------------------------------ upload form
+  const fileInput = $("file-input");
+  let chosen = [];
+  function renderFiles() {
+    $("file-list").innerHTML = chosen.map((f, i) => `<li><span>${esc(f.name)}</span><span class="size">${fmtSize(f.size)} <button type="button" class="small" data-rm="${i}">×</button></span></li>`).join("");
+  }
+  function addFiles(list) {
+    for (const f of list) {
+      if (!/\.pdf$/i.test(f.name)) { toast(`只接受 PDF / Only PDF files: ${f.name}`); continue; }
+      if (!chosen.some((c) => c.name === f.name && c.size === f.size)) chosen.push(f);
+    }
+    if (chosen.length > 50) { chosen = chosen.slice(0, 50); toast("每批最多 50 个文件 / At most 50 files per batch"); }
+    renderFiles();
+  }
+  $("drop").addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", () => { addFiles(fileInput.files); fileInput.value = ""; });
+  ["dragenter", "dragover"].forEach((ev) => $("drop").addEventListener(ev, (e) => { e.preventDefault(); $("drop").classList.add("over"); }));
+  ["dragleave", "drop"].forEach((ev) => $("drop").addEventListener(ev, (e) => { e.preventDefault(); $("drop").classList.remove("over"); }));
+  $("drop").addEventListener("drop", (e) => addFiles(e.dataTransfer.files));
+  $("file-list").addEventListener("click", (e) => { const b = e.target.closest("button[data-rm]"); if (b) { chosen.splice(+b.dataset.rm, 1); renderFiles(); } });
+
+  function setGlossaryMode(mode) {
+    state.glossaryMode = mode;
+    document.querySelectorAll("#glossary-tabs button").forEach((x) => x.classList.toggle("active", x.dataset.mode === mode));
+    document.querySelectorAll("[data-gmode]").forEach((d) => { d.hidden = d.dataset.gmode !== mode; });
+    $("glossary-name").hidden = mode === "select";
+  }
+  $("glossary-tabs").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-mode]"); if (!b) return;
+    setGlossaryMode(b.dataset.mode);
+  });
+
+  async function resolveGlossaryId() {
+    if (state.glossaryMode === "select") return $("glossary-select").value;
+    const fd = new FormData();
+    const name = $("glossary-name").value.trim();
+    if (name) fd.append("name", name);
+    if (state.glossaryMode === "paste") {
+      const text = $("glossary-text").value.trim();
+      if (!text) return "default";
+      fd.append("text", text);
+    } else {
+      const f = $("glossary-file").files[0];
+      if (!f) return "default";
+      fd.append("file", f, f.name);
+    }
+    const g = await api("/api/glossaries", { method: "POST", body: fd });
+    await loadGlossaries();
+    // the glossary is saved now: select it and clear the inputs so a second submit reuses it
+    $("glossary-select").value = g.id;
+    $("glossary-text").value = ""; $("glossary-file").value = ""; $("glossary-name").value = "";
+    setGlossaryMode("select");
+    return g.id;
+  }
+
+  $("upload-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const msg = $("upload-msg"); msg.className = "msg";
+    if (!chosen.length) { msg.className = "msg err"; msg.textContent = "请先选择 PDF 文件 / Choose at least one PDF"; return; }
+    const src = $("source-lang").value, tgt = $("target-lang").value;
+    if (src !== "auto" && src === tgt) { msg.className = "msg err"; msg.textContent = "源语言与目标语言必须不同 / Source and target must differ"; return; }
+    $("submit-btn").disabled = true; msg.textContent = "上传中… / Uploading…";
+    try {
+      const gid = await resolveGlossaryId();
+      const fd = new FormData();
+      chosen.forEach((f) => fd.append("files", f, f.name));
+      fd.append("target_lang", tgt);
+      fd.append("source_lang", src);
+      fd.append("glossary_id", gid);
+      fd.append("translate_images", String($("opt-images").checked));
+      fd.append("bilingual", String($("opt-bilingual").checked));
+      fd.append("export_docx", String($("opt-docx").checked));
+      fd.append("require_qa_pass", String($("opt-require-qa").checked));
+      fd.append("max_qa_rounds", $("opt-rounds").value || "3");
+      const res = await api("/api/projects", { method: "POST", body: fd });
+      msg.className = "msg ok"; msg.textContent = `已创建 ${res.projects.length} 个任务（批次 ${res.batch_id}）/ ${res.projects.length} project(s) queued`;
+      chosen = []; renderFiles();
+      await loadProjects();
+      if (res.projects.length) selectProject(res.projects[0].id);
+    } catch (err) { msg.className = "msg err"; msg.textContent = err.message; }
+    finally { $("submit-btn").disabled = false; }
+  });
+
+  // ------------------------------------------------------------ project table
+  function progressCell(p) {
+    const pct = Math.round(p.progress && p.progress.percent || 0);
+    const stage = p.progress ? `${p.progress.stage || ""} ${p.progress.message || ""}`.trim() : "";
+    if (p.status === "queued") return `<div class="stage">等待执行 / waiting</div>`;
+    return `<div>${pct}%</div><div class="bar"><div style="width:${pct}%"></div></div><div class="stage" title="${esc(stage)}">${esc(stage)}</div>`;
+  }
+  function qaCell(p) {
+    if (!p.qa) return `<span class="muted">–</span>`;
+    const cls = p.qa.passed ? "sev-ok" : "sev-error";
+    return `<span class="${cls}">${p.qa.passed ? "通过 / pass" : "未通过 / fail"}</span><div class="stage">${p.qa.rounds} 轮 · ${p.qa.errors} 错误 · ${p.qa.warnings} 警告</div>`;
+  }
+  function renderProjects() {
+    const body = $("projects-body");
+    if (!state.projects.length) { body.innerHTML = `<tr><td colspan="7" class="empty">暂无任务 / No projects yet</td></tr>`; return; }
+    body.innerHTML = state.projects.map((p) => `
+      <tr class="clickable${p.id === state.selected ? " sel" : ""}" data-id="${p.id}">
+        <td><b>${esc(p.name)}</b><div class="stage">${p.page_count} 页 / pages · ${fmtSize(p.source_size)}${p.batch_id ? " · 批次 " + esc(p.batch_id.slice(0, 6)) : ""}</div></td>
+        <td>${esc(p.source_lang || "auto")} → <b>${esc(p.target_lang)}</b></td>
+        <td><span class="badge ${esc(p.status)}">${STATUS_LABEL[p.status] || esc(p.status)}</span>${p.status === "error" && p.error ? `<div class="stage" title="${esc(p.error)}">${esc(p.error)}</div>` : ""}</td>
+        <td>${progressCell(p)}</td>
+        <td>${qaCell(p)}</td>
+        <td class="muted" style="white-space:nowrap">${esc(fmtTime(p.created_at))}</td>
+        <td><button type="button" class="small" data-view="${p.id}">详情 / View</button></td>
+      </tr>`).join("");
+  }
+  $("projects-body").addEventListener("click", (e) => {
+    const row = e.target.closest("tr[data-id]"); if (!row) return;
+    selectProject(row.dataset.id);
+  });
+
+  async function loadProjects() {
+    try {
+      state.projects = await api("/api/projects");
+      $("poll-state").textContent = "";
+    } catch (err) { $("poll-state").textContent = "（刷新失败 / refresh failed）"; return; }
+    renderProjects();
+    if (state.selected) {
+      const cur = state.projects.find((p) => p.id === state.selected);
+      if (!cur) { state.selected = null; $("detail").hidden = true; return; }
+      const prev = state.detail;
+      const changed = !prev || prev.status !== cur.status || prev.updated_at !== cur.updated_at || prev.current_run !== cur.current_run;
+      if (changed) await loadDetail(cur.id);
+    }
+  }
+
+  // ------------------------------------------------------------ detail panel
+  async function selectProject(id) {
+    state.selected = id;
+    renderProjects();
+    await loadDetail(id);
+    $("detail").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  async function loadDetail(id) {
+    let p;
+    try { p = await api(`/api/projects/${id}`); } catch (err) { toast(err.message); return; }
+    const prevRun = state.detail && state.detail.current_run;
+    const prevStatus = state.detail && state.detail.status;
+    state.detail = p;
+    renderDetail(p, prevRun !== p.current_run || prevStatus !== p.status);
+  }
+  function renderDetail(p, resetForms) {
+    $("detail").hidden = false;
+    $("detail-title").innerHTML = `${esc(p.name)} <span class="badge ${esc(p.status)}">${STATUS_LABEL[p.status] || esc(p.status)}</span>`;
+    const st = p.result && p.result.stats;
+    const kv = [
+      ["ID", `<code>${esc(p.id)}</code>${p.batch_id ? ` · 批次 / batch <code>${esc(p.batch_id)}</code>` : ""}`],
+      ["语言 / Languages", `${esc(langName(st && st.source_lang || p.source_lang))} → ${esc(langName(p.target_lang))}`],
+      ["术语库 / Glossary", esc(p.glossary_id || "default")],
+      ["选项 / Options", `图内文字 images=${p.options.translate_images} · 双语 bilingual=${p.options.bilingual} · Word=${p.options.export_docx} · 质检轮数 rounds=${p.options.max_qa_rounds} · 要求通过 require=${p.options.require_qa_pass}`],
+      ["进度 / Progress", p.progress ? `${Math.round(p.progress.percent)}% · ${esc(p.progress.stage)} · ${esc(p.progress.message)}` : "–"],
+      ["时间 / Time", `${esc(fmtTime(p.created_at))}${p.started_at ? " · 开始 " + esc(fmtTime(p.started_at)) : ""}${p.finished_at ? " · 结束 " + esc(fmtTime(p.finished_at)) : ""}`],
+    ];
+    if (st && st.pages) kv.push(["统计 / Stats", `${st.pages} 页 · ${st.text_segments} 文本块 · ${st.image_segments} 图内文字 · ${st.translated} 已译 · ${st.qa_rounds} 轮质检 · ${st.duration_s}s · ${esc(st.translator)}${st.model ? " / " + esc(st.model) : ""}`]);
+    if (p.error) kv.push(["错误 / Error", `<span class="sev-error">${esc(p.error)}</span>`]);
+    if (p.history && p.history.length) kv.push(["历史 / History", p.history.map((h) => `${esc(h.target_lang)} · ${esc(h.status)}${h.qa ? (h.qa.passed ? " · QA 通过" : " · QA 未通过") : ""} · ${esc(fmtTime(h.finished_at || h.archived_at))}`).join("<br>")]);
+    $("detail-kv").innerHTML = kv.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+
+    renderQA(p);
+    renderPreviews(p);
+    renderDownloads(p);
+    if (resetForms) {
+      fillLangSelect($("re-target"), p.target_lang);
+      fillGlossarySelect($("re-glossary"), p.glossary_id || "default");
+      $("re-images").checked = !!p.options.translate_images;
+      $("re-bilingual").checked = !!p.options.bilingual;
+      $("re-docx").checked = !!p.options.export_docx;
+      $("re-require").checked = !!p.options.require_qa_pass;
+      $("re-rounds").value = p.options.max_qa_rounds || 3;
+      $("re-msg").textContent = "";
+    }
+    const active = p.status === "queued" || p.status === "running";
+    $("re-btn").disabled = active;
+    $("delete-btn").disabled = active;
+  }
+  function renderQA(p) {
+    const box = $("qa-box");
+    const rep = p.result && p.result.qa_report;
+    if (!rep) { box.innerHTML = `<div class="muted">${p.status === "error" ? "本次运行未产生质检报告 / no QA report for this run" : "质检尚未完成 / QA not finished yet"}</div>`; return; }
+    const stat = (label, val, cls) => `<div class="stat ${cls || ""}"><b>${val}</b>${label}</div>`;
+    let html = `<div class="qa-sum">
+      ${stat("结果 / result", rep.passed ? "通过 / PASS" : "未通过 / FAIL", rep.passed ? "pass" : "fail")}
+      ${stat("轮数 / rounds", rep.rounds.length)}
+      ${stat("错误 / errors", rep.errors, rep.errors ? "fail" : "")}
+      ${stat("警告 / warnings", rep.warnings)}
+      ${stat("检查项 / checks", rep.checks_run.length)}
+    </div>`;
+    if (rep.summary) html += `<div class="muted" style="margin:4px 0 8px">${esc(rep.summary)}</div>`;
+    if (rep.rounds.length) html += `<div class="muted" style="font-size:12px;margin-bottom:6px">${rep.rounds.map((r) => `第 ${r.round} 轮 / round ${r.round}: ${r.issues.length} 问题, 重译 ${r.retranslated.length} 段, ${r.passed ? "通过" : "未通过"}`).join(" · ")}</div>`;
+    if (rep.final_issues.length) {
+      html += `<div class="issues"><table><thead><tr><th>级别 / sev</th><th>检查 / check</th><th>页 / page</th><th>段 / segment</th><th>说明 / message</th></tr></thead><tbody>` +
+        rep.final_issues.map((i) => `<tr><td class="sev-${esc(i.severity)}">${esc(i.severity)}</td><td><code>${esc(i.check)}</code></td><td>${i.page == null ? "" : i.page + 1}</td><td><code>${esc(i.segment_id || "")}</code></td><td>${esc(i.message)}</td></tr>`).join("") +
+        `</tbody></table></div>`;
+    } else {
+      html += `<div class="muted">最终无遗留问题 / no remaining issues</div>`;
+    }
+    html += `<details style="margin-top:8px"><summary>Markdown 报告 / markdown report</summary><pre class="md" id="qa-md">加载中… / loading…</pre></details>`;
+    box.innerHTML = html;
+    box.querySelector("details").addEventListener("toggle", async (e) => {
+      if (!e.target.open) return;
+      try { $("qa-md").textContent = await api(`/api/projects/${p.id}/qa?format=md`); } catch (err) { $("qa-md").textContent = err.message; }
+    }, { once: true });
+  }
+  function previewUrl(p, n) { return `/api/projects/${p.id}/preview/${n}?run=${encodeURIComponent(p.current_run || "")}`; }
+  function renderPreviews(p) {
+    const strip = $("strip");
+    const n = p.preview_pages || 0;
+    if (!n) { strip.innerHTML = `<div class="muted">暂无预览 / no previews yet</div>`; return; }
+    strip.innerHTML = Array.from({ length: n }, (_, i) => i + 1).map((k) => `<figure data-page="${k}"><img loading="lazy" src="${previewUrl(p, k)}" alt="page ${k}"><figcaption>第 ${k} 页 / page ${k}</figcaption></figure>`).join("");
+  }
+  $("strip").addEventListener("click", (e) => { const f = e.target.closest("figure[data-page]"); if (f) openLightbox(+f.dataset.page); });
+  function renderDownloads(p) {
+    const d = p.downloads || {};
+    const force = p.download_requires_force ? "&force=1" : "";
+    const items = [["pdf", "可编辑 PDF / Editable PDF"], ["bilingual", "双语对照 / Bilingual PDF"], ["docx", "Word (DOCX)"], ["segments", "分段 JSON / Segments JSON"]];
+    const ready = p.status === "completed" || p.status === "qa_failed";
+    $("downloads").innerHTML = items.map(([fmt, label]) => {
+      const ok = ready && d[fmt];
+      return ok ? `<a class="btn" href="/api/projects/${p.id}/download?format=${fmt}${force}"><button type="button">${label}</button></a>` : `<button type="button" disabled title="不可用 / not available">${label}</button>`;
+    }).join("") + (p.download_requires_force ? `<div class="muted" style="width:100%;font-size:12px">⚠ 质检未通过：下载为强制下载（force=1），请人工核对质检报告中列出的问题。/ QA failed: downloads are forced; please review the listed issues.</div>` : "");
+  }
+
+  $("retranslate-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const p = state.detail; if (!p) return;
+    const msg = $("re-msg"); msg.className = "msg";
+    const body = {
+      target_lang: $("re-target").value,
+      glossary_id: $("re-glossary").value,
+      options: {
+        translate_images: $("re-images").checked, bilingual: $("re-bilingual").checked, export_docx: $("re-docx").checked,
+        require_qa_pass: $("re-require").checked, max_qa_rounds: Number($("re-rounds").value || 3),
+      },
+    };
+    $("re-btn").disabled = true;
+    try {
+      await api(`/api/projects/${p.id}/retranslate`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      msg.className = "msg ok"; msg.textContent = "已加入队列 / queued";
+      await loadProjects();
+    } catch (err) { msg.className = "msg err"; msg.textContent = err.message; $("re-btn").disabled = false; }
+  });
+
+  $("delete-btn").addEventListener("click", async () => {
+    const p = state.detail; if (!p) return;
+    if (!confirm(`删除任务 "${p.name}" 及其所有输出？/ Delete project "${p.name}" and all its outputs?`)) return;
+    try {
+      await api(`/api/projects/${p.id}`, { method: "DELETE" });
+      state.selected = null; state.detail = null; $("detail").hidden = true;
+      await loadProjects();
+    } catch (err) { toast(err.message); }
+  });
+
+  // ------------------------------------------------------------ lightbox
+  function openLightbox(page) {
+    const p = state.detail; if (!p || !p.preview_pages) return;
+    state.lbPage = Math.min(Math.max(1, page), p.preview_pages);
+    $("lightbox-img").src = previewUrl(p, state.lbPage);
+    $("lb-label").textContent = `第 ${state.lbPage} / ${p.preview_pages} 页`;
+    $("lb-prev").disabled = state.lbPage <= 1;
+    $("lb-next").disabled = state.lbPage >= p.preview_pages;
+    $("lightbox").classList.add("open");
+  }
+  $("lb-prev").addEventListener("click", () => openLightbox(state.lbPage - 1));
+  $("lb-next").addEventListener("click", () => openLightbox(state.lbPage + 1));
+  $("lb-close").addEventListener("click", () => $("lightbox").classList.remove("open"));
+  $("lightbox").addEventListener("click", (e) => { if (e.target === $("lightbox")) $("lightbox").classList.remove("open"); });
+  document.addEventListener("keydown", (e) => {
+    if (!$("lightbox").classList.contains("open")) return;
+    if (e.key === "Escape") $("lightbox").classList.remove("open");
+    if (e.key === "ArrowLeft") openLightbox(state.lbPage - 1);
+    if (e.key === "ArrowRight") openLightbox(state.lbPage + 1);
+  });
+
+  // ------------------------------------------------------------ init
+  async function loadGlossaries() {
+    state.glossaries = await api("/api/glossaries");
+    fillGlossarySelect($("glossary-select"), $("glossary-select").value);
+  }
+  async function init() {
+    try {
+      state.languages = await api("/api/languages");
+      const src = $("source-lang");
+      state.languages.forEach((l) => { const o = document.createElement("option"); o.value = l.code; o.textContent = `${l.native} · ${l.name}`; src.appendChild(o); });
+      fillLangSelect($("target-lang"), "en");
+      await loadGlossaries();
+    } catch (err) { toast(`初始化失败 / init failed: ${err.message}`); }
+    await loadProjects();
+    state.pollTimer = setInterval(loadProjects, 2000);
+  }
+  init();
+})();
+</script>
+</body>
+</html>

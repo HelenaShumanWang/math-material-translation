@@ -31,6 +31,7 @@ class Settings(BaseSettings):
     preview_dpi: int = 110
     batch_chars: int = 6000  # approx. characters of source text per translation request
     max_workers: int = 2  # concurrent translation jobs in the web service
+    max_upload_mb: int = 100  # per-file upload limit of the web service
     log_level: str = "INFO"
 
     @property

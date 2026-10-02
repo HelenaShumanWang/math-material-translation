@@ -177,7 +177,8 @@ def summarize(report) -> str
 
 ### `mathtrans/pipeline.py` (integration — written by the integrator)
 ```python
-def run_pipeline(source_pdf, out_dir, options: PipelineOptions, settings=None, progress: ProgressCallback | None = None) -> PipelineResult
+def run_pipeline(source_pdf, out_dir, options: PipelineOptions, settings=None, progress: ProgressCallback | None = None,
+                 *, translator=None, reviewer=None, ocr_engine=None) -> PipelineResult   # keyword-only backend overrides (tests)
 ```
 Stages/percent: extract 5 → ocr 15 → translate 45 → qa 70 → layout 85 → output checks 90 → exports 97 → previews 100.
 Writes `out_dir/output.pdf`, `segments.json`, `qa_report.json`, optional `bilingual.pdf`, `output.docx`,
@@ -188,6 +189,7 @@ the output files are still written for inspection but the API refuses to serve t
 ```python
 class Project(BaseModel): id, name, created_at, updated_at, source_file, source_lang, target_lang, options (dict), glossary_id,
                           batch_id, status: queued|running|completed|qa_failed|error, progress {stage,message,percent}, result: PipelineResult|None, error, history: list[dict]
+# the API stores `glossary_id` on the project and rebuilds PipelineOptions.glossary from data/glossaries/<id>.json at run time
 class ProjectStore: __init__(data_dir); create(name, pdf_bytes, options, glossary_id=None, batch_id=None) -> Project; get(id); list(batch_id=None);
                     update(project); delete(id); project_dir(id); save_glossary(glossary) / get_glossary(id) / list_glossaries()
 def create_app(settings=None, runner=None) -> FastAPI   # runner defaults to pipeline.run_pipeline (injected in tests)

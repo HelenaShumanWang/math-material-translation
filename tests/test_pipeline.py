@@ -19,16 +19,21 @@ def _image_bboxes(pdf):
 @pytest.fixture(scope="module")
 def zh_en_result(tmp_path_factory, samples_dir):
     from mathtrans.config import reset_settings
-    import os
-    os.environ.pop("ANTHROPIC_API_KEY", None)
-    os.environ["MATHTRANS_TRANSLATOR"] = "mock"
-    reset_settings()
     from mathtrans.samples import make_sample_pdf
-    src = make_sample_pdf(samples_dir / "e2e_zh.pdf", "zh")
-    out = tmp_path_factory.mktemp("zh_en")
-    opts = PipelineOptions(target_lang=Lang.EN, bilingual=True, export_docx=True, translator="mock")
-    res = run_pipeline(src, out, opts)
-    return src, out, res
+
+    mp = pytest.MonkeyPatch()
+    mp.delenv("ANTHROPIC_API_KEY", raising=False)
+    mp.delenv("ANTHROPIC_AUTH_TOKEN", raising=False)
+    reset_settings()
+    try:
+        src = make_sample_pdf(samples_dir / "e2e_zh.pdf", "zh")
+        out = tmp_path_factory.mktemp("zh_en")
+        opts = PipelineOptions(target_lang=Lang.EN, bilingual=True, export_docx=True, translator="mock")
+        res = run_pipeline(src, out, opts)
+        yield src, out, res
+    finally:
+        mp.undo()
+        reset_settings()
 
 
 def test_e2e_zh_to_en_completes(zh_en_result):
