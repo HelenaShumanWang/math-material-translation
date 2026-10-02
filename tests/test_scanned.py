@@ -89,3 +89,25 @@ def test_overlay_pipeline_produces_editable_text(scanned_pdf, tmp_path):
     assert paragraphs and all(s["translated_text"] for s in paragraphs if s["translate"])
     assert not any(s["kind"] == "image_text" and s["translate"] and s.get("translated_text") for s in segs
                    if s["page"] == 0 and s["skip_reason"].startswith(MERGED))
+
+
+def test_formula_lines_stay_in_the_picture():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    def line(i, y, text, translate, reason=""):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(100, int(y * 2), 600, int(y * 2) + 24))
+        return TextSegment(id=f"l{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=50, y0=y, x1=300, y1=y + 12),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10),
+                           translate=translate, skip_reason=reason)
+
+    lines = [
+        line(0, 100, "解：先算一共有多少只", True),
+        line(1, 114, "4×4=16", False, "pure number / formula"),
+        line(2, 128, "16-1=15", False, "pure number / formula"),
+        line(3, 142, "所以还剩 15 只。", True),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["l0"], ["l3"]]
+    assert lines[1].skip_reason == "pure number / formula" and lines[2].skip_reason == "pure number / formula"
+    assert all(p.translate for p in paragraphs)

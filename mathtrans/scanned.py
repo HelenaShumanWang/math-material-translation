@@ -100,6 +100,8 @@ class _Para:
         return statistics.median(self.heights)
 
     def accepts(self, line: TextSegment) -> bool:
+        if line.translate != self.lines[0].translate:
+            return False  # formula / number lines never join a prose paragraph (they stay in the picture)
         h = self.median_height
         lh = line.bbox.height
         if h <= 0 or lh <= 0:
@@ -206,8 +208,8 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     out: list[TextSegment] = []
     for i, para in enumerate(paragraphs):
         seg = _paragraph_segment(para, i, page_index, source_lang, page_median_height)
-        if not seg.translate and len(para.lines) == 1:
-            continue  # a lone formula line stays in the picture
+        if not seg.translate:
+            continue  # formulas and numbers are not translated: they stay in the picture untouched
         for l in para.lines:
             l.translate = False
             l.skip_reason = f"{MERGED} {seg.id}"
