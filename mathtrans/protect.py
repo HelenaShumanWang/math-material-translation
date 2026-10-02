@@ -31,7 +31,7 @@ _TOKEN_RE = re.compile(
     (?P<latex>\$\$[^$]+\$\$|\$[^$\n]+\$|\\\([^)]*\\\)|\\\[[^\]]*\\\])
   | (?P<url>https?://\S+|www\.\S+|[\w.+-]+@[\w-]+\.[\w.]+)
   | (?P<num>[0-9０-９]+(?:[.,．][0-9０-９]+)*)
-  | (?P<word>[A-Za-zＡ-Ｚａ-ｚ][A-Za-zＡ-Ｚａ-ｚ'’]*)
+  | (?P<word>[A-Za-zÀ-ÖØ-öø-ɏＡ-Ｚａ-ｚ][A-Za-zÀ-ÖØ-öø-ɏＡ-Ｚａ-ｚ'’]*)
   | (?P<greek>[Α-Ωα-ω])
   | (?P<supsub>[""" + SUPERSUB + r"""]+)
   | (?P<op>[""" + re.escape(OPERATORS) + r"""\-'’!])
@@ -198,7 +198,16 @@ def find_protected_fragments(text: str, src_lang: Lang | str | None = None) -> l
         p = pos
         while j < n:
             t = toks[j]
-            if t.kind in _ATOMS or t.kind == "dot":
+            if t.kind == "dot":
+                nxt = toks[j + 1] if j + 1 < n else None
+                if nxt is None or nxt.kind not in _ATOMS:
+                    break  # sentence punctuation or a list separator ("2, 3, 5") ends the run
+                run.append(t)
+                p += len(t.text)
+                run_end = p
+                j += 1
+                continue
+            if t.kind in _ATOMS:
                 run.append(t)
                 p += len(t.text)
                 run_end = p

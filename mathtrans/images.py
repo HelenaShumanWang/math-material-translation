@@ -30,7 +30,7 @@ from PIL import Image, ImageDraw, ImageFont
 from .fonts import pil_font
 from .interfaces import OcrEngine
 from .languages import is_cjk, letters_of_script, script_profile
-from .models import make_placeholder, (BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
+from .models import (make_placeholder, BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
 from .ocr import OcrError
 from .protect import is_fully_protected, protect_text
@@ -379,7 +379,7 @@ def _is_latin_or_greek(ch: str) -> bool:
     return bool(_LATIN_GREEK_RE.fullmatch(ch))
 
 
-_BARE_LABEL_RE = re.compile(r"[A-Z]{1,4}['’]*(?:\s*[A-Z]{1,4}['’]*)?")
+_BARE_LABEL_RE = re.compile(r"[A-Z]{2,4}['’]*(?:\s*[A-Z]{1,4}['’]*)?")
 
 
 def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], bool, str]:
