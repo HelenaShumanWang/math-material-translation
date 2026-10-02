@@ -66,7 +66,12 @@ python -m mathtrans.cli translate book.pdf --from zh --to pt --glossary my_terms
 
 # 没有 API Key 时可用离线 mock 翻译器体验整个流程（仅用于演示/测试，不是真正的翻译）
 python -m mathtrans.cli translate examples/sample_zh.pdf --to en --translator mock
+
+# 指定模型、压缩字体（文件更小，但编辑时只能复用已嵌入的字形）
+python -m mathtrans.cli translate book.pdf --to ja --model claude-opus-5-5 --subset-fonts
 ```
+
+`examples/` 目录内含六种语言的示例教材（`sample_zh.pdf` … `sample_ko.pdf`），均由 `mathtrans sample` 生成。
 
 退出码：`0` 完成且质检通过，`2` 质检未通过（输出文件仍会生成供检查），`1` 出错。
 
@@ -86,7 +91,7 @@ REST 端点（详见 `ARCHITECTURE.md`）：
 | GET | `/api/languages` | 支持的语言 |
 | GET/POST | `/api/glossaries` | 列出 / 上传术语库（CSV/JSON 文件或 `text` 字段） |
 | GET | `/api/glossaries/template` | 术语库 CSV 模板 |
-| POST | `/api/projects` | 创建任务（multipart：`files`×N，`target_lang`，可选 `source_lang`、`glossary_id`、`translate_images`、`bilingual`、`export_docx`、`max_qa_rounds`、`require_qa_pass`） |
+| POST | `/api/projects` | 创建任务（multipart：`files`×N，`target_lang`，可选 `source_lang`、`glossary_id`、`translate_images`、`bilingual`、`export_docx`、`max_qa_rounds`、`require_qa_pass`、`subset_fonts`） |
 | GET | `/api/projects` `/api/projects/{id}` | 列表 / 详情（状态、进度、结果、质检摘要） |
 | POST | `/api/projects/{id}/retranslate` | 更换目标语言/术语库重新翻译（保留历史） |
 | GET | `/api/projects/{id}/qa` | 质检报告（`?format=md` 为 Markdown） |
@@ -157,6 +162,8 @@ PDF ─► 抽取文本块（字号/颜色/对齐/角色）+ 公式/数字占位
 | `MATHTRANS_FONTS_DIR` | — | 额外字体目录 |
 | `MATHTRANS_MAX_QA_ROUNDS` | `3` | 质检最大轮数 |
 | `MATHTRANS_REQUIRE_QA_PASS` | `true` | 质检未通过时拒绝提供下载 |
+| `MATHTRANS_MAX_UPLOAD_MB` | `100` | Web 上传单文件大小上限 |
+| `MATHTRANS_MAX_WORKERS` | `2` | Web 服务并行翻译任务数 |
 
 ---
 
