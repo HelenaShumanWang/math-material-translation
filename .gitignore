@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.env
+/data/
+fonts/*.ttf
+fonts/*.ttc
+fonts/*.otf
+!fonts/README.md
+examples/output/
+*.log
+.venv/
