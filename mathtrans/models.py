@@ -152,7 +152,7 @@ class SegmentStyle(BaseModel):
     serif: bool = False
     align: Align = "left"
     line_height: float = 1.25  # multiple of font size
-    rotation: int = 0  # 0 / 90 / 180 / 270 degrees, clockwise
+    rotation: int = 0  # PyMuPDF rotate value: 0 upright, 90 = text runs upward, 270 = downward, 180 upside down
     is_vertical: bool = False
     role: Literal["body", "heading", "caption", "label", "list", "table", "other"] = "body"
 
@@ -435,6 +435,7 @@ class PipelineOptions(BaseModel):
     model: Optional[str] = None
     pages: Optional[list[int]] = None  # restrict processing to these 0-based pages (debug / preview)
     preview_dpi: int = 110
+    subset_fonts: bool = False  # subset embedded fonts (much smaller file, but editors can only reuse embedded glyphs)
 
 
 class PipelineStats(BaseModel):

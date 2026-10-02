@@ -187,6 +187,9 @@ def make_sample_pdf(path: str | Path, lang: str = "zh") -> Path:
     page.insert_image(pymupdf.Rect(330, 200, 510, 380), stream=_square_image(t, lang))
     html(pymupdf.Rect(60, 790, 535, 810), t["footer"], size=9, color="#888888", align="center")
 
-    doc.save(str(path), garbage=3, deflate=True)
+    # Each insert_htmlbox call embeds its fonts again; subset and deduplicate them so
+    # the sample is as small as a real textbook (about 110 KB instead of 22 MB).
+    doc.subset_fonts()
+    doc.save(str(path), garbage=4, deflate=True)
     doc.close()
     return path

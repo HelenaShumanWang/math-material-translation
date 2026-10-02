@@ -41,7 +41,7 @@ def extract_document(pdf_path, *, target_lang: Lang, source_lang: Lang | None = 
 def detect_document_language(pdf_path_or_doc) -> Lang            # over all text, via languages.detect_language
 def build_page_segments(page: pymupdf.Page, page_index: int, source_lang: Lang) -> list[TextSegment]
 ```
-* Use `page.get_text("dict", flags=pymupdf.TEXTFLAGS_DICT)`; one segment per text block (a block =
+* Use `page.get_text("dict")` (TEXTFLAGS_DICT without TEXT_PRESERVE_IMAGES); one segment per text block (a block =
   paragraph). Join lines: CJK sources join with "" (keep an explicit "\n" only where a line ends
   with sentence punctuation and the next line starts a list item / looks like a new paragraph);
   Latin sources join with " " and de-hyphenate `word-\nword`. Keep list markers (`1.`, `(1)`, `①`, `•`).
@@ -57,8 +57,9 @@ def build_page_segments(page: pymupdf.Page, page_index: int, source_lang: Lang) 
   图/表/Figure/Fig./Figura/Tabela/Tabla/図/表/그림/표; list = starts with list marker; label = <= 3
   words and small box).
 * `PageInfo.image_bboxes` from `page.get_image_info(xrefs=True)` (deduplicated, inside the page).
-* Rotated/vertical text: detect via `line["dir"]`; set `style.rotation` (0/90/180/270) and
-  `is_vertical` for CJK vertical writing (dir == (0, 1)/(0,-1)); these segments are still translated.
+* Rotated/vertical text: detect via `line["dir"]`; set `style.rotation` to the PyMuPDF `rotate` value
+  (90 = text runs upward, 270 = downward, 180 = upside down) and `is_vertical` for CJK vertical writing
+  (dir == (0, 1)/(0,-1)); these segments are still translated.
 
 ### `mathtrans/layout.py` (re-rendering translated text into the PDF)
 ```python
@@ -73,9 +74,11 @@ def segment_html(seg: TextSegment, text: str) -> str                         # H
   css=..., scale_low=min_font_scale, archive=..., rotate=seg.style.rotation)` with the original
   font size, colour (`#rrggbb`), weight, italic, alignment and line-height. `insert_htmlbox` returns
   `(spare_height, scale)`; store them in `seg.render`. If `scale == 0` / the text does not fit even at
-  `scale_low`: try (1) tighter line-height 1.1, (2) extend the rect downward/rightward into free
-  space (no overlap with other segments' bboxes or page images, max 1.5 × original height), (3)
-  otherwise render at `scale_low` and set `render.overflow=True` (QA reports it).
+  `scale_low`: the implemented attempt order is (1) original box at full size, (2) the box grown into
+  free space at full size (downward ≤ 1.5 × height, sideways within the column: a wide text block to
+  one side acts as a column wall), (3) the grown box shrunk down to `min_font_scale`, (4) the same with
+  the tighter line height 1.1, (5) otherwise unlimited shrinking (PyMuPDF writes nothing when the text
+  does not fit at `scale_low > 0`) with `render.overflow=True` (QA reports it and asks for a shorter text).
 * Image-text segments are *not* rendered here (see `images.render_image_segments`).
 * Use `fonts.html_font_setup(doc.target_lang, fonts_dir)` for CSS/Archive; built-ins already cover all
   six languages. Translated text must stay real, extractable text (editable PDF) — never rasterise.

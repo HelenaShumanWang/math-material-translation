@@ -25,8 +25,8 @@ import pymupdf
 from .config import Settings, get_settings
 from .glossary import effective_glossary
 from .interfaces import OcrEngine, ProgressCallback, Reviewer, Translator
-from .models import (Lang, PipelineOptions, PipelineResult, PipelineStats, QAIssue, QAReport, QARound,
-                     SegmentKind, TranslatedDocument)
+from .models import (Lang, PipelineOptions, PipelineResult, PipelineStats, QAIssue, SegmentKind,
+                     TranslatedDocument)
 
 log = logging.getLogger("mathtrans.pipeline")
 
@@ -209,23 +209,29 @@ def run_pipeline(
         report_progress("qa", summarize(report), 70)
 
         # ------------------------------------------------------ output checks
+        if options.subset_fonts:
+            report_progress("layout", "Subsetting embedded fonts", 85)
+            try:
+                pdf_doc = pymupdf.open(str(out_pdf))
+                pdf_doc.subset_fonts()
+                _atomic_save(pdf_doc, out_pdf)
+            except Exception as exc:  # noqa: BLE001 - subsetting is an optimisation, never fatal
+                log.warning("font subsetting failed; keeping fully embedded fonts: %s", exc)
         report_progress("check", "Verifying the output file", 86)
         out_issues: list[QAIssue] = output_checks(out_pdf, source_pdf, doc)
-        if out_issues:
-            errs = [i for i in out_issues if i.severity == "error"]
-            report.rounds.append(QARound(round=len(report.rounds) + 1, issues=out_issues,
-                                         retranslated=[], passed=not errs))
-            report.final_issues = [i for i in report.final_issues if i.severity != "error"] + out_issues \
-                if report.passed else report.final_issues + out_issues
-            report.errors = sum(1 for i in report.final_issues if i.severity == "error")
-            report.warnings = sum(1 for i in report.final_issues if i.severity == "warning")
-            if errs:
-                report.passed = False
-            report.summary = summarize(report)
+        out_errors = sum(1 for i in out_issues if i.severity == "error")
+        out_warnings = len(out_issues) - out_errors
+        report.final_issues = list(report.final_issues) + out_issues
+        report.errors = sum(1 for i in report.final_issues if i.severity == "error")
+        report.warnings = sum(1 for i in report.final_issues if i.severity == "warning")
+        if out_errors:
+            report.passed = False
         if "output_checks" not in report.checks_run:
             report.checks_run.append("output_checks")
         report.duration_s = round(time.time() - t0, 2)
-        report_progress("check", summarize(report), 90)
+        report.summary = (f"{summarize(report)}; output file checks: "
+                          f"{out_errors} error(s), {out_warnings} warning(s)")
+        report_progress("check", report.summary, 90)
 
         # ------------------------------------------------------------ exports
         result = PipelineResult(status="completed", output_pdf=str(out_pdf), qa_report=report, stats=stats)
@@ -260,8 +266,8 @@ def run_pipeline(
         stats.duration_s = round(time.time() - t0, 2)
         if options.require_qa_pass and not report.passed:
             result.status = "qa_failed"
-            result.error = f"QA did not pass: {summarize(report)}"
-        report_progress("done", summarize(report), 100)
+            result.error = f"QA did not pass: {report.summary}"
+        report_progress("done", report.summary, 100)
         return result
 
     except Exception as exc:  # noqa: BLE001 - converted into a result for the caller

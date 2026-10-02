@@ -1,5 +1,9 @@
 """Generate sample textbooks: python scripts/make_sample_pdf.py examples/sample_zh.pdf --lang zh"""
 import argparse
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from mathtrans.samples import make_sample_pdf
 

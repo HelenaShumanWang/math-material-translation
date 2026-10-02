@@ -57,8 +57,10 @@ def test_e2e_output_text_translated(zh_en_result):
     assert "勾股定理" not in text and "直角三角形" not in text
     assert "a² + b² = c²" in text  # formula kept verbatim
     assert "25" in text and "3 cm" in text
+    base14 = ("Helvetica", "Times", "Courier", "Symbol", "ZapfDingbats", "Arial")
     for f in d[0].get_fonts():
-        assert f[1] != "n/a"  # embedded
+        # fonts we add must be embedded; standard base-14 fonts of the source need not be
+        assert f[1] != "n/a" or f[3].startswith(base14), f
 
 
 def test_e2e_artifacts_written(zh_en_result):
