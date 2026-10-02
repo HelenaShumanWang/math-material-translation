@@ -45,6 +45,27 @@ _TOKEN_RE = re.compile(
 
 _LABEL_RE = re.compile(r"[A-Z]{1,4}['’]*")
 
+GEOMETRY_WORDS = {
+    # en
+    "triangle", "triangles", "segment", "segments", "line", "lines", "angle", "angles", "point", "points",
+    "quadrilateral", "parallelogram", "rectangle", "square", "circle", "side", "sides", "arc", "chord", "ray",
+    "vector", "vectors", "polygon", "trapezoid", "trapezium", "rhombus", "rt", "diagonal", "diagonals", "vertex",
+    "vertices", "edge", "edges", "face", "faces", "matrix", "matrices", "set", "sets", "interval", "prism", "pyramid",
+    "cube", "cuboid", "sphere", "cone", "cylinder", "plane", "planes", "midpoint", "altitude", "median", "bisector",
+    "hypotenuse", "leg", "legs", "base", "height", "radius", "diameter", "tangent", "secant", "centre", "center",
+    "pentagon", "hexagon", "octagon", "kite", "tetrahedron",
+    # es
+    "triángulo", "triángulos", "segmento", "segmentos", "recta", "rectas", "ángulo", "ángulos", "punto", "puntos",
+    "cuadrilátero", "paralelogramo", "rectángulo", "cuadrado", "círculo", "lado", "lados", "arco", "cuerda",
+    "vértice", "vértices", "diagonal", "vector", "polígono", "trapecio", "rombo", "radio", "diámetro", "altura",
+    "mediana", "bisectriz", "hipotenusa", "cateto", "catetos", "centro", "plano", "cubo", "esfera", "cono",
+    # pt
+    "triângulo", "triângulos", "reta", "retas", "ângulo", "ângulos", "ponto", "pontos", "quadrilátero",
+    "retângulo", "quadrado", "lado", "lados", "corda", "vetor", "polígono", "trapézio", "losango", "raio",
+    "diâmetro", "mediana", "bissetriz", "hipotenusa", "cateto", "catetos", "plano", "esfera",
+}
+"""Words after which an upper-case token (``triangle ABC``) is a geometric label."""
+
 
 class _Tok:
     __slots__ = ("kind", "text")
@@ -83,8 +104,11 @@ def _tokenize(text: str, cjk_source: bool = True) -> list[_Tok]:
 
 def _demote_isolated_letters(toks: list[_Tok]) -> None:
     """In Latin-script sources a lone letter is usually a word ("a", "y", "I"),
-    not a variable. Keep it as a math atom only when it is glued to another atom
-    ("2x", "f(x)", "x²", "AB") or sits next to an operator ("x = 3", "+ y")."""
+    not a variable, and an upper-case word of 2-4 letters is often a heading or
+    acronym ("STEP 1", "UNIT 3", "NOTE", "PDF") rather than a geometric label.
+    Keep them as math atoms only when they are glued to another atom ("2x",
+    "f(x)", "x²", "AB²"), sit next to an operator ("x = 3", "AB = 5", "∠ABC") or,
+    for labels, follow a geometric noun ("triangle ABC", "segmento PQ")."""
     n = len(toks)
 
     def neighbour(idx: int, step: int) -> tuple[Optional[_Tok], bool]:
@@ -96,14 +120,16 @@ def _demote_isolated_letters(toks: list[_Tok]) -> None:
         return (toks[j] if 0 <= j < n else None), spaced
 
     for i, t in enumerate(toks):
-        if t.kind != "letter":
+        if t.kind not in ("letter", "label"):
             continue
         prev, prev_sp = neighbour(i, -1)
         nxt, nxt_sp = neighbour(i, +1)
         glued = (prev is not None and not prev_sp and prev.kind in _ATOMS) or \
                 (nxt is not None and not nxt_sp and nxt.kind in _ATOMS)
         near_op = (prev is not None and prev.kind == "op") or (nxt is not None and nxt.kind == "op")
-        if not (glued or near_op):
+        after_geometry = t.kind == "label" and prev is not None and prev.kind == "word" \
+            and prev.text.lower() in GEOMETRY_WORDS
+        if not (glued or near_op or after_geometry):
             t.kind = "word"
 
 

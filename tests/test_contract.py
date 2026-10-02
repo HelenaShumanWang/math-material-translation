@@ -68,6 +68,8 @@ def test_default_glossary_and_checks():
     merged = g.merged_with(custom)
     assert merged.pairs("zh", "en")[0] != ("斜边", "hypotenuse side")  # longest first
     assert ("斜边", "hypotenuse side") in merged.pairs("zh", "en")
+    assert ("斜边", "hypotenuse") not in merged.pairs("zh", "en")  # the custom entry replaces the built-in one
+    assert len(merged.entries) == len(g.entries)
 
 
 def test_sample_pdf(sample_pdf_zh):
@@ -82,3 +84,38 @@ def test_segment_effective_text():
     assert s.effective_text == "x"
     s.translated_text = "y"
     assert s.effective_text == "y"
+
+
+def test_protect_uppercase_words_in_latin_sources():
+    p, frags = protect_text("STEP 1: Draw triangle ABC with AB = 3 cm. NOTE: UNIT 2 follows.", "en")
+    assert frags == ["1", "ABC", "AB = 3 cm", "2"]
+    assert "STEP" in p and "NOTE" in p and "UNIT" in p
+    p, frags = protect_text("En el triángulo PQR, ∠PQR = 90°.", "es")
+    assert "PQR" in frags and "∠PQR = 90°" in frags
+    # CJK sources keep upper-case tokens as labels (they are never ordinary words there)
+    p, frags = protect_text("在△ABC中，AB=5。", "zh")
+    assert "△ABC" in frags and "AB=5" in frags
+
+
+def test_pipeline_progress_is_monotonic(sample_pdf_zh, tmp_path):
+    from mathtrans.models import Lang, PipelineOptions
+    from mathtrans.pipeline import run_pipeline
+
+    seen = []
+    run_pipeline(sample_pdf_zh, tmp_path, PipelineOptions(target_lang=Lang.EN, translator="mock"),
+                 progress=lambda stage, msg, pct: seen.append(pct))
+    assert seen and all(b >= a for a, b in zip(seen, seen[1:])) and seen[-1] == 100
+
+
+def test_pipeline_rejects_textless_pdf_without_ocr(tmp_path):
+    import pymupdf
+    from mathtrans.models import Lang, PipelineOptions
+    from mathtrans.pipeline import run_pipeline
+
+    doc = pymupdf.open()
+    doc.new_page()
+    src = tmp_path / "blank.pdf"
+    doc.save(str(src))
+    res = run_pipeline(src, tmp_path / "out", PipelineOptions(target_lang=Lang.EN, translator="mock",
+                                                              translate_images=False))
+    assert res.status == "error" and "no text layer" in (res.error or "")

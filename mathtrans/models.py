@@ -284,10 +284,23 @@ class Glossary(BaseModel):
         return out
 
     def merged_with(self, other: Optional["Glossary"]) -> "Glossary":
-        """Entries of ``other`` take precedence over this glossary's entries."""
+        """Entries of ``other`` take precedence: an entry of this glossary is dropped
+        when any of its terms (same language) is also a term of a custom entry, so a
+        custom ``斜边 => hypotenuse side`` really replaces the built-in pair instead
+        of coexisting with it."""
         if other is None:
             return self
-        return Glossary(id=other.id, name=other.name, entries=list(other.entries) + list(self.entries))
+
+        def norm(term: str) -> str:
+            import unicodedata
+
+            return unicodedata.normalize("NFKC", term).casefold().strip()
+
+        taken = {(lang, norm(term)) for e in other.entries for lang, term in e.terms.items()
+                 if term and term.strip()}
+        kept = [e for e in self.entries
+                if not any((lang, norm(term)) in taken for lang, term in e.terms.items() if term and term.strip())]
+        return Glossary(id=other.id, name=other.name, entries=list(other.entries) + kept)
 
 
 # --------------------------------------------------------------------------- #

@@ -109,7 +109,14 @@ def run_pipeline(
 
     t0 = time.time()
     settings = settings or get_settings()
-    report_progress = progress or _noop_progress
+    _cb = progress or _noop_progress
+    _last_pct = [0.0]
+
+    def report_progress(stage: str, message: str, percent: float) -> None:
+        # never let the reported percentage run backwards (re-layouts during QA, re-translations)
+        pct = max(_last_pct[0], float(percent))
+        _last_pct[0] = pct
+        _cb(stage, message, pct)
     source_pdf = Path(source_pdf)
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -130,7 +137,7 @@ def run_pipeline(
             raise PipelineError("every page is excluded by the page selection; nothing to translate")
         doc = extract_document(source_pdf, target_lang=options.target_lang,
                                source_lang=options.source_lang, pages=pages)
-        if doc.source_lang == options.target_lang:
+        if doc.text_segments() and doc.source_lang == options.target_lang:
             raise PipelineError(
                 f"Source language ({doc.source_lang.value}) equals the target language; choose a different target")
         glossary = effective_glossary(options.glossary, options.use_default_glossary)
@@ -176,6 +183,15 @@ def run_pipeline(
         stats.ocr_engine = engine_name
         pairs = glossary.pairs(doc.source_lang, doc.target_lang)
         report_progress("ocr", f"{stats.image_segments} text regions found in images", 15)
+        if not doc.translatable():
+            if not doc.text_segments() and engine_name == "none":
+                why = ("translation of text inside images is disabled" if not options.translate_images
+                       else "no OCR engine is available")
+                raise PipelineError(
+                    f"The PDF has no text layer (scanned document) and {why}: enable OCR "
+                    "(translate_images / MATHTRANS_OCR_ENGINE=rapid with rapidocr-onnxruntime installed, or "
+                    "=claude with an API key) or supply a PDF with a text layer")
+            raise PipelineError("No translatable text was found in the selected pages")
 
         # ---------------------------------------------------------- translate
         translator_name = settings.resolved_translator(options.translator)
@@ -303,7 +319,11 @@ def run_pipeline(
         return result
 
     except Exception as exc:  # noqa: BLE001 - converted into a result for the caller
-        log.error("pipeline failed: %s\n%s", exc, traceback.format_exc())
+        if isinstance(exc, PipelineError):
+            log.error("pipeline failed: %s", exc)
+        else:
+            log.error("pipeline failed: %s: %s", type(exc).__name__, exc)
+        log.debug("pipeline traceback:\n%s", traceback.format_exc())
         stats.duration_s = round(time.time() - t0, 2)
         try:
             (out_dir / "error.txt").write_text(f"{exc}\n\n{traceback.format_exc()}", encoding="utf-8")

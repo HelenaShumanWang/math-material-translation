@@ -30,7 +30,7 @@ from PIL import Image, ImageDraw, ImageFont
 from .fonts import pil_font
 from .interfaces import OcrEngine
 from .languages import is_cjk, letters_of_script, script_profile
-from .models import (BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
+from .models import make_placeholder, (BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
 from .ocr import OcrError
 from .protect import is_fully_protected, protect_text
@@ -379,6 +379,9 @@ def _is_latin_or_greek(ch: str) -> bool:
     return bool(_LATIN_GREEK_RE.fullmatch(ch))
 
 
+_BARE_LABEL_RE = re.compile(r"[A-Z]{1,4}['’]*(?:\s*[A-Z]{1,4}['’]*)?")
+
+
 def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], bool, str]:
     """``(protected_text, fragments, translate, skip_reason)`` for an OCR line.
 
@@ -391,6 +394,9 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
     stripped = text.strip()
     if not stripped:
         return "", [], False, "empty"
+    if _BARE_LABEL_RE.fullmatch(stripped):
+        # a lone upper-case token in a diagram ("AB", "ABC", "PQR'") names a segment / polygon
+        return make_placeholder(0), [stripped], False, "pure number / formula"
     protected, fragments = protect_text(stripped, source_lang)
     letters = [ch for ch in stripped if ch.isalpha()]
     if len(letters) == 1 and len(stripped.replace(" ", "")) <= 2 and _is_latin_or_greek(letters[0]):
