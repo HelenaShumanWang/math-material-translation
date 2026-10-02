@@ -150,6 +150,10 @@
         <label for="opt-rounds" style="margin:0">最大质检轮数 / Max QA rounds</label>
         <input type="number" id="opt-rounds" min="1" max="10" value="3" style="max-width:90px">
       </div>
+      <div class="row" style="align-items:center">
+        <label for="opt-skip" style="margin:0">跳过页码 / Skip pages</label>
+        <input type="text" id="opt-skip" placeholder="例如 2,5-7 / e.g. 2,5-7" style="max-width:160px">
+      </div>
 
       <div style="margin-top:14px">
         <button type="submit" class="primary" id="submit-btn">开始翻译 / Start translation</button>
@@ -206,6 +210,7 @@
             <label class="inline"><input type="checkbox" id="re-docx"> Word</label>
             <label class="inline"><input type="checkbox" id="re-require" checked> 要求质检通过 / require QA</label>
             <label class="inline">轮数 / rounds <input type="number" id="re-rounds" min="1" max="10" value="3" style="width:64px"></label>
+            <label class="inline">跳过页 / skip pages <input type="text" id="re-skip" placeholder="2,5-7" style="width:90px"></label>
           </div>
         </div>
         <div style="flex:0 0 auto"><button type="submit" class="primary" id="re-btn">重新翻译 / Retranslate</button></div>
@@ -336,6 +341,7 @@
       fd.append("export_docx", String($("opt-docx").checked));
       fd.append("require_qa_pass", String($("opt-require-qa").checked));
       fd.append("max_qa_rounds", $("opt-rounds").value || "3");
+      if ($("opt-skip").value.trim()) fd.append("skip_pages", $("opt-skip").value.trim());
       const res = await api("/api/projects", { method: "POST", body: fd });
       msg.className = "msg ok"; msg.textContent = `已创建 ${res.projects.length} 个任务（批次 ${res.batch_id}）/ ${res.projects.length} project(s) queued`;
       chosen = []; renderFiles();
@@ -434,6 +440,7 @@
       $("re-docx").checked = !!p.options.export_docx;
       $("re-require").checked = !!p.options.require_qa_pass;
       $("re-rounds").value = p.options.max_qa_rounds || 3;
+      $("re-skip").value = Array.isArray(p.options.skip_pages) ? p.options.skip_pages.map(n => n + 1).join(",") : "";
       $("re-msg").textContent = "";
     }
     const active = p.status === "queued" || p.status === "running";
@@ -497,6 +504,7 @@
       options: {
         translate_images: $("re-images").checked, bilingual: $("re-bilingual").checked, export_docx: $("re-docx").checked,
         require_qa_pass: $("re-require").checked, max_qa_rounds: Number($("re-rounds").value || 3),
+        skip_pages: $("re-skip").value.trim() || null,
       },
     };
     $("re-btn").disabled = true;

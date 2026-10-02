@@ -22,7 +22,7 @@ from typing import Callable, Optional, Sequence
 
 from .config import get_settings
 from .glossary import glossary_template_csv, load_glossary
-from .models import Lang, PipelineOptions, PipelineResult
+from .models import Lang, PipelineOptions, PipelineResult, parse_page_spec
 
 log = logging.getLogger("mathtrans.cli")
 
@@ -62,6 +62,10 @@ def build_parser() -> argparse.ArgumentParser:
     tr.add_argument("--translator", choices=["auto", "mock", "claude"], default="auto",
                     help="translation backend (default: auto = claude if an API key is set, else mock)")
     tr.add_argument("--max-rounds", type=int, default=None, metavar="N", help="maximum QA rounds")
+    tr.add_argument("--pages", metavar="SPEC", default=None,
+                    help="only translate these pages, e.g. 1-3,7 (1-based; default: all)")
+    tr.add_argument("--skip-pages", metavar="SPEC", default=None,
+                    help="leave these pages untouched, e.g. 2 or 2,5-7 (1-based)")
     tr.add_argument("--model", metavar="MODEL", default=None,
                     help="Claude model id for translation and review (default: MATHTRANS_CLAUDE_MODEL)")
     tr.add_argument("--subset-fonts", action="store_true",
@@ -120,6 +124,11 @@ def cmd_translate(args: argparse.Namespace) -> int:
             return _fail(f"glossary {args.glossary} contains no entries")
     if args.max_rounds is not None and args.max_rounds < 1:
         return _fail("--max-rounds must be >= 1")
+    try:
+        pages = parse_page_spec(args.pages)
+        skip_pages = parse_page_spec(args.skip_pages)
+    except ValueError as exc:
+        return _fail(f"invalid page specification: {exc}")
 
     out_dir = Path(args.out) if args.out else Path("output") / f"{source.stem}_{target.value}"
     options = PipelineOptions(
@@ -134,6 +143,8 @@ def cmd_translate(args: argparse.Namespace) -> int:
         translator=args.translator,
         model=args.model,
         subset_fonts=args.subset_fonts,
+        pages=pages,
+        skip_pages=skip_pages,
         min_font_scale=settings.min_font_scale,
         preview_dpi=settings.preview_dpi,
     )

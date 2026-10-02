@@ -39,7 +39,7 @@ from starlette.datastructures import UploadFile as StarletteUploadFile
 from .config import Settings, get_settings
 from .glossary import glossary_template_csv, parse_glossary_text
 from .languages import language_choices
-from .models import Lang, PipelineOptions, PipelineResult, QAReport, TranslatedDocument
+from .models import Lang, PipelineOptions, PipelineResult, QAReport, TranslatedDocument, parse_page_spec
 from .projects import (DEFAULT_GLOSSARY_ID, GlossaryNotFound, InvalidId, Project, ProjectBusy,
                        ProjectNotFound, ProjectStore, ProjectUnreadable, new_id)
 
@@ -67,7 +67,7 @@ _DOWNLOAD_SUFFIX = {
     "segments": "_segments.json",
 }
 _RETRANSLATE_OPTION_KEYS = frozenset({"translate_images", "bilingual", "export_docx", "max_qa_rounds",
-                                      "require_qa_pass", "subset_fonts"})
+                                      "require_qa_pass", "subset_fonts", "pages", "skip_pages"})
 _TRUE = {"1", "true", "yes", "on"}
 _FALSE = {"0", "false", "no", "off"}
 
@@ -143,7 +143,22 @@ def parse_retranslate_options(options: Mapping[str, Any]) -> dict[str, Any]:
             out[key] = parse_bool(options[key], False, key)
     if options.get("max_qa_rounds") is not None:
         out["max_qa_rounds"] = parse_int(options["max_qa_rounds"], 1, "max_qa_rounds", 1, MAX_QA_ROUNDS_LIMIT)
+    for key in ("pages", "skip_pages"):
+        if options.get(key) is not None:
+            out[key] = parse_pages(options[key], key)
     return out
+
+
+def parse_pages(value: Any, field: str) -> Optional[list[int]]:
+    """A page specification ("2,5-7", 1-based) or a JSON list of 1-based page numbers."""
+    if value is None or value == "" or value == []:
+        return None
+    if isinstance(value, list):
+        value = ",".join(str(v) for v in value)
+    try:
+        return parse_page_spec(str(value))
+    except ValueError as exc:
+        raise _bad(f"{field}: {exc}") from None
 
 
 def parse_glossary_name(value: Any) -> Optional[str]:
@@ -463,6 +478,8 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
         max_qa_rounds: Optional[str] = Form(None),
         require_qa_pass: Optional[str] = Form(None),
         subset_fonts: Optional[str] = Form(None),
+        pages: Optional[str] = Form(None),
+        skip_pages: Optional[str] = Form(None),
     ) -> dict[str, Any]:
         """Upload 1..50 PDFs and queue one translation project per file (shared ``batch_id``)."""
         uploads = [f for f in (files or []) if f.filename]
@@ -483,6 +500,8 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
             max_qa_rounds=parse_int(max_qa_rounds, settings.max_qa_rounds, "max_qa_rounds", 1, MAX_QA_ROUNDS_LIMIT),
             require_qa_pass=parse_bool(require_qa_pass, settings.require_qa_pass, "require_qa_pass"),
             subset_fonts=parse_bool(subset_fonts, False, "subset_fonts"),
+            pages=parse_pages(pages, "pages"),
+            skip_pages=parse_pages(skip_pages, "skip_pages"),
             min_font_scale=settings.min_font_scale,
             preview_dpi=settings.preview_dpi,
         )

@@ -24,6 +24,7 @@ import pymupdf
 
 from .config import Settings, get_settings
 from .glossary import effective_glossary
+from .languages import detect_language
 from .interfaces import OcrEngine, ProgressCallback, Reviewer, Translator
 from .models import (Lang, PipelineOptions, PipelineResult, PipelineStats, QAIssue, SegmentKind,
                      TranslatedDocument)
@@ -56,6 +57,18 @@ def _document_context(doc: TranslatedDocument) -> str:
     if headings[1:4]:
         parts.append("Other headings: " + " | ".join(h[:60] for h in headings[1:4]))
     return " ".join(parts)
+
+
+def _effective_pages(source_pdf: Path, options: PipelineOptions) -> tuple[Optional[list[int]], int]:
+    """Pages to process (None = all) after applying ``options.pages`` and
+    ``options.skip_pages``; also returns how many pages are skipped."""
+    with pymupdf.open(str(source_pdf)) as pdf:
+        n = pdf.page_count
+    base = options.pages if options.pages is not None else list(range(n))
+    skip = {p for p in (options.skip_pages or []) if 0 <= p < n}
+    if not skip:
+        return options.pages, 0
+    return [p for p in base if p not in skip], len(set(base) & skip)
 
 
 def _atomic_save(doc: pymupdf.Document, path: Path) -> None:
@@ -112,14 +125,16 @@ def run_pipeline(
 
         # ------------------------------------------------------------ extract
         report_progress("extract", "Extracting text and layout", 1)
+        pages, stats.pages_skipped = _effective_pages(source_pdf, options)
+        if pages is not None and not pages:
+            raise PipelineError("every page is excluded by the page selection; nothing to translate")
         doc = extract_document(source_pdf, target_lang=options.target_lang,
-                               source_lang=options.source_lang, pages=options.pages)
+                               source_lang=options.source_lang, pages=pages)
         if doc.source_lang == options.target_lang:
             raise PipelineError(
                 f"Source language ({doc.source_lang.value}) equals the target language; choose a different target")
         glossary = effective_glossary(options.glossary, options.use_default_glossary)
         doc.glossary = glossary
-        pairs = glossary.pairs(doc.source_lang, doc.target_lang)
         stats.pages = doc.page_count
         stats.source_lang = doc.source_lang.value
         stats.text_segments = len(doc.text_segments())
@@ -135,14 +150,31 @@ def run_pipeline(
             engine = ocr_engine or get_ocr_engine(settings.resolved_ocr(options.ocr_engine), settings)
             if engine is not None and engine.name != "none":
                 engine_name = engine.name
+                if not doc.text_segments() and options.source_lang is None:
+                    # Scanned document (no text layer): detect the language from the OCR text
+                    # of the first pages before classifying every image region.
+                    probe_pages = (pages if pages is not None else list(range(doc.page_count)))[:2]
+                    report_progress("ocr", "Scanned document: detecting the source language", 6)
+                    probe = extract_image_segments(source_pdf, doc, engine, pages=probe_pages)
+                    detected = detect_language(" ".join(seg.source_text for seg in probe))
+                    if detected is not None and detected != doc.source_lang:
+                        log.info("scanned document: source language %s detected from OCR text (was %s)",
+                                 detected.value, doc.source_lang.value)
+                        doc.source_lang = detected
+                        stats.source_lang = detected.value
+                    if doc.source_lang == options.target_lang:
+                        raise PipelineError(
+                            f"Source language ({doc.source_lang.value}) equals the target language; "
+                            "choose a different target")
                 report_progress("ocr", f"Recognising text inside images ({engine_name})", 7)
-                image_segments = extract_image_segments(source_pdf, doc, engine, pages=options.pages)
+                image_segments = extract_image_segments(source_pdf, doc, engine, pages=pages)
                 doc.segments.extend(image_segments)
                 stats.image_segments = len(image_segments)
                 stats.images_processed = len({s.image.xref for s in image_segments if s.image})
             else:
                 report_progress("ocr", "No OCR engine available; text inside images is kept as is", 10)
         stats.ocr_engine = engine_name
+        pairs = glossary.pairs(doc.source_lang, doc.target_lang)
         report_progress("ocr", f"{stats.image_segments} text regions found in images", 15)
 
         # ---------------------------------------------------------- translate
@@ -173,7 +205,7 @@ def run_pipeline(
         def render_all(message: str = "Laying out translated text") -> None:
             report_progress("layout", message, 60)
             render_document(source_pdf, doc, out_pdf, min_font_scale=options.min_font_scale,
-                            fonts_dir=settings.fonts_dir, pages=options.pages)
+                            fonts_dir=settings.fonts_dir, pages=pages)
             image_targets = [s for s in doc.image_segments() if s.translated_text and s.translate]
             if image_targets:
                 from .images import render_image_segments

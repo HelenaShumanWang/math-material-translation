@@ -29,6 +29,7 @@ import pymupdf
 
 from ..glossary import term_present
 from ..languages import LANGUAGES, info, is_cjk, normalize_for_compare, script_profile
+from ..languages import letters_of_script as _source_script_letters
 from ..models import (PLACEHOLDER_RE, Lang, PipelineOptions, QAIssue, SegmentKind, Severity, TextSegment,
                       TranslatedDocument)
 from ..protect import is_fully_protected, verify_placeholders
@@ -427,6 +428,8 @@ def untranslated(doc: TranslatedDocument, options: PipelineOptions,
                     f"into {_lang_name(tgt)} (only formulas, variable names and units stay in Latin letters)",
                     copied_runs=copied[:5]))
                 continue
+        if _source_script_letters(seg.source_text, src) == 0:
+            continue  # romanised names, acronyms, codes: nothing to translate ("SHUXUE", "ISBN")
         if _identical_is_untranslated(seg, src, tgt):
             issues.append(_issue(
                 "untranslated", "error", seg,
@@ -693,6 +696,12 @@ def layout_fit(doc: TranslatedDocument, options: PipelineOptions,
     return issues
 
 
+IMAGE_MIN_FEASIBLE_CHARS = 4
+"""An image label shorter than this cannot be asked for; the fit is reported as a warning."""
+IMAGE_MIN_FEASIBLE_SHARE = 0.35
+"""A shorten request below this share of the current length is considered infeasible."""
+
+
 def image_text(doc: TranslatedDocument, options: PipelineOptions,
                pairs: Optional[GlossaryPairs] = None) -> list[QAIssue]:
     """Translated text inside images must have been painted and must fit its region.
@@ -718,12 +727,22 @@ def image_text(doc: TranslatedDocument, options: PipelineOptions,
                 f"The translated text could not be painted into the image{reason}; the original text is still "
                 f"visible in the picture", fixable=False, notes=r.notes))
         elif r.overflow:
+            current = len((seg.translated_text or "").strip())
             max_chars = shorten_hint(seg.translated_text or "", r.scale)
-            issues.append(_issue(
-                "image_text", "error", seg,
-                f"Shorten the translation to at most {max_chars} characters so it fits the text region inside "
-                f"the image (the current {len((seg.translated_text or '').strip())}-character translation "
-                f"overflows it)", max_chars=max_chars, scale=round(r.scale, 3), overflow=True))
+            if max_chars < max(IMAGE_MIN_FEASIBLE_CHARS, int(IMAGE_MIN_FEASIBLE_SHARE * current)):
+                # Even a drastically shorter text would not fit (tiny label, huge glyphs):
+                # re-translating cannot fix it, so report it for a human instead of blocking.
+                issues.append(_issue(
+                    "image_text", "warning", seg,
+                    f"The translation does not fit the tiny text region inside the image even at the minimum "
+                    f"font size; it was drawn at the minimum size and may overflow its box - check the preview",
+                    fixable=False, max_chars=max_chars, scale=round(r.scale, 3), overflow=True))
+            else:
+                issues.append(_issue(
+                    "image_text", "error", seg,
+                    f"Shorten the translation to at most {max_chars} characters so it fits the text region inside "
+                    f"the image (the current {current}-character translation overflows it)",
+                    max_chars=max_chars, scale=round(r.scale, 3), overflow=True))
     return issues
 
 

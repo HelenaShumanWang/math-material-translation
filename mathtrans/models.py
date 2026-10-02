@@ -434,12 +434,14 @@ class PipelineOptions(BaseModel):
     ocr_engine: str = "auto"  # auto | rapid | claude | none
     model: Optional[str] = None
     pages: Optional[list[int]] = None  # restrict processing to these 0-based pages (debug / preview)
+    skip_pages: Optional[list[int]] = None  # 0-based pages copied through untouched (e.g. a page with a QR code)
     preview_dpi: int = 110
     subset_fonts: bool = False  # subset embedded fonts (much smaller file, but editors can only reuse embedded glyphs)
 
 
 class PipelineStats(BaseModel):
     pages: int = 0
+    pages_skipped: int = 0
     text_segments: int = 0
     image_segments: int = 0
     translated: int = 0
@@ -465,3 +467,44 @@ class PipelineResult(BaseModel):
     stats: PipelineStats = Field(default_factory=PipelineStats)
     error: Optional[str] = None
     preview_pages: list[str] = Field(default_factory=list)  # PNG paths, one per page
+
+
+def parse_page_spec(spec: Optional[str], page_count: Optional[int] = None) -> Optional[list[int]]:
+    """Parse a user-facing page specification such as ``"2,5-7"`` (1-based, inclusive
+    ranges, ``7-`` means "to the end") into sorted unique 0-based indices.
+
+    Returns ``None`` for an empty specification. Raises ``ValueError`` for malformed
+    input or, when ``page_count`` is given, for pages outside the document.
+    """
+    if spec is None:
+        return None
+    text = str(spec).strip().replace("，", ",").replace("－", "-").replace("—", "-")
+    if not text:
+        return None
+    pages: set[int] = set()
+    for part in text.split(","):
+        part = part.strip()
+        if not part:
+            continue
+        if "-" in part:
+            lo_s, hi_s = part.split("-", 1)
+            lo_s, hi_s = lo_s.strip(), hi_s.strip()
+            if not lo_s.isdigit() or (hi_s and not hi_s.isdigit()):
+                raise ValueError(f"invalid page range: {part!r}")
+            lo = int(lo_s)
+            if hi_s:
+                hi = int(hi_s)
+            elif page_count is not None:
+                hi = page_count
+            else:
+                raise ValueError(f"open range {part!r} needs the page count")
+        else:
+            if not part.isdigit():
+                raise ValueError(f"invalid page number: {part!r}")
+            lo = hi = int(part)
+        if lo < 1 or hi < lo:
+            raise ValueError(f"invalid page range: {part!r}")
+        if page_count is not None and hi > page_count:
+            raise ValueError(f"page {hi} is beyond the last page ({page_count})")
+        pages.update(range(lo - 1, hi))
+    return sorted(pages) if pages else None

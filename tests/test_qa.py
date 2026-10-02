@@ -289,15 +289,20 @@ def test_image_text_check():
                    pixel_box=(250, 150, 330, 180))
     pending = seg("p0_i50_0", "斜边 c", "hypotenuse c", kind=SegmentKind.IMAGE_TEXT, image=ref)
     overflow = seg("p0_i50_1", "斜边 c", "hypotenuse c", kind=SegmentKind.IMAGE_TEXT, image=ref,
-                   render=RenderInfo(font_size=4, scale=0.3, overflow=True))
+                   render=RenderInfo(font_size=6, scale=0.6, overflow=True))
+    # a label that would have to shrink to 1-3 characters cannot be fixed by re-translation
+    hopeless = seg("p0_i50_4", "150米", "150 metres", kind=SegmentKind.IMAGE_TEXT, image=ref,
+                   render=RenderInfo(font_size=2.3, scale=0.13, overflow=True))
     done = seg("p0_i50_2", "斜边 c", "hypotenuse c", kind=SegmentKind.IMAGE_TEXT, image=ref,
                render=RenderInfo(font_size=9, scale=0.9, overflow=False))
     # images.render_image_segments marks "nothing drawn" with font_size == scale == 0
     failed = seg("p0_i50_3", "斜边 c", "hypotenuse c", kind=SegmentKind.IMAGE_TEXT, image=ref,
                  render=RenderInfo(font_size=0, scale=0, overflow=True, notes="not rendered: image decoding failed"))
-    issues = C.image_text(doc(pending, overflow, done, failed), opts(), [])
+    issues = C.image_text(doc(pending, overflow, done, failed, hopeless), opts(), [])
     by_id = {i.segment_id: i for i in issues}
-    assert set(by_id) == {"p0_i50_0", "p0_i50_1", "p0_i50_3"}
+    assert set(by_id) == {"p0_i50_0", "p0_i50_1", "p0_i50_3", "p0_i50_4"}
+    assert by_id["p0_i50_4"].severity == "warning" and not by_id["p0_i50_4"].fixable
+    assert "does not fit" in by_id["p0_i50_4"].message
     assert by_id["p0_i50_0"].severity == "warning" and not by_id["p0_i50_0"].fixable
     assert by_id["p0_i50_1"].severity == "error" and by_id["p0_i50_1"].details["max_chars"] < len("hypotenuse c")
     assert by_id["p0_i50_1"].fixable and "Shorten" in by_id["p0_i50_1"].message

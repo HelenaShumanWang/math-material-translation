@@ -212,7 +212,8 @@ def encode_image(rgb: np.ndarray, alpha: Optional[np.ndarray], ext: str) -> byte
         rgba = np.dstack([rgb, alpha])
         Image.fromarray(rgba, "RGBA").save(buf, format="PNG")
     elif ext in ("jpeg", "jpg"):
-        Image.fromarray(rgb, "RGB").save(buf, format="JPEG", quality=92, subsampling=0)
+        # quality 90 with 4:2:0 chroma keeps scanned pages close to their original size
+        Image.fromarray(rgb, "RGB").save(buf, format="JPEG", quality=90, optimize=True)
     else:
         Image.fromarray(rgb, "RGB").save(buf, format="PNG")
     return buf.getvalue()
@@ -373,6 +374,23 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
     return protected, fragments, True, ""
 
 
+MAX_TEXT_SLANT_DEGREES = 12.0
+"""OCR polygons slanted more than this (and less than 90 - this) are decorative:
+watermarks, diagonal captions, text along curves. They are kept as they are."""
+
+
+def polygon_slant_degrees(polygon: list[list[float]]) -> float:
+    """Angle in degrees (0..90) between the polygon's top edge and the horizontal."""
+    if len(polygon) < 2:
+        return 0.0
+    (x0, y0), (x1, y1) = polygon[0][:2], polygon[1][:2]
+    dx, dy = float(x1) - float(x0), float(y1) - float(y0)
+    if abs(dx) < 1e-6 and abs(dy) < 1e-6:
+        return 0.0
+    angle = abs(math.degrees(math.atan2(dy, dx)))
+    return min(angle, 180.0 - angle)
+
+
 def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index: int, loaded: LoadedImage,
                         image_bbox: BBox, transform: Any, source_lang: Lang) -> Optional[TextSegment]:
     """Turn one OCR result on image ``xref`` into an ``IMAGE_TEXT`` segment.
@@ -391,6 +409,9 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     bg, _uniform = estimate_background(loaded.rgb, box, loaded.alpha)
     color = estimate_text_color(loaded.rgb, box, bg, loaded.alpha)
     protected, fragments, translate, reason = classify_ocr_text(result.text, source_lang)
+    slant = polygon_slant_degrees(result.polygon)
+    if translate and MAX_TEXT_SLANT_DEGREES < slant < 90.0 - MAX_TEXT_SLANT_DEGREES:
+        translate, reason = False, f"slanted text ({slant:.0f}°): watermark or decoration, kept as is"
     return TextSegment(
         id=f"p{page_index}_i{xref}_{index}",
         page=page_index,

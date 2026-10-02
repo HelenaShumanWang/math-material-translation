@@ -1,107 +1,103 @@
-# mathtrans — 数学学习资料翻译系统 / Math Material Translation
+# mathtrans — layout-preserving translation of math learning materials
 
-保留原版式的多语种数学教材 PDF 翻译服务：上传彩色图文 PDF，选择目标语言，系统把页面上**所有文字（包括图片里嵌入的文字）**替换为译文，保持原始页面布局、图片位置和整体样式不变，经过**多维度自动质检**全部通过后，输出**可编辑 PDF**（可选 Word、双语对照版）。
+[中文说明 / Chinese README](README.zh-CN.md)
 
-Layout-preserving translation of math learning materials (PDF) between **Chinese, English, Portuguese, Spanish, Japanese and Korean**, including text embedded in raster images, with an editable PDF as output and a mandatory multi-round automatic QA loop before anything is exported.
+`mathtrans` translates math textbooks and worksheets (PDF) between **Chinese, English, Portuguese, Spanish, Japanese and Korean**. It keeps the original page layout, images, colours and styling, replaces **every piece of text on the page — including text embedded in raster images** — with the translation, runs a mandatory **multi-round automatic QA loop**, and only then exports an **editable PDF** (optionally also a Word document and a bilingual side-by-side version).
 
----
-
-## 效果示例 / Example
-
-| 原文（中文教材，第 1 页） | 译文（英文，版式/图片/图内文字保持） |
+| Source (Chinese textbook, page 1) | Output (English, layout / images / in-image text preserved) |
 |---|---|
 | ![source](docs/sample-zh-source-page1.png) | ![translated](docs/sample-zh-en-page1.png) |
 
-Web 界面（中英双语）：
+Web UI (bilingual labels):
 
 ![web ui](docs/screenshot-web-ui.png)
 
-> 示例由内置的离线 mock 翻译器生成（仅用于演示流程，译文为逐词替换）；配置 `ANTHROPIC_API_KEY` 后由 Claude 完成真正的翻译与审校。
+> The pictures above were produced by the built-in **offline mock translator** (word-by-word substitution used for demos and tests). With an `ANTHROPIC_API_KEY` configured, translation and semantic review are done by Claude.
 
 ---
 
-## 功能对照 / Feature matrix
+## Feature matrix
 
-| 需求 | 状态 | 实现 |
+| Requirement | Status | How it is implemented |
 |---|---|---|
-| 源文件上传（中/英/葡/西/日/韩） | ✅ | Web 上传 / REST / CLI；源语言可自动检测 (`languages.detect_language`) |
-| 目标语言自由选择 | ✅ | 六种语言任意组合（源 ≠ 目标） |
-| 版式与图文保持不变 | ✅ | 只擦除原文字对象（`PyMuPDF` 文本遮盖，图片、线条、底色全部保留），译文按原字号/颜色/粗细/对齐重新排入原文本框，放不下时自动缩放、放宽行距或向空白区扩展 |
-| 图片内嵌文字翻译 | ✅ | RapidOCR（离线）或 Claude 视觉识别图片内文字 → 翻译 → 背景填充/修复 → 用目标语言字体重绘 → 替换图片对象（像素尺寸、位置不变） |
-| 可编辑 PDF | ✅ | 译文是真实文本对象（内嵌字体），可在 Acrobat / Illustrator 等工具中直接修改 |
-| 自动质检（硬性要求） | ✅ | 10 项规则校验 + Claude 语义审校 + 版式校验 + 输出文件校验，多轮循环（失败段落带反馈重译），全部通过才输出；未通过的任务会被标记为 `qa_failed`，默认不允许下载 |
-| 批量上传 | ✅ | 一次上传多个 PDF，自动生成同一 `batch_id` 的多个任务，后台队列执行 |
-| Word 导出 | ✅ | `--docx` / 「Word 导出」选项（LibreOffice 转换，缺少 LibreOffice 时用 python-docx 重建） |
-| 术语库固定 | ✅ | 内置 90+ 条六语种数学术语；支持上传/粘贴 CSV 或 JSON 自定义术语，自定义优先；质检会检查术语是否被遵守 |
-| 分任务保存 | ✅ | 每个任务保存在 `data/projects/<id>/`，含源文件、每次运行的输出、质检报告和分段 JSON；可更换目标语言或术语库重新翻译，历史保留 |
-| 预览 | ✅ | 翻译完成后生成每页 PNG 预览（`/api/projects/{id}/preview/{page}`），确认后再下载 |
-| 双语对照 | ✅ | `--bilingual` / 「双语对照」选项：每页左原文右译文并排 |
+| Upload source files (zh / en / pt / es / ja / ko) | ✅ | Web upload, REST API and CLI; the source language is auto-detected (`languages.detect_language`) or set explicitly |
+| Free choice of target language | ✅ | Any of the six languages (source ≠ target) |
+| Layout, images and styling preserved | ✅ | Only the original text objects are erased (PyMuPDF redaction keeps images, rules and background fills); the translation is re-inserted into the original text box with the original font size, colour, weight and alignment, shrinking, tightening line height or growing into free space (never across a column gutter) when it does not fit |
+| Text inside images translated | ✅ | RapidOCR (offline) or Claude vision detects text in raster images → translation → background fill / inpainting → redraw in a target-language font → the image object is replaced (same pixel size and placement) |
+| Editable PDF | ✅ | Translated text consists of real text objects with embedded fonts; it can be edited in Acrobat, Illustrator, etc. (`--subset-fonts` trades editability for a much smaller file) |
+| Automatic QA (mandatory) | ✅ | 10 rule checks + Claude semantic review + layout-fit checks + output-file checks, run in a loop (failing segments are re-translated with the QA feedback); files are exported only after QA passes — a failing job is marked `qa_failed` and its downloads are refused unless forced |
+| Batch upload | ✅ | Upload several PDFs at once; one project per file under a shared `batch_id`, executed by a background queue |
+| Word export | ✅ | `--docx` / "Export DOCX" (LibreOffice conversion; python-docx rebuild when LibreOffice is unavailable) |
+| Fixed terminology (glossary) | ✅ | 90+ built-in six-language math terms; custom CSV/JSON glossaries (upload or paste) take precedence; QA verifies that the glossary was followed |
+| Projects are saved | ✅ | Every project lives in `data/projects/<id>/` with the source file, the outputs of every run, the QA report and the segment JSON; re-translate with another target language or glossary while keeping the history |
+| Preview | ✅ | PNG previews of every page are generated after translation (`/api/projects/{id}/preview/{page}`); download when satisfied |
+| Bilingual side-by-side version | ✅ | `--bilingual` / "Bilingual side-by-side PDF": original page on the left, translation on the right |
+| Skip pages | ✅ | `--skip-pages 2` / "Skip pages" leaves selected pages untouched (e.g. a page with a QR code or legal notice) |
 
 ---
 
-## 快速开始 / Quick start
+## Quick start
 
 ```bash
 git clone https://github.com/HelenaShumanWang/math-material-translation
 cd math-material-translation
 python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt            # 或 pip install -e ".[dev]"
-cp .env.example .env                       # 填入 ANTHROPIC_API_KEY
-python scripts/fetch_fonts.py              # 可选：下载 Noto Sans SC/JP/KR 字体，排版更美观
+pip install -e ".[dev]"                     # or: pip install -r requirements.txt
+cp .env.example .env                       # put your ANTHROPIC_API_KEY here
+python scripts/fetch_fonts.py              # optional: Noto Sans SC/JP/KR for nicer typography
 ```
 
-**系统依赖（可选）**：LibreOffice（`soffice`）用于高质量 Word 导出；没有时自动退回 python-docx 重建。
+Optional system dependency: **LibreOffice** (`soffice`) for high-fidelity Word export; without it the Word file is rebuilt with python-docx.
 
-### 命令行 / CLI
+### Command line
 
 ```bash
-# 生成一份示例教材（中文，两页，含图内文字）
-python -m mathtrans.cli sample examples/sample_zh.pdf --lang zh
+# Write a two-page sample textbook (Chinese, with text inside the figures)
+mathtrans sample examples/sample_zh.pdf --lang zh
 
-# 中文教材 → 英文，保留版式，翻译图内文字，自动质检，输出可编辑 PDF + 双语版 + Word
-python -m mathtrans.cli translate examples/sample_zh.pdf --to en --bilingual --docx --out examples/output/zh_en
+# Chinese textbook → English: layout preserved, in-image text translated, automatic QA,
+# editable PDF + bilingual version + Word document
+mathtrans translate examples/sample_zh.pdf --to en --bilingual --docx --out output/zh_en
 
-# 指定源语言、自定义术语库、最多 4 轮质检
-python -m mathtrans.cli translate book.pdf --from zh --to pt --glossary my_terms.csv --max-rounds 4
+# Explicit source language, custom glossary, up to 4 QA rounds, page 2 left untouched
+mathtrans translate book.pdf --from zh --to pt --glossary my_terms.csv --max-rounds 4 --skip-pages 2
 
-# 没有 API Key 时可用离线 mock 翻译器体验整个流程（仅用于演示/测试，不是真正的翻译）
-python -m mathtrans.cli translate examples/sample_zh.pdf --to en --translator mock
+# Without an API key the offline mock translator exercises the whole pipeline
+# (demo / testing only — it is not a real translation)
+mathtrans translate examples/sample_zh.pdf --to en --translator mock
 
-# 指定模型、压缩字体（文件更小，但编辑时只能复用已嵌入的字形）
-python -m mathtrans.cli translate book.pdf --to ja --model claude-opus-5-5 --subset-fonts
+# Pick a model and subset the embedded fonts (smaller file; editors can only reuse embedded glyphs)
+mathtrans translate book.pdf --to ja --model claude-opus-5-5 --subset-fonts
 ```
 
-`examples/` 目录内含六种语言的示例教材（`sample_zh.pdf` … `sample_ko.pdf`），均由 `mathtrans sample` 生成。
+Exit codes: `0` completed with QA passed, `2` QA failed (the output files are still written for inspection), `1` error.
+`examples/` contains sample textbooks in all six languages, generated with `mathtrans sample`.
 
-退出码：`0` 完成且质检通过，`2` 质检未通过（输出文件仍会生成供检查），`1` 出错。
-
-### Web 服务 / Web UI + REST API
+### Web UI and REST API
 
 ```bash
-python -m mathtrans.cli serve --host 0.0.0.0 --port 8000
-# 打开 http://localhost:8000
+mathtrans serve --host 0.0.0.0 --port 8000
+# open http://localhost:8000
 ```
 
-界面支持：多文件上传、源/目标语言选择、术语库（选择已有 / 粘贴 CSV / 上传文件）、选项（图内文字、双语、Word、质检轮数）、任务列表实时进度、质检报告、页面预览、下载、更换语言重新翻译。
+The UI offers multi-file upload, source/target language selection, glossaries (pick an existing one, paste CSV or upload a file), options (in-image text, bilingual version, Word export, QA rounds, skip pages), a project table with live progress, the QA report, page previews, downloads and re-translation into another language.
 
-REST 端点（详见 `ARCHITECTURE.md`）：
-
-| 方法 | 路径 | 说明 |
+| Method | Path | Purpose |
 |---|---|---|
-| GET | `/api/languages` | 支持的语言 |
-| GET/POST | `/api/glossaries` | 列出 / 上传术语库（CSV/JSON 文件或 `text` 字段） |
-| GET | `/api/glossaries/template` | 术语库 CSV 模板 |
-| POST | `/api/projects` | 创建任务（multipart：`files`×N，`target_lang`，可选 `source_lang`、`glossary_id`、`translate_images`、`bilingual`、`export_docx`、`max_qa_rounds`、`require_qa_pass`、`subset_fonts`） |
-| GET | `/api/projects` `/api/projects/{id}` | 列表 / 详情（状态、进度、结果、质检摘要） |
-| POST | `/api/projects/{id}/retranslate` | 更换目标语言/术语库重新翻译（保留历史） |
-| GET | `/api/projects/{id}/qa` | 质检报告（`?format=md` 为 Markdown） |
-| GET | `/api/projects/{id}/preview/{page}` | 第 N 页预览 PNG |
-| GET | `/api/projects/{id}/download?format=pdf|bilingual|docx|segments` | 下载（质检未通过时返回 409，加 `&force=1` 可强制下载） |
-| DELETE | `/api/projects/{id}` | 删除任务 |
+| GET | `/api/languages` | Supported languages |
+| GET / POST | `/api/glossaries` | List / upload glossaries (CSV/JSON file or a `text` field) |
+| GET | `/api/glossaries/template` | CSV glossary template |
+| POST | `/api/projects` | Create projects (multipart: `files`×N, `target_lang`; optional `source_lang`, `glossary_id`, `translate_images`, `bilingual`, `export_docx`, `max_qa_rounds`, `require_qa_pass`, `subset_fonts`, `pages`, `skip_pages`) |
+| GET | `/api/projects`, `/api/projects/{id}` | List / detail (status, progress, result, QA summary) |
+| POST | `/api/projects/{id}/retranslate` | New run with another target language / glossary / options (history kept) |
+| GET | `/api/projects/{id}/qa` | QA report (`?format=md` for Markdown) |
+| GET | `/api/projects/{id}/preview/{page}` | PNG preview of page N |
+| GET | `/api/projects/{id}/download?format=pdf\|bilingual\|docx\|segments` | Download (409 while QA has not passed; add `&force=1` to override) |
+| DELETE | `/api/projects/{id}` | Delete a project |
 
-### 术语库格式 / Glossary format
+### Glossary format
 
-CSV（表头为语言代码，可带 `note` 列；任意两列以上即可）或 JSON：
+CSV with language codes as header (an optional `note` column; any two or more languages suffice) or JSON:
 
 ```csv
 zh,en,pt,es,ja,ko,note
@@ -109,76 +105,79 @@ zh,en,pt,es,ja,ko,note
 斜边,hypotenuse,hipotenusa,hipotenusa,斜辺,빗변,
 ```
 
-内置术语库在 `mathtrans/data/default_glossary.csv`，自定义条目优先级更高。
+The built-in glossary is `mathtrans/data/default_glossary.csv`; custom entries override it.
 
 ---
 
-## 工作流程 / Pipeline
+## Pipeline
 
 ```
-PDF ─► 抽取文本块（字号/颜色/对齐/角色）+ 公式/数字占位符保护
-    ─► OCR 识别图片内文字（RapidOCR 离线 / Claude 视觉）
-    ─► Claude 翻译（术语库注入、结构化 JSON 输出、占位符校验）
-    ─► 质检循环：规则校验 + Claude 语义审校 + 版式校验 → 失败段落带反馈重译 → 直到全部通过或达到轮数上限
-    ─► 版式重排（遮盖原文字、按原样式排入译文、图片/图形保留）─► 图片内文字替换
-    ─► 输出文件校验（页数/页面尺寸/图片位置/残留原文/字体内嵌）
-    ─► 导出：可编辑 PDF、双语 PDF、Word、分段 JSON、质检报告（JSON + Markdown）、每页预览 PNG
+PDF ─► extract text blocks (size / colour / alignment / role) + protect formulas and numbers with placeholders
+    ─► OCR text inside images (RapidOCR offline, or Claude vision)
+    ─► translate with Claude (glossary injected, structured JSON output, placeholder verification)
+    ─► QA loop: rule checks + Claude semantic review + layout-fit checks → failing segments re-translated with feedback
+       → until everything passes or the round limit is reached
+    ─► re-layout (erase original text, insert translation in the original style, keep images/graphics) ─► replace in-image text
+    ─► output-file checks (page count / page size / image placement / leftovers / embedded fonts)
+    ─► exports: editable PDF, bilingual PDF, Word, segment JSON, QA report (JSON + Markdown), PNG previews
 ```
 
-### 自动质检维度 / QA dimensions
+### QA dimensions
 
-| 检查 | 级别 | 内容 |
+| Check | Level | What it verifies |
 |---|---|---|
-| completeness | error | 每个待译段落都有译文 |
-| placeholders | error | 公式/数字占位符一个不少、不多、不重复 |
-| numbers | error | 原文中的数字（含全角）全部出现在译文中 |
-| untranslated | error | 译文中没有残留源语言文字 |
-| target_script | error | 译文主要由目标语言文字构成 |
-| glossary | error | 术语库规定的译法被遵守 |
-| formatting | error | 列表编号、换行、句末标点类型保持一致，没有多余引号/JSON 残留 |
-| layout_fit | error | 译文在原文本框内放得下（缩放不低于 55%），否则要求缩短重译 |
-| image_text | error/warning | 图片内文字已替换且未溢出 |
-| length_ratio | warning | 译文长度比例异常 |
-| LLM review | error/warning | Claude 对照原文审校：意思错误、漏译、数字/公式不符、术语错误、语法 |
-| output_* | error | 输出 PDF 页数、页面尺寸、图片位置与原文件一致；译文可提取；无残留；字体已内嵌 |
+| completeness | error | Every translatable segment has a translation |
+| placeholders | error | Formula / number placeholders are all present exactly once |
+| numbers | error | Every number of the source (incl. full-width digits) appears in the translation |
+| untranslated | error | No source-language text remains in the translation |
+| target_script | error | The translation is written in the target language's script |
+| glossary | error | Glossary terms were used (inflection-aware for Latin languages) |
+| formatting | error | List markers, line breaks and sentence-final punctuation preserved; no stray quotes or JSON |
+| layout_fit | error | The translation fits its original box (no shrinking below 55 %), otherwise a shorter translation is requested |
+| image_text | error / warning | Text inside images was repainted and did not overflow |
+| length_ratio | warning | Translation length ratio is plausible |
+| LLM review | error / warning | Claude compares source and translation: meaning errors, omissions, number/formula mismatches, terminology, grammar |
+| output_* | error | Output PDF has the same page count, page sizes and image placements as the source; translated text is extractable; no leftovers; fonts embedded |
 
-质检报告保存为 `qa_report.json` / `qa_report.md`，Web 界面可直接查看。
+The report is written as `qa_report.json` / `qa_report.md` and shown in the web UI.
 
 ---
 
-## 配置 / Configuration
+## Configuration
 
-环境变量（或 `.env`）：
+Environment variables (or `.env`):
 
-| 变量 | 默认 | 说明 |
+| Variable | Default | Meaning |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | — | Claude API Key（翻译、审校、视觉 OCR）。缺省时自动退回离线 mock 翻译器（仅演示） |
-| `MATHTRANS_CLAUDE_MODEL` | `claude-opus-5-5` | 翻译/审校模型 |
-| `MATHTRANS_CLAUDE_EFFORT` | `high` | 推理强度 low / medium / high / xhigh / max |
-| `MATHTRANS_ENABLE_FALLBACKS` | `true` | 启用服务端拒答回退（`fallbacks: "default"`） |
+| `ANTHROPIC_API_KEY` | — | Claude API key (translation, review, vision OCR). Without it the offline mock translator is used (demo only) |
+| `MATHTRANS_CLAUDE_MODEL` | `claude-opus-5-5` | Model for translation and review |
+| `MATHTRANS_CLAUDE_EFFORT` | `high` | Reasoning effort: low / medium / high / xhigh / max |
+| `MATHTRANS_ENABLE_FALLBACKS` | `true` | Server-side refusal fallbacks (`fallbacks: "default"`) |
 | `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `mock` |
 | `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none` |
-| `MATHTRANS_DATA_DIR` | `data` | 任务与输出存储目录 |
-| `MATHTRANS_FONTS_DIR` | — | 额外字体目录 |
-| `MATHTRANS_MAX_QA_ROUNDS` | `3` | 质检最大轮数 |
-| `MATHTRANS_REQUIRE_QA_PASS` | `true` | 质检未通过时拒绝提供下载 |
-| `MATHTRANS_MAX_UPLOAD_MB` | `100` | Web 上传单文件大小上限 |
-| `MATHTRANS_MAX_WORKERS` | `2` | Web 服务并行翻译任务数 |
+| `MATHTRANS_DATA_DIR` | `data` | Where projects and outputs are stored |
+| `MATHTRANS_FONTS_DIR` | — | Extra fonts directory |
+| `MATHTRANS_MAX_QA_ROUNDS` | `3` | Maximum QA rounds |
+| `MATHTRANS_REQUIRE_QA_PASS` | `true` | Refuse downloads while QA has not passed |
+| `MATHTRANS_MAX_UPLOAD_MB` | `100` | Per-file upload limit of the web service |
+| `MATHTRANS_MAX_WORKERS` | `2` | Concurrent translation jobs in the web service |
 
 ---
 
-## 开发 / Development
+## Development
 
 ```bash
 pip install -e ".[dev]"
-python -m pytest -q          # 全部离线：使用 mock 翻译器与内置示例 PDF，不需要 API Key
+python -m pytest -q      # fully offline: mock translator + generated sample PDFs, no API key needed
 ```
 
-代码结构见 `ARCHITECTURE.md`。主要模块：`extract`（文本抽取）、`protect`（公式保护）、`ocr` / `images`（图内文字）、`translate`（Claude / mock 后端）、`qa`（校验与循环）、`layout` / `export`（重排与导出）、`pipeline`（编排）、`projects` / `api` / `cli` / `web`（服务与界面）。
+The module layout is described in `ARCHITECTURE.md`: `extract` (text extraction), `protect` (formula protection), `ocr` / `images` (text inside images), `translate` (Claude / mock backends), `qa` (checks and loop), `layout` / `export` (re-layout and exports), `pipeline` (orchestration), `projects` / `api` / `cli` / `web` (service and UI).
 
-### 已知限制 / Known limitations
+A `Dockerfile` is included (`docker build -t mathtrans . && docker run -p 8000:8000 -e ANTHROPIC_API_KEY=... -v $PWD/data:/data mathtrans`).
 
-* 扫描版（纯图片）PDF 会被当作整页图片处理：OCR 能识别并替换文字，但无法恢复可编辑的段落结构；建议先做 OCR 转换成含文本层的 PDF。
-* 竖排文字（日文竖排）按旋转文本处理，复杂竖排版式可能需要人工微调。
-* 图片内文字的替换依赖 OCR 检测框；艺术字、手写体或极小的文字可能漏检（质检报告会列出未处理区域的数量）。
-* 离线 mock 翻译器只用于演示流程，不是真实翻译。
+### Known limitations
+
+* **Scanned PDFs** (each page is one image, no text layer) are handled through the OCR / image path: text is recognised, erased and repainted inside the page image, so the result is a picture-based PDF rather than editable text. Slanted decorative text and watermarks are left untouched.
+* RapidOCR ships Chinese + English recognition models; for Japanese, Korean, Portuguese or Spanish text inside images use the Claude vision OCR (`MATHTRANS_OCR_ENGINE=claude`) for best results. Superscripts inside images may be recognised as plain digits.
+* Vertical (Japanese) writing is treated as rotated text; complex vertical layouts may need manual touch-up.
+* The offline mock translator only demonstrates the pipeline; it is not a real translation.
