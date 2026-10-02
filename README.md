@@ -6,6 +6,20 @@ Layout-preserving translation of math learning materials (PDF) between **Chinese
 
 ---
 
+## 效果示例 / Example
+
+| 原文（中文教材，第 1 页） | 译文（英文，版式/图片/图内文字保持） |
+|---|---|
+| ![source](docs/sample-zh-source-page1.png) | ![translated](docs/sample-zh-en-page1.png) |
+
+Web 界面（中英双语）：
+
+![web ui](docs/screenshot-web-ui.png)
+
+> 示例由内置的离线 mock 翻译器生成（仅用于演示流程，译文为逐词替换）；配置 `ANTHROPIC_API_KEY` 后由 Claude 完成真正的翻译与审校。
+
+---
+
 ## 功能对照 / Feature matrix
 
 | 需求 | 状态 | 实现 |
