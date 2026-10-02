@@ -66,6 +66,9 @@ def build_parser() -> argparse.ArgumentParser:
                     help="only translate these pages, e.g. 1-3,7 (1-based; default: all)")
     tr.add_argument("--skip-pages", metavar="SPEC", default=None,
                     help="leave these pages untouched, e.g. 2 or 2,5-7 (1-based)")
+    tr.add_argument("--scanned-mode", choices=["repaint", "overlay"], default="repaint",
+                    help="scanned pages (image only): repaint = draw the translation into the page image; "
+                         "overlay = erase the recognised text and place the translation as editable text")
     tr.add_argument("--model", metavar="MODEL", default=None,
                     help="Claude model id for translation and review (default: MATHTRANS_CLAUDE_MODEL)")
     tr.add_argument("--subset-fonts", action="store_true",
@@ -145,6 +148,7 @@ def cmd_translate(args: argparse.Namespace) -> int:
         subset_fonts=args.subset_fonts,
         pages=pages,
         skip_pages=skip_pages,
+        scanned_mode=args.scanned_mode,
         min_font_scale=settings.min_font_scale,
         preview_dpi=settings.preview_dpi,
     )

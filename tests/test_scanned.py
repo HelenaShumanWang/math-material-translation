@@ -1,0 +1,91 @@
+"""Scanned pages in overlay mode: OCR lines -> paragraphs -> erased image + editable text."""
+import hashlib
+
+import pymupdf
+import pytest
+
+from mathtrans.extract import extract_document
+from mathtrans.images import extract_image_segments
+from mathtrans.models import Lang, PipelineOptions, SegmentKind
+from mathtrans.ocr import RapidOcrEngine
+from mathtrans.pipeline import run_pipeline
+from mathtrans.samples import make_sample_pdf
+from mathtrans.scanned import MERGED, erase_merged_lines, group_ocr_lines, is_scanned_page, scanned_pages
+
+
+@pytest.fixture(scope="module")
+def scanned_pdf(tmp_path_factory):
+    base = tmp_path_factory.mktemp("scan")
+    src = make_sample_pdf(base / "src.pdf", "zh")
+    d = pymupdf.open(str(src))
+    out = pymupdf.open()
+    for p in d:
+        pix = p.get_pixmap(dpi=150)
+        page = out.new_page(width=p.rect.width, height=p.rect.height)
+        page.insert_image(page.rect, stream=pix.tobytes("jpg"))
+    path = base / "scanned.pdf"
+    out.save(str(path))
+    return path
+
+
+@pytest.fixture(scope="module")
+def ocr_lines(scanned_pdf):
+    doc = extract_document(scanned_pdf, target_lang=Lang.EN, source_lang=Lang.ZH)
+    assert not doc.text_segments()
+    lines = extract_image_segments(scanned_pdf, doc, RapidOcrEngine(), pages=[0])
+    doc.segments.extend(lines)
+    return doc, lines
+
+
+def test_is_scanned_page(scanned_pdf, sample_pdf_zh):
+    assert scanned_pages(scanned_pdf) == {0, 1}
+    assert scanned_pages(sample_pdf_zh) == set()
+    assert is_scanned_page(pymupdf.open(str(scanned_pdf))[0])
+
+
+def test_lines_are_grouped_into_paragraphs(ocr_lines):
+    doc, lines = ocr_lines
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert paragraphs and all(p.kind == SegmentKind.TEXT and p.origin == "ocr" for p in paragraphs)
+    body = [p for p in paragraphs if "直角三角形" in p.source_text and "勾股定理" in p.source_text]
+    assert body, [p.source_text[:30] for p in paragraphs]
+    para = max(body, key=lambda p: len(p.members))
+    assert len(para.members) >= 2 and "⟦" in para.protected_text  # formula protected inside the paragraph
+    by_id = {l.id: l for l in lines}
+    for mid in para.members:
+        assert by_id[mid].skip_reason.startswith(MERGED) and not by_id[mid].translate
+        assert para.bbox.contains(by_id[mid].bbox, tol=1.0)
+    assert 5 <= para.style.size <= 40 and 1.0 <= para.style.line_height <= 1.8
+    title = [p for p in paragraphs if "勾股定理" in p.source_text and len(p.members) == 1]
+    assert any(p.style.role == "heading" for p in title)
+    assert all(l.translate or l.skip_reason for l in lines)
+
+
+def test_erase_merged_lines_changes_the_image(ocr_lines, scanned_pdf):
+    doc, lines = ocr_lines
+    group_ocr_lines(lines, 0, Lang.ZH)
+    pdf = pymupdf.open(str(scanned_pdf))
+    xref = pdf[0].get_image_info(xrefs=True)[0]["xref"]
+    before = hashlib.md5(pdf.extract_image(xref)["image"]).hexdigest()
+    assert erase_merged_lines(pdf, doc) == 1
+    after = hashlib.md5(pdf.extract_image(pdf[0].get_image_info(xrefs=True)[0]["xref"])["image"]).hexdigest()
+    assert before != after
+    assert all(l.render is not None for l in lines if l.skip_reason.startswith(MERGED))
+
+
+def test_overlay_pipeline_produces_editable_text(scanned_pdf, tmp_path):
+    res = run_pipeline(scanned_pdf, tmp_path, PipelineOptions(
+        target_lang=Lang.EN, translator="mock", scanned_mode="overlay", require_qa_pass=False))
+    assert res.status == "completed", res.error
+    out = pymupdf.open(res.output_pdf)
+    assert out.page_count == 2
+    text = out[0].get_text()
+    assert "Pythagorean theorem" in text and "勾股定理" not in text  # real, extractable text on a scanned page
+    src = pymupdf.open(str(scanned_pdf))
+    assert [i["bbox"] for i in out[0].get_image_info()] == [i["bbox"] for i in src[0].get_image_info()]
+    import json
+    segs = json.load(open(res.segments_json, encoding="utf-8"))["segments"]
+    paragraphs = [s for s in segs if s["origin"] == "ocr"]
+    assert paragraphs and all(s["translated_text"] for s in paragraphs if s["translate"])
+    assert not any(s["kind"] == "image_text" and s["translate"] and s.get("translated_text") for s in segs
+                   if s["page"] == 0 and s["skip_reason"].startswith(MERGED))

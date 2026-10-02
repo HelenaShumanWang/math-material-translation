@@ -151,6 +151,13 @@
         <input type="number" id="opt-rounds" min="1" max="10" value="3" style="max-width:90px">
       </div>
       <div class="row" style="align-items:center">
+        <label for="opt-scanned" style="margin:0">扫描页处理 / Scanned pages</label>
+        <select id="opt-scanned" style="max-width:260px">
+          <option value="repaint">重绘到图片 / repaint into the image</option>
+          <option value="overlay">擦除后放置可编辑文字 / erase + editable text</option>
+        </select>
+      </div>
+      <div class="row" style="align-items:center">
         <label for="opt-skip" style="margin:0">跳过页码 / Skip pages</label>
         <input type="text" id="opt-skip" placeholder="例如 2,5-7 / e.g. 2,5-7" style="max-width:160px">
       </div>
@@ -342,6 +349,7 @@
       fd.append("require_qa_pass", String($("opt-require-qa").checked));
       fd.append("max_qa_rounds", $("opt-rounds").value || "3");
       if ($("opt-skip").value.trim()) fd.append("skip_pages", $("opt-skip").value.trim());
+      fd.append("scanned_mode", $("opt-scanned").value);
       const res = await api("/api/projects", { method: "POST", body: fd });
       msg.className = "msg ok"; msg.textContent = `已创建 ${res.projects.length} 个任务（批次 ${res.batch_id}）/ ${res.projects.length} project(s) queued`;
       chosen = []; renderFiles();

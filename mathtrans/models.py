@@ -215,6 +215,8 @@ class TextSegment(BaseModel):
     feedback: list[str] = Field(default_factory=list)  # QA feedback for re-translation
     render: Optional[RenderInfo] = None
     reading_order: int = 0
+    origin: Literal["pdf", "ocr"] = "pdf"  # "ocr": paragraph assembled from OCR lines of a scanned page
+    members: list[str] = Field(default_factory=list)  # ids of the OCR line segments merged into this one
 
     @property
     def effective_text(self) -> str:
@@ -450,6 +452,10 @@ class PipelineOptions(BaseModel):
     skip_pages: Optional[list[int]] = None  # 0-based pages copied through untouched (e.g. a page with a QR code)
     preview_dpi: int = 110
     subset_fonts: bool = False  # subset embedded fonts (much smaller file, but editors can only reuse embedded glyphs)
+    # Scanned pages (one full-page image, no text layer): "repaint" draws the translation into
+    # the page image; "overlay" erases the recognised text in the image and places the
+    # translation as real, editable PDF text (OCR lines are grouped into paragraphs first).
+    scanned_mode: Literal["repaint", "overlay"] = "repaint"
 
 
 class PipelineStats(BaseModel):

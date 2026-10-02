@@ -67,7 +67,7 @@ _DOWNLOAD_SUFFIX = {
     "segments": "_segments.json",
 }
 _RETRANSLATE_OPTION_KEYS = frozenset({"translate_images", "bilingual", "export_docx", "max_qa_rounds",
-                                      "require_qa_pass", "subset_fonts", "pages", "skip_pages"})
+                                      "require_qa_pass", "subset_fonts", "pages", "skip_pages", "scanned_mode"})
 _TRUE = {"1", "true", "yes", "on"}
 _FALSE = {"0", "false", "no", "off"}
 
@@ -146,7 +146,16 @@ def parse_retranslate_options(options: Mapping[str, Any]) -> dict[str, Any]:
     for key in ("pages", "skip_pages"):
         if options.get(key) is not None:
             out[key] = parse_pages(options[key], key)
+    if options.get("scanned_mode") is not None:
+        out["scanned_mode"] = parse_scanned_mode(options["scanned_mode"])
     return out
+
+
+def parse_scanned_mode(value: Any) -> str:
+    mode = str(value or "repaint").strip().lower()
+    if mode not in ("repaint", "overlay"):
+        raise _bad("scanned_mode: expected 'repaint' or 'overlay'")
+    return mode
 
 
 def parse_pages(value: Any, field: str) -> Optional[list[int]]:
@@ -480,6 +489,7 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
         subset_fonts: Optional[str] = Form(None),
         pages: Optional[str] = Form(None),
         skip_pages: Optional[str] = Form(None),
+        scanned_mode: Optional[str] = Form(None),
     ) -> dict[str, Any]:
         """Upload 1..50 PDFs and queue one translation project per file (shared ``batch_id``)."""
         uploads = [f for f in (files or []) if f.filename]
@@ -502,6 +512,7 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
             subset_fonts=parse_bool(subset_fonts, False, "subset_fonts"),
             pages=parse_pages(pages, "pages"),
             skip_pages=parse_pages(skip_pages, "skip_pages"),
+            scanned_mode=parse_scanned_mode(scanned_mode),
             min_font_scale=settings.min_font_scale,
             preview_dpi=settings.preview_dpi,
         )

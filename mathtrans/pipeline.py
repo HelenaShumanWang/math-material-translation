@@ -178,6 +178,16 @@ def run_pipeline(
                 doc.segments.extend(image_segments)
                 stats.image_segments = len(image_segments)
                 stats.images_processed = len({s.image.xref for s in image_segments if s.image})
+                if options.scanned_mode == "overlay":
+                    from .scanned import build_overlay_segments, scanned_pages
+
+                    scanned = scanned_pages(source_pdf, pages)
+                    if scanned:
+                        paragraphs = build_overlay_segments(doc, scanned)
+                        doc.segments.extend(paragraphs)
+                        stats.text_segments += len(paragraphs)
+                        report_progress("ocr", f"{len(paragraphs)} paragraphs assembled from OCR lines on "
+                                               f"{len(scanned)} scanned page(s) (overlay mode)", 14)
             else:
                 report_progress("ocr", "No OCR engine available; text inside images is kept as is", 10)
         stats.ocr_engine = engine_name
@@ -223,13 +233,21 @@ def run_pipeline(
             render_document(source_pdf, doc, out_pdf, min_font_scale=options.min_font_scale,
                             fonts_dir=settings.fonts_dir, pages=pages)
             image_targets = [s for s in doc.image_segments() if s.translated_text and s.translate]
-            if image_targets:
+            from .scanned import MERGED
+
+            merged = any(s.kind == SegmentKind.IMAGE_TEXT and s.skip_reason.startswith(MERGED)
+                         for s in doc.segments)
+            if image_targets or merged:
                 from .images import render_image_segments
+                from .scanned import erase_merged_lines
 
                 pdf_doc = pymupdf.open(str(out_pdf))
                 try:
-                    n = render_image_segments(pdf_doc, doc, fonts_dir=settings.fonts_dir)
-                    log.info("replaced text in %d images", n)
+                    if merged:
+                        log.info("erased OCR lines in %d scanned page images", erase_merged_lines(pdf_doc, doc))
+                    if image_targets:
+                        log.info("replaced text in %d images", render_image_segments(pdf_doc, doc,
+                                                                                     fonts_dir=settings.fonts_dir))
                     _atomic_save(pdf_doc, out_pdf)
                 finally:
                     if not pdf_doc.is_closed:
