@@ -152,7 +152,7 @@ def parse_retranslate_options(options: Mapping[str, Any]) -> dict[str, Any]:
 
 
 def parse_scanned_mode(value: Any) -> str:
-    mode = str(value or "repaint").strip().lower()
+    mode = str(value or "overlay").strip().lower()
     if mode not in ("repaint", "overlay"):
         raise _bad("scanned_mode: expected 'repaint' or 'overlay'")
     return mode

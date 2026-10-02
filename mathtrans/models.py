@@ -455,7 +455,7 @@ class PipelineOptions(BaseModel):
     # Scanned pages (one full-page image, no text layer): "repaint" draws the translation into
     # the page image; "overlay" erases the recognised text in the image and places the
     # translation as real, editable PDF text (OCR lines are grouped into paragraphs first).
-    scanned_mode: Literal["repaint", "overlay"] = "repaint"
+    scanned_mode: Literal["repaint", "overlay"] = "overlay"
 
 
 class PipelineStats(BaseModel):
