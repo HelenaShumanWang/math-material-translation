@@ -20,7 +20,7 @@ from ..interfaces import TranslationError, TranslationRefused
 from ..models import Lang, ReviewFinding, ReviewItem, TranslationItem, TranslationResult
 from ..protect import verify_placeholders
 from .base import BaseTranslator, chunk_by_chars, chunk_items
-from .prompts import (REVIEW_CATEGORIES, REVIEW_SCHEMA, TRANSLATION_SCHEMA, review_system_blocks,
+from .prompts import (REVIEW_CATEGORIES, REVIEW_SCHEMA, STYLE_CATEGORIES, TRANSLATION_SCHEMA, review_system_blocks,
                       review_user_message, translation_system_blocks, translation_user_message)
 
 log = logging.getLogger("mathtrans.translate.claude")
@@ -380,6 +380,9 @@ def _parse_finding(entry: Any, known_ids: set[str]) -> Optional[ReviewFinding]:
     category = str(entry.get("category", "")).strip().lower() or "meaning"
     if category not in REVIEW_CATEGORIES:
         log.debug("non-standard review category %r for %s", category, item_id)
+    if category in STYLE_CATEGORIES and severity == "error":
+        # the prompt's own policy: grammar / format findings never change the meaning
+        severity = "warning"
     fix = entry.get("suggested_fix")
     suggested_fix = fix.strip() if isinstance(fix, str) and fix.strip() else None
     return ReviewFinding(id=item_id, severity=severity, category=category,  # type: ignore[arg-type]

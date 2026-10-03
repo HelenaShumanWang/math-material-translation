@@ -14,6 +14,20 @@ from ..glossary import glossary_prompt_block
 from ..languages import info
 from ..models import Lang, ReviewItem, TranslationItem
 
+CONVENTIONS = """\
+Money: always write amounts in Chinese yuan with the \
+currency symbol before the number, in sentences and labels alike (3元 => ¥3, 3.15元 => ¥3.15, \
+一共70元 => ¥70 in total); never spell out "yuan". Measure words: a Chinese measure word in parentheses after a number (16（只）, \
+5（个）) names the counted objects - write the object when the context gives it ("16 (birds)") and \
+otherwise drop the parentheses; never write "(ones)" or "(pieces)". Tally marks: the character 正 \
+used for counting strokes (alone, repeated, or in a tally table) is a symbol, keep it exactly as 正. \
+Keep page numbers, exercise numbers and figure numbers as they are. Grammar: number agreement \
+after a numeral (1 book, 2 books; 1 bun, 4 buns). Never invent abbreviations to save space \
+("Mixed Calc.", "mtg", "bks", "ea", "Beij." are wrong): write full words, and shorten by dropping \
+optional words instead; only standard units (m, km, cm, min, h) are abbreviated. Enumerators \
+such as (1) (2) ① 1. 2. that begin an item are kept at the start of the translation.\
+"""
+
 TRANSLATION_SYSTEM_PROMPT = """\
 You are a professional translator of mathematics learning materials (school and university \
 textbooks, worksheets, exercise books). The texts you receive were extracted from PDF pages and \
@@ -42,17 +56,7 @@ that are normally not translated.
 6. Feedback. An item may carry "context" (for example heading, figure caption, label inside a \
 diagram), "feedback" from an automatic quality check of a previous attempt and "previous" (the \
 rejected previous translation). Fix every point of the feedback and deliver a better translation.
-7. Conventions of school mathematics. Money: always write amounts in Chinese yuan with the \
-currency symbol before the number, in sentences and labels alike (3元 => ¥3, 3.15元 => ¥3.15, \
-一共70元 => ¥70 in total); never spell out "yuan". Measure words: a Chinese measure word in parentheses after a number (16（只）, \
-5（个）) names the counted objects - write the object when the context gives it ("16 (birds)") and \
-otherwise drop the parentheses; never write "(ones)" or "(pieces)". Tally marks: the character 正 \
-used for counting strokes (alone, repeated, or in a tally table) is a symbol, keep it exactly as 正. \
-Keep page numbers, exercise numbers and figure numbers as they are. Grammar: number agreement \
-after a numeral (1 book, 2 books; 1 bun, 4 buns). Never invent abbreviations to save space \
-("Mixed Calc.", "mtg", "bks", "ea", "Beij." are wrong): write full words, and shorten by dropping \
-optional words instead; only standard units (m, km, cm, min, h) are abbreviated. Enumerators \
-such as (1) (2) ① 1. 2. that begin an item are kept at the start of the translation.
+7. Conventions of school mathematics. """ + CONVENTIONS + """
 8. Output. Respond with JSON only, no explanations, no notes, no markdown: \
 {"translations": [{"id": "...", "text": "..."}]} with exactly one entry for every input item id, \
 in the same order as the input. "text" is the translation alone: no surrounding quotes, no \
@@ -84,6 +88,13 @@ Severity: "error" for anything that changes the meaning or would mislead a stude
 omission, number, terminology, untranslated, a missing placeholder); "warning" for grammar, \
 style and format issues that do not change the meaning.
 
+The translations deliberately follow these textbook conventions; a translation that follows them is \
+correct and gets no finding for doing so, and one that deviates from them gets a "format" finding: \
+""" + CONVENTIONS + """
+
+Wording preferences, consistency of synonyms between items, casing, punctuation, abbreviation and \
+ellipsis style are never more than a "warning"; reserve "error" for what would mislead a student.
+
 Report only real problems; an item without problems gets no finding. Respond with JSON only: \
 {"findings": [{"id": "...", "severity": "error" | "warning", "category": "...", "message": "...", \
 "suggested_fix": "..." | null}]} where "message" is a short explanation in English and \
@@ -93,6 +104,7 @@ Report only real problems; an item without problems gets no finding. Respond wit
 REVIEW_CATEGORIES: tuple[str, ...] = (
     "meaning", "omission", "number", "terminology", "untranslated", "grammar", "format",
 )
+STYLE_CATEGORIES = frozenset({"grammar", "format"})  # never block: wording, casing, punctuation
 
 TRANSLATION_SCHEMA: dict[str, Any] = {
     "type": "object",

@@ -878,4 +878,20 @@ def test_prompt_has_textbook_conventions():
     from mathtrans.translate.prompts import TRANSLATION_SYSTEM_PROMPT
 
     assert "¥3" in TRANSLATION_SYSTEM_PROMPT and "正" in TRANSLATION_SYSTEM_PROMPT
+    # the reviewer knows the same conventions, so it does not report ¥ or kept tally marks as problems
+    assert "¥3" in REVIEW_SYSTEM_PROMPT and "正" in REVIEW_SYSTEM_PROMPT and 'never more than a "warning"' in REVIEW_SYSTEM_PROMPT
+
+
+def test_style_findings_never_block():
+    from mathtrans.translate.claude import _parse_finding
+
+    known = {"a"}
+    f = _parse_finding({"id": "a", "severity": "error", "category": "format", "message": "use 'and' not '&'"}, known)
+    assert f is not None and f.severity == "warning" and f.category == "format"
+    f = _parse_finding({"id": "a", "severity": "error", "category": "grammar", "message": "awkward"}, known)
+    assert f is not None and f.severity == "warning"
+    f = _parse_finding({"id": "a", "severity": "error", "category": "terminology", "message": "wrong term"}, known)
+    assert f is not None and f.severity == "error"
+    f = _parse_finding({"id": "a", "severity": "error", "category": "meaning", "message": "reversed"}, known)
+    assert f is not None and f.severity == "error"
     assert "(ones)" in TRANSLATION_SYSTEM_PROMPT and "Respond with JSON only" in TRANSLATION_SYSTEM_PROMPT

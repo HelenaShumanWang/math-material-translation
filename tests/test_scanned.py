@@ -83,6 +83,9 @@ def test_overlay_pipeline_produces_editable_text(scanned_pdf, tmp_path):
     assert "Pythagorean theorem" in text and "勾股定理" not in text  # real, extractable text on a scanned page
     src = pymupdf.open(str(scanned_pdf))
     assert [i["bbox"] for i in out[0].get_image_info()] == [i["bbox"] for i in src[0].get_image_info()]
+    # the replaced page image leaves no never-drawn duplicate behind (it would double the file size)
+    for page in out:
+        assert len(page.get_images()) == len(page.get_image_info()) == 1
     import json
     segs = json.load(open(res.segments_json, encoding="utf-8"))["segments"]
     paragraphs = [s for s in segs if s["origin"] == "ocr"]

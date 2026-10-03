@@ -20,7 +20,7 @@ import numpy as np
 import pymupdf
 
 from .extract import is_list_item
-from .images import _clear_box, encode_image, load_image, resolve_placement
+from .images import _clear_box, encode_image, load_image, replace_image, resolve_placement
 from .languages import is_cjk
 from .models import (BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
@@ -327,7 +327,7 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
         stream = encode_image(canvas, alpha, loaded.ext, qtables=loaded.jpeg_qtables,
                               subsampling=loaded.jpeg_subsampling)
         try:
-            page.replace_image(placement.xref, stream=stream)
+            replace_image(page, placement.xref, stream)
             modified += 1
         except Exception as exc:  # noqa: BLE001 - keep the run going; QA reports the leftovers
             log.error("page %d: replace_image(xref=%d) failed: %s", page_index, placement.xref, exc)
