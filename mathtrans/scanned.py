@@ -125,6 +125,8 @@ class _Para:
             return False  # different text colour: a badge / heading vs the body text next to it
         if is_list_item(line.source_text):
             return False  # "2. ..." / "(1) ..." starts a new paragraph (a question, an exercise)
+        if _letter_count(line.source_text) <= 1 or _letter_count(self.lines[0].source_text) <= 1:
+            return False  # single-character lines are table cells / diagram labels, never paragraph lines
         if _closes_paragraph(self.last.source_text):
             return False  # "答：" / "解：" followed by a blank: nothing may be appended to it
         h = self.median_height
@@ -152,16 +154,42 @@ class _Para:
         self.heights.append(line.bbox.height)
 
 
+def _letter_count(text: str) -> int:
+    return sum(c.isalpha() for c in text)
+
+
+_FORMULA_CHARS = set("0123456789=+-−×÷().,（）:：/%")
+
+
+def _formula_like(text: str) -> bool:
+    """A line that is mostly digits and operators (a worked equation with a unit)."""
+    t = text.strip()
+    if not t or "=" not in t:
+        return False
+    return sum(c in _FORMULA_CHARS or c.isspace() for c in t) >= 0.6 * len(t)
+
+
 def _join_lines(texts: list[str], lang: Lang) -> str:
-    if is_cjk(lang):
-        out = ""
-        for t in texts:
-            t = t.strip()
-            if out and out[-1].isascii() and out[-1].isalnum() and t[:1].isascii() and t[:1].isalnum():
+    """Join OCR lines into paragraph text. Consecutive equation lines keep their line
+    breaks (each worked step stays on its own line); prose lines are joined the way
+    the language writes it (no space for CJK, a space for Latin scripts)."""
+    out = ""
+    prev = ""
+    for raw in texts:
+        t = raw.strip()
+        if not t:
+            continue
+        if out:
+            if _formula_like(prev) and _formula_like(t):
+                out += "\n"
+            elif is_cjk(lang):
+                if out[-1].isascii() and out[-1].isalnum() and t[:1].isascii() and t[:1].isalnum():
+                    out += " "
+            else:
                 out += " "
-            out += t
-        return out
-    return " ".join(t.strip() for t in texts)
+        out += t
+        prev = t
+    return out
 
 
 def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: Lang,

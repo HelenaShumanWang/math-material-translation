@@ -205,3 +205,21 @@ def test_watermark_alphabet_ignores_letters_common_in_upright_text():
     doc.segments += [line(10 + i, t) for i, t in enumerate(["200米", "150米", "75米", "4米", "10米", "一共多少米"])]
     alphabet = watermark_alphabet(doc)
     assert {"师", "范", "出", "版", "社"} <= alphabet and "米" not in alphabet
+
+
+def test_single_characters_and_equations():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+    from mathtrans.scanned import _join_lines
+
+    def line(i, x0, y, w, text):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int(x0 * 2), int(y * 2), int((x0 + w) * 2), int((y + 12) * 2)))
+        return TextSegment(id=f"q{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=x0, y0=y, x1=x0 + w, y1=y + 12),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=0x202020))
+
+    cells = [line(0, 50, 100, 14, "四"), line(1, 50, 114, 14, "四"), line(2, 50, 128, 14, "四")]
+    assert all(len(p.members) == 1 for p in group_ocr_lines(cells, 0, Lang.ZH))
+    assert _join_lines(["160-35=125（千米)", "350-160=190(千米)", "555-350=205(千米)"], Lang.ZH) == \
+        "160-35=125（千米)\n350-160=190(千米)\n555-350=205(千米)"
+    assert _join_lines(["数学是由无数个数", "学故事组成的。"], Lang.ZH) == "数学是由无数个数学故事组成的。"
+    assert _join_lines(["In a right", "triangle"], Lang.EN) == "In a right triangle"
