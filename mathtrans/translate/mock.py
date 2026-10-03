@@ -23,6 +23,7 @@ import logging
 import random
 import re
 import threading
+from functools import lru_cache
 from typing import Union
 
 from ..languages import LANGUAGES, is_cjk
@@ -289,6 +290,8 @@ _LATIN_TO_CJK = [
     (re.compile(r"!"), "！"),
 ]
 _PUNCT_STYLE = {"zh": "cjk", "ja": "ja", "ko": "latin", "en": "latin", "es": "latin", "pt": "latin"}
+_JA_QUESTION_END_RE = re.compile(r"(か|かな|かしら)。(?=\s|$)")
+"""Textbook Japanese ends a question with か。 (no ？): other languages need the question mark."""
 _SPACED = frozenset({"en", "es", "pt", "ko"})
 """Languages that separate words with spaces (Korean does, Chinese and Japanese do not)."""
 
@@ -355,6 +358,7 @@ _LATIN_PLURAL = r"(?:s|es)?"
 glossary QA check expects ``leg`` to be translated in ``the two legs`` too)."""
 
 
+@lru_cache(maxsize=None)
 def _term_regex(term: str, src_is_cjk: bool) -> re.Pattern[str]:
     if src_is_cjk:
         return re.compile(re.escape(term))
@@ -488,6 +492,8 @@ def pseudo_translate_text(
         if expected > max_chars:
             ratio *= max(0.3, max_chars / expected)
 
+    if src_code == "ja":  # a か。 question keeps its question mark in every other language
+        body = _JA_QUESTION_END_RE.sub(r"\1？", body)
     src_cjk = is_cjk(src_code)
     pieces: list[Piece] = [("src", body)]
     pieces = _apply_patterns(pieces, src_code, tgt_code)

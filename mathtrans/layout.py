@@ -37,12 +37,31 @@ All geometry (``get_text``, ``get_image_info``, ``get_drawings``,
 ``add_redact_annot``, ``insert_htmlbox``) lives in the *unrotated* page space,
 also for pages with a ``/Rotate`` entry, whereas ``page.rect`` describes the
 displayed page; :func:`unrotated_page_rect` gives the matching rectangle.
+PyMuPDF's own methods reach that space by zeroing ``/Rotate`` while they work,
+except ``insert_htmlbox`` (``show_pdf_page``), whose ``Page.transformation_matrix``
+drops the CropBox / MediaBox origin of a rotated page and puts the text partly
+off the page (an auto-cropped landscape scan is the typical case);
+:func:`render_page_segments` therefore zeroes the rotation itself for the whole
+of a page's work and restores it afterwards.
+
+``apply_redactions`` also deletes every Link and FreeText annotation whose
+rectangle meets a redaction rectangle - that is every hyperlink sitting on
+translated text (clickable tables of contents, cross references, URLs). The
+objects are only unlinked from the page's ``/Annots`` array, so
+:func:`_reattach_annotations` puts them back unchanged. Text inside
+annotations (notes, stamps, form field values) is not page content and is
+never redacted; it is therefore left out of the free-space bookkeeping
+(:func:`_content_rawdict`).
 
 Every ``insert_htmlbox`` call embeds a complete copy of the font it used, so
 the document is saved with ``garbage=4`` which merges identical objects
-(a 2-page sample otherwise grows from 0.7 MB to 23 MB). Fonts are deliberately
-*not* subsetted: a fully embedded font lets PDF editors type any character
-when the translation is corrected by hand.
+(a 2-page sample otherwise grows from 0.7 MB to 23 MB). Those copies also stay
+in memory (about 1 MB per rendered segment) until the document is saved, which
+would put a long textbook at several GB; :func:`render_document` therefore
+checkpoints every ``checkpoint_pages`` rendered pages (save with ``garbage=4``
+to a temporary file, reopen, continue). Fonts are deliberately *not* subsetted:
+a fully embedded font lets PDF editors type any character when the translation
+is corrected by hand.
 """
 from __future__ import annotations
 
@@ -78,6 +97,9 @@ a box never grows sideways past the near edge of such a segment, whatever its
 vertical position, so that multi-column layouts keep their gutters."""
 PAGE_MARGIN = 10.0
 """Boxes are never extended closer than this to the page edge."""
+DEFAULT_CHECKPOINT_PAGES = 25
+"""``render_document`` saves and reopens the document after this many rendered pages
+(bounds the in-memory font copies of ``insert_htmlbox``); 0 disables checkpointing."""
 EDGE_MARGIN = 72.0
 """Boxes may grow into the outer inch of the page only where content already is."""
 CONTENT_TOLERANCE = 4.0
@@ -190,6 +212,22 @@ def unrotated_page_rect(page: pymupdf.Page) -> pymupdf.Rect:
 # --------------------------------------------------------------------------- #
 
 
+def _inside_any(glyph: BBox, boxes: Sequence[BBox]) -> bool:
+    """Whether the centre of ``glyph`` lies in one of ``boxes``."""
+    cx, cy = (glyph.x0 + glyph.x1) / 2, (glyph.y0 + glyph.y1) / 2
+    return any(b.x0 <= cx <= b.x1 and b.y0 <= cy <= b.y1 for b in boxes)
+
+
+def _covered(block: BBox, glyphs: Sequence[BBox], boxes: Sequence[BBox]) -> bool:
+    """Whether the segments ``boxes`` take over a text block: one segment covers half
+    of it (the usual one segment per block), or - for a block that was split into
+    several segments (table cells, running head + page number) - at least half of
+    its glyphs lie in a segment."""
+    if any(b.intersection_area(block) >= 0.5 * block.area for b in boxes):
+        return True
+    return bool(glyphs) and 2 * sum(1 for g in glyphs if _inside_any(g, boxes)) >= len(glyphs)
+
+
 def _clip(box: BBox, page: BBox) -> Optional[BBox]:
     c = BBox(x0=max(box.x0, page.x0), y0=max(box.y0, page.y0), x1=min(box.x1, page.x1), y1=min(box.y1, page.y1))
     if c.x1 - c.x0 <= 0 or c.y1 - c.y0 <= 0:
@@ -197,12 +235,46 @@ def _clip(box: BBox, page: BBox) -> Optional[BBox]:
     return c
 
 
+def _content_rawdict(page: pymupdf.Page, flags: int) -> dict:
+    """``page.get_text("rawdict", flags=flags)`` restricted to the page *content*.
+
+    ``Page.get_text`` also renders the appearance streams of annotations and
+    form fields (FreeText notes, stamps, field values). Those are not page
+    content: the redaction never removes their glyphs and the annotations stay
+    on the page (see :func:`_reattach_annotations`), so counting them as text
+    that must be spared would make :func:`_redaction_rect` cut the redaction of
+    the paragraph under a note short and leave source glyphs behind. The text
+    page is therefore built from the page contents only (the display list is
+    produced in the rotated space, hence the temporary ``/Rotate`` reset, as in
+    PyMuPDF's own ``get_textpage``). Blocks and lines outside the page are
+    dropped like the page-based extraction does; falls back to the plain
+    extraction when the content-only one is not available.
+    """
+    try:
+        rotation = page.rotation
+        if rotation:
+            page.set_rotation(0)
+        try:
+            textpage = pymupdf.TextPage(page.get_displaylist(annots=False).get_textpage(flags=flags))
+        finally:
+            if rotation:
+                page.set_rotation(rotation)
+        textpage.parent = page
+        return page.get_text("rawdict", textpage=textpage)
+    except Exception as exc:  # pragma: no cover - defensive: PyMuPDF internals changed
+        log.warning("page %d: content-only text extraction failed (%s); annotation text counts as page text",
+                    page.number, exc)
+        return page.get_text("rawdict", flags=flags)
+
+
 class _PageSpace:
     """Occupied areas of one page, used to extend text boxes into free space.
 
     Obstacles are the other segments of the page (their *used* box once they
     are rendered), the page images, text blocks that no segment covers (they
-    stay on the page) and vector drawings that do not touch the box. Drawings
+    stay on the page; a block split into several segments - table cells, running
+    head + page number - counts as covered when its lines are) and vector
+    drawings that do not touch the box. Drawings
     that enclose a box (frames, boxed examples) act as containers: the box may
     grow inside them but never across their border. Growth also stops at the
     page's content area (union of text and images, plus a small tolerance) so
@@ -229,17 +301,25 @@ class _PageSpace:
                 self.fixed.append(clipped)
         page_segments = list(self.occupied.values())
         content: Optional[BBox] = None
-        self.lines: list[BBox] = []
-        for raw in page.get_text("dict", flags=pymupdf.TEXTFLAGS_DICT)["blocks"]:
+        self._line_glyphs: list[list[BBox]] = []  # per text line: the boxes of its glyphs (no spaces)
+        flags = pymupdf.TEXTFLAGS_DICT & ~pymupdf.TEXT_PRESERVE_IMAGES
+        for raw in _content_rawdict(page, flags)["blocks"]:
             if raw["type"] != 0:
                 continue
             block = BBox.from_rect(raw["bbox"])
-            if block.area <= 0:
+            if block.area <= 0 or block.intersection_area(self.page_rect) <= 0:
                 continue
-            self.lines.extend(BBox.from_rect(line["bbox"]) for line in raw["lines"])
+            glyphs: list[BBox] = []
+            for line in raw["lines"]:
+                if BBox.from_rect(line["bbox"]).intersection_area(self.page_rect) <= 0:
+                    continue
+                line_glyphs = [BBox.from_rect(ch["bbox"]) for span in line["spans"] for ch in span["chars"]
+                               if not str(ch.get("c", "")).isspace()]
+                line_glyphs = [g for g in line_glyphs if g.area > 0 and _inside_any(g, (self.page_rect,))]
+                self._line_glyphs.append(line_glyphs)
+                glyphs.extend(line_glyphs)
             content = block if content is None else content.union(block)
-            covered = any(s.intersection_area(block) >= 0.5 * block.area for s in page_segments)
-            if not covered:
+            if not _covered(block, glyphs, page_segments):
                 self.fixed.append(block)
         for box in page_segments + self.fixed:
             content = box if content is None else content.union(box)
@@ -249,6 +329,22 @@ class _PageSpace:
         self.limit_left = max(min(content.x0 - CONTENT_TOLERANCE, pr.x0 + EDGE_MARGIN), pr.x0 + PAGE_MARGIN)
         self.limit_right = min(max(content.x1 + CONTENT_TOLERANCE, pr.x1 - EDGE_MARGIN), pr.x1 - PAGE_MARGIN)
         self.limit_bottom = min(max(content.y1 + CONTENT_TOLERANCE, pr.y1 - EDGE_MARGIN), pr.y1 - PAGE_MARGIN)
+
+    def staying_text(self, boxes: Sequence[BBox]) -> list[BBox]:
+        """Per text line, the box of the glyphs that ``boxes`` (the segments being
+        rendered) do not take over: they stay on the page and redactions must spare
+        them. A line shared by a rendered cell and an untouched one (a number) is
+        protected only where the number is."""
+        out: list[BBox] = []
+        for glyphs in self._line_glyphs:
+            staying = [g for g in glyphs if not _inside_any(g, boxes)]
+            if not staying:
+                continue
+            box = staying[0]
+            for g in staying[1:]:
+                box = box.union(g)
+            out.append(box)
+        return out
 
     def drawings(self) -> list[BBox]:
         if self._drawings is None:
@@ -358,11 +454,13 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
        the page as editable text and ``overflow=True`` makes QA report it.
 
     Rotated / vertical segments skip the growth (their flow direction is not the
-    page's) and go through the same ladder with their original box.
+    page's) and go through the same ladder with their original box, as do table
+    cells, whose box already is the cell's interior (growing would cross the rules).
     """
     rotate = html_rotation(seg.style)
     base = seg.bbox
-    grown = space.extend(seg, down=True, horizontal=True) if rotate == 0 else base
+    growable = rotate == 0 and seg.style.role != "table"
+    grown = space.extend(seg, down=True, horizontal=True) if growable else base
     grown_note = "" if grown == base else "box extended into free space"
     tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
     attempts: list[tuple[BBox, Optional[float], float, str]] = [(base, None, 1.0, "")]
@@ -416,9 +514,9 @@ def _redaction_rect(seg: TextSegment, page_rect: pymupdf.Rect, lines: Sequence[B
     """Rectangle whose redaction removes the segment's glyphs and nothing else.
 
     The segment box is shrunk by ``REDACT_SHRINK`` and then cut back wherever it
-    still intersects a text line that is not part of the segment (less than half
-    of the line inside the segment box), because adjacent lines' font boxes
-    overlap and MuPDF drops a glyph at ~10 % coverage. Returns None for a
+    still intersects one of ``lines`` - the text (per line) that stays on the
+    page because no rendered segment takes it over - since adjacent lines' font
+    boxes overlap and MuPDF drops a glyph at ~10 % coverage. Returns None for a
     degenerate box or one outside the page (``page_rect`` is the unrotated
     page rectangle).
     """
@@ -429,12 +527,54 @@ def _redaction_rect(seg: TextSegment, page_rect: pymupdf.Rect, lines: Sequence[B
         rect = pymupdf.Rect(rect.x0 + REDACT_SHRINK, rect.y0 + REDACT_SHRINK,
                             rect.x1 - REDACT_SHRINK, rect.y1 - REDACT_SHRINK)
     for line in lines:
-        if line.area <= 0 or line.intersection_area(seg.bbox) >= 0.5 * line.area:
-            continue  # the segment's own line
-        if BBox.from_rect(rect).intersection_area(line) <= 0:
+        if line.area <= 0 or BBox.from_rect(rect).intersection_area(line) <= 0:
             continue
         rect = _cut_away(rect, line, REDACT_SHRINK)
     return rect
+
+
+def _reattach_annotations(page: pymupdf.Page, xrefs_before: Sequence[int]) -> int:
+    """Put back the annotations that ``apply_redactions`` removed from ``page``.
+
+    MuPDF deletes every Link and FreeText annotation whose rectangle meets a
+    redaction rectangle - and links sit exactly on the text they belong to
+    (clickable table of contents, cross references, URLs) - but it only unlinks
+    the objects from the page's ``/Annots`` array. ``xrefs_before`` is the
+    page's annotation list (``page.annot_xrefs()``) from before the redactions
+    were added; every entry that is gone is appended to ``/Annots`` again at the
+    xref level, which keeps the original objects with all their keys
+    (destinations, borders, appearance streams, popups) and avoids PyMuPDF's
+    ``insert_link``, whose page transform ignores the CropBox origin of rotated
+    pages. Pending ``/Redact`` annotations of the source are not restored
+    (``apply_redactions`` consumed them). Returns the number of objects put back.
+    """
+    doc = page.parent
+    present = {xref for xref, _type, _name in page.annot_xrefs()}
+    missing: list[int] = []
+    for xref in xrefs_before:
+        if xref <= 0 or xref in present or xref in missing:
+            continue
+        try:
+            kind, subtype = doc.xref_get_key(xref, "Subtype")
+        except Exception:  # noqa: BLE001 - the object is gone: nothing to restore
+            continue
+        if kind != "name" or subtype == "/Redact":
+            continue
+        missing.append(xref)
+    if not missing:
+        return 0
+    refs = " ".join(f"{xref} 0 R" for xref in missing)
+    kind, value = doc.xref_get_key(page.xref, "Annots")
+    if kind == "array":  # direct array: append before the closing bracket
+        doc.xref_set_key(page.xref, "Annots", value.rstrip()[:-1] + " " + refs + "]")
+    elif kind == "xref":  # the array is an object of its own
+        array_xref = int(value.split()[0])
+        source = doc.xref_object(array_xref, compressed=True).strip()
+        doc.update_object(array_xref, source[:-1] + " " + refs + "]")
+    else:  # every annotation of the page was removed and the key with it
+        doc.xref_set_key(page.xref, "Annots", "[" + refs + "]")
+    log.debug("page %d: re-attached annotations %s removed by the redaction", page.number, missing)
+    return len(missing)
 
 
 def _renderable(seg: TextSegment) -> bool:
@@ -453,13 +593,39 @@ def _renderable(seg: TextSegment) -> bool:
 def render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequence[TextSegment],
                          doc: TranslatedDocument, *, css: str, archive: Optional[pymupdf.Archive],
                          min_font_scale: float) -> list[RenderInfo]:
-    """Redact and re-insert ``segments`` (all on ``page``); fills ``seg.render``."""
+    """Redact and re-insert ``segments`` (all on ``page``); fills ``seg.render``.
+
+    The page is worked on with its ``/Rotate`` entry zeroed and restored at the
+    end: every coordinate here is in the unrotated space anyway, and
+    ``insert_htmlbox`` is the one PyMuPDF method that does not neutralise the
+    rotation itself and mislocates the text on a rotated page whose CropBox or
+    MediaBox origin is not (0, 0) (see the module docstring). Links and
+    annotations that the redaction removes are re-attached afterwards.
+    """
+    rotation = page.rotation
+    if rotation:
+        page.set_rotation(0)
+    try:
+        return _render_page_segments(page, page_index, segments, doc, css=css, archive=archive,
+                                     min_font_scale=min_font_scale)
+    finally:
+        if rotation:
+            page.set_rotation(rotation)
+
+
+def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequence[TextSegment],
+                          doc: TranslatedDocument, *, css: str, archive: Optional[pymupdf.Archive],
+                          min_font_scale: float) -> list[RenderInfo]:
     page_rect = unrotated_page_rect(page)
     ordered = sorted(segments, key=lambda s: (s.reading_order, s.bbox.y0, s.bbox.x0))
     space = _PageSpace(page, page_index, doc)  # must inspect the text blocks before redaction
+    # Text that stays on the page must be spared by the redactions; the part of a line
+    # that a rendered segment takes over (a table cell MuPDF merged with its neighbour) is not.
+    staying = space.staying_text([s.bbox for s in ordered])
+    annots_before = [xref for xref, _type, _name in page.annot_xrefs()]  # links, notes, form fields
     todo: list[TextSegment] = []
     for seg in ordered:
-        rect = _redaction_rect(seg, page_rect, space.lines)
+        rect = _redaction_rect(seg, page_rect, staying)
         if rect is None:
             log.warning("segment %s: box %s is empty or lies outside page %d, skipped",
                         seg.id, seg.bbox.as_tuple(), page_index)
@@ -472,6 +638,10 @@ def render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequence
         page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_NONE,
                               graphics=pymupdf.PDF_REDACT_LINE_ART_NONE,
                               text=pymupdf.PDF_REDACT_TEXT_REMOVE)
+        restored = _reattach_annotations(page, annots_before)
+        if restored:
+            log.info("page %d: re-attached %d link(s)/annotation(s) that the redaction removed",
+                     page_index, restored)
     infos: list[RenderInfo] = []
     for seg in todo:
         info = _place_segment(page, seg, seg.translated_text or "", space, css=css, archive=archive,
@@ -490,21 +660,25 @@ def render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequence
 
 def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLike, *,
                     min_font_scale: float = 0.55, fonts_dir: Optional[PathLike] = None,
-                    pages: Optional[list[int]] = None) -> list[RenderInfo]:
+                    pages: Optional[list[int]] = None,
+                    checkpoint_pages: int = DEFAULT_CHECKPOINT_PAGES) -> list[RenderInfo]:
     """Write ``out_pdf`` = ``src_pdf`` with every translated text segment re-rendered.
 
     Only ``SegmentKind.TEXT`` segments whose ``translated_text`` is set (and
     differs from the source) are touched; image text is handled by
     ``images.render_image_segments``. Page count, page sizes, images and vector
     graphics are preserved. ``pages`` restricts the work to those 0-based pages.
-    Returns the ``RenderInfo`` of every rendered segment (also stored in
-    ``seg.render``).
+    After every ``checkpoint_pages`` rendered pages the document is saved to a
+    temporary file (duplicate fonts merged) and reopened, so memory stays
+    bounded for long documents; ``0`` disables that. Returns the ``RenderInfo``
+    of every rendered segment (also stored in ``seg.render``).
     """
     if not 0 < min_font_scale <= 1:
         raise ValueError(f"min_font_scale must be in (0, 1], got {min_font_scale}")
     src_path, out_path = Path(src_pdf), Path(out_pdf)
     css, archive = page_css(doc.target_lang, fonts_dir)
     pdf = pymupdf.open(str(src_path))
+    checkpoint: Optional[str] = None  # temporary file the document is currently open on
     try:
         if pdf.needs_pass:
             raise ValueError(f"{src_path} is encrypted; decrypt it before translating")
@@ -525,21 +699,50 @@ def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLik
                 continue
             by_page.setdefault(seg.page, []).append(seg)
         infos: list[RenderInfo] = []
-        for pno in wanted:
-            segs = by_page.get(pno)
-            if not segs:
-                continue
-            page_infos = render_page_segments(pdf[pno], pno, segs, doc, css=css, archive=archive,
+        todo = [p for p in wanted if by_page.get(p)]
+        since_checkpoint = 0
+        for pno in todo:
+            page_infos = render_page_segments(pdf[pno], pno, by_page[pno], doc, css=css, archive=archive,
                                               min_font_scale=min_font_scale)
             infos.extend(page_infos)
             log.info("page %d: rendered %d segments (%d overflow, %d shrunk)", pno, len(page_infos),
                      sum(1 for i in page_infos if i.overflow), sum(1 for i in page_infos if i.scale < 1))
+            since_checkpoint += 1
+            if checkpoint_pages > 0 and since_checkpoint >= checkpoint_pages and pno != todo[-1]:
+                pdf, checkpoint = _checkpoint(pdf, checkpoint, out_path)
+                since_checkpoint = 0
         _save(pdf, src_path, out_path)
     finally:
-        pdf.close()
+        if not pdf.is_closed:
+            pdf.close()
+        if checkpoint and os.path.exists(checkpoint):
+            os.unlink(checkpoint)
     log.info("rendered %d segments into %s (%d overflow)", len(infos), out_path,
              sum(1 for i in infos if i.overflow))
     return infos
+
+
+def _checkpoint(pdf: pymupdf.Document, previous: Optional[str], out_path: Path) -> tuple[pymupdf.Document, str]:
+    """Save ``pdf`` (duplicate objects merged) to a fresh temporary file next to
+    ``out_path``, close it and reopen the saved file; the previous checkpoint file,
+    if any, is removed. Returns ``(reopened document, its file)``."""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix=out_path.stem + "-checkpoint-", suffix=".pdf", dir=str(out_path.parent))
+    os.close(fd)
+    try:
+        # garbage=4 merges the font copies made so far; the streams must stay uncompressed, or the
+        # final save could no longer merge them with the (raw) copies inserted after the checkpoint
+        pdf.save(tmp, garbage=4, deflate=False)
+        pdf.close()
+        reopened = pymupdf.open(tmp)
+    except Exception:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+        raise
+    if previous and os.path.exists(previous):
+        os.unlink(previous)
+    log.debug("layout checkpoint written to %s", tmp)
+    return reopened, tmp
 
 
 def _save(pdf: pymupdf.Document, src_path: Path, out_path: Path) -> None:

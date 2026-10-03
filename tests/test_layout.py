@@ -18,7 +18,7 @@ from PIL import Image
 
 from mathtrans import fonts as fonts_module
 from mathtrans.languages import is_cjk
-from mathtrans.layout import (REDACT_SHRINK, html_rotation, page_css, render_document,
+from mathtrans.layout import (REDACT_SHRINK, _PageSpace, html_rotation, page_css, render_document,
                               render_page_previews, segment_html)
 from mathtrans.models import (BBox, Lang, PageInfo, SegmentKind, SegmentStyle, TextSegment,
                               TranslatedDocument)
@@ -489,6 +489,190 @@ def test_render_page_with_rotate_entry(tmp_path):
         assert (im.width, im.height) == (200, 400)  # displayed orientation
 
 
+@pytest.mark.parametrize("rotation", [90, 180, 270])
+@pytest.mark.parametrize("box", ["cropbox", "mediabox"])
+def test_render_rotated_page_with_box_offset(tmp_path, rotation, box):
+    """A /Rotate page whose CropBox or MediaBox origin is not (0, 0) (auto-cropped
+    landscape scans, imposed PDFs). PyMuPDF's insert_htmlbox ignores the box offset on
+    rotated pages and used to put the translation partly off the page (the first letters
+    of every line clipped, x0 < 0), while the redaction had already removed the source
+    text; the layout must neutralise the rotation while it inserts."""
+    pdf = pymupdf.open()
+    if box == "cropbox":
+        page = pdf.new_page(width=700, height=950)
+    else:
+        page = pdf.new_page(width=595, height=842)
+        pdf.xref_set_key(page.xref, "MediaBox", "[100 200 695 1042]")
+        page = pdf[0]
+    page.insert_htmlbox(pymupdf.Rect(80, 80, 380, 110), '<p style="font-size:14px">Hello offset page</p>',
+                        css=CSS_PLAIN)
+    if box == "cropbox":
+        page.set_cropbox(pymupdf.Rect(50, 50, 650, 900))
+    page.set_rotation(rotation)
+    src = tmp_path / f"{box}_{rotation}.pdf"
+    pdf.save(str(src))
+    src_page = pymupdf.open(str(src))[0]
+    assert src_page.rotation == rotation
+    if box == "cropbox":
+        assert src_page.cropbox == pymupdf.Rect(50, 50, 650, 900)
+    else:
+        assert src_page.mediabox == pymupdf.Rect(100, 200, 695, 1042)
+    doc = _one_segment_doc(src, Lang.EN, Lang.ES, "Página con desplazamiento")
+    seg = doc.segments[0]
+    assert seg.bbox.x0 > 0 and seg.bbox.y0 > 0
+    out = tmp_path / f"{box}_{rotation}_es.pdf"
+    infos = render_document(src, doc, out)
+    assert len(infos) == 1 and infos[0].scale == 1.0 and not infos[0].overflow
+    res = pymupdf.open(str(out))[0]
+    assert res.rotation == rotation and res.rect == src_page.rect  # geometry untouched
+    assert res.cropbox == src_page.cropbox and res.mediabox == src_page.mediabox
+    text = page_text(res)
+    assert "Hello" not in text and _norm("Página con desplazamiento") in text
+    block = next(b for b in res.get_text("dict")["blocks"] if b["type"] == 0)
+    assert block["bbox"][0] >= 0, "translation starts off the page"
+    assert abs(block["bbox"][0] - seg.bbox.x0) < 3 and abs(block["bbox"][1] - seg.bbox.y0) < 3
+    assert "".join(s["text"] for s in block["lines"][0]["spans"]) == "Página con desplazamiento"
+
+
+def _link_facts(page: pymupdf.Page) -> list[tuple]:
+    """(kind, from-rect, uri / destination page, destination point) of every link."""
+    facts = []
+    for link in page.get_links():
+        to = link.get("to")
+        facts.append((link["kind"], tuple(round(v) for v in link["from"]), link.get("uri") or link.get("page"),
+                      (round(to.x), round(to.y)) if to is not None else None))
+    return sorted(facts, key=str)
+
+
+def _annot_facts(page: pymupdf.Page) -> list[tuple]:
+    return sorted((a.type[1], tuple(round(v) for v in a.rect), a.info.get("content", "")) for a in page.annots())
+
+
+def _widget_facts(page: pymupdf.Page) -> list[tuple]:
+    return sorted((w.field_name, w.field_value, tuple(round(v) for v in w.rect)) for w in page.widgets())
+
+
+def _html(page: pymupdf.Page, rect: pymupdf.Rect, text: str, size: int = 11) -> None:
+    page.insert_htmlbox(rect, f'<p style="font-size:{size}px">{text}</p>', css=CSS_PLAIN)
+
+
+def test_render_keeps_links_and_annotations(tmp_path):
+    """MuPDF's redaction deletes every Link and FreeText annotation whose rectangle meets
+    a redaction rectangle - i.e. the hyperlinks sitting on translated text (a clickable
+    table of contents, cross references, URLs) and notes overlapping a paragraph. They
+    must come out of the layout stage unchanged, also across a checkpoint and whether the
+    page keeps its /Annots as a direct or an indirect array; annotations the redaction
+    leaves alone (highlight, form field) must not be duplicated."""
+    pdf = pymupdf.open()
+    pdf.new_page(width=595, height=842)
+    pdf.new_page(width=595, height=842)
+    toc = pdf[0]
+    _html(toc, pymupdf.Rect(60, 50, 535, 90), "目录", size=22)
+    _html(toc, pymupdf.Rect(60, 100, 300, 120), "第一章 勾股定理 ............ 2", size=12)
+    _html(toc, pymupdf.Rect(60, 130, 300, 150), "第二章 实数 ............ 2", size=12)
+    _html(toc, pymupdf.Rect(60, 180, 400, 200), "参考资料见网站：数学学习网")
+    _html(toc, pymupdf.Rect(60, 500, 535, 560), "在直角三角形中，两条直角边的平方和等于斜边的平方。")
+    toc.insert_image(pymupdf.Rect(60, 250, 360, 450),
+                     stream=pymupdf.Pixmap(pymupdf.csRGB, pymupdf.IRect(0, 0, 8, 8), 0).tobytes("png"))
+    toc.insert_link({"kind": pymupdf.LINK_GOTO, "from": pymupdf.Rect(60, 100, 300, 120), "page": 1,
+                     "to": pymupdf.Point(0, 50)})
+    toc.insert_link({"kind": pymupdf.LINK_GOTO, "from": pymupdf.Rect(60, 130, 300, 150), "page": 1,
+                     "to": pymupdf.Point(0, 300)})
+    toc.insert_link({"kind": pymupdf.LINK_URI, "from": pymupdf.Rect(60, 180, 400, 200), "uri": "https://example.com/math"})
+    toc.insert_link({"kind": pymupdf.LINK_URI, "from": pymupdf.Rect(60, 250, 360, 450), "uri": "https://example.com/image"})
+    toc.insert_link({"kind": pymupdf.LINK_URI, "from": pymupdf.Rect(400, 600, 500, 650), "uri": "https://example.com/blank"})
+    paragraph = next(b for b in toc.get_text("dict")["blocks"] if b["type"] == 0 and b["bbox"][1] > 490)
+    note = toc.add_freetext_annot(pymupdf.Rect(200, paragraph["bbox"][3] - 2, 420, paragraph["bbox"][3] + 38),
+                                  "注意：斜边是最长的边。", fontsize=11, fontname="china-s",
+                                  text_color=(0.8, 0, 0), fill_color=(1, 1, 0.8))
+    note.update()
+    toc.add_highlight_annot(pymupdf.Rect(60, 100, 300, 115))
+    field = pymupdf.Widget()
+    field.field_name, field.field_type, field.field_value = "answer", pymupdf.PDF_WIDGET_TYPE_TEXT, "5"
+    field.rect = pymupdf.Rect(320, 130, 530, 150)
+    toc.add_widget(field)
+    chapter = pdf[1]
+    _html(chapter, pymupdf.Rect(60, 50, 535, 90), "第一章 勾股定理", size=22)
+    _html(chapter, pymupdf.Rect(60, 100, 200, 120), "返回目录")
+    chapter.insert_link({"kind": pymupdf.LINK_URI, "from": pymupdf.Rect(60, 50, 535, 90), "uri": "https://example.com/ch1"})
+    chapter.insert_link({"kind": pymupdf.LINK_GOTO, "from": pymupdf.Rect(60, 100, 200, 120), "page": 0,
+                         "to": pymupdf.Point(0, 0)})
+    kind, value = pdf.xref_get_key(chapter.xref, "Annots")  # make page 2 keep its annotations indirectly
+    assert kind == "array"
+    array_xref = pdf.get_new_xref()
+    pdf.update_object(array_xref, value)
+    pdf.xref_set_key(chapter.xref, "Annots", f"{array_xref} 0 R")
+    src = tmp_path / "linked.pdf"
+    pdf.save(str(src), garbage=4, deflate=True)
+    pdf.close()
+
+    source = pymupdf.open(str(src))
+    assert source.xref_get_key(source[1].xref, "Annots")[0] == "xref"
+    expected = [(_link_facts(p), _annot_facts(p), _widget_facts(p), len(p.annot_xrefs())) for p in source]
+    assert len(expected[0][0]) == 5 and len(expected[0][1]) == 2 and len(expected[0][2]) == 1
+    assert len(expected[1][0]) == 2
+    translations = {"title": ("目录", "Contents"), "toc1": ("第一章 勾股定理 ....", "Chapter 1 Pythagorean theorem ............ 2"),
+                    "toc2": ("第二章", "Chapter 2 Real numbers ............ 2"),
+                    "ref": ("参考资料", "References: see the maths learning site"),
+                    "para": ("在直角三角形中", "In a right triangle the sum of the squares of the legs equals the square of the hypotenuse."),
+                    "ch": ("第一章 勾股定理", "Chapter 1 Pythagorean theorem"), "back": ("返回目录", "Back to contents")}
+    doc = build_document(src, Lang.ZH, Lang.EN, translations)
+    assert sum(1 for s in doc.segments if s.translated_text) == 7
+    out = tmp_path / "linked_en.pdf"
+    infos = render_document(src, doc, out, checkpoint_pages=1)  # checkpoint between the two pages
+    assert len(infos) == 7 and not any(i.overflow for i in infos)
+    res = pymupdf.open(str(out))
+    for pno, page in enumerate(res):
+        assert (_link_facts(page), _annot_facts(page), _widget_facts(page), len(page.annot_xrefs())) == expected[pno], pno
+    text0, text1 = page_text(res[0]), page_text(res[1])
+    assert _norm("Chapter 1 Pythagorean theorem ............ 2") in text0 and _norm("Contents") in text0
+    assert "目录" not in text0 and "勾股定理" not in text0 and _norm("在直角三角形中") not in text0
+    assert _norm("注意：斜边是最长的边。") in text0  # the note is still there, with its text
+    assert _norm("Back to contents") in text1 and "返回目录" not in text1
+    assert [i["bbox"] for i in res[0].get_image_info()] == [i["bbox"] for i in source[0].get_image_info()]
+
+
+def test_page_space_ignores_annotation_text(tmp_path):
+    """Text inside annotations (notes, stamps, form field values) is not page content: the
+    redaction cannot remove it and the annotation survives the layout stage, so it is
+    neither text that the redactions must spare (a note over a paragraph would otherwise
+    cut the paragraph's redaction short and leave source glyphs) nor an obstacle."""
+    pdf = pymupdf.open()
+    page = pdf.new_page(width=400, height=300)
+    page.insert_htmlbox(pymupdf.Rect(20, 20, 380, 60), '<p style="font-size:11px">first line of the paragraph<br>'
+                        'second line of the paragraph</p>', css=CSS_PLAIN)
+    note = page.add_freetext_annot(pymupdf.Rect(120, 40, 380, 100), "a note over the text", fontsize=11,
+                                   fill_color=(1, 1, 0.8))
+    note.update()
+    src = tmp_path / "note.pdf"
+    pdf.save(str(src))
+    page = pymupdf.open(str(src))[0]
+    assert _norm("a note over the text") in page_text(page)  # get_text does see the note ...
+    lines = {"".join(s["text"] for s in line["spans"]): pymupdf.Rect(line["bbox"])
+             for b in page.get_text("dict", flags=NO_LIGATURES)["blocks"] if b["type"] == 0 for line in b["lines"]}
+    assert set(lines) == {"first line of the paragraph", "second line of the paragraph", "a note over the text"}
+    paragraph = lines["first line of the paragraph"] | lines["second line of the paragraph"]
+    assert (paragraph & lines["a note over the text"]).get_area() > 0  # ... and MuPDF merges it into the paragraph
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.EN, target_lang=Lang.ES,
+                             pages=[PageInfo(index=0, width=400, height=300)])
+    seg = TextSegment(id="p0_b0", page=0, bbox=BBox.from_rect(paragraph),
+                      source_text="first line of the paragraph second line of the paragraph",
+                      style=SegmentStyle(size=11), translated_text="primera línea del párrafo segunda línea")
+    doc.segments.append(seg)
+    space = _PageSpace(page, 0, doc)
+    assert space.staying_text([seg.bbox]) == []  # the note's glyphs are not page text to spare
+    assert space.fixed == []  # nor an obstacle
+    out = tmp_path / "note_es.pdf"
+    infos = render_document(src, doc, out)
+    assert len(infos) == 1 and not infos[0].overflow
+    res = pymupdf.open(str(out))[0]
+    text = page_text(res)
+    assert _norm("first line") not in text and _norm("of the paragraph") not in text
+    assert _norm("primera línea del párrafo") in text
+    assert _norm("a note over the text") in text  # the note survived with its text
+    assert [(a.type[1], tuple(round(v) for v in a.rect)) for a in res.annots()] == [("FreeText", (120, 40, 380, 100))]
+
+
 def test_render_unicode_and_special_characters(sample_pdf_en, tmp_path):
     """HTML-sensitive characters, placeholders brackets, maths symbols, accents,
     CR/LF and tabs all come out as the expected extractable text."""
@@ -614,3 +798,53 @@ def test_render_concurrently_in_threads(sample_pdf_zh, sample_pdf_en, tmp_path):
     assert not any(t.is_alive() for t in threads)
     assert errors == []
     assert all((tmp_path / f"prev_{n}" / "page-002.png").is_file() for n in range(4))
+
+
+def test_render_document_checkpoint_matches_single_pass(tmp_path):
+    """Long documents are checkpointed (saved with duplicate merging + reopened) every
+    ``checkpoint_pages`` rendered pages so the per-call font copies of insert_htmlbox do
+    not pile up in memory; the output must equal a single-pass render and no temporary
+    checkpoint file may be left behind."""
+    pix = pymupdf.Pixmap(pymupdf.csRGB, pymupdf.IRect(0, 0, 16, 16), False)
+    pix.clear_with(180)
+    png = pix.tobytes("png")
+    pdf = pymupdf.open()
+    n_pages, per_page = 12, 5
+    for pno in range(n_pages):
+        page = pdf.new_page()
+        page.insert_image(pymupdf.Rect(420, 40 + pno, 560, 120 + pno), stream=png)
+        for i in range(per_page):
+            page.insert_htmlbox(pymupdf.Rect(50, 160 + i * 30, 400, 184 + i * 30),
+                                f'<p style="font-size:11px">Seite {pno} Zeile {i} mit etwas Text</p>', css=CSS_PLAIN)
+    src = tmp_path / "long.pdf"
+    pdf.save(str(src), garbage=4, deflate=True)
+    pdf.close()
+    translations = {f"p{p}l{i}": (f"Seite {p} Zeile {i} ", f"Page {p} line {i} with some text")
+                    for p in range(n_pages) for i in range(per_page)}
+
+    def render(name: str, checkpoint_pages: int):
+        doc = build_document(src, Lang.EN, Lang.EN, translations)
+        out = tmp_path / name
+        infos = render_document(src, doc, out, checkpoint_pages=checkpoint_pages)
+        return out, [(i.scale, i.overflow, i.bbox.as_tuple() if i.bbox else None) for i in infos]
+
+    out_ckpt, infos_ckpt = render("ckpt.pdf", 4)
+    out_single, infos_single = render("single.pdf", 0)
+    assert len(infos_ckpt) == n_pages * per_page and infos_ckpt == infos_single
+    assert not list(tmp_path.glob("*checkpoint*")), "checkpoint file left behind"
+    with pymupdf.open(str(out_ckpt)) as a, pymupdf.open(str(out_single)) as b, pymupdf.open(str(src)) as s:
+        assert a.page_count == b.page_count == n_pages
+        for pno in range(n_pages):
+            assert page_text(a[pno]) == page_text(b[pno])
+            assert _norm(f"Page {pno} line 4 with some text") in page_text(a[pno]) and "Seite" not in page_text(a[pno])
+            assert [i["bbox"] for i in a[pno].get_image_info()] == [i["bbox"] for i in s[pno].get_image_info()]
+            assert a[pno].rect == s[pno].rect
+        assert sum(1 for f in a.get_page_fonts(n_pages - 1) if f[1] == "n/a") == 0
+    assert out_ckpt.stat().st_size < 1.25 * out_single.stat().st_size  # fonts merged in both cases
+    # in-place rendering with checkpoints works too (the checkpoint lives next to the output)
+    doc = build_document(src, Lang.EN, Lang.EN, translations)
+    shutil.copyfile(src, tmp_path / "inplace.pdf")
+    render_document(tmp_path / "inplace.pdf", doc, tmp_path / "inplace.pdf", checkpoint_pages=5)
+    with pymupdf.open(str(tmp_path / "inplace.pdf")) as c:
+        assert c.page_count == n_pages and _norm("Page 11 line 0") in page_text(c[11])
+    assert not list(tmp_path.glob("*checkpoint*"))

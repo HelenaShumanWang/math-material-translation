@@ -28,14 +28,14 @@ Web 界面（中英双语）：
 |---|---|---|
 | 源文件上传（中/英/葡/西/日/韩） | ✅ | Web 上传 / REST / CLI；源语言可自动检测 (`languages.detect_language`) |
 | 目标语言自由选择 | ✅ | 六种语言任意组合（源 ≠ 目标） |
-| 版式与图文保持不变 | ✅ | 只擦除原文字对象（`PyMuPDF` 文本遮盖，图片、线条、底色全部保留），译文按原字号/颜色/粗细/对齐重新排入原文本框，放不下时自动缩放、放宽行距或向空白区扩展 |
+| 版式与图文保持不变 | ✅ | 只擦除原文字对象（`PyMuPDF` 文本遮盖，图片、线条、底色全部保留），译文按原字号/颜色/粗细/对齐重新排入原文本框，放不下时自动缩放、放宽行距或向空白区扩展；带框线的表格按线条识别后逐个单元格翻译（译文不越出单元格），同一行并排的文字（页眉 + 页码、无框线表格的一行）分段保留在原位 |
 | 图片内嵌文字翻译 | ✅ | RapidOCR（离线）或 Claude 视觉识别图片内文字 → 翻译 → 背景填充/修复 → 用目标语言字体重绘 → 替换图片对象（像素尺寸、位置不变） |
 | 可编辑 PDF | ✅ | 译文是真实文本对象（内嵌字体），可在 Acrobat / Illustrator 等工具中直接修改 |
 | 自动质检（硬性要求） | ✅ | 10 项规则校验 + Claude 语义审校 + 版式校验 + 输出文件校验，多轮循环（失败段落带反馈重译），全部通过才输出；未通过的任务会被标记为 `qa_failed`，默认不允许下载 |
 | 批量上传 | ✅ | 一次上传多个 PDF，自动生成同一 `batch_id` 的多个任务，后台队列执行 |
 | Word 导出 | ✅ | `--docx` / 「Word 导出」选项（LibreOffice 转换，缺少 LibreOffice 时用 python-docx 重建） |
 | 术语库固定 | ✅ | 内置 90+ 条六语种数学术语；支持上传/粘贴 CSV 或 JSON 自定义术语，自定义优先；质检会检查术语是否被遵守 |
-| 分任务保存 | ✅ | 每个任务保存在 `data/projects/<id>/`，含源文件、每次运行的输出、质检报告和分段 JSON；可更换目标语言或术语库重新翻译，历史保留 |
+| 分任务保存 | ✅ | 每个任务保存在 `data/projects/<id>/`，含源文件、每次运行的输出、质检报告和分段 JSON；可更换目标语言或术语库重新翻译，历史保留——每次历史运行仍可回看和下载（界面中的历史链接 / API 的 `?run=<run_id>`） |
 | 预览 | ✅ | 翻译完成后生成每页 PNG 预览（`/api/projects/{id}/preview/{page}`），确认后再下载 |
 | 双语对照 | ✅ | `--bilingual` / 「双语对照」选项：每页左原文右译文并排 |
 | 跳过页码 | ✅ | `--skip-pages 2` / 「跳过页码」：指定页面原样保留（如二维码页、版权页） |
@@ -82,11 +82,17 @@ python -m mathtrans.cli translate book.pdf --to ja --model claude-opus-5-5 --sub
 ### Web 服务 / Web UI + REST API
 
 ```bash
-python -m mathtrans.cli serve --host 0.0.0.0 --port 8000
+python -m mathtrans.cli serve        # 默认只监听 127.0.0.1:8000
 # 打开 http://localhost:8000
 ```
 
-界面支持：多文件上传、源/目标语言选择、术语库（选择已有 / 粘贴 CSV / 上传文件）、选项（图内文字、双语、Word、质检轮数）、任务列表实时进度、质检报告、页面预览、下载、更换语言重新翻译。
+界面支持：多文件上传、源/目标语言选择、术语库（选择已有 / 粘贴 CSV / 上传文件）、选项（图内文字、双语、Word、质检轮数、跳过页码）、任务列表实时进度、质检报告、页面预览、下载（质检未通过时需确认后强制下载）、更换语言重新翻译，以及每次历史运行的输出、预览和质检报告链接。
+
+**部署与访问控制。** 服务没有用户账号：任何能访问该端口的客户端都能查看、创建、重译和删除所有任务与术语库。默认只监听本机回环地址；若要绑定 `0.0.0.0`（或发布 Docker 端口），请放在带认证的反向代理之后，或设置 `MATHTRANS_API_TOKEN`：此后所有 `/api/*` 请求（`GET /api/languages` 除外）都必须携带 `Authorization: Bearer <token>` 或 `X-API-Key: <token>`（网页界面会提示输入并保存在浏览器中）。无论是否设置 token，浏览器标记为跨站的写操作（`Sec-Fetch-Site: cross-site`，或 `Origin` 与 Host 不符）一律返回 403，防止 CSRF。
+
+```bash
+MATHTRANS_API_TOKEN=change-me python -m mathtrans.cli serve --host 0.0.0.0 --port 8000
+```
 
 REST 端点（详见 `ARCHITECTURE.md`）：
 
@@ -97,10 +103,10 @@ REST 端点（详见 `ARCHITECTURE.md`）：
 | GET | `/api/glossaries/template` | 术语库 CSV 模板 |
 | POST | `/api/projects` | 创建任务（multipart：`files`×N，`target_lang`，可选 `source_lang`、`glossary_id`、`translate_images`、`bilingual`、`export_docx`、`max_qa_rounds`、`require_qa_pass`、`subset_fonts`） |
 | GET | `/api/projects` `/api/projects/{id}` | 列表 / 详情（状态、进度、结果、质检摘要） |
-| POST | `/api/projects/{id}/retranslate` | 更换目标语言/术语库重新翻译（保留历史） |
-| GET | `/api/projects/{id}/qa` | 质检报告（`?format=md` 为 Markdown） |
-| GET | `/api/projects/{id}/preview/{page}` | 第 N 页预览 PNG |
-| GET | `/api/projects/{id}/download?format=pdf|bilingual|docx|segments` | 下载（质检未通过时返回 409，加 `&force=1` 可强制下载） |
+| POST | `/api/projects/{id}/retranslate` | 更换目标语言/术语库重新翻译（保留历史：上一次运行的目录保留在磁盘上，并以 `run_id`、`outputs`、`preview_pages` 记录在 `history` 中） |
+| GET | `/api/projects/{id}/qa` | 质检报告（`?format=md` 为 Markdown；`&run=<run_id>` 查看历史运行的报告） |
+| GET | `/api/projects/{id}/preview/{page}` | 第 N 页预览 PNG（`?run=<run_id>` 查看历史运行的预览） |
+| GET | `/api/projects/{id}/download?format=pdf|bilingual|docx|segments` | 下载（质检未通过时返回 409，加 `&force=1` 可强制下载；`&run=<run_id>` 下载历史运行的输出，按该次运行的状态判断） |
 | DELETE | `/api/projects/{id}` | 删除任务 |
 
 ### 术语库格式 / Glossary format
@@ -113,7 +119,7 @@ zh,en,pt,es,ja,ko,note
 斜边,hypotenuse,hipotenusa,hipotenusa,斜辺,빗변,
 ```
 
-内置术语库在 `mathtrans/data/default_glossary.csv`，自定义条目优先级更高。
+内置术语库在 `mathtrans/data/default_glossary.csv`，自定义条目优先级更高。自定义术语库最多 20,000 条、每个术语最长 200 字符（质检会对每个文本段扫描全部术语对）；更长的列表请按学科拆分。
 
 ---
 
@@ -161,13 +167,17 @@ PDF ─► 抽取文本块（字号/颜色/对齐/角色）+ 公式/数字占位
 | `MATHTRANS_CLAUDE_EFFORT` | `high` | 推理强度 low / medium / high / xhigh / max |
 | `MATHTRANS_ENABLE_FALLBACKS` | `true` | 启用服务端拒答回退（`fallbacks: "default"`） |
 | `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `mock` |
-| `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none` |
+| `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none`。`auto`：中/英/葡/西文源用离线 RapidOCR；日文、韩文源在配置了 API Key 时改用 Claude 视觉识别（RapidOCR 对假名/谚文识别不可靠；无 Key 时仍用 RapidOCR，并对每个已翻译的图内文字给出质检警告）。也可按任务指定：`--ocr-engine` / 表单字段 `ocr_engine` |
+| `MATHTRANS_MAX_IMAGE_MEGAPIXELS` | `50` | 像素数超过该值的内嵌图片不解码、不识别（内存预算；600 dpi A4 扫描约 35 MP） |
 | `MATHTRANS_DATA_DIR` | `data` | 任务与输出存储目录 |
 | `MATHTRANS_FONTS_DIR` | — | 额外字体目录 |
 | `MATHTRANS_MAX_QA_ROUNDS` | `3` | 质检最大轮数 |
 | `MATHTRANS_REQUIRE_QA_PASS` | `true` | 质检未通过时拒绝提供下载 |
-| `MATHTRANS_MAX_UPLOAD_MB` | `100` | Web 上传单文件大小上限 |
+| `MATHTRANS_MAX_UPLOAD_MB` | `100` | Web 上传单文件大小上限（术语库上传同样受限） |
+| `MATHTRANS_MAX_PAGES` | `500` | 单个文档页数上限：超过的 Web 上传/重译返回 413，CLI 拒绝翻译超过该页数的页面（按 `--pages` 选中的页计）；内存随渲染页数增长，只在内存充足的机器上调高 |
+| `MATHTRANS_RENDER_CHECKPOINT_PAGES` | `25` | 版式阶段每渲染 N 页保存并重新打开 PDF，使长文档内存保持平稳（`0` 关闭） |
 | `MATHTRANS_MAX_WORKERS` | `2` | Web 服务并行翻译任务数 |
+| `MATHTRANS_API_TOKEN` | — | 设置后所有 `/api/*` 请求必须携带该共享密钥（`Authorization: Bearer`、`X-API-Key` 或界面写入的 cookie）；服务可被其他机器访问时建议设置 |
 
 ---
 

@@ -115,6 +115,18 @@ def test_translate_argument_errors(runner, sample_pdf_zh, tmp_path, capsys):
         cli.main(["translate", str(sample_pdf_zh)])  # --to is required
 
 
+def test_translate_ocr_engine_option(runner, sample_pdf_zh, tmp_path):
+    out = tmp_path / "out"
+    assert cli.main(["translate", str(sample_pdf_zh), "--to", "en", "--out", str(out), "--translator", "mock"]) == 0
+    assert runner.calls[0]["options"].ocr_engine == "auto"
+    assert cli.main(["translate", str(sample_pdf_zh), "--to", "ko", "--out", str(out), "--translator", "mock",
+                     "--ocr-engine", "claude"]) == 0
+    assert runner.calls[1]["options"].ocr_engine == "claude"
+    with pytest.raises(SystemExit):
+        cli.main(["translate", str(sample_pdf_zh), "--to", "en", "--ocr-engine", "tesseract"])
+    assert len(runner.calls) == 2
+
+
 def test_translate_with_glossary_and_default_out_dir(runner, sample_pdf_zh, tmp_path, monkeypatch):
     glossary = tmp_path / "terms.csv"
     glossary.write_text("zh,en\n斜边,hypotenuse side\n", encoding="utf-8")
@@ -200,3 +212,46 @@ def test_translate_summary_lists_issues_with_pages_and_truncates(capsys, tmp_pat
     out = capsys.readouterr().out
     assert "QA: FAILED - 1 round(s), 25 error(s), 0 warning(s)" in out
     assert out.count("number ") == 20 and "... 5 more issue(s)" in out and "p2 p1_b0" in out
+
+
+def test_serve_warns_when_bound_to_the_network_without_token(monkeypatch, offline_settings, caplog):
+    import logging
+
+    import uvicorn
+
+    from mathtrans.config import reset_settings
+
+    monkeypatch.setattr(uvicorn, "run", lambda app, **kw: None)
+    with caplog.at_level(logging.WARNING, logger="mathtrans.cli"):
+        assert cli.main(["serve", "--host", "0.0.0.0"]) == 0
+    assert any("MATHTRANS_API_TOKEN" in r.message and "8000" in r.message for r in caplog.records)
+    caplog.clear()
+    with caplog.at_level(logging.WARNING, logger="mathtrans.cli"):
+        assert cli.main(["serve"]) == 0  # loopback: nothing to warn about
+        assert cli.main(["serve", "--host", "localhost"]) == 0
+    assert not any("MATHTRANS_API_TOKEN" in r.message for r in caplog.records)
+    monkeypatch.setenv("MATHTRANS_API_TOKEN", "s3cret")
+    reset_settings()
+    try:
+        with caplog.at_level(logging.WARNING, logger="mathtrans.cli"):
+            assert cli.main(["serve", "--host", "0.0.0.0"]) == 0
+        assert not any("MATHTRANS_API_TOKEN" in r.message for r in caplog.records)
+    finally:
+        reset_settings()
+
+
+def test_translate_rejects_too_many_pages(monkeypatch, offline_settings, sample_pdf_zh, tmp_path, capsys):
+    """The page limit also protects the CLI (real pipeline, refused before any work is done)."""
+    from mathtrans.config import reset_settings
+
+    monkeypatch.setenv("MATHTRANS_MAX_PAGES", "1")
+    reset_settings()
+    try:
+        out = tmp_path / "o"
+        assert cli.main(["translate", str(sample_pdf_zh), "--to", "en", "--out", str(out), "--translator", "mock",
+                         "--no-images"]) == 1
+        printed = capsys.readouterr().out
+        assert "error" in printed and "2 pages" in printed and "MATHTRANS_MAX_PAGES" in printed
+        assert not (out / "output.pdf").exists() and (out / "error.txt").is_file()
+    finally:
+        reset_settings()

@@ -27,12 +27,12 @@ from typing import Callable, Optional, Union
 
 import pymupdf
 
-from ..glossary import term_present
+from ..glossary import is_enforced_source_term, term_present
 from ..languages import LANGUAGES, info, is_cjk, normalize_for_compare, script_profile
 from ..languages import letters_of_script as _source_script_letters
 from ..models import (PLACEHOLDER_RE, Lang, PipelineOptions, QAIssue, SegmentKind, Severity, TextSegment,
                       TranslatedDocument)
-from ..protect import is_fully_protected, verify_placeholders
+from ..protect import FUNCTIONS, UNITS, _is_bare_label, is_fully_protected, verify_placeholders
 
 log = logging.getLogger("mathtrans.qa.checks")
 
@@ -50,7 +50,8 @@ TARGET_SCRIPT_MIN_RATIO = 0.6
 MIN_LETTERS_FOR_SCRIPT_CHECKS = 4
 """Translations / sources with fewer letters are too short for script statistics."""
 TINY_LABEL_MAX_LETTERS = 3
-"""Sources with at most this many letters may keep up to :data:`TINY_LABEL_FOREIGN_ALLOWANCE` foreign letters."""
+"""Sources with at most this many letters may keep up to :data:`TINY_LABEL_FOREIGN_ALLOWANCE` foreign
+letters (a stray unit or variable) - unless the translation is a verbatim copy of the source."""
 TINY_LABEL_FOREIGN_ALLOWANCE = 2
 COPIED_RUN_MIN_WORDS = 3
 """Consecutive source words (>= 2 letters each) copied verbatim into a CJK translation that count as untranslated."""
@@ -97,6 +98,26 @@ _DIGIT_RUN_RE = re.compile(r"[0-9]+")
 _ENCLOSED_NUMBER_RE = re.compile(r"[\u2460-\u2473\u2474-\u2487\u2488-\u249b\u24f5-\u24fe\u24eb-\u24f4\uff10-\uff19]")
 _CJK_DIGITS = "零一二三四五六七八九"
 _LATIN_WORD_RE = re.compile(r"[A-Za-z\u00c0-\u024f]{2,}")
+_NOTATION_WORDS = frozenset(w for w in FUNCTIONS | UNITS if w.isalpha())
+"""Function names and unit symbols (``sin``, ``cos``, ``tan``, ``km``, ``cm`` ...): written in
+Latin letters in every target language, so they are neither untranslated text nor foreign script."""
+_CAPS_LABEL_RE = re.compile(r"[A-Z]{2,4}")
+"""Shape of an upper-case point label (``AB``, ``CD``, ``PQRS``); ``protect._is_bare_label`` tells
+such labels apart from words set in capitals (``UNIT``, ``STEP``, ``NOTE``)."""
+_LATIN_RUN_RE = re.compile(r"[" + _RANGES["latin"] + r"]+")
+_SENTENCE_END = ".!?:;…。！？：\n"
+
+
+def _is_notation(word: str) -> bool:
+    """Whether a Latin word is mathematical notation that stays in Latin letters in every
+    language: a function name, a unit symbol or an upper-case point label (``sin``, ``cm``, ``AB``)."""
+    return word.casefold() in _NOTATION_WORDS or (_CAPS_LABEL_RE.fullmatch(word) is not None and _is_bare_label(word))
+
+
+def _strip_notation(text: str) -> str:
+    """``text`` with every notation word (see :func:`_is_notation`) blanked out; a word is
+    a maximal run of Latin letters, so ``sin`` inside ``sine`` is left alone."""
+    return _LATIN_RUN_RE.sub(lambda m: " " if _is_notation(m.group(0)) else m.group(0), text)
 
 
 @lru_cache(maxsize=16)
@@ -137,8 +158,10 @@ def foreign_letters(text: str, tgt: Lang | str) -> int:
 
 def script_ratio(text: str, tgt: Lang | str) -> float:
     """Share of the letters of ``text`` that belong to the script of ``tgt``
-    (1.0 when there are no letters); hangul only for Korean."""
-    p = script_profile(text)
+    (1.0 when there are no letters); hangul only for Korean. Unlike
+    :func:`mathtrans.languages.script_ratio`, notation that stays in Latin letters in
+    every language (``sin``, ``cos``, ``km``, ``AB``; see :func:`_is_notation`) is not counted."""
+    p = script_profile(_strip_notation(text))
     letters = sum(p[k] for k in _ALL_KEYS)
     if letters == 0:
         return 1.0
@@ -202,9 +225,12 @@ def _digits_normalised(text: str) -> str:
 
 def _copied_word_runs(source: str, translation: str, min_words: int = COPIED_RUN_MIN_WORDS) -> list[str]:
     """Runs of >= ``min_words`` consecutive Latin words (>= 2 letters each) of
-    ``source`` that reappear, in order and unchanged, in ``translation``."""
-    src_words = [w.casefold() for w in _LATIN_WORD_RE.findall(source)]
-    tr_words = _LATIN_WORD_RE.findall(translation)
+    ``source`` that reappear, in order and unchanged, in ``translation``. Notation
+    (``sin, cos, tan``, ``km, cm, mm``, ``AB, CD``) is skipped on both sides: a list of
+    function names or units is not copied prose, and a run of copied prose is still
+    found as the words around a ``max`` or ``cm`` in it."""
+    src_words = [w.casefold() for w in _LATIN_WORD_RE.findall(source) if not _is_notation(w)]
+    tr_words = [w for w in _LATIN_WORD_RE.findall(translation) if not _is_notation(w)]
     if len(src_words) < min_words or len(tr_words) < min_words:
         return []
     grams = {tuple(src_words[i: i + min_words]) for i in range(len(src_words) - min_words + 1)}
@@ -220,6 +246,26 @@ def _copied_word_runs(source: str, translation: str, min_words: int = COPIED_RUN
         runs.append(" ".join(tr_words[i:j]))
         i = j
     return runs
+
+
+def copied_names(source: str, translation: str) -> list[str]:
+    """Latin words of ``translation`` that are proper names copied verbatim from
+    ``source``: words with an inner capital (``GeoGebra``, ``LaTeX``, ``iPad``) anywhere,
+    and capitalised words containing lower-case letters (``Excel``, ``Python``, ``Desmos``)
+    that do not open a sentence of the source. Such names have no rendering in the
+    target language, so they count neither as untranslated text nor against the
+    target-script share (one entry per occurrence in the translation)."""
+    names: set[str] = set()
+    for m in _LATIN_WORD_RE.finditer(source):
+        w = m.group(0)
+        if not any(ch.islower() for ch in w) or not any(ch.isupper() for ch in w):
+            continue
+        inner_cap = any(ch.isupper() for ch in w[1:])
+        before = source[: m.start()].rstrip()
+        sentence_initial = not before or before[-1] in _SENTENCE_END
+        if inner_cap or (w[0].isupper() and not sentence_initial):
+            names.add(w)
+    return [w for w in _LATIN_WORD_RE.findall(translation) if w in names]
 
 
 # --------------------------------------------------------------------------- #
@@ -398,11 +444,19 @@ def _identical_is_untranslated(seg: TextSegment, src: Lang, tgt: Lang) -> bool:
     return len(_LATIN_WORD_RE.findall(source_body(seg))) >= IDENTICAL_SAME_SCRIPT_MIN_WORDS
 
 
+def _only_copied_names(seg: TextSegment) -> bool:
+    """Whether every word of the source is a proper name copied into the translation."""
+    words = _LATIN_WORD_RE.findall(source_body(seg))
+    return bool(words) and set(words) <= set(copied_names(source_body(seg), translation_body(seg)))
+
+
 def untranslated(doc: TranslatedDocument, options: PipelineOptions,
                  pairs: Optional[GlossaryPairs] = None) -> list[QAIssue]:
     """No source-script text may remain outside protected fragments (tiny labels may
-    keep up to two letters), no run of source words may be copied verbatim into a CJK
-    translation, and the translation must differ from the source."""
+    keep up to two stray letters, unless the translation is a verbatim copy of the
+    source), no run of source words may be copied verbatim into a CJK translation,
+    and the translation must differ from the source (a label made of copied proper
+    names such as ``GeoGebra`` excepted)."""
     src, tgt = doc.source_lang, doc.target_lang
     latin_into_cjk = "latin" in distinctive_source_keys(src, tgt)
     issues: list[QAIssue] = []
@@ -410,7 +464,9 @@ def untranslated(doc: TranslatedDocument, options: PipelineOptions,
         body = translation_body(seg)
         src_letters = _letters(seg.source_text)
         foreign = foreign_letters(body, tgt)
-        allowance = TINY_LABEL_FOREIGN_ALLOWANCE if src_letters <= TINY_LABEL_MAX_LETTERS else 0
+        # a tiny label may keep a stray letter, but a verbatim copy of the source is untranslated
+        copied = normalize_for_compare(body) == normalize_for_compare(source_body(seg))
+        allowance = TINY_LABEL_FOREIGN_ALLOWANCE if src_letters <= TINY_LABEL_MAX_LETTERS and not copied else 0
         if foreign > allowance:
             runs = _runs_re(_foreign_keys(tgt)).findall(body)
             sample = ", ".join(f"\"{r}\"" for r in dict.fromkeys(runs[:3]))
@@ -430,6 +486,8 @@ def untranslated(doc: TranslatedDocument, options: PipelineOptions,
                 continue
         if _source_script_letters(seg.source_text, src) == 0:
             continue  # romanised names, acronyms, codes: nothing to translate ("SHUXUE", "ISBN")
+        if _only_copied_names(seg):
+            continue  # a label that is a product / software name ("GeoGebra") has no translation
         if _identical_is_untranslated(seg, src, tgt):
             issues.append(_issue(
                 "untranslated", "error", seg,
@@ -444,6 +502,9 @@ def target_script(doc: TranslatedDocument, options: PipelineOptions,
     issues: list[QAIssue] = []
     for seg in _translated(doc):
         body = translation_body(seg)
+        names = copied_names(source_body(seg), body)
+        for name in names:  # copied proper names are neither target-script nor foreign text
+            body = body.replace(name, " ", 1)
         if _letters(body) < MIN_LETTERS_FOR_SCRIPT_CHECKS:
             continue
         ratio = script_ratio(body, tgt)
@@ -451,8 +512,9 @@ def target_script(doc: TranslatedDocument, options: PipelineOptions,
             issues.append(_issue(
                 "target_script", "error", seg,
                 f"Only {ratio:.0%} of the letters in the translation are in the {_lang_name(tgt)} script; write "
-                f"the whole translation in {_lang_name(tgt)} (formulas and variable names excepted)",
-                script_ratio=round(ratio, 3)))
+                f"the whole translation in {_lang_name(tgt)} (formulas, variable names, units and proper names "
+                f"copied from the source excepted)",
+                script_ratio=round(ratio, 3), copied_names=names))
     return issues
 
 
@@ -478,6 +540,18 @@ def _cjk_term_re(term: str) -> re.Pattern[str]:
     return re.compile(re.escape(unicodedata.normalize("NFKC", term).casefold()))
 
 
+@lru_cache(maxsize=8)
+def _compiled_pairs(pairs: tuple[tuple[str, str], ...], src_lang: Lang) -> tuple[tuple[str, str, re.Pattern[str]], ...]:
+    """``(source term, target term, compiled source pattern)`` for every enforced pair
+    (non-blank source; for CJK sources at least two characters, see
+    :func:`mathtrans.glossary.is_enforced_source_term`), compiled once per glossary. The
+    per-term caches above hold 4096 patterns: a larger glossary would evict cyclically and
+    recompile every pattern for every segment in every QA round (seconds per segment for
+    20k entries)."""
+    term_re = _cjk_term_re.__wrapped__ if is_cjk(src_lang) else _latin_term_re.__wrapped__
+    return tuple((s, t, term_re(s)) for s, t in pairs if is_enforced_source_term(s, src_lang))
+
+
 def used_glossary_pairs(source: str, pairs: GlossaryPairs, src_lang: Lang | str) -> GlossaryPairs:
     """The pairs whose source term occurs in ``source``.
 
@@ -485,16 +559,15 @@ def used_glossary_pairs(source: str, pairs: GlossaryPairs, src_lang: Lang | str)
     optional inflection ("legs", "triángulos rectángulos", "equações"). Pairs are
     tried longest source term first and an occurrence inside the match of a longer
     term is shadowed ("三角形" inside "直角三角形", "rectángulo" inside "triángulos
-    rectángulos"), so a term counts only where it occurs on its own.
+    rectángulos"), so a term counts only where it occurs on its own. One-character
+    CJK terms ("解", "角", "円", "각") are never enforced: they occur inside unrelated
+    words ("解释", "5 角", "120 円", "각 변") far too often.
     """
     text = unicodedata.normalize("NFKC", source).casefold()
-    term_re = _cjk_term_re if is_cjk(src_lang) else _latin_term_re
     used: GlossaryPairs = []
     covered: list[tuple[int, int]] = []
-    for s, t in pairs:  # longest source term first
-        if not s.strip():
-            continue
-        spans = [m.span() for m in term_re(s).finditer(text)]
+    for s, t, rx in _compiled_pairs(tuple((s, t) for s, t in pairs), Lang.parse(src_lang)):  # longest source first
+        spans = [m.span() for m in rx.finditer(text)]
         if spans and not all(any(a <= x0 and x1 <= b for a, b in covered) for x0, x1 in spans):
             used.append((s, t))
             covered.extend(spans)
@@ -509,8 +582,9 @@ def _doc_pairs(doc: TranslatedDocument) -> GlossaryPairs:
 def glossary(doc: TranslatedDocument, options: PipelineOptions,
              pairs: Optional[GlossaryPairs] = None) -> list[QAIssue]:
     """Glossary terms occurring in the source must be rendered with their fixed translation
-    (:func:`mathtrans.glossary.term_present`: case-insensitive, plural-tolerant for
-    Latin targets). ``pairs`` defaults to the pairs of ``doc.glossary``."""
+    (:func:`mathtrans.glossary.term_present`: case- and accent-insensitive, inflection-
+    tolerant per word for Latin targets, whitespace-insensitive for CJK targets).
+    ``pairs`` defaults to the pairs of ``doc.glossary``."""
     if pairs is None:
         pairs = _doc_pairs(doc)
     if not pairs:
@@ -588,10 +662,22 @@ def _marker(text: str) -> Optional[tuple[str, str]]:
     return kind, re.sub(r"[^0-9a-z]", "", norm) or norm
 
 
-def _terminal_class(text: str) -> str:
+_JA_QUESTION_END_RE = re.compile(r"(?:か|かな|かしら)[。．.]?$")
+"""Textbook Japanese ends a question with the particle か and a full stop (か。); ？ is optional."""
+_ZH_QUESTION_END_RE = re.compile(r"[吗呢][。．.]?$")
+"""Chinese questions ending in 吗 / 呢 may carry a full stop instead of ？."""
+
+
+def _terminal_class(text: str, lang: Optional[Lang] = None) -> str:
+    """Class of the sentence-final punctuation (question / exclamation / period / colon /
+    comma / none). With ``lang`` the language's own question endings count too."""
     t = text.rstrip().rstrip(_TRAILING_CLOSERS).rstrip()
     if not t:
         return "none"
+    if lang == Lang.JA and _JA_QUESTION_END_RE.search(t):
+        return "question"
+    if lang == Lang.ZH and _ZH_QUESTION_END_RE.search(t):
+        return "question"
     ch = t[-1]
     if ch in "?？":
         return "question"
@@ -613,12 +699,12 @@ def _wrapped_in_quotes(text: str) -> bool:
     return t[-1] == _QUOTE_PAIRS[t[0]]
 
 
-def _formatting_issues(seg: TextSegment) -> list[QAIssue]:
+def _formatting_issues(seg: TextSegment, src_lang: Lang, tgt_lang: Lang) -> list[QAIssue]:
     src, tr = seg.source_text, seg.translated_text or ""
     issues: list[QAIssue] = []
 
-    def add(message: str, **details: object) -> None:
-        issues.append(_issue("formatting", "error", seg, message, **details))
+    def add(message: str, severity: Severity = "error", **details: object) -> None:
+        issues.append(_issue("formatting", severity, seg, message, **details))
 
     # list markers
     src_marker, tr_marker = _marker(src), _marker(tr)
@@ -649,16 +735,19 @@ def _formatting_issues(seg: TextSegment) -> list[QAIssue]:
     if abs(n_src - n_tr) > 1:
         add(f"Keep the line breaks of the source: it has {n_src} line break(s), the translation has {n_tr}",
             source_breaks=n_src, translation_breaks=n_tr)
-    # terminal punctuation class
-    src_cls, tr_cls = _terminal_class(src), _terminal_class(tr)
+    # terminal punctuation class (a Japanese か。 or Chinese 吗。 question counts as a question)
+    src_cls, tr_cls = _terminal_class(src, src_lang), _terminal_class(tr, tgt_lang)
     for cls, mark in (("question", "question mark"), ("exclamation", "exclamation mark")):
+        # CJK textbooks rarely write "!": an imperative "Let's try it!" is やってみよう。/ 试一试。
+        # and vice versa, so an exclamation mismatch with a CJK side is a hint, not an error
+        severity: Severity = "warning" if cls == "exclamation" and (is_cjk(src_lang) or is_cjk(tgt_lang)) else "error"
         if src_cls == cls and tr_cls != cls:
-            add(f"The source ends with a {mark}; end the translation with a {mark} too",
+            add(f"The source ends with a {mark}; end the translation with a {mark} too", severity,
                 source_ending=src_cls, translation_ending=tr_cls)
         elif tr_cls == cls and src_cls != cls and not _contains_mark(src, cls):
             # a mark that occurs inside the source (fill-in-the-blank "？个", "How many ... ?" phrased
             # differently) may legitimately move to the end of the translation
-            add(f"The source does not end with a {mark}; do not end the translation with one",
+            add(f"The source does not end with a {mark}; do not end the translation with one", severity,
                 source_ending=src_cls, translation_ending=tr_cls)
     return issues
 
@@ -673,10 +762,12 @@ def _contains_mark(text: str, cls: str) -> bool:
 def formatting(doc: TranslatedDocument, options: PipelineOptions,
                pairs: Optional[GlossaryPairs] = None) -> list[QAIssue]:
     """List markers, line breaks and sentence-final punctuation must be preserved; no
-    wrappers (quotes, "Translation:", JSON) or raw placeholders may be added."""
+    wrappers (quotes, "Translation:", JSON) or raw placeholders may be added. Japanese
+    か。 and Chinese 吗。 count as question endings; an exclamation mark missing or added
+    on a CJK side is a warning."""
     issues: list[QAIssue] = []
     for seg in _translated(doc):
-        issues.extend(_formatting_issues(seg))
+        issues.extend(_formatting_issues(seg, doc.source_lang, doc.target_lang))
     return issues
 
 
@@ -685,6 +776,8 @@ def formatting(doc: TranslatedDocument, options: PipelineOptions,
 
 IMAGE_MIN_FEASIBLE_CHARS = 4
 """An image label shorter than this cannot be asked for; the fit is reported as a warning."""
+UNRELIABLE_OCR_PREFIX = "unreliable OCR"
+"""``skip_reason`` prefix of OCR lines rejected as misreads by ``images.classify_ocr_text``."""
 IMAGE_MIN_FEASIBLE_SHARE = 0.35
 """A shorten request below this share of the current length is considered infeasible."""
 
@@ -730,8 +823,43 @@ def image_text(doc: TranslatedDocument, options: PipelineOptions,
     size and no scale means nothing was drawn (the image could not be decoded or
     replaced): the original text is still in the picture, which no re-translation
     can fix (unfixable error). An overflow of drawn text asks for a shorter one.
+
+    Two document-level facts recorded by the OCR stage are reported here too:
+    ``doc.ocr_failures`` (images whose OCR request failed, so their text was never
+    translated: an unfixable warning, or an error when no image was read at all)
+    and ``doc.ocr_low_trust`` (a Japanese / Korean source read by the offline
+    zh/en OCR models: every translated in-image text gets an unfixable warning
+    asking for a look at the preview, because the recognised source may be wrong).
     """
     issues: list[QAIssue] = []
+    if doc.ocr_failures:
+        recognised = {s.image.xref for s in doc.image_segments() if s.image is not None}
+        failed = len(doc.ocr_failures)
+        issues.append(QAIssue(
+            check="image_text", severity="warning" if recognised else "error", fixable=False,
+            message=f"OCR failed on {failed} of {failed + len(recognised)} image(s); the text inside them was not "
+                    f"translated: {doc.ocr_failures[0]}",
+            details={"ocr_failures": list(doc.ocr_failures)}))
+    source = LANGUAGES[doc.source_lang].name_en
+    if doc.ocr_low_trust:
+        for seg in _checked(doc):
+            if seg.kind == SegmentKind.IMAGE_TEXT or seg.origin == "ocr":
+                issues.append(_issue(
+                    "image_text", "warning", seg,
+                    f"Text inside this image was recognised by the offline Chinese/English OCR models, which read "
+                    f"{source} unreliably (the source text may be misread): check the figure in the preview, or use "
+                    f"the Claude vision OCR (MATHTRANS_OCR_ENGINE=claude / --ocr-engine claude)",
+                    fixable=False, ocr_low_trust=True))
+    for seg in doc.image_segments():
+        if not seg.translate and seg.skip_reason.startswith(UNRELIABLE_OCR_PREFIX):
+            # images.classify_ocr_text rejected the OCR result (e.g. Han-only text in a Korean figure):
+            # the label was left untouched rather than overpainted with a translation of garbage
+            issues.append(_issue(
+                "image_text", "warning", seg,
+                f"The text {seg.source_text!r} recognised inside this image is not plausible {source} "
+                f"({seg.skip_reason}); it was left untouched - check the figure in the preview, or use the "
+                f"Claude vision OCR (MATHTRANS_OCR_ENGINE=claude / --ocr-engine claude)",
+                fixable=False, unreliable_ocr=True))
     for seg in _translated(doc):
         if seg.kind != SegmentKind.IMAGE_TEXT:
             continue
@@ -987,7 +1115,7 @@ def output_checks(out_pdf: Union[str, Path], src_pdf: Union[str, Path], doc: Tra
 __all__ = [
     "CHECKS", "OUTPUT_CHECK_NAMES", "check_names", "rule_checks", "output_checks", "shorten_hint",
     "distinctive_source_keys", "foreign_letters", "script_ratio", "source_body", "translation_body",
-    "used_glossary_pairs",
+    "used_glossary_pairs", "copied_names",
     "completeness", "placeholders", "numbers", "untranslated", "target_script", "glossary", "length_ratio",
     "formatting", "layout_fit", "image_text",
 ]

@@ -10,19 +10,26 @@ import sys
 import types
 from pathlib import Path
 
+import anthropic
+import httpx2 as httpx
 import numpy as np
 import pymupdf
 import pytest
 from PIL import Image, ImageDraw
 
-from mathtrans.config import get_settings, reset_settings
+from mathtrans.config import Settings, get_settings, reset_settings
 from mathtrans.fonts import pil_font
-from mathtrans.images import (classify_ocr_text, extract_image_segments, load_image, pixel_polygon_to_page,
-                              render_image_segments)
-from mathtrans.models import (BBox, ImageRef, Lang, OcrResult, PageInfo, SegmentKind, TextSegment,
-                              TranslatedDocument)
-from mathtrans.ocr import (ClaudeVisionOcrEngine, NullOcrEngine, OcrError, RapidOcrEngine, get_ocr_engine,
-                           parse_vision_ocr_json)
+from mathtrans.images import (MAX_IMAGE_PX, UNRELIABLE_OCR_KO, LoadedImage, classify_ocr_text, estimate_background,
+                              extract_image_segments, load_image, pixel_polygon_to_page, render_image_segments,
+                              replace_image, restore_superscripts)
+from mathtrans.models import (BBox, ImageRef, Lang, OcrResult, PageInfo, PipelineOptions, RenderInfo, SegmentKind,
+                              TextSegment, TranslatedDocument)
+from mathtrans.ocr import (DOWNSCALE_MAX_SIDE, ClaudeVisionOcrEngine, NullOcrEngine, OcrError, OcrUnavailableError,
+                           RapidOcrEngine, get_ocr_engine, ocr_low_trust, parse_vision_ocr_json)
+from mathtrans.pipeline import run_pipeline
+from mathtrans.qa import checks as qa_checks
+from mathtrans.samples import make_sample_pdf
+from mathtrans.translate.mock import MockTranslator
 
 SEG_ID_RE = re.compile(r"^p(\d+)_i(\d+)_(\d+)$")
 
@@ -288,6 +295,14 @@ def test_skip_rules_for_numbers_letters_and_foreign_script(sample_pdf_zh):
     assert classify_ocr_text("α", Lang.EN)[2:] == (False, "single letter")
     assert classify_ocr_text("Area = c²", Lang.EN)[2:] == (True, "")
     assert classify_ocr_text("斜边", Lang.EN)[2:] == (False, "no source-script letters")
+    # Korean sanity gate: the zh/en OCR models misread hangul as look-alike Han characters
+    # ("빗변 c" -> "臣C"); Han-only text in a Korean figure is a misread, not a hanja label
+    assert classify_ocr_text("臣C", Lang.KO)[2] is False
+    assert classify_ocr_text("二 1-1", Lang.KO)[2] is False
+    assert classify_ocr_text("豇=c2", Lang.KO)[2] is False
+    assert classify_ocr_text("빗변 c", Lang.KO)[2:] == (True, "")
+    assert classify_ocr_text("Area = c²", Lang.KO)[2:] == (True, "")
+    assert classify_ocr_text("斜辺 c", Lang.JA)[2:] == (True, "")
 
 
 def test_pages_filter_and_min_image_px(sample_pdf_zh):
@@ -987,3 +1002,510 @@ def test_free_extension_and_two_line_balance():
     assert split_two_lines("small square label", Lang.EN, font) in (["small square", "label"], ["small", "square label"])
     assert split_two_lines("小正方形", Lang.ZH, pil_font("zh", 20)) == ["小正", "方形"]
     assert split_two_lines("c", Lang.EN, font) is None
+
+
+# --------------------------------------------------------------------------- #
+# regressions: ja/ko text misread by RapidOCR must never be painted as garbage
+# --------------------------------------------------------------------------- #
+
+
+class FakeRapid(FakeOcr):
+    """Canned results from an engine that calls itself ``rapid`` (what ``auto`` picks offline)."""
+
+    name = "rapid"
+
+
+@pytest.fixture(scope="module")
+def sample_pdf_ko(samples_dir) -> Path:
+    return make_sample_pdf(samples_dir / "sample_ko.pdf", "ko")
+
+
+def test_korean_han_only_ocr_lines_are_unreliable():
+    # RapidOCR's zh/en models read the labels of the Korean sample figure as '二 1-1' (그림 1-1),
+    # '臣C' (빗변 c) and '豇=c2' (넓이 = c²): Han characters but no hangul at all
+    for text in ("臣C", "二 1-1", "豇=c2", "小正方形"):
+        protected, _frags, translate, reason = classify_ocr_text(text, Lang.KO)
+        assert (translate, reason) == (False, UNRELIABLE_OCR_KO), text
+        assert protected  # still protected so the segment JSON stays complete
+    # genuine Korean, Latin-only labels and a mixed line are translated as before
+    for text in ("빗변 c", "그림 1-1", "넓이 = c²", "Area = c²", "작은 정사각형", "한자 漢字"):
+        assert classify_ocr_text(text, Lang.KO)[2:] == (True, ""), text
+    # kanji-only labels are legitimate Japanese; Chinese is unaffected; the string form of the language works too
+    assert classify_ocr_text("斜辺 c", Lang.JA)[2:] == (True, "")
+    assert classify_ocr_text("小正方形", Lang.JA)[2:] == (True, "")
+    assert classify_ocr_text("斜边 c", Lang.ZH)[2:] == (True, "")
+    assert classify_ocr_text("臣C", "ko")[2:] == (False, UNRELIABLE_OCR_KO)
+    assert UNRELIABLE_OCR_KO.startswith(qa_checks.UNRELIABLE_OCR_PREFIX)
+
+
+def test_misread_korean_label_is_left_untouched_and_qa_warns(sample_pdf_ko, tmp_path, offline_settings):
+    """Pipeline-level: a 'rapid' engine that reads '빗변 c' as '臣C' must not erase the label and
+    paint a translation of the garbage; the pixels stay as they are and the QA report says so."""
+    with pymupdf.open(str(sample_pdf_ko)) as pdf:
+        before = load_image(pdf, page_image_info(pdf, 0)["xref"]).rgb
+    engine = FakeRapid([("臣C", (250, 150, 330, 180), 0.7)])
+    opts = PipelineOptions(target_lang=Lang.ZH, source_lang=Lang.KO, translator="mock", llm_review=False)
+    res = run_pipeline(sample_pdf_ko, tmp_path, opts, settings=offline_settings, translator=MockTranslator(),
+                       ocr_engine=engine)
+    assert res.status == "completed", res.error
+    assert res.stats.ocr_engine == "rapid" and engine.calls == 2 and res.stats.image_segments == 2
+    segs = json.loads((tmp_path / "segments.json").read_text(encoding="utf-8"))
+    assert segs["ocr_low_trust"] is True and segs["ocr_failures"] == []
+    image_segs = [s for s in segs["segments"] if s["kind"] == "image_text"]
+    assert len(image_segs) == 2
+    for s in image_segs:
+        assert s["source_text"] == "臣C" and s["translate"] is False and s["translated_text"] is None
+        assert s["skip_reason"] == UNRELIABLE_OCR_KO and s["render"] is None
+    with pymupdf.open(res.output_pdf) as out:
+        after = load_image(out, page_image_info(out, 0)["xref"]).rgb
+    assert np.array_equal(after, before)  # nothing was erased or drawn
+    issues = [i for i in res.qa_report.final_issues if i.check == "image_text"]
+    assert len(issues) == 2 and all(i.severity == "warning" and not i.fixable for i in issues)
+    assert all("臣C" in i.message and "left untouched" in i.message and "--ocr-engine claude" in i.message
+               for i in issues)
+    assert {i.segment_id for i in issues} == {s["id"] for s in image_segs}
+    assert res.qa_report.passed and "unreliable OCR" in (tmp_path / "qa_report.md").read_text(encoding="utf-8")
+
+
+def test_low_trust_rapid_ocr_warns_once_and_is_reported(rapid, monkeypatch, caplog):
+    monkeypatch.setattr(RapidOcrEngine, "_low_trust_warned", False)
+    image = np.full((80, 200, 3), 255, dtype=np.uint8)
+    with caplog.at_level(logging.WARNING, logger="mathtrans.ocr"):
+        rapid.recognize(image, hint_langs=[Lang.ZH])
+        rapid.recognize(image, hint_langs=[Lang.EN])
+        assert not [r for r in caplog.records if "only partially" in r.message]
+        rapid.recognize(image, hint_langs=[Lang.KO])
+        rapid.recognize(image, hint_langs=["ja"])
+        RapidOcrEngine().recognize(image, hint_langs=[Lang.KO])
+    warned = [r for r in caplog.records if "only partially" in r.message]
+    assert len(warned) == 1 and "Korean" in warned[0].message and "--ocr-engine claude" in warned[0].message
+    assert ocr_low_trust(rapid, Lang.KO) and ocr_low_trust(rapid, "ja") and ocr_low_trust(RapidOcrEngine(), Lang.JA)
+    assert not ocr_low_trust(rapid, Lang.ZH) and not ocr_low_trust(rapid, None)
+    assert not ocr_low_trust(NullOcrEngine(), Lang.KO) and not ocr_low_trust(None, Lang.KO)
+    assert not ocr_low_trust(ClaudeVisionOcrEngine(client=object(), settings=get_settings()), Lang.KO)
+
+
+def test_auto_engine_prefers_claude_vision_for_ja_ko_with_api_key(offline_settings, monkeypatch):
+    # offline, ja/ko still get RapidOCR (there is nothing better) - the pipeline then flags low trust
+    assert isinstance(get_ocr_engine("auto", offline_settings, source_lang=Lang.KO), RapidOcrEngine)
+    assert isinstance(get_ocr_engine("auto", offline_settings, source_lang=Lang.JA), RapidOcrEngine)
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-ant-test")
+    reset_settings()
+    try:
+        keyed = get_settings()
+        assert keyed.has_api_key
+        assert isinstance(get_ocr_engine("auto", keyed, source_lang=Lang.KO), ClaudeVisionOcrEngine)
+        assert isinstance(get_ocr_engine("auto", keyed, source_lang="ja"), ClaudeVisionOcrEngine)
+        for lang in (Lang.ZH, Lang.EN, Lang.PT, Lang.ES, None):
+            assert isinstance(get_ocr_engine("auto", keyed, source_lang=lang), RapidOcrEngine), lang
+        # an explicit choice always wins
+        assert isinstance(get_ocr_engine("rapid", keyed, source_lang=Lang.KO), RapidOcrEngine)
+        assert isinstance(get_ocr_engine("none", keyed, source_lang=Lang.KO), NullOcrEngine)
+    finally:
+        reset_settings()
+
+
+def test_pipeline_auto_picks_vision_ocr_for_korean_with_api_key(sample_pdf_ko, sample_pdf_zh, tmp_path, monkeypatch):
+    monkeypatch.delenv("ANTHROPIC_AUTH_TOKEN", raising=False)
+    settings = Settings(_env_file=None, ANTHROPIC_API_KEY="sk-ant-test", translator="mock", ocr_engine="auto",
+                        data_dir=tmp_path / "data")
+    assert settings.has_api_key
+    hints: list = []
+    monkeypatch.setattr(ClaudeVisionOcrEngine, "recognize",
+                        lambda self, image_rgb, hint_langs=None: hints.append(hint_langs) or [])
+    opts = PipelineOptions(target_lang=Lang.ZH, translator="mock", llm_review=False, require_qa_pass=False)
+    res = run_pipeline(sample_pdf_ko, tmp_path / "ko", opts, settings=settings, translator=MockTranslator())
+    assert res.status == "completed", res.error
+    assert res.stats.ocr_engine == "claude" and res.stats.source_lang == "ko"
+    assert hints == [[Lang.KO], [Lang.KO]]  # one request per image, with the language hint
+    segs = json.loads((tmp_path / "ko" / "segments.json").read_text(encoding="utf-8"))
+    assert segs["ocr_low_trust"] is False
+    # a Chinese source keeps the offline engine even with an API key
+    hints.clear()
+    opts_en = PipelineOptions(target_lang=Lang.EN, translator="mock", llm_review=False, require_qa_pass=False)
+    res = run_pipeline(sample_pdf_zh, tmp_path / "zh", opts_en, settings=settings, translator=MockTranslator())
+    assert res.status == "completed", res.error
+    assert res.stats.ocr_engine == "rapid" and hints == [] and res.stats.image_segments > 0
+
+
+def test_image_text_check_reports_ocr_failures_low_trust_and_unreliable_lines(sample_pdf_zh):
+    doc = make_doc(sample_pdf_zh, Lang.KO, Lang.EN)
+    engine = FakeOcr([("빗변 c", (250, 150, 330, 180), 0.9), ("臣C", (10, 10, 60, 30), 0.7)])
+    doc.segments = extract_image_segments(sample_pdf_zh, doc, engine, pages=[0])
+    good, bad = doc.segments
+    assert good.translate and not bad.translate and bad.skip_reason == UNRELIABLE_OCR_KO
+    good.translated_text = "hypotenuse c"
+    good.render = RenderInfo(font_size=9, scale=0.9)
+    doc.ocr_failures = ["page 2 image xref 79: Claude vision OCR hit the Anthropic rate limit (429)"]
+    doc.ocr_low_trust = True
+    issues = qa_checks.image_text(doc, PipelineOptions(target_lang=Lang.EN), [])
+    assert all(i.check == "image_text" and not i.fixable for i in issues)
+    failure = [i for i in issues if "OCR failed" in i.message]
+    assert len(failure) == 1 and failure[0].severity == "warning"  # one image was still recognised
+    assert "1 of 2 image(s)" in failure[0].message and "429" in failure[0].message
+    assert failure[0].details["ocr_failures"] == doc.ocr_failures and failure[0].segment_id is None
+    low = [i for i in issues if i.details.get("ocr_low_trust")]
+    assert [i.segment_id for i in low] == [good.id] and low[0].severity == "warning"
+    assert "Korean" in low[0].message and "preview" in low[0].message
+    unreliable = [i for i in issues if i.details.get("unreliable_ocr")]
+    assert [i.segment_id for i in unreliable] == [bad.id] and "'臣C'" in unreliable[0].message
+    assert len(issues) == 3
+    # nothing recognised at all -> the failure blocks the export (unfixable error)
+    doc.segments, doc.ocr_low_trust = [], False
+    issues = qa_checks.image_text(doc, PipelineOptions(target_lang=Lang.EN), [])
+    assert len(issues) == 1 and issues[0].severity == "error" and "1 of 1 image(s)" in issues[0].message
+    doc.ocr_failures = []
+    assert qa_checks.image_text(doc, PipelineOptions(target_lang=Lang.EN), []) == []
+
+
+# --------------------------------------------------------------------------- #
+# regressions: oversized images (memory budget)
+# --------------------------------------------------------------------------- #
+
+
+def bomb_pdf(path: Path, width: int, height: int) -> int:
+    """A tiny PDF whose single page shows a huge, flate-compressed constant-colour RGB image."""
+    import zlib
+
+    compressor = zlib.compressobj(1)
+    row_block = b"\x00" * (3 * width * 64)
+    parts = [compressor.compress(row_block) for _ in range(height // 64)]
+    parts.append(compressor.compress(b"\x00" * (3 * width * (height % 64))))
+    parts.append(compressor.flush())
+    doc = pymupdf.open()
+    page = doc.new_page(width=400, height=400)
+    xref = doc.get_new_xref()
+    doc.update_object(xref, f"<< /Type /XObject /Subtype /Image /Width {width} /Height {height} /ColorSpace /DeviceRGB "
+                            f"/BitsPerComponent 8 /Filter /FlateDecode >>")
+    doc.update_stream(xref, b"".join(parts), compress=0)
+    doc.xref_set_key(page.xref, "Resources", f"<< /XObject << /Im0 {xref} 0 R >> >>")
+    cx = doc.get_new_xref()
+    doc.update_object(cx, "<< >>")
+    doc.update_stream(cx, b"q 400 0 0 400 0 0 cm /Im0 Do Q")
+    doc.xref_set_key(page.xref, "Contents", f"{cx} 0 R")
+    doc.save(str(path))
+    doc.close()
+    return xref
+
+
+class NeverCalled:
+    name = "spy"
+
+    def recognize(self, image_rgb, hint_langs=None):
+        raise AssertionError("an oversized image must not reach the OCR engine")
+
+
+def test_oversized_images_are_skipped_before_decoding(sample_pdf_zh, tmp_path, caplog):
+    doc = make_doc(sample_pdf_zh, Lang.ZH, Lang.EN)
+    with caplog.at_level(logging.WARNING, logger="mathtrans.images"):
+        assert extract_image_segments(sample_pdf_zh, doc, NeverCalled(), max_image_px=100) == []
+    skipped = [r for r in caplog.records if "oversized" in r.message]
+    assert len(skipped) == 2 and "480x360" in skipped[0].message and "MATHTRANS_MAX_IMAGE_MEGAPIXELS" in skipped[0].message
+    # exactly at the budget the image is still processed; 0 disables the guard
+    counting = FakeOcr([])
+    extract_image_segments(sample_pdf_zh, doc, counting, max_image_px=480 * 360)
+    assert counting.calls == 2
+    extract_image_segments(sample_pdf_zh, doc, counting, max_image_px=0)
+    assert counting.calls == 4
+    # the default budget lets textbook figures and 600 dpi A4 scans through but stops a decompression bomb:
+    # an 838 KB PDF declaring an 8000x8000 (64 MP, ~192 MB decoded) image is skipped without decoding it
+    assert 4960 * 7016 < MAX_IMAGE_PX < 8000 * 8000
+    path = tmp_path / "bomb.pdf"
+    xref = bomb_pdf(path, 8000, 8000)
+    assert path.stat().st_size < 2_000_000
+    bomb_doc = make_doc(path, Lang.ZH, Lang.EN)
+    caplog.clear()
+    with caplog.at_level(logging.WARNING, logger="mathtrans.images"):
+        assert extract_image_segments(path, bomb_doc, NeverCalled()) == []
+    assert any(f"xref {xref} (8000x8000 px" in r.message for r in caplog.records)
+    assert Settings(_env_file=None).max_image_megapixels * 1_000_000 == MAX_IMAGE_PX
+
+
+def test_rapid_engine_downscales_huge_images_and_maps_boxes_back(monkeypatch):
+    seen: list[tuple[int, int]] = []
+
+    def fake_engine(bgr):
+        seen.append(bgr.shape[:2])
+        return [[[[10, 10], [50, 10], [50, 20], [10, 20]], "x", 0.9]], 0.0
+
+    monkeypatch.setattr(RapidOcrEngine, "_engine", classmethod(lambda cls: fake_engine))
+    engine = RapidOcrEngine(downscale_max_side=100)
+    results = engine.recognize(np.full((300, 600, 3), 255, dtype=np.uint8))
+    assert seen == [(50, 100)]  # recognised at 1/6 of the size ...
+    assert results[0].polygon == [[60.0, 60.0], [300.0, 60.0], [300.0, 120.0], [60.0, 120.0]]  # ... boxes in full-res pixels
+    assert results[0].box == (60, 60, 300, 120) and results[0].text == "x" and results[0].confidence == 0.9
+    # small images are still upscaled 2x, medium ones passed through untouched
+    seen.clear()
+    engine.recognize(np.full((100, 100, 3), 255, dtype=np.uint8))
+    RapidOcrEngine(upscale_max_side=10, downscale_max_side=100).recognize(np.full((80, 90, 3), 255, dtype=np.uint8))
+    assert seen == [(200, 200), (80, 90)]
+    assert DOWNSCALE_MAX_SIDE == 4000 and RapidOcrEngine().downscale_max_side == DOWNSCALE_MAX_SIDE
+
+
+# --------------------------------------------------------------------------- #
+# regressions: Claude vision OCR API errors (typed, most specific first)
+# --------------------------------------------------------------------------- #
+
+_API_REQUEST = httpx.Request("POST", "https://api.anthropic.com/v1/messages")
+
+
+def api_error(cls, status: int, message: str = "api error"):
+    return cls(message, response=httpx.Response(status, request=_API_REQUEST), body=None)
+
+
+class RaisingClient:
+    """``client.messages.create`` raises ``exc`` every time and counts the attempts."""
+
+    def __init__(self, exc: BaseException):
+        self.exc = exc
+        self.calls = 0
+        self.messages = self
+
+    def create(self, **kwargs):
+        self.calls += 1
+        raise self.exc
+
+
+def vision_engine(exc: BaseException, settings) -> tuple[ClaudeVisionOcrEngine, RaisingClient]:
+    client = RaisingClient(exc)
+    return ClaudeVisionOcrEngine(client=client, settings=settings), client
+
+
+def test_vision_ocr_credential_errors_abort_after_the_first_image(sample_pdf_zh, offline_settings):
+    image = np.full((50, 50, 3), 255, dtype=np.uint8)
+    for cls, status, hint in ((anthropic.AuthenticationError, 401, "ANTHROPIC_API_KEY"),
+                              (anthropic.PermissionDeniedError, 403, "--model"),
+                              (anthropic.NotFoundError, 404, "MATHTRANS_CLAUDE_MODEL")):
+        engine, client = vision_engine(api_error(cls, status), offline_settings)
+        with pytest.raises(OcrUnavailableError, match=str(status)) as info:
+            engine.recognize(image)
+        assert isinstance(info.value, OcrError) and info.value.__cause__ is client.exc
+        assert hint in str(info.value) and "MATHTRANS_OCR_ENGINE=rapid|none" in str(info.value)
+    # a missing credential / unknown request parameter surfaces as a bare TypeError from the SDK
+    engine, _client = vision_engine(TypeError("unexpected keyword argument 'output_config'"), offline_settings)
+    with pytest.raises(OcrUnavailableError, match="anthropic >= 1.0"):
+        engine.recognize(image)
+    # extraction stops at the first image instead of sending one failing request per image
+    doc = make_doc(sample_pdf_zh, Lang.ZH, Lang.EN)
+    engine, client = vision_engine(api_error(anthropic.AuthenticationError, 401, "invalid x-api-key"), offline_settings)
+    failures: list[str] = []
+    with pytest.raises(OcrUnavailableError, match="invalid x-api-key"):
+        extract_image_segments(sample_pdf_zh, doc, engine, failures=failures)
+    assert client.calls == 1 and failures == []
+
+
+def test_vision_ocr_transient_errors_skip_the_image_and_are_recorded(sample_pdf_zh, offline_settings, caplog):
+    image = np.full((50, 50, 3), 255, dtype=np.uint8)
+    for exc, hint in ((api_error(anthropic.RateLimitError, 429, "slow down"), "automatic retries"),
+                      (api_error(anthropic.InternalServerError, 500, "boom"), "retry later"),
+                      (api_error(anthropic.BadRequestError, 400, "bad image"), "check the request / image"),
+                      (anthropic.APIConnectionError(request=_API_REQUEST), "network/proxy/timeout"),
+                      (RuntimeError("network down"), "network down")):
+        engine, client = vision_engine(exc, offline_settings)
+        with pytest.raises(OcrError, match=re.escape(hint)) as info:
+            engine.recognize(image)
+        assert not isinstance(info.value, OcrUnavailableError) and client.calls == 1
+    doc = make_doc(sample_pdf_zh, Lang.ZH, Lang.EN)
+    engine, client = vision_engine(api_error(anthropic.RateLimitError, 429, "slow down"), offline_settings)
+    failures: list[str] = []
+    with caplog.at_level(logging.WARNING, logger="mathtrans.images"):
+        assert extract_image_segments(sample_pdf_zh, doc, engine, failures=failures) == []
+    assert client.calls == 2  # one request per image, none of them aborts the stage
+    assert len(failures) == 2 and all("429" in f and "slow down" in f for f in failures)
+    assert failures[0].startswith("page 1 image xref ") and failures[1].startswith("page 2 image xref ")
+    assert sum("OCR failed on image xref" in r.message for r in caplog.records) == 2
+    assert extract_image_segments(sample_pdf_zh, doc, engine) == []  # without a list the failures are only logged
+
+
+def test_pipeline_surfaces_vision_ocr_failures(sample_pdf_zh, tmp_path, offline_settings):
+    opts = PipelineOptions(target_lang=Lang.EN, source_lang=Lang.ZH, translator="mock", ocr_engine="claude",
+                           llm_review=False)
+    # credentials / model problems stop the job with the reason (no silently untranslated figures)
+    engine, client = vision_engine(api_error(anthropic.AuthenticationError, 401, "invalid x-api-key"), offline_settings)
+    res = run_pipeline(sample_pdf_zh, tmp_path / "auth", opts, settings=offline_settings, translator=MockTranslator(),
+                       ocr_engine=engine)
+    assert res.status == "error" and client.calls == 1
+    assert "401" in res.error and "ANTHROPIC_API_KEY" in res.error and "MATHTRANS_OCR_ENGINE=rapid|none" in res.error
+    assert "401" in (tmp_path / "auth" / "error.txt").read_text(encoding="utf-8")
+    # per-image failures are counted, listed in the QA report and block the export when nothing was read
+    engine, client = vision_engine(api_error(anthropic.RateLimitError, 429, "slow down"), offline_settings)
+    res = run_pipeline(sample_pdf_zh, tmp_path / "rate", opts, settings=offline_settings, translator=MockTranslator(),
+                       ocr_engine=engine)
+    assert res.status == "qa_failed" and client.calls == 2
+    assert res.stats.ocr_failures == 2 and res.stats.image_segments == 0 and res.stats.ocr_engine == "claude"
+    issue = next(i for i in res.qa_report.final_issues if i.check == "image_text")
+    assert issue.severity == "error" and not issue.fixable and "OCR failed on 2 of 2 image(s)" in issue.message
+    assert len(issue.details["ocr_failures"]) == 2 and "429" in issue.message
+    segs = json.loads((tmp_path / "rate" / "segments.json").read_text(encoding="utf-8"))
+    assert len(segs["ocr_failures"]) == 2 and (tmp_path / "rate" / "output.pdf").is_file()
+    assert "OCR failed" in (tmp_path / "rate" / "qa_report.md").read_text(encoding="utf-8")
+
+
+# --------------------------------------------------------------------------- #
+# superscripts flattened by OCR (c² read as c2) are restored from the glyph geometry
+# --------------------------------------------------------------------------- #
+
+
+def superscript_canvas(base: str, trailing: str, *, base_px: int = 40, trailing_px: int = 22, raise_px: int = 12,
+                       lang: str = "en", background=(255, 255, 255),
+                       fill=(0, 0, 0)) -> tuple[LoadedImage, tuple[int, int, int, int]]:
+    """A 300x60 canvas with ``base`` followed by ``trailing`` drawn ``raise_px`` higher at ``trailing_px``
+    (``raise_px=0`` with the same size = flat text); returns the image and an OCR-like box (2 px padding)."""
+    img = Image.new("RGB", (300, 60), background)
+    draw = ImageDraw.Draw(img)
+    base_font, trailing_font = pil_font(lang, base_px), pil_font(lang, trailing_px)
+    draw.text((10, 48), base, font=base_font, fill=fill, anchor="ls")
+    draw.text((10 + base_font.getlength(base) + 2, 48 - raise_px), trailing, font=trailing_font, fill=fill, anchor="ls")
+    arr = np.array(img)
+    ys, xs = np.where(np.abs(arr.astype(int) - np.array(background)).max(axis=2) > 24)
+    box = (int(xs.min()) - 2, int(ys.min()) - 2, int(xs.max()) + 3, int(ys.max()) + 3)
+    return LoadedImage(xref=1, rgb=arr), box
+
+
+def test_restore_superscripts_raised_trailing_digit():
+    white = np.array([255, 255, 255], dtype=np.uint8)
+    # the sample's figure label: a small "2" sitting above the baseline of "面积 = c"
+    loaded, box = superscript_canvas("面积 = c", "2", lang="zh")
+    assert restore_superscripts(loaded, box, "面积= c2", white) == "面积= c²"
+    assert restore_superscripts(loaded, box, " 面积= c2 ", white) == "面积= c²"
+    # two raised digits, a raised digit after an x-height letter at 60 % size, light text on a dark background
+    loaded, box = superscript_canvas("x", "10", trailing_px=24, raise_px=14)
+    assert restore_superscripts(loaded, box, "x10", white) == "x¹⁰"
+    loaded, box = superscript_canvas("x", "2", trailing_px=24, raise_px=14)
+    assert restore_superscripts(loaded, box, "x2", white) == "x²"
+    loaded, box = superscript_canvas("c", "2", background=(20, 30, 40), fill=(255, 255, 255))
+    assert restore_superscripts(loaded, box, "c2", np.array([20, 30, 40], dtype=np.uint8)) == "c²"
+    # flat digits (same size on the same baseline) are left alone, also after a descender or in a caption
+    for base, text in (("面积 = c", "面积= c2"), ("g", "g2"), ("Figure 1", "Figure 12"), ("y", "y2")):
+        loaded, box = superscript_canvas(base, text[-1], trailing_px=40, raise_px=0, lang="zh" if "面" in base else "en")
+        assert restore_superscripts(loaded, box, text, white) == text, text
+    # a subscript (lowered digit) is not a superscript; nothing to do without trailing digits
+    loaded, box = superscript_canvas("a", "1", trailing_px=24, raise_px=-10)
+    assert restore_superscripts(loaded, box, "a1", white) == "a1"
+    loaded, box = superscript_canvas("Figure 1-1", "", trailing_px=24)
+    assert restore_superscripts(loaded, box, "Figure 1-1", white) == "Figure 1-1"
+    # too coarse to judge: a tiny box; invisible: a fully transparent trailing glyph
+    loaded, box = superscript_canvas("c", "2", base_px=9, trailing_px=6, raise_px=3)
+    assert box[3] - box[1] < 12 and restore_superscripts(loaded, box, "c2", white) == "c2"
+    loaded, box = superscript_canvas("c", "2")
+    alpha = np.full(loaded.rgb.shape[:2], 255, dtype=np.uint8)
+    alpha[:, int(10 + pil_font("en", 40).getlength("c")):] = 0
+    assert restore_superscripts(LoadedImage(xref=1, rgb=loaded.rgb, alpha=alpha), box, "c2", white) == "c2"
+
+
+def test_extracted_superscript_is_protected_and_painted_raised(tmp_path):
+    loaded, box = superscript_canvas("Area = c", "2")
+    pdf_path = tmp_path / "sup.pdf"
+    pdf_with_image(pdf_path, Image.fromarray(loaded.rgb), pymupdf.Rect(50, 50, 350, 110))
+    doc = make_doc(pdf_path, Lang.EN, Lang.ZH)
+    doc.segments = extract_image_segments(pdf_path, doc, FakeOcr([("Area = c2", box, 0.95)]))
+    assert len(doc.segments) == 1
+    seg = doc.segments[0]
+    assert seg.source_text == "Area = c²" and seg.translate
+    assert seg.protected_text == "Area ⟦0⟧" and seg.protected == ["= c²"]  # the exponent is protected, not re-typed
+    seg.translated_text = "面积 = c²"
+    pdf = pymupdf.open(str(pdf_path))
+    assert render_image_segments(pdf, doc) == 1
+    out = tmp_path / "out.pdf"
+    pdf.save(str(out))
+    pdf.close()
+    assert seg.render is not None and not seg.render.overflow and seg.render.font_size > 0
+    with pymupdf.open(str(out)) as pdf2:
+        painted = load_image(pdf2, page_image_info(pdf2, 0)["xref"])
+    # the repainted label ends in a small raised glyph again (the geometry reads it back as a superscript)
+    wide = (0, box[1] - 2, painted.width, box[3] + 2)
+    bg = estimate_background(painted.rgb, wide)[0]
+    assert restore_superscripts(painted, wide, "面积 = c2", bg) == "面积 = c²"
+
+
+def test_pipeline_restores_superscript_in_the_sample_figure(sample_pdf_zh, rapid, tmp_path, offline_settings):
+    opts = PipelineOptions(target_lang=Lang.EN, source_lang=Lang.ZH, translator="mock", llm_review=False)
+    res = run_pipeline(sample_pdf_zh, tmp_path, opts, settings=offline_settings, translator=MockTranslator(),
+                       ocr_engine=rapid)
+    assert res.status == "completed" and res.qa_report is not None and res.qa_report.passed
+    segs = json.loads((tmp_path / "segments.json").read_text(encoding="utf-8"))["segments"]
+    label = next(s for s in segs if s["kind"] == "image_text" and "面积" in s["source_text"])
+    assert label["source_text"].endswith("c²") and "c2" not in label["source_text"]
+    assert label["translated_text"] == "Area = c²"
+    assert label["render"]["overflow"] is False and label["render"]["font_size"] > 0
+
+
+# --------------------------------------------------------------------------- #
+# replace_image leaves no second copy of the image in the page resources
+# --------------------------------------------------------------------------- #
+
+
+def image_objects(pdf: pymupdf.Document) -> list[int]:
+    return [x for x in range(1, pdf.xref_length()) if pdf.xref_is_image(x)]
+
+
+def test_replaced_images_are_stored_once(zh_segments, sample_pdf_zh, tmp_path):
+    doc, segs = zh_segments
+    doc = doc.model_copy(deep=True)
+    doc.segments = [s.model_copy(deep=True) for s in segs]
+    for s in doc.segments:
+        if "斜边" in s.source_text:
+            s.translated_text = "hypotenuse c"
+        elif "面积" in s.source_text:
+            s.translated_text = "Area = c²"
+    pdf = pymupdf.open(str(sample_pdf_zh))
+    assert render_image_segments(pdf, doc) == 2
+    out = tmp_path / "out.pdf"
+    pdf.save(str(out), garbage=3)  # what pipeline._atomic_save uses
+    pdf.close()
+    with pymupdf.open(str(sample_pdf_zh)) as src, pymupdf.open(str(out)) as pdf2:
+        assert len(image_objects(pdf2)) == len(image_objects(src)) == 2
+        for page_index in (0, 1):
+            images = pdf2[page_index].get_images(full=True)
+            assert len(images) == len(src[page_index].get_images(full=True)) == 1
+            content = b"".join(pdf2.xref_stream(c) for c in pdf2[page_index].get_contents())
+            for im in images:  # every image object of the page is drawn by its content stream
+                assert re.search(rb"/" + re.escape(im[7].encode()) + rb"\s+Do", content), im[7]
+            info = page_image_info(pdf2, page_index)
+            assert info["xref"] == images[0][0] and info["digest"] != page_image_info(src, page_index)["digest"]
+
+
+def test_replace_image_cleans_up_indirect_and_inherited_resources(tmp_path):
+    img, _box = draw_label_image((200, 80), "c", "en", (20, 20), 30)
+    pdf_path = tmp_path / "img.pdf"
+    pdf_with_image(pdf_path, img, pymupdf.Rect(20, 20, 220, 100))
+    buf = io.BytesIO()
+    Image.new("RGB", (200, 80), (0, 128, 0)).save(buf, format="PNG")
+    green = buf.getvalue()
+
+    def xobject_indirect(pdf: pymupdf.Document, page: pymupdf.Page) -> None:
+        kind, value = pdf.xref_get_key(page.xref, "Resources")
+        owner, key = (int(value.split()[0]), "XObject") if kind == "xref" else (page.xref, "Resources/XObject")
+        new = pdf.get_new_xref()
+        pdf.update_object(new, pdf.xref_get_key(owner, key)[1])
+        pdf.xref_set_key(owner, key, f"{new} 0 R")
+        assert pdf.xref_get_key(page.xref, "Resources/XObject")[0] == "xref"
+
+    def resources_inherited(pdf: pymupdf.Document, page: pymupdf.Page) -> None:
+        kind, value = pdf.xref_get_key(page.xref, "Resources")
+        if kind == "dict":  # make it an indirect object first so it can move to the /Pages node
+            new = pdf.get_new_xref()
+            pdf.update_object(new, value)
+            value = f"{new} 0 R"
+        parent = int(pdf.xref_get_key(page.xref, "Parent")[1].split()[0])
+        pdf.xref_set_key(parent, "Resources", value)
+        pdf.xref_set_key(page.xref, "Resources", "null")
+        assert pdf.xref_get_key(page.xref, "Resources")[0] == "null"
+
+    for n, layout in enumerate((None, xobject_indirect, resources_inherited)):
+        pdf = pymupdf.open(str(pdf_path))
+        page = pdf[0]
+        if layout is not None:
+            layout(pdf, page)
+        before = page.get_images(full=True)
+        assert len(before) == 1
+        replace_image(page, before[0][0], green)
+        assert [im[7] for im in page.get_images(full=True)] == [before[0][7]]
+        out = tmp_path / f"out{n}.pdf"
+        pdf.save(str(out), garbage=3)
+        pdf.close()
+        with pymupdf.open(str(out)) as pdf2:
+            assert len(image_objects(pdf2)) == 1
+            info = page_image_info(pdf2, 0)
+            assert tuple(load_image(pdf2, info["xref"]).rgb[40, 100]) == (0, 128, 0)  # the new pixels are drawn
+            assert pdf2[0].get_pixmap(dpi=36).width > 0

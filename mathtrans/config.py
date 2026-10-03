@@ -32,6 +32,10 @@ class Settings(BaseSettings):
     batch_chars: int = 6000  # approx. characters of source text per translation request
     max_workers: int = 2  # concurrent translation jobs in the web service
     max_upload_mb: int = 100  # per-file upload limit of the web service
+    max_image_megapixels: float = 50.0  # larger embedded images are not decoded / OCR'd (memory budget)
+    max_pages: int = 500  # documents with more pages are rejected (web upload, re-translation and CLI)
+    render_checkpoint_pages: int = 25  # layout: save + reopen the PDF every N rendered pages (bounds memory)
+    api_token: Optional[str] = None  # shared secret required on /api/* when set (MATHTRANS_API_TOKEN)
     log_level: str = "INFO"
 
     @property

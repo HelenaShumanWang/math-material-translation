@@ -21,6 +21,7 @@
     }
   }
   * { box-sizing: border-box; }
+  [hidden] { display: none !important; }  /* author rules such as "label { display: block }" must not override the attribute */
   body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; }
   header { padding: 14px 20px; border-bottom: 1px solid var(--border); background: var(--panel); display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
   header h1 { font-size: 18px; margin: 0; }
@@ -44,7 +45,10 @@
   button.small { padding: 3px 8px; font-size: 12px; }
   .drop { border: 2px dashed var(--border); border-radius: 8px; padding: 18px; text-align: center; color: var(--muted); cursor: pointer; transition: border-color .15s, background .15s; }
   .drop.over { border-color: var(--accent); background: var(--soft); }
+  .drop:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .drop input { display: none; }
+  header .token { margin-left: auto; display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  header .token input { width: 200px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
   .files { list-style: none; padding: 0; margin: 8px 0 0; font-size: 12px; }
   .files li { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-bottom: 1px dotted var(--border); }
   .files li span.size { color: var(--muted); }
@@ -98,6 +102,7 @@
 <header>
   <h1>mathtrans · 数学资料翻译 / Math Material Translation</h1>
   <span class="sub">保留版式 · 图内文字翻译 · 自动质检 · 可编辑 PDF &nbsp;|&nbsp; layout-preserving · in-image text · automatic QA · editable PDF</span>
+  <label class="token" id="token-box" hidden>API token <input type="password" id="api-token" autocomplete="off" placeholder="MATHTRANS_API_TOKEN"></label>
 </header>
 
 <main>
@@ -105,7 +110,7 @@
   <section class="panel" id="upload-panel">
     <h2>新建翻译任务 / New translation</h2>
     <form id="upload-form">
-      <div class="drop" id="drop">
+      <div class="drop" id="drop" tabindex="0" role="button" aria-label="选择 PDF 文件 / Choose PDF files">
         <input type="file" id="file-input" multiple accept=".pdf,application/pdf">
         <div><b>拖放或点击选择 PDF（可多选）</b></div>
         <div>Drop PDF files here or click to choose (multiple allowed)</div>
@@ -155,6 +160,15 @@
         <select id="opt-scanned" style="max-width:260px">
           <option value="overlay">擦除后放置可编辑文字 / erase + editable text</option>
           <option value="repaint">重绘到图片 / repaint into the image</option>
+        </select>
+      </div>
+      <div class="row" style="align-items:center">
+        <label for="opt-ocr" style="margin:0">图内文字识别 / OCR engine</label>
+        <select id="opt-ocr" style="max-width:260px">
+          <option value="auto">自动 / auto (日韩文需 API Key 用 Claude / ja+ko: Claude with API key)</option>
+          <option value="rapid">RapidOCR 离线 / offline (中英 zh+en)</option>
+          <option value="claude">Claude 视觉 / Claude vision</option>
+          <option value="none">不识别 / none</option>
         </select>
       </div>
       <div class="row" style="align-items:center">
@@ -254,11 +268,23 @@
   function fmtSize(n) { return n > 1048576 ? (n / 1048576).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB"; }
   function fmtTime(iso) { if (!iso) return ""; const d = new Date(iso); return isNaN(d) ? iso : d.toLocaleString(); }
   function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove("show"), 6000); }
+  // ------------------------------------------------------------ API token (MATHTRANS_API_TOKEN)
+  function apiToken() { try { return localStorage.getItem("mathtrans_token") || ""; } catch (e) { return ""; } }
+  function setApiToken(token) {
+    try { if (token) localStorage.setItem("mathtrans_token", token); else localStorage.removeItem("mathtrans_token"); } catch (e) { /* storage disabled */ }
+    // the cookie lets <a href> downloads and <img> previews carry the token; SameSite=Strict keeps it same-origin only
+    document.cookie = "mathtrans_token=" + encodeURIComponent(token) + "; path=/; SameSite=Strict" + (token ? "" : "; max-age=0");
+  }
+  function showTokenBox() { $("token-box").hidden = false; }
   async function api(url, opts) {
+    opts = Object.assign({}, opts || {});
+    const token = apiToken();
+    if (token) opts.headers = Object.assign({}, opts.headers || {}, { Authorization: "Bearer " + token });
     const r = await fetch(url, opts);
     const ct = r.headers.get("content-type") || "";
     const body = ct.includes("application/json") ? await r.json() : await r.text();
     if (!r.ok) {
+      if (r.status === 401) showTokenBox();
       const detail = body && body.detail ? body.detail : (typeof body === "string" ? body : JSON.stringify(body));
       throw new Error(`${r.status}: ${detail}`);
     }
@@ -289,6 +315,9 @@
     renderFiles();
   }
   $("drop").addEventListener("click", () => fileInput.click());
+  $("drop").addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); fileInput.click(); }  // no page scroll / form submit
+  });
   fileInput.addEventListener("change", () => { addFiles(fileInput.files); fileInput.value = ""; });
   ["dragenter", "dragover"].forEach((ev) => $("drop").addEventListener(ev, (e) => { e.preventDefault(); $("drop").classList.add("over"); }));
   ["dragleave", "drop"].forEach((ev) => $("drop").addEventListener(ev, (e) => { e.preventDefault(); $("drop").classList.remove("over"); }));
@@ -350,6 +379,7 @@
       fd.append("max_qa_rounds", $("opt-rounds").value || "3");
       if ($("opt-skip").value.trim()) fd.append("skip_pages", $("opt-skip").value.trim());
       fd.append("scanned_mode", $("opt-scanned").value);
+      fd.append("ocr_engine", $("opt-ocr").value);
       const res = await api("/api/projects", { method: "POST", body: fd });
       msg.className = "msg ok"; msg.textContent = `已创建 ${res.projects.length} 个任务（批次 ${res.batch_id}）/ ${res.projects.length} project(s) queued`;
       chosen = []; renderFiles();
@@ -373,6 +403,13 @@
   }
   function renderProjects() {
     const body = $("projects-body");
+    // every write to a project bumps updated_at, so this fingerprint changes exactly when a row would
+    // look different; skipping the rebuild keeps keyboard focus, text selections and screen-reader
+    // position stable while the 2-second poll runs
+    const sig = JSON.stringify(state.projects.map((p) => [p.id, p.status, p.updated_at, p.id === state.selected]));
+    if (sig === body.dataset.sig) return;
+    body.dataset.sig = sig;
+    const focused = document.activeElement && body.contains(document.activeElement) ? document.activeElement.dataset.view : null;
     if (!state.projects.length) { body.innerHTML = `<tr><td colspan="7" class="empty">暂无任务 / No projects yet</td></tr>`; return; }
     body.innerHTML = state.projects.map((p) => `
       <tr class="clickable${p.id === state.selected ? " sel" : ""}" data-id="${p.id}">
@@ -384,6 +421,7 @@
         <td class="muted" style="white-space:nowrap">${esc(fmtTime(p.created_at))}</td>
         <td><button type="button" class="small" data-view="${p.id}">详情 / View</button></td>
       </tr>`).join("");
+    if (focused) { const b = body.querySelector(`button[data-view="${CSS.escape(focused)}"]`); if (b) b.focus(); }
   }
   $("projects-body").addEventListener("click", (e) => {
     const row = e.target.closest("tr[data-id]"); if (!row) return;
@@ -394,7 +432,7 @@
     try {
       state.projects = await api("/api/projects");
       $("poll-state").textContent = "";
-    } catch (err) { $("poll-state").textContent = "（刷新失败 / refresh failed）"; return; }
+    } catch (err) { $("poll-state").textContent = /^401/.test(err.message) ? "（需要 API token / API token required）" : "（刷新失败 / refresh failed）"; return; }
     renderProjects();
     if (state.selected) {
       const cur = state.projects.find((p) => p.id === state.selected);
@@ -428,13 +466,13 @@
       ["ID", `<code>${esc(p.id)}</code>${p.batch_id ? ` · 批次 / batch <code>${esc(p.batch_id)}</code>` : ""}`],
       ["语言 / Languages", `${esc(langName(st && st.source_lang || p.source_lang))} → ${esc(langName(p.target_lang))}`],
       ["术语库 / Glossary", esc(p.glossary_id || "default")],
-      ["选项 / Options", `图内文字 images=${p.options.translate_images} · 双语 bilingual=${p.options.bilingual} · Word=${p.options.export_docx} · 质检轮数 rounds=${p.options.max_qa_rounds} · 要求通过 require=${p.options.require_qa_pass}`],
+      ["选项 / Options", `图内文字 images=${p.options.translate_images} · 双语 bilingual=${p.options.bilingual} · Word=${p.options.export_docx} · 质检轮数 rounds=${p.options.max_qa_rounds} · 要求通过 require=${p.options.require_qa_pass} · 跳过页 skip=${Array.isArray(p.options.skip_pages) && p.options.skip_pages.length ? esc(p.options.skip_pages.map((n) => n + 1).join(",")) : "–"}`],
       ["进度 / Progress", p.progress ? `${Math.round(p.progress.percent)}% · ${esc(p.progress.stage)} · ${esc(p.progress.message)}` : "–"],
       ["时间 / Time", `${esc(fmtTime(p.created_at))}${p.started_at ? " · 开始 " + esc(fmtTime(p.started_at)) : ""}${p.finished_at ? " · 结束 " + esc(fmtTime(p.finished_at)) : ""}`],
     ];
-    if (st && st.pages) kv.push(["统计 / Stats", `${st.pages} 页 · ${st.text_segments} 文本块 · ${st.image_segments} 图内文字 · ${st.translated} 已译 · ${st.qa_rounds} 轮质检 · ${st.duration_s}s · ${esc(st.translator)}${st.model ? " / " + esc(st.model) : ""}`]);
+    if (st && st.pages) kv.push(["统计 / Stats", `${st.pages} 页 · ${st.text_segments} 文本块 · ${st.image_segments} 图内文字 · ${st.translated} 已译${st.pages_skipped ? ` · ${st.pages_skipped} 页跳过 / skipped` : ""} · ${st.qa_rounds} 轮质检 · ${st.duration_s}s · ${esc(st.translator)}${st.model ? " / " + esc(st.model) : ""}`]);
     if (p.error) kv.push(["错误 / Error", `<span class="sev-error">${esc(p.error)}</span>`]);
-    if (p.history && p.history.length) kv.push(["历史 / History", p.history.map((h) => `${esc(h.target_lang)} · ${esc(h.status)}${h.qa ? (h.qa.passed ? " · QA 通过" : " · QA 未通过") : ""} · ${esc(fmtTime(h.finished_at || h.archived_at))}`).join("<br>")]);
+    if (p.history && p.history.length) kv.push(["历史 / History", p.history.map((h) => `${esc(h.target_lang)} · ${esc(h.status)}${h.qa ? (h.qa.passed ? " · QA 通过" : " · QA 未通过") : ""} · ${esc(fmtTime(h.finished_at || h.archived_at))}${historyLinks(p, h)}`).join("<br>")]);
     $("detail-kv").innerHTML = kv.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 
     renderQA(p);
@@ -455,6 +493,27 @@
     $("re-btn").disabled = active;
     $("delete-btn").disabled = active;
   }
+  // links to the outputs a previous run left on disk (served with ?run=<run_id>); a run that failed QA
+  // is downloadable only forced, with the same confirmation as the current run's downloads
+  function historyLinks(p, h) {
+    const run = encodeURIComponent(h.run_id || "");
+    if (!run) return "";
+    const outs = h.outputs || {};
+    const ready = h.status === "completed" || h.status === "qa_failed";
+    const forced = h.status === "qa_failed";
+    const force = forced ? "&force=1" : "";
+    const items = [["pdf", "PDF"], ["bilingual", "双语 / bilingual"], ["docx", "DOCX"], ["segments", "JSON"]];
+    const links = ready ? items.filter(([fmt]) => outs[fmt]).map(([fmt, label]) =>
+      `<a href="/api/projects/${p.id}/download?format=${fmt}&run=${run}${force}"${forced ? ' data-force="1"' : ""}>${label}${forced ? "（强制 / forced）" : ""}</a>`) : [];
+    if (ready && h.preview_pages) links.push(`<a href="/api/projects/${p.id}/preview/1?run=${run}" target="_blank" rel="noopener">预览 / preview (${h.preview_pages} 页)</a>`);
+    if (h.qa) links.push(`<a href="/api/projects/${p.id}/qa?format=md&run=${run}" target="_blank" rel="noopener">质检报告 / QA report</a>`);
+    return links.length ? " · " + links.join(" · ") : "";
+  }
+  const FORCE_CONFIRM = "质检未通过：确定要下载未经审核的文件吗？/ Automatic QA did not pass. Download the unreviewed file anyway?";
+  $("detail-kv").addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-force]");
+    if (a && !confirm(FORCE_CONFIRM)) e.preventDefault();
+  });
   function renderQA(p) {
     const box = $("qa-box");
     const rep = p.result && p.result.qa_report;
@@ -493,14 +552,19 @@
   $("strip").addEventListener("click", (e) => { const f = e.target.closest("figure[data-page]"); if (f) openLightbox(+f.dataset.page); });
   function renderDownloads(p) {
     const d = p.downloads || {};
-    const force = p.download_requires_force ? "&force=1" : "";
+    const forced = !!p.download_requires_force;  // the API answers 409 without force=1 while QA has not passed
+    const force = forced ? "&force=1" : "";
     const items = [["pdf", "可编辑 PDF / Editable PDF"], ["bilingual", "双语对照 / Bilingual PDF"], ["docx", "Word (DOCX)"], ["segments", "分段 JSON / Segments JSON"]];
     const ready = p.status === "completed" || p.status === "qa_failed";
     $("downloads").innerHTML = items.map(([fmt, label]) => {
       const ok = ready && d[fmt];
-      return ok ? `<a class="btn" href="/api/projects/${p.id}/download?format=${fmt}${force}"><button type="button">${label}</button></a>` : `<button type="button" disabled title="不可用 / not available">${label}</button>`;
-    }).join("") + (p.download_requires_force ? `<div class="muted" style="width:100%;font-size:12px">⚠ 质检未通过：下载为强制下载（force=1），请人工核对质检报告中列出的问题。/ QA failed: downloads are forced; please review the listed issues.</div>` : "");
+      return ok ? `<a class="btn" href="/api/projects/${p.id}/download?format=${fmt}${force}"${forced ? ' data-force="1"' : ""}><button type="button">${label}${forced ? "（强制 / forced）" : ""}</button></a>` : `<button type="button" disabled title="不可用 / not available">${label}</button>`;
+    }).join("") + (forced ? `<div class="msg err" style="width:100%;margin-top:4px">⚠ 质检未通过：下载需强制（force=1）并经确认，请先核对上方质检报告列出的问题。/ QA did not pass: downloads require force and a confirmation; review the issues listed in the QA report above first.</div>` : "");
   }
+  $("downloads").addEventListener("click", (e) => {
+    const a = e.target.closest("a[data-force]");
+    if (a && !confirm(FORCE_CONFIRM)) e.preventDefault();
+  });
 
   $("retranslate-form").addEventListener("submit", async (e) => {
     e.preventDefault();
@@ -512,7 +576,7 @@
       options: {
         translate_images: $("re-images").checked, bilingual: $("re-bilingual").checked, export_docx: $("re-docx").checked,
         require_qa_pass: $("re-require").checked, max_qa_rounds: Number($("re-rounds").value || 3),
-        skip_pages: $("re-skip").value.trim() || null,
+        skip_pages: $("re-skip").value.trim(),  // "" clears the project's skip pages; null would keep them
       },
     };
     $("re-btn").disabled = true;
@@ -559,7 +623,13 @@
     state.glossaries = await api("/api/glossaries");
     fillGlossarySelect($("glossary-select"), $("glossary-select").value);
   }
+  $("api-token").addEventListener("change", async () => {
+    setApiToken($("api-token").value.trim());
+    try { await loadGlossaries(); } catch (err) { toast(err.message); }
+    await loadProjects();
+  });
   async function init() {
+    if (apiToken()) { $("api-token").value = apiToken(); setApiToken(apiToken()); showTokenBox(); }
     try {
       state.languages = await api("/api/languages");
       const src = $("source-lang");

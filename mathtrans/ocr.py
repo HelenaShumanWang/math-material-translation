@@ -23,6 +23,7 @@ import logging
 import threading
 from typing import Any, Optional
 
+import anthropic
 import numpy as np
 
 from .config import Settings, get_settings
@@ -34,15 +35,31 @@ logger = logging.getLogger("mathtrans.ocr")
 
 #: Images whose longest side is below this are upscaled 2x before OCR.
 UPSCALE_MAX_SIDE = 600
+#: Images whose longest side exceeds this are downscaled before RapidOCR runs (boxes are mapped back
+#: to full-resolution pixels). Bounds the memory of huge rasters (high-DPI scans, decompression bombs);
+#: PP-OCR text detection does not benefit from more pixels than this anyway.
+DOWNSCALE_MAX_SIDE = 4000
 #: Claude downsamples larger images anyway; sending more pixels only costs tokens.
 CLAUDE_MAX_SIDE = 1568
 #: Coordinates returned by the vision model are normalised to this range.
 CLAUDE_COORD_RANGE = 1000.0
 CLAUDE_MAX_TOKENS = 16000
+#: Source languages whose script the bundled RapidOCR (zh/en PP-OCR) models read only partially:
+#: kana and hangul are often misread as look-alike Han characters.
+RAPID_LOW_TRUST_LANGS = frozenset({Lang.JA, Lang.KO})
 
 
 class OcrError(RuntimeError):
-    """An OCR backend could not produce a result for an image."""
+    """An OCR backend could not produce a result for an image (callers skip that image)."""
+
+
+class OcrUnavailableError(OcrError):
+    """The OCR backend cannot serve *any* request: credentials, model or SDK problem.
+
+    Raised instead of :class:`OcrError` so that callers stop after the first
+    image instead of issuing one failing request per image and silently
+    delivering a document whose in-image text was never translated.
+    """
 
 
 # --------------------------------------------------------------------------- #
@@ -104,7 +121,13 @@ class RapidOcrEngine:
 
     The bundled models are the Chinese + English PP-OCRv4 set; they read
     Chinese, Latin letters and digits reliably, Japanese kana / Korean hangul
-    only partially. Use :class:`ClaudeVisionOcrEngine` for those sources.
+    only partially (see :data:`RAPID_LOW_TRUST_LANGS`; a warning is logged once
+    per process when such a source is OCR'd). Use :class:`ClaudeVisionOcrEngine`
+    for those sources.
+
+    Images are upscaled 2x below ``upscale_max_side`` and downscaled above
+    ``downscale_max_side`` (longest side) before recognition; the returned
+    polygons are always in the original pixel space.
     """
 
     name = "rapid"
@@ -113,9 +136,11 @@ class RapidOcrEngine:
     _shared: Any = None
     _import_error: Optional[BaseException] = None
     _import_error_logged = False
+    _low_trust_warned = False
 
-    def __init__(self, upscale_max_side: int = UPSCALE_MAX_SIDE):
+    def __init__(self, upscale_max_side: int = UPSCALE_MAX_SIDE, downscale_max_side: int = DOWNSCALE_MAX_SIDE):
         self.upscale_max_side = int(upscale_max_side)
+        self.downscale_max_side = int(downscale_max_side)
 
     @staticmethod
     def available() -> bool:
@@ -153,6 +178,24 @@ class RapidOcrEngine:
             cls._shared = None
             cls._import_error = None
             cls._import_error_logged = False
+            cls._low_trust_warned = False
+
+    @classmethod
+    def _warn_low_trust(cls, hint_langs: Optional[list[Lang]]) -> None:
+        """Warn once per process when a ja/ko source is read by the zh/en models."""
+        if cls._low_trust_warned:
+            return
+        try:
+            hints = {Lang.parse(lang) for lang in hint_langs or []}
+        except (ValueError, KeyError):
+            return
+        low = sorted(lang.value for lang in hints & RAPID_LOW_TRUST_LANGS)
+        if low:
+            cls._low_trust_warned = True
+            logger.warning("RapidOCR's bundled Chinese/English models read %s text inside images only partially "
+                           "(kana / hangul are often misread as Han characters): check the figures in the preview "
+                           "or use the Claude vision OCR (MATHTRANS_OCR_ENGINE=claude / --ocr-engine claude)",
+                           ", ".join(LANGUAGES[Lang(c)].name_en for c in low))
 
     def recognize(self, image_rgb: np.ndarray, hint_langs: Optional[list[Lang]] = None) -> list[OcrResult]:
         engine = self._engine()
@@ -160,12 +203,19 @@ class RapidOcrEngine:
             return []
         import cv2
 
+        self._warn_low_trust(hint_langs)
         rgb = as_rgb_uint8(image_rgb)
         h, w = rgb.shape[:2]
         scale = 1.0
         if max(h, w) < self.upscale_max_side:
             scale = 2.0
             rgb = cv2.resize(rgb, (w * 2, h * 2), interpolation=cv2.INTER_CUBIC)
+        elif self.downscale_max_side > 0 and max(h, w) > self.downscale_max_side:
+            # Huge rasters are recognised at a bounded size: this caps the colour-conversion copies and
+            # the detection model's memory; the polygons are mapped back to full resolution below.
+            scale = self.downscale_max_side / float(max(h, w))
+            rgb = cv2.resize(rgb, (max(1, round(w * scale)), max(1, round(h * scale))), interpolation=cv2.INTER_AREA)
+            logger.debug("rapid OCR: %dx%d image downscaled by %.3f before recognition", w, h, scale)
         bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)  # RapidOCR treats 3-channel arrays as BGR
         try:
             result, _elapse = engine(bgr)
@@ -213,6 +263,8 @@ _OCR_SCHEMA: dict[str, Any] = {
     "required": ["items"],
     "additionalProperties": False,
 }
+
+_UNAVAILABLE = "Text inside images cannot be recognised with the Claude vision OCR: "
 
 _OCR_INSTRUCTIONS = (
     "You are an OCR engine for figures from math textbooks. List every piece of text printed in this "
@@ -294,14 +346,12 @@ class ClaudeVisionOcrEngine:
     def _get_client(self) -> Any:
         if self._client is None:
             try:
-                import anthropic
-            except ImportError as exc:  # pragma: no cover - the SDK is a hard dependency
-                raise OcrError("the 'anthropic' package is required for the Claude vision OCR engine") from exc
-            try:
                 key = self._settings.anthropic_api_key
                 self._client = anthropic.Anthropic(api_key=key) if key else anthropic.Anthropic()
             except Exception as exc:
-                raise OcrError(f"cannot create the Anthropic client for vision OCR: {exc}") from exc
+                raise OcrUnavailableError(
+                    f"{_UNAVAILABLE}cannot create the Anthropic client ({exc}); set ANTHROPIC_API_KEY / "
+                    f"ANTHROPIC_AUTH_TOKEN or set MATHTRANS_OCR_ENGINE=rapid|none") from exc
         return self._client
 
     @staticmethod
@@ -344,8 +394,41 @@ class ClaudeVisionOcrEngine:
         h, w = rgb.shape[:2]
         request = self.build_request(rgb, hint_langs)
         client = self._get_client()
+        # Most-specific first. Credential / model / SDK problems affect every image and abort the OCR
+        # stage (OcrUnavailableError); everything else is reported for this image only (OcrError).
         try:
             response = client.messages.create(**request)
+        except anthropic.AuthenticationError as exc:
+            raise OcrUnavailableError(
+                f"{_UNAVAILABLE}Anthropic authentication failed (401): check ANTHROPIC_API_KEY / "
+                f"ANTHROPIC_AUTH_TOKEN, or set MATHTRANS_OCR_ENGINE=rapid|none (--ocr-engine). {exc}") from exc
+        except anthropic.PermissionDeniedError as exc:
+            raise OcrUnavailableError(
+                f"{_UNAVAILABLE}the Anthropic API key is not allowed to use model {self.model!r} (403): choose "
+                f"another MATHTRANS_CLAUDE_MODEL / --model, or set MATHTRANS_OCR_ENGINE=rapid|none. {exc}") from exc
+        except anthropic.NotFoundError as exc:
+            raise OcrUnavailableError(
+                f"{_UNAVAILABLE}model {self.model!r} was not found (404): check MATHTRANS_CLAUDE_MODEL / --model, "
+                f"or set MATHTRANS_OCR_ENGINE=rapid|none. {exc}") from exc
+        except anthropic.RateLimitError as exc:
+            raise OcrError(
+                "Claude vision OCR hit the Anthropic rate limit (429) even after the SDK's automatic retries; "
+                f"retry later or lower MATHTRANS_MAX_WORKERS. {exc}") from exc
+        except anthropic.APIStatusError as exc:
+            hint = "retry later" if exc.status_code >= 500 else "check the request / image"
+            raise OcrError(
+                f"Claude vision OCR request failed with Anthropic API error {exc.status_code} ({hint}): {exc}") from exc
+        except anthropic.APIConnectionError as exc:
+            raise OcrError(f"Claude vision OCR could not reach the Anthropic API (network/proxy/timeout): {exc}") from exc
+        except anthropic.APIError as exc:
+            raise OcrError(f"Claude vision OCR request failed: {exc}") from exc
+        except TypeError as exc:
+            # The SDK raises a bare TypeError when no credential can be resolved at request time, and
+            # when an older SDK does not know a request parameter: nothing image-specific about it.
+            raise OcrUnavailableError(
+                f"{_UNAVAILABLE}the Anthropic SDK rejected the request; set ANTHROPIC_API_KEY / "
+                f"ANTHROPIC_AUTH_TOKEN and make sure anthropic >= 1.0 is installed, or set "
+                f"MATHTRANS_OCR_ENGINE=rapid|none: {exc}") from exc
         except Exception as exc:
             raise OcrError(f"Claude vision OCR request failed ({type(exc).__name__}): {exc}") from exc
         stop_reason = getattr(response, "stop_reason", None)
@@ -384,13 +467,34 @@ class NullOcrEngine:
         return []
 
 
-def get_ocr_engine(name: str, settings: Optional[Settings] = None) -> OcrEngine:
+def _is_low_trust_lang(source_lang: Optional[Lang | str]) -> bool:
+    if source_lang is None:
+        return False
+    try:
+        return Lang.parse(source_lang) in RAPID_LOW_TRUST_LANGS
+    except (ValueError, KeyError):
+        return False
+
+
+def ocr_low_trust(engine: Any, source_lang: Optional[Lang | str]) -> bool:
+    """True when ``engine`` is the offline RapidOCR engine and ``source_lang`` is one
+    whose script its bundled zh/en models read only partially (Japanese, Korean):
+    the recognised text, and therefore what gets painted into the images, may be
+    wrong. The pipeline records this on the document so QA can warn about it."""
+    return getattr(engine, "name", None) == RapidOcrEngine.name and _is_low_trust_lang(source_lang)
+
+
+def get_ocr_engine(name: str, settings: Optional[Settings] = None,
+                   source_lang: Optional[Lang | str] = None) -> OcrEngine:
     """Build the OCR engine called ``name`` (``auto`` | ``rapid`` | ``claude`` | ``none``).
 
     ``auto`` prefers the offline RapidOCR engine, then Claude vision when an API
-    key is configured, otherwise the null engine. An explicit ``claude`` without
-    credentials degrades the same way (with a warning) instead of failing the
-    whole translation job.
+    key is configured, otherwise the null engine - except for a Japanese or
+    Korean ``source_lang`` (:data:`RAPID_LOW_TRUST_LANGS`): the bundled RapidOCR
+    models read kana / hangul only partially, so Claude vision is preferred
+    whenever an API key is available (RapidOCR stays the fallback without one).
+    An explicit ``claude`` without credentials degrades the same way (with a
+    warning) instead of failing the whole translation job.
     """
     settings = settings or get_settings()
     key = (name or "auto").strip().lower()
@@ -405,6 +509,10 @@ def get_ocr_engine(name: str, settings: Optional[Settings] = None) -> OcrEngine:
                        "falling back to automatic selection")
         key = "auto"
     if key == "auto":
+        if _is_low_trust_lang(source_lang) and settings.has_api_key:
+            logger.info("OCR engine 'auto': using Claude vision for a %s source (the offline RapidOCR models "
+                        "read its script only partially)", Lang.parse(source_lang).value)  # type: ignore[arg-type]
+            return ClaudeVisionOcrEngine(settings=settings)
         if RapidOcrEngine.available():
             return RapidOcrEngine()
         if settings.has_api_key:

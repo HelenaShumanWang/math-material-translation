@@ -17,6 +17,7 @@ FUNCTIONS = {
     "sin", "cos", "tan", "cot", "sec", "csc", "arcsin", "arccos", "arctan", "sinh", "cosh", "tanh",
     "log", "ln", "lg", "exp", "lim", "max", "min", "sup", "inf", "sqrt", "mod", "det", "gcd", "lcm",
     "abs", "dim", "ker", "deg", "rad", "arg",
+    "sen", "tg", "cotg", "arcsen", "arctg",  # es / pt spellings ("sin" is the preposition *without* there)
 }
 UNITS = {
     "mm", "cm", "dm", "km", "mg", "kg", "ml", "cl", "dl", "ms", "mm²", "cm²", "dm²", "km²", "mm³",
@@ -66,6 +67,35 @@ GEOMETRY_WORDS = {
 }
 """Words after which an upper-case token (``triangle ABC``) is a geometric label."""
 
+_CAPS_WORDS = {
+    # en
+    "AM", "AN", "AS", "AT", "BE", "BY", "DO", "GO", "HE", "IF", "IN", "IS", "IT", "ME", "MY", "NO", "OF",
+    "ON", "OR", "SO", "TO", "UP", "US", "WE", "ACT", "ADO", "AIM", "ANY", "BEST", "BIT", "BOX", "COPY",
+    "COST", "DOT", "FIT", "FLOW", "FOR", "HINT", "HIS", "HOP", "HOST", "HOT", "HOW", "KNOW", "LOST", "MOST",
+    "NOT", "NOW",
+    # es / pt
+    "AL", "AO", "DA", "DE", "EL", "EM", "EN", "ES", "EU", "HA", "LA", "LE", "LO", "MI", "NA", "OS", "OU",
+    "SE", "SI", "SU", "TE", "TU", "UM", "UN", "YO", "ANO", "AOS", "BIS", "DOS", "FIM", "FIN", "HOY", "LOS",
+    "MUY", "NOS",
+}
+"""Short all-caps words that are not geometry labels although they are two letters long
+("IT", "NO", "DE") or their letters happen to be in alphabetical order ("HINT", "FOR", "LOS")."""
+
+_ROMAN_RE = re.compile(r"M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})")
+
+
+def _is_bare_label(letters: str) -> bool:
+    """Whether an all-caps token that is attached to no math still names points
+    ("AB", "OA", "ABCD", "PQRS", "A'") or is a Roman numeral ("III", "XIV") rather than a
+    word set in capitals ("STEP", "NOTE", "SHOW", "TEMA", "HINT")."""
+    if letters in _CAPS_WORDS:
+        return False
+    if len(letters) <= 2:
+        return True
+    if all(a < b for a, b in zip(letters, letters[1:])):
+        return True  # consecutive vertex names: ABC, ABCD, BCDE, PQRS
+    return bool(_ROMAN_RE.fullmatch(letters))
+
 
 class _Tok:
     __slots__ = ("kind", "text")
@@ -89,7 +119,7 @@ def _classify_word(w: str) -> str:
     return "word"
 
 
-def _tokenize(text: str, cjk_source: bool = True) -> list[_Tok]:
+def _tokenize(text: str, cjk_source: bool = True, src_lang: Optional[str] = None) -> list[_Tok]:
     toks: list[_Tok] = []
     for m in _TOKEN_RE.finditer(text):
         kind = m.lastgroup or "other"
@@ -98,39 +128,64 @@ def _tokenize(text: str, cjk_source: bool = True) -> list[_Tok]:
             kind = _classify_word(t)
         toks.append(_Tok(kind, t))
     if not cjk_source:
-        _demote_isolated_letters(toks)
+        _demote_isolated_letters(toks, src_lang)
     return toks
 
 
-def _demote_isolated_letters(toks: list[_Tok]) -> None:
+def _demote_isolated_letters(toks: list[_Tok], src_lang: Optional[str] = None) -> None:
     """In Latin-script sources a lone letter is usually a word ("a", "y", "I"),
     not a variable, and an upper-case word of 2-4 letters is often a heading or
     acronym ("STEP 1", "UNIT 3", "NOTE", "PDF") rather than a geometric label.
     Keep them as math atoms only when they are glued to another atom ("2x",
-    "f(x)", "x²", "AB²"), sit next to an operator ("x = 3", "AB = 5", "∠ABC") or,
-    for labels, follow a geometric noun ("triangle ABC", "segmento PQ")."""
+    "f(x)", "x²", "AB²"), sit next to an operator ("x = 3", "AB = 5", "∠ABC"), or,
+    for labels, follow a geometric noun ("triangle ABC", "segmento PQ") or look
+    like point names on their own ("AB is parallel to CD", "ABCD is a square";
+    see :func:`_is_bare_label`).
+
+    In Spanish and Portuguese ``sin`` is the preposition *without* (the sine is
+    ``sen``), so it stays a function only when its argument is attached
+    ("sin(x)", "sin30°") or followed by more math ("sin 30° = 1/2"), never in
+    "un polígono sin 3 lados"."""
     n = len(toks)
 
-    def neighbour(idx: int, step: int) -> tuple[Optional[_Tok], bool]:
+    def neighbour(idx: int, step: int) -> tuple[Optional[int], bool]:
         j = idx + step
         spaced = False
         while 0 <= j < n and toks[j].kind == "sp":
             spaced = True
             j += step
-        return (toks[j] if 0 <= j < n else None), spaced
+        return (j if 0 <= j < n else None), spaced
+
+    def es_pt_sine(idx: int) -> bool:
+        ni, spaced = neighbour(idx, +1)
+        if ni is None or toks[ni].kind not in _ATOMS:
+            return False  # "sin lados", "sin."
+        if not spaced:
+            return True  # "sin(x)", "sin30°", "sin²"
+        ai, _ = neighbour(ni, +1)
+        return ai is not None and toks[ai].kind in ("op", "supsub")  # "sin 30° = 1/2", "sin x²"
 
     for i, t in enumerate(toks):
+        if t.kind == "func":
+            if src_lang in ("es", "pt") and t.text.lower() == "sin" and not es_pt_sine(i):
+                t.kind = "word"
+            continue
         if t.kind not in ("letter", "label"):
             continue
-        prev, prev_sp = neighbour(i, -1)
-        nxt, nxt_sp = neighbour(i, +1)
+        pi, prev_sp = neighbour(i, -1)
+        ni, nxt_sp = neighbour(i, +1)
+        prev = toks[pi] if pi is not None else None
+        nxt = toks[ni] if ni is not None else None
         glued = (prev is not None and not prev_sp and prev.kind in _ATOMS) or \
                 (nxt is not None and not nxt_sp and nxt.kind in _ATOMS)
         near_op = (prev is not None and prev.kind == "op") or (nxt is not None and nxt.kind == "op")
         after_geometry = t.kind == "label" and prev is not None and prev.kind == "word" \
             and prev.text.lower() in GEOMETRY_WORDS
-        if not (glued or near_op or after_geometry):
-            t.kind = "word"
+        if glued or near_op or after_geometry:
+            continue
+        if t.kind == "label" and _is_bare_label(t.text.rstrip("'’")):
+            continue
+        t.kind = "word"
 
 
 _ATOMS = {"num", "greek", "supsub", "op", "br", "func", "unit", "label", "letter"}
@@ -174,7 +229,13 @@ def _clean_run(text: str) -> str:
 def find_protected_fragments(text: str, src_lang: Lang | str | None = None) -> list[tuple[int, int, str]]:
     """Return (start, end, fragment) for every fragment that must be kept verbatim."""
     cjk_source = bool(src_lang) and is_cjk(src_lang)
-    toks = _tokenize(text, cjk_source)
+    code: Optional[str] = None
+    if src_lang:
+        try:
+            code = Lang.parse(src_lang).value
+        except ValueError:
+            code = None
+    toks = _tokenize(text, cjk_source, code)
     spans: list[tuple[int, int, str]] = []
     pos = 0
     i = 0

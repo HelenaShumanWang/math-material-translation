@@ -5,6 +5,11 @@ Responsibilities
 * one segment per text block of ``page.get_text("dict")``; the block's lines are
   joined according to the source script (CJK: no separator, Latin: spaces plus
   de-hyphenation) and list markers are kept verbatim,
+* ruled tables (``page.find_tables``) are extracted cell by cell (``role="table"``;
+  the segment box is the cell's interior so the translation stays inside the rules)
+  and a block whose lines sit side by side on one row with a wide gap between them
+  (borderless table cells, running head + page number) is split into one segment
+  per column of lines,
 * placeholder protection of formulas, numbers and math-font spans through
   :func:`mathtrans.protect.protect_text`,
 * the dominant style of each block (font, size, colour, weight, alignment, line
@@ -33,6 +38,7 @@ import logging
 import re
 from collections import Counter
 from dataclasses import dataclass, field
+from itertools import combinations
 from pathlib import Path
 from typing import Any, Iterable, Optional, Sequence, Union
 
@@ -121,6 +127,17 @@ _COLUMN_MIN_WEIGHT = 0.15  # share of the (narrow) text height a column needs to
 _VALLEY_FRACTION = 0.25  # x-coverage below this share of the neighbouring peaks is a gutter
 _FURNITURE_ZONE = 0.1  # top / bottom share of the page where single-line blocks are headers/footers
 _ROW_OVERLAP_FRACTION = 0.5  # vertical overlap (relative to the smaller box) to share a row
+
+# Tables and side-by-side lines.
+_SIDE_BY_SIDE_GAP = 1.5  # x font size: lines of one block this far apart on one row are separate cells
+_TABLE_MIN_CELLS = 2  # a ruled "table" with fewer cells is a frame around ordinary text
+_CELL_CLIP_INSET = 0.5  # points: keeps a neighbour's glyph that touches the rule out of a cell
+_CELL_PAD_MAX = 3.0  # points of padding kept between a cell's rules and the translated text
+_RULE_TOL = 1.5  # points: rules this close are one grid line; a rule end this close to a line touches it
+_RULE_MIN_LENGTH = 3.0  # shorter drawing segments are not table rules
+_RULE_THIN = 2.0  # a filled rectangle at most this thick is a drawn rule
+_MAX_RULES = 1500  # pages with more rule segments (plots, maps) are not searched for tables
+_MAX_CELLS = 1000  # grids with more cells (graph paper) are figures, not tables
 
 
 # --------------------------------------------------------------------------- #
@@ -358,23 +375,396 @@ class _BlockData:
 
 
 def build_page_segments(page: pymupdf.Page, page_index: int, source_lang: Lang | str) -> list[TextSegment]:
-    """All text blocks of ``page`` as segments in reading order, ids ``p{page}_b{n}`` assigned."""
+    """All text blocks of ``page`` as segments in reading order, ids ``p{page}_b{n}`` assigned.
+
+    Ruled tables are extracted cell by cell (one segment per text block inside a
+    cell, ``role="table"``, box = the cell's interior); the remaining blocks give
+    one segment each, except that a block whose lines sit side by side on one row
+    (MuPDF puts the cells of a borderless table row, or a running head and the
+    page number, into one block) is split into one segment per column of lines.
+    The segments of one table / split block are read as a unit, row by row.
+    """
     lang = Lang.parse(source_lang)
     page_rect = _page_space_rect(page)
     raw = page.get_text("dict", flags=TEXT_FLAGS)
     blocks = [b for b in raw.get("blocks", []) if b.get("type") == 0 and b.get("lines")]
     median_size = _page_median_size(blocks)
-    segments: list[TextSegment] = []
+    units: list[list[TextSegment]] = []  # each unit is ordered as a whole, row by row inside
+    cells: list[pymupdf.Rect] = []
+    for table_cells in _find_table_cells(page, page_index):
+        group: list[TextSegment] = []
+        for cell in table_cells:
+            cell_segments = _cell_segments(page, cell, page_index, lang, median_size, page_rect)
+            if cell_segments is None:  # a glyph crosses a rule: a figure with lines, not a table
+                log.debug("page %d: grid at %s cuts through text; not treated as a table", page_index, tuple(cell))
+                break
+            group.extend(cell_segments)
+        else:
+            cells.extend(table_cells)
+            if group:
+                units.append(group)
     for block in blocks:
-        data = _collect_block(block, page_rect)
-        if data is None:
+        outside = _lines_outside(block, cells)
+        if outside is None:
             continue
-        segments.append(_segment_from_block(data, page_index, lang, median_size, page_rect))
-    ordered = sort_reading_order(segments, page_height=page_rect.height)
+        group = []
+        for part in _split_side_by_side(outside):
+            data = _collect_block(part, page_rect)
+            if data is None:
+                continue
+            group.append(_segment_from_block(data, page_index, lang, median_size, page_rect))
+        if group:
+            units.append(group)
+    ordered = _order_units(units, page_index, page_rect.height)
     for idx, seg in enumerate(ordered):
         seg.id = f"p{page_index}_b{idx}"
         seg.reading_order = idx
     return ordered
+
+
+@dataclass
+class _Rule:
+    """A horizontal (``pos`` = y, ``lo``/``hi`` = x-range) or vertical (``pos`` = x) grid line."""
+    pos: float
+    lo: float
+    hi: float
+
+    def covers(self, value: float) -> bool:
+        return self.lo - _RULE_TOL <= value <= self.hi + _RULE_TOL
+
+
+def _find_table_cells(page: pymupdf.Page, page_index: int) -> list[list[pymupdf.Rect]]:
+    """Cell rectangles of every ruled table on ``page`` (row by row, left to right).
+
+    Rules are the horizontal / vertical segments of the page's vector drawings
+    (lines, thin filled rectangles and the edges of larger rectangles); cells are
+    the rectangles bounded by four rules (merged cells arise where an inner rule
+    is missing) and a table is a connected group of at least two cells with two
+    of them side by side, so a frame around a paragraph does not count.
+
+    ``page.find_tables()`` is deliberately not used: it switches PyMuPDF's
+    process-wide ``small_glyph_heights`` on while it runs, which changes the
+    glyph boxes that other threads (web workers) extract at the same time.
+    Detection problems never abort extraction: the page is then read block by block.
+    """
+    try:
+        drawings = page.get_drawings()
+    except Exception as exc:  # pragma: no cover - defensive: exotic content streams
+        log.warning("page %d: cannot read drawings (%s); no table detection", page_index, exc)
+        return []
+    horizontals, verticals = _rule_segments(drawings)
+    if not horizontals or not verticals:
+        return []
+    if len(horizontals) + len(verticals) > _MAX_RULES:
+        log.debug("page %d: %d rule segments; skipping table detection", page_index, len(horizontals) + len(verticals))
+        return []
+    cells = _grid_cells(_merge_rules(horizontals), _merge_rules(verticals))
+    if len(cells) > _MAX_CELLS:
+        log.debug("page %d: %d grid cells; treated as a figure", page_index, len(cells))
+        return []
+    out: list[list[pymupdf.Rect]] = []
+    for table in _group_cells(cells):
+        table.sort(key=lambda c: (round(c.y0, 1), c.x0))  # row by row; neighbours of a row are consecutive
+        boxes = [BBox.from_rect(c) for c in table]
+        side_by_side = any(_same_row(a, b) and _x_distance(a, b) >= -_RULE_TOL for a, b in zip(boxes, boxes[1:]))
+        if len(table) >= _TABLE_MIN_CELLS and side_by_side:
+            out.append(table)
+    if out:
+        log.debug("page %d: %d ruled table(s) with %d cells", page_index, len(out), sum(len(t) for t in out))
+    return out
+
+
+def _rule_segments(drawings: list[dict[str, Any]]) -> tuple[list[_Rule], list[_Rule]]:
+    """Horizontal and vertical rule segments among the drawing items."""
+    segments: list[tuple[float, float, float, float]] = []
+    for drawing in drawings:
+        for item in drawing.get("items") or []:
+            op = item[0]
+            if op == "l":
+                p, q = item[1], item[2]
+                segments.append((float(p.x), float(p.y), float(q.x), float(q.y)))
+            elif op in ("re", "qu"):
+                rect = pymupdf.Rect(item[1]) if op == "re" else pymupdf.Rect(item[1].rect)
+                rect.normalize()
+                if op == "qu" and not item[1].is_rectangular:
+                    continue
+                if rect.width <= _RULE_THIN and rect.height <= _RULE_THIN:
+                    continue
+                if rect.height <= _RULE_THIN:
+                    y = (rect.y0 + rect.y1) / 2
+                    segments.append((rect.x0, y, rect.x1, y))
+                elif rect.width <= _RULE_THIN:
+                    x = (rect.x0 + rect.x1) / 2
+                    segments.append((x, rect.y0, x, rect.y1))
+                else:  # cell borders drawn as rectangles, shaded cells
+                    segments.extend([(rect.x0, rect.y0, rect.x1, rect.y0), (rect.x0, rect.y1, rect.x1, rect.y1),
+                                     (rect.x0, rect.y0, rect.x0, rect.y1), (rect.x1, rect.y0, rect.x1, rect.y1)])
+    horizontals: list[_Rule] = []
+    verticals: list[_Rule] = []
+    for x0, y0, x1, y1 in segments:
+        dx, dy = abs(x1 - x0), abs(y1 - y0)
+        if dy <= _RULE_TOL and dx >= _RULE_MIN_LENGTH:
+            horizontals.append(_Rule(pos=(y0 + y1) / 2, lo=min(x0, x1), hi=max(x0, x1)))
+        elif dx <= _RULE_TOL and dy >= _RULE_MIN_LENGTH:
+            verticals.append(_Rule(pos=(x0 + x1) / 2, lo=min(y0, y1), hi=max(y0, y1)))
+    return horizontals, verticals
+
+
+def _merge_rules(rules: list[_Rule]) -> list[_Rule]:
+    """Merge collinear rules (positions within ``_RULE_TOL``) whose ranges overlap or touch."""
+    rules = sorted(rules, key=lambda r: (r.pos, r.lo))
+    out: list[_Rule] = []
+    group: list[_Rule] = []
+
+    def flush() -> None:
+        if not group:
+            return
+        pos = sum(r.pos for r in group) / len(group)
+        current: Optional[_Rule] = None
+        for r in sorted(group, key=lambda r: r.lo):
+            if current is not None and r.lo <= current.hi + _RULE_TOL:
+                current.hi = max(current.hi, r.hi)
+            else:
+                current = _Rule(pos=pos, lo=r.lo, hi=r.hi)
+                out.append(current)
+
+    for rule in rules:
+        if group and rule.pos - group[0].pos > _RULE_TOL:
+            flush()
+            group = []
+        group.append(rule)
+    flush()
+    return out
+
+
+def _grid_cells(horizontals: list[_Rule], verticals: list[_Rule]) -> list[pymupdf.Rect]:
+    """Rectangles bounded by four rules: from every crossing (top-left corner) to the
+    nearest crossing to the right on the same horizontal rule and the nearest below on
+    the same vertical rule, when the bottom-right corner and both far edges exist."""
+    on_h: dict[int, list[int]] = {i: [] for i in range(len(horizontals))}  # h index -> crossing v indices
+    on_v: dict[int, list[int]] = {j: [] for j in range(len(verticals))}
+    crossings: set[tuple[int, int]] = set()
+    for i, h in enumerate(horizontals):
+        for j, v in enumerate(verticals):
+            if h.covers(v.pos) and v.covers(h.pos):
+                crossings.add((i, j))
+                on_h[i].append(j)
+                on_v[j].append(i)
+    for i in on_h:
+        on_h[i].sort(key=lambda j: verticals[j].pos)
+    for j in on_v:
+        on_v[j].sort(key=lambda i: horizontals[i].pos)
+    cells: list[pymupdf.Rect] = []
+    for i, j in sorted(crossings):
+        top, left = horizontals[i], verticals[j]
+        right_j = next((k for k in on_h[i] if verticals[k].pos > left.pos + _RULE_TOL), None)
+        bottom_i = next((k for k in on_v[j] if horizontals[k].pos > top.pos + _RULE_TOL), None)
+        if right_j is None or bottom_i is None or (bottom_i, right_j) not in crossings:
+            continue
+        bottom, right = horizontals[bottom_i], verticals[right_j]
+        if bottom.covers(left.pos) and bottom.covers(right.pos) and right.covers(top.pos) and right.covers(bottom.pos):
+            cells.append(pymupdf.Rect(left.pos, top.pos, right.pos, bottom.pos))
+    return cells
+
+
+def _group_cells(cells: list[pymupdf.Rect]) -> list[list[pymupdf.Rect]]:
+    """Connected groups of cells (cells sharing a corner belong to the same table)."""
+    parent: dict[tuple[float, float], tuple[float, float]] = {}
+
+    def find(p: tuple[float, float]) -> tuple[float, float]:
+        parent.setdefault(p, p)
+        while parent[p] != p:
+            parent[p] = parent[parent[p]]
+            p = parent[p]
+        return p
+
+    corners = [[(round(c.x0, 3), round(c.y0, 3)), (round(c.x1, 3), round(c.y0, 3)),
+                (round(c.x0, 3), round(c.y1, 3)), (round(c.x1, 3), round(c.y1, 3))] for c in cells]
+    for pts in corners:
+        for p in pts[1:]:
+            parent[find(p)] = find(pts[0])
+    groups: dict[tuple[float, float], list[pymupdf.Rect]] = {}
+    for cell, pts in zip(cells, corners):
+        groups.setdefault(find(pts[0]), []).append(cell)
+    return list(groups.values())
+
+
+def _cell_segments(page: pymupdf.Page, cell: pymupdf.Rect, page_index: int, lang: Lang, median_size: float,
+                   page_rect: pymupdf.Rect) -> Optional[list[TextSegment]]:
+    """Segments for the text inside one table cell (one per text block of the cell).
+
+    The text is re-extracted clipped to the cell, which also separates cells that
+    MuPDF merged into one line. The segment box is the cell's interior (keeping
+    the text's own padding on the side it is anchored to), so the layout stage
+    has the whole cell to place the translation and never crosses a rule.
+    Returns None when a glyph crosses the cell's left or right rule: that is a
+    figure with lines through its labels, not a table.
+    """
+    clip = pymupdf.Rect(cell)
+    if clip.width > 4 * _CELL_CLIP_INSET and clip.height > 4 * _CELL_CLIP_INSET:
+        clip = pymupdf.Rect(clip.x0 + _CELL_CLIP_INSET, clip.y0 + _CELL_CLIP_INSET,
+                            clip.x1 - _CELL_CLIP_INSET, clip.y1 - _CELL_CLIP_INSET)
+    raw = page.get_text("dict", flags=TEXT_FLAGS, clip=clip)
+    datas: list[_BlockData] = []
+    for block in raw.get("blocks", []):
+        if block.get("type") != 0 or not block.get("lines"):
+            continue
+        for line in block["lines"]:
+            for span in line.get("spans") or []:
+                if not str(span.get("text") or "").strip():
+                    continue
+                overhang = max(1.0, 0.1 * float(span.get("size") or 0))
+                if span["bbox"][0] < cell.x0 - overhang or span["bbox"][2] > cell.x1 + overhang:
+                    return None
+        data = _collect_block(block, page_rect)
+        if data is not None:
+            datas.append(data)
+    datas.sort(key=lambda d: (d.bbox.y0, d.bbox.x0))
+    cell_box = BBox.from_rect(cell)
+    segments: list[TextSegment] = []
+    for k, data in enumerate(datas):
+        seg = _segment_from_block(data, page_index, lang, median_size, page_rect, container=cell_box)
+        seg.style.role = "table"
+        others = [d.bbox for j, d in enumerate(datas) if j != k]
+        seg.bbox = _cell_room(data.bbox, cell_box, seg.style.align, others)
+        segments.append(seg)
+    return segments
+
+
+def _cell_room(text: BBox, cell: BBox, align: str, others: Sequence[BBox]) -> BBox:
+    """The box a cell's translation may use: the cell interior, anchored where the
+    text was (its own padding is kept on the anchored side, at most
+    ``_CELL_PAD_MAX`` on the others) and never reaching other text of the cell."""
+    left_pad = max(text.x0 - cell.x0, 0.0)
+    right_pad = max(cell.x1 - text.x1, 0.0)
+    top_pad = max(text.y0 - cell.y0, 0.0)
+    if align == "right":
+        x0, x1 = cell.x0 + min(right_pad, _CELL_PAD_MAX), text.x1
+    elif align in ("center", "justify"):
+        pad = min(left_pad, right_pad, _CELL_PAD_MAX)
+        x0, x1 = cell.x0 + pad, cell.x1 - pad
+    else:
+        x0, x1 = text.x0, cell.x1 - min(left_pad, _CELL_PAD_MAX)
+    y0, y1 = text.y0, cell.y1 - min(top_pad, _CELL_PAD_MAX)
+    for o in others:
+        if min(o.y1, text.y1) - max(o.y0, text.y0) > 0:  # beside the text: no room towards it
+            if o.x0 >= text.x1:
+                x1 = min(x1, o.x0 - 1.0)
+            if o.x1 <= text.x0:
+                x0 = max(x0, o.x1 + 1.0)
+        elif o.y0 >= text.y1 and min(o.x1, x1) - max(o.x0, x0) > 0:  # below: stop above it
+            y1 = min(y1, o.y0 - 1.0)
+    return BBox(x0=min(x0, text.x0), y0=min(y0, text.y0), x1=max(x1, text.x1), y1=max(y1, text.y1))
+
+
+def _lines_outside(block: dict[str, Any], cells: Sequence[pymupdf.Rect]) -> Optional[dict[str, Any]]:
+    """``block`` without the lines that lie (by at least half of their area) inside
+    table cells, which are extracted cell by cell; None when nothing is left."""
+    if not cells:
+        return block
+    bbox = pymupdf.Rect(block["bbox"])
+    if not any(bbox.intersects(c) for c in cells):
+        return block
+    kept: list[dict[str, Any]] = []
+    for line in block["lines"]:
+        rect = pymupdf.Rect(line["bbox"])
+        area = rect.get_area()
+        if area > 0 and sum((rect & c).get_area() for c in cells if rect.intersects(c)) >= 0.5 * area:
+            continue
+        kept.append(line)
+    if not kept:
+        return None
+    if len(kept) == len(block["lines"]):
+        return block
+    union = pymupdf.Rect(kept[0]["bbox"])
+    for line in kept[1:]:
+        union |= pymupdf.Rect(line["bbox"])
+    return {**block, "bbox": tuple(union), "lines": kept}
+
+
+def _same_row(a: BBox, b: BBox) -> bool:
+    overlap = min(a.y1, b.y1) - max(a.y0, b.y0)
+    height = min(a.height, b.height)
+    return height > 0 and overlap >= _ROW_OVERLAP_FRACTION * height
+
+
+def _x_distance(a: BBox, b: BBox) -> float:
+    """Horizontal gap between two boxes (negative when their x-ranges overlap)."""
+    return max(a.x0, b.x0) - min(a.x1, b.x1)
+
+
+def _split_side_by_side(block: dict[str, Any]) -> list[dict[str, Any]]:
+    """Split a raw text block whose lines sit side by side into one block per column.
+
+    MuPDF groups the cells of a (borderless) table row, or a running head and a
+    right-aligned page number, into one block of several lines that share a row
+    but are separated by a wide gap. Lines are clustered by their x-ranges
+    (overlapping or closer than ``_SIDE_BY_SIDE_GAP`` x font size = same
+    cluster, so the stacked lines of a wrapped cell stay together); a block is
+    only split when two of its lines share a row at least that far apart and
+    the clusters are pairwise disjoint - a paragraph with one full-width line
+    merges everything and is never split.
+    """
+    lines = [ln for ln in block.get("lines", []) if ln.get("spans")]
+    if len(lines) < 2:
+        return [block]
+    for line in lines:
+        direction = line.get("dir") or (1.0, 0.0)
+        if abs(float(direction[1])) > abs(float(direction[0])):
+            return [block]
+    rects = [BBox.from_rect(ln["bbox"]) for ln in lines]
+    size = max((float(s["size"]) for ln in lines for s in ln["spans"]), default=0.0)
+    gap = _SIDE_BY_SIDE_GAP * max(size, 1.0)
+    if not any(_same_row(a, b) and _x_distance(a, b) >= gap for a, b in combinations(rects, 2)):
+        return [block]
+    parent = list(range(len(rects)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i, j in combinations(range(len(rects)), 2):
+        if _x_distance(rects[i], rects[j]) < gap:
+            parent[find(i)] = find(j)
+    groups: dict[int, list[int]] = {}
+    for i in range(len(rects)):
+        groups.setdefault(find(i), []).append(i)
+    if len(groups) < 2:
+        return [block]
+    parts: list[dict[str, Any]] = []
+    for members in sorted(groups.values(), key=lambda m: min(rects[i].x0 for i in m)):
+        box = rects[members[0]]
+        for i in members[1:]:
+            box = box.union(rects[i])
+        parts.append({**block, "bbox": box.as_tuple(), "lines": [lines[i] for i in members]})
+    return parts
+
+
+def _order_units(units: list[list[TextSegment]], page_index: int, page_height: float) -> list[TextSegment]:
+    """Reading order over ``units``: a unit (the cells of a table, the parts of a
+    split block) takes part as one box and is read row by row inside."""
+    reps: list[TextSegment] = []
+    for group in units:
+        if len(group) == 1:
+            reps.append(group[0])
+            continue
+        box = group[0].bbox
+        for seg in group[1:]:
+            box = box.union(seg.bbox)
+        reps.append(TextSegment(id="", page=page_index, bbox=box, source_text="",
+                                style=SegmentStyle(size=max(s.style.size for s in group))))
+    by_rep = {id(rep): group for rep, group in zip(reps, units)}
+    out: list[TextSegment] = []
+    for rep in sort_reading_order(reps, page_height=page_height):
+        group = by_rep[id(rep)]
+        if len(group) == 1:
+            out.append(group[0])
+            continue
+        boxes = [s.bbox for s in group]
+        out.extend(group[i] for i in _rows_order(list(range(len(group))), boxes))
+    return out
 
 
 def _page_median_size(blocks: list[dict[str, Any]]) -> float:
@@ -462,9 +852,11 @@ def _span_text(span: dict[str, Any], line_max_size: float) -> str:
 
 
 def _segment_from_block(
-    data: _BlockData, page_index: int, lang: Lang, median_size: float, page_rect: pymupdf.Rect
+    data: _BlockData, page_index: int, lang: Lang, median_size: float, page_rect: pymupdf.Rect,
+    container: Optional[BBox] = None,
 ) -> TextSegment:
-    style = _block_style(data, lang, median_size, page_rect)
+    """Segment for one block; ``container`` (a table cell) decides the alignment of a single-line block."""
+    style = _block_style(data, lang, median_size, page_rect, container)
     text = _join_lines(data.lines, _joins_without_space(data.lines, lang, style.size), style.size,
                        korean=lang is Lang.KO)
     math_fragments = [
@@ -633,7 +1025,8 @@ def _dominant(values: Iterable[tuple[Any, int]], default: Any) -> Any:
     return max(order, key=lambda v: (weights[v], -order.index(v)))
 
 
-def _block_style(data: _BlockData, lang: Lang, median_size: float, page_rect: pymupdf.Rect) -> SegmentStyle:
+def _block_style(data: _BlockData, lang: Lang, median_size: float, page_rect: pymupdf.Rect,
+                 container: Optional[BBox] = None) -> SegmentStyle:
     spans = [info for info in data.spans if info.chars]
     size = float(_dominant(((round(i.span.size, 1), i.chars) for i in spans), median_size))
     font = str(_dominant(((i.span.font, i.chars) for i in spans), ""))
@@ -656,18 +1049,23 @@ def _block_style(data: _BlockData, lang: Lang, median_size: float, page_rect: py
         bold=bold,
         italic=italic,
         serif=serif,
-        align=_alignment(text_lines, data.bbox, size, rotation, page_rect),
+        align=_alignment(text_lines, data.bbox, size, rotation, page_rect, container),
         line_height=_line_height(text_lines, size, rotation),
         rotation=rotation,
         is_vertical=is_vertical,
     )
 
 
-def _alignment(lines: list[_Line], block: BBox, size: float, rotation: int, page_rect: pymupdf.Rect) -> Align:
+def _alignment(lines: list[_Line], block: BBox, size: float, rotation: int, page_rect: pymupdf.Rect,
+               container: Optional[BBox] = None) -> Align:
+    """Alignment from the line boxes; a single line is judged by its position in
+    ``container`` (its table cell) when given, else by whether it is page-centred."""
     if rotation != 0 or not lines:
         return "left"
     tol = max(2.0, 0.15 * size)
     if len(lines) == 1:
+        if container is not None:
+            return _alignment_within(block, container, size, tol)
         centre = (block.x0 + block.x1) / 2
         page_centre = (page_rect.x0 + page_rect.x1) / 2
         if abs(centre - page_centre) <= 2.0 and block.x0 - page_rect.x0 > 0.15 * page_rect.width:
@@ -680,6 +1078,19 @@ def _alignment(lines: list[_Line], block: BBox, size: float, rotation: int, page
     if all(abs(l - r) <= tol for l, r in zip(lefts, rights)) and any(l > tol for l in lefts):
         return "center"
     if all(r <= tol for r in rights) and any(l > tol for l in lefts):
+        return "right"
+    return "left"
+
+
+def _alignment_within(block: BBox, container: BBox, size: float, tol: float) -> Align:
+    """Alignment of a one-line text box inside its cell, from the padding on either side."""
+    left_pad = block.x0 - container.x0
+    right_pad = container.x1 - block.x1
+    if left_pad + right_pad <= 2 * tol:  # the text fills the cell
+        return "left"
+    if abs(left_pad - right_pad) <= tol:
+        return "center"
+    if right_pad < left_pad and right_pad <= max(tol, 0.6 * size):
         return "right"
     return "left"
 

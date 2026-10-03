@@ -2,8 +2,9 @@
 from __future__ import annotations
 
 import pymupdf
+import pytest
 
-from mathtrans.glossary import default_glossary
+from mathtrans.glossary import default_glossary, term_present
 from mathtrans.interfaces import TranslationError
 from mathtrans.models import (BBox, ImageRef, Lang, PipelineOptions, QAIssue, QAReport, QARound, RenderInfo,
                               ReviewFinding, SegmentKind, TextSegment, TranslatedDocument,
@@ -107,13 +108,25 @@ def test_untranslated_foreign_letters_identical_and_tiny_label_allowance():
     leftover = seg("l", "在直角三角形中，斜边最长。", "In a right triangle the 斜边 is the longest.",
                    raw="In a right triangle the 斜边 is the longest.")
     identical = seg("i", "求斜边的长度。", "求斜边的长度。", raw="求斜边的长度。")
-    tiny = seg("t", "斜边 c", "斜边 c")  # 2 source letters: up to 2 foreign letters tolerated
+    tiny = seg("t", "斜边 c", "hyp. 边 c")  # 2 source letters: up to 2 stray foreign letters tolerated
     formula = seg("x", "a²+b²=c²", "a²+b²=c²")  # fully protected: identical is fine
     fine = seg("ok", "求斜边的长度。", "Find the length of the hypotenuse.")
-    issues = C.untranslated(doc(leftover, identical, tiny, formula, fine), opts(), [])
-    assert sorted(i.segment_id for i in issues) == ["i", "l"]
+    # ... but a 1-2 letter label copied verbatim (figure / table labels: 答案, 底, 第 2 页) is untranslated
+    tiny_copy = seg("tc", "答案", "答案")
+    tiny_image = seg("ti", "底", "底", kind=SegmentKind.IMAGE_TEXT)
+    page_label = seg("pl", "第 2 页", "第 2 页")
+    issues = C.untranslated(doc(leftover, identical, tiny, formula, fine, tiny_copy, tiny_image, page_label), opts(), [])
+    assert sorted(i.segment_id for i in issues) == ["i", "l", "pl", "tc", "ti"]
     by_id = {i.segment_id: i for i in issues}
     assert '"斜边"' in by_id["l"].message and "6 letter(s)" in by_id["i"].message
+    assert '"答案"' in by_id["tc"].message and "2 letter(s)" in by_id["tc"].message and by_id["tc"].severity == "error"
+    for src, tgt, text in [("ja", "en", "答え"), ("ko", "en", "합계"), ("zh", "ko", "答案"), ("ja", "zh", "答え")]:
+        assert names(C.untranslated(doc(seg("c", text, text, src=src), src=src, tgt=tgt), opts(tgt), [])) == ["untranslated"], (src, tgt)
+    # shared Han cognates between zh and ja and Latin labels into CJK stay silent
+    for src, tgt, text in [("zh", "ja", "答案"), ("ja", "zh", "注意"), ("en", "zh", "AB"), ("en", "zh", "cm")]:
+        assert C.untranslated(doc(seg("c", text, text, src=src), src=src, tgt=tgt), opts(tgt), []) == [], (src, tgt)
+    # the whole rule set agrees: a copied label fails QA instead of passing silently
+    assert names(rule_checks(doc(tiny_copy), opts(), []), "untranslated") == ["untranslated"]
     # same-script pair: an untouched sentence is caught by the identity rule, a short
     # identical label is accepted as a cognate ("Nota", "Figura 1-1", "Teorema de Pitágoras")
     copied = seg("c", "Find the length of the hypotenuse.", "Find the length of the hypotenuse.", src="en")
@@ -162,6 +175,64 @@ def test_target_script_positive_and_negative():
     assert [i.segment_id for i in issues] == ["m"] and "Chinese" in issues[0].message
 
 
+def test_notation_lists_are_not_untranslated():
+    """Function names, unit symbols and point labels stay in Latin letters in every language:
+    a list of them is neither a copied run of source words nor foreign script."""
+    cases = [
+        ("zh", "The functions sin, cos, tan are called trigonometric functions.", "函数 sin、cos、tan 称为三角函数。"),
+        ("ja", "The functions sin, cos, tan are called trigonometric functions.", "関数 sin、cos、tan を三角関数という。"),
+        ("ko", "The functions sin, cos, tan are called trigonometric functions.", "함수 sin, cos, tan을 삼각함수라고 한다."),
+        ("zh", "Convert between km, m, cm, mm.", "在 km、m、cm、mm 之间进行换算。"),
+        ("zh", "Segments AB, CD, EF, GH are equal.", "线段 AB、CD、EF、GH 相等。"),
+    ]
+    for tgt, source, translated in cases:
+        d = doc(seg("n", source, translated, src="en", raw=translated), src="en", tgt=tgt)
+        assert C.untranslated(d, opts(tgt), []) == [], (tgt, translated)
+        assert C.target_script(d, opts(tgt), []) == [], (tgt, translated)
+        assert names(rule_checks(d, opts(tgt), []), "untranslated") == [] and names(rule_checks(d, opts(tgt), []), "target_script") == []
+    assert C.script_ratio("函数 sin、cos、tan 称为三角函数。", "zh") == 1.0
+    assert C._copied_word_runs("Find sin x and cos x.", "求 sin x 和 cos x。") == []
+    # copied prose around a function name is still found as the words around it
+    copied = seg("c", "Find the max value of the function.", "求 the max value of the function。", src="en",
+                 raw="求 the max value of the function。")
+    issues = C.untranslated(doc(copied, src="en", tgt="zh"), opts("zh"), [])
+    assert [i.details["copied_runs"] for i in issues] == [["the value of the function"]]
+    # "sin" inside "sine" is a word, and words set in capitals (UNIT, STEP) are not point labels
+    assert C.script_ratio("sine and cosine 的值", "zh") < 0.6
+    unit = seg("u", "UNIT 3 Fractions", "UNIT 3 分数", src="en", raw="UNIT ⟦0⟧ 分数")
+    assert names(C.target_script(doc(unit, src="en", tgt="zh"), opts("zh"), [])) == ["target_script"]
+    assert C._is_notation("AB") and C._is_notation("ABCD") and C._is_notation("cm") and C._is_notation("Sin")
+    assert not C._is_notation("UNIT") and not C._is_notation("STEP") and not C._is_notation("sine")
+
+
+def test_target_script_tolerates_copied_proper_names():
+    """Product / software names (GeoGebra, Excel) have no Chinese rendering: a short
+    sentence that keeps them is still written in the target script."""
+    geo = seg("geo", "Use GeoGebra to draw the triangle.", "用 GeoGebra 画出这个三角形。", src="en",
+              raw="用 GeoGebra 画出这个三角形。")
+    xl = seg("xl", "Use Excel to draw a bar chart.", "用 Excel 制作条形图。", src="en", raw="用 Excel 制作条形图。")
+    cap = seg("cap", "Figure 2 The GeoGebra window", "图 2 GeoGebra 界面", src="en")  # "2" is a placeholder
+    label = seg("lbl", "GeoGebra", "GeoGebra", src="en", raw="GeoGebra")
+    partial = seg("p", "Use GeoGebra to draw the triangle.", "Use GeoGebra to draw 三角形。", src="en",
+                  raw="Use GeoGebra to draw 三角形。")
+    d = doc(geo, xl, cap, label, partial, src="en", tgt="zh")
+    issues = C.target_script(d, opts("zh"), [])
+    assert [i.segment_id for i in issues] == ["p"] and issues[0].details["copied_names"] == ["GeoGebra"]
+    assert "proper names" in issues[0].message
+    # the identical-text rule does not flag a bare name label either, and the whole rule set passes
+    assert C.untranslated(d, opts("zh"), []) == [] or [i.segment_id for i in C.untranslated(d, opts("zh"), [])] == ["p"]
+    assert [i.check for i in rule_checks(doc(geo, xl, cap, label, src="en", tgt="zh"), opts("zh"), []) if i.severity == "error"] == []
+    ko = seg("ko", "Use GeoGebra to draw the triangle.", "GeoGebra로 삼각형을 그리시오.", src="en", raw="GeoGebra로 삼각형을 그리시오.")
+    assert C.target_script(doc(ko, src="en", tgt="ko"), opts("ko"), []) == []
+    assert C.copied_names("Use GeoGebra to draw the triangle.", "用 GeoGebra 画出这个三角形。") == ["GeoGebra"]
+    assert C.copied_names("Find the length of the hypotenuse.", "Find the length 的斜边。") == []  # sentence-initial word
+    assert C.copied_names("GeoGebra is a free tool.", "GeoGebra 是一款免费软件。") == ["GeoGebra"]  # inner capital
+    assert C.copied_names("Use Excel. Excel is free.", "Excel Excel 用") == ["Excel", "Excel"]
+    # an untranslated capitalised word that opens the sentence is still foreign text
+    pythagoras = seg("py", "Pythagoras lived in Samos.", "Pythagoras 住在 Samos。", src="en", raw="Pythagoras 住在 Samos。")
+    assert names(C.target_script(doc(pythagoras, src="en", tgt="zh"), opts("zh"), [])) == ["target_script"]
+
+
 def test_glossary_check_uses_pairs():
     pairs = default_glossary().pairs("zh", "en")
     wrong = seg("w", "直角三角形的斜边", "the long side of a right triangle")
@@ -204,6 +275,108 @@ def test_glossary_latin_sources_use_inflected_whole_words():
     d.glossary = default_glossary()
     assert [i.details["target_term"] for i in C.glossary(d, opts())] == ["hypotenuse"]
     assert "glossary" in names(rule_checks(d, opts())) and C.glossary(doc(wrong, src="pt", tgt="en"), opts()) == []
+
+
+def test_glossary_single_char_cjk_terms_are_prompt_only():
+    """One-character CJK glossary terms (解, 角, 圆, 高 / 円 / 각, 원, 호) occur inside unrelated
+    words; they stay in the prompt but are never enforced by the check."""
+    pairs_zh = default_glossary().pairs("zh", "en")
+    assert ("解", "solution") in pairs_zh  # still offered to the translator ...
+    assert ("解", "solution") not in C.used_glossary_pairs("解方程 2x + 3 = 7。", pairs_zh, "zh")  # ... never enforced
+    assert ("角", "angle") not in C.used_glossary_pairs("一支铅笔 5 角", pairs_zh, "zh")
+    assert ("圆", "circle") not in C.used_glossary_pairs("圆柱的体积", pairs_zh, "zh")
+    assert ("高", "height") not in C.used_glossary_pairs("最高分是 98 分", pairs_zh, "zh")
+    assert ("解", "solution") not in C.used_glossary_pairs("解", pairs_zh, "zh")
+    assert C.glossary(doc(seg("s", "解方程 2x + 3 = 7。", "Solve the equation 2x + 3 = 7.")), opts(), pairs_zh) == []
+    assert C.glossary(doc(seg("e", "请解释为什么这个三角形是直角三角形。", "Explain why this triangle is a right triangle.")),
+                      opts(), pairs_zh) == []
+    pairs_ja = default_glossary().pairs("ja", "en")
+    assert ("円", "circle") not in C.used_glossary_pairs("円柱の体積を求めなさい。", pairs_ja, "ja")
+    assert ("解", "solution") not in C.used_glossary_pairs("次の方程式を解きなさい。", pairs_ja, "ja")
+    pairs_ko = default_glossary().pairs("ko", "en")
+    assert ("각", "angle") not in C.used_glossary_pairs("각 변의 길이를 구하시오.", pairs_ko, "ko")
+    assert ("원", "circle") not in C.used_glossary_pairs("연필 한 자루는 500원입니다.", pairs_ko, "ko")
+    assert ("호", "arc") not in C.used_glossary_pairs("괄호를 먼저 계산하시오.", pairs_ko, "ko")
+    # terms of two or more characters are still enforced (shadowed by longer terms as before)
+    assert ("锐角", "acute angle") in C.used_glossary_pairs("锐角的大小", pairs_zh, "zh")
+    assert ("锐角三角形", "acute triangle") in C.used_glossary_pairs("锐角三角形", pairs_zh, "zh")
+    assert ("锐角", "acute angle") not in C.used_glossary_pairs("锐角三角形", pairs_zh, "zh")
+    assert ("斜边", "hypotenuse") in C.used_glossary_pairs("直角三角形的斜边", pairs_zh, "zh")
+    assert ("빗변", "hypotenuse") in C.used_glossary_pairs("빗변의 길이", pairs_ko, "ko")
+    wrong = seg("w", "直角三角形的斜边", "the long side of a right triangle")
+    assert [i.details["target_term"] for i in C.glossary(doc(wrong), opts(), pairs_zh)] == ["hypotenuse"]
+    # a custom one-character term is treated the same way; Latin one-letter terms are unaffected
+    assert C.used_glossary_pairs("解方程", [("解", "solve"), ("方程", "equation")], "zh") == [("方程", "equation")]
+    assert C.used_glossary_pairs("the x axis", [("x", "横")], "en") == [("x", "横")]
+    # loop level: a correct translation passes in round 1 instead of failing after max rounds
+    d = doc(seg("s", "解方程 2x + 3 = 7。", "Solve the equation 2x + 3 = 7."))
+    calls: list[list[str]] = []
+    report = run_qa_loop(d, opts(max_qa_rounds=3), glossary_pairs=pairs_zh, retranslate=lambda ids: calls.append(ids))
+    assert report.passed and len(report.rounds) == 1 and calls == []
+    # the ordinary words 問題 / 문제 ("problem", "question") are no longer forced to "exercises"
+    assert C.glossary(doc(seg("q", "次の問題に答えなさい。", "Answer the following questions.", src="ja"), src="ja"),
+                      opts(), pairs_ja) == []
+    issues = C.glossary(doc(seg("p", "練習問題 1", "Practice 1", src="ja"), src="ja"), opts(), pairs_ja)
+    assert [i.details["target_term"] for i in issues] == ["exercises"]
+    assert C.glossary(doc(seg("k", "다음 문제를 푸시오.", "Solve the following problems.", src="ko"), src="ko"),
+                      opts(), pairs_ko) == []
+    # the Korean term for 质数 can occur literally in a translation
+    pairs_zh_ko = default_glossary().pairs("zh", "ko")
+    assert ("质数", "소수") in pairs_zh_ko
+    assert C.glossary(doc(seg("p", "2 是最小的质数。", "2는 가장 작은 소수이다.", src="zh"), tgt="ko"), opts("ko"), pairs_zh_ko) == []
+
+
+@pytest.mark.parametrize("term,text,lang", [
+    ("triángulo rectángulo", "Los triángulos rectángulos tienen un ángulo recto.", "es"),
+    ("raíz cuadrada", "Las raíces cuadradas de 16 son 4 y -4.", "es"),
+    ("raiz quadrada", "As raízes quadradas de 16 são 4 e -4.", "pt"),
+    ("ângulo reto", "quatro ângulos retos", "pt"),
+    ("número primo", "los números primos", "es"),
+    ("ecuación cuadrática", "las ecuaciones cuadráticas", "es"),
+    ("equação", "Resolva as equações.", "pt"),
+    ("função afim", "as funções afins", "pt"),
+    ("coordinates", "The coordinate axes intersect at the origin.", "en"),
+    ("vertex", "the vertices of the polygon", "en"),
+    ("theorem", "Two theorems follow.", "en"),
+    ("Teorema de Pitágoras", "pelo TEOREMA DE PITAGORAS", "pt"),
+    ("hypotenuse-side", "the hypotenuse-side", "en"),
+    ("직각삼각형", "직각 삼각형은 한 개의 직각을 가진다.", "ko"),
+    ("피타고라스 정리", "피타고라스정리에 의해 c² = a² + b²이다.", "ko"),
+    ("斜辺", "斜辺の長さ", "ja"),
+])
+def test_term_present_is_inflection_and_spacing_aware(term, text, lang):
+    assert term_present(term, text, lang)
+
+
+@pytest.mark.parametrize("term,text,lang", [
+    ("hypotenuse", "the long side", "en"), ("equation", "Solve the formulas.", "en"),
+    ("hypotenuse-side", "the hypotenuse.", "en"), ("triángulo rectángulo", "un triángulo", "es"),
+    ("raíz cuadrada", "la raíz", "es"), ("직각삼각형", "삼각형", "ko"), ("斜辺", "斜め", "ja"),
+])
+def test_term_present_still_rejects_missing_terms(term, text, lang):
+    assert not term_present(term, text, lang)
+
+
+def test_glossary_check_accepts_inflected_latin_targets_and_korean_spacing():
+    pairs_en_es = default_glossary().pairs("en", "es")
+    right = seg("r", "Right triangles have one right angle.", "Los triángulos rectángulos tienen un ángulo recto.", src="en")
+    roots = seg("s", "The square roots of 16 are 4 and -4.", "Las raíces cuadradas de 16 son 4 y -4.", src="en")
+    wrong = seg("w", "Right triangles have one right angle.", "Los triángulos tienen un ángulo recto.", src="en")
+    issues = C.glossary(doc(right, roots, wrong, src="en", tgt="es"), opts("es"), pairs_en_es)
+    assert [(i.segment_id, i.details["target_term"]) for i in issues] == [("w", "triángulo rectángulo")]
+    pairs_en_pt = default_glossary().pairs("en", "pt")
+    pt = seg("p", "A rectangle has four right angles.", "Um retângulo tem quatro ângulos retos.", src="en")
+    assert C.glossary(doc(pt, src="en", tgt="pt"), opts("pt"), pairs_en_pt) == []
+    # the shipped sample's "think" paragraph, zh -> es, is a correct translation
+    zh, es = sample_texts("zh"), sample_texts("es")
+    think = seg("t", zh["think"].replace("证明", "给出证明"), es["think"].replace("demostrar", "dar una demostración de"))
+    assert C.glossary(doc(think, tgt="es"), opts("es"), default_glossary().pairs("zh", "es")) == []
+    pairs_en_ko = default_glossary().pairs("en", "ko")
+    spaced = seg("k", "A right triangle has one right angle.", "직각 삼각형은 한 개의 직각을 가진다.", src="en")
+    unspaced = seg("u", "By the Pythagorean theorem, c² = a² + b².", "피타고라스정리에 의해 c² = a² + b²이다.", src="en")
+    missing = seg("m", "A right triangle has one right angle.", "삼각형은 한 개의 직각을 가진다.", src="en")
+    issues = C.glossary(doc(spaced, unspaced, missing, src="en", tgt="ko"), opts("ko"), pairs_en_ko)
+    assert [(i.segment_id, i.details["target_term"]) for i in issues] == [("m", "직각삼각형")]
 
 
 def test_length_ratio_warning_bounds():
@@ -258,6 +431,54 @@ def test_formatting_newlines_and_terminal_punctuation():
     issues = C.formatting(doc(breaks, question, not_question, cjk_period, two_lines), opts(), [])
     assert sorted(i.segment_id for i in issues) == ["b", "n", "q"]
     assert "question mark" in next(i.message for i in issues if i.segment_id == "q")
+
+
+@pytest.mark.parametrize("src,tgt,source,translated", [
+    ("ja", "en", "3. 辺が 7、24、25 の三角形は直角三角形か。", "3. Is a triangle with sides 7, 24, 25 a right triangle?"),
+    ("ja", "zh", "三角形の面積はいくらですか。", "三角形的面积是多少？"),
+    ("ja", "ko", "これは直角三角形ですか。", "이것은 직각삼각형입니까?"),
+    ("en", "ja", "What is the area of the triangle?", "三角形の面積はいくらですか。"),
+    ("en", "ja", "Is this a right triangle?", "これは直角三角形ですか？"),
+    ("zh", "ja", "这个三角形是直角三角形吗？", "この三角形は直角三角形ですか。"),
+    ("zh", "en", "这个三角形是直角三角形吗。", "Is this triangle a right triangle?"),
+    ("ja", "en", "どちらが大きいかな。", "Which one is bigger?"),
+])
+def test_formatting_accepts_japanese_ka_question(src, tgt, source, translated):
+    assert C.formatting(doc(seg("q", source, translated, src=src), src=src, tgt=tgt), opts(tgt), []) == []
+
+
+def test_formatting_still_rejects_lost_or_added_question_marks_and_warns_on_cjk_exclamations():
+    lost = seg("l", "3. 辺が 7、24、25 の三角形は直角三角形か。", "3. A triangle with sides 7, 24, 25 is a right triangle.", src="ja")
+    added = seg("a", "三角形の面積を求めよ。", "What is the area of the triangle?", src="ja")
+    issues = C.formatting(doc(lost, added, src="ja", tgt="en"), opts(), [])
+    assert sorted((i.segment_id, i.severity) for i in issues) == [("a", "error"), ("l", "error")]
+    assert all("question mark" in i.message for i in issues)
+    # か。 is Japanese only: the same ending in a Chinese source is not a question
+    zh = seg("z", "他来了吗。", "He has arrived.")  # 吗。 is a question
+    assert names(C.formatting(doc(zh), opts(), [])) == ["formatting"]
+    # CJK textbooks render "Let's try it!" as やってみよう。/ 试一试。: a hint, not a blocking error
+    exclaim = seg("e", "Let's try it!", "やってみよう。", src="en")
+    issues = C.formatting(doc(exclaim, src="en", tgt="ja"), opts("ja"), [])
+    assert [(i.severity, i.details["source_ending"]) for i in issues] == [("warning", "exclamation")]
+    back = seg("b", "试一试。", "Try it!")
+    issues = C.formatting(doc(back), opts(), [])
+    assert [(i.severity, i.details["translation_ending"]) for i in issues] == [("warning", "exclamation")]
+    # between Latin languages an exclamation mark must still be preserved
+    latin = seg("x", "Try it!", "Inténtalo.", src="en")
+    assert [i.severity for i in C.formatting(doc(latin, src="en", tgt="es"), opts("es"), [])] == ["error"]
+    # loop level: the shipped Japanese exercise translated correctly passes in round 1
+    d = doc(seg("ex3", sample_texts("ja")["ex3"], "3. Is a triangle with sides 7, 24, 25 a right triangle?", src="ja"), src="ja")
+    report = run_qa_loop(d, opts(max_qa_rounds=3), glossary_pairs=default_glossary().pairs("ja", "en"),
+                         retranslate=lambda ids: None)
+    assert report.passed and len(report.rounds) == 1
+    # the offline mock translator keeps the question mark of a か。 question too, so the
+    # Japanese sample passes the formatting check in every direction
+    from mathtrans.translate.mock import pseudo_translate_text
+
+    source = sample_texts("ja")["ex3"]
+    for tgt in ("en", "zh", "ko", "es"):
+        translated = pseudo_translate_text(source, "ja", tgt)
+        assert C.formatting(doc(seg("m", source, translated, src="ja", raw=translated), src="ja", tgt=tgt), opts(tgt), []) == [], (tgt, translated)
 
 
 def test_layout_fit_from_render_info():
@@ -717,3 +938,36 @@ def test_report_markdown_keeps_pipeline_summary_and_escapes_cells():
     assert "**Result:** QA FAILED after 1 round: 1 error, 0 warnings; output file checks: 0 error(s)" in md
     assert "pipe \\| and newline" in md and "hypotenuse \\| 31" in md
     assert md.count("\n|") >= 4 and "\n\n\n" not in md
+
+
+def test_used_glossary_pairs_compiles_each_term_once(monkeypatch):
+    """A glossary larger than the per-term regex caches (4096) must not recompile every
+    pattern for every segment (that cost seconds per segment and round); patterns are
+    compiled once per glossary and the shadowing semantics are unchanged."""
+    import re
+
+    compiled: list[str] = []
+    real_compile = re.compile
+    monkeypatch.setattr(C.re, "compile", lambda pattern, *a, **k: (compiled.append(pattern), real_compile(pattern, *a, **k))[1])
+    pairs_en = [(f"synthterm{i}", f"目标{i}") for i in range(6000)] + default_glossary().pairs("en", "zh")
+    pairs_en.sort(key=lambda p: (-len(p[0]), p[0]))  # longest source term first, as Glossary.pairs does
+    C._compiled_pairs.cache_clear()
+    sentences = ["The legs of a right triangle and synthterm12.", "Area and hypotenuse: synthterm4321, synthterm4321 again.",
+                 "Nothing to see here."]
+    used = [C.used_glossary_pairs(s, pairs_en, "en") for s in sentences]
+    assert len(compiled) <= len(pairs_en), f"{len(compiled)} compilations for {len(pairs_en)} pairs over 3 segments"
+    assert ("synthterm12", "目标12") in used[0] and ("leg", "直角边") in used[0] and ("right triangle", "直角三角形") in used[0]
+    assert ("triangle", "三角形") not in used[0]  # shadowed by "right triangle"
+    assert ("synthterm4321", "目标4321") in used[1] and ("synthterm432", "目标432") not in used[1] and used[2] == []
+    before = len(compiled)
+    C.used_glossary_pairs("synthterm7 and synthterm77", pairs_en, "en")
+    assert len(compiled) == before  # cached per glossary
+    pairs_es = [(f"terminosint{i}", f"目标{i}") for i in range(5000)] + default_glossary().pairs("es", "zh")
+    pairs_es.sort(key=lambda p: (-len(p[0]), p[0]))
+    used_es = C.used_glossary_pairs("Cuatro triángulos rectángulos congruentes forman un cuadrado.", pairs_es, "es")
+    assert ("triángulo rectángulo", "直角三角形") in used_es and ("triángulo", "三角形") not in used_es
+    pairs_zh = [(f"术语{i}", f"term{i}") for i in range(5000)] + default_glossary().pairs("zh", "en")
+    pairs_zh.sort(key=lambda p: (-len(p[0]), p[0]))
+    used_zh = C.used_glossary_pairs("直角三角形是三角形。术语12", pairs_zh, "zh")
+    assert ("直角三角形", "right triangle") in used_zh and ("三角形", "triangle") in used_zh and ("术语12", "term12") in used_zh
+    assert ("术语1", "term1") not in used_zh

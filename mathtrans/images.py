@@ -32,11 +32,14 @@ from .interfaces import OcrEngine
 from .languages import is_cjk, letters_of_script, script_profile
 from .models import (make_placeholder, BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
-from .ocr import OcrError
+from .ocr import OcrError, OcrUnavailableError
 from .protect import is_fully_protected, protect_text
 
 logger = logging.getLogger("mathtrans.images")
 
+#: Images with more pixels than this are not decoded or OCR'd (a 600 dpi A4 scan is ~35 MP; a
+#: 12000x12000 flate "decompression bomb" is 144 MP and ~2 GB of RSS at full resolution).
+MAX_IMAGE_PX = 50_000_000
 #: Smallest font (pixels) used when redrawing text; below this the result is unreadable.
 MIN_FONT_PX = 8
 #: Initial font size relative to the OCR box height.
@@ -390,6 +393,14 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
     neither source-script nor Latin letters (the same rule the text extractor
     applies) are kept as is. A single CJK character (``图``, ``解``) is a word
     and is translated.
+
+    Korean sanity gate: a line of a Korean source that contains Han characters
+    but no hangul at all (``臣C`` for ``빗변 c``, ``二 1-1`` for ``그림 1-1``) is
+    almost always a misread by the zh/en OCR models rather than a hanja-only
+    label; it is kept as is (``unreliable OCR``) so that garbage is never
+    painted over a correct label. Latin-only labels (``Area = c²``) are still
+    translated. No such gate exists for Japanese, where kanji-only labels
+    (``小正方形``) are legitimate.
     """
     stripped = text.strip()
     if not stripped:
@@ -403,9 +414,16 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
         return protected, fragments, False, "single letter"
     if not letters or is_fully_protected(protected):
         return protected, fragments, False, "pure number / formula"
-    if letters_of_script(stripped, source_lang) == 0 and script_profile(stripped)["latin"] == 0:
+    profile = script_profile(stripped)
+    if letters_of_script(stripped, source_lang) == 0 and profile["latin"] == 0:
         return protected, fragments, False, "no source-script letters"
+    if Lang.parse(source_lang) is Lang.KO and profile["hangul"] == 0 and profile["han"] > 0:
+        return protected, fragments, False, UNRELIABLE_OCR_KO
     return protected, fragments, True, ""
+
+
+UNRELIABLE_OCR_KO = "unreliable OCR (Han characters but no hangul in a Korean source)"
+"""``skip_reason`` of Korean OCR lines rejected by the sanity gate of :func:`classify_ocr_text`."""
 
 
 MAX_TEXT_SLANT_DEGREES = 12.0
@@ -425,10 +443,110 @@ def polygon_slant_degrees(polygon: list[list[float]]) -> float:
     return min(angle, 180.0 - angle)
 
 
+# --------------------------------------------------------------------------- #
+# superscripts flattened by OCR
+# --------------------------------------------------------------------------- #
+
+PixelBox = tuple[int, int, int, int]
+
+#: OCR text ending in one or two digits right after a letter, digit or closing bracket (``c2``, ``x10``,
+#: ``(a+b)2``): the digits may be a superscript the OCR engine read as plain digits.
+_TRAILING_DIGITS_RE = re.compile(r"[A-Za-z0-9)\]]\s?([0-9]{1,2})$")
+_SUPERSCRIPT_DIGITS = str.maketrans("0123456789", "⁰¹²³⁴⁵⁶⁷⁸⁹")
+#: A trailing glyph counts as raised when its bottom sits at least this fraction of the box height
+#: above the baseline of the other glyphs (a descender of ``g`` / ``y`` stays well below this)...
+SUPERSCRIPT_MIN_RAISE = 0.2
+#: ... and as clearly raised above this fraction.
+SUPERSCRIPT_STRONG_RAISE = 0.3
+#: A raised glyph must also be smaller than the tallest other glyph: at most this fraction of its height
+#: when merely raised, a little more when clearly raised (a superscript after an x-height letter).
+SUPERSCRIPT_MAX_HEIGHT = 0.8
+SUPERSCRIPT_MAX_HEIGHT_STRONG = 0.9
+#: Boxes lower than this (pixels) are too coarse for the geometry to be trusted.
+SUPERSCRIPT_MIN_BOX_PX = 12
+
+
+def glyph_clusters(ink: np.ndarray) -> list[tuple[int, int]]:
+    """``[(x0, x1), ...]`` runs of columns containing ink, separated by at least one empty column."""
+    cols = ink.any(axis=0)
+    out: list[tuple[int, int]] = []
+    start: Optional[int] = None
+    for i, filled in enumerate(cols):
+        if filled and start is None:
+            start = i
+        elif not filled and start is not None:
+            out.append((start, i))
+            start = None
+    if start is not None:
+        out.append((start, len(cols)))
+    return out
+
+
+def restore_superscripts(loaded: LoadedImage, box: PixelBox, text: str, bg: np.ndarray) -> str:
+    """Put back a trailing superscript that OCR flattened to plain digits (``c2`` -> ``c²``).
+
+    The OCR engines cannot tell ``c²`` from ``c2``, and the whole line is later
+    repainted from the recognised text, so a flattened exponent would silently
+    change the formula in the figure. The glyph geometry inside ``box`` still
+    knows: the trailing digit glyphs are taken from the column profile of the
+    ink (pixels farther than ``FREE_TOL`` from the background ``bg``), and when
+    they sit clearly above the baseline of the other glyphs *and* are smaller
+    than the tallest of them, the digits are replaced by their Unicode
+    superscript forms. Flat digits, subscripts and descenders (``g2``) are
+    left as they are; so is anything the heuristic cannot read safely (tiny,
+    noisy or transparent boxes, touching glyphs).
+    """
+    stripped = text.strip()
+    match = _TRAILING_DIGITS_RE.search(stripped)
+    if not match:
+        return text
+    digits = match.group(1)
+    n = len(digits)
+    x0, y0, x1, y1 = box
+    box_h = y1 - y0
+    if box_h < SUPERSCRIPT_MIN_BOX_PX or x1 - x0 <= 0:
+        return text
+    region = loaded.rgb[y0:y1, x0:x1].astype(np.int16)
+    ink = np.abs(region - bg.astype(np.int16)).max(axis=2) > FREE_TOL
+    if loaded.alpha is not None:
+        ink &= loaded.alpha[y0:y1, x0:x1] >= 128
+    if not ink.any() or ink.mean() > 0.5:  # empty, or a busy background rather than glyphs
+        return text
+    clusters = glyph_clusters(ink)
+    if len(clusters) < n + 1 or len(clusters) > 3 * len(stripped) + 2:
+        return text
+
+    def rows(cluster: tuple[int, int]) -> tuple[int, int]:
+        r = np.flatnonzero(ink[:, cluster[0]:cluster[1]].any(axis=1))
+        return int(r.min()), int(r.max()) + 1
+
+    candidates = [rows(c) for c in clusters[-n:]]
+    others = [rows(c) for c in clusters[:-n]]
+    cand_top, cand_bottom = min(t for t, _ in candidates), max(b for _, b in candidates)
+    cand_height = cand_bottom - cand_top
+    baseline = float(np.median([b for _, b in others]))
+    tallest = max(b - t for t, b in others)
+    raise_ratio = (baseline - cand_bottom) / box_h
+    if clusters[-n][0] - clusters[-n - 1][1] > box_h:  # too far from the base glyph to be its exponent
+        return text
+    if raise_ratio >= SUPERSCRIPT_STRONG_RAISE:
+        max_height = SUPERSCRIPT_MAX_HEIGHT_STRONG
+    elif raise_ratio >= SUPERSCRIPT_MIN_RAISE:
+        max_height = SUPERSCRIPT_MAX_HEIGHT
+    else:
+        return text
+    if cand_height >= max_height * tallest:
+        return text
+    return stripped[:match.start(1)] + digits.translate(_SUPERSCRIPT_DIGITS) + stripped[match.end(1):]
+
+
 def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index: int, loaded: LoadedImage,
                         image_bbox: BBox, transform: Any, source_lang: Lang) -> Optional[TextSegment]:
     """Turn one OCR result on image ``xref`` into an ``IMAGE_TEXT`` segment.
 
+    A trailing superscript that the OCR engine flattened to plain digits is
+    restored from the glyph geometry first (:func:`restore_superscripts`), so
+    ``source_text`` carries ``c²`` rather than ``c2``.
     Returns ``None`` when the result's box has no area inside the image.
     """
     box = _clamp_box(result.box, loaded.width, loaded.height)
@@ -442,7 +560,11 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     size_pt = round(box_h_px * vertical_points_per_pixel(transform, loaded.height) * FONT_HEIGHT_RATIO, 1)
     bg, _uniform = estimate_background(loaded.rgb, box, loaded.alpha)
     color = estimate_text_color(loaded.rgb, box, bg, loaded.alpha)
-    protected, fragments, translate, reason = classify_ocr_text(result.text, source_lang)
+    text = restore_superscripts(loaded, box, result.text, bg)
+    if text != result.text:
+        logger.info("page %d image %d: superscript restored from the glyph geometry: %r -> %r", page_index, xref,
+                    result.text, text)
+    protected, fragments, translate, reason = classify_ocr_text(text, source_lang)
     slant = polygon_slant_degrees(result.polygon)
     if translate and MAX_TEXT_SLANT_DEGREES < slant < 90.0 - MAX_TEXT_SLANT_DEGREES:
         translate, reason = False, f"slanted text ({slant:.0f}°): watermark or decoration, kept as is"
@@ -451,7 +573,7 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
         page=page_index,
         kind=SegmentKind.IMAGE_TEXT,
         bbox=page_bbox,
-        source_text=result.text.strip(),
+        source_text=text.strip(),
         protected_text=protected,
         protected=fragments,
         style=SegmentStyle(size=max(size_pt, 1.0), color=rgb_to_int(color), role="label", align="left"),
@@ -471,16 +593,23 @@ def _open_pdf(source: PdfSource) -> tuple[pymupdf.Document, bool]:
 
 def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine: OcrEngine, *,
                            min_confidence: float = 0.6, min_image_px: int = 40,
-                           pages: Optional[list[int]] = None) -> list[TextSegment]:
+                           pages: Optional[list[int]] = None, max_image_px: int = MAX_IMAGE_PX,
+                           failures: Optional[list[str]] = None) -> list[TextSegment]:
     """Run OCR on the images of ``pdf_path`` and return ``IMAGE_TEXT`` segments.
 
     Each image XObject is processed once (on the first page that places it) so
     that a shared image gets one translation; tiny images (below
-    ``min_image_px`` in either dimension), soft masks and OCR results under
-    ``min_confidence`` are ignored. Results that need no translation are still
-    returned with ``translate=False`` and a ``skip_reason`` so the pipeline can
-    report them. Nothing is appended to ``doc`` - the caller extends
-    ``doc.segments``.
+    ``min_image_px`` in either dimension), oversized images (more than
+    ``max_image_px`` pixels - they are never decoded, see :data:`MAX_IMAGE_PX`),
+    soft masks and OCR results under ``min_confidence`` are ignored. Results
+    that need no translation are still returned with ``translate=False`` and a
+    ``skip_reason`` so the pipeline can report them. Nothing is appended to
+    ``doc`` - the caller extends ``doc.segments``.
+
+    An :class:`~mathtrans.ocr.OcrError` on one image is logged, recorded in
+    ``failures`` (when given) and the image is skipped; an
+    :class:`~mathtrans.ocr.OcrUnavailableError` (credentials, model, SDK) is
+    re-raised at once instead of being retried on every remaining image.
     """
     pdf_doc, owned = _open_pdf(pdf_path)
     wanted = set(pages) if pages is not None else None
@@ -500,6 +629,11 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
                 if w < min_image_px or h < min_image_px:
                     logger.debug("page %d: skipping tiny image xref %d (%dx%d px)", page.number, xref, w, h)
                     continue
+                if max_image_px and w * h > max_image_px:
+                    logger.warning("page %d: skipping oversized image xref %d (%dx%d px > %d pixel budget, "
+                                   "MATHTRANS_MAX_IMAGE_MEGAPIXELS); its text is kept as is",
+                                   page.number, xref, w, h, max_image_px)
+                    continue
                 try:
                     loaded = load_image(pdf_doc, xref)
                 except Exception as exc:
@@ -509,8 +643,12 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
                     smasks.add(loaded.smask_xref)
                 try:
                     results = engine.recognize(loaded.flattened(), hint_langs=[doc.source_lang])
+                except OcrUnavailableError:
+                    raise
                 except OcrError as exc:
                     logger.warning("page %d: OCR failed on image xref %d: %s", page.number, xref, exc)
+                    if failures is not None:
+                        failures.append(f"page {page.number + 1} image xref {xref}: {exc}")
                     continue
                 image_bbox = BBox.from_rect(info["bbox"])
                 transform = info.get("transform") or (image_bbox.width, 0.0, 0.0, image_bbox.height,
@@ -675,9 +813,6 @@ def _clear_box(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.nda
         acrop = np.ascontiguousarray(alpha[cy0:cy1, cx0:cx1])
         alpha[cy0:cy1, cx0:cx1] = cv2.inpaint(acrop, mask, INPAINT_RADIUS, cv2.INPAINT_TELEA)
     return bg, "inpainted"
-
-
-PixelBox = tuple[int, int, int, int]
 
 
 def free_extension(original: LoadedImage, box: PixelBox, bg: np.ndarray, blocked: list[PixelBox],
@@ -881,15 +1016,82 @@ def resolve_placement(pdf_doc: pymupdf.Document, page: pymupdf.Page, ref: ImageR
     return None
 
 
+def _xobject_owner(pdf_doc: pymupdf.Document, page: pymupdf.Page) -> Optional[tuple[int, str]]:
+    """``(xref, path)`` of the object that holds the page's ``/XObject`` resource dictionary directly.
+
+    ``Document.xref_set_key`` only edits the object it is given: a path through
+    an indirect ``/Resources`` object is not followed, so the owner (the page,
+    its indirect resources, the indirect ``/XObject`` dictionary, or an
+    ancestor ``/Pages`` node when the resources are inherited) is resolved
+    first. ``path`` is the key path inside that object (empty when the owner
+    *is* the ``/XObject`` dictionary). ``None`` when there is no such dictionary.
+    """
+    owner = page.xref
+    kind, value = pdf_doc.xref_get_key(owner, "Resources")
+    while kind == "null":  # inherited resources
+        pkind, parent = pdf_doc.xref_get_key(owner, "Parent")
+        if pkind != "xref":
+            return None
+        owner = int(parent.split()[0])
+        kind, value = pdf_doc.xref_get_key(owner, "Resources")
+    if kind == "xref":
+        owner, path = int(value.split()[0]), "XObject"
+    elif kind == "dict":
+        path = "Resources/XObject"
+    else:
+        return None
+    kind, value = pdf_doc.xref_get_key(owner, path)
+    if kind == "xref":
+        return int(value.split()[0]), ""
+    if kind == "dict":
+        return owner, path
+    return None
+
+
+def replace_image(page: pymupdf.Page, xref: int, stream: bytes) -> None:
+    """``page.replace_image(xref, stream=...)`` without leaving a second copy of the image behind.
+
+    PyMuPDF implements ``replace_image`` as ``insert_image`` (a new image
+    object under a new ``/XObject`` resource name plus an extra ``/Contents``
+    stream, which is then blanked) followed by ``xref_copy(new -> old)``. The
+    drawn ``xref`` ends up with the new pixels, but the never-drawn duplicate
+    stays referenced from the page resources, so no garbage collection level
+    drops it and every replaced image is stored twice. The resource entry the
+    call added (identified by name, which is unambiguous where xrefs and
+    digests of two identical images are not) is set to ``null`` here - the PDF
+    equivalent of an absent entry - so a save with ``garbage >= 1`` discards
+    the duplicate. When the resource dictionary cannot be located the
+    duplicate is left in place (the output is still correct, just larger).
+    """
+    doc = page.parent
+    before = {im[7] for im in page.get_images(full=True) if im[9] == 0}
+    page.replace_image(xref, stream=stream)
+    stale = [im[7] for im in page.get_images(full=True) if im[9] == 0 and im[7] not in before]
+    if not stale:
+        return
+    owner = _xobject_owner(doc, page)
+    if owner is None:
+        logger.debug("page %d: cannot locate the /XObject resources; the duplicate of image %d stays", page.number, xref)
+        return
+    owner_xref, path = owner
+    for name in stale:
+        try:
+            doc.xref_set_key(owner_xref, f"{path}/{name}" if path else name, "null")
+        except Exception as exc:  # pragma: no cover - defensive: odd resource dictionaries
+            logger.debug("page %d: cannot drop duplicate image resource %s: %s", page.number, name, exc)
+    page._image_info = None
+
+
 def render_image_segments(pdf_doc: pymupdf.Document, doc: TranslatedDocument, *,
                           fonts_dir: Optional[Union[str, Path]] = None) -> int:
     """Paint translated ``IMAGE_TEXT`` segments into their images and replace them in ``pdf_doc``.
 
     Segments are grouped by image xref; each image is decoded once, every
     translation is drawn (original glyphs erased first), and the image stream
-    is replaced on the page that references it - ``page.replace_image`` swaps
-    the stream behind the xref, so all placements are updated while the
-    placement rectangles and pixel dimensions stay unchanged. The image is
+    is replaced on the page that references it - :func:`replace_image` swaps
+    the stream behind the xref (without the duplicate object that
+    ``page.replace_image`` leaves behind), so all placements are updated while
+    the placement rectangles and pixel dimensions stay unchanged. The image is
     located by its placement rectangle and pixel size, so segments extracted
     from the source PDF still apply after the document was re-saved with
     renumbered xrefs. Translations identical to the source text leave the
@@ -953,7 +1155,7 @@ def render_image_segments(pdf_doc: pymupdf.Document, doc: TranslatedDocument, *,
         stream = encode_image(canvas, alpha, loaded.ext, qtables=loaded.jpeg_qtables,
                               subsampling=loaded.jpeg_subsampling)
         try:
-            page.replace_image(placement.xref, stream=stream)
+            replace_image(page, placement.xref, stream)
         except Exception as exc:
             logger.error("page %d: replace_image(xref=%d) failed: %s", page_index, placement.xref, exc)
             _mark_failed(segs, f"image replacement failed: {exc}")

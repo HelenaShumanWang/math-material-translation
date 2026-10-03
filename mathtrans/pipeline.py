@@ -25,7 +25,7 @@ import pymupdf
 from .config import Settings, get_settings
 from .glossary import effective_glossary
 from .languages import detect_language
-from .interfaces import OcrEngine, ProgressCallback, Reviewer, Translator
+from .interfaces import OcrEngine, ProgressCallback, Reviewer, TranslationError, Translator
 from .models import (Lang, PipelineOptions, PipelineResult, PipelineStats, QAIssue, SegmentKind,
                      TranslatedDocument)
 
@@ -59,16 +59,17 @@ def _document_context(doc: TranslatedDocument) -> str:
     return " ".join(parts)
 
 
-def _effective_pages(source_pdf: Path, options: PipelineOptions) -> tuple[Optional[list[int]], int]:
+def _effective_pages(source_pdf: Path, options: PipelineOptions) -> tuple[Optional[list[int]], int, int]:
     """Pages to process (None = all) after applying ``options.pages`` and
-    ``options.skip_pages``; also returns how many pages are skipped."""
+    ``options.skip_pages``; also returns how many pages are skipped and the
+    document's page count."""
     with pymupdf.open(str(source_pdf)) as pdf:
         n = pdf.page_count
     base = options.pages if options.pages is not None else list(range(n))
     skip = {p for p in (options.skip_pages or []) if 0 <= p < n}
     if not skip:
-        return options.pages, 0
-    return [p for p in base if p not in skip], len(set(base) & skip)
+        return options.pages, 0, n
+    return [p for p in base if p not in skip], len(set(base) & skip), n
 
 
 def _atomic_save(doc: pymupdf.Document, path: Path) -> None:
@@ -132,9 +133,16 @@ def run_pipeline(
 
         # ------------------------------------------------------------ extract
         report_progress("extract", "Extracting text and layout", 1)
-        pages, stats.pages_skipped = _effective_pages(source_pdf, options)
+        pages, stats.pages_skipped, total_pages = _effective_pages(source_pdf, options)
         if pages is not None and not pages:
             raise PipelineError("every page is excluded by the page selection; nothing to translate")
+        # Memory grows with every rendered page (and with every segment, see layout.py), so a
+        # document is refused before any work starts when it exceeds the configured page limit.
+        max_pages = int(getattr(settings, "max_pages", 0) or 0)
+        n_pages = len(set(pages)) if pages is not None else total_pages
+        if max_pages and n_pages > max_pages:
+            raise PipelineError(f"{n_pages} pages to translate exceed the limit of {max_pages} pages "
+                                f"(MATHTRANS_MAX_PAGES); split the document, select fewer pages or raise the limit")
         doc = extract_document(source_pdf, target_lang=options.target_lang,
                                source_lang=options.source_lang, pages=pages)
         if doc.text_segments() and doc.source_lang == options.target_lang:
@@ -152,32 +160,50 @@ def run_pipeline(
         engine_name = "none"
         if options.translate_images:
             from .images import extract_image_segments
-            from .ocr import get_ocr_engine
+            from .ocr import OcrUnavailableError, get_ocr_engine, ocr_low_trust
 
-            engine = ocr_engine or get_ocr_engine(settings.resolved_ocr(options.ocr_engine), settings)
+            requested_engine = settings.resolved_ocr(options.ocr_engine)
+            max_image_px = int(settings.max_image_megapixels * 1_000_000)
+            # The automatic choice depends on the source language (ja/ko prefer Claude vision).
+            engine = ocr_engine or get_ocr_engine(requested_engine, settings, source_lang=doc.source_lang)
             if engine is not None and engine.name != "none":
                 engine_name = engine.name
-                if not doc.text_segments() and options.source_lang is None:
-                    # Scanned document (no text layer): detect the language from the OCR text
-                    # of the first pages before classifying every image region.
-                    probe_pages = (pages if pages is not None else list(range(doc.page_count)))[:2]
-                    report_progress("ocr", "Scanned document: detecting the source language", 6)
-                    probe = extract_image_segments(source_pdf, doc, engine, pages=probe_pages)
-                    detected = detect_language(" ".join(seg.source_text for seg in probe))
-                    if detected is not None and detected != doc.source_lang:
-                        log.info("scanned document: source language %s detected from OCR text (was %s)",
-                                 detected.value, doc.source_lang.value)
-                        doc.source_lang = detected
-                        stats.source_lang = detected.value
-                    if doc.source_lang == options.target_lang:
-                        raise PipelineError(
-                            f"Source language ({doc.source_lang.value}) equals the target language; "
-                            "choose a different target")
-                report_progress("ocr", f"Recognising text inside images ({engine_name})", 7)
-                image_segments = extract_image_segments(source_pdf, doc, engine, pages=pages)
+                try:
+                    if not doc.text_segments() and options.source_lang is None:
+                        # Scanned document (no text layer): detect the language from the OCR text
+                        # of the first pages before classifying every image region.
+                        probe_pages = (pages if pages is not None else list(range(doc.page_count)))[:2]
+                        report_progress("ocr", "Scanned document: detecting the source language", 6)
+                        probe = extract_image_segments(source_pdf, doc, engine, pages=probe_pages,
+                                                       max_image_px=max_image_px)
+                        detected = detect_language(" ".join(seg.source_text for seg in probe))
+                        if detected is not None and detected != doc.source_lang:
+                            log.info("scanned document: source language %s detected from OCR text (was %s)",
+                                     detected.value, doc.source_lang.value)
+                            doc.source_lang = detected
+                            stats.source_lang = detected.value
+                            if ocr_engine is None:  # re-pick: the automatic choice depends on the language
+                                engine = get_ocr_engine(requested_engine, settings, source_lang=detected)
+                                engine_name = engine.name
+                        if doc.source_lang == options.target_lang:
+                            raise PipelineError(
+                                f"Source language ({doc.source_lang.value}) equals the target language; "
+                                "choose a different target")
+                    doc.ocr_low_trust = ocr_low_trust(engine, doc.source_lang)
+                    if doc.ocr_low_trust:
+                        log.warning("text inside images of this %s document is read by the offline Chinese/English "
+                                    "OCR models, which read it unreliably; QA will flag every translated image "
+                                    "label (use MATHTRANS_OCR_ENGINE=claude / --ocr-engine claude with an API key)",
+                                    doc.source_lang.value)
+                    report_progress("ocr", f"Recognising text inside images ({engine_name})", 7)
+                    image_segments = extract_image_segments(source_pdf, doc, engine, pages=pages,
+                                                            max_image_px=max_image_px, failures=doc.ocr_failures)
+                except OcrUnavailableError as exc:
+                    raise PipelineError(str(exc)) from exc
                 doc.segments.extend(image_segments)
                 stats.image_segments = len(image_segments)
                 stats.images_processed = len({s.image.xref for s in image_segments if s.image})
+                stats.ocr_failures = len(doc.ocr_failures)
                 if options.scanned_mode == "overlay":
                     from .scanned import build_overlay_segments, scanned_pages
 
@@ -192,16 +218,42 @@ def run_pipeline(
                 report_progress("ocr", "No OCR engine available; text inside images is kept as is", 10)
         stats.ocr_engine = engine_name
         pairs = glossary.pairs(doc.source_lang, doc.target_lang)
-        report_progress("ocr", f"{stats.image_segments} text regions found in images", 15)
+        found = f"{stats.image_segments} text regions found in images"
+        if stats.ocr_failures:
+            found += f"; OCR failed on {stats.ocr_failures} image(s)"
+        report_progress("ocr", found, 15)
+        nothing_to_translate: Optional[str] = None  # set when the run legitimately translates nothing
         if not doc.translatable():
-            if not doc.text_segments() and engine_name == "none":
-                why = ("translation of text inside images is disabled" if not options.translate_images
-                       else "no OCR engine is available")
+            ocr_why = ("translation of text inside images is disabled" if not options.translate_images
+                       else "no OCR engine is available" if engine_name == "none"
+                       else f"OCR failed on {len(doc.ocr_failures)} image(s): {doc.ocr_failures[0]}"
+                       if doc.ocr_failures else "")
+            if not doc.text_segments():
+                # No text layer at all: a scanned document whose images were not read, or a blank one.
+                if engine_name == "none":
+                    raise PipelineError(
+                        f"The PDF has no text layer (scanned document) and {ocr_why}: enable OCR "
+                        "(translate_images / MATHTRANS_OCR_ENGINE=rapid with rapidocr-onnxruntime installed, or "
+                        "=claude with an API key) or supply a PDF with a text layer")
+                if doc.ocr_failures:
+                    raise PipelineError(f"The PDF has no text layer (scanned document) and {ocr_why}")
+                raise PipelineError("No translatable text was found in the selected pages")
+            # The text layer exists but every block is numbers / formulas / labels. That is a legitimate
+            # document (a formula sheet: the output equals the source and QA says so below) unless the
+            # pages carry images whose text was never read: then an untranslated scan would be served as
+            # if it were done, which is exactly what the mandatory QA gate must prevent.
+            processed = set(pages) if pages is not None else None
+            n_images = sum(len(p.image_bboxes) for p in doc.pages if processed is None or p.index in processed)
+            if n_images and ocr_why:
                 raise PipelineError(
-                    f"The PDF has no text layer (scanned document) and {why}: enable OCR "
-                    "(translate_images / MATHTRANS_OCR_ENGINE=rapid with rapidocr-onnxruntime installed, or "
-                    "=claude with an API key) or supply a PDF with a text layer")
-            raise PipelineError("No translatable text was found in the selected pages")
+                    f"The text layer of the selected pages contains only numbers / formulas and the text inside "
+                    f"their {n_images} image(s) was not recognised ({ocr_why}); enable image translation / OCR "
+                    "(translate_images / MATHTRANS_OCR_ENGINE) and run again")
+            nothing_to_translate = (
+                f"Nothing to translate: the {stats.text_segments} text block(s) of the selected pages contain only "
+                f"numbers, formulas or labels and no text was found inside images; the output is identical to "
+                f"the source")
+            log.warning(nothing_to_translate)
 
         # ---------------------------------------------------------- translate
         translator_name = settings.resolved_translator(options.translator)
@@ -231,7 +283,8 @@ def run_pipeline(
         def render_all(message: str = "Laying out translated text") -> None:
             report_progress("layout", message, 60)
             render_document(source_pdf, doc, out_pdf, min_font_scale=options.min_font_scale,
-                            fonts_dir=settings.fonts_dir, pages=pages)
+                            fonts_dir=settings.fonts_dir, pages=pages,
+                            checkpoint_pages=int(getattr(settings, "render_checkpoint_pages", 25) or 0))
             image_targets = [s for s in doc.image_segments() if s.translated_text and s.translate]
             from .scanned import MERGED
 
@@ -257,12 +310,24 @@ def run_pipeline(
 
         # ------------------------------------------------------------ QA loop
         def retranslate(ids: list[str]) -> None:
-            for seg in doc.segments:
-                if seg.id in ids:
-                    seg.render = None
+            wanted = set(ids)
+            targets = [seg for seg in doc.segments if seg.id in wanted]
+            # translate_segments applies the results chunk by chunk; a backend failure half-way through
+            # must leave the document exactly as it was rendered and checked (output.pdf is not re-laid
+            # out after the failure), so segments.json and the QA report keep describing that file.
+            snapshot = {seg.id: (seg.translation_raw, seg.translated_text, seg.attempts, list(seg.feedback),
+                                 seg.render) for seg in targets}
+            for seg in targets:
+                seg.render = None
             report_progress("qa", f"Re-translating {len(ids)} segments with QA feedback", 55)
-            translate_segments(doc, translator, max_chars=settings.batch_chars, doc_context=doc_context,
-                               only_ids=ids)
+            try:
+                translate_segments(doc, translator, max_chars=settings.batch_chars, doc_context=doc_context,
+                                   only_ids=ids)
+            except TranslationError:
+                for seg in targets:
+                    (seg.translation_raw, seg.translated_text, seg.attempts,
+                     seg.feedback, seg.render) = snapshot[seg.id]
+                raise
             render_all("Re-laying out corrected segments")
 
         def qa_progress(stage: str, message: str, percent: float) -> None:
@@ -271,6 +336,13 @@ def run_pipeline(
         report_progress("qa", "Running automatic quality checks", 46)
         report = run_qa_loop(doc, options, glossary_pairs=pairs, retranslate=retranslate,
                              reviewer=reviewer, progress=qa_progress)
+        if nothing_to_translate:
+            # Say so in the report instead of a bare "QA passed" over zero segments.
+            issue = QAIssue(check="completeness", severity="warning", fixable=False, message=nothing_to_translate)
+            report.rounds[-1].issues.append(issue)
+            report.final_issues.append(issue)
+            report.warnings += 1
+            report.summary = summarize(report)
         stats.qa_rounds = len(report.rounds)
         report_progress("qa", summarize(report), 70)
 

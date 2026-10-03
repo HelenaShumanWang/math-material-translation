@@ -69,7 +69,10 @@ def test_default_glossary_and_checks():
     assert merged.pairs("zh", "en")[0] != ("斜边", "hypotenuse side")  # longest first
     assert ("斜边", "hypotenuse side") in merged.pairs("zh", "en")
     assert ("斜边", "hypotenuse") not in merged.pairs("zh", "en")  # the custom entry replaces the built-in one
-    assert len(merged.entries) == len(g.entries)
+    # precedence is per source term and language pair: the built-in entry stays for the
+    # languages the custom entry does not define
+    assert len(merged.entries) == len(g.entries) + 1
+    assert ("斜边", "hipotenusa") in merged.pairs("zh", "pt")
 
 
 def test_sample_pdf(sample_pdf_zh):
@@ -119,3 +122,105 @@ def test_pipeline_rejects_textless_pdf_without_ocr(tmp_path):
     res = run_pipeline(src, tmp_path / "out", PipelineOptions(target_lang=Lang.EN, translator="mock",
                                                               translate_images=False))
     assert res.status == "error" and "no text layer" in (res.error or "")
+
+
+def test_protect_caps_headings_are_words():
+    """Dictionary words set in capitals (worksheet headings) are translated, not protected."""
+    for text, expected in [
+        ("STEP 1 Draw a right triangle.", ["1"]),
+        ("UNIT 3 Fractions", ["3"]),
+        ("PART 2", ["2"]),
+        ("NOTE", []),
+        ("TIPS Use a ruler.", []),
+        ("TEST YOURSELF", []),
+        ("AREA AND PERIMETER", []),
+        ("SHOW YOUR WORK", []),
+        ("NAME: ______ DATE: ______", []),
+        ("HINT", []),
+        ("FOR EXAMPLE", []),
+        ("DID YOU KNOW?", []),
+        ("ANSWER KEY", []),
+        ("the PDF file", []),
+        ("NASA and the USA", []),
+    ]:
+        protected, frags = protect_text(text, "en")
+        assert frags == expected, (text, frags)
+        assert not is_fully_protected(protected), text
+    for text, lang, expected in [
+        ("TEMA 2", "es", ["2"]),
+        ("NOTA: lee con cuidado.", "es", []),
+        ("MUY IMPORTANTE", "es", []),
+        ("CAPÍTULO 1", "pt", ["1"]),
+        ("SOLUÇÃO", "pt", []),
+        ("EXERCÍCIOS", "pt", []),
+        ("ÁREA DA FIGURA", "pt", []),
+    ]:
+        protected, frags = protect_text(text, lang)
+        assert frags == expected, (text, frags)
+        assert not is_fully_protected(protected), text
+
+
+def test_protect_geometry_labels_stay_protected():
+    """Bare point names ("AB", "ABCD", "OA") and Roman numerals survive verbatim even when
+    nothing glues them to a formula."""
+    for text, lang, expected in [
+        ("ABCD is a square.", "en", ["ABCD"]),
+        ("AB is parallel to CD", "en", ["AB", "CD"]),
+        ("Segment AB is parallel to CD.", "en", ["AB", "CD"]),
+        ("the radius OA and side DA", "en", ["OA", "DA"]),
+        ("In △ABC, AB = 3.", "en", ["△ABC", "AB = 3"]),
+        ("Find the area of triangle ABC.", "en", ["ABC"]),
+        ("triangles ABC and DEF are congruent", "en", ["ABC", "DEF"]),
+        ("quadrilateral PQRS", "en", ["PQRS"]),
+        ("Point A' is the image of A.", "en", ["A'"]),
+        ("UNIT III", "en", ["III"]),
+        ("Chapter XIV", "en", ["XIV"]),
+        ("El triángulo ABC es rectángulo.", "es", ["ABC"]),
+        ("线段AB平行于CD", "zh", ["AB", "CD"]),
+    ]:
+        assert protect_text(text, lang)[1] == expected, text
+
+
+def test_protect_es_pt_sin_is_a_preposition():
+    """In Spanish / Portuguese "sin" means *without*; it is the sine only when its
+    argument is attached or followed by more math (the sine is usually "sen" there)."""
+    assert protect_text("Un polígono sin 3 lados iguales.", "es")[1] == ["3"]
+    assert protect_text("Un número sin 5 divisores.", "es")[1] == ["5"]
+    assert protect_text("sin30° = 1/2", "es")[1] == ["sin30° = 1/2"]
+    assert protect_text("sin(x) = 1/2", "es")[1] == ["sin(x) = 1/2"]
+    assert protect_text("sin 30° = 1/2", "es")[1] == ["sin 30° = 1/2"]
+    frags = protect_text("Calcula sen 30° e tg 45°.", "pt")[1]
+    assert frags and frags[0].startswith("sen 30°") and frags[-1].endswith("tg 45°")
+    # English keeps the function
+    assert protect_text("sin 3 lados", "en")[1] == ["sin 3"]
+
+
+def test_pipeline_translates_caps_headings_and_keeps_labels(tmp_path):
+    """Worksheet headings set in capitals are translated (no segment is skipped as
+    'no translatable text') while bare geometry labels come through verbatim."""
+    from mathtrans.models import Lang, PipelineOptions, TranslatedDocument
+    from mathtrans.pipeline import run_pipeline
+
+    doc = pymupdf.open()
+    page = doc.new_page()
+    y = 80
+    for line in ["STEP 1 Draw a right triangle.", "NOTE", "SHOW YOUR WORK",
+                 "AB is parallel to CD.", "ABCD is a square."]:
+        page.insert_text((72, y), line, fontsize=14, fontname="helv")
+        y += 40
+    src = tmp_path / "worksheet.pdf"
+    doc.save(str(src))
+    doc.close()
+
+    res = run_pipeline(src, tmp_path / "out", PipelineOptions(
+        target_lang=Lang.ZH, source_lang=Lang.EN, translator="mock", translate_images=False))
+    assert res.status == "completed", res.error
+    translated = TranslatedDocument.model_validate_json(
+        (tmp_path / "out" / "segments.json").read_text(encoding="utf-8"))
+    skipped = [(s.source_text, s.skip_reason) for s in translated.text_segments() if not s.translate]
+    assert skipped == []
+    out_text = pymupdf.open(res.output_pdf)[0].get_text()
+    for heading in ("STEP", "NOTE", "SHOW", "YOUR", "WORK"):
+        assert heading not in out_text, out_text
+    for label in ("AB", "CD", "ABCD"):
+        assert label in out_text, out_text

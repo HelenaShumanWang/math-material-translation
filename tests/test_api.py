@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import os
+import re
 import shutil
 import threading
 import time
@@ -12,11 +14,12 @@ import pymupdf
 import pytest
 from fastapi.testclient import TestClient
 
-from mathtrans.api import create_app
+from mathtrans.api import (MAX_GLOSSARY_ENTRIES, MAX_GLOSSARY_NAME_CHARS, MAX_GLOSSARY_TERM_CHARS, create_app,
+                           cross_site_reason)
 from mathtrans.config import Settings
 from mathtrans.models import (BBox, Lang, PageInfo, PipelineOptions, PipelineResult, PipelineStats, QAIssue,
                               QAReport, QARound, TextSegment, TranslatedDocument)
-from mathtrans.projects import ProjectBusy, ProjectNotFound, ProjectStore, ProjectUnreadable, safe_name
+from mathtrans.projects import PdfTooLarge, ProjectBusy, ProjectNotFound, ProjectStore, ProjectUnreadable, safe_name
 
 
 class FakeRunner:
@@ -144,6 +147,8 @@ def test_index_html_served(make_client):
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
     assert "/api/projects" in r.text and "数学资料翻译" in r.text and "Math Material Translation" in r.text
     assert "<script" in r.text and "src=\"http" not in r.text  # self-contained, no CDN
+    # the retranslate form must encode an emptied skip-pages field as "" (clears it), never as null (keeps it)
+    assert "value.trim() || null" not in r.text and 'skip_pages: $("re-skip").value.trim(),' in r.text
 
 
 # --------------------------------------------------------------------------- #
@@ -240,6 +245,22 @@ def test_options_parsed_from_form(make_client, pdf_bytes):
     assert r.status_code == 400
 
 
+def test_ocr_engine_option_is_parsed_and_validated(make_client, pdf_bytes):
+    runner = FakeRunner()
+    client = make_client(runner)
+    pid = _upload(client, pdf_bytes, ocr_engine="claude")["projects"][0]["id"]
+    assert runner.calls[0]["options"].ocr_engine == "claude"
+    assert _upload(client, pdf_bytes)["projects"][0]["options"]["ocr_engine"] == "auto"
+    r = client.post("/api/projects", files=[("files", ("a.pdf", pdf_bytes, "application/pdf"))],
+                    data={"target_lang": "en", "ocr_engine": "tesseract"})
+    assert r.status_code == 400 and "ocr_engine" in r.text
+    r = client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "ja", "options": {"ocr_engine": "none"}})
+    assert r.status_code == 202, r.text
+    assert r.json()["options"]["ocr_engine"] == "none" and runner.calls[-1]["options"].ocr_engine == "none"
+    r = client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "ja", "options": {"ocr_engine": "x"}})
+    assert r.status_code == 400
+
+
 # --------------------------------------------------------------------------- #
 # QA / preview / download
 # --------------------------------------------------------------------------- #
@@ -324,7 +345,10 @@ def test_retranslate_creates_new_run_and_keeps_history(make_client, pdf_bytes):
     assert len(p["history"]) == 1
     old = p["history"][0]
     assert old["run_id"] == first["current_run"] and old["target_lang"] == "en" and old["status"] == "completed"
-    assert old["qa"]["passed"] is True and old["outputs"]["pdf"].endswith("output.pdf")
+    assert old["qa"]["passed"] is True
+    # what the archived run directory holds (never server paths), like a project view's "downloads"
+    assert old["outputs"] == {"pdf": True, "bilingual": True, "docx": False, "segments": True}
+    assert old["preview_pages"] == 1
     assert p["options"]["bilingual"] is False and p["options"]["max_qa_rounds"] == 2
     assert p["downloads"]["bilingual"] is False and p["downloads"]["pdf"] is True
     assert len(runner.calls) == 2 and runner.calls[1]["options"].target_lang is Lang.PT
@@ -337,6 +361,119 @@ def test_retranslate_creates_new_run_and_keeps_history(make_client, pdf_bytes):
     assert client.post(f"/api/projects/{p['id']}/retranslate", json={"target_lang": "klingon"}).status_code == 400
     assert client.post(f"/api/projects/{p['id']}/retranslate", json={}).status_code == 400
     assert client.post("/api/projects/" + "f" * 32 + "/retranslate", json={"target_lang": "en"}).status_code == 404
+
+
+def test_previous_runs_remain_viewable_and_downloadable(make_client, pdf_bytes):
+    """After a re-translation the previous run's outputs, QA report and previews are still
+    served (``?run=<run_id>`` from the history), judged by that run's own status."""
+
+    class StampedRunner(FakeRunner):
+        """QA fails for Korean targets; output.pdf is stamped with the target language so the runs differ."""
+
+        def _run(self, source_pdf, out_dir, options, settings, progress):
+            self.fail_qa = options.target_lang is Lang.KO
+            result = super()._run(source_pdf, out_dir, options, settings, progress)
+            with open(Path(out_dir) / "output.pdf", "ab") as fh:
+                fh.write(f"\n%target={options.target_lang.value}\n".encode())
+            return result
+
+    client = make_client(StampedRunner())
+    store: ProjectStore = client.app.state.store
+    first = _upload(client, pdf_bytes, bilingual="true")["projects"][0]
+    pid, en_run = first["id"], first["current_run"]
+    url = f"/api/projects/{pid}"
+    r = client.post(f"{url}/retranslate", json={"target_lang": "ko", "options": {"bilingual": False}})
+    assert r.status_code == 202, r.text
+    p = r.json()
+    ko_run = p["current_run"]
+    assert p["status"] == "qa_failed" and p["downloads"]["bilingual"] is False and ko_run != en_run
+    old = p["history"][0]
+    assert old["run_id"] == en_run and old["status"] == "completed" and old["target_lang"] == "en"
+    assert old["outputs"] == {"pdf": True, "bilingual": True, "docx": False, "segments": True}
+    assert old["preview_pages"] == 1
+    # the previous run's PDF is served with ?run= and is the old file, not the current one
+    r = client.get(f"{url}/download", params={"format": "pdf", "run": en_run})
+    assert r.status_code == 200 and r.headers["content-type"] == "application/pdf"
+    assert r.content == (store.run_dir(pid, en_run) / "output.pdf").read_bytes()
+    assert r.content != (store.run_dir(pid, ko_run) / "output.pdf").read_bytes()
+    assert "_en.pdf" in r.headers["content-disposition"]
+    # ... without force, since that run passed QA, while the current (QA-failed) run still needs it
+    assert client.get(f"{url}/download", params={"format": "pdf"}).status_code == 409
+    r = client.get(f"{url}/download", params={"format": "pdf", "force": "1"})
+    assert r.status_code == 200 and "_ko.pdf" in r.headers["content-disposition"]
+    assert r.content == (store.run_dir(pid, ko_run) / "output.pdf").read_bytes()
+    # outputs only the previous run produced
+    r = client.get(f"{url}/download", params={"format": "bilingual", "run": en_run})
+    assert r.status_code == 200 and "_en_bilingual.pdf" in r.headers["content-disposition"]
+    assert client.get(f"{url}/download", params={"format": "bilingual", "force": "1"}).status_code == 404
+    assert client.get(f"{url}/download", params={"format": "docx", "run": en_run}).status_code == 404
+    r = client.get(f"{url}/download", params={"format": "segments", "run": en_run})
+    assert r.status_code == 200 and r.json()["target_lang"] == "en"
+    # QA report (JSON and markdown) and previews of the previous run
+    assert client.get(f"{url}/qa").json()["passed"] is False
+    r = client.get(f"{url}/qa", params={"run": en_run})
+    assert r.status_code == 200 and r.json()["passed"] is True
+    r = client.get(f"{url}/qa", params={"run": en_run, "format": "md"})
+    assert r.status_code == 200 and r.headers["content-type"].startswith("text/markdown") and r.text.strip()
+    r = client.get(f"{url}/preview/1", params={"run": en_run})
+    assert r.status_code == 200 and r.headers["content-type"] == "image/png" and r.content.startswith(b"\x89PNG")
+    assert client.get(f"{url}/preview/2", params={"run": en_run}).status_code == 404
+    # the current run's id and an empty run address the current run (the UI's preview URLs carry it)
+    for run in (ko_run, ""):
+        assert client.get(f"{url}/download", params={"format": "pdf", "force": "1", "run": run}).status_code == 200
+        assert client.get(f"{url}/preview/1", params={"run": run}).status_code == 200
+        assert client.get(f"{url}/qa", params={"run": run}).json()["passed"] is False
+    # unknown and malformed run ids are 404 everywhere (never turned into a path)
+    for bad in ("0" * 16, "../x", "..%2F..%2Fsource.pdf", en_run.upper(), "x" * 16, en_run + "/../" + ko_run):
+        assert client.get(f"{url}/download", params={"format": "pdf", "force": "1", "run": bad}).status_code == 404, bad
+        assert client.get(f"{url}/qa", params={"run": bad}).status_code == 404, bad
+        assert client.get(f"{url}/preview/1", params={"run": bad}).status_code == 404, bad
+    # a QA-failed previous run needs force=1 like the current one, and its file name carries its language
+    r = client.post(f"{url}/retranslate", json={"target_lang": "en"})
+    assert r.status_code == 202 and r.json()["status"] == "completed"
+    assert [h["run_id"] for h in r.json()["history"]] == [en_run, ko_run]
+    assert r.json()["history"][1]["status"] == "qa_failed"
+    r = client.get(f"{url}/download", params={"format": "pdf", "run": ko_run})
+    assert r.status_code == 409 and "force=1" in r.json()["detail"]
+    r = client.get(f"{url}/download", params={"format": "pdf", "run": ko_run, "force": "1"})
+    assert r.status_code == 200 and "_ko.pdf" in r.headers["content-disposition"]
+    assert r.content == (store.run_dir(pid, ko_run) / "output.pdf").read_bytes()
+    assert client.get(f"{url}/download", params={"format": "pdf"}).status_code == 200  # the current run passed
+    assert client.get(f"{url}/qa", params={"run": ko_run}).json()["passed"] is False
+    assert client.get(f"{url}/qa", params={"run": en_run}).json()["passed"] is True
+    # store level: the run id is validated before it becomes a path
+    with pytest.raises(ValueError):
+        store.run_file(store.get(pid), "pdf", run_id="../x")
+    assert store.find_run(store.get(pid), "0" * 16) is None and store.find_run(store.get(pid), ko_run)["status"] == "qa_failed"
+
+
+def test_legacy_history_entries_with_server_paths_are_normalised(make_client, pdf_bytes):
+    """Records written before ``outputs`` became booleans hold the pipeline's absolute paths:
+    the API reports what is on disk instead and still serves the run."""
+    client = make_client()
+    store: ProjectStore = client.app.state.store
+    first = _upload(client, pdf_bytes, bilingual="true")["projects"][0]
+    pid, en_run = first["id"], first["current_run"]
+    assert client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "ja", "options": {"bilingual": False}}).status_code == 202
+    project = store.get(pid)
+    old_dir = store.run_dir(pid, en_run)
+    project.history[0]["outputs"] = {"pdf": str(old_dir / "output.pdf"), "bilingual": str(old_dir / "bilingual.pdf"),
+                                     "docx": None, "segments": str(old_dir / "segments.json")}
+    del project.history[0]["preview_pages"]
+    project.history.append({"run_id": "not a run id", "target_lang": "ko", "status": "error", "outputs": {}})
+    store.update(project)
+    p = client.get(f"/api/projects/{pid}").json()
+    assert p["history"][0]["outputs"] == {"pdf": True, "bilingual": True, "docx": False, "segments": True}
+    assert p["history"][0]["preview_pages"] == 1
+    assert p["history"][1]["outputs"] == {"pdf": False, "bilingual": False, "docx": False, "segments": False}
+    assert p["history"][1]["preview_pages"] == 0
+    assert not any(isinstance(v, str) for h in p["history"] for v in h["outputs"].values())
+    assert str(old_dir) not in client.get(f"/api/projects/{pid}").text
+    r = client.get(f"/api/projects/{pid}/download", params={"format": "bilingual", "run": en_run})
+    assert r.status_code == 200 and "_en_bilingual.pdf" in r.headers["content-disposition"]
+    assert client.get(f"/api/projects/{pid}/download", params={"format": "pdf", "run": "not a run id"}).status_code == 404
+    # the view never rewrites the stored record
+    assert store.get(pid).history[0]["outputs"]["pdf"] == str(old_dir / "output.pdf")
 
 
 def test_glossary_upload_list_and_template(make_client):
@@ -407,7 +544,15 @@ def test_runner_exception_becomes_error_status(make_client, pdf_bytes):
     client2 = make_client(FakeRunner())
     r = client2.post(f"/api/projects/{p['id']}/retranslate", json={"target_lang": "ko"})
     assert r.status_code == 202 and r.json()["status"] == "completed"
-    assert r.json()["history"][0]["status"] == "error"
+    failed = r.json()["history"][0]
+    assert failed["status"] == "error" and failed["preview_pages"] == 0
+    assert failed["outputs"] == {"pdf": False, "bilingual": False, "docx": False, "segments": False}
+    # the failed previous run is refused like a failed current run would be
+    r = client2.get(f"/api/projects/{p['id']}/download", params={"format": "pdf", "run": failed["run_id"]})
+    assert r.status_code == 409 and "runner exploded" in r.json()["detail"]
+    assert client2.get(f"/api/projects/{p['id']}/qa", params={"run": failed["run_id"]}).status_code == 404
+    assert client2.get(f"/api/projects/{p['id']}/preview/1", params={"run": failed["run_id"]}).status_code == 404
+    assert client2.get(f"/api/projects/{p['id']}/download", params={"format": "pdf"}).status_code == 200
 
 
 def test_runner_error_result(make_client, pdf_bytes):
@@ -716,3 +861,397 @@ def test_store_begin_run_is_exclusive_under_concurrency(tmp_path, pdf_bytes):
         store.begin_run(project.id, "zh", options={"max_qa_rounds": 0})
     after = store.get(project.id)
     assert after.status == "error" and after.target_lang is not Lang.ZH and len(after.history) == 1
+
+
+# --------------------------------------------------------------------------- #
+# Page limit (one upload must not be able to exhaust the shared service)
+# --------------------------------------------------------------------------- #
+
+
+def test_upload_page_limit_from_settings(make_client, pdf_bytes):
+    class OnePage(Settings):
+        max_pages: int = 1
+
+    files = [("files", ("a.pdf", pdf_bytes, "application/pdf")), ("files", ("b.pdf", pdf_bytes, "application/pdf"))]
+    client = make_client(settings=OnePage())
+    r = client.post("/api/projects", files=files, data={"target_lang": "en"})
+    assert r.status_code == 413, r.text
+    assert "pages" in r.json()["detail"] and "a.pdf" in r.json()["detail"] and "1 pages" in r.json()["detail"]
+    assert client.get("/api/projects").json() == []  # the batch is all-or-nothing
+    assert list(client.app.state.store.projects_dir.iterdir()) == []
+    # a project uploaded under a higher limit cannot be re-translated once the limit is below its page count
+    default = make_client()  # default limit (500) accepts the 2-page sample
+    pid = _upload(default, pdf_bytes)["projects"][0]["id"]
+    r = client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "ja"})
+    assert r.status_code == 413 and "pages" in r.json()["detail"]
+    p = default.get(f"/api/projects/{pid}").json()
+    assert p["status"] == "completed" and p["history"] == [] and p["target_lang"] == "en"  # nothing was queued
+
+    class TwoPages(Settings):
+        max_pages: int = 2
+
+    assert make_client(settings=TwoPages()).post("/api/projects", files=files[:1], data={"target_lang": "en"}).status_code == 201
+
+
+def test_store_page_limit(tmp_path, pdf_bytes):
+    store = ProjectStore(tmp_path / "data", max_pages=1)
+    with pytest.raises(PdfTooLarge, match="2 pages"):
+        store.create("a.pdf", pdf_bytes, {"target_lang": "en"})
+    assert list(store.projects_dir.iterdir()) == []
+    unlimited = ProjectStore(tmp_path / "data")
+    assert unlimited.max_pages is None and ProjectStore(tmp_path / "data", max_pages=0).max_pages is None
+    project = unlimited.create("a.pdf", pdf_bytes, {"target_lang": "en"})
+    unlimited.finish(project, PipelineResult(status="completed"))
+    with pytest.raises(PdfTooLarge):
+        store.begin_run(project.id, "ja")
+    after = store.get(project.id)
+    assert after.status == "completed" and after.history == [] and after.target_lang is Lang.EN
+    assert ProjectStore(tmp_path / "data", max_pages=2).begin_run(project.id, "ja").status == "queued"
+
+
+# --------------------------------------------------------------------------- #
+# Access control: cross-site mutations and the optional API token
+# --------------------------------------------------------------------------- #
+
+
+def test_cross_site_mutations_are_rejected(make_client, pdf_bytes):
+    runner = FakeRunner()
+    client = make_client(runner)
+    evil = {"Origin": "http://evil.example"}
+    glossary = {"text": "zh,en\n勾股定理,CSRF-planted\n"}
+    files = [("files", ("a.pdf", pdf_bytes, "application/pdf"))]
+    r = client.post("/api/glossaries", data=glossary, headers=evil)
+    assert r.status_code == 403 and "cross-site" in r.json()["detail"]
+    assert client.post("/api/glossaries", data=glossary, headers={"Sec-Fetch-Site": "cross-site"}).status_code == 403
+    r = client.post("/api/projects", files=files, data={"target_lang": "en"}, headers=evil)
+    assert r.status_code == 403
+    assert client.get("/api/projects").json() == [] and runner.calls == []
+    assert len(client.get("/api/glossaries").json()) == 1  # nothing was planted
+    # the web UI's same-origin fetch and header-less clients (curl, CLI) keep working
+    r = client.post("/api/projects", files=files, data={"target_lang": "en"},
+                    headers={"Origin": "http://testserver", "Sec-Fetch-Site": "same-origin"})
+    assert r.status_code == 201, r.text
+    pid = r.json()["projects"][0]["id"]
+    assert client.post("/api/glossaries", data=glossary).status_code == 201
+    # reads are unaffected (the browser's CORS policy already hides their responses from other origins)
+    assert client.get("/api/projects", headers=evil).status_code == 200
+    assert client.get(f"/api/projects/{pid}", headers={"Sec-Fetch-Site": "cross-site"}).status_code == 200
+    # Origin: null (sandboxed frame, redirect) and cross-site JSON / DELETE requests are refused too
+    assert client.delete(f"/api/projects/{pid}", headers={"Origin": "null"}).status_code == 403
+    assert client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "ja"}, headers=evil).status_code == 403
+    p = client.get(f"/api/projects/{pid}").json()
+    assert p["status"] == "completed" and p["history"] == [] and len(runner.calls) == 1
+    assert client.delete(f"/api/projects/{pid}", headers={"Origin": "http://testserver"}).status_code == 200
+    # default ports and a reverse proxy's X-Forwarded-Host count as the same site
+    assert cross_site_reason({"origin": "http://testserver:80", "host": "testserver"}) is None
+    assert cross_site_reason({"origin": "https://Books.example", "host": "10.0.0.5:8000",
+                              "x-forwarded-host": "books.example, 10.0.0.5:8000"}) is None
+    assert cross_site_reason({"origin": "https://books.example:444", "host": "books.example"})
+    assert cross_site_reason({"origin": "http://evil.example", "host": "evil.example.com"})
+    assert cross_site_reason({"host": "testserver"}) is None
+
+
+def test_api_token_required_when_configured(make_client, offline_settings, pdf_bytes):
+    client = make_client(settings=offline_settings.model_copy(update={"api_token": "s3cret"}))
+    files = [("files", ("a.pdf", pdf_bytes, "application/pdf"))]
+    r = client.get("/api/projects")
+    assert r.status_code == 401 and r.headers["www-authenticate"] == "Bearer" and "token" in r.json()["detail"]
+    assert client.post("/api/projects", files=files, data={"target_lang": "en"}).status_code == 401
+    assert client.post("/api/glossaries", data={"text": "zh,en\n斜边,x\n"}).status_code == 401
+    for bad in ({"Authorization": "Bearer wrong"}, {"Authorization": "Bearer s3cre"}, {"Authorization": "Basic s3cret"},
+                {"X-API-Key": "S3CRET"}, {"Cookie": "mathtrans_token=nope"}):
+        assert client.get("/api/projects", headers=bad).status_code == 401, bad
+    assert client.get("/").status_code == 200 and client.get("/api/languages").status_code == 200  # UI bootstraps
+    ok = {"Authorization": "Bearer s3cret"}
+    assert client.get("/api/projects", headers=ok).json() == []
+    assert client.get("/api/projects", headers={"X-API-Key": "s3cret"}).status_code == 200
+    r = client.post("/api/projects", files=files, data={"target_lang": "en"}, headers=ok)
+    assert r.status_code == 201, r.text
+    pid = r.json()["projects"][0]["id"]
+    # the cookie set by the web UI lets <a href> downloads and <img> previews through (same-origin only)
+    assert client.get(f"/api/projects/{pid}/preview/1").status_code == 401
+    cookie = {"Cookie": "mathtrans_token=s3cret"}
+    assert client.get(f"/api/projects/{pid}/preview/1", headers=cookie).status_code == 200
+    assert client.get(f"/api/projects/{pid}/download", params={"format": "pdf"}, headers=cookie).status_code == 200
+    # a cross-site form POST never carries the SameSite=Strict cookie, and is refused before the token check anyway
+    assert client.post("/api/projects", files=files, data={"target_lang": "en"},
+                       headers={"Origin": "http://evil.example", **cookie}).status_code == 403
+    assert client.delete(f"/api/projects/{pid}", headers=ok).status_code == 200
+    # a blank token means no authentication
+    blank = make_client(settings=offline_settings.model_copy(update={"api_token": "   "}))
+    assert blank.get("/api/projects").status_code == 200
+
+
+# --------------------------------------------------------------------------- #
+# Glossary ingest bounds (every path: form text, file upload, JSON Glossary object)
+# --------------------------------------------------------------------------- #
+
+
+def test_glossary_name_cap_applies_to_json_object_and_json_file(make_client):
+    client = make_client()
+    body = {"id": "x", "name": "N" * 1000, "entries": [{"terms": {"zh": "斜边", "en": "hypotenuse"}}]}
+    r = client.post("/api/glossaries", json=body)
+    assert r.status_code == 201 and len(r.json()["name"]) == MAX_GLOSSARY_NAME_CHARS
+    assert len(client.app.state.store.get_glossary(r.json()["id"]).name) == MAX_GLOSSARY_NAME_CHARS
+    r = client.post("/api/glossaries", files={"file": ("g.json", json.dumps(body).encode(), "application/json")},
+                    data={"name": "short"})
+    assert r.status_code == 201 and len(r.json()["name"]) == MAX_GLOSSARY_NAME_CHARS
+    assert all(len(g["name"]) <= MAX_GLOSSARY_NAME_CHARS for g in client.get("/api/glossaries").json())
+    # a posted object without a name falls back to the form / default name
+    r = client.post("/api/glossaries", json={"entries": [{"terms": {"zh": "斜边", "en": "hypotenuse"}}]})
+    assert r.status_code == 201 and r.json()["name"].startswith("Custom glossary")
+
+
+def test_glossary_entry_and_term_caps(make_client):
+    client = make_client()
+
+    def entries(n: int) -> list[dict]:
+        return [{"terms": {"zh": f"术语{i}", "en": f"term{i}"}} for i in range(n)]
+
+    r = client.post("/api/glossaries", json={"name": "huge", "entries": entries(MAX_GLOSSARY_ENTRIES + 1)})
+    assert r.status_code == 413 and "entries" in r.json()["detail"]
+    csv_text = "zh,en\n" + "".join(f"术语{i},term{i}\n" for i in range(MAX_GLOSSARY_ENTRIES + 1))
+    r = client.post("/api/glossaries", files={"file": ("big.csv", csv_text.encode(), "text/csv")})
+    assert r.status_code == 413
+    r = client.post("/api/glossaries", json={"name": "max", "entries": entries(MAX_GLOSSARY_ENTRIES)})
+    assert r.status_code == 201 and r.json()["entries"] == MAX_GLOSSARY_ENTRIES
+    long_term = "x" * (MAX_GLOSSARY_TERM_CHARS + 1)
+    r = client.post("/api/glossaries", json={"entries": [{"terms": {"zh": "斜边", "en": long_term}}]})
+    assert r.status_code == 400 and "characters" in r.json()["detail"]
+    assert client.post("/api/glossaries", data={"text": f"zh,en\n斜边,{long_term}\n"}).status_code == 400
+    assert client.post("/api/glossaries", files={"file": ("t.csv", f"zh,en\n斜边,{long_term}\n".encode(), "text/csv")}).status_code == 400
+    assert client.post("/api/glossaries", data={"text": f"zh,en\n斜边,{'x' * MAX_GLOSSARY_TERM_CHARS}\n"}).status_code == 201
+    assert len(client.get("/api/glossaries").json()) == 3  # default + "max" + the one at the term limit
+
+
+def test_glossary_json_body_size_limit(make_client):
+    class TinySettings(Settings):
+        max_upload_mb: int = 0
+
+    client = make_client(settings=TinySettings())
+    assert client.post("/api/glossaries", json={"text": "zh,en\n斜边,hypotenuse\n"}).status_code == 413
+    r = client.post("/api/glossaries", content=b'{"text": "' + b" " * 4096 + b'"}', headers={"content-type": "application/json"})
+    assert r.status_code == 413
+    assert client.post("/api/glossaries", files={"file": ("g.csv", b"zh,en\n", "text/csv")}).status_code == 413
+    assert len(client.get("/api/glossaries").json()) == 1
+
+
+# --------------------------------------------------------------------------- #
+# Web UI contract (retranslate options, keyboard operability, stable table, forced downloads)
+# --------------------------------------------------------------------------- #
+
+
+def test_retranslate_empty_skip_pages_clears_previous(make_client, pdf_bytes):
+    runner = FakeRunner()
+    client = make_client(runner)
+    pid = _upload(client, pdf_bytes, skip_pages="2")["projects"][0]["id"]
+    assert client.get(f"/api/projects/{pid}").json()["options"]["skip_pages"] == [1]
+    assert runner.calls[-1]["options"].skip_pages == [1]
+    # the web UI sends "" for an emptied field: that clears the stored pages ...
+    r = client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "ja", "options": {"skip_pages": ""}})
+    assert r.status_code == 202, r.text
+    assert r.json()["options"]["skip_pages"] is None and runner.calls[-1]["options"].skip_pages is None
+    # ... a new specification replaces them, and null keeps the current value (documented contract)
+    r = client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "ko", "options": {"skip_pages": "1"}})
+    assert r.status_code == 202 and r.json()["options"]["skip_pages"] == [0]
+    r = client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "pt", "options": {"skip_pages": None}})
+    assert r.status_code == 202 and r.json()["options"]["skip_pages"] == [0]
+    assert runner.calls[-1]["options"].skip_pages == [0]
+    assert client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "es", "options": {"skip_pages": "0"}}).status_code == 400
+    assert client.post(f"/api/projects/{pid}/retranslate", json={"target_lang": "es", "options": {"skip_pages": "x"}}).status_code == 400
+    assert len(runner.calls) == 4
+
+
+def test_index_html_drop_zone_is_keyboard_operable(make_client):
+    html = make_client().get("/").text
+    drop = re.search(r'<div class="drop" id="drop"([^>]*)>', html).group(1)
+    assert 'tabindex="0"' in drop and 'role="button"' in drop and "aria-label=" in drop
+    assert '$("drop").addEventListener("keydown"' in html and "fileInput.click()" in html
+    assert ".drop:focus-visible" in html  # visible focus indicator
+    assert 'label for="file-input"' not in html  # together with the click handler that would open two choosers
+
+
+def test_index_html_project_table_rendering_is_stable(make_client):
+    html = make_client().get("/").text
+    render = html.split("function renderProjects()")[1].split("function loadProjects()")[0]
+    assert "body.dataset.sig" in render and "updated_at" in render and "state.selected" in render
+    assert "document.activeElement" in render and "b.focus()" in render
+    assert "setInterval(loadProjects, 2000)" in html  # the poll itself stays
+
+
+def test_index_html_history_rows_link_to_previous_runs(make_client):
+    html = make_client().get("/").text
+    # every history row links the outputs the run still holds, its previews and its QA report via ?run=
+    assert "historyLinks(p, h)" in html.split('"历史 / History"')[1][:400]
+    links = html.split("function historyLinks(p, h)")[1].split("function renderQA(p)")[0]
+    assert "download?format=${fmt}&run=${run}" in links and "qa?format=md&run=${run}" in links
+    assert "preview/1?run=${run}" in links and "outs[fmt]" in links and "h.preview_pages" in links
+    # a QA-failed previous run is downloadable only forced, with the same confirmation as the current run
+    assert 'data-force="1"' in links and "&force=1" in links and "forced" in links
+    assert '$("detail-kv").addEventListener("click"' in links and 'closest("a[data-force]")' in links
+    assert "confirm(" in links and "preventDefault()" in links
+
+
+def test_index_html_forced_downloads_are_marked_and_confirmed(make_client):
+    html = make_client().get("/").text
+    downloads = html.split("function renderDownloads(p)")[1].split('$("retranslate-form")')[0]
+    assert 'data-force="1"' in downloads and "forced" in downloads and 'class="msg err"' in downloads
+    handler = downloads.split('$("downloads").addEventListener("click"')[1][:400]
+    assert 'closest("a[data-force]")' in handler and "confirm(" in handler and "preventDefault()" in handler
+    options_row = html.split('"选项 / Options"')[1][:400]
+    assert "skip_pages" in options_row and "pages_skipped" in html
+
+
+# --------------------------------------------------------------------------- #
+# Browser-level checks (skipped when Playwright or a Chromium build is unavailable)
+# --------------------------------------------------------------------------- #
+
+
+class TargetSensitiveRunner(FakeRunner):
+    """FakeRunner whose QA fails for Korean targets, so one app can hold both kinds of projects."""
+
+    def _run(self, source_pdf, out_dir, options, settings, progress):
+        self.fail_qa = options.target_lang is Lang.KO
+        return super()._run(source_pdf, out_dir, options, settings, progress)
+
+
+@pytest.fixture
+def live_app(offline_settings):
+    """The real app served by uvicorn in a daemon thread (sync jobs), for browser tests."""
+    import socket
+
+    import uvicorn
+
+    runner = TargetSensitiveRunner()
+    app = create_app(settings=offline_settings, runner=runner, sync=True)
+    with socket.socket() as s:
+        s.bind(("127.0.0.1", 0))
+        port = s.getsockname()[1]
+    server = uvicorn.Server(uvicorn.Config(app, host="127.0.0.1", port=port, log_level="warning"))
+    thread = threading.Thread(target=server.run, daemon=True)
+    thread.start()
+    deadline = time.time() + 20
+    while not server.started and time.time() < deadline:
+        time.sleep(0.05)
+    assert server.started, "uvicorn did not start"
+    yield f"http://127.0.0.1:{port}", runner
+    server.should_exit = True
+    thread.join(10)
+
+
+def _chromium_executable() -> Optional[str]:
+    """A Chromium binary Playwright can drive: its default install, or any build under
+    PLAYWRIGHT_BROWSERS_PATH / /opt/pw-browsers (CI images often pin an older build)."""
+    from playwright.sync_api import sync_playwright
+
+    candidates: list[str] = []
+    try:
+        with sync_playwright() as pw:
+            candidates.append(pw.chromium.executable_path)
+    except Exception:  # noqa: BLE001 - no driver available
+        pass
+    for root in (os.environ.get("PLAYWRIGHT_BROWSERS_PATH", ""), "/opt/pw-browsers"):
+        if root and Path(root).is_dir():
+            candidates += sorted((str(p) for p in Path(root).glob("chromium-*/chrome-linux/chrome")), reverse=True)
+    return next((c for c in candidates if c and Path(c).is_file()), None)
+
+
+@pytest.fixture
+def browser_page():
+    pytest.importorskip("playwright")
+    from playwright.sync_api import sync_playwright
+
+    executable = _chromium_executable()
+    if executable is None:
+        pytest.skip("no Chromium build for Playwright")
+    with sync_playwright() as pw:
+        try:
+            browser = pw.chromium.launch(executable_path=executable, headless=True, args=["--no-sandbox"])
+        except Exception as exc:  # noqa: BLE001 - missing system libraries etc.
+            pytest.skip(f"cannot launch Chromium: {exc}")
+        page = browser.new_page()
+        try:
+            yield page
+        finally:
+            browser.close()
+
+
+def test_web_ui_in_browser(live_app, browser_page, sample_pdf_zh):
+    base, runner = live_app
+    page = browser_page
+    pdf = sample_pdf_zh.read_bytes()
+
+    def post_project(name: str, **fields: str) -> dict:
+        multipart = {"files": {"name": name, "mimeType": "application/pdf", "buffer": pdf}, "target_lang": "en", **fields}
+        r = page.request.post(f"{base}/api/projects", multipart=multipart)
+        assert r.ok, r.text()
+        return r.json()["projects"][0]
+
+    # Playwright switches file-chooser interception on asynchronously when the first listener is attached;
+    # a click that reaches Chromium before that is silently lost, so listen before the page even loads
+    # (expect_file_chooser has the same race on key presses).
+    choosers: list = []
+    page.on("filechooser", lambda fc: choosers.append(fc))
+    page.goto(base + "/")
+    page.wait_for_function("document.querySelectorAll('#target-lang option').length > 0")  # init() finished
+
+    # 1. The file picker is reachable and operable from the keyboard (Tab, Enter, Space); mouse still works.
+    page.keyboard.press("Tab")
+    assert page.evaluate("document.activeElement.id") == "drop"
+    for key in ("Enter", " "):
+        page.keyboard.press(key)
+        page.wait_for_timeout(300)
+    assert len(choosers) == 2 and page.evaluate("window.scrollY") == 0
+    page.click("#drop")
+    page.wait_for_timeout(300)
+    assert len(choosers) == 3  # exactly one chooser per click
+    choosers[-1].set_files(str(sample_pdf_zh))
+    page.wait_for_selector("#file-list li")
+    assert sample_pdf_zh.name in page.inner_text("#file-list")
+
+    # 2. The project table is not rebuilt by idle polls; keyboard focus survives them and reaches the detail panel.
+    first = post_project("first.pdf", skip_pages="2")
+    failed = post_project("failed.pdf", target_lang="ko")
+    view = f'#projects-body button[data-view="{first["id"]}"]'
+    page.wait_for_selector(view)
+    page.focus(view)
+    page.wait_for_timeout(2600)  # past at least one 2-second poll
+    assert page.evaluate("document.activeElement.dataset.view") == first["id"]
+    removed = page.evaluate("""() => new Promise((resolve) => {
+        let n = 0;
+        new MutationObserver((muts) => muts.forEach((m) => { n += m.removedNodes.length; }))
+            .observe(document.getElementById("projects-body"), { childList: true, subtree: true });
+        setTimeout(() => resolve(n), 4500);
+    })""")
+    assert removed == 0
+    assert page.evaluate("document.activeElement.dataset.view") == first["id"]
+    page.keyboard.press("Enter")
+    page.wait_for_selector("#detail:not([hidden])")
+    assert "skip=2" in page.inner_text("#detail-kv")
+    assert page.locator("#downloads a[data-force]").count() == 0
+
+    # 3. Clearing the skip-pages field of the retranslate form really clears the stored value.
+    assert page.input_value("#re-skip") == "2"
+    page.fill("#re-skip", "")
+    page.select_option("#re-target", "ja")
+    page.click("#re-btn")
+    page.wait_for_selector("#re-msg.ok")
+    project = page.request.get(f"{base}/api/projects/{first['id']}").json()
+    assert project["target_lang"] == "ja" and project["options"]["skip_pages"] is None
+    assert runner.calls[-1]["options"].skip_pages is None
+    page.wait_for_function("document.getElementById('detail-kv').innerText.includes('skip=–')")
+
+    # 4. Downloads of a QA-failed run are labelled as forced and need a confirmation.
+    page.click(f'#projects-body button[data-view="{failed["id"]}"]')
+    page.wait_for_selector('#downloads a[data-force="1"]')
+    assert "forced" in page.inner_text("#downloads") and page.locator("#downloads .msg.err").count() == 1
+    downloads: list = []
+    page.on("download", lambda d: downloads.append(d))
+    page.once("dialog", lambda d: d.dismiss())
+    page.click('#downloads a[data-force="1"] >> nth=0')
+    page.wait_for_timeout(600)
+    assert downloads == []  # cancelled in the confirmation: nothing was downloaded
+    page.once("dialog", lambda d: d.accept())
+    with page.expect_download() as dl:
+        page.click('#downloads a[data-force="1"] >> nth=0')
+    assert dl.value.suggested_filename.endswith("_ko.pdf")

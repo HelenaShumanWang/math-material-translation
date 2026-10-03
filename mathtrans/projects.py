@@ -81,6 +81,10 @@ class ProjectBusy(ProjectError):
     """The project has a queued or running job and cannot be modified."""
 
 
+class PdfTooLarge(ProjectError, ValueError):
+    """The PDF has more pages than the store accepts (``ProjectStore.max_pages``)."""
+
+
 _clock_lock = threading.Lock()
 _last_tick = 0.0
 
@@ -189,8 +193,12 @@ def options_to_dict(options: PipelineOptions | dict[str, Any]) -> dict[str, Any]
 class ProjectStore:
     """File-system backed store for projects, runs and glossaries (thread-safe)."""
 
-    def __init__(self, data_dir: str | Path):
+    def __init__(self, data_dir: str | Path, max_pages: Optional[int] = None):
+        """``max_pages`` (None / 0 = unlimited) bounds the page count of every document:
+        ``create`` and ``begin_run`` raise :class:`PdfTooLarge` beyond it, so one upload
+        cannot queue an arbitrarily large job on the shared service."""
         self.data_dir = Path(data_dir)
+        self.max_pages = int(max_pages) if max_pages else None
         self.projects_dir = self.data_dir / "projects"
         self.glossaries_dir = self.data_dir / "glossaries"
         self.projects_dir.mkdir(parents=True, exist_ok=True)
@@ -213,33 +221,48 @@ class ProjectStore:
             return None
         return self.run_dir(project.id, project.current_run)
 
-    def run_file(self, project: Project, fmt: str) -> Optional[Path]:
-        """Path of an output of the current run (``pdf``/``bilingual``/``docx``/``segments``/``qa``)
-        if the file exists, else None."""
+    def _output_dir(self, project: Project, run_id: Optional[str]) -> Optional[Path]:
+        """Directory of ``run_id`` (validated), or of the current run when ``run_id`` is None."""
+        if run_id:
+            return self.run_dir(project.id, run_id)
+        return self.current_run_dir(project)
+
+    def run_file(self, project: Project, fmt: str, run_id: Optional[str] = None) -> Optional[Path]:
+        """Path of an output (``pdf``/``bilingual``/``docx``/``segments``/``qa``) of the current
+        run, or of the previous run ``run_id`` (see :meth:`find_run`), if the file exists, else None."""
         if fmt not in RUN_OUTPUTS:
             raise ValueError(f"unknown output format: {fmt!r}")
-        run_dir = self.current_run_dir(project)
+        run_dir = self._output_dir(project, run_id)
         if run_dir is None:
             return None
         path = run_dir / RUN_OUTPUTS[fmt]
         return path if path.is_file() else None
 
-    def preview_path(self, project: Project, page: int) -> Optional[Path]:
-        """PNG preview of 1-based ``page`` from the current run, if it exists."""
-        run_dir = self.current_run_dir(project)
+    def preview_path(self, project: Project, page: int, run_id: Optional[str] = None) -> Optional[Path]:
+        """PNG preview of 1-based ``page`` from the current run (or run ``run_id``), if it exists."""
+        run_dir = self._output_dir(project, run_id)
         if run_dir is None or page < 1:
             return None
         path = run_dir / "previews" / f"page-{page:03d}.png"
         return path if path.is_file() else None
 
-    def preview_count(self, project: Project) -> int:
-        run_dir = self.current_run_dir(project)
+    def preview_count(self, project: Project, run_id: Optional[str] = None) -> int:
+        run_dir = self._output_dir(project, run_id)
         if run_dir is None:
             return 0
         previews = run_dir / "previews"
         if not previews.is_dir():
             return 0
         return sum(1 for p in previews.iterdir() if p.suffix == ".png" and p.name.startswith("page-"))
+
+    def find_run(self, project: Project, run_id: str) -> Optional[dict[str, Any]]:
+        """The ``history`` entry of a previous run of ``project`` (None for the current run
+        or an unknown run id). Previous runs keep their directory on disk, so their outputs
+        stay downloadable through ``run_file`` / ``preview_path`` with this ``run_id``."""
+        for entry in project.history:
+            if entry.get("run_id") == run_id:
+                return entry
+        return None
 
     # --------------------------------------------------------------- projects
     def create(
@@ -257,7 +280,7 @@ class ProjectStore:
         glossary_id = self._normalise_glossary_id(glossary_id)
         project_id = new_id()
         pdir = self.projects_dir / project_id
-        page_count = _pdf_page_count(pdf_bytes)
+        page_count = _pdf_page_count(pdf_bytes, max_pages=self.max_pages)
         project = Project(
             id=project_id,
             name=safe_name(name),
@@ -359,6 +382,8 @@ class ProjectStore:
             project = self.get(project_id)
             if project.is_active:
                 raise ProjectBusy(f"project {project_id} is {project.status}; wait for it to finish")
+            if self.max_pages and project.page_count > self.max_pages:
+                raise PdfTooLarge(f"the PDF has {project.page_count} pages; at most {self.max_pages} pages are accepted")
             if project.current_run:
                 project.history.append(self._history_entry(project))
             opts = dict(project.options)
@@ -499,8 +524,10 @@ class ProjectStore:
         _atomic_write_text(self.project_dir(project.id) / _PROJECT_FILE, project.model_dump_json(indent=1))
 
     def _history_entry(self, project: Project) -> dict[str, Any]:
-        result = project.result
-        entry: dict[str, Any] = {
+        """Archive the current run before a new one replaces it. ``outputs`` / ``preview_pages``
+        say what the run directory still holds (like a project view's ``downloads``), so a
+        client can fetch them with ``?run=<run_id>``; server paths are never exposed."""
+        return {
             "run_id": project.current_run,
             "target_lang": project.target_lang.value,
             "source_lang": project.source_lang.value if project.source_lang else None,
@@ -511,17 +538,11 @@ class ProjectStore:
             "started_at": project.started_at,
             "finished_at": project.finished_at,
             "archived_at": _now(),
-            "outputs": {},
+            "outputs": {fmt: self.run_file(project, fmt) is not None
+                        for fmt in ("pdf", "bilingual", "docx", "segments")},
+            "preview_pages": self.preview_count(project),
             "qa": project.qa_summary(),
         }
-        if result is not None:
-            entry["outputs"] = {
-                "pdf": result.output_pdf,
-                "bilingual": result.bilingual_pdf,
-                "docx": result.docx,
-                "segments": result.segments_json,
-            }
-        return entry
 
 
 def _result_message(result: PipelineResult) -> str:
@@ -532,8 +553,9 @@ def _result_message(result: PipelineResult) -> str:
     return "Completed" if result.status == "completed" else "QA did not pass"
 
 
-def _pdf_page_count(pdf_bytes: bytes) -> int:
-    """Page count of an in-memory PDF; raises ValueError if PyMuPDF cannot open it."""
+def _pdf_page_count(pdf_bytes: bytes, max_pages: Optional[int] = None) -> int:
+    """Page count of an in-memory PDF; raises ValueError if PyMuPDF cannot open it and
+    :class:`PdfTooLarge` when it has more than ``max_pages`` pages."""
     import pymupdf
 
     try:
@@ -547,6 +569,8 @@ def _pdf_page_count(pdf_bytes: bytes) -> int:
         raise ValueError(f"the file is not a readable PDF: {exc}") from exc
     if count < 1:
         raise ValueError("the PDF has no pages")
+    if max_pages and count > max_pages:
+        raise PdfTooLarge(f"the PDF has {count} pages; at most {max_pages} pages are accepted")
     return count
 
 
@@ -569,6 +593,7 @@ __all__ = [
     "RUN_OUTPUTS",
     "GlossaryNotFound",
     "InvalidId",
+    "PdfTooLarge",
     "Project",
     "ProjectBusy",
     "ProjectError",

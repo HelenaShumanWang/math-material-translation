@@ -45,6 +45,12 @@ def build_page_segments(page: pymupdf.Page, page_index: int, source_lang: Lang) 
   paragraph). Join lines: CJK sources join with "" (keep an explicit "\n" only where a line ends
   with sentence punctuation and the next line starts a list item / looks like a new paragraph);
   Latin sources join with " " and de-hyphenate `word-\nword`. Keep list markers (`1.`, `(1)`, `①`, `•`).
+  Exceptions: a ruled table (grid found in `page.get_drawings()`; `page.find_tables()` is avoided because it toggles
+  PyMuPDF's process-wide `small_glyph_heights` while running) gives one segment per cell (`role="table"`, text
+  re-extracted with `clip=cell`, `bbox` = the cell interior so the layout never crosses a rule, alignment from the
+  position inside the cell; the layout stage does not grow such boxes); a block whose lines sit side by side on one
+  row ≥ 1.5 × font size apart (running head + page number, borderless table row) is split into one segment per
+  column of lines. The segments of one table / split block are read as a unit, row by row.
 * Spans typeset in math fonts (name contains `CMMI`, `CMSY`, `CMEX`, `Symbol`, `Math`, `MTExtra`,
   `Euclid`, `MT-`, `Cambria Math`, `Asana`, `XITS`, `STIX` …) or single-letter italic spans are
   `is_math=True` and passed to `protect_text(..., extra_fragments=[span texts])`.
@@ -64,7 +70,9 @@ def build_page_segments(page: pymupdf.Page, page_index: int, source_lang: Lang) 
 ### `mathtrans/layout.py` (re-rendering translated text into the PDF)
 ```python
 def render_document(src_pdf, doc: TranslatedDocument, out_pdf, *, min_font_scale=0.55,
-                    fonts_dir=None, pages: list[int] | None = None) -> list[RenderInfo]
+                    fonts_dir=None, pages: list[int] | None = None, checkpoint_pages=25) -> list[RenderInfo]
+                    # every `checkpoint_pages` rendered pages: save (garbage=4, uncompressed) to a temp file + reopen,
+                    # so the per-call font copies of insert_htmlbox (~1 MB per segment) do not pile up in memory
 def render_page_previews(pdf, out_dir, dpi=110, pages=None) -> list[str]   # PNG per page, "page-001.png"
 def segment_html(seg: TextSegment, text: str) -> str                         # HTML for insert_htmlbox
 ```
@@ -98,15 +106,24 @@ def export_docx(translated_pdf, out_path, doc: TranslatedDocument | None = None,
 class RapidOcrEngine:  name = "rapid";  recognize(image_rgb, hint_langs=None) -> list[OcrResult]
 class ClaudeVisionOcrEngine: name = "claude"; __init__(client=None, model=None); recognize(...)   # JSON list of {text, box [x0,y0,x1,y1] in 0-1000 normalised coords}
 class NullOcrEngine: name = "none"
-def get_ocr_engine(name: str, settings) -> OcrEngine            # auto → rapid if importable else claude if API key else none
+class OcrError(RuntimeError); class OcrUnavailableError(OcrError)   # per-image failure (skipped) vs credentials/model/SDK (aborts the OCR stage)
+def get_ocr_engine(name: str, settings, source_lang=None) -> OcrEngine   # auto → rapid if importable else claude if API key else none;
+                                                                         # a ja/ko source_lang prefers claude when an API key is configured (rapid reads kana/hangul only partially)
+def ocr_low_trust(engine, source_lang) -> bool                           # rapid engine on a ja/ko source → pipeline sets doc.ocr_low_trust, QA warns per image label
 
 def extract_image_segments(pdf_path, doc: TranslatedDocument, engine, *, min_confidence=0.6,
-                           min_image_px=40, pages=None) -> list[TextSegment]   # appends nothing; caller extends doc.segments
+                           min_image_px=40, pages=None, max_image_px=MAX_IMAGE_PX, failures=None) -> list[TextSegment]
+                           # appends nothing; caller extends doc.segments. Images above max_image_px (50 MP, MATHTRANS_MAX_IMAGE_MEGAPIXELS)
+                           # are never decoded; OcrError per image → logged + appended to `failures`; OcrUnavailableError → re-raised
 def render_image_segments(pdf_doc: pymupdf.Document, doc: TranslatedDocument, *, fonts_dir=None) -> int  # images modified in place
 ```
 * Group by xref (an image can be placed on several pages). Skip tiny images, masks (`smask`
   images themselves), and OCR results that are pure numbers / single Latin letters / math only
-  (`is_fully_protected`) — those stay as they are.
+  (`is_fully_protected`) — those stay as they are. Korean sanity gate: an OCR line of a Korean source with
+  Han characters but no hangul (`臣C` read from `빗변 c`) is a misread by the zh/en models, not a hanja label:
+  `translate=False, skip_reason="unreliable OCR ..."` so the pixels stay untouched.
+* RapidOCR upscales images below 600 px (2x) and downscales images above 4000 px (longest side) before
+  recognition; polygons are always returned in the original pixel space.
 * Rendering: estimate the background colour from a 2-px ring around the box (median), fill the
   box (or `cv2.inpaint` when the ring is not uniform), estimate the text colour as the box pixel
   colour most distant from the background, draw the translation with `fonts.pil_font` at the
@@ -206,18 +223,27 @@ the output files are still written for inspection but the API refuses to serve t
 class Project(BaseModel): id, name, created_at, updated_at, source_file, source_lang, target_lang, options (dict), glossary_id,
                           batch_id, status: queued|running|completed|qa_failed|error, progress {stage,message,percent}, result: PipelineResult|None, error, history: list[dict]
 # the API stores `glossary_id` on the project and rebuilds PipelineOptions.glossary from data/glossaries/<id>.json at run time
-class ProjectStore: __init__(data_dir); create(name, pdf_bytes, options, glossary_id=None, batch_id=None) -> Project; get(id); list(batch_id=None);
+class ProjectStore: __init__(data_dir, max_pages=None); create(name, pdf_bytes, options, glossary_id=None, batch_id=None) -> Project; get(id); list(batch_id=None);
+                    # create / begin_run raise PdfTooLarge (-> HTTP 413) beyond max_pages (Settings.max_pages, MATHTRANS_MAX_PAGES)
                     update(project); delete(id); project_dir(id); save_glossary(glossary) / get_glossary(id) / list_glossaries()
 def create_app(settings=None, runner=None) -> FastAPI   # runner defaults to pipeline.run_pipeline (injected in tests)
+# Access control: no user accounts. Non-GET requests marked cross-site by the browser (Sec-Fetch-Site: cross-site, or an
+# Origin that is null / does not match Host) -> 403 (CSRF). With Settings.api_token (MATHTRANS_API_TOKEN) every /api/*
+# request except GET /api/languages needs `Authorization: Bearer`, `X-API-Key` or the UI's `mathtrans_token` cookie -> else 401.
+# Glossary ingest is bounded on every path (upload size, 20,000 entries, 200-char terms, 120-char name).
 ```
 REST: `GET /api/languages`, `POST /api/glossaries` (file or text), `GET /api/glossaries`, `GET /api/glossaries/template`,
 `POST /api/projects` (multipart: one or more `files`, `target_lang`, optional `source_lang`, `glossary_id`,
-`translate_images`, `bilingual`, `export_docx`, `max_qa_rounds`, `require_qa_pass`) → creates one project per
+`translate_images`, `bilingual`, `export_docx`, `max_qa_rounds`, `require_qa_pass`, `ocr_engine`) → creates one project per
 file (shared `batch_id`) and queues them; `GET /api/projects`, `GET /api/projects/{id}`, `POST /api/projects/{id}/retranslate`
-(new target_lang / glossary → new run, history kept), `GET /api/projects/{id}/qa` (JSON + `?format=md`),
-`GET /api/projects/{id}/preview/{page}` (PNG), `GET /api/projects/{id}/download?format=pdf|bilingual|docx|segments[&force=1]`,
+(new target_lang / glossary → new run, history kept: the previous run's directory stays on disk and its `history` entry
+carries `run_id`, `status`, `outputs` {fmt: bool} and `preview_pages`), `GET /api/projects/{id}/qa` (JSON + `?format=md`),
+`GET /api/projects/{id}/preview/{page}` (PNG), `GET /api/projects/{id}/download?format=pdf|bilingual|docx|segments[&force=1]`
+(these three serve the current run; `&run=<run_id>` serves a previous run from the history — unknown / malformed ids → 404,
+a QA-failed previous run needs `force=1` like the current one; `ProjectStore.run_file / preview_path / preview_count`
+take the optional `run_id`, `ProjectStore.find_run(project, run_id)` returns the history entry),
 `DELETE /api/projects/{id}`, `GET /` serves `web/index.html` (vanilla JS: upload multiple files, choose languages,
 paste/upload glossary, toggle options, project table with live status, QA report panel, preview strip, downloads).
 CLI (`python -m mathtrans.cli` / `mathtrans`): `translate IN.pdf --to en [--from zh] [--glossary g.csv] [--out DIR]
-[--bilingual] [--docx] [--no-images] [--translator mock|claude] [--max-rounds N] [--no-require-qa]`, `serve [--host] [--port]`,
+[--bilingual] [--docx] [--no-images] [--translator mock|claude] [--ocr-engine auto|rapid|claude|none] [--max-rounds N] [--no-require-qa]`, `serve [--host] [--port]`,
 `sample OUT.pdf [--lang zh]`, `glossary-template OUT.csv`.

@@ -14,10 +14,11 @@ Coordinate conventions
 from __future__ import annotations
 
 import re
+import unicodedata
 from enum import Enum
 from typing import Any, Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 # --------------------------------------------------------------------------- #
 # Languages
@@ -258,11 +259,46 @@ def restore_placeholders(text: str, protected: list[str]) -> str:
 # --------------------------------------------------------------------------- #
 
 
+# Characters that must never survive in a glossary term or note: C0/C1 control characters
+# (except the whitespace ones, which are collapsed below), zero-width and bidi format
+# characters and the BOM. Glossary terms end up in the Claude system prompt, so a term has
+# to be one line of plain text that cannot read as an instruction of its own.
+_TERM_JUNK_RE = re.compile(
+    r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]"
+)
+
+
+def clean_term(value: Any) -> str:
+    """A glossary term or note as one line of plain text: control / zero-width / bidi
+    format characters removed, whitespace runs (including line breaks) collapsed to a
+    single space, outer whitespace stripped."""
+    return " ".join(_TERM_JUNK_RE.sub("", str(value)).split())
+
+
+def _glossary_term_key(term: str) -> str:
+    """Key under which glossary source terms are compared (same normalisation as the QA
+    glossary check: NFKC + casefold)."""
+    return unicodedata.normalize("NFKC", term).casefold().strip()
+
+
 class GlossaryEntry(BaseModel):
-    """One concept with its preferred term in each language (keys are language codes)."""
+    """One concept with its preferred term in each language (keys are language codes).
+    Terms and the note are always cleaned to one line of plain text (``clean_term``),
+    whichever way the entry is built (CSV / JSON upload, saved glossary loaded from disk)."""
 
     terms: dict[str, str]
     note: str = ""
+
+    @field_validator("terms", mode="after")
+    @classmethod
+    def _clean_terms(cls, value: dict[str, str]) -> dict[str, str]:
+        cleaned = {lang: clean_term(term) for lang, term in value.items()}
+        return {lang: term for lang, term in cleaned.items() if term}
+
+    @field_validator("note", mode="after")
+    @classmethod
+    def _clean_note(cls, value: str) -> str:
+        return clean_term(value)
 
     def get(self, lang: "Lang | str") -> Optional[str]:
         code = Lang.parse(lang).value
@@ -276,33 +312,33 @@ class Glossary(BaseModel):
     entries: list[GlossaryEntry] = Field(default_factory=list)
 
     def pairs(self, src: "Lang | str", tgt: "Lang | str") -> list[tuple[str, str]]:
-        """(source term, target term) pairs, longest source term first."""
+        """(source term, target term) pairs, longest source term first. A source term
+        defined by several entries yields exactly one pair, from the first entry
+        (custom entries precede the built-in ones, see ``merged_with``), so the prompt
+        and the QA glossary check never see two different targets for one term."""
         out: list[tuple[str, str]] = []
+        seen: set[str] = set()
         for e in self.entries:
             s, t = e.get(src), e.get(tgt)
-            if s and t and s != t:
-                out.append((s, t))
+            if not (s and t and s != t):
+                continue
+            key = _glossary_term_key(s)
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append((s, t))
         out.sort(key=lambda p: (-len(p[0]), p[0]))
         return out
 
     def merged_with(self, other: Optional["Glossary"]) -> "Glossary":
-        """Entries of ``other`` take precedence: an entry of this glossary is dropped
-        when any of its terms (same language) is also a term of a custom entry, so a
-        custom ``斜边 => hypotenuse side`` really replaces the built-in pair instead
-        of coexisting with it."""
+        """Entries of ``other`` take precedence over this glossary's entries. Precedence
+        is resolved per source term and language pair in ``pairs``: a custom
+        ``斜边 => hypotenuse side`` replaces the built-in ``斜边 => hypotenuse`` for
+        zh->en, while the built-in entry keeps serving the languages the custom entry
+        does not define (zh->pt still gets ``斜边 => hipotenusa``)."""
         if other is None:
             return self
-
-        def norm(term: str) -> str:
-            import unicodedata
-
-            return unicodedata.normalize("NFKC", term).casefold().strip()
-
-        taken = {(lang, norm(term)) for e in other.entries for lang, term in e.terms.items()
-                 if term and term.strip()}
-        kept = [e for e in self.entries
-                if not any((lang, norm(term)) in taken for lang, term in e.terms.items() if term and term.strip())]
-        return Glossary(id=other.id, name=other.name, entries=list(other.entries) + kept)
+        return Glossary(id=other.id, name=other.name, entries=list(other.entries) + list(self.entries))
 
 
 # --------------------------------------------------------------------------- #
@@ -412,6 +448,11 @@ class TranslatedDocument(BaseModel):
     segments: list[TextSegment] = Field(default_factory=list)
     glossary: Optional[Glossary] = None
     title: str = ""
+    # Text inside images was read by the offline zh/en OCR models for a ja/ko source (unreliable):
+    # QA warns about every translated image label so the figures get checked in the preview.
+    ocr_low_trust: bool = False
+    # Images whose OCR request failed ("page N image xref X: reason"); their text was not translated.
+    ocr_failures: list[str] = Field(default_factory=list)
 
     @property
     def page_count(self) -> int:
@@ -466,6 +507,7 @@ class PipelineStats(BaseModel):
     translated: int = 0
     skipped: int = 0
     images_processed: int = 0
+    ocr_failures: int = 0  # images whose OCR request failed (their text was not translated)
     qa_rounds: int = 0
     duration_s: float = 0.0
     translator: str = ""

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import io
+import json
 from collections import Counter
 from pathlib import Path
 
@@ -10,6 +11,8 @@ import pytest
 from PIL import Image
 
 from mathtrans.extract import (
+    TEXT_FLAGS,
+    _find_table_cells,
     build_page_info,
     build_page_segments,
     detect_document_language,
@@ -20,7 +23,7 @@ from mathtrans.extract import (
     rotation_from_dir,
     sort_reading_order,
 )
-from mathtrans.models import BBox, Lang, SegmentKind, TextSegment, restore_placeholders
+from mathtrans.models import BBox, Lang, PipelineOptions, SegmentKind, TextSegment, restore_placeholders
 from mathtrans.samples import sample_texts
 
 
@@ -678,3 +681,186 @@ def test_concurrent_extraction_is_deterministic(sample_pdf_zh, sample_pdf_en):
     assert set(results) == {"zh", "en"}
     for runs in results.values():
         assert runs[0] == runs[1] == runs[2] and len(runs[0]["segments"]) == 15
+
+
+# --------------------------------------------------------------------------- #
+# Tables and side-by-side lines (regression: cells of a row were one segment)
+# --------------------------------------------------------------------------- #
+
+_TABLE_CSS = "table{border-collapse:collapse} td{border:1px solid #000;padding:3px} p{margin:0}"
+_ZH_ROWS = [["数的类型", "例子", "是否有限小数", "备注"], ["整数", "3, -5, 0", "是", "可以写成分数"]]
+_EN_ROWS = [["Type of number", "Examples", "Finite decimal?", "Remark"],
+            ["Integer", "3, -5, 0", "yes", "can be written as a fraction"]]
+
+
+def _html_table_page(rows: list[list[str]]) -> tuple[pymupdf.Document, pymupdf.Page]:
+    """A page with a bordered HTML table (the borders become vector drawings)."""
+    pdf = pymupdf.open()
+    page = pdf.new_page()
+    html = "<table>" + "".join("<tr>" + "".join(f"<td>{c}</td>" for c in row) + "</tr>" for row in rows) + "</table>"
+    page.insert_htmlbox(pymupdf.Rect(50, 50, 500, 200), html, css=_TABLE_CSS)
+    return pdf, page
+
+
+def _raw_lines(page: pymupdf.Page) -> list[str]:
+    return ["".join(s["text"] for s in ln["spans"])
+            for b in page.get_text("dict", flags=TEXT_FLAGS)["blocks"] if b["type"] == 0 for ln in b["lines"]]
+
+
+def test_ruled_table_cells_become_separate_segments():
+    for rows, lang in ((_ZH_ROWS, "zh"), (_EN_ROWS, "en")):
+        pdf, page = _html_table_page(rows)
+        # MuPDF itself runs neighbouring cells together ("数的类型例子", "Type of number Examples ...")
+        texts = [c for row in rows for c in row]
+        assert any(ln not in texts for ln in _raw_lines(page)), lang
+        cells = [c for table in _find_table_cells(page, 0) for c in table]
+        assert len(cells) == 8, lang
+        segs = _page_blocks(page, lang)
+        assert [s.source_text for s in segs] == texts, lang  # one segment per cell, read row by row
+        assert all(s.style.role == "table" for s in segs)
+        assert not any("数的类型例子" in s.source_text or "number Examples" in s.source_text for s in segs)
+        used: list[int] = []
+        for s in segs:
+            inside = [i for i, c in enumerate(cells) if BBox.from_rect(c).contains(s.bbox, tol=0.5)]
+            assert len(inside) == 1, (s.source_text, s.bbox)  # the box is the cell's interior
+            used.append(inside[0])
+            assert all(s.bbox.expanded(1.0).contains(sp.bbox) for sp in s.spans)
+            assert restore_placeholders(s.protected_text, s.protected) == s.source_text
+        assert sorted(used) == list(range(8))
+        assert next(s for s in segs if s.source_text == "3, -5, 0").translate is False
+        pdf.close()
+
+
+def test_ruled_table_cell_alignment_room_and_wrapping():
+    pdf = pymupdf.open()
+    page = pdf.new_page()
+    x0, y0, cw, rh = 60, 90, 120, 30
+    rows = [[("直角边 a", "center"), ("斜边 c", "right"), ("备注", "left")],
+            [("3", "center"), ("5", "right"), ("可以写成分数，也可以写成有限小数", "left")]]
+    for r in range(len(rows) + 1):
+        page.draw_line(pymupdf.Point(x0, y0 + r * rh), pymupdf.Point(x0 + 3 * cw, y0 + r * rh), color=(0, 0, 0), width=0.8)
+    for c in range(4):
+        page.draw_line(pymupdf.Point(x0 + c * cw, y0), pymupdf.Point(x0 + c * cw, y0 + len(rows) * rh), color=(0, 0, 0), width=0.8)
+    for r, row in enumerate(rows):
+        for c, (text, align) in enumerate(row):
+            page.insert_htmlbox(pymupdf.Rect(x0 + c * cw + 4, y0 + r * rh + 4, x0 + (c + 1) * cw - 4, y0 + (r + 1) * rh - 2),
+                                f'<p style="font-size:10px;text-align:{align};margin:0">{text}</p>')
+    segs = _page_blocks(page, "zh")
+    by_text = {s.source_text: s for s in segs}
+    assert [s.source_text for s in segs] == ["直角边 a", "斜边 c", "备注", "3", "5", "可以写成分数，也可以写成有限小数"]
+    assert [by_text[t].style.align for t in ("直角边 a", "斜边 c", "备注")] == ["center", "right", "left"]
+    assert all(s.style.role == "table" for s in segs)
+    # the box is the cell's interior: centred text gets the whole cell (minus padding), left /
+    # right-aligned text keeps its own anchor edge and gets the room on the other side
+    centred = by_text["直角边 a"].bbox
+    assert (centred.x0, centred.x1) == pytest.approx((x0 + 3, x0 + cw - 3), abs=0.5)
+    right = by_text["斜边 c"]
+    assert right.bbox.x1 == pytest.approx(max(sp.bbox.x1 for sp in right.spans), abs=0.5)
+    assert right.bbox.x0 == pytest.approx(x0 + cw + 3, abs=0.5)
+    left = by_text["备注"]
+    assert left.bbox.x0 == pytest.approx(min(sp.bbox.x0 for sp in left.spans), abs=0.5)
+    assert left.bbox.x1 == pytest.approx(x0 + 3 * cw - 3, abs=0.5)
+    for s in segs:
+        col = next(k for k in range(3) if x0 + k * cw < (s.bbox.x0 + s.bbox.x1) / 2 < x0 + (k + 1) * cw)
+        assert x0 + col * cw <= s.bbox.x0 and s.bbox.x1 <= x0 + (col + 1) * cw  # never across a rule
+        assert y0 <= s.bbox.y0 and s.bbox.y1 <= y0 + 2 * rh
+    wrapped = by_text["可以写成分数，也可以写成有限小数"]  # two lines of one cell stay one segment
+    assert len({round(sp.bbox.y0) for sp in wrapped.spans}) == 2
+    pdf.close()
+
+
+def test_frames_and_figure_grids_are_not_tables():
+    pdf = pymupdf.open()
+    page = pdf.new_page()
+    # a frame around two paragraphs is not a table: the paragraphs stay separate body blocks
+    page.draw_rect(pymupdf.Rect(60, 100, 535, 200), color=(0, 0, 1), width=1)
+    page.insert_htmlbox(pymupdf.Rect(66, 106, 529, 150), "<p>Theorem: a boxed paragraph inside a frame.</p>")
+    page.insert_htmlbox(pymupdf.Rect(66, 150, 529, 194), "<p>Second paragraph in the same frame.</p>")
+    # a square cut into four by two lines, with a label running across the vertical line: a figure
+    page.draw_rect(pymupdf.Rect(100, 300, 300, 500), color=(0, 0, 0), width=1)
+    page.draw_line(pymupdf.Point(200, 300), pymupdf.Point(200, 500), color=(0, 0, 0), width=1)
+    page.draw_line(pymupdf.Point(100, 400), pymupdf.Point(300, 400), color=(0, 0, 0), width=1)
+    page.insert_text((185, 350), "面积 S", fontsize=12, fontname="china-s")
+    segs = _page_blocks(page, "zh")
+    assert [s.source_text for s in segs] == ["Theorem: a boxed paragraph inside a frame.",
+                                             "Second paragraph in the same frame.", "面积 S"]
+    assert [s.style.role for s in segs] == ["body", "body", "label"]
+    assert segs[2].bbox.x0 < 200 < segs[2].bbox.x1  # the label was not cut at the line
+    pdf.close()
+
+
+def test_side_by_side_lines_become_separate_segments():
+    pdf = pymupdf.open()
+    page = pdf.new_page()
+    # running head + right-aligned page number on one baseline (MuPDF: one block, two lines)
+    page.insert_text((60, 30), "第一章 勾股定理", fontsize=8, fontname="china-s")
+    page.insert_text((515, 30), "第 3 页", fontsize=8, fontname="china-s")
+    # a borderless 2 x 2 table
+    page.insert_text((70, 120), "直角边 a", fontsize=10, fontname="china-s")
+    page.insert_text((310, 120), "斜边 c", fontsize=10, fontname="china-s")
+    page.insert_text((70, 144), "3", fontsize=10, fontname="helv")
+    page.insert_text((310, 144), "5", fontsize=10, fontname="helv")
+    # ordinary paragraphs must not be split: a 3-line paragraph, a justified block, and a block
+    # whose first line has a wide gap ("例 1" + text) but whose second line spans the width
+    for i, line in enumerate(["在直角三角形中，两条直角边的平方和等于斜边", "的平方。如果两条直角边长分别为 a 和 b，斜边",
+                              "长为 c，那么它们满足勾股定理。"]):
+        page.insert_text((60, 300 + 14 * i), line, fontsize=10, fontname="china-s")
+    page.insert_htmlbox(pymupdf.Rect(50, 400, 300, 480), '<p style="text-align:justify">' + "word " * 60 + "</p>",
+                        css="p {margin: 0; font-family: sans-serif; font-size: 11px; line-height: 1.3;}")
+    page.insert_text((60, 500), "例 1", fontsize=10, fontname="china-s")
+    page.insert_text((200, 500), "已知直角三角形的两条直角边", fontsize=10, fontname="china-s")
+    page.insert_text((60, 514), "分别为 3 和 4，求斜边的长度。求出它的面积。", fontsize=10, fontname="china-s")
+    assert len([ln for ln in _raw_lines(page) if ln in ("第一章 勾股定理", "第 3 页")]) == 2
+    segs = _page_blocks(page, "zh")
+    texts = [s.source_text for s in segs]
+    assert texts[:6] == ["第一章 勾股定理", "第 3 页", "直角边 a", "斜边 c", "3", "5"]  # row by row
+    assert len(segs) == 9
+    by_text = {s.source_text: s for s in segs}
+    assert by_text["第 3 页"].bbox.x0 >= 500 and by_text["第一章 勾股定理"].bbox.x1 < 200
+    assert by_text["直角边 a"].bbox.x1 < 300 <= by_text["斜边 c"].bbox.x0
+    assert by_text["3"].bbox.x1 < 300 <= by_text["5"].bbox.x0 and by_text["3"].translate is False
+    assert all(s.style.rotation == 0 for s in segs)
+    assert texts[6] == "在直角三角形中，两条直角边的平方和等于斜边的平方。如果两条直角边长分别为 a 和 b，斜边长为 c，那么它们满足勾股定理。"
+    assert texts[7].startswith("word word") and segs[7].style.align == "justify"
+    assert texts[8].startswith("例 1") and "分别为 3 和 4" in texts[8]
+    pdf.close()
+
+
+def test_table_translation_stays_inside_cells(tmp_path):
+    from mathtrans.pipeline import run_pipeline
+
+    pdf, page = _html_table_page(_ZH_ROWS)
+    page.insert_text((60, 30), "第一章 勾股定理", fontsize=8, fontname="china-s")
+    page.insert_text((515, 30), "第 3 页", fontsize=8, fontname="china-s")
+    src = tmp_path / "table.pdf"
+    pdf.save(str(src))
+    cells = [BBox.from_rect(c) for table in _find_table_cells(page, 0) for c in table]
+    pdf.close()
+    assert len(cells) == 8
+    res = run_pipeline(src, tmp_path / "out", PipelineOptions(target_lang=Lang.EN, translator="mock",
+                                                              translate_images=False))
+    assert res.status == "completed", res.qa_report and res.qa_report.model_dump()
+    with pymupdf.open(res.output_pdf) as out:
+        out_page = out[0]
+        for cell in cells:
+            text = out_page.get_text("text", clip=cell.to_rect()).strip()
+            assert text, cell  # a translation in every cell ...
+            assert not any("一" <= ch <= "鿿" for ch in text), text  # ... and no source glyphs left behind
+        words = out_page.get_text("words")
+        table_area = cells[0]
+        for c in cells[1:]:
+            table_area = table_area.union(c)
+        for x0, y0, x1, y1, word, *_ in words:
+            box = BBox(x0=x0, y0=y0, x1=x1, y1=y1)
+            if table_area.intersection_area(box) <= 0:
+                continue
+            assert any(c.contains(box, tol=1.0) for c in cells), (word, box)  # never across a rule
+        page_number = [w for w in words if w[4] == "Page"]
+        assert page_number and page_number[0][0] >= 500  # the page number stayed at the right margin
+    segments = json.loads(Path(res.segments_json).read_text(encoding="utf-8"))["segments"]
+    head = next(s for s in segments if s["source_text"] == "第一章 勾股定理")
+    assert head["render"]["scale"] >= 0.95 and head["render"]["bbox"]["x1"] > head["bbox"]["x1"]  # grew into free space
+    for s in segments:
+        if s["style"]["role"] == "table" and s.get("render"):
+            assert s["render"]["overflow"] is False
+            assert BBox(**s["bbox"]).contains(BBox(**s["render"]["bbox"]), tol=0.5)  # rendered inside the cell box

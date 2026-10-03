@@ -3,7 +3,8 @@
 Sub-commands::
 
     translate IN.pdf --to en [--from zh] [--glossary g.csv] [--out DIR] [--bilingual] [--docx]
-              [--no-images] [--translator mock|claude] [--max-rounds N] [--no-require-qa]
+              [--no-images] [--translator mock|claude] [--ocr-engine auto|rapid|claude|none]
+              [--max-rounds N] [--no-require-qa]
     serve [--host H] [--port P]
     sample OUT.pdf [--lang zh]
     glossary-template OUT.csv
@@ -61,6 +62,9 @@ def build_parser() -> argparse.ArgumentParser:
     tr.add_argument("--no-images", action="store_true", help="do not translate text inside images")
     tr.add_argument("--translator", choices=["auto", "mock", "claude"], default="auto",
                     help="translation backend (default: auto = claude if an API key is set, else mock)")
+    tr.add_argument("--ocr-engine", choices=["auto", "rapid", "claude", "none"], default="auto",
+                    help="OCR engine for text inside images (default: auto = offline RapidOCR, or Claude vision "
+                         "for Japanese / Korean sources when an API key is set; rapid reads kana / hangul unreliably)")
     tr.add_argument("--max-rounds", type=int, default=None, metavar="N", help="maximum QA rounds")
     tr.add_argument("--pages", metavar="SPEC", default=None,
                     help="only translate these pages, e.g. 1-3,7 (1-based; default: all)")
@@ -144,6 +148,7 @@ def cmd_translate(args: argparse.Namespace) -> int:
         max_qa_rounds=args.max_rounds if args.max_rounds is not None else settings.max_qa_rounds,
         require_qa_pass=not args.no_require_qa,
         translator=args.translator,
+        ocr_engine=args.ocr_engine,
         model=args.model,
         subset_fonts=args.subset_fonts,
         pages=pages,
@@ -214,6 +219,7 @@ def print_summary(result: PipelineResult, source: Path, target: Lang, out_dir: P
 
 
 _UVICORN_LEVELS = ("critical", "error", "warning", "info", "debug", "trace")
+_LOOPBACK_HOSTS = frozenset({"127.0.0.1", "localhost", "::1", "[::1]"})
 
 
 def _uvicorn_log_level(level: str) -> str:
@@ -231,6 +237,10 @@ def cmd_serve(args: argparse.Namespace) -> int:
 
     settings = get_settings()
     app = create_app(settings)
+    if args.host.strip().lower() not in _LOOPBACK_HOSTS and not settings.api_token:
+        log.warning("serving on %s without MATHTRANS_API_TOKEN: there are no user accounts, so every client that "
+                    "can reach port %d can see, create and delete every project; set MATHTRANS_API_TOKEN or put "
+                    "the service behind an authenticating reverse proxy", args.host, args.port)
     print(f"mathtrans web UI: http://{args.host}:{args.port}/  (data dir: {settings.data_dir})", file=sys.stderr)
     uvicorn.run(app, host=args.host, port=args.port, log_level=_uvicorn_log_level(settings.log_level))
     return EXIT_OK

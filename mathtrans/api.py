@@ -15,19 +15,33 @@ Endpoints (see ARCHITECTURE.md):
     GET    /api/glossaries/template
     POST   /api/projects          GET /api/projects[?batch_id=]   GET /api/projects/{id}
     POST   /api/projects/{id}/retranslate      {target_lang, source_lang?, glossary_id?, options?}
-    GET    /api/projects/{id}/qa[?format=md]
-    GET    /api/projects/{id}/preview/{page}   (1-based page, PNG)
-    GET    /api/projects/{id}/download?format=pdf|bilingual|docx|segments[&force=1]
+    GET    /api/projects/{id}/qa[?format=md][&run=]
+    GET    /api/projects/{id}/preview/{page}[?run=]   (1-based page, PNG)
+    GET    /api/projects/{id}/download?format=pdf|bilingual|docx|segments[&force=1][&run=]
     DELETE /api/projects/{id}[?force=1]
+
+The three retrieval endpoints serve the current run; ``run=<run_id>`` (an entry of
+the project's ``history``) serves a previous run instead, whose directory is kept
+on disk after a re-translation.
+
+Access control: there are no user accounts. Every state-changing request (anything
+but GET/HEAD/OPTIONS) is refused with 403 when a browser marks it as cross-site
+(``Sec-Fetch-Site: cross-site``, or an ``Origin`` header that is ``null`` or does
+not match the ``Host``), which stops CSRF through auto-submitted forms. When
+``Settings.api_token`` (``MATHTRANS_API_TOKEN``) is set, every ``/api/`` request
+except ``GET /api/languages`` must carry it (``Authorization: Bearer <token>``,
+``X-API-Key: <token>`` or the ``mathtrans_token`` cookie the web UI sets).
 """
 from __future__ import annotations
 
+import hmac
 import json
 import logging
 from concurrent.futures import ThreadPoolExecutor
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any, Callable, Mapping, Optional
+from urllib.parse import unquote, urlsplit
 
 from fastapi import FastAPI, File, Form, HTTPException, Query, Request, UploadFile
 from fastapi.encoders import jsonable_encoder
@@ -39,9 +53,9 @@ from starlette.datastructures import UploadFile as StarletteUploadFile
 from .config import Settings, get_settings
 from .glossary import glossary_template_csv, parse_glossary_text
 from .languages import language_choices
-from .models import Lang, PipelineOptions, PipelineResult, QAReport, TranslatedDocument, parse_page_spec
-from .projects import (DEFAULT_GLOSSARY_ID, GlossaryNotFound, InvalidId, Project, ProjectBusy,
-                       ProjectNotFound, ProjectStore, ProjectUnreadable, new_id)
+from .models import Glossary, Lang, PipelineOptions, PipelineResult, QAReport, TranslatedDocument, parse_page_spec
+from .projects import (DEFAULT_GLOSSARY_ID, GlossaryNotFound, InvalidId, PdfTooLarge, Project, ProjectBusy,
+                       ProjectNotFound, ProjectStore, ProjectUnreadable, new_id, validate_id)
 
 log = logging.getLogger("mathtrans.api")
 
@@ -50,6 +64,14 @@ MAX_FILES_PER_BATCH = 50
 MAX_QA_ROUNDS_LIMIT = 10
 DEFAULT_MAX_UPLOAD_MB = 100
 MAX_GLOSSARY_NAME_CHARS = 120
+MAX_GLOSSARY_ENTRIES = 20_000
+"""Entries accepted per custom glossary (every ingest path); the QA glossary check scans every pair per segment."""
+MAX_GLOSSARY_TERM_CHARS = 200
+"""Longest term accepted in a custom glossary."""
+TOKEN_COOKIE = "mathtrans_token"
+"""Cookie through which the web UI presents the API token (set by the page itself, SameSite=Strict)."""
+_SAFE_METHODS = frozenset({"GET", "HEAD", "OPTIONS"})
+_TOKEN_EXEMPT = frozenset({"/api/languages"})
 
 Runner = Callable[..., PipelineResult]
 """``runner(source_pdf, out_dir, options, settings=..., progress=...) -> PipelineResult``"""
@@ -67,7 +89,9 @@ _DOWNLOAD_SUFFIX = {
     "segments": "_segments.json",
 }
 _RETRANSLATE_OPTION_KEYS = frozenset({"translate_images", "bilingual", "export_docx", "max_qa_rounds",
-                                      "require_qa_pass", "subset_fonts", "pages", "skip_pages", "scanned_mode"})
+                                      "require_qa_pass", "subset_fonts", "pages", "skip_pages", "scanned_mode",
+                                      "ocr_engine"})
+_OCR_ENGINES = ("auto", "rapid", "claude", "none")
 _TRUE = {"1", "true", "yes", "on"}
 _FALSE = {"0", "false", "no", "off"}
 
@@ -148,6 +172,8 @@ def parse_retranslate_options(options: Mapping[str, Any]) -> dict[str, Any]:
             out[key] = parse_pages(options[key], key)
     if options.get("scanned_mode") is not None:
         out["scanned_mode"] = parse_scanned_mode(options["scanned_mode"])
+    if options.get("ocr_engine") is not None:
+        out["ocr_engine"] = parse_ocr_engine(options["ocr_engine"])
     return out
 
 
@@ -156,6 +182,13 @@ def parse_scanned_mode(value: Any) -> str:
     if mode not in ("repaint", "overlay"):
         raise _bad("scanned_mode: expected 'repaint' or 'overlay'")
     return mode
+
+
+def parse_ocr_engine(value: Any) -> str:
+    engine = str(value or "auto").strip().lower()
+    if engine not in _OCR_ENGINES:
+        raise _bad("ocr_engine: expected one of " + ", ".join(_OCR_ENGINES))
+    return engine
 
 
 def parse_pages(value: Any, field: str) -> Optional[list[int]]:
@@ -186,6 +219,68 @@ def _upload_size(upload: StarletteUploadFile) -> Optional[int]:
     return int(size) if isinstance(size, int) else None
 
 
+def _host_key(netloc: str) -> str:
+    """``host[:port]`` lower-cased, without a default http(s) port."""
+    key = netloc.strip().lower()
+    for default in (":80", ":443"):
+        if key.endswith(default):
+            key = key[: -len(default)]
+    return key
+
+
+def cross_site_reason(headers: Mapping[str, str]) -> Optional[str]:
+    """Why a state-changing request looks like a cross-site (CSRF) request, or None.
+
+    Browsers always send ``Origin`` on cross-origin POSTs and on auto-submitted
+    forms (and modern ones ``Sec-Fetch-Site``); same-origin fetches from the web UI
+    carry an ``Origin`` equal to the ``Host``, and curl / CLI clients send neither,
+    so those keep working.
+    """
+    if headers.get("sec-fetch-site", "").strip().lower() == "cross-site":
+        return "Sec-Fetch-Site: cross-site"
+    origin = headers.get("origin")
+    if origin is None:
+        return None
+    origin = origin.strip()
+    if not origin or origin.lower() == "null":
+        return "Origin: null"
+    hosts = {_host_key(h) for h in (headers.get("host", ""), headers.get("x-forwarded-host", "").split(",")[0])
+             if h.strip()}
+    if _host_key(urlsplit(origin).netloc) in hosts:
+        return None
+    return f"Origin {origin!r} does not match the request host"
+
+
+def _presented_tokens(request: Request) -> list[str]:
+    auth = request.headers.get("authorization", "")
+    tokens = []
+    if auth[:7].lower() == "bearer ":
+        tokens.append(auth[7:].strip())
+    if request.headers.get("x-api-key"):
+        tokens.append(request.headers["x-api-key"].strip())
+    cookie = request.cookies.get(TOKEN_COOKIE)
+    if cookie:
+        tokens.append(unquote(cookie))
+    return [t for t in tokens if t]
+
+
+def token_accepted(request: Request, token: str) -> bool:
+    """Whether the request presents ``token`` (header or cookie), compared in constant time."""
+    expected = token.encode("utf-8")
+    return any(hmac.compare_digest(t.encode("utf-8"), expected) for t in _presented_tokens(request))
+
+
+def _check_glossary_limits(entries: list[Any]) -> None:
+    """Entry-count and term-length bounds shared by every glossary ingest path."""
+    if len(entries) > MAX_GLOSSARY_ENTRIES:
+        raise _bad(f"glossary has {len(entries)} entries; at most {MAX_GLOSSARY_ENTRIES} are supported", 413)
+    for entry in entries:
+        for lang, term in entry.terms.items():
+            if len(term) > MAX_GLOSSARY_TERM_CHARS:
+                raise _bad(f"glossary terms must be at most {MAX_GLOSSARY_TERM_CHARS} characters "
+                           f"({lang} term {term[:30]!r}... has {len(term)})")
+
+
 def parse_lang(value: Optional[str], field: str) -> Lang:
     if value is None or not str(value).strip():
         raise _bad(f"{field} is required")
@@ -214,17 +309,41 @@ def _normalise_glossary_id(store: ProjectStore, value: Optional[str]) -> Optiona
 # --------------------------------------------------------------------------- #
 
 
+_DOWNLOAD_FORMATS = ("pdf", "bilingual", "docx", "segments")
+
+
 def project_view(store: ProjectStore, project: Project, *, brief: bool = False) -> dict[str, Any]:
     """JSON representation of a project for the API (``brief`` omits history and QA details)."""
     data = project.model_dump(mode="json", exclude={"history"} if brief else None)
     if brief and data.get("result"):
         data["result"].pop("qa_report", None)
     data["qa"] = project.qa_summary()
-    data["downloads"] = {fmt: store.run_file(project, fmt) is not None
-                         for fmt in ("pdf", "bilingual", "docx", "segments")}
+    data["downloads"] = {fmt: store.run_file(project, fmt) is not None for fmt in _DOWNLOAD_FORMATS}
     data["preview_pages"] = store.preview_count(project)
     data["download_requires_force"] = project.status == "qa_failed"
+    for entry in data.get("history") or []:  # copies made by model_dump; the record itself is untouched
+        _history_entry_view(store, project, entry)
     return data
+
+
+def _history_entry_view(store: ProjectStore, project: Project, entry: dict[str, Any]) -> None:
+    """Make a history entry client-usable in place: ``outputs`` {fmt: bool} and ``preview_pages``
+    describe what the archived run directory holds (fetched with ``?run=<run_id>``). Records
+    written by older versions stored the pipeline's absolute output paths instead; those are
+    never exposed, the files on disk are checked."""
+    outputs = entry.get("outputs")
+    legacy = not isinstance(outputs, dict) or any(not isinstance(v, bool) for v in outputs.values())
+    if not legacy and "preview_pages" in entry:
+        return
+    run_id = entry.get("run_id")
+    try:
+        validate_id(run_id, "run id")
+    except InvalidId:
+        entry["outputs"] = {fmt: False for fmt in _DOWNLOAD_FORMATS}
+        entry["preview_pages"] = 0
+        return
+    entry["outputs"] = {fmt: store.run_file(project, fmt, run_id=run_id) is not None for fmt in _DOWNLOAD_FORMATS}
+    entry["preview_pages"] = store.preview_count(project, run_id=run_id)
 
 
 def _fallback_markdown(report: QAReport) -> str:
@@ -337,10 +456,11 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
     """
     settings = settings or get_settings()
     runner = runner or _default_runner
-    store = ProjectStore(settings.data_dir)
+    store = ProjectStore(settings.data_dir, max_pages=getattr(settings, "max_pages", None))
     recovered = store.recover_interrupted()
     max_upload_mb = int(getattr(settings, "max_upload_mb", DEFAULT_MAX_UPLOAD_MB))
     max_upload_bytes = max_upload_mb * 1024 * 1024
+    api_token = (getattr(settings, "api_token", None) or "").strip() or None
     executor: Optional[ThreadPoolExecutor] = None
     if not sync:
         executor = ThreadPoolExecutor(max_workers=max(1, settings.max_workers), thread_name_prefix="mathtrans-job")
@@ -370,6 +490,22 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
 
     app.state.submit = submit
 
+    # ----------------------------------------------------------- access control
+    @app.middleware("http")
+    async def _access_control(request: Request, call_next: Callable[[Request], Any]) -> Response:
+        if request.method not in _SAFE_METHODS:
+            reason = cross_site_reason(request.headers)
+            if reason:
+                log.warning("%s %s refused: cross-site request (%s)", request.method, request.url.path, reason)
+                return JSONResponse(status_code=403, content={"detail": f"cross-site request rejected ({reason})"})
+        path = request.url.path
+        if api_token and path.startswith("/api/") and not (path in _TOKEN_EXEMPT and request.method in _SAFE_METHODS):
+            if not token_accepted(request, api_token):
+                return JSONResponse(status_code=401, headers={"WWW-Authenticate": "Bearer"},
+                                    content={"detail": "API token required: send 'Authorization: Bearer <token>' "
+                                                       "(MATHTRANS_API_TOKEN)"})
+        return await call_next(request)
+
     def load_project(project_id: str) -> Project:
         try:
             return store.get(project_id)
@@ -378,6 +514,25 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
         except ProjectUnreadable as exc:
             log.error("project %s: %s", project_id, exc)
             raise HTTPException(status_code=500, detail=f"project record is unreadable: {project_id}") from None
+
+    def resolve_run(project: Project, run: Optional[str]) -> tuple[Optional[str], Optional[dict[str, Any]]]:
+        """``(run_id, history entry)`` for the optional ``run`` query parameter.
+
+        ``(None, None)`` addresses the current run (no ``run``, an empty one, or the
+        current run's id); any other value must be the id of a previous run recorded in
+        the project's history, else 404 (an id that is not a valid run id never reaches
+        the file system).
+        """
+        if not run or run == project.current_run:
+            return None, None
+        try:
+            validate_id(run, "run id")
+        except InvalidId:
+            raise HTTPException(status_code=404, detail=f"run not found: {run}") from None
+        entry = store.find_run(project, run)
+        if entry is None:
+            raise HTTPException(status_code=404, detail=f"run not found: {run}")
+        return run, entry
 
     # ------------------------------------------------------------ error mapping
     @app.exception_handler(RequestValidationError)
@@ -428,8 +583,13 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
         name: Optional[str] = None
         fmt: Optional[str] = None
         if content_type.startswith("application/json"):
+            raw = bytearray()  # bounded like the file upload (Content-Length may be absent / chunked)
+            async for chunk in request.stream():
+                raw.extend(chunk)
+                if len(raw) > max_upload_bytes:
+                    raise _bad(f"glossary exceeds {max_upload_mb} MB", 413)
             try:
-                body = await request.json()
+                body = json.loads(bytes(raw))
             except ValueError:
                 raise _bad("invalid JSON body") from None
             if not isinstance(body, dict):
@@ -470,6 +630,11 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
             raise _bad(f"could not parse glossary: {str(exc).splitlines()[0]}") from None
         if not glossary.entries:
             raise _bad("the glossary contains no entries (header must list language codes zh,en,pt,es,ja,ko)")
+        # a posted Glossary object / .json file carries its own name: apply the same cap as form names;
+        # an object without a name must not inherit the built-in glossary's default name
+        own = glossary.name if glossary.name != Glossary.model_fields["name"].default else None
+        glossary.name = parse_glossary_name(own) or name or "Custom glossary"
+        _check_glossary_limits(glossary.entries)
         glossary.id = "custom"  # always store under a fresh id
         glossary = store.save_glossary(glossary)
         return {"id": glossary.id, "name": glossary.name, "entries": len(glossary.entries), "builtin": False}
@@ -490,6 +655,7 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
         pages: Optional[str] = Form(None),
         skip_pages: Optional[str] = Form(None),
         scanned_mode: Optional[str] = Form(None),
+        ocr_engine: Optional[str] = Form(None),
     ) -> dict[str, Any]:
         """Upload 1..50 PDFs and queue one translation project per file (shared ``batch_id``)."""
         uploads = [f for f in (files or []) if f.filename]
@@ -513,6 +679,7 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
             pages=parse_pages(pages, "pages"),
             skip_pages=parse_pages(skip_pages, "skip_pages"),
             scanned_mode=parse_scanned_mode(scanned_mode),
+            ocr_engine=parse_ocr_engine(ocr_engine),
             min_font_scale=settings.min_font_scale,
             preview_dpi=settings.preview_dpi,
         )
@@ -537,6 +704,8 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
                     raise _bad(f"{filename!r}: not a PDF file (missing %PDF header)")
                 try:
                     projects.append(store.create(filename, data, options, glossary_id=gid, batch_id=batch_id))
+                except PdfTooLarge as exc:
+                    raise _bad(f"{filename!r}: {exc}", 413) from None
                 except ValueError as exc:
                     raise _bad(f"{filename!r}: {exc}") from None
         except HTTPException:
@@ -570,18 +739,22 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
             project = store.begin_run(project.id, target, source_lang=source, glossary_id=gid, options=options)
         except ProjectNotFound:
             raise HTTPException(status_code=404, detail=f"project not found: {project_id}") from None
+        except PdfTooLarge as exc:  # the page limit was lowered after the upload
+            raise _bad(str(exc), 413) from None
         except ValueError as exc:  # stored options + overrides no longer form valid PipelineOptions
             raise _bad(f"invalid options: {str(exc).splitlines()[0]}") from None
         submit(project.id)
         return project_view(store, load_project(project.id))
 
     @app.get("/api/projects/{project_id}/qa")
-    def project_qa(project_id: str, format: str = Query("json")) -> Response:
-        """QA report of the current run as JSON, or markdown with ``?format=md``."""
+    def project_qa(project_id: str, format: str = Query("json"), run: Optional[str] = Query(None)) -> Response:
+        """QA report of the current run (or of a previous run with ``?run=``) as JSON,
+        or markdown with ``?format=md``."""
         project = load_project(project_id)
-        report = project.result.qa_report if project.result is not None else None
+        run_id, _entry = resolve_run(project, run)
+        report = project.result.qa_report if run_id is None and project.result is not None else None
         if report is None:
-            path = store.run_file(project, "qa")
+            path = store.run_file(project, "qa", run_id=run_id)
             if path is not None:
                 try:
                     report = QAReport.model_validate_json(path.read_text(encoding="utf-8"))
@@ -593,7 +766,7 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
         fmt = format.lower()
         if fmt in ("md", "markdown"):
             doc: Optional[TranslatedDocument] = None
-            seg_path = store.run_file(project, "segments")
+            seg_path = store.run_file(project, "segments", run_id=run_id)
             if seg_path is not None:
                 try:
                     doc = TranslatedDocument.model_validate_json(seg_path.read_text(encoding="utf-8"))
@@ -605,35 +778,43 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
         return JSONResponse(report.model_dump(mode="json"))
 
     @app.get("/api/projects/{project_id}/preview/{page}")
-    def project_preview(project_id: str, page: int) -> FileResponse:
-        """PNG preview of a page (1-based) of the current run."""
+    def project_preview(project_id: str, page: int, run: Optional[str] = Query(None)) -> FileResponse:
+        """PNG preview of a page (1-based) of the current run (or of a previous run with ``?run=``)."""
         project = load_project(project_id)
-        path = store.preview_path(project, page)
+        run_id, _entry = resolve_run(project, run)
+        path = store.preview_path(project, page, run_id=run_id)
         if path is None:
             raise HTTPException(status_code=404, detail=f"no preview for page {page}")
         return FileResponse(path, media_type="image/png")
 
     @app.get("/api/projects/{project_id}/download")
-    def project_download(project_id: str, format: str = Query("pdf"), force: str = Query("0")) -> FileResponse:
-        """Download an output of the current run. Projects that failed QA need ``force=1``."""
+    def project_download(project_id: str, format: str = Query("pdf"), force: str = Query("0"),
+                         run: Optional[str] = Query(None)) -> FileResponse:
+        """Download an output of the current run, or of a previous run with ``?run=<run_id>``
+        (its status is judged the same way). Runs that failed QA need ``force=1``."""
         fmt = format.lower()
         if fmt not in _MEDIA_TYPES:
             raise _bad("format must be one of pdf, bilingual, docx, segments")
         forced = parse_bool(force, False, "force")
         project = load_project(project_id)
-        if project.status in ("queued", "running"):
-            raise HTTPException(status_code=409, detail=f"project is {project.status}; outputs are not ready")
-        if project.status == "error":
-            raise HTTPException(status_code=409, detail=f"the run failed: {project.error or 'unknown error'}")
-        if project.status == "qa_failed" and not forced:
+        run_id, entry = resolve_run(project, run)
+        if entry is not None:
+            status, error, target = entry.get("status"), entry.get("error"), entry.get("target_lang")
+        else:
+            status, error, target = project.status, project.error, project.target_lang.value
+        if status in ("queued", "running"):
+            raise HTTPException(status_code=409, detail=f"project is {status}; outputs are not ready")
+        if status == "error":
+            raise HTTPException(status_code=409, detail=f"the run failed: {error or 'unknown error'}")
+        if status == "qa_failed" and not forced:
             raise HTTPException(
                 status_code=409,
                 detail="automatic QA did not pass; review the QA report and add force=1 to download anyway",
             )
-        path = store.run_file(project, fmt)
+        path = store.run_file(project, fmt, run_id=run_id)
         if path is None:
             raise HTTPException(status_code=404, detail=f"this run has no '{fmt}' output")
-        filename = f"{project.name}_{project.target_lang.value}{_DOWNLOAD_SUFFIX[fmt]}"
+        filename = f"{project.name}_{target or project.target_lang.value}{_DOWNLOAD_SUFFIX[fmt]}"
         return FileResponse(path, media_type=_MEDIA_TYPES[fmt], filename=filename)
 
     @app.delete("/api/projects/{project_id}")
@@ -646,4 +827,5 @@ def create_app(settings: Optional[Settings] = None, runner: Optional[Runner] = N
     return app
 
 
-__all__ = ["create_app", "project_view", "qa_markdown", "run_job", "RetranslateRequest", "Runner"]
+__all__ = ["create_app", "cross_site_reason", "project_view", "qa_markdown", "run_job", "token_accepted",
+           "RetranslateRequest", "Runner"]
