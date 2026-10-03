@@ -223,3 +223,51 @@ def test_single_characters_and_equations():
         "160-35=125（千米)\n350-160=190(千米)\n555-350=205(千米)"
     assert _join_lines(["数学是由无数个数", "学故事组成的。"], Lang.ZH) == "数学是由无数个数学故事组成的。"
     assert _join_lines(["In a right", "triangle"], Lang.EN) == "In a right triangle"
+
+
+def test_glyph_erase_keeps_picture_content():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    img = Image.new("RGB", (300, 80), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([0, 60, 300, 80], fill=(30, 120, 200))        # a blue ruling / bar crossing the box bottom
+    d.text((10, 10), "斜边 c", fill=(20, 20, 20), font=pil_font("zh", 28))
+    original = np.array(img)
+    canvas = original.copy()
+    how = _erase_glyphs(canvas, None, original, None, (0, 0, 300, 80))
+    assert how in ("glyphs filled", "glyphs inpainted")
+    # the dark ink is gone ...
+    ink_before = (original.max(axis=2) < 80).sum()
+    ink_after = (canvas.max(axis=2) < 80).sum()
+    assert ink_after < 0.1 * ink_before
+    # ... while the blue bar inside the box survives (a whole-box fill would have erased it)
+    bar = canvas[65:78, 150:290]
+    assert np.abs(bar.astype(int) - np.array([30, 120, 200])).max() < 40
+
+
+def test_scanned_page_boxes_grow_only_into_plain_background(tmp_path):
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    # a "scan": white page image with a dark picture on the right half, below the text box
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    ImageDraw.Draw(img).rectangle([520, 150, 980, 900], fill=(60, 90, 160))  # points x 260-490, y 75-450
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    seg = TextSegment(id="p0_s0", page=0, bbox=BBox(x0=40, y0=100, x1=240, y1=124), source_text="一句很短的中文",
+                      protected_text="一句很短的中文", style=SegmentStyle(size=12, color=0x202020), origin="ocr",
+                      translated_text="A translation that is far too long for the little box it has to go into, so it must grow")
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[seg])
+    render_document(src, doc, tmp_path / "out.pdf")
+    used = seg.render.bbox
+    assert used.y1 > 124 or used.x1 > 240  # it grew into the white area ...
+    assert used.x1 <= 262  # ... but never over the dark picture that starts at x = 260 points
+    assert seg.render.scale > 0.6

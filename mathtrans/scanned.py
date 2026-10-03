@@ -322,7 +322,7 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
             x1, y1 = min(loaded.width, int(x1)), min(loaded.height, int(y1))
             if x1 <= x0 or y1 <= y0:
                 continue
-            _bg, how = _clear_box(canvas, alpha, original, original_alpha, (x0, y0, x1, y1))
+            how = _erase_glyphs(canvas, alpha, original, original_alpha, (x0, y0, x1, y1))
             seg.render = RenderInfo(font_size=0.0, scale=1.0, notes=f"{how}; translation placed as page text")
         stream = encode_image(canvas, alpha, loaded.ext, qtables=loaded.jpeg_qtables,
                               subsampling=loaded.jpeg_subsampling)
@@ -420,6 +420,58 @@ def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
     if changed:
         log.info("watermark alphabet %s: %d OCR lines suppressed or trimmed", "".join(sorted(alphabet)), changed)
     return changed
+
+
+GLYPH_DIFF = 40
+"""Per-channel difference from the background colour above which a pixel is ink."""
+GLYPH_DILATE_PX = 2
+INK_TOLERANCE = 110.0
+"""RGB distance to the estimated text colour within which a pixel counts as ink."""
+MAX_GLYPH_SHARE = 0.7
+"""When more than this share of a box is ink the box is light text on a dark panel: fill it whole."""
+
+
+def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
+                  original_alpha: Optional[np.ndarray], box: tuple[int, int, int, int]) -> str:
+    """Erase only the ink of the OCR line (glyph mask, dilated) by inpainting, so that
+    picture content and rulings inside the box survive; boxes that are mostly ink
+    (light text on a coloured panel) are filled whole like the repaint mode does."""
+    import cv2
+
+    from .images import estimate_background, estimate_text_color
+
+    x0, y0, x1, y1 = box
+    crop = original[y0:y1, x0:x1]
+    if crop.size == 0:
+        return "empty"
+    bg, uniform = estimate_background(original, box, original_alpha)
+    ink = np.array(estimate_text_color(original, box, bg, original_alpha), dtype=np.int16)
+    diff_bg = np.abs(crop.astype(np.int16) - bg.astype(np.int16)).max(axis=2)
+    dist_ink = np.sqrt(((crop.astype(np.int16) - ink) ** 2).sum(axis=2))
+    # ink = pixels that look like the text colour (not the background); coloured picture
+    # content and rulings of another colour are left alone
+    mask = ((diff_bg > GLYPH_DIFF) & (dist_ink < INK_TOLERANCE)).astype(np.uint8)
+    share = float(mask.mean())
+    if uniform and share <= MAX_GLYPH_SHARE and share > 0:
+        # plain background: paint the ink pixels (dilated) with the background colour
+        kernel = np.ones((2 * GLYPH_DILATE_PX + 1, 2 * GLYPH_DILATE_PX + 1), np.uint8)
+        mask = cv2.dilate(mask, kernel)
+        region = canvas[y0:y1, x0:x1]
+        region[mask > 0] = bg
+        return "glyphs filled"
+    if share <= MAX_GLYPH_SHARE and share > 0:
+        kernel = np.ones((2 * GLYPH_DILATE_PX + 1, 2 * GLYPH_DILATE_PX + 1), np.uint8)
+        mask = cv2.dilate(mask, kernel)
+        pad = 6
+        cy0, cy1 = max(0, y0 - pad), min(canvas.shape[0], y1 + pad)
+        cx0, cx1 = max(0, x0 - pad), min(canvas.shape[1], x1 + pad)
+        full_mask = np.zeros((cy1 - cy0, cx1 - cx0), np.uint8)
+        full_mask[y0 - cy0:y1 - cy0, x0 - cx0:x1 - cx0] = mask
+        canvas[cy0:cy1, cx0:cx1] = cv2.inpaint(np.ascontiguousarray(canvas[cy0:cy1, cx0:cx1]), full_mask, 3,
+                                               cv2.INPAINT_TELEA)
+        return "glyphs inpainted"
+    _bg, how = _clear_box(canvas, alpha, original, original_alpha, box)
+    return how
 
 
 def _trim_watermark_runs(text: str, alphabet: set[str]) -> str:

@@ -72,6 +72,7 @@ import tempfile
 from pathlib import Path
 from typing import Optional, Sequence, Union
 
+import numpy as np
 import pymupdf
 
 from .fonts import find_font_file, html_font_setup
@@ -82,6 +83,11 @@ log = logging.getLogger("mathtrans.layout")
 PathLike = Union[str, "os.PathLike[str]"]
 
 REDACT_SHRINK = 0.3
+SCANNED_PAGE_COVER = 0.85
+"""An image covering at least this share of the page is the scanned page itself."""
+FREE_SPACE_DPI = 36
+FREE_SPACE_MAX_STD = 14.0
+"""Pixel standard deviation below which a strip of a scanned page counts as plain background."""
 """Points by which a segment box is shrunk before redaction (protects neighbours)."""
 TIGHT_LINE_HEIGHT = 1.1
 """Line height tried when the text does not fit with the original one."""
@@ -295,10 +301,18 @@ class _PageSpace:
         for pi in doc.pages:
             if pi.index == page_index:
                 image_boxes.extend(pi.image_bboxes)
+        page_area = max(self.page_rect.area, 1.0)
+        self.scanned = False
         for box in image_boxes:
             clipped = _clip(box, self.page_rect)
-            if clipped is not None:
-                self.fixed.append(clipped)
+            if clipped is None:
+                continue
+            if clipped.area >= SCANNED_PAGE_COVER * page_area:
+                # a scanned page: the image *is* the page; boxes may grow over it where the
+                # pixels are plain background (checked in extend()), never over pictures
+                self.scanned = True
+                continue
+            self.fixed.append(clipped)
         page_segments = list(self.occupied.values())
         content: Optional[BBox] = None
         self._line_glyphs: list[list[BBox]] = []  # per text line: the boxes of its glyphs (no spaces)
@@ -376,9 +390,47 @@ class _PageSpace:
         x0, y0, x1, y1 = box.x0, box.y0, box.x1, box.y1
         if down:
             y1 = self._extend_down(box, obstacles, containers)
+            if self.scanned:
+                y1 = self._shrink_until_free(box, "down", y1)
         if horizontal:
             x0, x1 = self._extend_horizontal(BBox(x0=x0, y0=y0, x1=x1, y1=y1), seg.style.align, obstacles, containers)
+            if self.scanned:
+                x1 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "right", x1)
+                x0 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "left", x0)
         return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
+
+    def _strip_is_free(self, rect: BBox) -> bool:
+        """True when the page pixels inside ``rect`` are a plain background (no picture,
+        no text): the standard deviation of a low-resolution render is small."""
+        if rect.width < 1.0 or rect.height < 1.0:
+            return True
+        try:
+            pix = self._page.get_pixmap(clip=rect.to_rect(), dpi=FREE_SPACE_DPI, colorspace=pymupdf.csRGB, alpha=False)
+            samples = np.frombuffer(pix.samples, dtype=np.uint8)
+        except Exception as exc:  # pragma: no cover - rendering problems: be conservative
+            log.debug("free-space check failed: %s", exc)
+            return False
+        if samples.size < 3:
+            return True
+        arr = samples.reshape(-1, 3).astype(np.float32)
+        return float(arr.std(axis=0).max()) <= FREE_SPACE_MAX_STD
+
+    def _shrink_until_free(self, box: BBox, side: str, limit: float) -> float:
+        """Reduce a grown edge until the added strip is plain background (two tries)."""
+        base = {"down": box.y1, "right": box.x1, "left": box.x0}[side]
+        if (side == "left" and limit >= base) or (side != "left" and limit <= base):
+            return limit
+        for fraction in (1.0, 0.5):
+            edge = base + (limit - base) * fraction
+            if side == "down":
+                strip = BBox(x0=box.x0, y0=box.y1, x1=box.x1, y1=edge)
+            elif side == "right":
+                strip = BBox(x0=box.x1, y0=box.y0, x1=edge, y1=box.y1)
+            else:
+                strip = BBox(x0=edge, y0=box.y0, x1=box.x0, y1=box.y1)
+            if self._strip_is_free(strip):
+                return edge
+        return base
 
     def _extend_down(self, box: BBox, obstacles: list[BBox], containers: list[BBox]) -> float:
         limit = box.y1 + MAX_HEIGHT_GROWTH * box.height
