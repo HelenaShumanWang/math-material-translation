@@ -162,7 +162,7 @@ Environment variables (or `.env`):
 |---|---|---|
 | `ANTHROPIC_API_KEY` | — | Claude API key (translation, review, vision OCR). Without it the offline mock translator is used (demo only) |
 | `MATHTRANS_CLAUDE_MODEL` | `claude-opus-5-5` | Model for translation and review |
-| `MATHTRANS_CLAUDE_EFFORT` | `high` | Reasoning effort: low / medium / high / xhigh / max |
+| `MATHTRANS_CLAUDE_EFFORT` | `medium` | Reasoning effort: low / medium / high / xhigh / max |
 | `MATHTRANS_ENABLE_FALLBACKS` | `true` | Server-side refusal fallbacks (`fallbacks: "default"`) |
 | `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `mock` |
 | `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none`. `auto` = offline RapidOCR for zh/en/pt/es sources; Claude vision for ja/ko sources when an API key is configured (RapidOCR reads kana / hangul unreliably — without a key it is still used and every translated image label gets a QA warning). Per job: `--ocr-engine` / form field `ocr_engine` |

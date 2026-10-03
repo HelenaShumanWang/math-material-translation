@@ -22,7 +22,7 @@ from mathtrans.translate import (BAD_MARKER, ClaudeReviewer, ClaudeTranslator, M
                                  MockTranslator, chunk_items, get_reviewer, get_translator,
                                  translate_segments)
 from mathtrans.translate.base import BaseTranslator
-from mathtrans.translate.claude import FALLBACK_BETA, FALLBACK_MODE, MAX_TOKENS
+from mathtrans.translate.claude import FALLBACK_BETA, FALLBACK_MODE, MAX_TOKENS, MIN_TOKENS
 from mathtrans.translate.prompts import REVIEW_SYSTEM_PROMPT, TRANSLATION_SYSTEM_PROMPT
 
 GLOSSARY = default_glossary()
@@ -327,7 +327,7 @@ def test_claude_request_shape_with_fallbacks():
     kind, kwargs = client.calls[0]
     assert kind == "beta"
     assert kwargs["model"] == "claude-opus-5-5"
-    assert kwargs["max_tokens"] == MAX_TOKENS
+    assert MIN_TOKENS <= kwargs["max_tokens"] <= MAX_TOKENS  # scaled with the batch size
     assert kwargs["betas"] == [FALLBACK_BETA] and kwargs["fallbacks"] == FALLBACK_MODE
     assert "thinking" not in kwargs
     fmt = kwargs["output_config"]["format"]
@@ -386,9 +386,12 @@ def test_claude_max_tokens_splits_the_chunk():
     sizes = [len(items_in_request(kw)) for _, kw in client.calls]
     assert sizes == [4, 2, 1, 1, 2, 1, 1]
 
+    # a single item that still overruns the output budget is skipped, never fatal for the document
     always_truncated = FakeClient(lambda kw: make_response({"translations": []}, stop_reason="max_tokens"))
-    with pytest.raises(TranslationError, match="max_tokens"):
-        ClaudeTranslator(client=always_truncated, settings=make_settings()).translate(items[:1], Lang.ZH, Lang.EN, [])
+    assert ClaudeTranslator(client=always_truncated, settings=make_settings()).translate(
+        items[:1], Lang.ZH, Lang.EN, []) == []
+    budgets = [kw["max_tokens"] for _, kw in always_truncated.calls]
+    assert budgets and all(MIN_TOKENS <= b <= MAX_TOKENS for b in budgets)
 
 
 def test_claude_missing_ids_are_retried_once():

@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     )
     claude_model: str = "claude-opus-5-5"
     claude_review_model: Optional[str] = None  # defaults to claude_model
-    claude_effort: Literal["low", "medium", "high", "xhigh", "max"] = "high"
+    claude_effort: Literal["low", "medium", "high", "xhigh", "max"] = "medium"
     enable_fallbacks: bool = True
     translator: Literal["auto", "claude", "mock"] = "auto"
     ocr_engine: Literal["auto", "rapid", "claude", "none"] = "auto"

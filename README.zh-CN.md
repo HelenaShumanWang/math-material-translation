@@ -164,7 +164,7 @@ PDF ─► 抽取文本块（字号/颜色/对齐/角色）+ 公式/数字占位
 |---|---|---|
 | `ANTHROPIC_API_KEY` | — | Claude API Key（翻译、审校、视觉 OCR）。缺省时自动退回离线 mock 翻译器（仅演示） |
 | `MATHTRANS_CLAUDE_MODEL` | `claude-opus-5-5` | 翻译/审校模型 |
-| `MATHTRANS_CLAUDE_EFFORT` | `high` | 推理强度 low / medium / high / xhigh / max |
+| `MATHTRANS_CLAUDE_EFFORT` | `medium` | 推理强度 low / medium / high / xhigh / max |
 | `MATHTRANS_ENABLE_FALLBACKS` | `true` | 启用服务端拒答回退（`fallbacks: "default"`） |
 | `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `mock` |
 | `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none`。`auto`：中/英/葡/西文源用离线 RapidOCR；日文、韩文源在配置了 API Key 时改用 Claude 视觉识别（RapidOCR 对假名/谚文识别不可靠；无 Key 时仍用 RapidOCR，并对每个已翻译的图内文字给出质检警告）。也可按任务指定：`--ocr-engine` / 表单字段 `ocr_engine` |

@@ -26,6 +26,15 @@ from .prompts import (REVIEW_CATEGORIES, REVIEW_SCHEMA, TRANSLATION_SCHEMA, revi
 log = logging.getLogger("mathtrans.translate.claude")
 
 MAX_TOKENS = 16000
+MIN_TOKENS = 4000
+TOKENS_PER_INPUT_CHAR = 12
+
+
+def output_budget(user_text: str) -> int:
+    """``max_tokens`` for a request: generous for big batches, tight for single items so
+    that a runaway generation costs a few thousand tokens instead of 16k (thinking tokens
+    count against the budget on models with adaptive thinking)."""
+    return max(MIN_TOKENS, min(MAX_TOKENS, 1500 + TOKENS_PER_INPUT_CHAR * len(user_text)))
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 FALLBACK_MODE = "default"
 
@@ -88,11 +97,12 @@ class _ClaudeMessages:
             log.warning("installed anthropic SDK does not accept server-side fallbacks; using client.messages")
 
     # ------------------------------------------------------------------ raw call
-    def request(self, system: list[dict[str, Any]], user_text: str, schema: dict[str, Any]) -> Any:
+    def request(self, system: list[dict[str, Any]], user_text: str, schema: dict[str, Any],
+                max_tokens: int = MAX_TOKENS) -> Any:
         """One Messages API call with structured JSON output; maps SDK errors."""
         kwargs: dict[str, Any] = {
             "model": self.model,
-            "max_tokens": MAX_TOKENS,
+            "max_tokens": max_tokens,
             "system": system,
             "messages": [{"role": "user", "content": user_text}],
             "output_config": {"effort": self.effort, "format": {"type": "json_schema", "schema": schema}},
@@ -165,12 +175,16 @@ class _ClaudeMessages:
         batch = list(items)
         if not batch:
             return []
-        response = self.request(system, build_user(batch), schema)
+        user_text = build_user(batch)
+        response = self.request(system, user_text, schema, max_tokens=output_budget(user_text))
         if getattr(response, "stop_reason", None) == "max_tokens":
             if len(batch) <= 1:
-                raise TranslationError(
-                    f"Model output for item {describe(batch[0])} exceeded max_tokens={MAX_TOKENS}; the segment "
-                    "is too long for a single request")
+                # A runaway generation on a single item (seen with structured output + retry
+                # feedback) must not abort the whole document: the item simply gets no result
+                # and the QA loop reports / retries it.
+                log.error("model output for item %s exceeded the output budget (%d tokens); the item is "
+                          "left without a result", describe(batch[0]), output_budget(user_text))
+                return []
             half = len(batch) // 2
             log.warning("output hit max_tokens for %d items; splitting into %d + %d",
                         len(batch), half, len(batch) - half)
