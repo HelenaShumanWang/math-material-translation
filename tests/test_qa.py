@@ -115,8 +115,13 @@ def test_untranslated_foreign_letters_identical_and_tiny_label_allowance():
     tiny_copy = seg("tc", "答案", "答案")
     tiny_image = seg("ti", "底", "底", kind=SegmentKind.IMAGE_TEXT)
     page_label = seg("pl", "第 2 页", "第 2 页")
-    issues = C.untranslated(doc(leftover, identical, tiny, formula, fine, tiny_copy, tiny_image, page_label), opts(), [])
-    assert sorted(i.segment_id for i in issues) == ["i", "l", "pl", "tc", "ti"]
+    # tally marks 正 are kept verbatim by convention; 正 inside a word (正方形) is still untranslated
+    tally = seg("ty", "用正表示10，用一表示1。", "Use 正 to show 10 and a stroke to show 1.")
+    tally_table = seg("tt", "正正丅", "正正丅")
+    square = seg("sq", "画一个正方形。", "Draw a 正方形.", raw="Draw a 正方形.")
+    issues = C.untranslated(doc(leftover, identical, tiny, formula, fine, tiny_copy, tiny_image, page_label,
+                                tally, tally_table, square), opts(), [])
+    assert sorted(i.segment_id for i in issues) == ["i", "l", "pl", "sq", "tc", "ti", "tt"]
     by_id = {i.segment_id: i for i in issues}
     assert '"斜边"' in by_id["l"].message and "6 letter(s)" in by_id["i"].message
     assert '"答案"' in by_id["tc"].message and "2 letter(s)" in by_id["tc"].message and by_id["tc"].severity == "error"
@@ -401,7 +406,12 @@ def test_formatting_list_markers():
     cjk = seg("cjk", "一、填空题", "I. Fill in the blanks")  # CJK numeral marker: any marker accepted
     cjk_lost = seg("cjk2", "一、填空题", "Fill in the blanks")
     section = seg("sec", "1.1 探索勾股定理", "1.1 Exploring the Pythagorean theorem")
-    issues = C.formatting(doc(lost, kept, changed, style, circled, bullet, cjk, cjk_lost, section), opts(), [])
+    # Chinese number words read aloud (grade 1 counting) are content, not enumerators
+    counting = seg("cnt", "五、十、十五···", "five, ten, fifteen...")
+    counting2 = seg("cnt2", "九十八、九十九，再数1根是一百根。", "Ninety-eight, ninety-nine, one more stick makes one hundred.")
+    counting3 = seg("cnt3", "十、二", "ten, two")
+    issues = C.formatting(doc(lost, kept, changed, style, circled, bullet, cjk, cjk_lost, section,
+                              counting, counting2, counting3), opts(), [])
     assert sorted(i.segment_id for i in issues) == ["chg", "cjk2", "lost"]
     by_id = {i.segment_id: i for i in issues}
     assert 'list marker "1."' in by_id["lost"].message

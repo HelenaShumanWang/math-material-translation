@@ -461,7 +461,7 @@ def untranslated(doc: TranslatedDocument, options: PipelineOptions,
     latin_into_cjk = "latin" in distinctive_source_keys(src, tgt)
     issues: list[QAIssue] = []
     for seg in _translated(doc):
-        body = translation_body(seg)
+        body = _TALLY_RUN_RE.sub("", translation_body(seg))  # 正 tally marks stay by convention
         src_letters = _letters(seg.source_text)
         foreign = foreign_letters(body, tgt)
         # a tiny label may keep a stray letter, but a verbatim copy of the source is untranslated
@@ -647,6 +647,12 @@ _TRAILING_CLOSERS = ")）]】」』”\"'’》〉›»"
 _JSON_HINT_RE = re.compile(r"\"(?:id|text|translations?)\"\s*:")
 
 
+_CJK_NUMERAL_RUN_RE = re.compile(r"^\s*[零〇一二三四五六七八九十百千万两]")
+"""A Chinese number word follows: ``五、十、十五`` is a counting sequence, not an enumerator."""
+_TALLY_RUN_RE = re.compile(r"(?<![\u4e00-\u9fff])正+(?![\u4e00-\u9fff])")
+"""Standalone tally marks (正 used for counting strokes), kept verbatim by convention."""
+
+
 def _marker(text: str) -> Optional[tuple[str, str]]:
     """``(kind, normalised core)`` of the list marker starting ``text`` (None = no marker)."""
     m = _MARKER_RE.match(text)
@@ -657,6 +663,9 @@ def _marker(text: str) -> Optional[tuple[str, str]]:
     if kind in ("bullet", "dash"):
         return kind, "•"
     if kind == "cjk":
+        rest = text[m.end():]
+        if not rest.strip() or _CJK_NUMERAL_RUN_RE.match(rest):
+            return None  # 五、十、十五… / 九十八、九十九: number words read aloud, not a list marker
         return kind, core
     norm = unicodedata.normalize("NFKC", core).casefold()
     return kind, re.sub(r"[^0-9a-z]", "", norm) or norm
