@@ -42,7 +42,14 @@ that are normally not translated.
 6. Feedback. An item may carry "context" (for example heading, figure caption, label inside a \
 diagram), "feedback" from an automatic quality check of a previous attempt and "previous" (the \
 rejected previous translation). Fix every point of the feedback and deliver a better translation.
-7. Output. Respond with JSON only, no explanations, no notes, no markdown: \
+7. Conventions of school mathematics. Money: write prices in labels, price tags, tables and \
+expressions with the currency symbol (元 3 => ¥3, 3.15元 => ¥3.15) and spell "yuan" only inside \
+running sentences. Measure words: a Chinese measure word in parentheses after a number (16（只）, \
+5（个）) names the counted objects - write the object when the context gives it ("16 (birds)") and \
+otherwise drop the parentheses; never write "(ones)" or "(pieces)". Tally marks: the character 正 \
+used for counting strokes (alone, repeated, or in a tally table) is a symbol, keep it exactly as 正. \
+Keep page numbers, exercise numbers and figure numbers as they are.
+8. Output. Respond with JSON only, no explanations, no notes, no markdown: \
 {"translations": [{"id": "...", "text": "..."}]} with exactly one entry for every input item id, \
 in the same order as the input. "text" is the translation alone: no surrounding quotes, no \
 "Translation:" prefix, no comments.

@@ -1509,3 +1509,12 @@ def test_replace_image_cleans_up_indirect_and_inherited_resources(tmp_path):
             info = page_image_info(pdf2, 0)
             assert tuple(load_image(pdf2, info["xref"]).rgb[40, 100]) == (0, 128, 0)  # the new pixels are drawn
             assert pdf2[0].get_pixmap(dpi=36).width > 0
+
+
+def test_tally_marks_are_kept_as_symbols():
+    from mathtrans.images import classify_ocr_text
+    from mathtrans.models import Lang
+
+    assert classify_ocr_text("正正", Lang.ZH)[2:] == (False, "tally marks")
+    assert classify_ocr_text("正 正 正", Lang.ZH)[2:] == (False, "tally marks")
+    assert classify_ocr_text("正方形", Lang.ZH)[2:] == (True, "")

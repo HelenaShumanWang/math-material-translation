@@ -872,3 +872,10 @@ def test_glossary_terms_cannot_add_lines_to_the_system_prompt():
         glossary_lines = system_text.split("\n")[4:]
         assert all(line.startswith('"') and " => " in line for line in glossary_lines)
     assert review_system_blocks(Lang.ZH, Lang.EN, [])[1]["text"].endswith("No glossary is given for this document.")
+
+
+def test_prompt_has_textbook_conventions():
+    from mathtrans.translate.prompts import TRANSLATION_SYSTEM_PROMPT
+
+    assert "¥3" in TRANSLATION_SYSTEM_PROMPT and "正" in TRANSLATION_SYSTEM_PROMPT
+    assert "(ones)" in TRANSLATION_SYSTEM_PROMPT and "Respond with JSON only" in TRANSLATION_SYSTEM_PROMPT

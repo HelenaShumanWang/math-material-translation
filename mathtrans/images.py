@@ -382,6 +382,7 @@ def _is_latin_or_greek(ch: str) -> bool:
     return bool(_LATIN_GREEK_RE.fullmatch(ch))
 
 
+_TALLY_RE = re.compile(r"[正\s]+")
 _BARE_LABEL_RE = re.compile(r"[A-Z]{2,4}['’]*(?:\s*[A-Z]{1,4}['’]*)?")
 
 
@@ -405,6 +406,9 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
     stripped = text.strip()
     if not stripped:
         return "", [], False, "empty"
+    if _TALLY_RE.fullmatch(stripped):
+        # 正 used as counting strokes (tally marks) is a symbol, not a word
+        return make_placeholder(0), [stripped], False, "tally marks"
     if _BARE_LABEL_RE.fullmatch(stripped):
         # a lone upper-case token in a diagram ("AB", "ABC", "PQR'") names a segment / polygon
         return make_placeholder(0), [stripped], False, "pure number / formula"
