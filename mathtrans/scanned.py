@@ -19,6 +19,7 @@ from typing import Optional, Union
 import numpy as np
 import pymupdf
 
+from .extract import is_list_item
 from .images import _clear_box, encode_image, load_image, resolve_placement
 from .languages import is_cjk
 from .models import (BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
@@ -33,8 +34,16 @@ MAX_LINE_GAP = 0.75
 """Lines closer than this many line heights belong to the same paragraph."""
 MIN_X_OVERLAP = 0.4
 """Horizontal overlap (share of the narrower line) required to stack lines."""
-HEIGHT_RATIO = (0.6, 1.7)
+HEIGHT_RATIO = (0.7, 1.4)
 """Line heights within a paragraph must stay within this ratio range."""
+MIN_WIDTH_SHARE = 0.3
+"""A line narrower than this share of the paragraph width joins it only when left-aligned."""
+
+
+def _closes_paragraph(text: str) -> bool:
+    """``答：`` / ``解：`` / ``Answer:`` on their own line are followed by a blank to fill."""
+    t = text.strip()
+    return len(t) <= 8 and t[-1:] in "：:" if t else False
 FONT_HEIGHT_RATIO = 0.82
 MAX_COLOR_DISTANCE = 120.0
 """Lines whose estimated text colours differ by more than this (RGB distance) are
@@ -114,6 +123,10 @@ class _Para:
             return False  # formula / number lines never join a prose paragraph (they stay in the picture)
         if _color_distance(line.style.color, self.lines[0].style.color) > MAX_COLOR_DISTANCE:
             return False  # different text colour: a badge / heading vs the body text next to it
+        if is_list_item(line.source_text):
+            return False  # "2. ..." / "(1) ..." starts a new paragraph (a question, an exercise)
+        if _closes_paragraph(self.last.source_text):
+            return False  # "答：" / "解：" followed by a blank: nothing may be appended to it
         h = self.median_height
         lh = line.bbox.height
         if h <= 0 or lh <= 0:
@@ -125,9 +138,12 @@ class _Para:
             return False
         overlap = _x_overlap(line.bbox, self.bbox)
         narrower = min(line.bbox.width, self.bbox.width)
+        wider = max(line.bbox.width, self.bbox.width)
         if narrower <= 0:
             return False
         left_aligned = abs(line.bbox.x0 - self.bbox.x0) <= 1.5 * h
+        if narrower < MIN_WIDTH_SHARE * wider:
+            return False  # a short label next to / under a long line is a diagram label or a table cell
         return overlap >= MIN_X_OVERLAP * narrower or (left_aligned and overlap > 0)
 
     def add(self, line: TextSegment) -> None:
@@ -298,9 +314,11 @@ WATERMARK = "watermark fragment"
 """``skip_reason`` of OCR lines recognised as pieces of a repeated page watermark."""
 MIN_SLANTED_LINES = 3
 """Slanted lines needed before their characters are treated as a watermark alphabet."""
-MIN_CHAR_SHARE = 0.2
+MIN_CHAR_SHARE = 0.1
 """A character must occur in at least this share of the slanted lines (and in >= 2 of
 them) to belong to the watermark alphabet."""
+MIN_SLANTED_SHARE = 0.5
+"""... and at least this share of all its occurrences must be in slanted lines."""
 MAX_FRAGMENT_LETTERS = 12
 LOW_CONFIDENCE = 0.8
 """OCR confidence below which a short, half-watermark line counts as a misread fragment."""
@@ -311,18 +329,26 @@ def watermark_alphabet(doc: TranslatedDocument) -> set[str]:
     lines skipped as slanted text (a publisher's name printed across every page)."""
     from collections import Counter
 
-    slanted = [s for s in doc.segments if s.kind == SegmentKind.IMAGE_TEXT
-               and s.skip_reason.startswith("slanted text")]
+    lines = [s for s in doc.segments if s.kind == SegmentKind.IMAGE_TEXT]
+    slanted = [s for s in lines if s.skip_reason.startswith("slanted text")]
     if len(slanted) < MIN_SLANTED_LINES:
         return set()
     counts: Counter[str] = Counter()
     for seg in slanted:
         for ch in set(c for c in seg.source_text if c.isalpha()):
             counts[ch] += 1
+    others: Counter[str] = Counter()
+    for seg in lines:
+        if seg not in slanted:
+            for ch in set(c for c in seg.source_text if c.isalpha()):
+                others[ch] += 1
     import math
 
     needed = max(2, math.ceil(MIN_CHAR_SHARE * len(slanted)))
-    alphabet = {ch for ch, n in counts.items() if n >= needed}
+    # A watermark letter occurs mostly in slanted lines; a letter that is common in the
+    # upright text as well (米 of distance labels along slanted roads) is ordinary text.
+    alphabet = {ch for ch, n in counts.items()
+                if n >= needed and n >= MIN_SLANTED_SHARE * (n + others.get(ch, 0))}
     return alphabet if len(alphabet) >= 3 else set()
 
 

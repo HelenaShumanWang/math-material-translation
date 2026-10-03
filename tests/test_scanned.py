@@ -163,3 +163,45 @@ def test_lines_with_different_colours_are_not_merged():
     paragraphs = group_ocr_lines([white_heading, black_body, black_body2], 0, Lang.ZH)
     assert [p.members for p in paragraphs] == [["c0"], ["c1", "c2"]]
     assert paragraphs[0].style.color == 0xFFFFFF and paragraphs[1].style.color == 0x202020
+
+
+def test_grouping_keeps_questions_labels_and_answer_lines_apart():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    def line(i, x0, y, w, text, h=12):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int(x0 * 2), int(y * 2), int((x0 + w) * 2), int((y + h) * 2)))
+        return TextSegment(id=f"g{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=x0, y0=y, x1=x0 + w, y1=y + h),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=0x202020))
+
+    lines = [
+        line(0, 50, 100, 300, "1.笑笑一共需要多少元？"),
+        line(1, 60, 114, 40, "18元"),                      # narrow diagram label right under the question
+        line(2, 50, 128, 300, "答："),                      # answer line followed by a blank
+        line(3, 50, 142, 300, "2.淘气买了3本书，每本8元。"),   # next exercise: list marker
+        line(4, 50, 156, 300, "一共花了多少元？"),           # continuation of exercise 2
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    members = [p.members for p in paragraphs]
+    assert ["g0"] in members and ["g2"] in members and ["g3", "g4"] in members
+    assert all("g1" not in m for m in members) or ["g1"] in members
+
+
+def test_watermark_alphabet_ignores_letters_common_in_upright_text():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import watermark_alphabet
+
+    def line(i, text, translate=True, reason=""):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(10, 10 + 20 * i, 300, 30 + 20 * i))
+        return TextSegment(id=f"w{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=5, y0=5 + 10 * i, x1=150, y1=15 + 10 * i),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10),
+                           translate=translate, skip_reason=reason)
+
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)])
+    doc.segments = [line(i, t, False, "slanted text (16°): watermark")
+                    for i, t in enumerate(["北京师范大学出版社", "师范大学", "出版社", "410米", "305米"])]
+    doc.segments += [line(10 + i, t) for i, t in enumerate(["200米", "150米", "75米", "4米", "10米", "一共多少米"])]
+    alphabet = watermark_alphabet(doc)
+    assert {"师", "范", "出", "版", "社"} <= alphabet and "米" not in alphabet
