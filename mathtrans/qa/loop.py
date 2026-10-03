@@ -30,8 +30,9 @@ log = logging.getLogger("mathtrans.qa.loop")
 RetranslateCallback = Callable[[list[str]], None]
 RenderCheck = Callable[[TranslatedDocument], list[QAIssue]]
 
-REVIEW_ERROR_CATEGORIES = frozenset({"meaning", "omission", "number", "terminology", "untranslated", "format"})
-"""Reviewer finding categories reported as errors; every other category is a warning."""
+REVIEW_ERROR_CATEGORIES = frozenset({"meaning", "omission", "number", "terminology", "untranslated"})
+"""Reviewer finding categories reported as errors whatever the reviewer's own severity; every
+other category (grammar, format, style) is a warning: it never changes the meaning."""
 REVIEW_CHECK_NAME = "llm_review"
 RENDER_CHECK_NAME = "render_check"
 RETRANSLATE_CHECK_NAME = "retranslate"

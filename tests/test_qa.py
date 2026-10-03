@@ -717,6 +717,9 @@ def test_apply_feedback_and_review_issue_helpers():
     issue = review_issue(ReviewFinding(id="p0_b0", severity="warning", category="Number", message="25 became 52"),
                          {s.id: s for s in d.segments})
     assert issue.severity == "error" and issue.page == 0 and issue.details["reviewer_severity"] == "warning"
+    style = review_issue(ReviewFinding(id="p0_b0", severity="error", category="format", message="use 'and'"),
+                         {s.id: s for s in d.segments})
+    assert style.severity == "warning" and style.details["reviewer_severity"] == "error"  # style never blocks
 
 
 # --------------------------------------------------------------------------- #

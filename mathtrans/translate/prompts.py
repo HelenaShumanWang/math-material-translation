@@ -17,7 +17,8 @@ from ..models import Lang, ReviewItem, TranslationItem
 CONVENTIONS = """\
 Money: always write amounts in Chinese yuan with the \
 currency symbol before the number, in sentences and labels alike (3元 => ¥3, 3.15元 => ¥3.15, \
-一共70元 => ¥70 in total); never spell out "yuan". Measure words: a Chinese measure word in parentheses after a number (16（只）, \
+一共70元 => ¥70 in total); never spell out "yuan" after an amount. A bare unit label without an amount \
+(元 alone, （元） after an answer blank) is written "yuan" / "(yuan)". Measure words: a Chinese measure word in parentheses after a number (16（只）, \
 5（个）) names the counted objects - write the object when the context gives it ("16 (birds)") and \
 otherwise drop the parentheses; never write "(ones)" or "(pieces)". Tally marks: the character 正 \
 used for counting strokes (alone, repeated, or in a tally table) is a symbol, keep it exactly as 正. \
