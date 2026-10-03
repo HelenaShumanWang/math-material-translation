@@ -382,6 +382,7 @@ def _is_latin_or_greek(ch: str) -> bool:
     return bool(_LATIN_GREEK_RE.fullmatch(ch))
 
 
+_CJK_PLUS_RE = re.compile(r"[\d\s.=×÷+\-()（）]*\d\s*[十一]\s*\d[\d\s.=×÷+\-()（）]*")
 _TALLY_RE = re.compile(r"[正\s]+")
 _BARE_LABEL_RE = re.compile(r"[A-Z]{2,4}['’]*(?:\s*[A-Z]{1,4}['’]*)?")
 
@@ -406,6 +407,9 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
     stripped = text.strip()
     if not stripped:
         return "", [], False, "empty"
+    if _CJK_PLUS_RE.fullmatch(stripped):
+        # "118十104" / "7一3": the OCR read a + or - sign as the look-alike character 十 / 一
+        return make_placeholder(0), [stripped], False, "pure number / formula"
     if _TALLY_RE.fullmatch(stripped):
         # 正 used as counting strokes (tally marks) is a symbol, not a word
         return make_placeholder(0), [stripped], False, "tally marks"
@@ -431,6 +435,8 @@ UNRELIABLE_OCR_KO = "unreliable OCR (Han characters but no hangul in a Korean so
 
 
 MAX_TEXT_SLANT_DEGREES = 12.0
+LOW_CONFIDENCE_SINGLE_CHAR = 0.9
+"""A single non-Latin character below this OCR confidence is left in the picture."""
 """OCR polygons slanted more than this (and less than 90 - this) are decorative:
 watermarks, diagonal captions, text along curves. They are kept as they are."""
 
@@ -569,6 +575,10 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
         logger.info("page %d image %d: superscript restored from the glyph geometry: %r -> %r", page_index, xref,
                     result.text, text)
     protected, fragments, translate, reason = classify_ocr_text(text, source_lang)
+    letters = [c for c in text if c.isalpha()]
+    if translate and len(letters) == 1 and not letters[0].isascii() and result.confidence < LOW_CONFIDENCE_SINGLE_CHAR:
+        # a lone CJK character read with low confidence is usually noise (an arrow, a stroke, a watermark piece)
+        translate, reason = False, f"single character with low OCR confidence ({result.confidence:.2f})"
     slant = polygon_slant_degrees(result.polygon)
     if translate and MAX_TEXT_SLANT_DEGREES < slant < 90.0 - MAX_TEXT_SLANT_DEGREES:
         translate, reason = False, f"slanted text ({slant:.0f}°): watermark or decoration, kept as is"

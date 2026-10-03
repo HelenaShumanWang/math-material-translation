@@ -1518,3 +1518,12 @@ def test_tally_marks_are_kept_as_symbols():
     assert classify_ocr_text("正正", Lang.ZH)[2:] == (False, "tally marks")
     assert classify_ocr_text("正 正 正", Lang.ZH)[2:] == (False, "tally marks")
     assert classify_ocr_text("正方形", Lang.ZH)[2:] == (True, "")
+
+
+def test_ocr_noise_rules():
+    from mathtrans.images import classify_ocr_text
+    from mathtrans.models import Lang
+
+    assert classify_ocr_text("118十104", Lang.ZH)[2:] == (False, "pure number / formula")
+    assert classify_ocr_text("7一3=4", Lang.ZH)[2:] == (False, "pure number / formula")
+    assert classify_ocr_text("一共十个", Lang.ZH)[2:] == (True, "")
