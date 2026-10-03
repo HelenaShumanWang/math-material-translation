@@ -36,6 +36,16 @@ MIN_X_OVERLAP = 0.4
 HEIGHT_RATIO = (0.6, 1.7)
 """Line heights within a paragraph must stay within this ratio range."""
 FONT_HEIGHT_RATIO = 0.82
+MAX_COLOR_DISTANCE = 120.0
+"""Lines whose estimated text colours differ by more than this (RGB distance) are
+not merged: a white heading on a coloured badge must not drag the black body
+text below it into a white paragraph."""
+
+
+def _color_distance(a: int, b: int) -> float:
+    ra, ga, ba = (a >> 16) & 255, (a >> 8) & 255, a & 255
+    rb, gb, bb = (b >> 16) & 255, (b >> 8) & 255, b & 255
+    return ((ra - rb) ** 2 + (ga - gb) ** 2 + (ba - bb) ** 2) ** 0.5
 """Font size relative to the OCR line height (box height includes ascender/descender room)."""
 MERGED = "merged into paragraph"
 """Prefix of the ``skip_reason`` of OCR lines that became part of a paragraph."""
@@ -102,6 +112,8 @@ class _Para:
     def accepts(self, line: TextSegment) -> bool:
         if line.translate != self.lines[0].translate:
             return False  # formula / number lines never join a prose paragraph (they stay in the picture)
+        if _color_distance(line.style.color, self.lines[0].style.color) > MAX_COLOR_DISTANCE:
+            return False  # different text colour: a badge / heading vs the body text next to it
         h = self.median_height
         lh = line.bbox.height
         if h <= 0 or lh <= 0:

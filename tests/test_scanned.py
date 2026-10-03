@@ -146,3 +146,20 @@ def test_watermark_fragments_are_suppressed_and_trimmed():
     assert by["l6"].translate is False
     assert by["l7"].translate and by["l7"].source_text == "学校"
     assert changed == 3
+
+
+def test_lines_with_different_colours_are_not_merged():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    def line(i, y, text, color):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(100, int(y * 2), 600, int(y * 2) + 24))
+        return TextSegment(id=f"c{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=50, y0=y, x1=300, y1=y + 12),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=color))
+
+    white_heading = line(0, 100, "植树", 0xFFFFFF)
+    black_body = line(1, 113, "平均每班分到多少棵树苗？", 0x202020)
+    black_body2 = line(2, 126, "分一分，算一算。", 0x242424)
+    paragraphs = group_ocr_lines([white_heading, black_body, black_body2], 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["c0"], ["c1", "c2"]]
+    assert paragraphs[0].style.color == 0xFFFFFF and paragraphs[1].style.color == 0x202020
