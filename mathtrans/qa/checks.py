@@ -774,11 +774,19 @@ def formatting(doc: TranslatedDocument, options: PipelineOptions,
 # ---- layout -----------------------------------------------------------------
 
 
-IMAGE_MIN_FEASIBLE_CHARS = 4
+IMAGE_MIN_FEASIBLE_CHARS = 5
 """An image label shorter than this cannot be asked for; the fit is reported as a warning."""
 UNRELIABLE_OCR_PREFIX = "unreliable OCR"
 """``skip_reason`` prefix of OCR lines rejected as misreads by ``images.classify_ocr_text``."""
 IMAGE_MIN_FEASIBLE_SHARE = 0.35
+SHORT_LABEL_CHARS = 12
+"""Translations up to this length are labels / names: they cannot be halved, so a
+shorten request below half their length is infeasible."""
+SHORT_LABEL_SHARE = 0.5
+
+
+def _feasible_share(current: int) -> float:
+    return SHORT_LABEL_SHARE if current <= SHORT_LABEL_CHARS else IMAGE_MIN_FEASIBLE_SHARE
 """A shorten request below this share of the current length is considered infeasible."""
 
 
@@ -795,7 +803,7 @@ def layout_fit(doc: TranslatedDocument, options: PipelineOptions,
             current = len((seg.translated_text or "").strip())
             max_chars = shorten_hint(seg.translated_text or "", r.scale, options.min_font_scale)
             why = "overflows its box" if r.overflow else f"had to be shrunk to {r.scale:.0%} of the original size"
-            if max_chars < max(IMAGE_MIN_FEASIBLE_CHARS, int(IMAGE_MIN_FEASIBLE_SHARE * current)):
+            if max_chars < max(IMAGE_MIN_FEASIBLE_CHARS, int(_feasible_share(current) * current)):
                 # No translation this short can carry the meaning (tiny OCR box, huge expansion):
                 # report it for a human instead of blocking the export on a hopeless re-translation.
                 issues.append(_issue(
@@ -877,7 +885,7 @@ def image_text(doc: TranslatedDocument, options: PipelineOptions,
         elif r.overflow:
             current = len((seg.translated_text or "").strip())
             max_chars = shorten_hint(seg.translated_text or "", r.scale)
-            if max_chars < max(IMAGE_MIN_FEASIBLE_CHARS, int(IMAGE_MIN_FEASIBLE_SHARE * current)):
+            if max_chars < max(IMAGE_MIN_FEASIBLE_CHARS, int(_feasible_share(current) * current)):
                 # Even a drastically shorter text would not fit (tiny label, huge glyphs):
                 # re-translating cannot fix it, so report it for a human instead of blocking.
                 issues.append(_issue(

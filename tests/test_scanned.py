@@ -111,3 +111,38 @@ def test_formula_lines_stay_in_the_picture():
     assert [p.members for p in paragraphs] == [["l0"], ["l3"]]
     assert lines[1].skip_reason == "pure number / formula" and lines[2].skip_reason == "pure number / formula"
     assert all(p.translate for p in paragraphs)
+
+
+def test_watermark_fragments_are_suppressed_and_trimmed():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import WATERMARK, suppress_watermark_fragments, watermark_alphabet
+
+    def line(i, text, translate=True, reason="", confidence=0.97):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(10, 10 + 30 * i, 300, 34 + 30 * i), confidence=confidence)
+        return TextSegment(id=f"l{i}", page=0, kind=SegmentKind.IMAGE_TEXT,
+                           bbox=BBox(x0=5, y0=5 + 15 * i, x1=150, y1=17 + 15 * i),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10),
+                           translate=translate, skip_reason=reason)
+
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)])
+    doc.segments = [
+        line(0, "北京师范大学出版社", False, "slanted text (17°): watermark"),
+        line(1, "师范大学出版", False, "slanted text (15°): watermark"),
+        line(2, "北京师范大学出版社", False, "slanted text (18°): watermark"),
+        line(3, "五社", confidence=0.71),     # low-confidence misread of "出版社"
+        line(7, "学校", confidence=0.99),     # genuine label sharing one letter: kept
+        line(4, "观察物体！版社"),              # genuine title with a glued fragment
+        line(5, "数学是由无数个数学故事组成的。"),  # genuine text sharing letters (数, 学) with the watermark
+        line(6, "大学"),                      # short, only watermark letters -> suppressed (acceptable loss)
+    ]
+    assert {"北", "京", "师", "范", "大", "学", "出", "版", "社"} <= watermark_alphabet(doc)
+    changed = suppress_watermark_fragments(doc)
+    by = {s.id: s for s in doc.segments}
+    assert by["l3"].translate is False and by["l3"].skip_reason == WATERMARK
+    assert by["l4"].translate and by["l4"].source_text == "观察物体！"
+    assert by["l5"].translate and by["l5"].source_text.startswith("数学是由")
+    assert by["l6"].translate is False
+    assert by["l7"].translate and by["l7"].source_text == "学校"
+    assert changed == 3

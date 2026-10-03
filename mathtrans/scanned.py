@@ -278,5 +278,106 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
     return modified
 
 
+# --------------------------------------------------------------------------- #
+# watermarks
+# --------------------------------------------------------------------------- #
+
+WATERMARK = "watermark fragment"
+"""``skip_reason`` of OCR lines recognised as pieces of a repeated page watermark."""
+MIN_SLANTED_LINES = 3
+"""Slanted lines needed before their characters are treated as a watermark alphabet."""
+MIN_CHAR_SHARE = 0.2
+"""A character must occur in at least this share of the slanted lines (and in >= 2 of
+them) to belong to the watermark alphabet."""
+MAX_FRAGMENT_LETTERS = 12
+LOW_CONFIDENCE = 0.8
+"""OCR confidence below which a short, half-watermark line counts as a misread fragment."""
+
+
+def watermark_alphabet(doc: TranslatedDocument) -> set[str]:
+    """Letters that make up the document's diagonal watermark, learnt from the OCR
+    lines skipped as slanted text (a publisher's name printed across every page)."""
+    from collections import Counter
+
+    slanted = [s for s in doc.segments if s.kind == SegmentKind.IMAGE_TEXT
+               and s.skip_reason.startswith("slanted text")]
+    if len(slanted) < MIN_SLANTED_LINES:
+        return set()
+    counts: Counter[str] = Counter()
+    for seg in slanted:
+        for ch in set(c for c in seg.source_text if c.isalpha()):
+            counts[ch] += 1
+    import math
+
+    needed = max(2, math.ceil(MIN_CHAR_SHARE * len(slanted)))
+    alphabet = {ch for ch, n in counts.items() if n >= needed}
+    return alphabet if len(alphabet) >= 3 else set()
+
+
+def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
+    """Skip OCR lines that consist only of watermark letters (the un-slanted or
+    partially recognised pieces of the watermark) and trim watermark runs glued to
+    the start or end of a genuine line ("观察物体！版社" -> "观察物体！").
+    Returns the number of lines changed."""
+    alphabet = watermark_alphabet(doc)
+    if not alphabet:
+        return 0
+    changed = 0
+    for seg in doc.segments:
+        if seg.kind != SegmentKind.IMAGE_TEXT or not seg.translate:
+            continue
+        text = seg.source_text
+        letters = [c for c in text if c.isalpha()]
+        if not letters:
+            continue
+        in_alphabet = sum(c in alphabet for c in letters)
+        confidence = seg.image.confidence if seg.image is not None else 1.0
+        if len(letters) <= MAX_FRAGMENT_LETTERS and (
+                in_alphabet == len(letters)
+                or (len(letters) <= 4 and in_alphabet * 2 >= len(letters) and confidence < LOW_CONFIDENCE)):
+            # all letters from the watermark, or a short low-confidence piece half made of them
+            # (a semi-transparent watermark is misread: "出版社" -> "五社")
+            seg.translate = False
+            seg.skip_reason = WATERMARK
+            changed += 1
+            continue
+        trimmed = _trim_watermark_runs(text, alphabet)
+        if trimmed != text:
+            rest_letters = sum(c.isalpha() for c in trimmed)
+            if rest_letters >= 2:
+                seg.source_text = trimmed
+                seg.protected_text, seg.protected = protect_text(trimmed, doc.source_lang)
+                seg.translate = not is_fully_protected(seg.protected_text)
+                if not seg.translate:
+                    seg.skip_reason = "no translatable text (numbers / formula only)"
+                changed += 1
+    if changed:
+        log.info("watermark alphabet %s: %d OCR lines suppressed or trimmed", "".join(sorted(alphabet)), changed)
+    return changed
+
+
+def _trim_watermark_runs(text: str, alphabet: set[str]) -> str:
+    """Remove a run of >= 2 watermark letters at either end of ``text`` (plus the
+    whitespace / punctuation between the run and the rest)."""
+    t = text.strip()
+    connectors = " \t,，、:："
+    for _ in range(2):
+        # trailing run
+        i = len(t)
+        while i > 0 and (t[i - 1] in alphabet or (t[i - 1] in connectors and i < len(t))):
+            i -= 1
+        tail = t[i:]
+        if sum(c in alphabet for c in tail) >= 2 and not any(c.isalpha() and c not in alphabet for c in tail):
+            t = t[:i].rstrip(" \t,，、:：")
+        # leading run
+        j = 0
+        while j < len(t) and (t[j] in alphabet or (t[j] in connectors and j > 0)):
+            j += 1
+        head = t[:j]
+        if sum(c in alphabet for c in head) >= 2 and not any(c.isalpha() and c not in alphabet for c in head):
+            t = t[j:].lstrip(" \t,，、:：")
+    return t
+
+
 __all__ = ["is_scanned_page", "scanned_pages", "group_ocr_lines", "build_overlay_segments",
-           "erase_merged_lines", "MERGED"]
+           "erase_merged_lines", "suppress_watermark_fragments", "watermark_alphabet", "MERGED", "WATERMARK"]

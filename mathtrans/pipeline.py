@@ -204,6 +204,11 @@ def run_pipeline(
                 stats.image_segments = len(image_segments)
                 stats.images_processed = len({s.image.xref for s in image_segments if s.image})
                 stats.ocr_failures = len(doc.ocr_failures)
+                from .scanned import suppress_watermark_fragments
+
+                suppressed = suppress_watermark_fragments(doc)
+                if suppressed:
+                    report_progress("ocr", f"{suppressed} watermark fragments left untouched", 13)
                 if options.scanned_mode == "overlay":
                     from .scanned import build_overlay_segments, scanned_pages
 
