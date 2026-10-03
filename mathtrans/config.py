@@ -17,11 +17,17 @@ class Settings(BaseSettings):
         default=None,
         validation_alias=AliasChoices("ANTHROPIC_API_KEY", "MATHTRANS_ANTHROPIC_API_KEY"),
     )
+    deepseek_api_key: Optional[str] = Field(
+        default=None,
+        validation_alias=AliasChoices("DEEPSEEK_API_KEY", "MATHTRANS_DEEPSEEK_API_KEY"),
+    )
+    deepseek_model: str = "deepseek-chat"
+    deepseek_base_url: str = "https://api.deepseek.com"
     claude_model: str = "claude-opus-5-5"
     claude_review_model: Optional[str] = None  # defaults to claude_model
     claude_effort: Literal["low", "medium", "high", "xhigh", "max"] = "medium"
     enable_fallbacks: bool = True
-    translator: Literal["auto", "claude", "mock"] = "auto"
+    translator: Literal["auto", "claude", "deepseek", "mock"] = "auto"
     ocr_engine: Literal["auto", "rapid", "claude", "none"] = "auto"
     data_dir: Path = Path("data")
     fonts_dir: Optional[Path] = None
@@ -42,10 +48,18 @@ class Settings(BaseSettings):
     def has_api_key(self) -> bool:
         return bool(self.anthropic_api_key) or bool(os.environ.get("ANTHROPIC_AUTH_TOKEN"))
 
+    @property
+    def has_deepseek_key(self) -> bool:
+        return bool(self.deepseek_api_key)
+
     def resolved_translator(self, requested: str = "auto") -> str:
         req = requested if requested and requested != "auto" else self.translator
         if req == "auto":
-            return "claude" if self.has_api_key else "mock"
+            if self.has_api_key:
+                return "claude"
+            if self.has_deepseek_key:
+                return "deepseek"
+            return "mock"
         return req
 
     def resolved_ocr(self, requested: str = "auto") -> str:

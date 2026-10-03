@@ -266,10 +266,10 @@ def run_pipeline(
             translator = get_translator(translator_name, settings, model=options.model)
         else:
             translator_name = getattr(translator, "name", translator_name)
-        if reviewer is None and options.llm_review and translator_name == "claude":
-            reviewer = get_reviewer("claude", settings, model=options.model)
+        if reviewer is None and options.llm_review and translator_name in ("claude", "deepseek"):
+            reviewer = get_reviewer(translator_name, settings, model=options.model)
         stats.translator = translator_name
-        stats.model = options.model or (settings.claude_model if translator_name == "claude" else "")
+        stats.model = options.model or {"claude": settings.claude_model, "deepseek": settings.deepseek_model}.get(translator_name, "")
         doc_context = _document_context(doc)
         translatable = doc.translatable()
         stats.skipped = len(doc.segments) - len(translatable)

@@ -60,8 +60,8 @@ def build_parser() -> argparse.ArgumentParser:
     tr.add_argument("--bilingual", action="store_true", help="also write a side-by-side bilingual PDF")
     tr.add_argument("--docx", action="store_true", help="also export a Word document")
     tr.add_argument("--no-images", action="store_true", help="do not translate text inside images")
-    tr.add_argument("--translator", choices=["auto", "mock", "claude"], default="auto",
-                    help="translation backend (default: auto = claude if an API key is set, else mock)")
+    tr.add_argument("--translator", choices=["auto", "mock", "claude", "deepseek"], default="auto",
+                    help="translation backend (default: auto = claude if ANTHROPIC_API_KEY is set, else deepseek if DEEPSEEK_API_KEY is set, else mock)")
     tr.add_argument("--ocr-engine", choices=["auto", "rapid", "claude", "none"], default="auto",
                     help="OCR engine for text inside images (default: auto = offline RapidOCR, or Claude vision "
                          "for Japanese / Korean sources when an API key is set; rapid reads kana / hangul unreliably)")

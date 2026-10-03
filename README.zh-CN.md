@@ -18,7 +18,7 @@ Web 界面（中英双语）：
 
 ![web ui](docs/screenshot-web-ui.png)
 
-> 示例由内置的离线 mock 翻译器生成（仅用于演示流程，译文为逐词替换）；配置 `ANTHROPIC_API_KEY` 后由 Claude 完成真正的翻译与审校。
+> 示例由内置的离线 mock 翻译器生成（仅用于演示流程，译文为逐词替换）；配置 `ANTHROPIC_API_KEY` 后由 Claude 完成真正的翻译与审校；配置 `DEEPSEEK_API_KEY` 则由 DeepSeek 完成。
 
 ---
 
@@ -162,11 +162,14 @@ PDF ─► 抽取文本块（字号/颜色/对齐/角色）+ 公式/数字占位
 
 | 变量 | 默认 | 说明 |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | — | Claude API Key（翻译、审校、视觉 OCR）。缺省时自动退回离线 mock 翻译器（仅演示） |
+| `ANTHROPIC_API_KEY` | — | Claude API Key（翻译、审校、视觉 OCR）。两种 Key 都缺省时自动退回离线 mock 翻译器（仅演示） |
+| `DEEPSEEK_API_KEY` | — | DeepSeek API Key（通过 OpenAI 兼容的 chat 接口 + JSON 模式完成翻译与审校）。未配置 Anthropic Key 时自动启用，或用 `MATHTRANS_TRANSLATOR=deepseek` / `--translator deepseek` 强制；图内文字识别仍用 RapidOCR |
+| `MATHTRANS_DEEPSEEK_MODEL` | `deepseek-chat` | DeepSeek 模型（如 `deepseek-v4-pro`、`deepseek-flash`）；按任务指定：`--model` |
+| `MATHTRANS_DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | DeepSeek 接口地址（任何支持 JSON 模式的 OpenAI 兼容 `/chat/completions` 服务） |
 | `MATHTRANS_CLAUDE_MODEL` | `claude-opus-5-5` | 翻译/审校模型 |
 | `MATHTRANS_CLAUDE_EFFORT` | `medium` | 推理强度 low / medium / high / xhigh / max |
 | `MATHTRANS_ENABLE_FALLBACKS` | `true` | 启用服务端拒答回退（`fallbacks: "default"`） |
-| `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `mock` |
+| `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `deepseek` / `mock`。`auto`：有 `ANTHROPIC_API_KEY` 用 Claude，否则有 `DEEPSEEK_API_KEY` 用 DeepSeek，否则 mock |
 | `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none`。`auto`：中/英/葡/西文源用离线 RapidOCR；日文、韩文源在配置了 API Key 时改用 Claude 视觉识别（RapidOCR 对假名/谚文识别不可靠；无 Key 时仍用 RapidOCR，并对每个已翻译的图内文字给出质检警告）。也可按任务指定：`--ocr-engine` / 表单字段 `ocr_engine` |
 | `MATHTRANS_MAX_IMAGE_MEGAPIXELS` | `50` | 像素数超过该值的内嵌图片不解码、不识别（内存预算；600 dpi A4 扫描约 35 MP） |
 | `MATHTRANS_DATA_DIR` | `data` | 任务与输出存储目录 |
@@ -188,7 +191,7 @@ pip install -e ".[dev]"
 python -m pytest -q          # 全部离线：使用 mock 翻译器与内置示例 PDF，不需要 API Key
 ```
 
-代码结构见 `ARCHITECTURE.md`。主要模块：`extract`（文本抽取）、`protect`（公式保护）、`ocr` / `images`（图内文字）、`translate`（Claude / mock 后端）、`qa`（校验与循环）、`layout` / `export`（重排与导出）、`pipeline`（编排）、`projects` / `api` / `cli` / `web`（服务与界面）。
+代码结构见 `ARCHITECTURE.md`。主要模块：`extract`（文本抽取）、`protect`（公式保护）、`ocr` / `images`（图内文字）、`translate`（Claude / DeepSeek / mock 后端）、`qa`（校验与循环）、`layout` / `export`（重排与导出）、`pipeline`（编排）、`projects` / `api` / `cli` / `web`（服务与界面）。
 
 ### 已知限制 / Known limitations
 

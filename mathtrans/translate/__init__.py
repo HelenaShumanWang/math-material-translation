@@ -70,7 +70,13 @@ def get_translator(name: str, settings: Optional[Settings] = None, model: Option
     if key == "claude":
         _require_credentials(settings)
         return ClaudeTranslator(model=model, settings=settings)
-    raise ValueError(f"Unknown translator {name!r}; expected one of auto, claude, mock")
+    if key == "deepseek":
+        from .deepseek import DeepSeekTranslator
+
+        if not settings.has_deepseek_key:
+            raise TranslationError("DeepSeek translator selected but DEEPSEEK_API_KEY is not set")
+        return DeepSeekTranslator(model=model, settings=settings)
+    raise ValueError(f"Unknown translator {name!r}; expected one of auto, claude, deepseek, mock")
 
 
 def get_reviewer(name: Optional[str], settings: Optional[Settings] = None,
@@ -88,7 +94,13 @@ def get_reviewer(name: Optional[str], settings: Optional[Settings] = None,
     if key == "claude":
         _require_credentials(settings)
         return ClaudeReviewer(model=model, settings=settings)
-    raise ValueError(f"Unknown reviewer {name!r}; expected one of auto, claude, mock, none")
+    if key == "deepseek":
+        from .deepseek import DeepSeekReviewer
+
+        if not settings.has_deepseek_key:
+            raise TranslationError("DeepSeek reviewer selected but DEEPSEEK_API_KEY is not set")
+        return DeepSeekReviewer(model=model, settings=settings)
+    raise ValueError(f"Unknown reviewer {name!r}; expected one of auto, claude, deepseek, mock, none")
 
 
 def item_context(seg: TextSegment) -> str:

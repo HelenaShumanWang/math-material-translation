@@ -156,6 +156,12 @@ def chunk_items(items, max_chars) -> list[list[TranslationItem]]
 class ClaudeTranslator(BaseTranslator): __init__(client=None, model=None, effort=None, enable_fallbacks=None, settings=None, max_chars=None)
 class ClaudeReviewer: __init__(client=None, model=None, settings=None); review(items, src, tgt, glossary_pairs) -> list[ReviewFinding]
 def make_client(settings) -> anthropic.Anthropic
+# translate/deepseek.py
+class DeepSeekTranslator(BaseTranslator): __init__(api_key=None, model=None, base_url=None, settings=None, max_chars=None, client=None)
+class DeepSeekReviewer: __init__(api_key=None, model=None, base_url=None, settings=None, max_chars=None, client=None); review(...) -> list[ReviewFinding]
+    # OpenAI-compatible POST {base_url}/chat/completions over httpx, response_format json_object, max_tokens <= 8192;
+    # same prompts/schemas as Claude (schema appended to the system message); finish_reason "length" splits the batch;
+    # 401/403 -> auth error, 402 -> insufficient balance, 400/404/422 -> rejected, 408/429/5xx retried with backoff
 # translate/mock.py
 class MockTranslator(BaseTranslator): deterministic offline translator (glossary + built-in mini dictionary + pseudo-translation in the target script); options to inject faults for QA tests (e.g. drop_placeholders=True, leave_untranslated=True)
 class MockReviewer: returns no findings (or findings for texts containing "[[BAD]]")

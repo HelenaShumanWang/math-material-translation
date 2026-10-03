@@ -12,7 +12,7 @@ Web UI (bilingual labels):
 
 ![web ui](docs/screenshot-web-ui.png)
 
-> The pictures above were produced by the built-in **offline mock translator** (word-by-word substitution used for demos and tests). With an `ANTHROPIC_API_KEY` configured, translation and semantic review are done by Claude.
+> The pictures above were produced by the built-in **offline mock translator** (word-by-word substitution used for demos and tests). With an `ANTHROPIC_API_KEY` configured, translation and semantic review are done by Claude; with a `DEEPSEEK_API_KEY` they are done by DeepSeek.
 
 ---
 
@@ -160,11 +160,14 @@ Environment variables (or `.env`):
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | — | Claude API key (translation, review, vision OCR). Without it the offline mock translator is used (demo only) |
+| `ANTHROPIC_API_KEY` | — | Claude API key (translation, review, vision OCR). Without any key the offline mock translator is used (demo only) |
+| `DEEPSEEK_API_KEY` | — | DeepSeek API key (translation and review through the OpenAI-compatible chat endpoint in JSON mode). Used when no Anthropic key is set, or with `MATHTRANS_TRANSLATOR=deepseek` / `--translator deepseek`; OCR of text inside images stays with RapidOCR |
+| `MATHTRANS_DEEPSEEK_MODEL` | `deepseek-chat` | DeepSeek model (e.g. `deepseek-v4-pro`, `deepseek-flash`); per job: `--model` |
+| `MATHTRANS_DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | DeepSeek endpoint (any OpenAI-compatible `/chat/completions` server with JSON mode) |
 | `MATHTRANS_CLAUDE_MODEL` | `claude-opus-5-5` | Model for translation and review |
 | `MATHTRANS_CLAUDE_EFFORT` | `medium` | Reasoning effort: low / medium / high / xhigh / max |
 | `MATHTRANS_ENABLE_FALLBACKS` | `true` | Server-side refusal fallbacks (`fallbacks: "default"`) |
-| `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `mock` |
+| `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `deepseek` / `mock`. `auto` = Claude if `ANTHROPIC_API_KEY` is set, else DeepSeek if `DEEPSEEK_API_KEY` is set, else mock |
 | `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none`. `auto` = offline RapidOCR for zh/en/pt/es sources; Claude vision for ja/ko sources when an API key is configured (RapidOCR reads kana / hangul unreliably — without a key it is still used and every translated image label gets a QA warning). Per job: `--ocr-engine` / form field `ocr_engine` |
 | `MATHTRANS_MAX_IMAGE_MEGAPIXELS` | `50` | Embedded images with more pixels are neither decoded nor OCR'd (memory budget; a 600 dpi A4 scan is ~35 MP) |
 | `MATHTRANS_DATA_DIR` | `data` | Where projects and outputs are stored |
@@ -186,7 +189,7 @@ pip install -e ".[dev]"
 python -m pytest -q      # fully offline: mock translator + generated sample PDFs, no API key needed
 ```
 
-The module layout is described in `ARCHITECTURE.md`: `extract` (text extraction), `protect` (formula protection), `ocr` / `images` (text inside images), `translate` (Claude / mock backends), `qa` (checks and loop), `layout` / `export` (re-layout and exports), `pipeline` (orchestration), `projects` / `api` / `cli` / `web` (service and UI).
+The module layout is described in `ARCHITECTURE.md`: `extract` (text extraction), `protect` (formula protection), `ocr` / `images` (text inside images), `translate` (Claude / DeepSeek / mock backends), `qa` (checks and loop), `layout` / `export` (re-layout and exports), `pipeline` (orchestration), `projects` / `api` / `cli` / `web` (service and UI).
 
 A `Dockerfile` is included (`docker build -t mathtrans . && docker run -p 8000:8000 -e ANTHROPIC_API_KEY=... -e MATHTRANS_API_TOKEN=... -v $PWD/data:/data mathtrans`); the container listens on `0.0.0.0`, so set `MATHTRANS_API_TOKEN` or publish the port only to a reverse proxy (see "Deployment and access control").
 
