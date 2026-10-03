@@ -445,9 +445,9 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     if crop.size == 0:
         return "empty"
     bg, uniform = estimate_background(original, box, original_alpha)
-    ink = np.array(estimate_text_color(original, box, bg, original_alpha), dtype=np.int16)
-    diff_bg = np.abs(crop.astype(np.int16) - bg.astype(np.int16)).max(axis=2)
-    dist_ink = np.sqrt(((crop.astype(np.int16) - ink) ** 2).sum(axis=2))
+    ink = np.array(estimate_text_color(original, box, bg, original_alpha), dtype=np.int32)
+    diff_bg = np.abs(crop.astype(np.int32) - bg.astype(np.int32)).max(axis=2)
+    dist_ink = np.sqrt(((crop.astype(np.int32) - ink) ** 2).sum(axis=2))
     # ink = pixels that look like the text colour (not the background); coloured picture
     # content and rulings of another colour are left alone
     mask = ((diff_bg > GLYPH_DIFF) & (dist_ink < INK_TOLERANCE)).astype(np.uint8)
