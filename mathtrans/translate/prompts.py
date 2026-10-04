@@ -38,7 +38,10 @@ Comparisons keep their direction: A比B多3个 => "A has 3 more than B". A headi
 Chinese numeral (一 加与减, 四 有趣的图形) is a unit heading: "Unit 1 Addition and Subtraction". \
 Children's names are written in pinyin (淘气 Taoqi, 笑笑 Xiaoxiao). Multiplication-table rhymes (乘法口诀) are \
 written as multiplication facts: 三七二十一 => "3 × 7 = 21", 二八十六 => "2 × 8 = 16"; an incomplete \
-rhyme to fill in (三七____) => "3 × 7 = ____".\
+rhyme to fill in (三七____) => "3 × 7 = ____". Numbers written in Chinese words (七十七, 一百) are \
+written in English words when the exercise practises reading or writing numbers ("seventy-seven"), \
+otherwise as digits. A measure word standing alone after an answer blank (个, 只) is the counted noun \
+("apples"), never "(items)". Place-value labels: 十位 "tens", 个位 "ones", 百位 "hundreds"; 答： "Answer:".\
 """
 
 TRANSLATION_SYSTEM_PROMPT = """\
