@@ -68,6 +68,7 @@ from __future__ import annotations
 import html as _html
 import logging
 import os
+import re
 import tempfile
 from pathlib import Path
 from typing import Optional, Sequence, Union
@@ -97,7 +98,7 @@ MIN_WIDTH_GROWTH = 60.0
 """Horizontal growth allowance in points for tiny boxes (labels, page numbers)."""
 MAX_WIDTH_GROWTH = 2.0
 """A box may grow horizontally by at most this fraction of its width."""
-LEGIBLE_FLOOR = 0.45
+LEGIBLE_FLOOR = 0.4
 """On a scanned page, a translation that would need a smaller scale than this is not
 set at all: the source glyphs are restored and QA asks for a shorter text."""
 KEPT_SOURCE_NOTE = "left in source language: the translation does not fit legibly"
@@ -106,7 +107,7 @@ LABEL_WIDTH_GROWTH = 3.0
 fraction of their width, where the page is plain background."""
 LABEL_HEIGHT_GROWTH = 1.0
 """... and downward by this fraction of their height."""
-MIN_CONTRAST = 3.0
+MIN_CONTRAST = 2.0
 """Text set on a scanned page needs at least this WCAG contrast ratio against the
 background under it; otherwise it is set in black or white."""
 COLUMN_MIN_WIDTH_FRACTION = 0.15
@@ -313,9 +314,16 @@ def readable_color(color: int, background: Sequence[float]) -> int:
         else 0xFFFFFF
 
 
+_ENUMERATED_RE = re.compile(r"^\s*(?:\d{1,3}[.、．)]|[(（]\d{1,3}[)）]|[①-⑳])")
+
+
 def _short_label(seg: TextSegment) -> bool:
+    """A free-standing short label (grown on both sides and set centred on a scanned page);
+    headings and numbered items keep their left edge."""
     text = (seg.translated_text or seg.source_text or "").strip()
-    return seg.style.role in ("label", "heading") and "\n" not in text and len(text.split()) <= 4
+    if seg.style.role != "label" or "\n" in text or len(text.split()) > 4:
+        return False
+    return not _ENUMERATED_RE.match(seg.source_text or "")
 
 
 class _PageSpace:

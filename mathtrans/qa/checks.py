@@ -805,6 +805,13 @@ def _convention_issues(seg: TextSegment) -> list[QAIssue]:
             "formatting", "error", seg,
             f"Keep the symbol(s) {listed} of the source in the translation, at the matching position",
             missing_symbols=dict(missing)))
+    added = tr_symbols - src_symbols
+    if added:
+        listed = " ".join(f"{ch}×{n}" if n > 1 else ch for ch, n in sorted(added.items()))
+        out.append(_issue(
+            "formatting", "error", seg,
+            f"Remove the symbol(s) {listed}: they are not in the source (a picture in the book is not a symbol; "
+            f"leave it out rather than inventing one)", added_symbols=dict(added)))
     return out
 
 

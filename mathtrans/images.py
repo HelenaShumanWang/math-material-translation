@@ -389,10 +389,10 @@ _UNIT_LABEL_RE = re.compile(rf"[（(]\s*[{MEASURE_WORDS}]\s*[)）]")
 _TRAILING_UNIT_RE = re.compile(rf"\s*[（(]\s*[{MEASURE_WORDS}]?\s*[)）]?\s*$")
 _BOX_GLYPHS = set("□○OoD0Q口〇◯●◇△▲☐")
 _TEMPLATE_DROP = set(" +-−—–×÷=()（）[]［］_")
-_EMPTY_QUOTES_RE = re.compile(r"[\"“”'‘’「]\s*[\"“”'‘’」]")
+_EMPTY_QUOTES_RE = re.compile(r"[“‘「]\s*[”’」\"']|(?<=画)[\"']\s*[\"”’']")
 _PICTOGRAM_GAP_RE = re.compile(
-    r"用表示|表示(?=[，,。；;、）)]|$)|^比(?![一赛较例如方])|(?<!一)比(?=[，,。？?！!]|$)"
-    r"|比[多少大小高矮长短重轻][几个]|有个有个|在的面|的面(?=[，,。]|$)")
+    r"用表示|表示(?=[，,。；;、）)]|$)|^比(?=[多少大小高矮长短重轻几])|(?<![一相])比(?=[，,。？?！!]|$)"
+    r"|有个有个|在的面|的面(?=[，,。]|$)")
 """Missing-operand patterns left when OCR drops inline pictograms: 用○表示人 -> 用表示人,
 △比●少□个 -> 比少个, 🍄比🍄多几个 -> 比多几个."""
 _DIGIT_CONFUSION_1_RE = re.compile(r"(?<![A-Za-z0-9])[hI|](?=\d+(?![A-Za-z0-9]))")
@@ -445,6 +445,106 @@ def split_place_value(text: str, box: tuple[int, int, int, int]) -> Optional[tup
     else:
         new = (min(x1 - 1, int(x0 + (1 - share) * (x1 - x0) + margin)), y0, x1, y1)
     return label, new
+
+
+def _classify_mark(mask: np.ndarray) -> Optional[str]:
+    """``✓`` / ``○`` / ``△`` / ``□`` for the ink of one mark, None when unsure."""
+    contours, hierarchy = cv2.findContours(mask, cv2.RETR_CCOMP, cv2.CHAIN_APPROX_SIMPLE)
+    if not contours or hierarchy is None:
+        return None
+    outer = max(contours, key=cv2.contourArea)
+    if cv2.contourArea(outer) <= 0:
+        return None
+    _x, _y, bw, bh = cv2.boundingRect(outer)
+    holes = [c for c, info in zip(contours, hierarchy[0]) if info[3] >= 0 and cv2.contourArea(c) > 0.15 * bw * bh]
+    if holes:
+        corners = len(cv2.approxPolyDP(outer, 0.04 * cv2.arcLength(outer, True), True))
+        return {3: "△", 4: "□"}.get(corners, "○")
+    ys, xs = np.nonzero(mask)
+    if xs.size == 0:
+        return None
+    width = xs.max() - xs.min() + 1
+    bottom = ys.max()
+    bottom_x = float(np.median(xs[ys >= bottom - 1]) - xs.min()) / max(width, 1)
+    # a tick has its lowest point left of centre and a long arm up to the right; < and > do not
+    return "✓" if 0.15 <= bottom_x <= 0.6 else None
+
+
+def detect_quoted_marks(rgb: np.ndarray, box: tuple[int, int, int, int]) -> list[Optional[str]]:
+    """The marks drawn between the quote pairs of an OCR line, left to right (画“✓”,
+    画“○”), whether or not the OCR read them; None for a pair whose mark is unclear."""
+    x0, y0, x1, y1 = box
+    crop = rgb[y0:y1, x0:x1]
+    h = y1 - y0
+    if crop.size == 0 or h < 10:
+        return []
+    flat = crop.reshape(-1, 3).astype(np.int32)
+    q = flat // 16
+    keys = (q[:, 0] << 8 | q[:, 1]) << 8 | q[:, 2]
+    vals, counts = np.unique(keys, return_counts=True)
+    bg = np.median(flat[keys == vals[counts.argmax()]], axis=0)
+    ink = (np.abs(crop.astype(np.int32) - bg).max(axis=2) > 50).astype(np.uint8)
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+    quotes, others = [], []
+    for i in range(1, n):
+        bx, by, bw, bh, area = (int(v) for v in stats[i])
+        if area < 3:
+            continue
+        if bh <= 0.4 * h and bw <= 0.22 * h and by + bh / 2 <= 0.5 * h:
+            quotes.append((bx, bx + bw))
+        elif bh >= 0.35 * h:
+            others.append((i, bx, bx + bw))
+    quotes.sort()
+    groups: list[list[int]] = []  # [x0, x1, blob count]
+    for a, b in quotes:
+        if groups and a - groups[-1][1] <= 0.2 * h:
+            groups[-1][1] = max(groups[-1][1], b)
+            groups[-1][2] += 1
+        else:
+            groups.append([a, b, 1])
+    # a quote mark is two small strokes side by side (“ ” or straight ""): the top of a ？ or a
+    # lone dot is not
+    clusters = [g[:2] for g in groups if g[2] == 2 and g[1] - g[0] <= 0.5 * h]
+    marks: list[Optional[str]] = []
+    k = 0
+    while k + 1 < len(clusters):
+        left, right = clusters[k], clusters[k + 1]
+        gap = right[0] - left[1]
+        inside = [o for o in others if o[1] >= left[1] - 2 and o[2] <= right[0] + 2]
+        if 0.3 * h <= gap <= 2.5 * h and inside:
+            marks.append(_classify_mark(np.isin(labels, [o[0] for o in inside]).astype(np.uint8)))
+            k += 2  # a pair: opening and closing quote
+        else:
+            k += 1
+    return marks
+
+
+def detect_quoted_mark(rgb: np.ndarray, box: tuple[int, int, int, int]) -> Optional[str]:
+    """The mark of the first quote pair (see :func:`detect_quoted_marks`)."""
+    marks = detect_quoted_marks(rgb, box)
+    return marks[0] if marks else None
+
+
+_QUOTE_PAIR_RE = re.compile(r"[“‘「\"'][^“”‘’「」\"']{0,3}[”’」\"']")
+
+
+def fill_empty_quotes(text: str, marks: list[Optional[str]]) -> str:
+    """Fill the empty quote pairs of ``text`` with the detected ``marks`` (one per quote pair,
+    filled or not, in order); unchanged when the counts do not match."""
+    pairs = list(_QUOTE_PAIR_RE.finditer(text))
+    if len(pairs) != len(marks):
+        return text
+    out, pos = [], 0
+    for m, mark in zip(pairs, marks):
+        inner = m.group(0)[1:-1]
+        out.append(text[pos:m.start()])
+        if not inner.strip() and mark:
+            out.append(m.group(0)[0] + mark + m.group(0)[-1])
+        else:
+            out.append(m.group(0))
+        pos = m.end()
+    out.append(text[pos:])
+    return "".join(out)
 
 
 def is_cjk_char(ch: str) -> bool:
@@ -659,6 +759,11 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     bg, _uniform = estimate_background(loaded.rgb, box, loaded.alpha)
     color = estimate_text_color(loaded.rgb, box, bg, loaded.alpha)
     text = restore_superscripts(loaded, box, normalize_ocr_digits(result.text), bg)
+    if _EMPTY_QUOTES_RE.search(text):
+        filled = fill_empty_quotes(text, detect_quoted_marks(loaded.rgb, box))
+        if filled != text:
+            logger.info("page %d image %d: marks read between the quotes: %r -> %r", page_index, xref, text, filled)
+            text = filled
     if text != result.text:
         logger.info("page %d image %d: superscript restored from the glyph geometry: %r -> %r", page_index, xref,
                     result.text, text)

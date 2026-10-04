@@ -214,7 +214,7 @@ def run_pipeline(
 
                     scanned = scanned_pages(source_pdf, pages)
                     if scanned:
-                        paragraphs = build_overlay_segments(doc, scanned)
+                        paragraphs = build_overlay_segments(doc, scanned, source_pdf)
                         doc.segments.extend(paragraphs)
                         stats.text_segments += len(paragraphs)
                         report_progress("ocr", f"{len(paragraphs)} paragraphs assembled from OCR lines on "

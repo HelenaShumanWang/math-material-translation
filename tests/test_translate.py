@@ -270,8 +270,7 @@ def test_translate_segments_fills_fields_and_reports_progress():
     assert sent["p0_b2"].context == "figure or table caption"
     assert sent["p0_b1"].feedback == ["too long"] and sent["p0_b1"].previous is None
     label = sent["p0_i7_0"]
-    assert label.context.startswith("label inside a diagram; other text on the page: ") and label.kind == SegmentKind.IMAGE_TEXT
-    assert "勾股定理" in label.context  # labels see the page's running text
+    assert label.context.startswith("label inside a diagram") and label.kind == SegmentKind.IMAGE_TEXT
     assert label.max_chars == int(len("斜边 c") * 1.6) + 2
 
 
@@ -954,5 +953,6 @@ def test_labels_get_page_context():
             return [TranslationResult(id=it.id, text="x") for it in items]
 
     translate_segments(doc, Spy(), max_chars=1000)
-    assert "桃子" in seen["l"] and "other text on the page" in seen["l"]
-    assert "other text" not in (seen["b"] or "")
+    assert "桃子" in seen["l"] and "exercise text above it" in seen["l"]
+    assert "第二题" not in seen["l"]          # the sentence below the label is another exercise
+    assert "exercise text" not in (seen["b"] or "")

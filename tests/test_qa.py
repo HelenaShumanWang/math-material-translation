@@ -997,3 +997,6 @@ def test_convention_rules_measure_word_placeholders_and_symbols():
         by.setdefault(i.segment_id, []).append(i.message)
     assert set(by) == {"pc", "sym"}
     assert "(pieces)" in by["pc"][0] and "○" in by["sym"][0] and "△" in by["sym"][0]
+    invented = seg("inv", "比多几个？", "How many more ○ than △?")
+    msgs = [i.message for i in C.formatting(doc(invented), opts(), [])]
+    assert any(m.startswith("Remove the symbol(s)") and "○" in m for m in msgs)

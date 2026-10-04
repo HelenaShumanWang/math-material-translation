@@ -15,7 +15,7 @@ import re
 import statistics
 from collections import defaultdict
 from pathlib import Path
-from typing import Optional, Union
+from typing import Callable, Optional, Union
 
 import numpy as np
 import pymupdf
@@ -229,9 +229,15 @@ def _same_row(a: TextSegment, b: TextSegment) -> bool:
     return overlap >= 0.7 * min(ha, hb)
 
 
-def _row_joinable(left: TextSegment, right: TextSegment) -> bool:
-    """``right`` continues the sentence of ``left`` on the same row after a gap (a blank to
-    fill in or a picture): ``七巧板由 ___ 种图形组成。``, ``答：还剩下 ___ 个果子。``."""
+BlankCheck = Callable[[TextSegment, TextSegment], bool]
+
+
+def _row_joinable(left: TextSegment, right: TextSegment, blank_check: Optional[BlankCheck] = None) -> bool:
+    """``right`` continues the sentence of ``left`` on the same row after an answer blank:
+    ``七巧板由 ___ 种图形组成。``, ``答：还剩下 ___ 个果子。``. Without ``blank_check`` (or
+    when it finds no underline in the gap: a picture, a box, a bubble border) nothing joins."""
+    if blank_check is None:
+        return False
     if not (left.translate and right.translate) or not _same_row(left, right):
         return False
     if _color_distance(left.style.color, right.style.color) > MAX_COLOR_DISTANCE:
@@ -245,10 +251,43 @@ def _row_joinable(left: TextSegment, right: TextSegment) -> bool:
         return False
     # table cells and labels side by side are short nouns; a sentence piece ends the sentence
     # or is long enough to be one
-    return _letter_count(lt) >= 2 and (rt[-1] in _SENTENCE_END + "，," or _letter_count(rt) >= 5)
+    if not (_letter_count(lt) >= 2 and (rt[-1] in _SENTENCE_END + "，," or _letter_count(rt) >= 5)):
+        return False
+    return blank_check(left, right)
 
 
-def _join_row_pieces(candidates: list[TextSegment]) -> tuple[list[TextSegment], dict[str, list[TextSegment]]]:
+def underline_blank_check(loaded_for: Callable[[int], Optional[object]]) -> BlankCheck:
+    """A :data:`BlankCheck` that looks at the page image between two OCR pieces: the gap is
+    an answer blank when its lower part holds a horizontal rule across most of it and the
+    rest of the gap is empty. ``loaded_for(xref)`` returns the decoded image (cached)."""
+    def check(left: TextSegment, right: TextSegment) -> bool:
+        if left.image is None or right.image is None or left.image.xref != right.image.xref:
+            return False
+        loaded = loaded_for(left.image.xref)
+        if loaded is None:
+            return False
+        rgb = loaded.rgb  # type: ignore[attr-defined]
+        lx0, ly0, lx1, ly1 = (int(v) for v in left.image.pixel_box)
+        rx0, ry0, rx1, ry1 = (int(v) for v in right.image.pixel_box)
+        x0, x1 = lx1 + 1, rx0 - 1
+        y0, y1 = min(ly0, ry0), max(ly1, ry1)
+        h = y1 - y0
+        if x1 - x0 < max(4, int(0.5 * h)) or h < 6:
+            return False
+        y1 = min(rgb.shape[0], y1 + max(2, h // 5))  # underlines may sit just below the glyph boxes
+        region = rgb[y0:y1, x0:x1]
+        bg, _share = _dominant_colour(region)
+        ink = np.abs(region.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > 60
+        rows = ink.mean(axis=1)
+        split = int(0.55 * len(rows))
+        rule = rows[split:].max() if len(rows) > split else 0.0
+        upper = float(ink[:split].mean()) if split > 0 else 1.0
+        return bool(rule >= 0.7 and upper <= 0.08)
+    return check
+
+
+def _join_row_pieces(candidates: list[TextSegment], blank_check: Optional[BlankCheck] = None
+                     ) -> tuple[list[TextSegment], dict[str, list[TextSegment]]]:
     """Join same-row sentence pieces into one virtual line each (blank marked ``___``).
     Returns the lines for grouping and, per virtual line id, the OCR lines it stands for."""
     by_x = sorted(candidates, key=lambda l: (l.bbox.x0, l.bbox.y0))
@@ -262,7 +301,8 @@ def _join_row_pieces(candidates: list[TextSegment]) -> tuple[list[TextSegment], 
         while True:
             last = chain[-1]
             nxt = next((c for c in by_x if c.id not in used and c is not last and c not in chain
-                        and c.bbox.x0 >= last.bbox.x1 - 0.2 * last.bbox.height and _row_joinable(last, c)), None)
+                        and c.bbox.x0 >= last.bbox.x1 - 0.2 * last.bbox.height
+                        and _row_joinable(last, c, blank_check)), None)
             if nxt is None:
                 break
             chain.append(nxt)
@@ -324,7 +364,8 @@ def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: La
     )
 
 
-def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang) -> list[TextSegment]:
+def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang,
+                    blank_check: Optional[BlankCheck] = None) -> list[TextSegment]:
     """Merge the OCR line segments of one scanned page into paragraph segments.
 
     The merged lines are marked ``translate=False`` with ``skip_reason``
@@ -335,7 +376,7 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     candidates = [l for l in lines if l.page == page_index and _mergeable(l)]
     if not candidates:
         return []
-    candidates, units = _join_row_pieces(candidates)
+    candidates, units = _join_row_pieces(candidates, blank_check)
     candidates.sort(key=lambda l: (round(l.bbox.y0, 1), l.bbox.x0))
     page_median_height = statistics.median(l.bbox.height for l in candidates)
     paragraphs: list[_Para] = []
@@ -366,12 +407,36 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     return out
 
 
-def build_overlay_segments(doc: TranslatedDocument, scanned: set[int]) -> list[TextSegment]:
-    """Paragraph segments for every scanned page of ``doc`` (lines are marked merged)."""
+def build_overlay_segments(doc: TranslatedDocument, scanned: set[int],
+                           pdf: Optional[Union[str, Path, pymupdf.Document]] = None) -> list[TextSegment]:
+    """Paragraph segments for every scanned page of ``doc`` (lines are marked merged). With
+    ``pdf`` the page images are consulted to join sentence pieces split by answer blanks."""
     out: list[TextSegment] = []
-    for page_index in sorted(scanned):
-        lines = [s for s in doc.segments if s.page == page_index and s.kind == SegmentKind.IMAGE_TEXT]
-        out.extend(group_ocr_lines(lines, page_index, doc.source_lang))
+    pdf_doc = None
+    if pdf is not None:
+        pdf_doc = pdf if isinstance(pdf, pymupdf.Document) else pymupdf.open(str(pdf))
+    cache: dict[int, object] = {}
+
+    def loaded_for(xref: int) -> Optional[object]:
+        if pdf_doc is None:
+            return None
+        if xref not in cache:
+            try:
+                cache.clear()  # one page image at a time keeps memory flat
+                cache[xref] = load_image(pdf_doc, xref)
+            except Exception as exc:  # noqa: BLE001 - no pixels, no joining
+                log.debug("cannot load image %d for blank detection: %s", xref, exc)
+                cache[xref] = None
+        return cache[xref]
+
+    check = underline_blank_check(loaded_for) if pdf_doc is not None else None
+    try:
+        for page_index in sorted(scanned):
+            lines = [s for s in doc.segments if s.page == page_index and s.kind == SegmentKind.IMAGE_TEXT]
+            out.extend(group_ocr_lines(lines, page_index, doc.source_lang, check))
+    finally:
+        if pdf_doc is not None and not isinstance(pdf, pymupdf.Document):
+            pdf_doc.close()
     return out
 
 
@@ -770,7 +835,8 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         for j in (k - 1, k + 1):
             if 0 <= j < len(strips) and strips[j][3] >= STRIPE_MIN_SHARE:
                 nbg = strips[j][2].astype(np.int32)
-                if np.abs(nbg - bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
+                if np.abs(nbg - bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE and \
+                        float(np.sqrt(((nbg - ink_colour) ** 2).sum())) >= INK_TOLERANCE:
                     m &= np.abs(stripe - nbg).max(axis=2) > BACKGROUND_TOLERANCE
         mask[:, sx:ex] = m
         fill[:, sx:ex] = bg

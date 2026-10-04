@@ -152,27 +152,35 @@ def _apply_results(segments: dict[str, TextSegment], results: Iterable[Translati
     return applied
 
 
-PAGE_CONTEXT_CHARS = 220
-"""Short labels get the start of their page's running text as context (what is counted,
-who speaks), so measure words and fragments translate in context."""
+CONTEXT_CHARS = 120
+"""Short labels get the nearest sentence above them on the page (the exercise they belong
+to) as context, so measure words and fragments translate in context."""
 
 
 def _add_page_context(doc: TranslatedDocument, items: list[TranslationItem], by_id: dict[str, TextSegment]) -> None:
-    page_text: dict[int, str] = {}
-    for seg in sorted(doc.segments, key=lambda s: (s.page, s.reading_order, s.bbox.y0)):
-        if seg.kind != SegmentKind.TEXT or not seg.translate or seg.style.role not in ("body", "heading", "list"):
-            continue
-        current = page_text.get(seg.page, "")
-        if len(current) < PAGE_CONTEXT_CHARS:
-            page_text[seg.page] = (current + " " + seg.source_text.strip()).strip()
+    sentences: dict[int, list[TextSegment]] = {}
+    for seg in doc.segments:
+        if seg.kind == SegmentKind.TEXT and seg.translate and seg.style.role in ("body", "list") \
+                and len(seg.source_text.strip()) >= 6:
+            sentences.setdefault(seg.page, []).append(seg)
     for it in items:
         seg = by_id.get(it.id)
         if seg is None or (seg.kind != SegmentKind.IMAGE_TEXT and seg.style.role != "label"):
             continue
-        text = page_text.get(seg.page, "")
-        if text and seg.source_text.strip() not in text[:PAGE_CONTEXT_CHARS]:
-            snippet = text[:PAGE_CONTEXT_CHARS]
-            it.context = (it.context + "; " if it.context else "") + f"other text on the page: {snippet}"
+        best: Optional[TextSegment] = None
+        best_dist = float("inf")
+        for cand in sentences.get(seg.page, []):
+            if cand.id == seg.id or cand.bbox.y0 > seg.bbox.y0:
+                continue  # only what comes before the label: the exercise sentence above it
+            dist = seg.bbox.y0 - cand.bbox.y1
+            overlap = min(cand.bbox.x1, seg.bbox.x1) - max(cand.bbox.x0, seg.bbox.x0)
+            if overlap < 0:
+                dist += abs(overlap)  # prefer the same column
+            if dist < best_dist:
+                best, best_dist = cand, dist
+        if best is not None:
+            snippet = best.source_text.strip()[:CONTEXT_CHARS]
+            it.context = (it.context + "; " if it.context else "") + f"exercise text above it: {snippet}"
 
 
 def translate_segments(

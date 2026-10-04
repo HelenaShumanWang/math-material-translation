@@ -1621,7 +1621,7 @@ def test_unit_labels_unreadable_symbols_and_pictogram_gaps():
     for text in ["用表示人，用表示椅子", "比少个", "比多几个", "图中有个有个有个有_个○", "在的面"]:
         assert classify_ocr_text(text, Lang.ZH)[2:] == (False, INLINE_PICTOGRAMS), text
     for text in ["淘气比笑笑多3个。", "比一比，谁多？", "比赛开始了。", "比较大小", "谁比谁多？", "长方形的面积",
-                 "有几只小鸭？", "画“✓”"]:
+                 "有几只小鸭？", "画“✓”", "比20小。", "比6大8。", "比99多1。", "比18多得多。", "鸡、鸭、鹅相比", "比90本"]:
         assert classify_ocr_text(text, Lang.ZH)[2] is True, text
 
 
@@ -1634,3 +1634,24 @@ def test_place_value_header_is_split_from_its_digit():
     assert label == "个位" and box[2] == 200 and 115 < box[0] < 135
     assert split_place_value("十位", (0, 0, 10, 10)) is None
     assert split_place_value("十位上是5", (0, 0, 10, 10)) is None
+
+
+def test_quoted_marks_are_read_from_the_pixels():
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.images import detect_quoted_marks, fill_empty_quotes
+
+    img = Image.new("RGB", (560, 70), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    font = pil_font("zh", 40)
+    d.text((10, 12), "多的画“", fill=(20, 20, 20), font=font)
+    d.line([(150, 38), (162, 52), (184, 18)], fill=(20, 20, 20), width=3)          # a tick between the quotes
+    d.text((190, 12), "”，少的画“", fill=(20, 20, 20), font=font)
+    d.ellipse([(392, 20), (424, 52)], outline=(20, 20, 20), width=3)               # a circle between the quotes
+    d.text((430, 12), "”", fill=(20, 20, 20), font=font)
+    rgb = np.array(img)
+    marks = detect_quoted_marks(rgb, (0, 5, 560, 65))
+    assert marks == ["✓", "○"]
+    assert fill_empty_quotes("多的画“”，少的画“”", marks) == "多的画“✓”，少的画“○”"
+    assert fill_empty_quotes("多的画“”", marks) == "多的画“”"           # counts differ: unchanged
+    assert fill_empty_quotes("画“√”，画“”", ["✓", "○"]) == "画“√”，画“○”"  # read marks stay, empty ones are filled

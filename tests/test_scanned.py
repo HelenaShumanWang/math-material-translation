@@ -390,7 +390,9 @@ def test_same_row_sentence_pieces_are_joined_with_a_blank():
         _gline(2, 50, 125, 110, "种类"), _gline(3, 140, 125, 200, "文学类"), _gline(4, 230, 125, 290, "科普类"),
         _gline(5, 50, 170, 150, "是18吗？"), _gline(6, 170, 170, 290, "比18多得多。"),  # two bubbles
     ]
-    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    unjoined = group_ocr_lines([l.model_copy() for l in lines], 0, Lang.ZH)  # no pixels: nothing joins
+    assert all(len(p.members) == 1 for p in unjoined)
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH, blank_check=lambda a, b: True)
     texts = {p.source_text: p.members for p in paragraphs}
     assert texts["七巧板由___种图形组成，其中有—个三角形。"] == ["g0", "g1"]
     assert "种类" in texts and "文学类" in texts and "科普类" in texts      # table cells stay apart
@@ -436,3 +438,22 @@ def test_watermark_band_catches_upright_fragments_on_the_diagonal():
     by = {s.id: s for s in doc.segments}
     assert [by[k].skip_reason for k in ("w10", "w11", "w12")] == [WATERMARK] * 3
     assert by["w13"].translate and by["w14"].translate and by["w15"].translate
+
+
+
+def test_underline_blank_check_looks_for_a_rule_in_the_gap():
+    import types
+    import numpy as np
+    from mathtrans.scanned import underline_blank_check
+
+    rgb = np.full((60, 400, 3), 255, np.uint8)
+    rgb[46:49, 130:250] = 30            # an answer-blank underline between x 120 and 260
+    rgb[10:45, 300:340] = (240, 160, 20)  # a picture in the second gap (x 280 .. 360)
+    loaded = types.SimpleNamespace(rgb=rgb)
+    check = underline_blank_check(lambda xref: loaded)
+    left, mid, right = _gline(0, 10, 10, 60, "七巧板由"), _gline(1, 130, 10, 140, "种图形"), _gline(2, 180, 10, 200, "个。")
+    left.image = left.image.model_copy(update={"pixel_box": (20, 12, 120, 44)})
+    mid.image = mid.image.model_copy(update={"pixel_box": (260, 12, 280, 44)})
+    right.image = right.image.model_copy(update={"pixel_box": (360, 12, 395, 44)})
+    assert check(left, mid) is True
+    assert check(mid, right) is False
