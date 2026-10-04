@@ -383,6 +383,72 @@ def _is_latin_or_greek(ch: str) -> bool:
 
 
 _CJK_PLUS_RE = re.compile(r"[\d\s.=×÷+\-()（）]*\d\s*[十一]\s*\d[\d\s.=×÷+\-()（）]*")
+MEASURE_WORDS = "个只支本朵根米张把块颗条棵头辆元件匹双座间辆杯盒瓶袋箱筐束串片粒枝面层台架艘"
+"""Chinese measure words (classifiers) that appear as unit labels after an answer box: □（只）."""
+_UNIT_LABEL_RE = re.compile(rf"[（(]\s*[{MEASURE_WORDS}]\s*[)）]")
+_TRAILING_UNIT_RE = re.compile(rf"\s*[（(]\s*[{MEASURE_WORDS}]?\s*[)）]?\s*$")
+_BOX_GLYPHS = set("□○OoD0Q口〇◯●◇△▲☐")
+_TEMPLATE_DROP = set(" +-−—–×÷=()（）[]［］_")
+_EMPTY_QUOTES_RE = re.compile(r"[\"“”'‘’「]\s*[\"“”'‘’」]")
+_PICTOGRAM_GAP_RE = re.compile(
+    r"用表示|表示(?=[，,。；;、）)]|$)|^比(?![一赛较例如方])|(?<!一)比(?=[，,。？?！!]|$)"
+    r"|比[多少大小高矮长短重轻][几个]|有个有个|在的面|的面(?=[，,。]|$)")
+"""Missing-operand patterns left when OCR drops inline pictograms: 用○表示人 -> 用表示人,
+△比●少□个 -> 比少个, 🍄比🍄多几个 -> 比多几个."""
+_DIGIT_CONFUSION_1_RE = re.compile(r"(?<![A-Za-z0-9])[hI|](?=\d+(?![A-Za-z0-9]))")
+_DIGIT_CONFUSION_0_RE = re.compile(r"(?<=\d)[Oo](?![A-Za-z])")
+
+
+def is_fill_in_template(text: str) -> bool:
+    """``□-□=□``, ``□○□=□（只）`` (OCR: ``O-O=O (只)``, ``□OO=0``): answer boxes, not text."""
+    core = _TRAILING_UNIT_RE.sub("", text.strip())
+    kept = [c for c in core if c not in _TEMPLATE_DROP]
+    if len(kept) < 2:
+        return False
+    boxes = sum(c in _BOX_GLYPHS for c in kept)
+    others = len(kept) - boxes
+    digits_other = sum(c.isdigit() and c not in _BOX_GLYPHS for c in kept)
+    if others > 1 or (others == 1 and digits_other != 1):
+        return False
+    has_shape = any(c in "□○口〇◯●◇△▲☐" for c in kept)
+    return boxes >= 2 and ("=" in core or has_shape)
+
+
+def normalize_ocr_digits(text: str) -> str:
+    """Fix digit look-alikes that start or end a number token (``h5`` -> ``15``,
+    ``5O`` -> ``50``); a letter inside a word or a variable name (``l1``) is left alone."""
+    t = _DIGIT_CONFUSION_1_RE.sub("1", text)
+    return _DIGIT_CONFUSION_0_RE.sub("0", t)
+
+
+_PLACE_VALUE_RE = re.compile(r"^([十个百千万]位)\s*(\d{1,3})$|^(\d{1,3})\s*([十个百千万]位)$")
+"""``十位5`` / ``7个位``: a place-value header fused with a digit of the vertical form next to it."""
+
+
+def split_place_value(text: str, box: tuple[int, int, int, int]) -> Optional[tuple[str, tuple[int, int, int, int]]]:
+    """``(label, label_box)`` for a place-value header fused with a digit, so only the label
+    is translated and erased while the digit stays in the picture; None otherwise."""
+    m = _PLACE_VALUE_RE.match(text.strip())
+    if not m:
+        return None
+    x0, y0, x1, y1 = box
+    if m.group(1):
+        label, digits, label_first = m.group(1), m.group(2), True
+    else:
+        label, digits, label_first = m.group(4), m.group(3), False
+    # a CJK glyph is about one em wide, a digit about 0.55 em; keep a margin towards the digit
+    share = len(label) / (len(label) + 0.55 * len(digits))
+    cut = x0 + share * (x1 - x0)
+    margin = 0.08 * (y1 - y0)
+    if label_first:
+        new = (x0, y0, max(x0 + 1, int(cut - margin)), y1)
+    else:
+        new = (min(x1 - 1, int(x0 + (1 - share) * (x1 - x0) + margin)), y0, x1, y1)
+    return label, new
+
+
+def is_cjk_char(ch: str) -> bool:
+    return "\u3400" <= ch <= "\u9fff"
 _TALLY_RE = re.compile(r"[正\s]+")
 _BARE_LABEL_RE = re.compile(r"[A-Z]{2,4}['’]*(?:\s*[A-Z]{1,4}['’]*)?")
 
@@ -407,6 +473,15 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
     stripped = text.strip()
     if not stripped:
         return "", [], False, "empty"
+    if is_fill_in_template(stripped):
+        # answer boxes / circles read as letters ("O-O=O"): repainting them would destroy the exercise
+        return make_placeholder(0), [stripped], False, FILL_IN_TEMPLATE
+    if _EMPTY_QUOTES_RE.search(stripped) and any(is_cjk_char(c) for c in stripped):
+        # (画“✓”) with the mark unread: a translation would say 'Draw ""'
+        return protect_text(stripped, source_lang) + (False, UNREADABLE_SYMBOL)
+    if any(is_cjk_char(c) for c in stripped) and _PICTOGRAM_GAP_RE.search(stripped.replace(" ", "")):
+        # the sentence is built around pictures the OCR could not read (用○表示人 -> 用表示人)
+        return protect_text(stripped, source_lang) + (False, INLINE_PICTOGRAMS)
     if _CJK_PLUS_RE.fullmatch(stripped):
         # "118十104" / "7一3": the OCR read a + or - sign as the look-alike character 十 / 一
         return make_placeholder(0), [stripped], False, "pure number / formula"
@@ -431,6 +506,10 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
 
 
 UNRELIABLE_OCR_KO = "unreliable OCR (Han characters but no hangul in a Korean source)"
+FILL_IN_TEMPLATE = "fill-in template (answer boxes)"
+UNREADABLE_SYMBOL = "unreadable symbol in quotes (left in the picture)"
+INLINE_PICTOGRAMS = "inline pictograms the OCR cannot read (left in the picture)"
+"""``skip_reason`` values for OCR lines that stay untouched in the picture."""
 """``skip_reason`` of Korean OCR lines rejected by the sanity gate of :func:`classify_ocr_text`."""
 
 
@@ -510,6 +589,9 @@ def restore_superscripts(loaded: LoadedImage, box: PixelBox, text: str, bg: np.n
     match = _TRAILING_DIGITS_RE.search(stripped)
     if not match:
         return text
+    base = stripped[:match.start(1)].rstrip()
+    if base[-1:].isdigit():
+        return text  # "26", "50", "42颗": exponents on plain numbers do not occur in school books
     digits = match.group(1)
     n = len(digits)
     x0, y0, x1, y1 = box
@@ -560,6 +642,12 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     Returns ``None`` when the result's box has no area inside the image.
     """
     box = _clamp_box(result.box, loaded.width, loaded.height)
+    raw_text = result.text
+    place_value = split_place_value(raw_text, box)
+    if place_value is not None:
+        raw_text, box = place_value
+        result = result.model_copy(update={"text": raw_text, "polygon": [[box[0], box[1]], [box[2], box[1]],
+                                                                          [box[2], box[3]], [box[0], box[3]]]})
     if box[2] - box[0] <= 0 or box[3] - box[1] <= 0:
         logger.debug("page %d image %d: dropping %r (box %s outside the %dx%d image)", page_index, xref,
                      result.text, result.box, loaded.width, loaded.height)
@@ -570,13 +658,15 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     size_pt = round(box_h_px * vertical_points_per_pixel(transform, loaded.height) * FONT_HEIGHT_RATIO, 1)
     bg, _uniform = estimate_background(loaded.rgb, box, loaded.alpha)
     color = estimate_text_color(loaded.rgb, box, bg, loaded.alpha)
-    text = restore_superscripts(loaded, box, result.text, bg)
+    text = restore_superscripts(loaded, box, normalize_ocr_digits(result.text), bg)
     if text != result.text:
         logger.info("page %d image %d: superscript restored from the glyph geometry: %r -> %r", page_index, xref,
                     result.text, text)
     protected, fragments, translate, reason = classify_ocr_text(text, source_lang)
     letters = [c for c in text if c.isalpha()]
-    if translate and len(letters) == 1 and not letters[0].isascii() and result.confidence < LOW_CONFIDENCE_SINGLE_CHAR:
+    unit_label = bool(_UNIT_LABEL_RE.fullmatch(text.strip()))
+    if (translate and len(letters) == 1 and not letters[0].isascii() and not unit_label
+            and result.confidence < LOW_CONFIDENCE_SINGLE_CHAR):
         # a lone CJK character read with low confidence is usually noise (an arrow, a stroke, a watermark piece)
         translate, reason = False, f"single character with low OCR confidence ({result.confidence:.2f})"
     slant = polygon_slant_degrees(result.polygon)

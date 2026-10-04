@@ -1576,3 +1576,61 @@ def test_rapid_second_pass_adds_missed_lines(monkeypatch):
     calls.clear()
     RapidOcrEngine(second_pass=False).recognize(page)
     assert len(calls) == 1
+
+
+# --------------------------------------------------------------------------- #
+# lower-grade OCR rules: answer boxes, plain numbers, unit labels, unreadable symbols
+# --------------------------------------------------------------------------- #
+
+
+def test_fill_in_templates_stay_in_the_picture():
+    from mathtrans.images import FILL_IN_TEMPLATE, is_fill_in_template
+
+    for text in ["O-O=O (只)", "□-□=□（只）", "□OO=0（个）", "OOO=0", "DOO=O ()", "□○□=□", "□+3=□", "△○"]:
+        assert is_fill_in_template(text), text
+        assert classify_ocr_text(text, Lang.ZH)[2:] == (False, FILL_IN_TEMPLATE)
+    for text in ["100=100", "10-0=10", "5+3=8", "0", "O", "OO", "8-□=5", "北乐O0O-O(T)", "共有多少个？"]:
+        assert not is_fill_in_template(text), text
+
+
+def test_superscripts_are_never_restored_on_plain_numbers():
+    from mathtrans.images import _TRAILING_DIGITS_RE
+
+    # restore_superscripts bails out before looking at pixels when the base is a digit
+    loaded = types.SimpleNamespace(rgb=np.zeros((10, 10, 3), np.uint8), alpha=None)
+    for text in ["26", "小于50", "2个50", "42颗"]:
+        assert restore_superscripts(loaded, (0, 0, 10, 10), text, np.array([255, 255, 255])) == text
+    assert _TRAILING_DIGITS_RE.search("c2") and _TRAILING_DIGITS_RE.search("m2")
+
+
+def test_digit_look_alikes_in_number_tokens():
+    from mathtrans.images import normalize_ocr_digits as norm
+
+    assert norm("h5") == "15" and norm("I5") == "15" and norm("5O") == "50" and norm("2O个") == "20个"
+    assert norm("第h5页") == "第15页"
+    for text in ["l1", "直线l1", "Hello", "5h", "50cm", "h", "BOX 2"]:
+        assert norm(text) == text, text
+
+
+def test_unit_labels_unreadable_symbols_and_pictogram_gaps():
+    from mathtrans.images import INLINE_PICTOGRAMS, UNREADABLE_SYMBOL
+
+    assert classify_ocr_text("（只）", Lang.ZH)[2] is True
+    for text in ["（画“”）", '画""', "想一想，羊可能有多少只？（画“”)"]:
+        assert classify_ocr_text(text, Lang.ZH)[2:] == (False, UNREADABLE_SYMBOL), text
+    for text in ["用表示人，用表示椅子", "比少个", "比多几个", "图中有个有个有个有_个○", "在的面"]:
+        assert classify_ocr_text(text, Lang.ZH)[2:] == (False, INLINE_PICTOGRAMS), text
+    for text in ["淘气比笑笑多3个。", "比一比，谁多？", "比赛开始了。", "比较大小", "谁比谁多？", "长方形的面积",
+                 "有几只小鸭？", "画“✓”"]:
+        assert classify_ocr_text(text, Lang.ZH)[2] is True, text
+
+
+def test_place_value_header_is_split_from_its_digit():
+    from mathtrans.images import split_place_value
+
+    label, box = split_place_value("十位5", (100, 10, 200, 40))
+    assert label == "十位" and box[0] == 100 and 160 < box[2] < 180 and box[1:4:2] == (10, 40)
+    label, box = split_place_value("7个位", (100, 10, 200, 40))
+    assert label == "个位" and box[2] == 200 and 115 < box[0] < 135
+    assert split_place_value("十位", (0, 0, 10, 10)) is None
+    assert split_place_value("十位上是5", (0, 0, 10, 10)) is None

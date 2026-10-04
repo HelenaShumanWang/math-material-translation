@@ -11,6 +11,7 @@ text and sentences are translated with their paragraph context.
 from __future__ import annotations
 
 import logging
+import re
 import statistics
 from collections import defaultdict
 from pathlib import Path
@@ -38,6 +39,16 @@ HEIGHT_RATIO = (0.7, 1.4)
 """Line heights within a paragraph must stay within this ratio range."""
 MIN_WIDTH_SHARE = 0.3
 """A line narrower than this share of the paragraph width joins it only when left-aligned."""
+MAX_X0_JUMP = 2.5
+"""A line whose left edge is more than this many line heights away from a left-aligned
+paragraph's (and that is not centred under it) is in another column: a speech bubble,
+a label next to the instruction."""
+_ANSWER_START_RE = re.compile(r"^\s*[答解][:：]")
+"""答：/ 解：: an answer line is a paragraph of its own."""
+_STARTS_NEW_RE = re.compile(r"^\s*(?:([\u4e00-\u9fff])一\1|[●•·▪◆■]|[答解][:：])")
+"""Lines that always start a new paragraph: reduplicated instruction verbs (做一做, 说一说,
+比一比, 算一算 ...), bullet glyphs and answer lines."""
+_SENTENCE_END = "。！？!?"
 
 
 def _closes_paragraph(text: str) -> bool:
@@ -129,6 +140,8 @@ class _Para:
             return False  # single-character lines are table cells / diagram labels, never paragraph lines
         if _closes_paragraph(self.last.source_text):
             return False  # "答：" / "解：" followed by a blank: nothing may be appended to it
+        if _ANSWER_START_RE.match(self.lines[0].source_text) or _STARTS_NEW_RE.match(line.source_text):
+            return False  # answer lines stand alone; 做一做 / ● / 答： open the next exercise
         h = self.median_height
         lh = line.bbox.height
         if h <= 0 or lh <= 0:
@@ -146,7 +159,17 @@ class _Para:
         left_aligned = abs(line.bbox.x0 - self.bbox.x0) <= 1.5 * h
         if narrower < MIN_WIDTH_SHARE * wider:
             return False  # a short label next to / under a long line is a diagram label or a table cell
+        centre_shift = abs((line.bbox.x0 + line.bbox.x1) / 2 - (self.bbox.x0 + self.bbox.x1) / 2)
+        if self._left_aligned(h) and abs(line.bbox.x0 - self.bbox.x0) > MAX_X0_JUMP * h and centre_shift > h:
+            return False  # another column: a speech bubble or label beside / below the instruction
+        if self.last.source_text.rstrip()[-1:] in _SENTENCE_END and (
+                abs(line.bbox.x0 - self.bbox.x0) > 0.6 * h or gap > 0.5 * h):
+            return False  # the sentence ended; an indented or separated line starts something new
         return overlap >= MIN_X_OVERLAP * narrower or (left_aligned and overlap > 0)
+
+    def _left_aligned(self, h: float) -> bool:
+        x0s = [l.bbox.x0 for l in self.lines]
+        return max(x0s) - min(x0s) <= 0.5 * h
 
     def add(self, line: TextSegment) -> None:
         self.lines.append(line)

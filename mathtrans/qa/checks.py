@@ -786,6 +786,12 @@ def formatting(doc: TranslatedDocument, options: PipelineOptions,
 IMAGE_MIN_FEASIBLE_CHARS = 5
 """An image label shorter than this cannot be asked for; the fit is reported as a warning."""
 UNRELIABLE_OCR_PREFIX = "unreliable OCR"
+LEFT_IN_PICTURE_REASONS = (
+    "unreadable symbol in quotes (left in the picture)",
+    "inline pictograms the OCR cannot read (left in the picture)",
+)
+"""``skip_reason`` values (images.UNREADABLE_SYMBOL / INLINE_PICTOGRAMS) of source text that
+stays in the picture untranslated; reported as warnings for a human check."""
 """``skip_reason`` prefix of OCR lines rejected as misreads by ``images.classify_ocr_text``."""
 IMAGE_MIN_FEASIBLE_SHARE = 0.35
 SHORT_LABEL_CHARS = 12
@@ -877,6 +883,12 @@ def image_text(doc: TranslatedDocument, options: PipelineOptions,
                 f"({seg.skip_reason}); it was left untouched - check the figure in the preview, or use the "
                 f"Claude vision OCR (MATHTRANS_OCR_ENGINE=claude / --ocr-engine claude)",
                 fixable=False, unreliable_ocr=True))
+        elif not seg.translate and seg.skip_reason in LEFT_IN_PICTURE_REASONS:
+            issues.append(_issue(
+                "image_text", "warning", seg,
+                f"The text {seg.source_text!r} was left in the source language ({seg.skip_reason}): the line is "
+                f"built around symbols or pictures the OCR could not read - check the page in the preview",
+                fixable=False, left_in_picture=True))
     for seg in _translated(doc):
         if seg.kind != SegmentKind.IMAGE_TEXT:
             continue

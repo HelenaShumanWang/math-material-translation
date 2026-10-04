@@ -162,10 +162,54 @@ def test_lines_with_different_colours_are_not_merged():
 
     white_heading = line(0, 100, "植树", 0xFFFFFF)
     black_body = line(1, 113, "平均每班分到多少棵树苗？", 0x202020)
-    black_body2 = line(2, 126, "分一分，算一算。", 0x242424)
+    black_body2 = line(2, 126, "每班分到的树苗一样多。", 0x242424)
     paragraphs = group_ocr_lines([white_heading, black_body, black_body2], 0, Lang.ZH)
     assert [p.members for p in paragraphs] == [["c0"], ["c1", "c2"]]
     assert paragraphs[0].style.color == 0xFFFFFF and paragraphs[1].style.color == 0x202020
+
+
+def _gline(i, x0, y, x1, text, h=12.0, color=0x202020):
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                   pixel_box=(int(x0 * 2), int(y * 2), int(x1 * 2), int((y + h) * 2)))
+    return TextSegment(id=f"g{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=x0, y0=y, x1=x1, y1=y + h),
+                       source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=color))
+
+
+def test_answer_lines_and_instruction_verbs_start_new_paragraphs():
+    lines = [
+        _gline(0, 50, 100, 330, "还剩下多少个苹果？"),
+        _gline(1, 50, 113, 250, "答：还剩下____个。"),          # answer line: its own paragraph
+        _gline(2, 50, 126, 300, "做一做，说一说，再填一填。"),    # reduplicated verb: new paragraph
+        _gline(3, 50, 139, 320, "用你喜欢的方法算一算。"),       # continues the instruction above
+        _gline(4, 50, 152, 300, "● 比一比，谁的多？"),           # bullet: new paragraph
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["g0"], ["g1"], ["g2", "g3"], ["g4"]]
+
+
+def test_speech_bubble_beside_instruction_is_not_merged():
+    lines = [
+        _gline(0, 50, 100, 400, "小明和小红一共有多少本书？请你算一算吧"),
+        _gline(1, 200, 113, 330, "我有17本书。"),                 # bubble: x0 jumps, not centred
+        _gline(2, 50, 113, 380, "然后和同伴说一说你是怎样想的"),     # left-aligned continuation
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert sorted(p.members for p in paragraphs) == [["g0", "g2"], ["g1"]]
+
+
+def test_line_after_a_finished_sentence_needs_alignment_and_no_gap():
+    lines = [
+        _gline(0, 50, 100, 300, "淘气有15个苹果，"),
+        _gline(1, 50, 113, 300, "笑笑有8个苹果。"),
+        _gline(2, 50, 132, 300, "他们一共有多少个苹果"),  # gap of 7 pt (> 0.5 h) after a full stop
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["g0", "g1"], ["g2"]]
+    # a centred multi-line bubble still joins (the left edges differ, the centres agree)
+    centred = [_gline(5, 100, 200, 260, "鸡比鹅多得多，"), _gline(6, 112, 213, 248, "鹅比鸭少一些")]
+    assert [p.members for p in group_ocr_lines(centred, 0, Lang.ZH)] == [["g5", "g6"]]
 
 
 def test_grouping_keeps_questions_labels_and_answer_lines_apart():
