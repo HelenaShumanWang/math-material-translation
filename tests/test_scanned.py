@@ -457,3 +457,12 @@ def test_underline_blank_check_looks_for_a_rule_in_the_gap():
     right.image = right.image.model_copy(update={"pixel_box": (360, 12, 395, 44)})
     assert check(left, mid) is True
     assert check(mid, right) is False
+    # a narrow empty gap (one sentence split at a quoted mark) joins too; a wide empty one does not
+    near = _gline(3, 10, 10, 60, "多的画")
+    near.image = near.image.model_copy(update={"pixel_box": (290, 12, 300, 44)})
+    after = _gline(4, 10, 10, 60, "“✓”。")
+    after.image = after.image.model_copy(update={"pixel_box": (330, 12, 340, 44)})
+    rgb[10:45, 300:340] = 255
+    assert check(near, after) is True
+    after.image = after.image.model_copy(update={"pixel_box": (395, 12, 399, 44)})
+    assert check(near, after) is False

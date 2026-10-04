@@ -282,7 +282,10 @@ def underline_blank_check(loaded_for: Callable[[int], Optional[object]]) -> Blan
         split = int(0.55 * len(rows))
         rule = rows[split:].max() if len(rows) > split else 0.0
         upper = float(ink[:split].mean()) if split > 0 else 1.0
-        return bool(rule >= 0.7 and upper <= 0.08)
+        if rule >= 0.7 and upper <= 0.08:
+            return True  # an answer-blank underline
+        # a narrow empty gap: OCR split one sentence at a space or a quoted mark
+        return bool(x1 - x0 <= 1.5 * h and float(ink.mean()) <= 0.03)
     return check
 
 
@@ -314,7 +317,8 @@ def _join_row_pieces(candidates: list[TextSegment], blank_check: Optional[BlankC
         bbox = chain[0].bbox
         for prev, cur in zip(chain, chain[1:]):
             gap = cur.bbox.x0 - prev.bbox.x1
-            text += (BLANK if gap > 0.8 * max(prev.bbox.height, cur.bbox.height) else "") + cur.source_text.strip()
+            wide = gap > 1.6 * max(prev.bbox.height, cur.bbox.height)  # an underline blank, not a space
+            text += (BLANK if wide else "") + cur.source_text.strip()
             bbox = bbox.union(cur.bbox)
         virtual = chain[0].model_copy(update={"bbox": bbox, "source_text": text, "protected_text": text})
         units[virtual.id] = chain

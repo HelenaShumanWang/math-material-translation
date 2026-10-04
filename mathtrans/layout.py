@@ -98,9 +98,11 @@ MIN_WIDTH_GROWTH = 60.0
 """Horizontal growth allowance in points for tiny boxes (labels, page numbers)."""
 MAX_WIDTH_GROWTH = 2.0
 """A box may grow horizontally by at most this fraction of its width."""
-LEGIBLE_FLOOR = 0.4
+LEGIBLE_FLOOR = 0.45
 """On a scanned page, a translation that would need a smaller scale than this is not
 set at all: the source glyphs are restored and QA asks for a shorter text."""
+LEGIBLE_MIN_PT = 5.5
+"""... nor one that would be set below this many points."""
 KEPT_SOURCE_NOTE = "left in source language: the translation does not fit legibly"
 LABEL_WIDTH_GROWTH = 3.0
 """Short labels on scanned pages may grow sideways (on both sides, centred) by this
@@ -326,6 +328,14 @@ def _short_label(seg: TextSegment) -> bool:
     return not _ENUMERATED_RE.match(seg.source_text or "")
 
 
+def _centred_heading(seg: TextSegment, page: BBox) -> bool:
+    """A one-line heading centred on the page (a unit or lesson title)."""
+    if seg.style.role != "heading" or "\n" in (seg.translated_text or ""):
+        return False
+    centre = (seg.bbox.x0 + seg.bbox.x1) / 2
+    return abs(centre - (page.x0 + page.x1) / 2) <= 0.06 * page.width
+
+
 class _PageSpace:
     """Occupied areas of one page, used to extend text boxes into free space.
 
@@ -451,7 +461,7 @@ class _PageSpace:
         """Grow ``seg.bbox`` into free space (downward and/or sideways). Short labels on a
         scanned page grow further and on both sides (they are then set centred)."""
         box = seg.bbox
-        label = self.scanned and _short_label(seg)
+        label = self.scanned and (_short_label(seg) or _centred_heading(seg, self.page_rect))
         obstacles = [b for sid, b in self.occupied.items() if sid != seg.id] + list(self.fixed)
         containers: list[BBox] = []
         for d in self.drawings():
@@ -599,7 +609,8 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
         if bg is not None:
             fixed = readable_color(seg.style.color, bg)
             color = fixed if fixed != seg.style.color else None
-        if _short_label(seg) and grown != base and abs((grown.x0 + grown.x1) - (base.x0 + base.x1)) < 1.0:
+        if (_short_label(seg) or _centred_heading(seg, space.page_rect)) and grown != base \
+                and abs((grown.x0 + grown.x1) - (base.x0 + base.x1)) < 1.0:
             align = "center"  # grown symmetrically around the original label
     grown_note = "" if grown == base else "box extended into free space"
     tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
@@ -628,7 +639,7 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     rect, lh, _, _ = attempts[-1]
     if space.scanned and seg.origin == "ocr":
         scale = _fit_scale(page, rect, html(lh), css=css, archive=archive, rotate=rotate)
-        if scale < LEGIBLE_FLOOR:
+        if scale < LEGIBLE_FLOOR or scale * size < LEGIBLE_MIN_PT:
             # unreadable specks help nobody: leave the source glyphs (restored after layout)
             missing = rect.height * ((min_scale / scale) ** 2 - 1) if scale > 0 else rect.height
             log.warning("segment %s: translation would need scale %.2f; source text kept", seg.id, scale)
