@@ -848,3 +848,22 @@ def test_render_document_checkpoint_matches_single_pass(tmp_path):
     with pymupdf.open(str(tmp_path / "inplace.pdf")) as c:
         assert c.page_count == n_pages and _norm("Page 11 line 0") in page_text(c[11])
     assert not list(tmp_path.glob("*checkpoint*"))
+
+
+def test_sibling_labels_are_grouped_by_size_colour_and_position():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def label(i, x0, y0, size=10.0, color=0x202020, font=10.0):
+        seg = TextSegment(id=f"l{i}", page=0, bbox=BBox(x0=x0, y0=y0, x1=x0 + 25, y1=y0 + 13), source_text="小明",
+                          translated_text="Xiaoming", origin="ocr",
+                          style=SegmentStyle(size=size, color=color, role="label"))
+        seg.render = RenderInfo(font_size=font, scale=font / size, bbox=seg.bbox)
+        return seg
+
+    names = [label(0, 100, 500, font=5.8), label(1, 190, 490, font=10.0), label(2, 270, 505, size=11.0, font=11.0)]
+    far = label(3, 100, 700)                        # another row of the page
+    red = label(4, 330, 500, color=0xE02020)        # a different colour: not a name tag of the same set
+    big = label(5, 400, 500, size=20.0)             # a heading-sized label
+    groups = _sibling_label_groups(names + [far, red, big])
+    assert [sorted(s.id for s in g) for g in groups] == [["l0", "l1", "l2"]]

@@ -897,7 +897,76 @@ def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequenc
         if info.bbox is not None:
             space.update(seg.id, info.bbox)
         infos.append(info)
+    if space.scanned:
+        _match_sibling_labels(page, todo, space, css=css, archive=archive, min_scale=min_font_scale)
+        infos = [seg.render for seg in todo if seg.render is not None]
     return infos
+
+
+LABEL_SIZE_TOLERANCE = 0.15
+"""Short labels whose source sizes differ by at most this share, in the same colour and next
+to each other (name tags under the children of a picture, a row of captions), are siblings ..."""
+LABEL_SIZE_SPREAD = 1.12
+"""... and are reset at the smallest size among them when their rendered sizes differ by more
+than this factor ("Xiaolan" squeezed, "Fangfang" at full size looks careless)."""
+
+
+def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]]:
+    labels = [s for s in segs if s.origin == "ocr" and _short_label(s) and not s.style.is_vertical and not s.anchors
+              and s.render is not None and s.render.font_size > 0
+              and s.render.bbox is not None]
+    parent = list(range(len(labels)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i, a in enumerate(labels):
+        for j in range(i + 1, len(labels)):
+            b = labels[j]
+            if abs(a.style.size - b.style.size) > LABEL_SIZE_TOLERANCE * max(a.style.size, b.style.size):
+                continue
+            ca, cb = a.style.color, b.style.color
+            if max(abs((ca >> k & 255) - (cb >> k & 255)) for k in (0, 8, 16)) > 80:
+                continue
+            h = max(a.bbox.height, b.bbox.height)
+            dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
+            dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
+            if dy <= 1.2 * h and dx <= 8 * h:
+                parent[find(i)] = find(j)
+    groups: dict[int, list[TextSegment]] = {}
+    for i, seg in enumerate(labels):
+        groups.setdefault(find(i), []).append(seg)
+    return [g for g in groups.values() if len(g) > 1]
+
+
+def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space: "_PageSpace", *, css: str,
+                          archive: Optional[pymupdf.Archive], min_scale: float) -> None:
+    """Re-set the larger members of each sibling-label group at the group's smallest size."""
+    for group in _sibling_label_groups(segs):
+        target = min(s.render.font_size for s in group)  # type: ignore[union-attr]
+        for seg in group:
+            old = seg.render
+            assert old is not None and old.bbox is not None
+            if old.font_size <= LABEL_SIZE_SPREAD * target:
+                continue
+            rect = old.bbox.to_rect()
+            page.add_redact_annot(pymupdf.Rect(rect.x0 + 0.3, rect.y0 + 0.3, rect.x1 - 0.3, rect.y1 - 0.3), fill=False)
+            page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_NONE, graphics=pymupdf.PDF_REDACT_LINE_ART_NONE,
+                                  text=pymupdf.PDF_REDACT_TEXT_REMOVE)
+            size = seg.style.size
+            seg.style.size = target
+            try:
+                info = _place_segment(page, seg, seg.translated_text or "", space, css=css, archive=archive,
+                                      min_scale=min_scale)
+            finally:
+                seg.style.size = size
+            info.notes = "; ".join(n for n in (info.notes, "size matched to its sibling labels") if n)
+            seg.render = info
+            if info.bbox is not None:
+                space.update(seg.id, info.bbox)
 
 
 # --------------------------------------------------------------------------- #
