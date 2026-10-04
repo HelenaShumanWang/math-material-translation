@@ -13,3 +13,6 @@ fonts/*.otf
 examples/output/
 *.log
 .venv/
+
+# Claude Code workflow worktrees (harness-managed)
+.claude/worktrees/
