@@ -34,7 +34,9 @@ symbol and every answer blank (___, □, （ ）) exactly where it stands; never
 and never add a symbol, blank or number that the source does not have. \
 Comparisons keep their direction: A比B多3个 => "A has 3 more than B". A heading that begins with a bare \
 Chinese numeral (一 加与减, 四 有趣的图形) is a unit heading: "Unit 1 Addition and Subtraction". \
-Children's names are written in pinyin (淘气 Taoqi, 笑笑 Xiaoxiao).\
+Children's names are written in pinyin (淘气 Taoqi, 笑笑 Xiaoxiao). Multiplication-table rhymes (乘法口诀) are \
+written as multiplication facts: 三七二十一 => "3 × 7 = 21", 二八十六 => "2 × 8 = 16"; an incomplete \
+rhyme to fill in (三七____) => "3 × 7 = ____".\
 """
 
 TRANSLATION_SYSTEM_PROMPT = """\

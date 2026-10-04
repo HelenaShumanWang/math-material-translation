@@ -895,6 +895,7 @@ def test_style_findings_never_block():
     f = _parse_finding({"id": "a", "severity": "error", "category": "meaning", "message": "reversed"}, known)
     assert f is not None and f.severity == "error"
     assert "(ones)" in TRANSLATION_SYSTEM_PROMPT and "Respond with JSON only" in TRANSLATION_SYSTEM_PROMPT
+    assert "3 × 7 = 21" in TRANSLATION_SYSTEM_PROMPT  # multiplication-table rhymes become facts
 
 
 def test_postprocess_translation_cleans_english_output():
