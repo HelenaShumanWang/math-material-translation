@@ -31,7 +31,9 @@ after a numeral (1 book, 2 books; 1 bun, 4 buns). Never invent abbreviations to 
 optional words instead; only standard units (m, km, cm, min, h) are abbreviated. Enumerators \
 such as (1) (2) ① 1. 2. that begin an item are kept at the start of the translation. Symbols and blanks: keep every ○ △ □ ● ▲ ■ ◇ ☆ ★ ✓ √ \
 symbol and every answer blank (___, □, （ ）) exactly where it stands; never drop or describe them, \
-and never add a symbol, blank or number that the source does not have. \
+and never add a symbol, blank or number that the source does not have. In scanned pages a placeholder can stand for a small \
+picture or an answer box inside the sentence (第⟦0⟧节 = "car ⟦0⟧", 比⟦0⟧多 = "more than ⟦0⟧"): put it where that \
+word or blank belongs in the English sentence. \
 Comparisons keep their direction: A比B多3个 => "A has 3 more than B". A heading that begins with a bare \
 Chinese numeral (一 加与减, 四 有趣的图形) is a unit heading: "Unit 1 Addition and Subtraction". \
 Children's names are written in pinyin (淘气 Taoqi, 笑笑 Xiaoxiao). Multiplication-table rhymes (乘法口诀) are \

@@ -279,6 +279,23 @@ class RapidOcrEngine:
         logger.debug("rapid OCR: %d regions in %dx%d image (hint %s)", len(out), w, h, _lang_codes(hint_langs))
         return out
 
+    def recognize_crop(self, image_rgb: np.ndarray) -> tuple[str, float]:
+        """Recognition only (no detection) of a small crop: ``(text, confidence)``."""
+        import cv2
+
+        engine = self._engine()
+        if engine is None:
+            return "", 0.0
+        rgb = as_rgb_uint8(image_rgb)
+        if rgb.shape[0] < 8 or rgb.shape[1] < 8:
+            return "", 0.0
+        rgb = cv2.copyMakeBorder(rgb, 6, 6, 6, 6, cv2.BORDER_REPLICATE)
+        result, _ = engine(cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR), use_det=False, use_cls=False)
+        if not result:
+            return "", 0.0
+        text, conf = result[0][0], result[0][1]
+        return str(text), float(conf)
+
     def _run_tiles(self, engine: Any, rgb: np.ndarray) -> list[OcrResult]:
         """OCR of overlapping, upscaled tiles; polygons in page pixels. A result touching an
         inner tile edge is a cut-off piece and is dropped (the overlap makes a short line

@@ -20,7 +20,7 @@ import math
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Optional, Union
+from typing import Any, Callable, Optional, Union
 
 import cv2
 import numpy as np
@@ -30,7 +30,7 @@ from PIL import Image, ImageDraw, ImageFont
 from .fonts import pil_font
 from .interfaces import OcrEngine
 from .languages import is_cjk, letters_of_script, script_profile
-from .models import (make_placeholder, BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
+from .models import (anchor_marker, make_placeholder, BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
 from .ocr import OcrError, OcrUnavailableError
 from .protect import is_fully_protected, protect_text
@@ -547,6 +547,154 @@ def fill_empty_quotes(text: str, marks: list[Optional[str]]) -> str:
     return "".join(out)
 
 
+ANCHOR_MIN_HEIGHT = 0.45
+"""An inline picture or answer box is at least this share of the line height tall ..."""
+ANCHOR_MIN_WIDTH = 0.3
+"""... and at least this share of it wide (underlines and dots are not pictures)."""
+ANCHOR_COLOUR_DISTANCE = 110.0
+"""... and its colour differs from the text colour by at least this RGB distance."""
+MAX_ANCHORS = 6
+ANCHOR_MIN_SATURATION = 60
+"""Textbook pictures and answer boxes are coloured; grey strokes are the watermark."""
+ANCHOR_MIN_CONTRAST = 90
+"""Picture pixels differ from the background by more than this (the semi-transparent
+watermark printed over the text does not)."""
+TextCheck = Callable[[np.ndarray], bool]
+"""``text_check(crop)`` -> True when the OCR recogniser reads the crop as text."""
+
+
+def _char_width(ch: str) -> float:
+    if is_cjk_char(ch) or ch in "，。！？；：、（）“”‘’《》【】":
+        return 1.0
+    if ch.isspace():
+        return 0.3
+    if ch.isalnum():
+        return 0.55
+    return 0.45
+
+
+def _dominant(pixels: np.ndarray) -> tuple[np.ndarray, float]:
+    flat = pixels.reshape(-1, 3).astype(np.int32)
+    q = flat // 16
+    keys = (q[:, 0] << 8 | q[:, 1]) << 8 | q[:, 2]
+    vals, counts = np.unique(keys, return_counts=True)
+    colour = np.median(flat[keys == vals[counts.argmax()]], axis=0)
+    near = np.abs(flat - colour).max(axis=1) <= 30
+    return colour, float(near.mean())
+
+
+_HEADING_ONLY_RE = re.compile(r"([\u4e00-\u9fff])一\1[。.！!]?")
+"""A short heading line (练一练, 试一试, 我学到了什么) - no inline pictures expected."""
+
+
+def _formula_core(text: str) -> bool:
+    """A worked equation: mostly digits and operators around an equals sign."""
+    t = text.strip()
+    return "=" in t and sum(c.isdigit() or c in "+-−×÷=()（） ." for c in t) >= 0.6 * len(t)
+
+
+def detect_anchors(rgb: np.ndarray, box: tuple[int, int, int, int], text: str, key_prefix: str,
+                   text_check: Optional[TextCheck]) -> tuple[str, dict[str, list[int]]]:
+    """Find pictures and answer boxes inside an OCR text line (第□节, 第几只是🦆？, 用○表示人)
+    and put an anchor marker into ``text`` at each one's position, so the translation keeps
+    it and the layout draws it inline. Returns ``(text, {key: [x0, y0, x1, y1]})``.
+
+    Candidates are ink components clearly unlike the text colour and at least half a line
+    tall; neighbouring components merge into one picture. A candidate the OCR recogniser
+    reads as text (a red word, a coloured label cell) is not a picture. The characters of
+    ``text`` are distributed over the text columns left and right of the pictures by their
+    estimated widths."""
+    if text_check is None or not any(is_cjk_char(c) for c in text):
+        return text, {}
+    if is_fill_in_template(text) or _CJK_PLUS_RE.fullmatch(text.strip()) or _formula_core(text):
+        return text, {}  # answer-box templates and formulas stay in the picture as they are
+    if _HEADING_ONLY_RE.fullmatch(text.strip()):
+        return text, {}  # exercise headings (练一练) sit on decorative brush strokes
+    x0, y0, x1, y1 = box
+    crop = rgb[y0:y1, x0:x1]
+    h, w = crop.shape[:2]
+    if h < 12 or w < 2 * h:
+        return text, {}
+    bg, share = _dominant(crop)
+    if share < 0.4:
+        return text, {}  # busy background: the components are not reliable
+    ink = np.abs(crop.astype(np.int32) - bg).max(axis=2) > 50
+    text_colour = np.array(estimate_text_color(rgb, box, bg.astype(np.uint8)), dtype=np.int32)
+    dist = np.sqrt(((crop.astype(np.int32) - text_colour) ** 2).sum(axis=2))
+    strong = np.abs(crop.astype(np.int32) - bg).max(axis=2) > ANCHOR_MIN_CONTRAST  # not the faint watermark
+    unlike = ink & strong & (dist >= ANCHOR_COLOUR_DISTANCE)
+    if not unlike.any():
+        return text, {}
+    # the colour right around the glyphs: a panel or badge behind the text has it, a picture not
+    near_text = cv2.dilate((ink & (dist < ANCHOR_COLOUR_DISTANCE)).astype(np.uint8), np.ones((5, 5), np.uint8)) > 0
+    surround_px = crop[near_text & ~(dist < ANCHOR_COLOUR_DISTANCE)]
+    surround = np.median(surround_px.reshape(-1, 3), axis=0) if surround_px.size else bg
+    k = max(2, h // 6)
+    grown = cv2.dilate(unlike.astype(np.uint8), np.ones((k, k), np.uint8))
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(grown, connectivity=8)
+    groups: list[tuple[int, int, int, int]] = []
+    for i in range(1, n):
+        gx, gy, gw, gh, _area = (int(v) for v in stats[i])
+        if gh < ANCHOR_MIN_HEIGHT * h or gw < ANCHOR_MIN_WIDTH * h:
+            continue
+        gx0, gy0 = max(0, gx - 2), max(0, gy - 2)
+        gx1, gy1 = min(w, gx + gw + 2), min(h, gy + gh + 2)
+        if gx1 - gx0 >= 0.8 * w:
+            continue  # a panel or banner behind the whole line
+        px = crop[gy0:gy1, gx0:gx1][unlike[gy0:gy1, gx0:gx1]].astype(np.int32)
+        if px.size == 0 or float(np.median(px.max(axis=1) - px.min(axis=1))) < ANCHOR_MIN_SATURATION:
+            continue  # grey: the watermark or a shadow, not a coloured picture or answer box
+        if np.abs(np.median(px, axis=0) - surround).max() <= 60:
+            continue  # the panel behind the text (a heading badge), not a picture
+        if text_check(np.ascontiguousarray(crop[gy0:gy1, gx0:gx1])):
+            continue  # coloured text, not a picture
+        groups.append((gx0, gy0, gx1, gy1))
+    if not groups or len(groups) > MAX_ANCHORS:
+        return text, {}
+    groups.sort()
+    text_ink = ink & (dist < ANCHOR_COLOUR_DISTANCE)
+    for gx0, _gy0, gx1, _gy1 in groups:
+        text_ink[:, gx0:gx1] = False
+    cols = text_ink.any(axis=0)
+    runs: list[list[int]] = []
+    for xi in np.flatnonzero(cols):
+        if runs and xi - runs[-1][1] <= max(2, h // 4):
+            runs[-1][1] = int(xi) + 1
+        else:
+            runs.append([int(xi), int(xi) + 1])
+    runs = [r for r in runs if r[1] - r[0] >= 0.15 * h]
+    if not runs:
+        return text, {}
+    # distribute the characters over the text runs by their estimated widths
+    widths = [_char_width(c) for c in text]
+    total = sum(widths) or 1.0
+    run_total = float(sum(b - a for a, b in runs))
+    bounds, acc = [], 0.0
+    for a, b in runs:
+        acc += (b - a) / run_total
+        bounds.append(acc)
+    assigned: list[list[str]] = [[] for _ in runs]
+    pos = 0.0
+    for ch, cw in zip(text, widths):
+        mid = (pos + cw / 2) / total
+        pos += cw
+        idx = next((j for j, bound in enumerate(bounds) if mid <= bound + 1e-9), len(runs) - 1)
+        assigned[idx].append(ch)
+    items: list[tuple[int, str, int]] = [(a, "run", j) for j, (a, _b) in enumerate(runs)]
+    items += [(g[0], "pic", j) for j, g in enumerate(groups)]
+    items.sort()
+    out, anchors = [], {}
+    for _x, kind, j in items:
+        if kind == "run":
+            out.append("".join(assigned[j]))
+        else:
+            key = f"{key_prefix}.{j}"
+            gx0, gy0, gx1, gy1 = groups[j]
+            anchors[key] = [x0 + gx0, y0 + gy0, x0 + gx1, y0 + gy1]
+            out.append(anchor_marker(key))
+    return "".join(out), anchors
+
+
 def is_cjk_char(ch: str) -> bool:
     return "\u3400" <= ch <= "\u9fff"
 _TALLY_RE = re.compile(r"[正\s]+")
@@ -733,7 +881,8 @@ def restore_superscripts(loaded: LoadedImage, box: PixelBox, text: str, bg: np.n
 
 
 def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index: int, loaded: LoadedImage,
-                        image_bbox: BBox, transform: Any, source_lang: Lang) -> Optional[TextSegment]:
+                        image_bbox: BBox, transform: Any, source_lang: Lang,
+                        text_check: Optional[TextCheck] = None) -> Optional[TextSegment]:
     """Turn one OCR result on image ``xref`` into an ``IMAGE_TEXT`` segment.
 
     A trailing superscript that the OCR engine flattened to plain digits is
@@ -764,6 +913,12 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
         if filled != text:
             logger.info("page %d image %d: marks read between the quotes: %r -> %r", page_index, xref, text, filled)
             text = filled
+    anchors: dict[str, list[int]] = {}
+    if text_check is not None:
+        text, pixel_anchors = detect_anchors(loaded.rgb, box, text, f"{xref}.{index}", text_check)
+        anchors = {k: [xref, *v] for k, v in pixel_anchors.items()}
+        if anchors:
+            logger.info("page %d image %d: %d inline picture(s) anchored in %r", page_index, xref, len(anchors), text)
     if text != result.text:
         logger.info("page %d image %d: superscript restored from the glyph geometry: %r -> %r", page_index, xref,
                     result.text, text)
@@ -791,7 +946,24 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
                        confidence=float(result.confidence)),
         translate=translate,
         skip_reason=reason,
+        anchors=anchors,
     )
+
+
+def _text_check_for(engine: Any) -> Optional[TextCheck]:
+    """A :data:`TextCheck` backed by the engine's recogniser (RapidOCR), or None."""
+    recognize_crop = getattr(engine, "recognize_crop", None)
+    if recognize_crop is None:
+        return None
+
+    def check(crop: np.ndarray) -> bool:
+        try:
+            found, conf = recognize_crop(crop)
+        except Exception:  # noqa: BLE001 - no verdict, no anchor
+            return True
+        letters = [c for c in found if c.isalnum()]
+        return bool(letters) and conf >= 0.5
+    return check
 
 
 def _open_pdf(source: PdfSource) -> tuple[pymupdf.Document, bool]:
@@ -822,6 +994,7 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
     """
     pdf_doc, owned = _open_pdf(pdf_path)
     wanted = set(pages) if pages is not None else None
+    text_check = _text_check_for(engine)
     seen: set[int] = set()
     smasks: set[int] = set()
     segments: list[TextSegment] = []
@@ -870,7 +1043,7 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
                         continue
                     seg = build_image_segment(result, page_index=page.number, xref=xref, index=n, loaded=loaded,
                                               image_bbox=image_bbox, transform=transform,
-                                              source_lang=doc.source_lang)
+                                              source_lang=doc.source_lang, text_check=text_check)
                     if seg is None:
                         continue
                     segments.append(seg)

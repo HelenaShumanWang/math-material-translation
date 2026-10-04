@@ -310,7 +310,8 @@ def run_pipeline(
                 layout_source = erased_pdf
             render_document(layout_source, doc, out_pdf, min_font_scale=options.min_font_scale,
                             fonts_dir=settings.fonts_dir, pages=pages,
-                            checkpoint_pages=int(getattr(settings, "render_checkpoint_pages", 25) or 0))
+                            checkpoint_pages=int(getattr(settings, "render_checkpoint_pages", 25) or 0),
+                            anchor_source=source_pdf)
             image_targets = [s for s in doc.image_segments() if s.translated_text and s.translate]
             restore = paragraphs_to_restore(doc) if merged else []
             if image_targets or restore:

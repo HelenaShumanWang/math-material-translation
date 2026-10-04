@@ -298,6 +298,9 @@ def find_protected_fragments(text: str, src_lang: Lang | str | None = None) -> l
     return out
 
 
+_ANCHOR_RE = re.compile("\ue000[^\ue000\ue001]{1,40}\ue001")
+
+
 def protect_text(
     text: str,
     src_lang: Lang | str | None = None,
@@ -313,7 +316,8 @@ def protect_text(
     fragments: list[str] = []
     protected_ranges: list[tuple[int, int, str]] = []
 
-    extras = sorted({f for f in (extra_fragments or []) if f and f.strip()}, key=len, reverse=True)
+    anchors = [m.group(0) for m in _ANCHOR_RE.finditer(text)]  # inline pictures stay where they are
+    extras = sorted({f for f in list(extra_fragments or []) + anchors if f and f.strip()}, key=len, reverse=True)
     taken = [False] * len(text)
     for frag in extras:
         start = 0

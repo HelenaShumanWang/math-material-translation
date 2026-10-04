@@ -187,6 +187,15 @@ class SegmentKind(str, Enum):
     IMAGE_TEXT = "image_text"  # text recognised inside a raster image
 
 
+ANCHOR_OPEN, ANCHOR_CLOSE = "\ue000", "\ue001"
+"""Private-use characters around an anchor key in segment text (an inline picture)."""
+ANCHOR_RE = re.compile("\ue000([^\ue000\ue001]{1,40})\ue001")
+
+
+def anchor_marker(key: str) -> str:
+    return f"{ANCHOR_OPEN}{key}{ANCHOR_CLOSE}"
+
+
 class TextSegment(BaseModel):
     """The unit of translation: usually one paragraph / block, or one OCR line.
 
@@ -218,6 +227,9 @@ class TextSegment(BaseModel):
     reading_order: int = 0
     origin: Literal["pdf", "ocr"] = "pdf"  # "ocr": paragraph assembled from OCR lines of a scanned page
     members: list[str] = Field(default_factory=list)  # ids of the OCR line segments merged into this one
+    # inline pictures / answer boxes of a scanned line, drawn inside the translation:
+    # anchor key -> [image xref, x0, y0, x1, y1] (pixels of the source image)
+    anchors: dict[str, list[int]] = Field(default_factory=dict)
 
     @property
     def effective_text(self) -> str:

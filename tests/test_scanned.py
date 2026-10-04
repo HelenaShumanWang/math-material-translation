@@ -485,3 +485,17 @@ def test_watermark_lines_are_not_layout_obstacles():
                              pages=[PageInfo(index=0, width=500, height=700)], segments=[wm, frag, label])
     space = _PageSpace(page, 0, doc)
     assert set(space.occupied) == {"g2"}   # numbers left in the picture still block, the watermark does not
+
+
+
+def test_left_aligned_tail_of_a_sentence_joins_its_paragraph():
+    lines = [
+        _gline(0, 90, 477, 464, "请用轴对称或平移的知识，为自己的班级设计班徽。与同伴说一说你的"),
+        _gline(1, 90, 491, 146, "设计意图。"),                 # short tail, left-aligned, sentence unfinished above
+        _gline(2, 300, 520, 340, "合计"),                     # a short label under a long line stays alone
+        _gline(3, 90, 540, 460, "这是一句完整的话，到这里结束了。"),
+        _gline(4, 90, 554, 140, "下一题"),                    # after a full stop: not a tail
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    members = sorted(p.members for p in paragraphs)
+    assert ["g0", "g1"] in members and ["g2"] in members and ["g3"] in members and ["g4"] in members

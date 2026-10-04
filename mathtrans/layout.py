@@ -66,18 +66,20 @@ is corrected by hand.
 from __future__ import annotations
 
 import html as _html
+import io
 import logging
 import os
 import re
 import tempfile
 from pathlib import Path
-from typing import Optional, Sequence, Union
+from typing import Any, Optional, Sequence, Union
 
 import numpy as np
+from PIL import Image
 import pymupdf
 
 from .fonts import find_font_file, html_font_setup
-from .models import BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment, TranslatedDocument
+from .models import ANCHOR_RE, BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment, TranslatedDocument
 
 log = logging.getLogger("mathtrans.layout")
 
@@ -201,8 +203,60 @@ def segment_html(seg: TextSegment, text: str, line_height: Optional[float] = Non
         f"line-height:{lh:.2f}"
     )
     body = text.replace("\r\n", "\n").replace("\r", "\n").replace("\t", " ")
-    body = _html.escape(body, quote=False).replace("\n", "<br>")
-    return f'<p style="{style}">{body}</p>'
+    parts, pos = [], 0
+    for m in ANCHOR_RE.finditer(body):
+        parts.append(_html.escape(body[pos:m.start()], quote=False).replace("\n", "<br>"))
+        parts.append(_anchor_img(seg, m.group(1)))
+        pos = m.end()
+    parts.append(_html.escape(body[pos:], quote=False).replace("\n", "<br>"))
+    return f'<p style="{style}">{"".join(parts)}</p>'
+
+
+ANCHOR_EM = 1.25
+"""Height of an inline picture, in em of the surrounding text."""
+
+
+def anchor_name(key: str) -> str:
+    return "anchor-" + "".join(c if c.isalnum() else "_" for c in key) + ".png"
+
+
+def _anchor_img(seg: TextSegment, key: str) -> str:
+    box = seg.anchors.get(key)
+    if not box:
+        return ""
+    _xref, x0, y0, x1, y1 = box
+    aspect = max(0.2, min(5.0, (x1 - x0) / max(1, y1 - y0)))
+    return (f'<img src="{anchor_name(key)}" style="height:{ANCHOR_EM:.2f}em;width:{ANCHOR_EM * aspect:.2f}em;'
+            f'vertical-align:middle">')
+
+
+def anchor_archive(segments: Sequence[TextSegment], source: Optional[pymupdf.Document],
+                   base: Optional[pymupdf.Archive]) -> Optional[pymupdf.Archive]:
+    """The font archive plus the crops of every inline picture of ``segments`` (from the
+    unerased ``source`` document); ``base`` unchanged when there is nothing to add."""
+    wanted = {k: v for seg in segments for k, v in seg.anchors.items()}
+    if not wanted or source is None:
+        return base
+    from .images import load_image  # local import: images imports layout helpers indirectly
+
+    archive = pymupdf.Archive()
+    if base is not None:
+        archive.add(base)
+    cache: dict[int, Any] = {}
+    for key, (xref, x0, y0, x1, y1) in wanted.items():
+        try:
+            if xref not in cache:
+                cache[xref] = load_image(source, xref)
+            img = cache[xref]
+            crop = img.rgb[max(0, y0):y1, max(0, x0):x1]
+            if crop.size == 0:
+                continue
+            buf = io.BytesIO()
+            Image.fromarray(crop).save(buf, "PNG")
+            archive.add((buf.getvalue(), anchor_name(key)))
+        except Exception as exc:  # noqa: BLE001 - a missing picture must not stop the page
+            log.warning("inline picture %s could not be prepared: %s", key, exc)
+    return archive
 
 
 def html_rotation(style: SegmentStyle) -> int:
@@ -844,7 +898,8 @@ def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequenc
 def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLike, *,
                     min_font_scale: float = 0.55, fonts_dir: Optional[PathLike] = None,
                     pages: Optional[list[int]] = None,
-                    checkpoint_pages: int = DEFAULT_CHECKPOINT_PAGES) -> list[RenderInfo]:
+                    checkpoint_pages: int = DEFAULT_CHECKPOINT_PAGES,
+                    anchor_source: Optional[PathLike] = None) -> list[RenderInfo]:
     """Write ``out_pdf`` = ``src_pdf`` with every translated text segment re-rendered.
 
     Only ``SegmentKind.TEXT`` segments whose ``translated_text`` is set (and
@@ -884,8 +939,12 @@ def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLik
         infos: list[RenderInfo] = []
         todo = [p for p in wanted if by_page.get(p)]
         since_checkpoint = 0
+        pictures_doc = None
+        if anchor_source is not None and any(seg.anchors for segs in by_page.values() for seg in segs):
+            pictures_doc = pymupdf.open(str(anchor_source))
         for pno in todo:
-            page_infos = render_page_segments(pdf[pno], pno, by_page[pno], doc, css=css, archive=archive,
+            page_archive = anchor_archive(by_page[pno], pictures_doc, archive)
+            page_infos = render_page_segments(pdf[pno], pno, by_page[pno], doc, css=css, archive=page_archive,
                                               min_font_scale=min_font_scale)
             infos.extend(page_infos)
             log.info("page %d: rendered %d segments (%d overflow, %d shrunk)", pno, len(page_infos),
@@ -895,6 +954,8 @@ def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLik
                 pdf, checkpoint = _checkpoint(pdf, checkpoint, out_path)
                 since_checkpoint = 0
         _save(pdf, src_path, out_path)
+        if pictures_doc is not None:
+            pictures_doc.close()
     finally:
         if not pdf.is_closed:
             pdf.close()

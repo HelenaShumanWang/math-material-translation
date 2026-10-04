@@ -1662,3 +1662,48 @@ def test_quoted_marks_are_read_from_the_pixels():
     assert fill_empty_quotes("多的画“”，少的画“”", marks) == "多的画“✓”，少的画“○”"
     assert fill_empty_quotes("多的画“”", marks) == "多的画“”"           # counts differ: unchanged
     assert fill_empty_quotes("画“√”，画“”", ["✓", "○"]) == "画“√”，画“○”"  # read marks stay, empty ones are filled
+
+
+def test_inline_pictures_become_anchors_in_the_text():
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.images import detect_anchors
+    from mathtrans.models import ANCHOR_RE
+
+    img = Image.new("RGB", (520, 60), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    font = pil_font("zh", 40)
+    d.text((10, 8), "第", fill=(20, 20, 20), font=font)
+    d.rounded_rectangle([(62, 8), (104, 52)], radius=8, outline=(230, 40, 40), width=4)   # red answer box
+    d.text((112, 8), "节，第几只是", fill=(20, 20, 20), font=font)
+    d.ellipse([(370, 12), (420, 50)], fill=(60, 170, 70), outline=(30, 90, 40), width=2)  # a green picture
+    d.text((428, 8), "？", fill=(20, 20, 20), font=font)
+    rgb = np.array(img)
+    never_text = lambda crop: False
+    text, anchors = detect_anchors(rgb, (0, 4, 520, 58), "第节，第几只是？", "x", never_text)
+    keys = ANCHOR_RE.findall(text)
+    assert keys == ["x.0", "x.1"] and set(anchors) == {"x.0", "x.1"}
+    plain = ANCHOR_RE.sub("#", text)
+    assert plain == "第#节，第几只是#？"
+    assert 55 <= anchors["x.0"][0] <= 66 and anchors["x.0"][2] >= 100   # pixel box of the answer box
+    # a candidate the recogniser reads as text (a red word) is no picture; without a recogniser nothing happens
+    assert detect_anchors(rgb, (0, 4, 520, 58), "第节，第几只是？", "x", lambda crop: True) == ("第节，第几只是？", {})
+    assert detect_anchors(rgb, (0, 4, 520, 58), "第节，第几只是？", "x", None) == ("第节，第几只是？", {})
+    # formulas and answer-box templates are never anchored
+    assert detect_anchors(rgb, (0, 4, 520, 58), "□+3=8", "x", never_text)[1] == {}
+
+
+def test_anchor_markers_survive_protection_and_render_as_images():
+    from mathtrans.layout import anchor_name, segment_html
+    from mathtrans.models import BBox, TextSegment, anchor_marker
+    from mathtrans.protect import protect_text, restore_placeholders
+
+    text = "用" + anchor_marker("9.1.0") + "表示人"
+    protected, fragments = protect_text(text, "zh")
+    assert protected == "用⟦0⟧表示人" and fragments == [anchor_marker("9.1.0")]
+    translated = restore_placeholders("Use ⟦0⟧ for people", fragments)
+    seg = TextSegment(id="s", page=0, bbox=BBox(x0=0, y0=0, x1=100, y1=10), source_text=text,
+                      anchors={"9.1.0": [9, 10, 10, 50, 30]})
+    html = segment_html(seg, translated)
+    assert f'src="{anchor_name("9.1.0")}"' in html and "Use " in html and " for people" in html
+    assert "" not in html and "width:2.50em" in html   # aspect 40 x 20 at 1.25 em high

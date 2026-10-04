@@ -158,7 +158,13 @@ class _Para:
             return False
         left_aligned = abs(line.bbox.x0 - self.bbox.x0) <= 1.5 * h
         if narrower < MIN_WIDTH_SHARE * wider:
-            return False  # a short label next to / under a long line is a diagram label or a table cell
+            # a short label next to / under a long line is a diagram label or a table cell - unless it
+            # is the left-aligned tail of an unfinished sentence (…与同伴说一说你的 / 设计意图。)
+            tail = (abs(line.bbox.x0 - self.last.bbox.x0) <= 0.6 * h and line.bbox.width < self.last.bbox.width
+                    and self.last.source_text.rstrip()[-1:] not in _SENTENCE_END + "：:"
+                    and _letter_count(self.last.source_text) >= 8 and gap <= 0.5 * h)
+            if not tail:
+                return False
         centre_shift = abs((line.bbox.x0 + line.bbox.x1) / 2 - (self.bbox.x0 + self.bbox.x1) / 2)
         if self._left_aligned(h) and abs(line.bbox.x0 - self.bbox.x0) > MAX_X0_JUMP * h and centre_shift > h:
             return False  # another column: a speech bubble or label beside / below the instruction
@@ -407,6 +413,7 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
         for u in originals:
             u.translate = False
             u.skip_reason = f"{MERGED} {seg.id}"
+            seg.anchors.update(u.anchors)
         out.append(seg)
     return out
 
@@ -490,6 +497,10 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
             others = [tuple(int(v) for v in o.image.pixel_box) for o in image_lines[(page_index, _xref)]
                       if o is not seg and o.image is not None]
             how = _erase_glyphs(canvas, alpha, original, original_alpha, (x0, y0, x1, y1), others)
+            for _key, (_ax, ax0, ay0, ax1, ay1) in seg.anchors.items():
+                # the picture is drawn inline in the translation: remove it from its old place
+                _clear_box(canvas, alpha, original, original_alpha,
+                           (max(0, ax0 - 2), max(0, ay0 - 2), min(loaded.width, ax1 + 2), min(loaded.height, ay1 + 2)))
             seg.render = RenderInfo(font_size=0.0, scale=1.0, notes=f"{how}; translation placed as page text")
         stream = encode_image(canvas, alpha, loaded.ext, qtables=loaded.jpeg_qtables,
                               subsampling=loaded.jpeg_subsampling)
@@ -726,6 +737,8 @@ def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
 GLYPH_DIFF = 40
 """Per-channel difference from the background colour above which a pixel is ink."""
 GLYPH_DILATE_PX = 2
+GLYPH_FRINGE_DIFF = 18
+"""Fainter pixels (above this difference) connected to glyph ink are erased with it."""
 INK_TOLERANCE = 110.0
 """RGB distance to the estimated text colour within which a pixel counts as ink."""
 MAX_GLYPH_SHARE = 0.7
@@ -858,6 +871,17 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     if float(mask.mean()) > 0.85:
         _bg, how = _clear_box(canvas, alpha, original, original_alpha, box)
         return how
+    # hysteresis: faint fringe pixels (JPEG halo, anti-aliasing) connected to a glyph go too
+    weak = np.zeros((h, w), bool)
+    for sx, ex, bg, share in strips:
+        if share >= STRIPE_MIN_SHARE:
+            weak[:, sx:ex] = np.abs(crop[:, sx:ex] - bg.astype(np.int32)).max(axis=2) > GLYPH_FRINGE_DIFF
+    if weak.any():
+        n_weak, weak_labels = cv2.connectedComponents((weak | (mask > 0)).astype(np.uint8), connectivity=8)
+        touched = np.unique(weak_labels[mask > 0])
+        fringe = np.isin(weak_labels, touched[touched > 0]) & weak
+        mask = (mask > 0) | fringe
+        mask = mask.astype(np.uint8)
     kernel = np.ones((2 * GLYPH_DILATE_PX + 1, 2 * GLYPH_DILATE_PX + 1), np.uint8)
     grown = cv2.dilate(mask, kernel) > 0
     region = canvas[y0:y1, x0:x1]
