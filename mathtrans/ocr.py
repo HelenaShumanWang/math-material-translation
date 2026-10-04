@@ -39,6 +39,17 @@ UPSCALE_MAX_SIDE = 600
 #: to full-resolution pixels). Bounds the memory of huge rasters (high-DPI scans, decompression bombs);
 #: PP-OCR text detection does not benefit from more pixels than this anyway.
 DOWNSCALE_MAX_SIDE = 4000
+#: Page-sized rasters (longest side at least this) get a second detection pass on the
+#: colour-inverted image: PP-OCR's detector misses some lines that cross the publisher
+#: watermark or sit on a tinted panel, and finds them once the contrast is flipped.
+#: Regions found only in the second pass are added (see merge_ocr_passes).
+SECOND_PASS_MIN_SIDE = 1200
+#: A second-pass region needs at least this recognition confidence (inverted pictures
+#: produce junk at low confidence).
+SECOND_PASS_MIN_CONFIDENCE = 0.85
+#: A second-pass region overlapping a first-pass region by more than this share of the
+#: smaller box is the same text and is dropped.
+SECOND_PASS_MAX_OVERLAP = 0.3
 #: Claude downsamples larger images anyway; sending more pixels only costs tokens.
 CLAUDE_MAX_SIDE = 1568
 #: Coordinates returned by the vision model are normalised to this range.
@@ -106,6 +117,36 @@ def _clean_polygon(points: Any) -> Optional[list[list[float]]]:
     return poly
 
 
+def _poly_bbox(poly: list[list[float]]) -> tuple[float, float, float, float]:
+    xs = [p[0] for p in poly]; ys = [p[1] for p in poly]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def merge_ocr_passes(first: list[OcrResult], second: list[OcrResult],
+                     max_overlap: float = SECOND_PASS_MAX_OVERLAP) -> list[OcrResult]:
+    """Regions of ``second`` that do not overlap any region of ``first`` by more than
+    ``max_overlap`` of the smaller box (new lines the first pass missed)."""
+    boxes = [_poly_bbox(r.polygon) for r in first]
+    extra: list[OcrResult] = []
+    for cand in second:
+        cx0, cy0, cx1, cy1 = _poly_bbox(cand.polygon)
+        c_area = max(1.0, (cx1 - cx0) * (cy1 - cy0))
+        duplicate = False
+        for x0, y0, x1, y1 in boxes:
+            ix = min(cx1, x1) - max(cx0, x0)
+            iy = min(cy1, y1) - max(cy0, y0)
+            if ix <= 0 or iy <= 0:
+                continue
+            smaller = min(c_area, max(1.0, (x1 - x0) * (y1 - y0)))
+            if ix * iy / smaller > max_overlap:
+                duplicate = True
+                break
+        if not duplicate:
+            extra.append(cand)
+            boxes.append((cx0, cy0, cx1, cy1))
+    return extra
+
+
 # --------------------------------------------------------------------------- #
 # RapidOCR (offline)
 # --------------------------------------------------------------------------- #
@@ -138,9 +179,12 @@ class RapidOcrEngine:
     _import_error_logged = False
     _low_trust_warned = False
 
-    def __init__(self, upscale_max_side: int = UPSCALE_MAX_SIDE, downscale_max_side: int = DOWNSCALE_MAX_SIDE):
+    def __init__(self, upscale_max_side: int = UPSCALE_MAX_SIDE, downscale_max_side: int = DOWNSCALE_MAX_SIDE,
+                 second_pass: bool = True, second_pass_min_side: int = SECOND_PASS_MIN_SIDE):
         self.upscale_max_side = int(upscale_max_side)
         self.downscale_max_side = int(downscale_max_side)
+        self.second_pass = bool(second_pass)
+        self.second_pass_min_side = int(second_pass_min_side)
 
     @staticmethod
     def available() -> bool:
@@ -201,21 +245,36 @@ class RapidOcrEngine:
         engine = self._engine()
         if engine is None:
             return []
-        import cv2
-
         self._warn_low_trust(hint_langs)
         rgb = as_rgb_uint8(image_rgb)
         h, w = rgb.shape[:2]
         scale = 1.0
         if max(h, w) < self.upscale_max_side:
             scale = 2.0
-            rgb = cv2.resize(rgb, (w * 2, h * 2), interpolation=cv2.INTER_CUBIC)
         elif self.downscale_max_side > 0 and max(h, w) > self.downscale_max_side:
             # Huge rasters are recognised at a bounded size: this caps the colour-conversion copies and
             # the detection model's memory; the polygons are mapped back to full resolution below.
             scale = self.downscale_max_side / float(max(h, w))
-            rgb = cv2.resize(rgb, (max(1, round(w * scale)), max(1, round(h * scale))), interpolation=cv2.INTER_AREA)
             logger.debug("rapid OCR: %dx%d image downscaled by %.3f before recognition", w, h, scale)
+        out = self._run(engine, rgb, scale)
+        if self.second_pass and max(h, w) >= self.second_pass_min_side:
+            inverted = [r for r in self._run(engine, 255 - rgb, scale) if r.confidence >= SECOND_PASS_MIN_CONFIDENCE]
+            extra = merge_ocr_passes(out, inverted)
+            if extra:
+                logger.debug("rapid OCR: inverted second pass added %d regions", len(extra))
+                out = out + extra
+        logger.debug("rapid OCR: %d regions in %dx%d image (hint %s)", len(out), w, h, _lang_codes(hint_langs))
+        return out
+
+    @staticmethod
+    def _run(engine: Any, rgb: np.ndarray, scale: float) -> list[OcrResult]:
+        """One detection + recognition pass at ``scale``; polygons in the original pixels."""
+        import cv2
+
+        h, w = rgb.shape[:2]
+        if scale != 1.0:
+            interpolation = cv2.INTER_CUBIC if scale > 1.0 else cv2.INTER_AREA
+            rgb = cv2.resize(rgb, (max(1, round(w * scale)), max(1, round(h * scale))), interpolation=interpolation)
         bgr = cv2.cvtColor(rgb, cv2.COLOR_RGB2BGR)  # RapidOCR treats 3-channel arrays as BGR
         try:
             result, _elapse = engine(bgr)
@@ -236,7 +295,6 @@ class RapidOcrEngine:
                 poly = [[x / scale, y / scale] for x, y in poly]
             poly = [[min(max(x, 0.0), float(w)), min(max(y, 0.0), float(h))] for x, y in poly]
             out.append(OcrResult(text=text, polygon=poly, confidence=float(conf)))
-        logger.debug("rapid OCR: %d regions in %dx%d image (hint %s)", len(out), w, h, _lang_codes(hint_langs))
         return out
 
 

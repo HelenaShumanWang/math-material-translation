@@ -1527,3 +1527,52 @@ def test_ocr_noise_rules():
     assert classify_ocr_text("118十104", Lang.ZH)[2:] == (False, "pure number / formula")
     assert classify_ocr_text("7一3=4", Lang.ZH)[2:] == (False, "pure number / formula")
     assert classify_ocr_text("一共十个", Lang.ZH)[2:] == (True, "")
+
+
+def test_merge_ocr_passes_keeps_only_new_regions():
+    from mathtrans.models import OcrResult
+    from mathtrans.ocr import merge_ocr_passes
+
+    def r(text, x0, y0, x1, y1):
+        return OcrResult(text=text, polygon=[[x0, y0], [x1, y0], [x1, y1], [x0, y1]], confidence=0.9)
+
+    first = [r("数一数", 10, 10, 110, 40), r("8", 200, 10, 220, 40)]
+    second = [r("数一数。", 8, 9, 118, 41),      # same line, slightly larger box: duplicate
+              r("比一比", 10, 60, 110, 90),      # new line below: kept
+              r("8", 199, 12, 221, 38),          # same label: duplicate
+              r("个", 112, 12, 130, 38)]          # touches the first box only slightly: kept
+    extra = merge_ocr_passes(first, second)
+    assert [e.text for e in extra] == ["比一比", "个"]
+    assert merge_ocr_passes([], second[:2]) == second[:2] and merge_ocr_passes(first, []) == []
+
+
+def test_rapid_second_pass_adds_missed_lines(monkeypatch):
+    from mathtrans.ocr import RapidOcrEngine
+
+    calls = []
+
+    def fake_engine(bgr):
+        inverted = bgr.mean() < 128  # the second pass runs on the colour-inverted page
+        calls.append(("inv" if inverted else "plain", bgr.shape[1], bgr.shape[0]))
+        box_a = [[10, 10], [110, 10], [110, 40], [10, 40]]
+        if not inverted:
+            return [(box_a, "数一数", 0.95)], 0.1
+        return [(box_a, "数一数", 0.9),  # same line: dropped as a duplicate
+                ([[10, 60], [110, 60], [110, 90], [10, 90]], "比一比", 0.93),  # missed by the first pass: added
+                ([[10, 120], [110, 120], [110, 150], [10, 150]], "junk", 0.5)], 0.1  # low confidence: dropped
+
+    monkeypatch.setattr(RapidOcrEngine, "_engine", classmethod(lambda cls: fake_engine))
+    engine = RapidOcrEngine(second_pass_min_side=1200)
+    page = np.full((1000, 1400, 3), 255, dtype=np.uint8)
+    out = engine.recognize(page)
+    assert calls == [("plain", 1400, 1000), ("inv", 1400, 1000)]
+    assert [o.text for o in out] == ["数一数", "比一比"]
+    assert out[1].polygon[0] == [10.0, 60.0] and out[1].polygon[2] == [110.0, 90.0]
+    # small figures (below the page-size threshold) get no second pass
+    calls.clear()
+    engine.recognize(np.full((300, 1100, 3), 255, dtype=np.uint8))
+    assert len(calls) == 1
+    # disabled explicitly
+    calls.clear()
+    RapidOcrEngine(second_pass=False).recognize(page)
+    assert len(calls) == 1

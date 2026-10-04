@@ -895,3 +895,37 @@ def test_style_findings_never_block():
     f = _parse_finding({"id": "a", "severity": "error", "category": "meaning", "message": "reversed"}, known)
     assert f is not None and f.severity == "error"
     assert "(ones)" in TRANSLATION_SYSTEM_PROMPT and "Respond with JSON only" in TRANSLATION_SYSTEM_PROMPT
+
+
+def test_postprocess_translation_cleans_english_output():
+    from mathtrans.translate.postprocess import fix_ordinals, latinise_punctuation, postprocess_translation
+
+    assert fix_ordinals("the 1th, 2th, 3th, 4th, 11th, 12th, 13th, 21th, 22th, 23th, 101th and 111th") == \
+        "the 1st, 2nd, 3rd, 4th, 11th, 12th, 13th, 21st, 22nd, 23rd, 101st and 111th"
+    assert latinise_punctuation("Count the apples。Then say：how many？（Draw a ✓）") == 'Count the apples. Then say: how many? (Draw a ✓)'
+    # punctuation attached to deliberately kept Han text (names, tally marks) stays
+    assert latinise_punctuation("Use 正 to count。") == "Use 正 to count."
+    assert latinise_punctuation("答：") == "答："
+    out = postprocess_translation("The 2th  bus  ,  then the 3th。 Total ⟦0⟧。", "en")
+    assert out == "The 2nd bus, then the 3rd. Total ⟦0⟧."
+    assert postprocess_translation("第 2 页。", "zh") == "第 2 页。"  # CJK targets are left alone
+    assert postprocess_translation("", "en") == ""
+    assert postprocess_translation("Taoqi has 3 more than Xiaoxiao.", "en") == "Taoqi has 3 more than Xiaoxiao."
+
+
+def test_translate_segments_applies_postprocessing():
+    seg = TextSegment(id="s", page=0, kind=SegmentKind.TEXT, bbox=BBox(x0=0, y0=0, x1=100, y1=10),
+                      source_text="第2个。", style=SegmentStyle(), translate=True)
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN, pages=[PageInfo(index=0, width=600, height=800)],
+                             segments=[seg])
+    seg.protected_text, seg.protected = protect_text(seg.source_text, "zh")
+
+    class Odd(BaseTranslator):
+        name = "odd"
+
+        def translate(self, items, src, tgt, glossary_pairs, doc_context=""):
+            return [TranslationResult(id=it.id, text="The 2th one。") for it in items]
+
+    translate_segments(doc, Odd(), max_chars=1000)
+    assert seg.translated_text == "The 2nd one."
+    assert seg.translation_raw == "The 2th one。"

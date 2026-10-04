@@ -19,6 +19,7 @@ from ..protect import protect_text
 from .base import BaseTranslator, chunk_by_chars, chunk_items, item_size
 from .claude import ClaudeReviewer, ClaudeTranslator, make_client
 from .mock import BAD_MARKER, MockReviewer, MockTranslator, mini_dictionary, pseudo_translate_text
+from .postprocess import postprocess_translation
 
 __all__ = [
     "BAD_MARKER", "BaseTranslator", "ClaudeReviewer", "ClaudeTranslator", "MockReviewer",
@@ -135,7 +136,8 @@ def _build_item(seg: TextSegment, source_lang: Lang) -> Optional[TranslationItem
     )
 
 
-def _apply_results(segments: dict[str, TextSegment], results: Iterable[TranslationResult]) -> int:
+def _apply_results(segments: dict[str, TextSegment], results: Iterable[TranslationResult],
+                   tgt: Lang | str = Lang.EN) -> int:
     applied = 0
     for result in results:
         seg = segments.get(result.id)
@@ -143,7 +145,7 @@ def _apply_results(segments: dict[str, TextSegment], results: Iterable[Translati
             log.warning("ignoring translation for unknown segment id %r", result.id)
             continue
         seg.translation_raw = result.text
-        seg.translated_text = restore_placeholders(result.text, seg.protected)
+        seg.translated_text = postprocess_translation(restore_placeholders(result.text, seg.protected), tgt)
         seg.attempts += 1
         seg.feedback = []
         applied += 1
@@ -191,7 +193,7 @@ def translate_segments(
     for chunk in chunk_items(items, max_chars):
         results = translator.translate(chunk, doc.source_lang, doc.target_lang, pairs, doc_context)
         got_ids = {r.id for r in results}
-        applied = _apply_results(by_id, results)
+        applied = _apply_results(by_id, results, doc.target_lang)
         missing = [it.id for it in chunk if it.id not in got_ids]
         if missing:
             log.warning("%d/%d segments received no translation: %s", len(missing), len(chunk),
