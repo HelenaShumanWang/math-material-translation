@@ -386,6 +386,8 @@ _CJK_PLUS_RE = re.compile(r"[\d\s.=×÷+\-()（）]*\d\s*[十一]\s*\d[\d\s.=×�
 MEASURE_WORDS = "个只支本朵根米张把块颗条棵头辆元件匹双座间辆杯盒瓶袋箱筐束串片粒枝面层台架艘"
 """Chinese measure words (classifiers) that appear as unit labels after an answer box: □（只）."""
 _UNIT_LABEL_RE = re.compile(rf"[（(]\s*[{MEASURE_WORDS}]\s*[)）]")
+_COUNT_LABEL_RE = re.compile(rf"\d+\s*[{MEASURE_WORDS}]")
+"""``6个``, ``96个``, ``85本``: a count label, reliable even when read with low confidence."""
 _TRAILING_UNIT_RE = re.compile(rf"\s*[（(]\s*[{MEASURE_WORDS}]?\s*[)）]?\s*$")
 _BOX_GLYPHS = set("□○OoD0Q口〇◯●◇△▲☐")
 _TEMPLATE_DROP = set(" +-−—–×÷=()（）[]［］_")
@@ -927,7 +929,12 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     protected, fragments, translate, reason = classify_ocr_text(text, source_lang)
     letters = [c for c in text if c.isalpha()]
     unit_label = bool(_UNIT_LABEL_RE.fullmatch(text.strip()))
-    if (translate and len(letters) == 1 and not letters[0].isascii() and not unit_label
+    if unit_label:
+        # "(个)" after an answer box: English books write "13 - 9 = □" and let the picture show what is
+        # counted; the label is erased (scanned pages) instead of being set as an unreadable "(apples)"
+        translate, reason = False, "unit label after an answer box (dropped)"
+    count_label = bool(_COUNT_LABEL_RE.fullmatch(text.strip()))
+    if (translate and len(letters) == 1 and not letters[0].isascii() and not count_label
             and result.confidence < LOW_CONFIDENCE_SINGLE_CHAR):
         # a lone CJK character read with low confidence is usually noise (an arrow, a stroke, a watermark piece)
         translate, reason = False, f"single character with low OCR confidence ({result.confidence:.2f})"
@@ -950,6 +957,30 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
         skip_reason=reason,
         anchors=anchors,
     )
+
+
+def _split_template_units(results: list[OcrResult]) -> list[OcrResult]:
+    """Split a trailing unit label off an answer-box template line (``□-□=□（个）``) so the
+    template stays untouched in the picture while the label is handled (dropped) on its own."""
+    out: list[OcrResult] = []
+    for r in results:
+        m = re.search(rf"[（(]\s*[{MEASURE_WORDS}]\s*[)）]\s*$", r.text.strip())
+        if not m or m.start() == 0:
+            out.append(r)
+            continue
+        text = r.text.strip()
+        head, unit = text[:m.start()], text[m.start():]
+        if not (is_fill_in_template(text) or ("=" in head and head.rstrip()[-1:] in _BOX_GLYPHS)):
+            out.append(r)  # a worked result keeps its unit: 10÷5=2（元） -> "10÷5=2 (yuan)"
+            continue
+        widths = [_char_width(c) for c in text]
+        share = sum(widths[:m.start()]) / max(sum(widths), 1e-6)
+        xs = [p[0] for p in r.polygon]; ys = [p[1] for p in r.polygon]
+        x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+        cut = x0 + share * (x1 - x0)
+        out.append(OcrResult(text=head, polygon=[[x0, y0], [cut, y0], [cut, y1], [x0, y1]], confidence=r.confidence))
+        out.append(OcrResult(text=unit, polygon=[[cut + 1, y0], [x1, y0], [x1, y1], [cut + 1, y1]], confidence=r.confidence))
+    return out
 
 
 def _text_check_for(engine: Any) -> Optional[TextCheck]:
@@ -1038,7 +1069,7 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
                 transform = info.get("transform") or (image_bbox.width, 0.0, 0.0, image_bbox.height,
                                                        image_bbox.x0, image_bbox.y0)
                 kept = translatable = 0
-                for n, result in enumerate(results):
+                for n, result in enumerate(_split_template_units(results)):
                     if result.confidence < min_confidence:
                         logger.debug("page %d image %d: dropping %r (confidence %.2f < %.2f)", page.number, xref,
                                      result.text, result.confidence, min_confidence)

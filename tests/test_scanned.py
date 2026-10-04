@@ -499,3 +499,14 @@ def test_left_aligned_tail_of_a_sentence_joins_its_paragraph():
     paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
     members = sorted(p.members for p in paragraphs)
     assert ["g0", "g1"] in members and ["g2"] in members and ["g3"] in members and ["g4"] in members
+
+
+def test_dropped_unit_labels_are_marked_for_erasing():
+    from mathtrans.scanned import UNIT_DROPPED
+
+    unit = _gline(0, 200, 100, 230, "（个）")
+    unit.translate, unit.skip_reason = False, UNIT_DROPPED
+    sentence = _gline(1, 50, 130, 300, "树上有8个桃子，摘了3个。")
+    paragraphs = group_ocr_lines([unit, sentence], 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["g1"]]                 # nothing is set for the unit ...
+    assert unit.skip_reason == f"{MERGED} {UNIT_DROPPED}"              # ... but it is erased with the merged lines

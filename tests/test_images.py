@@ -1707,3 +1707,18 @@ def test_anchor_markers_survive_protection_and_render_as_images():
     html = segment_html(seg, translated)
     assert f'src="{anchor_name("9.1.0")}"' in html and "Use " in html and " for people" in html
     assert "" not in html and "width:2.50em" in html   # aspect 40 x 20 at 1.25 em high
+
+
+
+def test_unit_labels_after_answer_boxes_are_split_off_and_dropped():
+    from mathtrans.images import _split_template_units
+    from mathtrans.models import OcrResult
+
+    def r(text):
+        return OcrResult(text=text, polygon=[[0, 0], [200, 0], [200, 30], [0, 30]], confidence=0.9)
+
+    out = _split_template_units([r("O-O=O (只)"), r("13-9=□（个）"), r("10÷5=2（元）"), r("还剩几个？")])
+    assert [o.text for o in out] == ["O-O=O ", "(只)", "13-9=□", "（个）", "10÷5=2（元）", "还剩几个？"]
+    assert out[1].polygon[0][0] > out[0].polygon[1][0]                 # the unit part sits right of the cut
+    # a standalone unit label is dropped (erased on scanned pages, never set as "(pieces)")
+    assert classify_ocr_text("（只）", Lang.ZH)[2] is True             # plain text classification ...

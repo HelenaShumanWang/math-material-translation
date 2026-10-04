@@ -68,6 +68,7 @@ def _color_distance(a: int, b: int) -> float:
     return ((ra - rb) ** 2 + (ga - gb) ** 2 + (ba - bb) ** 2) ** 0.5
 """Font size relative to the OCR line height (box height includes ascender/descender room)."""
 MERGED = "merged into paragraph"
+UNIT_DROPPED = "unit label after an answer box (dropped)"
 """Prefix of the ``skip_reason`` of OCR lines that became part of a paragraph."""
 
 
@@ -383,6 +384,9 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     lines that cannot be merged (labels, slanted text, foreign script) are left
     untouched. Returns the new paragraph segments in reading order.
     """
+    for line in lines:
+        if line.page == page_index and line.skip_reason == UNIT_DROPPED:
+            line.skip_reason = f"{MERGED} {UNIT_DROPPED}"  # erased with the merged lines, nothing set instead
     candidates = [l for l in lines if l.page == page_index and _mergeable(l)]
     if not candidates:
         return []
@@ -779,26 +783,38 @@ def _dominant_colour(pixels: np.ndarray) -> tuple[np.ndarray, float]:
 
 def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int],
                             blocked: list[tuple[int, int, int, int]]) -> tuple[int, int, int, int]:
-    """``box`` extended to the right over a small ink blob (trailing punctuation)."""
+    """``box`` extended to the right over trailing punctuation the detector left out (。，！？):
+    small separate ink blobs starting within 0.7 line heights of the box; whatever lies
+    further right (a bubble outline, the next word) is not taken."""
+    import cv2
+
     x0, y0, x1, y1 = box
     h = y1 - y0
     ex1 = min(original.shape[1], x1 + h)
     if ex1 - x1 < 3 or h < 6:
         return box
     for bx0, by0, bx1, by1 in blocked:
-        if bx0 < ex1 and bx1 > x1 and by0 < y1 and by1 > y0:
+        if bx0 < x1 + 0.7 * h and bx1 > x1 and by0 < y1 and by1 > y0:
             return box  # another line starts right there
     strip = original[y0:y1, x1:ex1]
     bg, share = _dominant_colour(strip)
-    if share < STRIPE_FLAT_SHARE:
+    if share < STRIPE_MIN_SHARE:
         return box
-    ink = np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF
-    if not ink.any() or ink.mean() > PUNCT_MAX_SHARE:
+    ink = (np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF).astype(np.uint8)
+    if not ink.any():
         return box
-    cols = np.flatnonzero(ink.any(axis=0))
-    if cols.max() >= strip.shape[1] - 2:
-        return box  # ink runs on beyond the strip: a neighbouring object, not punctuation
-    return x0, y0, x1 + int(cols.max()) + 2, y1
+    n, _labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+    right = 0
+    for i in range(1, n):
+        bx, by, bw, bh, area = (int(v) for v in stats[i])
+        if bx > 0.7 * h or bw > 0.55 * h or bh > 0.55 * h or area > 0.12 * h * h:
+            continue  # too far, too big: not a punctuation mark
+        if bx + bw >= ink.shape[1] - 1:
+            continue
+        right = max(right, bx + bw)
+    if right == 0:
+        return box
+    return x0, y0, x1 + right + 2, y1
 
 
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
