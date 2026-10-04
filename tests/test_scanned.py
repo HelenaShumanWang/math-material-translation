@@ -318,3 +318,82 @@ def test_scanned_page_boxes_grow_only_into_plain_background(tmp_path):
     assert used.y1 > 124 or used.x1 > 240  # it grew into the white area ...
     assert used.x1 <= 262  # ... but never over the dark picture that starts at x = 260 points
     assert seg.render.scale > 0.6
+
+
+def _text_image(size, bg, items):
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+
+    img = Image.new("RGB", size, bg)
+    d = ImageDraw.Draw(img)
+    for kind, args, colour in items:
+        if kind == "rect":
+            d.rectangle(args, fill=colour)
+        else:
+            xy, text, px = args
+            d.text(xy, text, fill=colour, font=pil_font("zh", px))
+    return np.array(img)
+
+
+def test_glyph_erase_handles_coloured_words_and_two_colour_cells():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # a red word inside black text on paper: every glyph goes, whatever its colour
+    original = _text_image((320, 60), (255, 255, 255), [
+        ("text", ((10, 12), "位是", 32), (20, 20, 20)), ("text", ((80, 12), "百位", 32), (225, 30, 35))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, 160, 55))
+    region = canvas[5:55, 0:160].astype(int)
+    assert (region.max(axis=2) < 120).sum() == 0                                  # no dark ink left
+    assert ((region[:, :, 0] > 150) & (region[:, :, 1] < 110)).sum() == 0         # no red ink left
+    # two label cells of different colours on one OCR line keep their own backgrounds
+    original = _text_image((240, 50), (255, 255, 255), [
+        ("rect", [0, 0, 119, 49], (205, 255, 255)), ("rect", [120, 0, 239, 49], (255, 250, 205)),
+        ("text", ((20, 8), "十位", 30), (10, 10, 10)), ("text", ((140, 8), "个位", 30), (10, 10, 10))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 0, 240, 50))
+    assert np.abs(canvas[10:40, 15:100].astype(int) - [205, 255, 255]).max() < 40
+    assert np.abs(canvas[10:40, 135:220].astype(int) - [255, 250, 205]).max() < 40
+
+
+def test_glyph_erase_takes_trailing_punctuation_and_keeps_pictograms():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # the OCR box ends before the full stop: the small blob right of it is erased too
+    original = _text_image((260, 60), (255, 255, 255), [("text", ((10, 10), "试一试。", 34), (20, 20, 20))])
+    ink_cols = np.flatnonzero((original.max(axis=2) < 100).any(axis=0))
+    box_right = int(ink_cols.max()) - 30          # cut the box before the 。
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, box_right, 55))
+    assert (canvas.max(axis=2) < 100).sum() == 0
+    # ... unless another OCR line starts right there
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, box_right, 55), [(box_right + 5, 5, 260, 55)])
+    assert (canvas[:, box_right + 2:].max(axis=2) < 100).sum() > 0
+    # a solid coloured pictogram inside the line survives, the glyphs around it go
+    original = _text_image((300, 60), (255, 255, 255), [
+        ("text", ((10, 10), "用", 34), (20, 20, 20)), ("rect", [60, 12, 100, 50], (240, 160, 20)),
+        ("text", ((110, 10), "表示人", 34), (20, 20, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, 230, 55))
+    assert np.abs(canvas[20:45, 68:92].astype(int) - [240, 160, 20]).max() < 30
+    assert (canvas.max(axis=2) < 100).sum() == 0
+
+
+def test_same_row_sentence_pieces_are_joined_with_a_blank():
+    lines = [
+        _gline(0, 50, 100, 110, "七巧板由"),
+        _gline(1, 160, 100, 400, "种图形组成，其中有—个三角形。"),   # after an answer blank
+        _gline(2, 50, 125, 110, "种类"), _gline(3, 140, 125, 200, "文学类"), _gline(4, 230, 125, 290, "科普类"),
+        _gline(5, 50, 170, 150, "是18吗？"), _gline(6, 170, 170, 290, "比18多得多。"),  # two bubbles
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    texts = {p.source_text: p.members for p in paragraphs}
+    assert texts["七巧板由___种图形组成，其中有—个三角形。"] == ["g0", "g1"]
+    assert "种类" in texts and "文学类" in texts and "科普类" in texts      # table cells stay apart
+    assert "是18吗？" in texts and "比18多得多。" in texts                  # a finished sentence is not continued
+    by = {l.id: l for l in lines}
+    assert by["g0"].skip_reason == by["g1"].skip_reason and by["g0"].translate is False

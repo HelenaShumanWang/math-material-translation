@@ -215,8 +215,75 @@ def _join_lines(texts: list[str], lang: Lang) -> str:
     return out
 
 
+MAX_ROW_GAP = 5.0
+"""Pieces of one sentence split by an answer blank or a picture (same row, same colour)
+are joined when the gap is at most this many line heights."""
+BLANK = "___"
+
+
+def _same_row(a: TextSegment, b: TextSegment) -> bool:
+    ha, hb = a.bbox.height, b.bbox.height
+    if ha <= 0 or hb <= 0 or not (0.75 <= ha / hb <= 1.33):
+        return False
+    overlap = min(a.bbox.y1, b.bbox.y1) - max(a.bbox.y0, b.bbox.y0)
+    return overlap >= 0.7 * min(ha, hb)
+
+
+def _row_joinable(left: TextSegment, right: TextSegment) -> bool:
+    """``right`` continues the sentence of ``left`` on the same row after a gap (a blank to
+    fill in or a picture): ``七巧板由 ___ 种图形组成。``, ``答：还剩下 ___ 个果子。``."""
+    if not (left.translate and right.translate) or not _same_row(left, right):
+        return False
+    if _color_distance(left.style.color, right.style.color) > MAX_COLOR_DISTANCE:
+        return False
+    h = max(left.bbox.height, right.bbox.height)
+    gap = right.bbox.x0 - left.bbox.x1
+    if gap < -0.2 * h or gap > MAX_ROW_GAP * h:
+        return False
+    lt, rt = left.source_text.strip(), right.source_text.strip()
+    if not lt or not rt or lt[-1] in _SENTENCE_END or _STARTS_NEW_RE.match(rt) or is_list_item(rt):
+        return False
+    # table cells and labels side by side are short nouns; a sentence piece ends the sentence
+    # or is long enough to be one
+    return _letter_count(lt) >= 2 and (rt[-1] in _SENTENCE_END + "，," or _letter_count(rt) >= 5)
+
+
+def _join_row_pieces(candidates: list[TextSegment]) -> tuple[list[TextSegment], dict[str, list[TextSegment]]]:
+    """Join same-row sentence pieces into one virtual line each (blank marked ``___``).
+    Returns the lines for grouping and, per virtual line id, the OCR lines it stands for."""
+    by_x = sorted(candidates, key=lambda l: (l.bbox.x0, l.bbox.y0))
+    used: set[str] = set()
+    units: dict[str, list[TextSegment]] = {}
+    out: list[TextSegment] = []
+    for line in sorted(candidates, key=lambda l: (round(l.bbox.y0, 1), l.bbox.x0)):
+        if line.id in used:
+            continue
+        chain = [line]
+        while True:
+            last = chain[-1]
+            nxt = next((c for c in by_x if c.id not in used and c is not last and c not in chain
+                        and c.bbox.x0 >= last.bbox.x1 - 0.2 * last.bbox.height and _row_joinable(last, c)), None)
+            if nxt is None:
+                break
+            chain.append(nxt)
+        used.update(c.id for c in chain)
+        if len(chain) == 1:
+            out.append(line)
+            continue
+        text = chain[0].source_text.strip()
+        bbox = chain[0].bbox
+        for prev, cur in zip(chain, chain[1:]):
+            gap = cur.bbox.x0 - prev.bbox.x1
+            text += (BLANK if gap > 0.8 * max(prev.bbox.height, cur.bbox.height) else "") + cur.source_text.strip()
+            bbox = bbox.union(cur.bbox)
+        virtual = chain[0].model_copy(update={"bbox": bbox, "source_text": text, "protected_text": text})
+        units[virtual.id] = chain
+        out.append(virtual)
+    return out, units
+
+
 def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: Lang,
-                       page_median_height: float) -> TextSegment:
+                       page_median_height: float, members: Optional[list[str]] = None) -> TextSegment:
     lines = para.lines
     text = _join_lines([l.source_text for l in lines], source_lang)
     protected, fragments = protect_text(text, source_lang)
@@ -252,7 +319,7 @@ def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: La
         translate=translate,
         skip_reason="" if translate else "no translatable text (numbers / formula only)",
         origin="ocr",
-        members=[l.id for l in lines],
+        members=members if members is not None else [l.id for l in lines],
         reading_order=index,
     )
 
@@ -265,10 +332,11 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     lines that cannot be merged (labels, slanted text, foreign script) are left
     untouched. Returns the new paragraph segments in reading order.
     """
-    candidates = sorted((l for l in lines if l.page == page_index and _mergeable(l)),
-                        key=lambda l: (round(l.bbox.y0, 1), l.bbox.x0))
+    candidates = [l for l in lines if l.page == page_index and _mergeable(l)]
     if not candidates:
         return []
+    candidates, units = _join_row_pieces(candidates)
+    candidates.sort(key=lambda l: (round(l.bbox.y0, 1), l.bbox.x0))
     page_median_height = statistics.median(l.bbox.height for l in candidates)
     paragraphs: list[_Para] = []
     for line in candidates:
@@ -286,12 +354,14 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     paragraphs.sort(key=lambda p: (round(p.bbox.y0 / 20), p.bbox.x0))
     out: list[TextSegment] = []
     for i, para in enumerate(paragraphs):
-        seg = _paragraph_segment(para, i, page_index, source_lang, page_median_height)
+        originals = [u for l in para.lines for u in units.get(l.id, [l])]
+        seg = _paragraph_segment(para, i, page_index, source_lang, page_median_height,
+                                 members=[u.id for u in originals])
         if not seg.translate:
             continue  # formulas and numbers are not translated: they stay in the picture untouched
-        for l in para.lines:
-            l.translate = False
-            l.skip_reason = f"{MERGED} {seg.id}"
+        for u in originals:
+            u.translate = False
+            u.skip_reason = f"{MERGED} {seg.id}"
         out.append(seg)
     return out
 
@@ -315,9 +385,12 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
     inpainting, as the repaint mode does) and replace the image in ``pdf_doc``.
     Returns the number of images modified."""
     by_image: dict[tuple[int, int], list[TextSegment]] = defaultdict(list)
+    image_lines: dict[tuple[int, int], list[TextSegment]] = defaultdict(list)
     for seg in doc.segments:
-        if seg.kind == SegmentKind.IMAGE_TEXT and seg.image is not None and seg.skip_reason.startswith(MERGED):
-            by_image[(seg.page, seg.image.xref)].append(seg)
+        if seg.kind == SegmentKind.IMAGE_TEXT and seg.image is not None:
+            image_lines[(seg.page, seg.image.xref)].append(seg)
+            if seg.skip_reason.startswith(MERGED):
+                by_image[(seg.page, seg.image.xref)].append(seg)
     modified = 0
     for (page_index, _xref), segs in by_image.items():
         if page_index >= pdf_doc.page_count:
@@ -345,7 +418,9 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
             x1, y1 = min(loaded.width, int(x1)), min(loaded.height, int(y1))
             if x1 <= x0 or y1 <= y0:
                 continue
-            how = _erase_glyphs(canvas, alpha, original, original_alpha, (x0, y0, x1, y1))
+            others = [tuple(int(v) for v in o.image.pixel_box) for o in image_lines[(page_index, _xref)]
+                      if o is not seg and o.image is not None]
+            how = _erase_glyphs(canvas, alpha, original, original_alpha, (x0, y0, x1, y1), others)
             seg.render = RenderInfo(font_size=0.0, scale=1.0, notes=f"{how}; translation placed as page text")
         stream = encode_image(canvas, alpha, loaded.ext, qtables=loaded.jpeg_qtables,
                               subsampling=loaded.jpeg_subsampling)
@@ -354,6 +429,74 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
             modified += 1
         except Exception as exc:  # noqa: BLE001 - keep the run going; QA reports the leftovers
             log.error("page %d: replace_image(xref=%d) failed: %s", page_index, placement.xref, exc)
+    return modified
+
+
+def paragraphs_to_restore(doc: TranslatedDocument) -> list[TextSegment]:
+    """OCR paragraphs whose merged lines were erased but that carry no rendered text:
+    left in the source language by the layout (too long to set legibly) or not set at
+    all (no usable translation)."""
+    out: list[TextSegment] = []
+    for seg in doc.segments:
+        if seg.origin != "ocr" or seg.kind != SegmentKind.TEXT:
+            continue
+        r = seg.render
+        if r is None or (r.font_size <= 0 and r.notes.startswith("left in source language")):
+            out.append(seg)
+    return out
+
+
+def restore_lines(pdf_doc: pymupdf.Document, source_doc: pymupdf.Document, doc: TranslatedDocument,
+                  paragraphs: list[TextSegment]) -> int:
+    """Copy the original pixels of the merged lines of ``paragraphs`` from ``source_doc``
+    back into the (erased) images of ``pdf_doc``. Returns the number of images modified."""
+    wanted = {p.id for p in paragraphs}
+    by_image: dict[tuple[int, int], list[TextSegment]] = defaultdict(list)
+    for seg in doc.segments:
+        if seg.kind != SegmentKind.IMAGE_TEXT or seg.image is None or not seg.skip_reason.startswith(MERGED):
+            continue
+        if seg.skip_reason[len(MERGED):].strip() in wanted:
+            by_image[(seg.page, seg.image.xref)].append(seg)
+    modified = 0
+    for (page_index, _xref), segs in by_image.items():
+        if page_index >= pdf_doc.page_count or page_index >= source_doc.page_count:
+            continue
+        ref = segs[0].image
+        assert ref is not None
+        dst_place = resolve_placement(pdf_doc, pdf_doc[page_index], ref)
+        src_place = resolve_placement(source_doc, source_doc[page_index], ref)
+        if dst_place is None or src_place is None:
+            log.warning("page %d: cannot restore %d line(s): image not found", page_index, len(segs))
+            continue
+        try:
+            current = load_image(pdf_doc, dst_place.xref)
+            original = load_image(source_doc, src_place.xref)
+        except ValueError as exc:
+            log.warning("page %d: cannot decode image for restoring: %s", page_index, exc)
+            continue
+        if (current.width, current.height) != (original.width, original.height):
+            continue
+        canvas = np.array(current.rgb, copy=True)
+        alpha = np.array(current.alpha, copy=True) if current.alpha is not None else None
+        pad = GLYPH_DILATE_PX + 3
+        for seg in segs:
+            assert seg.image is not None
+            x0, y0, x1, y1 = (int(v) for v in seg.image.pixel_box)
+            x0, y0 = max(0, x0 - pad), max(0, y0 - pad)
+            x1, y1 = min(current.width, x1 + pad), min(current.height, y1 + pad)
+            if x1 <= x0 or y1 <= y0:
+                continue
+            canvas[y0:y1, x0:x1] = original.rgb[y0:y1, x0:x1]
+            if alpha is not None and original.alpha is not None:
+                alpha[y0:y1, x0:x1] = original.alpha[y0:y1, x0:x1]
+            seg.render = RenderInfo(font_size=0.0, scale=1.0, notes="original text restored (translation not set)")
+        stream = encode_image(canvas, alpha, current.ext, qtables=current.jpeg_qtables,
+                              subsampling=current.jpeg_subsampling)
+        try:
+            replace_image(pdf_doc[page_index], dst_place.xref, stream)
+            modified += 1
+        except Exception as exc:  # noqa: BLE001
+            log.error("page %d: restoring image xref %d failed: %s", page_index, dst_place.xref, exc)
     return modified
 
 
@@ -454,47 +597,147 @@ MAX_GLYPH_SHARE = 0.7
 """When more than this share of a box is ink the box is light text on a dark panel: fill it whole."""
 
 
+BACKGROUND_TOLERANCE = 30
+"""Pixels within this per-channel difference of the dominant colour count as background."""
+STRIPE_MIN_SHARE = 0.45
+"""A glyph-wide strip of a line box whose most common colour covers at least this share
+of its pixels has a plain local background (text on paper or on a label cell); below it
+the strip holds picture content and only pixels of the text colour are erased."""
+STRIPE_FLAT_SHARE = 0.55
+"""... and with at least this share the erased pixels are filled flat (else inpainted)."""
+ICON_MIN_FILL = 0.45
+"""A solid ink component (fill ratio of its bounding box at least this, at least about a
+glyph in size) in a colour unlike the text is a pictogram and is kept."""
+PUNCT_MAX_SHARE = 0.12
+"""Ink right of the OCR box covering at most this share of a one-glyph strip is trailing
+punctuation (。，！？) the detector left out; it is erased with the line."""
+
+
+def _dominant_colour(pixels: np.ndarray) -> tuple[np.ndarray, float]:
+    """Most common colour (16-level quantised, refined by the median) and its pixel share."""
+    flat = pixels.reshape(-1, 3)
+    if flat.size == 0:
+        return np.array([255, 255, 255], dtype=np.uint8), 0.0
+    q = (flat // 16).astype(np.int32)
+    keys = (q[:, 0] << 8 | q[:, 1]) << 8 | q[:, 2]
+    values, counts = np.unique(keys, return_counts=True)
+    best = values[counts.argmax()]
+    colour = np.median(flat[keys == best], axis=0)
+    # share of pixels close to that colour: tolerant of gradients and JPEG noise
+    near = np.abs(flat.astype(np.int32) - colour.astype(np.int32)).max(axis=1) <= BACKGROUND_TOLERANCE
+    colour = np.median(flat[near], axis=0) if near.any() else colour
+    return colour.astype(np.uint8), float(near.mean())
+
+
+def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int],
+                            blocked: list[tuple[int, int, int, int]]) -> tuple[int, int, int, int]:
+    """``box`` extended to the right over a small ink blob (trailing punctuation)."""
+    x0, y0, x1, y1 = box
+    h = y1 - y0
+    ex1 = min(original.shape[1], x1 + h)
+    if ex1 - x1 < 3 or h < 6:
+        return box
+    for bx0, by0, bx1, by1 in blocked:
+        if bx0 < ex1 and bx1 > x1 and by0 < y1 and by1 > y0:
+            return box  # another line starts right there
+    strip = original[y0:y1, x1:ex1]
+    bg, share = _dominant_colour(strip)
+    if share < STRIPE_FLAT_SHARE:
+        return box
+    ink = np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF
+    if not ink.any() or ink.mean() > PUNCT_MAX_SHARE:
+        return box
+    cols = np.flatnonzero(ink.any(axis=0))
+    if cols.max() >= strip.shape[1] - 2:
+        return box  # ink runs on beyond the strip: a neighbouring object, not punctuation
+    return x0, y0, x1 + int(cols.max()) + 2, y1
+
+
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
-                  original_alpha: Optional[np.ndarray], box: tuple[int, int, int, int]) -> str:
-    """Erase only the ink of the OCR line (glyph mask, dilated) by inpainting, so that
-    picture content and rulings inside the box survive; boxes that are mostly ink
-    (light text on a coloured panel) are filled whole like the repaint mode does."""
+                  original_alpha: Optional[np.ndarray], box: tuple[int, int, int, int],
+                  blocked: Optional[list[tuple[int, int, int, int]]] = None) -> str:
+    """Erase the glyphs of one OCR line.
+
+    The line box is cut into glyph-wide strips. Where a strip has a plain local
+    background (its most common colour dominates), every pixel that differs from that
+    colour is ink - whatever its colour (red words inside black text, white text on a
+    badge, two-colour label cells) - except solid components in a colour unlike the
+    text (pictograms), and is filled with the strip's background. Strips holding
+    picture content fall back to erasing only pixels of the text colour by inpainting.
+    """
     import cv2
 
-    from .images import estimate_background, estimate_text_color
+    from .images import estimate_text_color
 
+    box = _extend_for_punctuation(original, box, blocked or [])
     x0, y0, x1, y1 = box
-    crop = original[y0:y1, x0:x1]
+    crop = original[y0:y1, x0:x1].astype(np.int32)
     if crop.size == 0:
         return "empty"
-    bg, uniform = estimate_background(original, box, original_alpha)
-    ink = np.array(estimate_text_color(original, box, bg, original_alpha), dtype=np.int32)
-    diff_bg = np.abs(crop.astype(np.int32) - bg.astype(np.int32)).max(axis=2)
-    dist_ink = np.sqrt(((crop.astype(np.int32) - ink) ** 2).sum(axis=2))
-    # ink = pixels that look like the text colour (not the background); coloured picture
-    # content and rulings of another colour are left alone
-    mask = ((diff_bg > GLYPH_DIFF) & (dist_ink < INK_TOLERANCE)).astype(np.uint8)
-    share = float(mask.mean())
-    if uniform and share <= MAX_GLYPH_SHARE and share > 0:
-        # plain background: paint the ink pixels (dilated) with the background colour
-        kernel = np.ones((2 * GLYPH_DILATE_PX + 1, 2 * GLYPH_DILATE_PX + 1), np.uint8)
-        mask = cv2.dilate(mask, kernel)
-        region = canvas[y0:y1, x0:x1]
-        region[mask > 0] = bg
-        return "glyphs filled"
-    if share <= MAX_GLYPH_SHARE and share > 0:
-        kernel = np.ones((2 * GLYPH_DILATE_PX + 1, 2 * GLYPH_DILATE_PX + 1), np.uint8)
-        mask = cv2.dilate(mask, kernel)
+    h, w = crop.shape[:2]
+    box_bg, _share = _dominant_colour(original[y0:y1, x0:x1])
+    ink_colour = np.array(estimate_text_color(original, box, box_bg, original_alpha), dtype=np.int32)
+    dist_ink = np.sqrt(((crop - ink_colour) ** 2).sum(axis=2))
+    mask = np.zeros((h, w), np.uint8)
+    fill = np.zeros((h, w, 3), np.uint8)
+    flat = np.zeros((h, w), bool)
+    step = max(4, int(round(0.6 * h)))
+    strips: list[tuple[int, int, np.ndarray, float]] = []
+    prev_bg, prev_share = box_bg, _share
+    for sx in range(0, w, step):
+        ex = min(w, sx + step)
+        bg, share = _dominant_colour(crop[:, sx:ex].astype(np.uint8))
+        if np.abs(bg.astype(np.int32) - ink_colour).max() < GLYPH_DIFF and \
+                np.abs(prev_bg.astype(np.int32) - ink_colour).max() >= GLYPH_DIFF:
+            bg, share = prev_bg, prev_share  # a heavy glyph dominates the strip: keep the neighbour's background
+        prev_bg, prev_share = bg, share
+        strips.append((sx, ex, bg, share))
+    for k, (sx, ex, bg, share) in enumerate(strips):
+        stripe = crop[:, sx:ex]
+        diff = np.abs(stripe - bg.astype(np.int32)).max(axis=2)
+        if share >= STRIPE_MIN_SHARE:
+            m = diff > GLYPH_DIFF
+        else:  # picture content: only what looks like the text colour
+            m = (diff > GLYPH_DIFF) & (dist_ink[:, sx:ex] < INK_TOLERANCE)
+        # pixels of a neighbouring strip's surface (the next label cell, a pictogram that
+        # dominates the next strip) are not ink of this one
+        for j in (k - 1, k + 1):
+            if 0 <= j < len(strips) and strips[j][3] >= STRIPE_MIN_SHARE:
+                nbg = strips[j][2].astype(np.int32)
+                if np.abs(nbg - bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
+                    m &= np.abs(stripe - nbg).max(axis=2) > BACKGROUND_TOLERANCE
+        mask[:, sx:ex] = m
+        fill[:, sx:ex] = bg
+        flat[:, sx:ex] = share >= STRIPE_FLAT_SHARE
+    if not mask.any():
+        return "nothing to erase"
+    # keep pictograms, bars and rulings: large solid components unlike the text colour
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
+    for i in range(1, count):
+        bx, by, bw, bh, area = stats[i]
+        if area >= 0.5 * h * h and area >= ICON_MIN_FILL * bw * bh:
+            comp = labels == i
+            if float(np.median(dist_ink[comp])) >= INK_TOLERANCE:
+                mask[comp] = 0
+    if float(mask.mean()) > 0.85:
+        _bg, how = _clear_box(canvas, alpha, original, original_alpha, box)
+        return how
+    kernel = np.ones((2 * GLYPH_DILATE_PX + 1, 2 * GLYPH_DILATE_PX + 1), np.uint8)
+    grown = cv2.dilate(mask, kernel) > 0
+    region = canvas[y0:y1, x0:x1]
+    flat_px = grown & flat
+    region[flat_px] = fill[flat_px]
+    rest = (grown & ~flat).astype(np.uint8)
+    if rest.any():
         pad = 6
         cy0, cy1 = max(0, y0 - pad), min(canvas.shape[0], y1 + pad)
         cx0, cx1 = max(0, x0 - pad), min(canvas.shape[1], x1 + pad)
         full_mask = np.zeros((cy1 - cy0, cx1 - cx0), np.uint8)
-        full_mask[y0 - cy0:y1 - cy0, x0 - cx0:x1 - cx0] = mask
+        full_mask[y0 - cy0:y1 - cy0, x0 - cx0:x1 - cx0] = rest * 255
         canvas[cy0:cy1, cx0:cx1] = cv2.inpaint(np.ascontiguousarray(canvas[cy0:cy1, cx0:cx1]), full_mask, 3,
                                                cv2.INPAINT_TELEA)
-        return "glyphs inpainted"
-    _bg, how = _clear_box(canvas, alpha, original, original_alpha, box)
-    return how
+        return "glyphs filled and inpainted" if flat_px.any() else "glyphs inpainted"
+    return "glyphs filled"
 
 
 def _trim_watermark_runs(text: str, alphabet: set[str]) -> str:

@@ -285,24 +285,46 @@ def run_pipeline(
         report_progress("translate", f"{stats.translated}/{len(translatable)} segments translated", 45)
 
         # ------------------------------------------------------------- layout
+        erased_pdf = out_dir / ".erased-source.pdf"
+        erased_ready = [False]
+
         def render_all(message: str = "Laying out translated text") -> None:
             report_progress("layout", message, 60)
-            render_document(source_pdf, doc, out_pdf, min_font_scale=options.min_font_scale,
-                            fonts_dir=settings.fonts_dir, pages=pages,
-                            checkpoint_pages=int(getattr(settings, "render_checkpoint_pages", 25) or 0))
-            image_targets = [s for s in doc.image_segments() if s.translated_text and s.translate]
-            from .scanned import MERGED
+            from .scanned import MERGED, erase_merged_lines, paragraphs_to_restore, restore_lines
 
             merged = any(s.kind == SegmentKind.IMAGE_TEXT and s.skip_reason.startswith(MERGED)
                          for s in doc.segments)
-            if image_targets or merged:
+            layout_source = source_pdf
+            if merged:
+                # Scanned pages: erase the recognised lines first (once - the grouping does not change
+                # between QA rounds), so the layout sees the cleaned page: erased areas count as free
+                # space and the text colour is checked against the real background.
+                if not erased_ready[0]:
+                    src_doc = pymupdf.open(str(source_pdf))
+                    try:
+                        log.info("erased OCR lines in %d scanned page images", erase_merged_lines(src_doc, doc))
+                        src_doc.save(str(erased_pdf), garbage=1)
+                    finally:
+                        src_doc.close()
+                    erased_ready[0] = True
+                layout_source = erased_pdf
+            render_document(layout_source, doc, out_pdf, min_font_scale=options.min_font_scale,
+                            fonts_dir=settings.fonts_dir, pages=pages,
+                            checkpoint_pages=int(getattr(settings, "render_checkpoint_pages", 25) or 0))
+            image_targets = [s for s in doc.image_segments() if s.translated_text and s.translate]
+            restore = paragraphs_to_restore(doc) if merged else []
+            if image_targets or restore:
                 from .images import render_image_segments
-                from .scanned import erase_merged_lines
 
                 pdf_doc = pymupdf.open(str(out_pdf))
                 try:
-                    if merged:
-                        log.info("erased OCR lines in %d scanned page images", erase_merged_lines(pdf_doc, doc))
+                    if restore:
+                        src_doc = pymupdf.open(str(source_pdf))
+                        try:
+                            log.info("restored the source text of %d paragraph(s) in %d image(s)", len(restore),
+                                     restore_lines(pdf_doc, src_doc, doc, restore))
+                        finally:
+                            src_doc.close()
                     if image_targets:
                         log.info("replaced text in %d images", render_image_segments(pdf_doc, doc,
                                                                                      fonts_dir=settings.fonts_dir))
@@ -426,6 +448,11 @@ def run_pipeline(
             pass
         report_progress("error", str(exc), 100)
         return PipelineResult(status="error", error=str(exc), stats=stats)
+    finally:
+        try:
+            (out_dir / ".erased-source.pdf").unlink(missing_ok=True)  # scratch copy of the erased pages
+        except OSError:  # pragma: no cover
+            pass
 
 
 __all__ = ["run_pipeline", "PipelineError"]

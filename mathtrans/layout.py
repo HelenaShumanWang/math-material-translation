@@ -97,6 +97,18 @@ MIN_WIDTH_GROWTH = 60.0
 """Horizontal growth allowance in points for tiny boxes (labels, page numbers)."""
 MAX_WIDTH_GROWTH = 2.0
 """A box may grow horizontally by at most this fraction of its width."""
+LEGIBLE_FLOOR = 0.45
+"""On a scanned page, a translation that would need a smaller scale than this is not
+set at all: the source glyphs are restored and QA asks for a shorter text."""
+KEPT_SOURCE_NOTE = "left in source language: the translation does not fit legibly"
+LABEL_WIDTH_GROWTH = 3.0
+"""Short labels on scanned pages may grow sideways (on both sides, centred) by this
+fraction of their width, where the page is plain background."""
+LABEL_HEIGHT_GROWTH = 1.0
+"""... and downward by this fraction of their height."""
+MIN_CONTRAST = 3.0
+"""Text set on a scanned page needs at least this WCAG contrast ratio against the
+background under it; otherwise it is set in black or white."""
 COLUMN_MIN_WIDTH_FRACTION = 0.15
 """Segments at least this wide (fraction of the page width) act as column walls:
 a box never grows sideways past the near edge of such a segment, whatever its
@@ -163,7 +175,8 @@ def _extra_face_rules(regular: Path, family: str) -> str:
     return "".join(rules)
 
 
-def segment_html(seg: TextSegment, text: str, line_height: Optional[float] = None) -> str:
+def segment_html(seg: TextSegment, text: str, line_height: Optional[float] = None, *,
+                 color: Optional[int] = None, align: Optional[str] = None) -> str:
     """HTML paragraph for ``insert_htmlbox`` reproducing the segment's style.
 
     The text is HTML-escaped, line breaks become ``<br>`` and the font size
@@ -178,10 +191,10 @@ def segment_html(seg: TextSegment, text: str, line_height: Optional[float] = Non
         lh = 1.25
     style = (
         f"font-size:{size:.2f}px;"
-        f"color:#{st.color & 0xFFFFFF:06x};"
+        f"color:#{(st.color if color is None else color) & 0xFFFFFF:06x};"
         f"font-weight:{'bold' if st.bold else 'normal'};"
         f"font-style:{'italic' if st.italic else 'normal'};"
-        f"text-align:{st.align};"
+        f"text-align:{align or st.align};"
         f"line-height:{lh:.2f}"
     )
     body = text.replace("\r\n", "\n").replace("\r", "\n").replace("\t", " ")
@@ -271,6 +284,38 @@ def _content_rawdict(page: pymupdf.Page, flags: int) -> dict:
         log.warning("page %d: content-only text extraction failed (%s); annotation text counts as page text",
                     page.number, exc)
         return page.get_text("rawdict", flags=flags)
+
+
+def _luminance(rgb: Sequence[float]) -> float:
+    def channel(c: float) -> float:
+        c = c / 255.0
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    r, g, b = (channel(float(v)) for v in rgb[:3])
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def contrast_ratio(a: Sequence[float], b: Sequence[float]) -> float:
+    """WCAG contrast ratio of two RGB colours (1 .. 21)."""
+    la, lb = _luminance(a), _luminance(b)
+    hi, lo = max(la, lb), min(la, lb)
+    return (hi + 0.05) / (lo + 0.05)
+
+
+def int_to_rgb(color: int) -> tuple[int, int, int]:
+    return (color >> 16) & 255, (color >> 8) & 255, color & 255
+
+
+def readable_color(color: int, background: Sequence[float]) -> int:
+    """``color`` when it contrasts enough with ``background``, else black or white."""
+    if contrast_ratio(int_to_rgb(color), background) >= MIN_CONTRAST:
+        return color
+    return 0x000000 if contrast_ratio((0, 0, 0), background) >= contrast_ratio((255, 255, 255), background) \
+        else 0xFFFFFF
+
+
+def _short_label(seg: TextSegment) -> bool:
+    text = (seg.translated_text or seg.source_text or "").strip()
+    return seg.style.role in ("label", "heading") and "\n" not in text and len(text.split()) <= 4
 
 
 class _PageSpace:
@@ -377,9 +422,28 @@ class _PageSpace:
     def update(self, seg_id: str, used: BBox) -> None:
         self.occupied[seg_id] = used
 
+    def background(self, rect: BBox) -> Optional[tuple[float, float, float]]:
+        """Median colour of the page pixels inside ``rect`` (the background under text
+        set there on an already erased scanned page); None when it cannot be rendered."""
+        try:
+            clip = _clip(rect, self.page_rect)
+            if clip is None or clip.width < 1 or clip.height < 1:
+                return None
+            pix = self._page.get_pixmap(clip=clip.to_rect(), dpi=FREE_SPACE_DPI, colorspace=pymupdf.csRGB, alpha=False)
+            arr = np.frombuffer(pix.samples, dtype=np.uint8).reshape(-1, 3)
+        except Exception as exc:  # pragma: no cover - rendering problems
+            log.debug("background sampling failed: %s", exc)
+            return None
+        if arr.size == 0:
+            return None
+        med = np.median(arr, axis=0)
+        return float(med[0]), float(med[1]), float(med[2])
+
     def extend(self, seg: TextSegment, *, down: bool, horizontal: bool) -> BBox:
-        """Grow ``seg.bbox`` into free space (downward and/or sideways)."""
+        """Grow ``seg.bbox`` into free space (downward and/or sideways). Short labels on a
+        scanned page grow further and on both sides (they are then set centred)."""
         box = seg.bbox
+        label = self.scanned and _short_label(seg)
         obstacles = [b for sid, b in self.occupied.items() if sid != seg.id] + list(self.fixed)
         containers: list[BBox] = []
         for d in self.drawings():
@@ -389,14 +453,20 @@ class _PageSpace:
                 obstacles.append(d)
         x0, y0, x1, y1 = box.x0, box.y0, box.x1, box.y1
         if down:
-            y1 = self._extend_down(box, obstacles, containers)
+            y1 = self._extend_down(box, obstacles, containers,
+                                   growth=LABEL_HEIGHT_GROWTH if label else MAX_HEIGHT_GROWTH)
             if self.scanned:
                 y1 = self._shrink_until_free(box, "down", y1)
         if horizontal:
-            x0, x1 = self._extend_horizontal(BBox(x0=x0, y0=y0, x1=x1, y1=y1), seg.style.align, obstacles, containers)
+            x0, x1 = self._extend_horizontal(BBox(x0=x0, y0=y0, x1=x1, y1=y1),
+                                             "center" if label else seg.style.align, obstacles, containers,
+                                             growth_factor=LABEL_WIDTH_GROWTH if label else MAX_WIDTH_GROWTH)
             if self.scanned:
                 x1 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "right", x1)
                 x0 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "left", x0)
+                if label:  # keep the label centred on its original position
+                    side = min(box.x0 - x0, x1 - box.x1)
+                    x0, x1 = box.x0 - side, box.x1 + side
         return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
 
     def _strip_is_free(self, rect: BBox) -> bool:
@@ -432,8 +502,9 @@ class _PageSpace:
                 return edge
         return base
 
-    def _extend_down(self, box: BBox, obstacles: list[BBox], containers: list[BBox]) -> float:
-        limit = box.y1 + MAX_HEIGHT_GROWTH * box.height
+    def _extend_down(self, box: BBox, obstacles: list[BBox], containers: list[BBox],
+                     growth: float = MAX_HEIGHT_GROWTH) -> float:
+        limit = box.y1 + growth * box.height
         limit = min(limit, max(self.limit_bottom, box.y1))
         for c in containers:
             limit = min(limit, max(c.y1 - OBSTACLE_GAP, box.y1))
@@ -444,8 +515,8 @@ class _PageSpace:
         return limit
 
     def _extend_horizontal(self, box: BBox, align: str, obstacles: list[BBox],
-                           containers: list[BBox]) -> tuple[float, float]:
-        growth = max(MAX_WIDTH_GROWTH * box.width, MIN_WIDTH_GROWTH)
+                           containers: list[BBox], growth_factor: float = MAX_WIDTH_GROWTH) -> tuple[float, float]:
+        growth = max(growth_factor * box.width, MIN_WIDTH_GROWTH)
         right = min(box.x1 + growth, max(self.limit_right, box.x1))
         left = max(box.x0 - growth, min(self.limit_left, box.x0))
         # Column walls: wide text blocks entirely to one side of the box mark another
@@ -513,6 +584,15 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     base = seg.bbox
     growable = rotate == 0 and seg.style.role != "table"
     grown = space.extend(seg, down=True, horizontal=True) if growable else base
+    color: Optional[int] = None
+    align: Optional[str] = None
+    if space.scanned and seg.origin == "ocr":
+        bg = space.background(base)
+        if bg is not None:
+            fixed = readable_color(seg.style.color, bg)
+            color = fixed if fixed != seg.style.color else None
+        if _short_label(seg) and grown != base and abs((grown.x0 + grown.x1) - (base.x0 + base.x1)) < 1.0:
+            align = "center"  # grown symmetrically around the original label
     grown_note = "" if grown == base else "box extended into free space"
     tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
     attempts: list[tuple[BBox, Optional[float], float, str]] = [(base, None, 1.0, "")]
@@ -522,11 +602,15 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     if tight is not None:
         attempts.append((grown, tight, min_scale, "tight line height"))
     size = seg.style.size if seg.style.size > 0 else 10.0
+    def html(lh: Optional[float]) -> str:
+        return segment_html(seg, text, lh, color=color, align=align)
+
+    contrast_note = "colour changed for contrast" if color is not None else ""
     for rect, lh, scale_low, note in attempts:
-        spare, scale = _insert(page, rect, segment_html(seg, text, lh), css=css, archive=archive,
+        spare, scale = _insert(page, rect, html(lh), css=css, archive=archive,
                                scale_low=scale_low, rotate=rotate)
         if spare >= 0:
-            notes = [n for n in (grown_note if rect == grown else "", note) if n]
+            notes = [n for n in (grown_note if rect == grown else "", note, contrast_note) if n]
             if scale < 1:
                 notes.append(f"shrunk to {scale:.2f}")
             return RenderInfo(font_size=round(size * scale, 3), scale=scale, spare_height=spare,
@@ -534,7 +618,15 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     # Nothing fits at min_scale: render anyway in the largest box tried, shrinking as
     # much as needed so the text stays on the page (editable), and flag the overflow.
     rect, lh, _, _ = attempts[-1]
-    _, scale = _insert(page, rect, segment_html(seg, text, lh), css=css, archive=archive,
+    if space.scanned and seg.origin == "ocr":
+        scale = _fit_scale(page, rect, html(lh), css=css, archive=archive, rotate=rotate)
+        if scale < LEGIBLE_FLOOR:
+            # unreadable specks help nobody: leave the source glyphs (restored after layout)
+            missing = rect.height * ((min_scale / scale) ** 2 - 1) if scale > 0 else rect.height
+            log.warning("segment %s: translation would need scale %.2f; source text kept", seg.id, scale)
+            return RenderInfo(font_size=0.0, scale=scale, spare_height=-round(missing, 2), overflow=True,
+                              bbox=rect, notes=KEPT_SOURCE_NOTE)
+    _, scale = _insert(page, rect, html(lh), css=css, archive=archive,
                        scale_low=0, rotate=rotate)
     # The text just fits the box at ``scale``; set at ``min_scale`` it would need about
     # (min_scale / scale)^2 times the area, i.e. that much more height at the same width.
@@ -543,6 +635,18 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     return RenderInfo(font_size=round(size * scale, 3), scale=scale, spare_height=-round(missing, 2),
                       overflow=True, bbox=rect,
                       notes=f"text does not fit at scale {min_scale:.2f}; shrunk to {scale:.2f}")
+
+
+def _fit_scale(page: pymupdf.Page, rect: BBox, html: str, *, css: str, archive: Optional[pymupdf.Archive],
+               rotate: int) -> float:
+    """Scale at which ``html`` fits ``rect``, measured on a scratch page (nothing is written)."""
+    scratch = pymupdf.open()
+    try:
+        sp = scratch.new_page(width=page.rect.width, height=page.rect.height)
+        _, scale = _insert(sp, rect, html, css=css, archive=archive, scale_low=0, rotate=rotate)
+        return scale
+    finally:
+        scratch.close()
 
 
 def _cut_away(rect: pymupdf.Rect, other: BBox, gap: float) -> pymupdf.Rect:
