@@ -1553,8 +1553,13 @@ def test_rapid_second_pass_adds_missed_lines(monkeypatch):
 
     def fake_engine(bgr):
         inverted = bgr.mean() < 128  # the second pass runs on the colour-inverted page
-        calls.append(("inv" if inverted else "plain", bgr.shape[1], bgr.shape[0]))
+        tile = bgr.shape[:2] != (1000, 1400)
+        calls.append(("tile" if tile else "inv" if inverted else "plain", bgr.shape[1], bgr.shape[0]))
         box_a = [[10, 10], [110, 10], [110, 40], [10, 40]]
+        if tile:
+            if len([c for c in calls if c[0] == "tile"]) == 1:  # the top-left tile (upscaled 1.5x) finds a label
+                return [([[150, 150], [270, 150], [270, 195], [150, 195]], "七八", 0.97)], 0.1
+            return [], 0.1
         if not inverted:
             return [(box_a, "数一数", 0.95)], 0.1
         return [(box_a, "数一数", 0.9),  # same line: dropped as a duplicate
@@ -1565,9 +1570,11 @@ def test_rapid_second_pass_adds_missed_lines(monkeypatch):
     engine = RapidOcrEngine(second_pass_min_side=1200)
     page = np.full((1000, 1400, 3), 255, dtype=np.uint8)
     out = engine.recognize(page)
-    assert calls == [("plain", 1400, 1000), ("inv", 1400, 1000)]
-    assert [o.text for o in out] == ["数一数", "比一比"]
+    assert calls[:2] == [("plain", 1400, 1000), ("inv", 1400, 1000)]
+    assert [c[0] for c in calls[2:]] == ["tile"] * 12        # a 3 x 4 grid of overlapping tiles
+    assert [o.text for o in out] == ["数一数", "比一比", "七八"]
     assert out[1].polygon[0] == [10.0, 60.0] and out[1].polygon[2] == [110.0, 90.0]
+    assert out[2].polygon[0] == [100.0, 100.0]              # tile pixels / 1.5 + tile origin (0, 0)
     # small figures (below the page-size threshold) get no second pass
     calls.clear()
     engine.recognize(np.full((300, 1100, 3), 255, dtype=np.uint8))

@@ -50,6 +50,14 @@ SECOND_PASS_MIN_CONFIDENCE = 0.85
 #: A second-pass region overlapping a first-pass region by more than this share of the
 #: smaller box is the same text and is dropped.
 SECOND_PASS_MAX_OVERLAP = 0.3
+#: RapidOCR downscales images whose longest side exceeds this before detection; its default
+#: (2000) shrinks a 600-dpi page scan and loses small lines.
+RAPID_MAX_SIDE_LEN = 4000
+#: Page-sized rasters also get a tiled pass: the detector finds lines in a tile that it misses
+#: on the whole page (short labels in tables, cells next to large pictures).
+TILE_GRID = (3, 4)  # columns, rows
+TILE_OVERLAP_PX = 90
+TILE_SCALE = 1.5  # small text gets past the detector when the tile is upscaled
 #: Claude downsamples larger images anyway; sending more pixels only costs tokens.
 CLAUDE_MAX_SIDE = 1568
 #: Coordinates returned by the vision model are normalised to this range.
@@ -205,7 +213,7 @@ class RapidOcrEngine:
             try:
                 from rapidocr_onnxruntime import RapidOCR
 
-                cls._shared = RapidOCR()
+                cls._shared = RapidOCR(max_side_len=RAPID_MAX_SIDE_LEN)
             except Exception as exc:  # ImportError, missing models, onnxruntime failures
                 cls._import_error = exc
                 if not cls._import_error_logged:
@@ -263,8 +271,41 @@ class RapidOcrEngine:
             if extra:
                 logger.debug("rapid OCR: inverted second pass added %d regions", len(extra))
                 out = out + extra
+            tiled = [r for r in self._run_tiles(engine, rgb) if r.confidence >= SECOND_PASS_MIN_CONFIDENCE]
+            extra = merge_ocr_passes(out, tiled)
+            if extra:
+                logger.debug("rapid OCR: tiled pass added %d regions", len(extra))
+                out = out + extra
         logger.debug("rapid OCR: %d regions in %dx%d image (hint %s)", len(out), w, h, _lang_codes(hint_langs))
         return out
+
+    def _run_tiles(self, engine: Any, rgb: np.ndarray) -> list[OcrResult]:
+        """OCR of overlapping, upscaled tiles; polygons in page pixels. A result touching an
+        inner tile edge is a cut-off piece and is dropped (the overlap makes a short line
+        whole in the neighbouring tile); duplicates between tiles keep the longest line."""
+        h, w = rgb.shape[:2]
+        cols, rows = TILE_GRID
+        tw, th = w / cols, h / rows
+        ov = TILE_OVERLAP_PX
+        found: list[OcrResult] = []
+        for r in range(rows):
+            for c in range(cols):
+                x0, y0 = max(0, int(c * tw) - ov), max(0, int(r * th) - ov)
+                x1, y1 = min(w, int((c + 1) * tw) + ov), min(h, int((r + 1) * th) + ov)
+                for res in self._run(engine, np.ascontiguousarray(rgb[y0:y1, x0:x1]), TILE_SCALE):
+                    bx0, by0, bx1, by1 = _poly_bbox(res.polygon)
+                    edge = 6
+                    if (x0 > 0 and bx0 <= edge) or (y0 > 0 and by0 <= edge) or \
+                            (x1 < w and bx1 >= (x1 - x0) - edge) or (y1 < h and by1 >= (y1 - y0) - edge):
+                        continue  # cut by the tile border
+                    poly = [[x + x0, y + y0] for x, y in res.polygon]
+                    found.append(OcrResult(text=res.text, polygon=poly, confidence=res.confidence))
+        found.sort(key=lambda res: -(max(p[0] for p in res.polygon) - min(p[0] for p in res.polygon)))
+        unique: list[OcrResult] = []
+        for res in found:
+            if merge_ocr_passes(unique, [res]):
+                unique.append(res)
+        return unique
 
     @staticmethod
     def _run(engine: Any, rgb: np.ndarray, scale: float) -> list[OcrResult]:
