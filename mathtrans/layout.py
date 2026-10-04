@@ -328,6 +328,11 @@ def _short_label(seg: TextSegment) -> bool:
     return not _ENUMERATED_RE.match(seg.source_text or "")
 
 
+def _watermark_line(seg: TextSegment) -> bool:
+    return seg.kind == SegmentKind.IMAGE_TEXT and not seg.translate and (
+        seg.skip_reason.startswith("slanted text") or seg.skip_reason == "watermark fragment")
+
+
 def _centred_heading(seg: TextSegment, page: BBox) -> bool:
     """A one-line heading centred on the page (a unit or lesson title)."""
     if seg.style.role != "heading" or "\n" in (seg.translated_text or ""):
@@ -353,7 +358,10 @@ class _PageSpace:
     def __init__(self, page: pymupdf.Page, page_index: int, doc: TranslatedDocument):
         self.page_rect = BBox.from_rect(unrotated_page_rect(page))
         self._page = page
-        self.occupied: dict[str, BBox] = {s.id: s.bbox for s in doc.segments if s.page == page_index}
+        # the faint diagonal watermark (kept in the picture) is no obstacle: its axis-aligned
+        # boxes are huge and text may be set over it
+        self.occupied: dict[str, BBox] = {s.id: s.bbox for s in doc.segments
+                                          if s.page == page_index and not _watermark_line(s)}
         self.fixed: list[BBox] = []
         self._drawings: Optional[list[BBox]] = None
         try:

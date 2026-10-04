@@ -466,3 +466,22 @@ def test_underline_blank_check_looks_for_a_rule_in_the_gap():
     assert check(near, after) is True
     after.image = after.image.model_copy(update={"pixel_box": (395, 12, 399, 44)})
     assert check(near, after) is False
+
+
+def test_watermark_lines_are_not_layout_obstacles():
+    import pymupdf
+    from mathtrans.layout import _PageSpace
+    from mathtrans.models import PageInfo, TranslatedDocument
+
+    pdf = pymupdf.open()
+    page = pdf.new_page(width=500, height=700)
+    wm = _gline(0, 200, 300, 420, "北京师范大学出版社")
+    wm.translate, wm.skip_reason = False, "slanted text (20°): watermark or decoration, kept as is"
+    frag = _gline(1, 300, 320, 330, "版社")
+    frag.translate, frag.skip_reason = False, "watermark fragment"
+    label = _gline(2, 50, 400, 90, "12")
+    label.translate, label.skip_reason = False, "pure number / formula"
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[wm, frag, label])
+    space = _PageSpace(page, 0, doc)
+    assert set(space.occupied) == {"g2"}   # numbers left in the picture still block, the watermark does not
