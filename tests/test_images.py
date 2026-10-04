@@ -1722,3 +1722,76 @@ def test_unit_labels_after_answer_boxes_are_split_off_and_dropped():
     assert out[1].polygon[0][0] > out[0].polygon[1][0]                 # the unit part sits right of the cut
     # a standalone unit label is dropped (erased on scanned pages, never set as "(pieces)")
     assert classify_ocr_text("（只）", Lang.ZH)[2] is True             # plain text classification ...
+
+
+class _CountingEngine:
+    name = "counting"
+
+    def __init__(self):
+        self.calls = 0
+
+    def cache_signature(self):
+        return "counting-v1"
+
+    def recognize(self, image_rgb, hint_langs=None):
+        self.calls += 1
+        return [OcrResult(text=f"文字{int(image_rgb[0, 0, 0])}", polygon=[[1, 2], [30, 2], [30, 12], [1, 12]],
+                          confidence=0.9)]
+
+    def recognize_crop(self, image_rgb):
+        return "x", 0.7
+
+
+def test_cached_ocr_engine_reuses_results_per_image(tmp_path):
+    from mathtrans.ocr import CachedOcrEngine
+
+    inner = _CountingEngine()
+    engine = CachedOcrEngine(inner, tmp_path / "cache")
+    img = np.full((40, 60, 3), 7, dtype=np.uint8)
+    first = engine.recognize(img, hint_langs=[Lang.ZH])
+    again = CachedOcrEngine(inner, tmp_path / "cache").recognize(img.copy(), hint_langs=[Lang.ZH])  # new process
+    assert inner.calls == 1 and again == first and again[0].text == "文字7"
+    engine.recognize(np.full((40, 60, 3), 9, dtype=np.uint8), hint_langs=[Lang.ZH])  # other pixels
+    engine.recognize(img, hint_langs=[Lang.EN])  # other hint languages
+    assert inner.calls == 3
+    assert engine.name == "counting" and engine.recognize_crop(img) == ("x", 0.7)  # delegated
+    inner.cache_signature = lambda: "counting-v2"  # engine settings changed -> recognised again
+    engine.recognize(img, hint_langs=[Lang.ZH])
+    assert inner.calls == 4
+    broken = next((tmp_path / "cache").rglob("*.json"))
+    broken.write_text("{not json", encoding="utf-8")  # an unreadable entry is recognised again and rewritten
+    for _ in range(2):
+        for shade in (7, 9):
+            for lang in (Lang.ZH, Lang.EN):
+                engine.recognize(np.full((40, 60, 3), shade, dtype=np.uint8), hint_langs=[lang])
+    assert not list((tmp_path / "cache").rglob("*.tmp"))
+
+
+def test_get_ocr_engine_wraps_in_cache_when_configured(tmp_path):
+    from mathtrans.ocr import CachedOcrEngine
+
+    cached = Settings(_env_file=None, ocr_engine="rapid", ocr_cache_dir=tmp_path)
+    engine = get_ocr_engine("rapid", cached)
+    assert isinstance(engine, CachedOcrEngine) and isinstance(engine.inner, RapidOcrEngine)
+    assert engine.name == RapidOcrEngine.name
+    assert isinstance(get_ocr_engine("none", cached), NullOcrEngine)  # nothing to cache
+    assert isinstance(get_ocr_engine("rapid", Settings(_env_file=None)), RapidOcrEngine)
+
+
+def test_rapid_engine_thread_setting(monkeypatch):
+    seen = {}
+
+    class FakeRapid:
+        def __init__(self, **kwargs):
+            seen.update(kwargs)
+
+    monkeypatch.setitem(sys.modules, "rapidocr_onnxruntime", types.SimpleNamespace(RapidOCR=FakeRapid))
+    monkeypatch.setenv("MATHTRANS_OCR_THREADS", "1")
+    reset_settings()
+    RapidOcrEngine.reset()
+    try:
+        assert RapidOcrEngine._engine() is not None
+        assert seen["intra_op_num_threads"] == 1 and seen["inter_op_num_threads"] == 1
+    finally:
+        RapidOcrEngine.reset()
+        reset_settings()

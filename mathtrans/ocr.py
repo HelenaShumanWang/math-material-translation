@@ -16,11 +16,14 @@ coordinates (top-left origin).
 from __future__ import annotations
 
 import base64
+import hashlib
 import importlib.util
 import io
 import json
 import logging
+import os
 import threading
+from pathlib import Path
 from typing import Any, Optional
 
 import anthropic
@@ -194,6 +197,12 @@ class RapidOcrEngine:
         self.second_pass = bool(second_pass)
         self.second_pass_min_side = int(second_pass_min_side)
 
+    def cache_signature(self) -> str:
+        """The settings that change what :meth:`recognize` returns (part of the OCR cache key)."""
+        return json.dumps([self.name, self.upscale_max_side, self.downscale_max_side, self.second_pass,
+                           self.second_pass_min_side, SECOND_PASS_MIN_CONFIDENCE, SECOND_PASS_MAX_OVERLAP,
+                           RAPID_MAX_SIDE_LEN, TILE_GRID, TILE_OVERLAP_PX, TILE_SCALE])
+
     @staticmethod
     def available() -> bool:
         """True when ``rapidocr_onnxruntime`` is importable."""
@@ -213,7 +222,9 @@ class RapidOcrEngine:
             try:
                 from rapidocr_onnxruntime import RapidOCR
 
-                cls._shared = RapidOCR(max_side_len=RAPID_MAX_SIDE_LEN)
+                threads = get_settings().ocr_threads
+                extra = {"intra_op_num_threads": threads, "inter_op_num_threads": 1} if threads > 0 else {}
+                cls._shared = RapidOCR(max_side_len=RAPID_MAX_SIDE_LEN, **extra)
             except Exception as exc:  # ImportError, missing models, onnxruntime failures
                 cls._import_error = exc
                 if not cls._import_error_logged:
@@ -600,8 +611,64 @@ def ocr_low_trust(engine: Any, source_lang: Optional[Lang | str]) -> bool:
     return getattr(engine, "name", None) == RapidOcrEngine.name and _is_low_trust_lang(source_lang)
 
 
+class CachedOcrEngine:
+    """Wraps an OCR engine and keeps its results per image in ``cache_dir`` (one JSON file per image,
+    keyed by the pixels, the hint languages and the engine's settings), so a re-run of the same
+    document - after a crash, a time limit or a change further down the pipeline - skips
+    recognition. Everything else (``name``, ``recognize_crop``, ...) is the wrapped engine's."""
+
+    def __init__(self, inner: Any, cache_dir: Path | str) -> None:
+        self.inner = inner
+        self.cache_dir = Path(cache_dir)
+        self.name = getattr(inner, "name", "ocr")
+
+    def __getattr__(self, attr: str) -> Any:
+        if attr == "inner":
+            raise AttributeError(attr)
+        return getattr(self.inner, attr)
+
+    def _path(self, rgb: np.ndarray, hint_langs: Optional[list[Lang]]) -> Path:
+        signature = getattr(self.inner, "cache_signature", None)
+        digest = hashlib.sha256()
+        digest.update((signature() if signature else str(self.name)).encode())
+        digest.update(json.dumps(_lang_codes(hint_langs)).encode())
+        digest.update(str(rgb.shape).encode())
+        digest.update(rgb.tobytes())
+        key = digest.hexdigest()
+        return self.cache_dir / key[:2] / f"{key}.json"
+
+    def recognize(self, image_rgb: np.ndarray, hint_langs: Optional[list[Lang]] = None) -> list[OcrResult]:
+        rgb = as_rgb_uint8(image_rgb)
+        path = self._path(rgb, hint_langs)
+        try:
+            return [OcrResult.model_validate(r) for r in json.loads(path.read_text(encoding="utf-8"))]
+        except FileNotFoundError:
+            pass
+        except (OSError, ValueError) as exc:
+            logger.warning("OCR cache: ignoring unreadable entry %s (%s)", path.name, exc)
+        results = self.inner.recognize(rgb, hint_langs=hint_langs)
+        try:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+            tmp.write_text(json.dumps([r.model_dump() for r in results], ensure_ascii=False), encoding="utf-8")
+            os.replace(tmp, path)
+        except OSError as exc:
+            logger.warning("OCR cache: cannot store %s (%s)", path.name, exc)
+        return results
+
+
 def get_ocr_engine(name: str, settings: Optional[Settings] = None,
                    source_lang: Optional[Lang | str] = None) -> OcrEngine:
+    """The OCR engine called ``name`` (see :func:`_select_ocr_engine`), wrapped in a
+    :class:`CachedOcrEngine` when ``settings.ocr_cache_dir`` is set."""
+    settings = settings or get_settings()
+    engine = _select_ocr_engine(name, settings, source_lang)
+    if settings.ocr_cache_dir and not isinstance(engine, NullOcrEngine):
+        return CachedOcrEngine(engine, settings.ocr_cache_dir)  # type: ignore[return-value]
+    return engine
+
+
+def _select_ocr_engine(name: str, settings: Settings, source_lang: Optional[Lang | str] = None) -> OcrEngine:
     """Build the OCR engine called ``name`` (``auto`` | ``rapid`` | ``claude`` | ``none``).
 
     ``auto`` prefers the offline RapidOCR engine, then Claude vision when an API
@@ -612,7 +679,6 @@ def get_ocr_engine(name: str, settings: Optional[Settings] = None,
     An explicit ``claude`` without credentials degrades the same way (with a
     warning) instead of failing the whole translation job.
     """
-    settings = settings or get_settings()
     key = (name or "auto").strip().lower()
     if key == "none":
         return NullOcrEngine()

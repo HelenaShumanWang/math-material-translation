@@ -171,6 +171,8 @@ PDF ─► 抽取文本块（字号/颜色/对齐/角色）+ 公式/数字占位
 | `MATHTRANS_ENABLE_FALLBACKS` | `true` | 启用服务端拒答回退（`fallbacks: "default"`） |
 | `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `deepseek` / `mock`。`auto`：有 `ANTHROPIC_API_KEY` 用 Claude，否则有 `DEEPSEEK_API_KEY` 用 DeepSeek，否则 mock |
 | `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none`。`auto`：中/英/葡/西文源用离线 RapidOCR；日文、韩文源在配置了 API Key 时改用 Claude 视觉识别（RapidOCR 对假名/谚文识别不可靠；无 Key 时仍用 RapidOCR，并对每个已翻译的图内文字给出质检警告）。也可按任务指定：`--ocr-engine` / 表单字段 `ocr_engine` |
+| `MATHTRANS_OCR_THREADS` | `0` | 每个 RapidOCR 模型使用的线程数（`0` = 全部核心）。同时翻译多份文档时设为 `1` |
+| `MATHTRANS_OCR_CACHE_DIR` | — | 设置后按图片缓存 OCR 结果，重跑同一文档（崩溃后或改了后续环节）时不必重新识别 |
 | `MATHTRANS_MAX_IMAGE_MEGAPIXELS` | `50` | 像素数超过该值的内嵌图片不解码、不识别（内存预算；600 dpi A4 扫描约 35 MP） |
 | `MATHTRANS_DATA_DIR` | `data` | 任务与输出存储目录 |
 | `MATHTRANS_FONTS_DIR` | — | 额外字体目录 |

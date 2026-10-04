@@ -29,6 +29,8 @@ class Settings(BaseSettings):
     enable_fallbacks: bool = True
     translator: Literal["auto", "claude", "deepseek", "mock"] = "auto"
     ocr_engine: Literal["auto", "rapid", "claude", "none"] = "auto"
+    ocr_threads: int = 0  # RapidOCR threads per model (0 = onnxruntime default, all cores); 1 when running several jobs
+    ocr_cache_dir: Optional[Path] = None  # OCR results are cached per image here, so a re-run skips recognition
     data_dir: Path = Path("data")
     fonts_dir: Optional[Path] = None
     max_qa_rounds: int = 3

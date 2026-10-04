@@ -169,6 +169,8 @@ Environment variables (or `.env`):
 | `MATHTRANS_ENABLE_FALLBACKS` | `true` | Server-side refusal fallbacks (`fallbacks: "default"`) |
 | `MATHTRANS_TRANSLATOR` | `auto` | `auto` / `claude` / `deepseek` / `mock`. `auto` = Claude if `ANTHROPIC_API_KEY` is set, else DeepSeek if `DEEPSEEK_API_KEY` is set, else mock |
 | `MATHTRANS_OCR_ENGINE` | `auto` | `auto` / `rapid` / `claude` / `none`. `auto` = offline RapidOCR for zh/en/pt/es sources; Claude vision for ja/ko sources when an API key is configured (RapidOCR reads kana / hangul unreliably — without a key it is still used and every translated image label gets a QA warning). Per job: `--ocr-engine` / form field `ocr_engine` |
+| `MATHTRANS_OCR_THREADS` | `0` | Threads per RapidOCR model (`0` = all cores). Set `1` when several documents are translated side by side |
+| `MATHTRANS_OCR_CACHE_DIR` | — | When set, OCR results are cached per image in this directory, so re-running a document (after a crash or a change further down the pipeline) skips recognition |
 | `MATHTRANS_MAX_IMAGE_MEGAPIXELS` | `50` | Embedded images with more pixels are neither decoded nor OCR'd (memory budget; a 600 dpi A4 scan is ~35 MP) |
 | `MATHTRANS_DATA_DIR` | `data` | Where projects and outputs are stored |
 | `MATHTRANS_FONTS_DIR` | — | Extra fonts directory |
