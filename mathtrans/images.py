@@ -30,7 +30,7 @@ from PIL import Image, ImageDraw, ImageFont
 from .fonts import pil_font
 from .interfaces import OcrEngine
 from .languages import is_cjk, letters_of_script, script_profile
-from .models import (anchor_marker, make_placeholder, BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
+from .models import (ANCHOR_RE, anchor_marker, make_placeholder, BBox, ImageRef, Lang, OcrResult, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
 from .ocr import OcrError, OcrUnavailableError
 from .protect import is_fully_protected, protect_text
@@ -385,7 +385,7 @@ def _is_latin_or_greek(ch: str) -> bool:
 _CJK_PLUS_RE = re.compile(r"[\d\s.=×÷+\-()（）]*\d\s*[十一]\s*\d[\d\s.=×÷+\-()（）]*")
 MEASURE_WORDS = "个只支本朵根米张把块颗条棵头辆元件匹双座间辆杯盒瓶袋箱筐束串片粒枝面层台架艘"
 """Chinese measure words (classifiers) that appear as unit labels after an answer box: □（只）."""
-_UNIT_LABEL_RE = re.compile(rf"[（(]\s*[{MEASURE_WORDS}]\s*[)）]")
+_UNIT_LABEL_RE = re.compile(rf"[（(]\s*[{MEASURE_WORDS}?]\s*[)）]")
 _COUNT_LABEL_RE = re.compile(rf"\d+\s*[{MEASURE_WORDS}]")
 """``6个``, ``96个``, ``85本``: a count label, reliable even when read with low confidence."""
 _TRAILING_UNIT_RE = re.compile(rf"\s*[（(]\s*[{MEASURE_WORDS}]?\s*[)）]?\s*$")
@@ -397,6 +397,18 @@ _PICTOGRAM_GAP_RE = re.compile(
     r"|有个有个|在的面|的面(?=[，,。]|$)")
 """Missing-operand patterns left when OCR drops inline pictograms: 用○表示人 -> 用表示人,
 △比●少□个 -> 比少个, 🍄比🍄多几个 -> 比多几个."""
+_GAP_BEFORE_RE = re.compile(r"^(?:比(?![一赛较例如方\d０-９])|表示)")
+"""The line starts with 比 / 表示: the picture it compares or stands for sits left of the OCR box."""
+_GAP_AFTER_RE = re.compile(r"(?<![一相])(?:比|用|表示)[，,。？?！!]?$")
+"""The line ends with 比 / 用 / 表示: the picture sits right of the OCR box."""
+
+
+def has_pictogram_gap(text: str) -> bool:
+    """True when ``text`` reads like a sentence whose inline pictures the OCR dropped
+    (:data:`_PICTOGRAM_GAP_RE`); pictures already anchored in it count as present."""
+    return bool(_PICTOGRAM_GAP_RE.search(ANCHOR_RE.sub("图", text).replace(" ", "")))
+
+
 _DIGIT_CONFUSION_1_RE = re.compile(r"(?<![A-Za-z0-9])[hI|](?=\d+(?![A-Za-z0-9]))")
 _DIGIT_CONFUSION_0_RE = re.compile(r"(?<=\d)[Oo](?![A-Za-z])")
 
@@ -413,7 +425,8 @@ def is_fill_in_template(text: str) -> bool:
     if others > 1 or (others == 1 and digits_other != 1):
         return False
     has_shape = any(c in "□○口〇◯●◇△▲☐" for c in kept)
-    return boxes >= 2 and ("=" in core or has_shape)
+    operator = any(op in core for op in "+-−×÷")  # "□○□=□" read as "0OO-O": = taken for -
+    return boxes >= 2 and ("=" in core or has_shape or (boxes >= 3 and operator))
 
 
 def normalize_ocr_digits(text: str) -> str:
@@ -438,6 +451,14 @@ def split_place_value(text: str, box: tuple[int, int, int, int]) -> Optional[tup
         label, digits, label_first = m.group(1), m.group(2), True
     else:
         label, digits, label_first = m.group(4), m.group(3), False
+    if y1 - y0 >= 1.8 * (x1 - x0):
+        # stacked down a column (十 / 位 / 3): every glyph is about one em tall
+        share = len(label) / (len(label) + len(digits))
+        cut = y0 + share * (y1 - y0)
+        margin = 0.08 * (x1 - x0)
+        if label_first:
+            return label, (x0, y0, x1, max(y0 + 1, int(cut - margin)))
+        return label, (x0, min(y1 - 1, int(y0 + (1 - share) * (y1 - y0) + margin)), x1, y1)
     # a CJK glyph is about one em wide, a digit about 0.55 em; keep a margin towards the digit
     share = len(label) / (len(label) + 0.55 * len(digits))
     cut = x0 + share * (x1 - x0)
@@ -699,6 +720,81 @@ def detect_anchors(rgb: np.ndarray, box: tuple[int, int, int, int], text: str, k
     return "".join(out), anchors
 
 
+def find_adjacent_picture(rgb: np.ndarray, box: tuple[int, int, int, int], side: str,
+                          text_check: Optional[TextCheck]) -> Optional[tuple[int, int, int, int]]:
+    """The coloured picture right next to an OCR line, on ``side`` ("left" / "right"):
+    🍎比🍐多几个 is read as 比多几个 with the box starting at 比. Returns its pixel box, or
+    None when there is no single clear picture within two line heights (text, a busy
+    background or nothing at all)."""
+    if text_check is None:
+        return None
+    x0, y0, x1, y1 = (int(v) for v in box)
+    h = y1 - y0
+    H, W = rgb.shape[:2]
+    if h < 12:
+        return None
+    bg, share = _dominant(rgb[y0:y1, x0:x1])
+    if share < 0.4 or float(bg.max() - bg.min()) >= ANCHOR_MIN_SATURATION or float(bg.max()) < 150:
+        return None
+    ry0, ry1 = max(0, y0 - h), min(H, y1 + h)
+    rx0, rx1 = (max(0, x0 - int(2.6 * h)), x0) if side == "left" else (x1, min(W, x1 + int(2.6 * h)))
+    if rx1 - rx0 < h // 2:
+        return None
+    region = rgb[ry0:ry1, rx0:rx1].astype(np.int32)
+    diff = np.abs(region - bg).max(axis=2)
+    ink = diff > 50
+    text_colour = np.array(estimate_text_color(rgb, box, bg.astype(np.uint8)), dtype=np.int32)
+    dist = np.sqrt(((region - text_colour) ** 2).sum(axis=2))
+    unlike = ink & (diff > ANCHOR_MIN_CONTRAST) & (dist >= ANCHOR_COLOUR_DISTANCE)
+    if not unlike.any():
+        return None
+    k = max(2, h // 10)  # (a tight merge: a dashed frame line next to the picture stays apart)
+    grown = cv2.dilate(unlike.astype(np.uint8), np.ones((k, k), np.uint8))
+    n, _labels, stats, _ = cv2.connectedComponentsWithStats(grown, connectivity=8)
+    best = None
+    for i in range(1, n):
+        gx, gy, gw, gh, _area = (int(v) for v in stats[i])
+        if not (0.35 * h <= gh <= 2.6 * h) or gw < ANCHOR_MIN_WIDTH * h or gw > 2.6 * h:
+            continue  # (the OCR box may hold an answer box: its height overstates the text's)
+        if gy + gh < h // 2 or gy > (ry1 - ry0) - h // 2:
+            continue  # above or below the line, not beside it
+        if gy == 0 or gy + gh >= ry1 - ry0:
+            continue  # cut by the search band: part of a larger drawing
+        near = (rx1 - rx0) - (gx + gw) if side == "left" else gx
+        if near > 0.9 * h:
+            continue
+        px = region[gy:gy + gh, gx:gx + gw][unlike[gy:gy + gh, gx:gx + gw]]
+        if px.size == 0 or float(np.median(px.max(axis=1) - px.min(axis=1))) < ANCHOR_MIN_SATURATION:
+            continue
+        if best is None or near < best[0]:
+            best = (near, gx, gy, gw, gh)
+    if best is None:
+        return None
+    _near, gx, gy, gw, gh = best
+    between = (slice(None), slice(gx + gw, None)) if side == "left" else (slice(None), slice(0, gx))
+    if (ink & (dist < ANCHOR_COLOUR_DISTANCE))[between].sum() > 0.02 * h * h:
+        return None  # a word between the picture and the line: not its operand
+    pic = (rx0 + max(0, gx - 2), ry0 + max(0, gy - 2), rx0 + min(rx1 - rx0, gx + gw + 2),
+           ry0 + min(ry1 - ry0, gy + gh + 2))
+    crop = np.ascontiguousarray(rgb[pic[1]:pic[3], pic[0]:pic[2]])
+    if not _multicoloured(crop, bg) and text_check(crop):
+        return None  # coloured text, not a picture
+    return pic
+
+
+def _multicoloured(crop: np.ndarray, bg: np.ndarray) -> bool:
+    """Two or more distinct hues among the coloured pixels (a flower with its leaves):
+    a drawing, never a coloured word - the recogniser readily "reads" such drawings."""
+    px = crop.reshape(-1, 3)
+    px = px[(np.abs(px.astype(np.int32) - bg).max(axis=1) > 50)
+            & ((px.max(axis=1).astype(np.int32) - px.min(axis=1)) >= ANCHOR_MIN_SATURATION)]
+    if len(px) < 30:
+        return False
+    hue = cv2.cvtColor(px.reshape(-1, 1, 3).astype(np.uint8), cv2.COLOR_RGB2HSV)[:, 0, 0]
+    counts = np.bincount(hue.astype(np.int32) // 15, minlength=12)
+    return int((counts >= 0.15 * len(px)).sum()) >= 2
+
+
 def is_cjk_char(ch: str) -> bool:
     return "\u3400" <= ch <= "\u9fff"
 _TALLY_RE = re.compile(r"[正\s]+")
@@ -731,7 +827,7 @@ def classify_ocr_text(text: str, source_lang: Lang) -> tuple[str, list[str], boo
     if _EMPTY_QUOTES_RE.search(stripped) and any(is_cjk_char(c) for c in stripped):
         # (画“✓”) with the mark unread: a translation would say 'Draw ""'
         return protect_text(stripped, source_lang) + (False, UNREADABLE_SYMBOL)
-    if any(is_cjk_char(c) for c in stripped) and _PICTOGRAM_GAP_RE.search(stripped.replace(" ", "")):
+    if any(is_cjk_char(c) for c in stripped) and has_pictogram_gap(stripped):
         # the sentence is built around pictures the OCR could not read (用○表示人 -> 用表示人)
         return protect_text(stripped, source_lang) + (False, INLINE_PICTOGRAMS)
     if _CJK_PLUS_RE.fullmatch(stripped):
@@ -901,6 +997,33 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
         raw_text, box = place_value
         result = result.model_copy(update={"text": raw_text, "polygon": [[box[0], box[1]], [box[2], box[1]],
                                                                           [box[2], box[3]], [box[0], box[3]]]})
+    han = sum(is_cjk_char(c) for c in raw_text)
+    bw, bh = box[2] - box[0], box[3] - box[1]
+    if han >= 2 and han == len(raw_text.strip()) and bh >= 1.8 * bw and bh / han > 1.25 * bw:
+        # stacked characters (十位 written down a column): the detector's box often covers only part
+        # of each character's width; widen it to the characters' size so they can be erased whole
+        cx, half = (box[0] + box[2]) / 2, min(bh / han, 2.5 * bw) / 2
+        box = _clamp_box((int(cx - half), box[1], int(cx + half + 0.999), box[3]), loaded.width, loaded.height)
+        result = result.model_copy(update={"polygon": _rect(*box)})
+    unit_core = _LEADING_BOXES_RE.sub("", raw_text.strip())
+    bare = _BARE_UNIT_RE.fullmatch(raw_text.strip())
+    if bare:
+        # "）个": the measure word after an answer bracket; the bracket itself stays
+        widths = [_char_width(c) for c in raw_text.strip()]
+        cut = box[0] + int(sum(widths[:-1]) / max(sum(widths), 1e-6) * (box[2] - box[0]))
+        box = (cut, box[1], box[2], box[3])
+        raw_text = unit_core = "（" + bare.group(1) + "）"
+        result = result.model_copy(update={"text": bare.group(1), "polygon": _rect(*box)})
+    elif _UNIT_LABEL_RE.fullmatch(unit_core):
+        # "（支）" whose box also holds the answer box before it ("□（支）", or the box unread):
+        # keep only the label's pixels, so that dropping (erasing) it leaves the answer box alone
+        cut = locate_trailing_label(loaded.rgb, box)
+        if cut is not None and box[0] < cut < box[2]:
+            box = (cut, box[1], box[2], box[3])
+            raw_text = unit_core
+            result = result.model_copy(update={"text": unit_core, "polygon": _rect(*box)})
+        elif unit_core != raw_text.strip():
+            unit_core = ""  # the label could not be separated from the box: leave both as they are
     if box[2] - box[0] <= 0 or box[3] - box[1] <= 0:
         logger.debug("page %d image %d: dropping %r (box %s outside the %dx%d image)", page_index, xref,
                      result.text, result.box, loaded.width, loaded.height)
@@ -918,8 +1041,23 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
             logger.info("page %d image %d: marks read between the quotes: %r -> %r", page_index, xref, text, filled)
             text = filled
     anchors: dict[str, list[int]] = {}
-    if text_check is not None:
+    if text_check is not None and not _UNIT_LABEL_RE.fullmatch(unit_core):
         text, pixel_anchors = detect_anchors(loaded.rgb, box, text, f"{xref}.{index}", text_check)
+        probe = ANCHOR_RE.sub("图", text.strip())
+        for side, gap_re in (("left", _GAP_BEFORE_RE), ("right", _GAP_AFTER_RE)):
+            if not gap_re.search(probe):
+                continue
+            pic = find_adjacent_picture(loaded.rgb, box, side, text_check)
+            if pic is None:
+                continue
+            key = f"{xref}.{index}.{side[0]}"
+            pixel_anchors[key] = list(pic)
+            if side == "left":
+                text = anchor_marker(key) + text.lstrip()
+            else:
+                body = text.rstrip()
+                tail = body[-1] if body[-1:] in "，,。？?！!" else ""
+                text = body[:len(body) - len(tail)] + anchor_marker(key) + tail
         anchors = {k: [xref, *v] for k, v in pixel_anchors.items()}
         if anchors:
             logger.info("page %d image %d: %d inline picture(s) anchored in %r", page_index, xref, len(anchors), text)
@@ -928,7 +1066,7 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
                     result.text, text)
     protected, fragments, translate, reason = classify_ocr_text(text, source_lang)
     letters = [c for c in text if c.isalpha()]
-    unit_label = bool(_UNIT_LABEL_RE.fullmatch(text.strip()))
+    unit_label = bool(_UNIT_LABEL_RE.fullmatch(text.strip())) or bool(bare)
     if unit_label:
         # "(个)" after an answer box: English books write "13 - 9 = □" and let the picture show what is
         # counted; the label is erased (scanned pages) instead of being set as an unreadable "(apples)"
@@ -959,27 +1097,93 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     )
 
 
-def _split_template_units(results: list[OcrResult]) -> list[OcrResult]:
+UNREAD_UNIT = "（?）"
+"""Text given to a unit label found in the pixels but misread by the OCR (``(v)``, ``(*)``)."""
+_BARE_UNIT_RE = re.compile(rf"[)）]\s*([{MEASURE_WORDS}])")
+"""``）个``: a measure word right after the closing bracket of an answer blank."""
+_MISREAD_UNIT_RE = re.compile(r"^\s*[（(]\s*[^\s()（）]?\s*[)）]|[（(]\s*[^\s()（）]?\s*[)）]\s*$")
+_LEADING_BOXES_RE = re.compile(r"^[□○OoD0Q口〇◯●◇△▲☐)）\s]+")
+
+
+def locate_trailing_label(rgb: np.ndarray, box: tuple[int, int, int, int]) -> Optional[int]:
+    """Pixel x where a dark label (``（个）``) right of a coloured answer box starts inside
+    ``box``, or None. The ink columns are read from the right: dark runs belong to the label,
+    the first coloured run is the answer box. A label must have ink in its middle (an empty
+    ``（ ）`` is an answer bracket, not a unit) and be about one to three line heights wide."""
+    x0, y0, x1, y1 = (int(v) for v in box)
+    crop = rgb[max(0, y0):y1, max(0, x0):x1]
+    h, w = crop.shape[:2]
+    if h < 8 or w < 2 * h:
+        return None
+    bg, _share = _dominant(crop)
+    px = crop.astype(np.int32)
+    ink = np.abs(px - bg).max(axis=2) > 60
+    sat = px.max(axis=2) - px.min(axis=2)
+    runs: list[list[int]] = []
+    for xi in np.flatnonzero(ink.any(axis=0)):
+        if runs and xi - runs[-1][1] <= max(2, h // 8):
+            runs[-1][1] = int(xi) + 1
+        else:
+            runs.append([int(xi), int(xi) + 1])
+    start, i = None, len(runs) - 1
+    while i >= 0:
+        a, b = runs[i]
+        cell = ink[:, a:b]
+        if float(np.median(sat[:, a:b][cell])) >= ANCHOR_MIN_SATURATION:
+            break  # the coloured answer box
+        start, i = a, i - 1
+    if start is None or i < 0:
+        return None
+    end = runs[-1][1]
+    if not (0.8 * h <= end - start <= 3.6 * h):
+        return None
+    mid = ink[:, start + (end - start) * 3 // 10:start + (end - start) * 7 // 10]
+    if mid.size == 0 or not mid.any():
+        return None  # "（ ）": an empty answer bracket
+    gap = start - runs[i][1]
+    return max(0, x0) + start - max(1, min(gap // 2, h // 4))
+
+
+def _rect(x0: float, y0: float, x1: float, y1: float) -> list[list[float]]:
+    return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]
+
+
+def _split_template_units(results: list[OcrResult], rgb: Optional[np.ndarray] = None) -> list[OcrResult]:
     """Split a trailing unit label off an answer-box template line (``□-□=□（个）``) so the
-    template stays untouched in the picture while the label is handled (dropped) on its own."""
+    template stays untouched in the picture while the label is handled (dropped) on its own.
+    With the image's pixels (``rgb``) the cut is placed where the label starts, and labels the
+    OCR misread (``O=O-O (v)``, ``(v) O=O-O``, ``□（只）``) are found too."""
     out: list[OcrResult] = []
     for r in results:
-        m = re.search(rf"[（(]\s*[{MEASURE_WORDS}]\s*[)）]\s*$", r.text.strip())
-        if not m or m.start() == 0:
-            out.append(r)
-            continue
         text = r.text.strip()
-        head, unit = text[:m.start()], text[m.start():]
-        if not (is_fill_in_template(text) or ("=" in head and head.rstrip()[-1:] in _BOX_GLYPHS)):
-            out.append(r)  # a worked result keeps its unit: 10÷5=2（元） -> "10÷5=2 (yuan)"
-            continue
-        widths = [_char_width(c) for c in text]
-        share = sum(widths[:m.start()]) / max(sum(widths), 1e-6)
         xs = [p[0] for p in r.polygon]; ys = [p[1] for p in r.polygon]
         x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
-        cut = x0 + share * (x1 - x0)
-        out.append(OcrResult(text=head, polygon=[[x0, y0], [cut, y0], [cut, y1], [x0, y1]], confidence=r.confidence))
-        out.append(OcrResult(text=unit, polygon=[[cut + 1, y0], [x1, y0], [x1, y1], [cut + 1, y1]], confidence=r.confidence))
+        m = re.search(rf"[（(]\s*[{MEASURE_WORDS}]\s*[)）]\s*$", text)
+        if m and m.start() > 0:
+            head, unit = text[:m.start()], text[m.start():]
+        else:
+            m = _MISREAD_UNIT_RE.search(text) if rgb is not None else None
+            if not m:
+                out.append(r)
+                continue
+            head, unit = (text[:m.start()] + text[m.end():]).strip(), m.group(0).strip()
+            if not _UNIT_LABEL_RE.fullmatch(unit):
+                unit = UNREAD_UNIT
+        boxes_only = bool(head.strip()) and not _LEADING_BOXES_RE.sub("", head.strip())
+        if not (is_fill_in_template(text) or is_fill_in_template(head) or boxes_only
+                or ("=" in head and head.rstrip()[-1:] in _BOX_GLYPHS)):
+            out.append(r)  # a worked result keeps its unit: 10÷5=2（元） -> "10÷5=2 (yuan)"
+            continue
+        cut = locate_trailing_label(rgb, (int(x0), int(y0), int(x1 + 0.999), int(y1 + 0.999))) \
+            if rgb is not None else None
+        if cut is None:
+            if not m or m.start() == 0 or unit == UNREAD_UNIT:
+                out.append(r)  # where the label sits is unknown
+                continue
+            widths = [_char_width(c) for c in text]
+            cut = x0 + sum(widths[:m.start()]) / max(sum(widths), 1e-6) * (x1 - x0)
+        out.append(OcrResult(text=head, polygon=_rect(x0, y0, cut, y1), confidence=r.confidence))
+        out.append(OcrResult(text=unit, polygon=_rect(cut + 1, y0, x1, y1), confidence=r.confidence))
     return out
 
 
@@ -994,7 +1198,7 @@ def _text_check_for(engine: Any) -> Optional[TextCheck]:
             found, conf = recognize_crop(crop)
         except Exception:  # noqa: BLE001 - no verdict, no anchor
             return True
-        letters = [c for c in found if c.isalnum()]
+        letters = [c for c in found if c.isalnum() and c not in _BOX_GLYPHS]  # a square "reads" as 口 / 0
         return bool(letters) and conf >= 0.5
     return check
 
@@ -1069,7 +1273,7 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
                 transform = info.get("transform") or (image_bbox.width, 0.0, 0.0, image_bbox.height,
                                                        image_bbox.x0, image_bbox.y0)
                 kept = translatable = 0
-                for n, result in enumerate(_split_template_units(results)):
+                for n, result in enumerate(_split_template_units(results, loaded.rgb)):
                     if result.confidence < min_confidence:
                         logger.debug("page %d image %d: dropping %r (confidence %.2f < %.2f)", page.number, xref,
                                      result.text, result.confidence, min_confidence)

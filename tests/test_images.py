@@ -1795,3 +1795,93 @@ def test_rapid_engine_thread_setting(monkeypatch):
     finally:
         RapidOcrEngine.reset()
         reset_settings()
+
+
+def _unit_image(label_text="（个）", label=True):
+    img = Image.new("RGB", (420, 60), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([(10, 8), (54, 52)], radius=8, outline=(230, 40, 40), width=4)
+    d.text((64, 6), "-", fill=(20, 20, 20), font=pil_font("zh", 40))
+    d.rounded_rectangle([(100, 8), (144, 52)], radius=8, outline=(230, 40, 40), width=4)
+    d.text((152, 6), "=", fill=(20, 20, 20), font=pil_font("zh", 40))
+    d.rounded_rectangle([(190, 8), (234, 52)], radius=8, outline=(230, 40, 40), width=4)
+    if label:
+        d.text((250, 8), label_text, fill=(20, 20, 20), font=pil_font("zh", 38))
+    return np.array(img)
+
+
+def test_unit_label_is_located_in_the_pixels():
+    from mathtrans.images import UNREAD_UNIT, _split_template_units, locate_trailing_label
+
+    rgb = _unit_image()
+    cut = locate_trailing_label(rgb, (0, 4, 400, 56))
+    assert cut is not None and 234 <= cut <= 262                     # between the last box and the label
+    assert locate_trailing_label(_unit_image("（  ）"), (0, 4, 400, 56)) is None   # an empty answer bracket
+    assert locate_trailing_label(_unit_image(label=False), (0, 4, 400, 56)) is None
+
+    def r(text):
+        return OcrResult(text=text, polygon=[[0, 4], [400, 4], [400, 56], [0, 56]], confidence=0.8)
+
+    # misread labels are split off where the pixels say, whatever the OCR made of them
+    for text in ["O-O=O (v)", "(v) O-O=O", "OO-O ()", "O-O=O（个）"]:
+        out = _split_template_units([r(text)], rgb)
+        assert len(out) == 2, text
+        assert out[1].text in (UNREAD_UNIT, "（个）") and 234 <= out[1].polygon[0][0] <= 263, text
+    assert [o.text for o in _split_template_units([r("O-O=O (v)")])] == ["O-O=O (v)"]   # no pixels: unchanged
+
+
+def test_unit_label_with_its_answer_box_is_cut_down_to_the_label():
+    from mathtrans.images import build_image_segment
+
+    rgb = _unit_image()
+    loaded = LoadedImage(xref=5, rgb=rgb)
+    bbox = BBox(x0=0, y0=0, x1=420, y1=60)
+    for text in ["口（个）", "(个)", "）个"]:
+        res = OcrResult(text=text, polygon=[[190, 4], [400, 4], [400, 56], [190, 56]], confidence=0.7)
+        seg = build_image_segment(res, page_index=0, xref=5, index=0, loaded=loaded, image_bbox=bbox,
+                                  transform=(420, 0, 0, 60, 0, 0), source_lang=Lang.ZH, text_check=lambda crop: False)
+        assert seg.translate is False and "unit label" in seg.skip_reason, text
+        assert seg.image.pixel_box[0] >= 234 and seg.anchors == {}, text   # the answer box is left alone
+
+
+def test_pictures_beside_a_comparison_line_are_anchored():
+    from mathtrans.images import build_image_segment, has_pictogram_gap
+    from mathtrans.models import ANCHOR_RE
+
+    assert has_pictogram_gap("比多几个？") and not has_pictogram_gap(ANCHOR_RE.pattern and "a比b多几个？")
+    img = Image.new("RGB", (520, 90), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.ellipse([(20, 25), (62, 67)], fill=(240, 140, 30))                       # an orange flower ...
+    d.ellipse([(22, 58), (60, 82)], fill=(40, 160, 60))                         # ... and its green leaves
+    d.text((70, 24), "比", fill=(20, 20, 20), font=pil_font("zh", 40))
+    d.ellipse([(118, 25), (160, 67)], fill=(220, 40, 50))                       # a red flower
+    d.text((170, 24), "少几朵？", fill=(20, 20, 20), font=pil_font("zh", 40))
+    rgb = np.array(img)
+    loaded = LoadedImage(xref=5, rgb=rgb)
+    res = OcrResult(text="比", polygon=[[68, 22], [112, 22], [112, 68], [68, 68]], confidence=0.95)
+    seg = build_image_segment(res, page_index=0, xref=5, index=3, loaded=loaded,
+                              image_bbox=BBox(x0=0, y0=0, x1=520, y1=90), transform=(520, 0, 0, 90, 0, 0), source_lang=Lang.ZH,
+                              text_check=lambda crop: False)
+    assert ANCHOR_RE.sub("#", seg.source_text) == "#比#" and seg.translate
+    left = seg.anchors["5.3.l"]
+    assert left[2] <= 25 and left[4] >= 80                                      # the flower with its leaves
+    # a recogniser that "reads" every drawing vetoes the one-colour shape, not the multicoloured flower
+    seg = build_image_segment(res, page_index=0, xref=5, index=3, loaded=loaded,
+                              image_bbox=BBox(x0=0, y0=0, x1=520, y1=90), transform=(520, 0, 0, 90, 0, 0),
+                              source_lang=Lang.ZH, text_check=lambda crop: True)
+    assert ANCHOR_RE.sub("#", seg.source_text) == "#比"
+    # nothing beside the line: it stays in the picture
+    blank = np.full((90, 520, 3), 255, dtype=np.uint8)
+    blank[22:68, 68:112] = rgb[22:68, 68:112]
+    loaded = LoadedImage(xref=5, rgb=blank)
+    seg = build_image_segment(res, page_index=0, xref=5, index=3, loaded=loaded,
+                              image_bbox=BBox(x0=0, y0=0, x1=520, y1=90), transform=(520, 0, 0, 90, 0, 0), source_lang=Lang.ZH,
+                              text_check=lambda crop: False)
+    assert seg.translate is False and seg.anchors == {}
+
+
+def test_stacked_place_value_label_is_split_down_the_column():
+    from mathtrans.images import split_place_value
+
+    label, box = split_place_value("十位3", (100, 0, 130, 150))
+    assert label == "十位" and box[0] == 100 and box[2] == 130 and 90 <= box[3] <= 100

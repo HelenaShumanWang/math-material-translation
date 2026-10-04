@@ -510,3 +510,49 @@ def test_dropped_unit_labels_are_marked_for_erasing():
     paragraphs = group_ocr_lines([unit, sentence], 0, Lang.ZH)
     assert [p.members for p in paragraphs] == [["g1"]]                 # nothing is set for the unit ...
     assert unit.skip_reason == f"{MERGED} {UNIT_DROPPED}"              # ... but it is erased with the merged lines
+
+
+def test_wrapped_line_ending_in_bi_joins_its_sentence():
+    from mathtrans.images import INLINE_PICTOGRAMS
+
+    first = _gline(0, 50, 100, 120, "我的花生比")
+    first.translate, first.skip_reason = False, INLINE_PICTOGRAMS
+    second = _gline(1, 50, 115, 110, "你的多。")
+    paragraphs = group_ocr_lines([first, second], 0, Lang.ZH)
+    assert [p.source_text for p in paragraphs] == ["我的花生比你的多。"]
+    assert first.skip_reason.startswith(MERGED) and second.skip_reason.startswith(MERGED)
+    # a picture really is missing: the joined text still has the gap, the line stays in the picture
+    gap = _gline(2, 50, 200, 140, "用表示人，用")
+    gap.translate, gap.skip_reason = False, INLINE_PICTOGRAMS
+    rest = _gline(3, 50, 215, 120, "表示椅子。")
+    paragraphs = group_ocr_lines([gap, rest], 0, Lang.ZH)
+    assert [p.source_text for p in paragraphs] == ["表示椅子。"]
+    assert gap.skip_reason == INLINE_PICTOGRAMS and gap.translate is False
+    # alone it stays as it was
+    alone = _gline(4, 50, 300, 120, "我的花生比")
+    alone.translate, alone.skip_reason = False, INLINE_PICTOGRAMS
+    assert group_ocr_lines([alone], 0, Lang.ZH) == [] and alone.skip_reason == INLINE_PICTOGRAMS
+
+
+def test_stacked_column_label_is_set_as_vertical_text():
+    label = _gline(0, 100, 100, 108, "十位", h=50.0)
+    body = _gline(1, 50, 300, 300, "用竖式计算下面各题。")
+    paragraphs = group_ocr_lines([label, body], 0, Lang.ZH)
+    by_text = {p.source_text: p for p in paragraphs}
+    assert by_text["十位"].style.is_vertical and by_text["十位"].style.role == "label"
+    assert by_text["十位"].style.size < 10
+    assert not by_text["用竖式计算下面各题。"].style.is_vertical
+
+
+def test_trailing_full_stop_is_found_beside_a_bubble_outline():
+    from mathtrans.scanned import _extend_for_punctuation
+
+    # light bubble interior, the full stop, then the bubble's outline and the white page beyond
+    original = _text_image((300, 60), (255, 255, 255), [
+        ("rect", [0, 0, 262, 59], (255, 236, 200)), ("rect", [263, 0, 268, 59], (230, 150, 60)),
+        ("text", ((10, 10), "我踢了下。", 34), (30, 30, 30))])
+    import numpy as np
+    ink_cols = np.flatnonzero((original[:, :255].max(axis=2) < 100).any(axis=0))
+    box = (0, 8, int(ink_cols.max()) - 28, 52)            # the OCR box ends before the 。
+    x0, y0, x1, y1 = _extend_for_punctuation(original, box, [])
+    assert x1 >= int(ink_cols.max()) and x1 < 263          # the 。 is taken, the outline is not

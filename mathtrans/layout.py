@@ -539,14 +539,20 @@ class _PageSpace:
                 y1 = self._shrink_until_free(box, "down", y1)
         if horizontal:
             x0, x1 = self._extend_horizontal(BBox(x0=x0, y0=y0, x1=x1, y1=y1),
-                                             "center" if label else seg.style.align, obstacles, containers,
+                                             "both" if label else seg.style.align, obstacles, containers,
                                              growth_factor=LABEL_WIDTH_GROWTH if label else MAX_WIDTH_GROWTH)
             if self.scanned:
                 x1 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "right", x1)
                 x0 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "left", x0)
-                if label:  # keep the label centred on its original position
-                    side = min(box.x0 - x0, x1 - box.x1)
-                    x0, x1 = box.x0 - side, box.x1 + side
+                if label:  # keep the label centred on its original position ...
+                    left, right = box.x0 - x0, x1 - box.x1
+                    side = min(left, right)
+                    if side >= 0.5 * max(left, right):
+                        x0, x1 = box.x0 - side, box.x1 + side
+                    elif left > right:  # ... unless only one side is free ("答：" before its sentence)
+                        x1 = box.x1
+                    else:
+                        x0 = box.x0
         return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
 
     def _strip_is_free(self, rect: BBox) -> bool:
@@ -570,7 +576,7 @@ class _PageSpace:
         base = {"down": box.y1, "right": box.x1, "left": box.x0}[side]
         if (side == "left" and limit >= base) or (side != "left" and limit <= base):
             return limit
-        for fraction in (1.0, 0.5):
+        for fraction in (1.0, 0.5, 0.25, 0.12):  # a name label next to a drawing still gains a little
             edge = base + (limit - base) * fraction
             if side == "down":
                 strip = BBox(x0=box.x0, y0=box.y1, x1=box.x1, y1=edge)
@@ -625,6 +631,8 @@ class _PageSpace:
         if align == "center":
             side = min(box.x0 - left, right - box.x1)
             return box.x0 - side, box.x1 + side
+        if align == "both":
+            return left, right
         return box.x0, right
 
 
@@ -671,9 +679,11 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
         if bg is not None:
             fixed = readable_color(seg.style.color, bg)
             color = fixed if fixed != seg.style.color else None
-        if (_short_label(seg) or _centred_heading(seg, space.page_rect)) and grown != base \
-                and abs((grown.x0 + grown.x1) - (base.x0 + base.x1)) < 1.0:
-            align = "center"  # grown symmetrically around the original label
+        if (_short_label(seg) or _centred_heading(seg, space.page_rect)) and grown != base:
+            if abs((grown.x0 + grown.x1) - (base.x0 + base.x1)) < 1.0:
+                align = "center"  # grown symmetrically around the original label
+            elif grown.x0 < base.x0 - 0.5 and abs(grown.x1 - base.x1) < 0.5:
+                align = "right"  # grown leftwards only: keep the label's end where it was
     grown_note = "" if grown == base else "box extended into free space"
     tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
     attempts: list[tuple[BBox, Optional[float], float, str]] = [(base, None, 1.0, "")]

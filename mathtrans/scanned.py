@@ -21,7 +21,8 @@ import numpy as np
 import pymupdf
 
 from .extract import is_list_item
-from .images import _clear_box, encode_image, load_image, replace_image, resolve_placement
+from .images import (INLINE_PICTOGRAMS, _clear_box, encode_image, has_pictogram_gap, load_image, replace_image,
+                     resolve_placement)
 from .languages import is_cjk
 from .models import (BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
@@ -350,7 +351,16 @@ def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: La
                   for l in lines) and len(lines) > 1
     align = "center" if centred else "left"
     letters = sum(ch.isalpha() for ch in text)
-    if len(lines) == 1 and page_median_height > 0 and h >= 1.4 * page_median_height:
+    han = sum("\u3400" <= ch <= "\u9fff" for ch in text)
+    box = para.bbox
+    vertical = (len(lines) == 1 and han >= 2 and box.width > 0 and box.height >= 1.8 * box.width
+                and box.height / box.width >= 0.6 * han)
+    if vertical:
+        # 十位 / 个位 stacked in a narrow column over a vertical form: the characters are as tall as
+        # the column is wide; the English is set running down the column
+        size = max(4.0, round(min(box.width, box.height / han) * FONT_HEIGHT_RATIO, 1))
+        role = "label"
+    elif len(lines) == 1 and page_median_height > 0 and h >= 1.4 * page_median_height:
         role = "heading"
     elif len(lines) == 1 and letters <= 8:
         role = "label"
@@ -366,7 +376,8 @@ def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: La
         source_text=text,
         protected_text=protected,
         protected=fragments,
-        style=SegmentStyle(size=size, color=first.style.color, align=align, line_height=line_height, role=role),
+        style=SegmentStyle(size=size, color=first.style.color, align=align, line_height=line_height, role=role,
+                           is_vertical=vertical),
         translate=translate,
         skip_reason="" if translate else "no translatable text (numbers / formula only)",
         origin="ocr",
@@ -387,10 +398,18 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     for line in lines:
         if line.page == page_index and line.skip_reason == UNIT_DROPPED:
             line.skip_reason = f"{MERGED} {UNIT_DROPPED}"  # erased with the merged lines, nothing set instead
+    # a line set aside for a dropped picture may just be the first or last line of a sentence that
+    # wraps (我的花生比 / 你的多): it joins a paragraph when the joined text has no gap left
+    pending = {l.id for l in lines if l.page == page_index and l.kind == SegmentKind.IMAGE_TEXT
+               and l.image is not None and l.skip_reason == INLINE_PICTOGRAMS}
+    for line in lines:
+        if line.id in pending:
+            line.translate = True
     candidates = [l for l in lines if l.page == page_index and _mergeable(l)]
     if not candidates:
         return []
-    candidates, units = _join_row_pieces(candidates, blank_check)
+    candidates, units = _join_row_pieces([c for c in candidates if c.id not in pending], blank_check)
+    candidates += [l for l in lines if l.id in pending]
     candidates.sort(key=lambda l: (round(l.bbox.y0, 1), l.bbox.x0))
     page_median_height = statistics.median(l.bbox.height for l in candidates)
     paragraphs: list[_Para] = []
@@ -406,6 +425,19 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
             paragraphs.append(_Para(line))
         else:
             best.add(line)
+    for para in paragraphs:
+        if any(l.id in pending for l in para.lines) and has_pictogram_gap(
+                _join_lines([l.source_text for l in para.lines], source_lang)):
+            para.lines = [l for l in para.lines if l.id not in pending]
+            if para.lines:
+                para.bbox = para.lines[0].bbox
+                for l in para.lines[1:]:
+                    para.bbox = para.bbox.union(l.bbox)
+                para.heights = [l.bbox.height for l in para.lines]
+    for line in lines:
+        if line.id in pending:
+            line.translate = False  # merged lines are re-marked below; the others stay in the picture
+    paragraphs = [p for p in paragraphs if p.lines]
     paragraphs.sort(key=lambda p: (round(p.bbox.y0 / 20), p.bbox.x0))
     out: list[TextSegment] = []
     for i, para in enumerate(paragraphs):
@@ -799,11 +831,19 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
     strip = original[y0:y1, x1:ex1]
     bg, share = _dominant_colour(strip)
     if share < STRIPE_MIN_SHARE:
-        return box
-    ink = (np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF).astype(np.uint8)
+        # the strip reaches a bubble outline or the page beyond it: take the line's own background
+        bg, share = _dominant_colour(original[y0:y1, x0:x1])
+        if share < STRIPE_MIN_SHARE:
+            return box
+    # the text's own darkness separates a full stop from the faint watermark strokes around it
+    line_diff = np.abs(original[y0:y1, x0:x1].astype(np.int32) - bg.astype(np.int32)).max(axis=2)
+    threshold = max(GLYPH_DIFF, 0.5 * float(np.percentile(line_diff, 99))) if line_diff.size else GLYPH_DIFF
+    ink = (np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > threshold).astype(np.uint8)
     if not ink.any():
         return box
     n, _labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+    faint = (np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF).astype(np.uint8)
+    _nf, faint_labels, faint_stats, _ = cv2.connectedComponentsWithStats(faint, connectivity=8)
     right = 0
     for i in range(1, n):
         bx, by, bw, bh, area = (int(v) for v in stats[i])
@@ -812,9 +852,13 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
         if bx + bw >= ink.shape[1] - 1:
             continue
         right = max(right, bx + bw)
+        for f in set(faint_labels[by:by + bh, bx:bx + bw][ink[by:by + bh, bx:bx + bw] > 0].tolist()) - {0}:
+            fx, _fy, fw, _fh, _fa = (int(v) for v in faint_stats[f])
+            if fw <= 0.6 * h and fx + fw < ink.shape[1] - 1:
+                right = max(right, fx + fw)  # the mark's anti-aliased rim
     if right == 0:
         return box
-    return x0, y0, x1 + right + 2, y1
+    return x0, y0, min(ex1, x1 + right + max(2, h // 10)), y1
 
 
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
