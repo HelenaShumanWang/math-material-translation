@@ -1000,3 +1000,23 @@ def test_convention_rules_measure_word_placeholders_and_symbols():
     invented = seg("inv", "比多几个？", "How many more ○ than △?")
     msgs = [i.message for i in C.formatting(doc(invented), opts(), [])]
     assert any(m.startswith("Remove the symbol(s)") and "○" in m for m in msgs)
+
+
+def test_output_geometry_accepts_inline_pictures_inside_translated_text(tmp_path):
+    from mathtrans.models import BBox, RenderInfo, TextSegment, TranslatedDocument
+    from mathtrans.qa.checks import _geometry_issues
+
+    src = pymupdf.open()
+    src.new_page(width=300, height=300)
+    out = pymupdf.open()
+    page = out.new_page(width=300, height=300)
+    pix = pymupdf.Pixmap(pymupdf.csRGB, pymupdf.IRect(0, 0, 8, 8), False)
+    pix.clear_with(200)
+    page.insert_image(pymupdf.Rect(50, 50, 62, 63), pixmap=pix)     # inside the text box (1 pt proud)
+    seg = TextSegment(id="p", page=0, bbox=BBox(x0=40, y0=40, x1=200, y1=62), source_text="x", origin="ocr",
+                      anchors={"k": [9, 0, 0, 10, 10]},
+                      render=RenderInfo(font_size=10, scale=1, bbox=BBox(x0=40, y0=40, x1=200, y1=62)))
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN, segments=[seg])
+    assert _geometry_issues(src[0], out[0], 0, doc) == []
+    page.insert_image(pymupdf.Rect(250, 250, 262, 262), pixmap=pix)  # elsewhere: still reported
+    assert len(_geometry_issues(src[0], out[0], 0, doc)) == 1

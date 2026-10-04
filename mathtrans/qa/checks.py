@@ -30,7 +30,7 @@ import pymupdf
 from ..glossary import is_enforced_source_term, term_present
 from ..languages import LANGUAGES, info, is_cjk, normalize_for_compare, script_profile
 from ..languages import letters_of_script as _source_script_letters
-from ..models import (PLACEHOLDER_RE, Lang, PipelineOptions, QAIssue, SegmentKind, Severity, TextSegment,
+from ..models import (ANCHOR_RE, PLACEHOLDER_RE, Lang, PipelineOptions, QAIssue, SegmentKind, Severity, TextSegment,
                       TranslatedDocument)
 from ..protect import FUNCTIONS, UNITS, _is_bare_label, is_fully_protected, verify_placeholders
 
@@ -1034,7 +1034,20 @@ def _format_boxes(boxes: list[tuple[float, ...]]) -> str:
     return ", ".join("(" + ", ".join(f"{v:.1f}" for v in box) + ")" for box in boxes)
 
 
-def _geometry_issues(src_page: pymupdf.Page, out_page: pymupdf.Page, index: int) -> list[QAIssue]:
+def _inline_picture_areas(doc: Optional[TranslatedDocument], index: int) -> list[tuple[float, float, float, float]]:
+    """Rendered boxes of the segments on page ``index`` that draw inline pictures."""
+    if doc is None:
+        return []
+    out = []
+    for seg in doc.segments:
+        if seg.page == index and seg.anchors and seg.render is not None and seg.render.bbox is not None:
+            b = seg.render.bbox
+            out.append((b.x0 - 6, b.y0 - 6, b.x1 + 6, b.y1 + 6))  # a picture may stand a little proud of its line
+    return out
+
+
+def _geometry_issues(src_page: pymupdf.Page, out_page: pymupdf.Page, index: int,
+                     doc: Optional[TranslatedDocument] = None) -> list[QAIssue]:
     issues: list[QAIssue] = []
     sw, sh, ow, oh = src_page.rect.width, src_page.rect.height, out_page.rect.width, out_page.rect.height
     if abs(sw - ow) > PAGE_SIZE_TOLERANCE_PT or abs(sh - oh) > PAGE_SIZE_TOLERANCE_PT \
@@ -1045,6 +1058,9 @@ def _geometry_issues(src_page: pymupdf.Page, out_page: pymupdf.Page, index: int)
             f"{ow:.1f} x {oh:.1f} pt (rotation {out_page.rotation}) in the output", index,
             source_size=[round(sw, 2), round(sh, 2)], output_size=[round(ow, 2), round(oh, 2)]))
     missing, added = _unmatched_boxes(_image_boxes(src_page), _image_boxes(out_page), GEOMETRY_TOLERANCE_PT)
+    areas = _inline_picture_areas(doc, index)
+    added = [b for b in added if not any(a[0] <= b[0] and a[1] <= b[1] and b[2] <= a[2] and b[3] <= a[3]
+                                         for a in areas)]  # inline pictures drawn inside translated text
     if missing or added:
         parts = []
         if missing:
@@ -1058,7 +1074,7 @@ def _geometry_issues(src_page: pymupdf.Page, out_page: pymupdf.Page, index: int)
 
 
 def _norm_text(text: str) -> str:
-    t = unicodedata.normalize("NFKC", text).casefold().replace("\xad", "")
+    t = unicodedata.normalize("NFKC", ANCHOR_RE.sub("", text)).casefold().replace("\xad", "")
     return re.sub(r"\s+", "", t)
 
 
@@ -1164,7 +1180,7 @@ def output_checks(out_pdf: Union[str, Path], src_pdf: Union[str, Path], doc: Tra
                 source_pages=src.page_count, output_pages=out.page_count))
         common = min(out.page_count, src.page_count)
         for i in range(common):
-            issues.extend(_geometry_issues(src[i], out[i], i))
+            issues.extend(_geometry_issues(src[i], out[i], i, doc))
         page_texts = {i: out[i].get_text() for i in range(common)}
         issues.extend(_text_issues(doc, page_texts))
         issues.extend(_leftover_issues(doc, page_texts))

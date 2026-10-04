@@ -618,6 +618,8 @@ def detect_anchors(rgb: np.ndarray, box: tuple[int, int, int, int], text: str, k
     bg, share = _dominant(crop)
     if share < 0.4:
         return text, {}  # busy background: the components are not reliable
+    if float(bg.max() - bg.min()) >= ANCHOR_MIN_SATURATION or float(bg.max()) < 150:
+        return text, {}  # text on a coloured badge or a dark panel: its shapes are decoration
     ink = np.abs(crop.astype(np.int32) - bg).max(axis=2) > 50
     text_colour = np.array(estimate_text_color(rgb, box, bg.astype(np.uint8)), dtype=np.int32)
     dist = np.sqrt(((crop.astype(np.int32) - text_colour) ** 2).sum(axis=2))
