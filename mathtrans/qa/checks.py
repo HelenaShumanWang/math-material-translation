@@ -1042,7 +1042,7 @@ def _inline_picture_areas(doc: Optional[TranslatedDocument], index: int) -> list
     for seg in doc.segments:
         if seg.page == index and seg.anchors and seg.render is not None and seg.render.bbox is not None:
             b = seg.render.bbox
-            out.append((b.x0 - 6, b.y0 - 6, b.x1 + 6, b.y1 + 6))  # a picture may stand a little proud of its line
+            out.append((b.x0 - 12, b.y0 - 12, b.x1 + 12, b.y1 + 12))  # a picture may stand proud of its line
     return out
 
 
