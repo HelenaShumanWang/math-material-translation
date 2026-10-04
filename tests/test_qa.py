@@ -984,3 +984,16 @@ def test_used_glossary_pairs_compiles_each_term_once(monkeypatch):
     used_zh = C.used_glossary_pairs("直角三角形是三角形。术语12", pairs_zh, "zh")
     assert ("直角三角形", "right triangle") in used_zh and ("三角形", "triangle") in used_zh and ("术语12", "term12") in used_zh
     assert ("术语1", "term1") not in used_zh
+
+
+def test_convention_rules_measure_word_placeholders_and_symbols():
+    pieces = seg("pc", "5+3=8（个）", "5+3=8 (pieces)")
+    fine = seg("ok", "5+3=8（个）", "5+3=8 (apples)")
+    dropped = seg("sym", "用○表示人，用△表示椅子。", "Use a circle for people and a triangle for chairs.")
+    kept = seg("sym2", "用○表示人，用△表示椅子。", "Use ○ for people and △ for chairs.")
+    issues = C.formatting(doc(pieces, fine, dropped, kept), opts(), [])
+    by = {}
+    for i in issues:
+        by.setdefault(i.segment_id, []).append(i.message)
+    assert set(by) == {"pc", "sym"}
+    assert "(pieces)" in by["pc"][0] and "○" in by["sym"][0] and "△" in by["sym"][0]

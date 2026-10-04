@@ -397,3 +397,42 @@ def test_same_row_sentence_pieces_are_joined_with_a_blank():
     assert "是18吗？" in texts and "比18多得多。" in texts                  # a finished sentence is not continued
     by = {l.id: l for l in lines}
     assert by["g0"].skip_reason == by["g1"].skip_reason and by["g0"].translate is False
+
+
+def test_watermark_band_catches_upright_fragments_on_the_diagonal():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import WATERMARK, suppress_watermark_fragments, watermark_alphabet, watermark_band
+
+    def seg(i, page, cx, cy, text, translate=True, reason="", confidence=0.97, w=40.0):
+        ref = ImageRef(xref=9, page=page, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int((cx - w / 2) * 2), int((cy - 6) * 2), int((cx + w / 2) * 2), int((cy + 6) * 2)),
+                       confidence=confidence)
+        return TextSegment(id=f"w{i}", page=page, kind=SegmentKind.IMAGE_TEXT,
+                           bbox=BBox(x0=cx - w / 2, y0=cy - 6, x1=cx + w / 2, y1=cy + 6), source_text=text,
+                           protected_text=text, image=ref, style=SegmentStyle(size=10), translate=translate,
+                           skip_reason=reason)
+
+    def on_diag(x):  # the watermark runs from lower left to upper right: y = 0.66 - 0.3 x (page-relative)
+        return 700 * (0.66 - 0.3 * x / 500)
+
+    pages = [PageInfo(index=i, width=500, height=700) for i in range(3)]
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN, pages=pages)
+    slanted = "slanted text (17°): watermark or decoration, kept as is"
+    doc.segments = [
+        seg(0, 0, 150, on_diag(150), "北京师范", False, slanted), seg(1, 0, 340, on_diag(340), "学出版社", False, slanted),
+        seg(2, 1, 170, on_diag(170), "京师范大", False, slanted), seg(3, 1, 330, on_diag(330), "出版社", False, slanted),
+        seg(4, 2, 250, on_diag(250), "范大学出", False, slanted), seg(5, 2, 360, on_diag(360), "版社", False, slanted),
+        seg(10, 0, 260, on_diag(260) + 3, "学", w=12),               # upright piece on the diagonal
+        seg(11, 1, 290, on_diag(290) - 4, "五", w=12),               # misread of 出 on the diagonal
+        seg(12, 2, 200, on_diag(200), "反社", w=24),                 # misread of 版社
+        seg(13, 1, 260, on_diag(260) + 120, "五", w=12),             # a real label (五) far from the band
+        seg(14, 2, 300, on_diag(300), "学校门口", w=60),             # real text on the band, other letters
+        seg(15, 0, 250, on_diag(250), "大小比一比，谁大？", w=150),    # long genuine line crossing the band
+    ]
+    alphabet = watermark_alphabet(doc)
+    band = watermark_band(doc, alphabet)
+    assert band is not None and abs(band[0] - (-0.3 * 500 / 700 * 700 / 500)) < 0.05
+    suppress_watermark_fragments(doc)
+    by = {s.id: s for s in doc.segments}
+    assert [by[k].skip_reason for k in ("w10", "w11", "w12")] == [WATERMARK] * 3
+    assert by["w13"].translate and by["w14"].translate and by["w15"].translate

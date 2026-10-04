@@ -270,7 +270,8 @@ def test_translate_segments_fills_fields_and_reports_progress():
     assert sent["p0_b2"].context == "figure or table caption"
     assert sent["p0_b1"].feedback == ["too long"] and sent["p0_b1"].previous is None
     label = sent["p0_i7_0"]
-    assert label.context == "label inside a diagram" and label.kind == SegmentKind.IMAGE_TEXT
+    assert label.context.startswith("label inside a diagram; other text on the page: ") and label.kind == SegmentKind.IMAGE_TEXT
+    assert "勾股定理" in label.context  # labels see the page's running text
     assert label.max_chars == int(len("斜边 c") * 1.6) + 2
 
 
@@ -929,3 +930,29 @@ def test_translate_segments_applies_postprocessing():
     translate_segments(doc, Odd(), max_chars=1000)
     assert seg.translated_text == "The 2nd one."
     assert seg.translation_raw == "The 2th one。"
+
+
+def test_labels_get_page_context():
+    from mathtrans.models import ImageRef
+
+    def mk(sid, text, role, kind=SegmentKind.TEXT, y=0.0):
+        return TextSegment(id=sid, page=0, kind=kind, bbox=BBox(x0=0, y0=y, x1=100, y1=y + 10), source_text=text,
+                           style=SegmentStyle(role=role), translate=True)
+
+    body = mk("b", "树上有8个桃子，摘了3个，还剩几个？", "body")
+    label = mk("l", "（个）", "label", y=50)
+    other = mk("o", "第二题", "body", y=80)
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=600, height=800)], segments=[body, label, other])
+    seen = {}
+
+    class Spy(BaseTranslator):
+        name = "spy"
+
+        def translate(self, items, src, tgt, glossary_pairs, doc_context=""):
+            seen.update({it.id: it.context for it in items})
+            return [TranslationResult(id=it.id, text="x") for it in items]
+
+    translate_segments(doc, Spy(), max_chars=1000)
+    assert "桃子" in seen["l"] and "other text on the page" in seen["l"]
+    assert "other text" not in (seen["b"] or "")

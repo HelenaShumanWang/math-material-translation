@@ -546,6 +546,60 @@ def watermark_alphabet(doc: TranslatedDocument) -> set[str]:
     return alphabet if len(alphabet) >= 3 else set()
 
 
+WATERMARK_CONFUSIONS = set("乐东字五品反童厶")
+"""Characters the OCR reads for pieces of a semi-transparent watermark (京 -> 乐 / 东,
+出 -> 五, 版 -> 反): inside the watermark band they count as watermark letters."""
+BAND_MIN_HALF_WIDTH = 0.025
+"""Minimum half-width of the watermark band (share of the page height)."""
+BAND_MAX_LETTERS = 4
+
+
+def watermark_band(doc: TranslatedDocument, alphabet: set[str]) -> Optional[tuple[float, float, float, float, float]]:
+    """``(slope, intercept, half_width, x_min, x_max)`` of the diagonal band the watermark
+    occupies, in page-relative coordinates (x / width, y / height), fitted through the
+    centres of the slanted watermark lines of the whole document (it is printed at the
+    same place on every page); None when there are too few of them or they do not line up."""
+    sizes = {pi.index: (pi.width, pi.height) for pi in doc.pages}
+    pts: list[tuple[float, float]] = []
+    for seg in doc.segments:
+        if seg.kind != SegmentKind.IMAGE_TEXT or not seg.skip_reason.startswith("slanted text"):
+            continue
+        letters = [c for c in seg.source_text if c.isalpha()]
+        if not letters or sum(c in alphabet for c in letters) * 2 < len(letters):
+            continue
+        w, h = sizes.get(seg.page, (0.0, 0.0))
+        if w <= 0 or h <= 0:
+            continue
+        pts.append(((seg.bbox.x0 + seg.bbox.x1) / 2 / w, (seg.bbox.y0 + seg.bbox.y1) / 2 / h))
+    if len(pts) < MIN_SLANTED_LINES:
+        return None
+    xs = np.array([p[0] for p in pts]); ys = np.array([p[1] for p in pts])
+    if float(xs.max() - xs.min()) < 0.1:
+        return None
+    for _ in range(2):  # least squares, then once more without the outliers
+        slope, intercept = np.polyfit(xs, ys, 1)
+        res = np.abs(ys - (slope * xs + intercept))
+        keep = res <= max(3 * float(np.median(res)), 0.01)
+        if keep.sum() < MIN_SLANTED_LINES or keep.all():
+            break
+        xs, ys = xs[keep], ys[keep]
+    res = np.abs(ys - (slope * xs + intercept))
+    if float(np.median(res)) > 0.02:
+        return None  # no consistent diagonal: several watermarks or none
+    half = max(BAND_MIN_HALF_WIDTH, 3 * float(np.median(res)))
+    return float(slope), float(intercept), half, float(xs.min()) - 0.05, float(xs.max()) + 0.05
+
+
+def _in_band(seg: TextSegment, band: tuple[float, float, float, float, float], size: tuple[float, float]) -> bool:
+    slope, intercept, half, x_min, x_max = band
+    w, h = size
+    if w <= 0 or h <= 0:
+        return False
+    x = (seg.bbox.x0 + seg.bbox.x1) / 2 / w
+    y = (seg.bbox.y0 + seg.bbox.y1) / 2 / h
+    return x_min <= x <= x_max and abs(y - (slope * x + intercept)) <= half
+
+
 def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
     """Skip OCR lines that consist only of watermark letters (the un-slanted or
     partially recognised pieces of the watermark) and trim watermark runs glued to
@@ -554,6 +608,9 @@ def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
     alphabet = watermark_alphabet(doc)
     if not alphabet:
         return 0
+    band = watermark_band(doc, alphabet)
+    band_letters = alphabet | WATERMARK_CONFUSIONS | set("北京师范大学出版社")
+    sizes = {pi.index: (pi.width, pi.height) for pi in doc.pages}
     changed = 0
     for seg in doc.segments:
         if seg.kind != SegmentKind.IMAGE_TEXT or not seg.translate:
@@ -562,8 +619,17 @@ def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
         letters = [c for c in text if c.isalpha()]
         if not letters:
             continue
-        in_alphabet = sum(c in alphabet for c in letters)
         confidence = seg.image.confidence if seg.image is not None else 1.0
+        inside = band is not None and _in_band(seg, band, sizes.get(seg.page, (0.0, 0.0)))
+        if inside and len(letters) <= BAND_MAX_LETTERS and (
+                all(c in band_letters for c in letters)
+                or (any(c in band_letters for c in letters) and confidence < LOW_CONFIDENCE)):
+            # an upright or misread piece of the watermark (学, 五, 反社) lying on the watermark's diagonal
+            seg.translate = False
+            seg.skip_reason = WATERMARK
+            changed += 1
+            continue
+        in_alphabet = sum(c in alphabet for c in letters)
         if len(letters) <= MAX_FRAGMENT_LETTERS and (
                 in_alphabet == len(letters)
                 or (len(letters) <= 4 and in_alphabet * 2 >= len(letters) and confidence < LOW_CONFIDENCE)):
@@ -573,7 +639,7 @@ def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
             seg.skip_reason = WATERMARK
             changed += 1
             continue
-        trimmed = _trim_watermark_runs(text, alphabet)
+        trimmed = _trim_watermark_runs(text, band_letters if inside else alphabet)
         if trimmed != text:
             rest_letters = sum(c.isalpha() for c in trimmed)
             if rest_letters >= 2:

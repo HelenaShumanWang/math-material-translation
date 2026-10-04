@@ -152,6 +152,29 @@ def _apply_results(segments: dict[str, TextSegment], results: Iterable[Translati
     return applied
 
 
+PAGE_CONTEXT_CHARS = 220
+"""Short labels get the start of their page's running text as context (what is counted,
+who speaks), so measure words and fragments translate in context."""
+
+
+def _add_page_context(doc: TranslatedDocument, items: list[TranslationItem], by_id: dict[str, TextSegment]) -> None:
+    page_text: dict[int, str] = {}
+    for seg in sorted(doc.segments, key=lambda s: (s.page, s.reading_order, s.bbox.y0)):
+        if seg.kind != SegmentKind.TEXT or not seg.translate or seg.style.role not in ("body", "heading", "list"):
+            continue
+        current = page_text.get(seg.page, "")
+        if len(current) < PAGE_CONTEXT_CHARS:
+            page_text[seg.page] = (current + " " + seg.source_text.strip()).strip()
+    for it in items:
+        seg = by_id.get(it.id)
+        if seg is None or (seg.kind != SegmentKind.IMAGE_TEXT and seg.style.role != "label"):
+            continue
+        text = page_text.get(seg.page, "")
+        if text and seg.source_text.strip() not in text[:PAGE_CONTEXT_CHARS]:
+            snippet = text[:PAGE_CONTEXT_CHARS]
+            it.context = (it.context + "; " if it.context else "") + f"other text on the page: {snippet}"
+
+
 def translate_segments(
     doc: TranslatedDocument,
     translator: BaseTranslator,
@@ -182,6 +205,7 @@ def translate_segments(
             log.debug("only_ids not translatable or unknown: %s", sorted(unknown))
     by_id = {s.id: s for s in segments}
     items = [it for it in (_build_item(s, doc.source_lang) for s in segments) if it is not None]
+    _add_page_context(doc, items, by_id)
     total = len(items)
     pairs = doc.glossary.pairs(doc.source_lang, doc.target_lang) if doc.glossary else []
     if progress:

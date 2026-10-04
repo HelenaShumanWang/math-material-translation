@@ -777,7 +777,35 @@ def formatting(doc: TranslatedDocument, options: PipelineOptions,
     issues: list[QAIssue] = []
     for seg in _translated(doc):
         issues.extend(_formatting_issues(seg, doc.source_lang, doc.target_lang))
+        issues.extend(_convention_issues(seg))
     return issues
+
+
+_PLACEHOLDER_UNIT_RE = re.compile(r"\((?:pieces?|items?|pcs\.?|units?|ones|no\.|nos\.|each|counts?)\)", re.IGNORECASE)
+_KEPT_SYMBOLS = "○△□●▲■◇◆☆★✓√"
+
+
+def _convention_issues(seg: TextSegment) -> list[QAIssue]:
+    """Textbook conventions: no placeholder nouns for measure words, symbols kept."""
+    out: list[QAIssue] = []
+    tr = seg.translated_text or ""
+    m = _PLACEHOLDER_UNIT_RE.search(tr)
+    if m:
+        out.append(_issue(
+            "formatting", "error", seg,
+            f"\"{m.group(0)}\" is not a translation of a measure word: write the plural noun of the counted thing "
+            f"((apples), (chicks), (sticks)) or, when the exercise does not name it, drop the parentheses",
+            placeholder_unit=m.group(0)))
+    src_symbols = Counter(ch for ch in seg.source_text if ch in _KEPT_SYMBOLS)
+    tr_symbols = Counter(ch for ch in tr if ch in _KEPT_SYMBOLS)
+    missing = src_symbols - tr_symbols
+    if missing:
+        listed = " ".join(f"{ch}×{n}" if n > 1 else ch for ch, n in sorted(missing.items()))
+        out.append(_issue(
+            "formatting", "error", seg,
+            f"Keep the symbol(s) {listed} of the source in the translation, at the matching position",
+            missing_symbols=dict(missing)))
+    return out
 
 
 # ---- layout -----------------------------------------------------------------

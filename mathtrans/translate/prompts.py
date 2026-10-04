@@ -18,7 +18,10 @@ CONVENTIONS = """\
 Money: always write amounts in Chinese yuan with the \
 currency symbol before the number, in sentences and labels alike (3元 => ¥3, 3.15元 => ¥3.15, \
 一共70元 => ¥70 in total); never spell out "yuan" after an amount. A bare unit label without an amount \
-(元 alone, （元） after an answer blank) is written "yuan" / "(yuan)". Measure words: a Chinese measure word in parentheses after a number (16（只）, \
+(元 alone, （元） after an answer blank) is written "yuan" / "(yuan)". Measure words: a parenthesised measure word after an answer blank or an equation \
+(□（只）, 5+3=8（个）) names the counted thing - write its plural noun when the exercise names it \
+("5+3=8 (apples)") and otherwise drop it ("5+3=8"); never write "(pieces)", "(items)", "(ones)", \
+"(pcs)" or "(no.)". Other measure words: a Chinese measure word in parentheses after a number (16（只）, \
 5（个）) names the counted objects - write the object when the context gives it ("16 (birds)") and \
 otherwise drop the parentheses; never write "(ones)" or "(pieces)". Tally marks: the character 正 \
 used for counting strokes (alone, repeated, or in a tally table) is a symbol, keep it exactly as 正. \
@@ -26,7 +29,11 @@ Keep page numbers, exercise numbers and figure numbers as they are. Grammar: num
 after a numeral (1 book, 2 books; 1 bun, 4 buns). Never invent abbreviations to save space \
 ("Mixed Calc.", "mtg", "bks", "ea", "Beij." are wrong): write full words, and shorten by dropping \
 optional words instead; only standard units (m, km, cm, min, h) are abbreviated. Enumerators \
-such as (1) (2) ① 1. 2. that begin an item are kept at the start of the translation.\
+such as (1) (2) ① 1. 2. that begin an item are kept at the start of the translation. Symbols and blanks: keep every ○ △ □ ● ▲ ■ ◇ ☆ ★ ✓ √ \
+symbol and every answer blank (___, □, （ ）) exactly where it stands; never drop or describe them. \
+Comparisons keep their direction: A比B多3个 => "A has 3 more than B". A heading that begins with a bare \
+Chinese numeral (一 加与减, 四 有趣的图形) is a unit heading: "Unit 1 Addition and Subtraction". \
+Children's names are written in pinyin (淘气 Taoqi, 笑笑 Xiaoxiao).\
 """
 
 TRANSLATION_SYSTEM_PROMPT = """\
