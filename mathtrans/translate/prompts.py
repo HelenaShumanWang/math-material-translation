@@ -41,7 +41,9 @@ written as multiplication facts: 三七二十一 => "3 × 7 = 21", 二八十六 
 rhyme to fill in (三七____) => "3 × 7 = ____". Numbers written in Chinese words (七十七, 一百) are \
 written in English words when the exercise practises reading or writing numbers ("seventy-seven"), \
 otherwise as digits. A measure word standing alone after an answer blank (个, 只) is the counted noun \
-("apples"), never "(items)". Place-value labels: 十位 "tens", 个位 "ones", 百位 "hundreds"; 答： "Answer:".\
+("apples"), never "(items)". Place-value labels: 十位 "tens", 个位 "ones", 百位 "hundreds"; 答： "Answer:". \
+Single-character column labels of a counting frame or place-value chart (万 千 百 十 个, alone or in a \
+row) use the standard abbreviations TTh Th H T O ("百十个" => "H T O").\
 """
 
 TRANSLATION_SYSTEM_PROMPT = """\

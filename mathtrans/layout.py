@@ -538,9 +538,18 @@ class _PageSpace:
             if self.scanned:
                 y1 = self._shrink_until_free(box, "down", y1)
         if horizontal:
+            # text set next to other text on the same row keeps a word space from it ("Grade 3" "Volume 1")
+            text_gap = max(OBSTACLE_GAP, 0.4 * (seg.style.size if seg.style.size > 0 else 10.0))
+            side_by_side = [b for sid, b in self.occupied.items() if sid != seg.id
+                            and min(b.y1, box.y1) - max(b.y0, box.y0) > 0.5 * min(b.height, box.height)]
             x0, x1 = self._extend_horizontal(BBox(x0=x0, y0=y0, x1=x1, y1=y1),
                                              "both" if label else seg.style.align, obstacles, containers,
                                              growth_factor=LABEL_WIDTH_GROWTH if label else MAX_WIDTH_GROWTH)
+            for b in side_by_side:
+                if b.x0 >= box.x1 - 1.0:
+                    x1 = min(x1, max(b.x0 - text_gap, box.x1))
+                elif b.x1 <= box.x0 + 1.0:
+                    x0 = max(x0, min(b.x1 + text_gap, box.x0))
             if self.scanned:
                 x1 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "right", x1)
                 x0 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "left", x0)
@@ -911,8 +920,16 @@ LABEL_SIZE_SPREAD = 1.12
 than this factor ("Xiaolan" squeezed, "Fangfang" at full size looks careless)."""
 
 
+def _short_fragment(seg: TextSegment) -> bool:
+    """A one-line piece of text of a few words: a label, or a fragment of a sentence that
+    pictures or answer boxes split (``There are`` ``birds`` ``has``)."""
+    text = (seg.translated_text or seg.source_text or "").strip()
+    return "\n" not in text and len(text.split()) <= 6 and len(text) <= 40 and seg.style.role != "heading"
+
+
 def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]]:
-    labels = [s for s in segs if s.origin == "ocr" and _short_label(s) and not s.style.is_vertical and not s.anchors
+    labels = [s for s in segs if s.origin == "ocr" and (_short_label(s) or _short_fragment(s))
+              and not s.style.is_vertical and not s.anchors
               and s.render is not None and s.render.font_size > 0
               and s.render.bbox is not None]
     parent = list(range(len(labels)))

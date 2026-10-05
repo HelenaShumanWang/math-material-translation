@@ -1885,3 +1885,82 @@ def test_stacked_place_value_label_is_split_down_the_column():
 
     label, box = split_place_value("十位3", (100, 0, 130, 150))
     assert label == "十位" and box[0] == 100 and box[2] == 130 and 90 <= box[3] <= 100
+
+
+def _line_img(items, size=(600, 60), bg=(255, 255, 255)):
+    img = Image.new("RGB", size, bg)
+    d = ImageDraw.Draw(img)
+    for x, text in items:
+        d.text((x, 8), text, fill=(20, 20, 20), font=pil_font("zh", 40))
+    return np.array(img)
+
+
+def test_split_wide_gaps_separates_merged_labels():
+    from mathtrans.images import split_wide_gaps
+
+    def r(text, x0, x1):
+        return OcrResult(text=text, polygon=[[x0, 4], [x1, 4], [x1, 56], [x0, 56]], confidence=0.9)
+
+    rgb = _line_img([(10, "小华"), (200, "小明")])                      # 110 px of nothing between the names
+    out = split_wide_gaps([r("小华小明", 5, 290)], rgb)
+    assert [o.text for o in out] == ["小华", "小明"]
+    assert out[0].polygon[1][0] < 150 and out[1].polygon[0][0] > 180      # each piece's box hugs its own ink
+    rgb = _line_img([(10, "¥32"), (150, "¥23")])                      # the recogniser put a space: a narrower gap will do
+    assert [o.text for o in split_wide_gaps([r("¥32 ¥23", 5, 230)], rgb)] == ["¥32", "¥23"]
+    rgb = _line_img([(10, "小华和小明一起去上学。")])                   # ordinary spacing: untouched
+    assert [o.text for o in split_wide_gaps([r("小华和小明一起去上学。", 5, 480)], rgb)] == ["小华和小明一起去上学。"]
+    rgb = _line_img([(10, "13-9="), (300, "（个）")])                   # templates and formulas are never split
+    assert len(split_wide_gaps([r("13-9=□（个）", 5, 420)], rgb)) == 1
+
+
+def test_stacked_repeats_price_tokens_and_enumerators():
+    from mathtrans.images import space_after_enumerator, split_price_tokens, split_stacked_repeats
+
+    tall = OcrResult(text="有有", polygon=[[10, 0], [50, 0], [50, 100], [10, 100]], confidence=0.9)
+    out = split_stacked_repeats([tall])
+    assert [o.text for o in out] == ["有", "有"] and out[0].polygon[2][1] == 50 and out[1].polygon[0][1] == 50
+    wide = OcrResult(text="一一", polygon=[[10, 0], [90, 0], [90, 30], [10, 30]], confidence=0.9)
+    assert [o.text for o in split_stacked_repeats([wide, tall.model_copy(update={"text": "十位"})])] == ["一一", "十位"]
+    tags = OcrResult(text="20元1元5角", polygon=[[0, 0], [280, 0], [280, 40], [0, 40]], confidence=0.9)
+    out = split_price_tokens([tags, OcrResult(text="买了2元的", polygon=tags.polygon, confidence=0.9)])
+    assert [o.text for o in out] == ["20元", "1元5角", "买了2元的"]          # 1元5角 is one amount (¥1.50)
+    assert out[0].polygon[1][0] <= out[1].polygon[0][0] < out[1].polygon[1][0] <= 280
+    assert space_after_enumerator("(2)36") == "(2) 36" and space_after_enumerator("①3只") == "① 3只"
+    assert space_after_enumerator("2.5米") == "2.5米" and space_after_enumerator("(2) 36") == "(2) 36"
+
+
+def test_worked_results_keep_their_unit_label():
+    from mathtrans.images import _split_template_units
+
+    def r(text):
+        return OcrResult(text=text, polygon=[[0, 0], [300, 0], [300, 30], [0, 30]], confidence=0.9)
+
+    out = _split_template_units([r("260-30=230（元）"), r("13-9=0（个）"), r("225+225=450(元)")])
+    assert [o.text for o in out] == ["260-30=230（元）", "13-9=0", "（个）", "225+225=450(元)"]
+
+
+def test_writing_grids_lone_measure_words_and_short_low_confidence_lines():
+    from mathtrans.images import build_image_segment
+
+    img = Image.new("RGB", (300, 60), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([(20, 8), (64, 52)], radius=8, outline=(230, 40, 40), width=4)   # an answer box ...
+    d.text((76, 8), "个", fill=(20, 20, 20), font=pil_font("zh", 40))                     # ... and the measure word
+    d.text((200, 8), "田", fill=(20, 20, 20), font=pil_font("zh", 40))
+    loaded = LoadedImage(xref=5, rgb=np.array(img))
+    bbox = BBox(x0=0, y0=0, x1=300, y1=60)
+
+    def build(text, box, conf=0.98):
+        res = OcrResult(text=text, polygon=[[box[0], box[1]], [box[2], box[1]], [box[2], box[3]], [box[0], box[3]]],
+                        confidence=conf)
+        return build_image_segment(res, page_index=0, xref=5, index=0, loaded=loaded, image_bbox=bbox,
+                                   transform=(300, 0, 0, 60, 0, 0), source_lang=Lang.ZH)
+
+    unit = build("个", (74, 6, 120, 54))
+    assert unit.translate is False and unit.skip_reason.startswith("unit label")
+    grid = build("田", (198, 6, 244, 54))
+    assert grid.translate is False and grid.skip_reason == "writing grid"
+    alone = build("个", (198, 6, 244, 54))                     # no answer box before it: an ordinary label
+    assert alone.translate is True
+    assert build("凑11", (198, 6, 290, 54), conf=0.81).translate is True     # not a lone character
+    assert build("凑", (198, 6, 244, 54), conf=0.81).translate is False

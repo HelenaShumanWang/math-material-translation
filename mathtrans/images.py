@@ -862,6 +862,27 @@ INLINE_PICTOGRAMS = "inline pictograms the OCR cannot read (left in the picture)
 
 
 MAX_TEXT_SLANT_DEGREES = 12.0
+_WRITING_GRID_RE = re.compile(r"[田口\s]{1,8}")
+
+
+def answer_box_left_of(rgb: np.ndarray, box: tuple[int, int, int, int]) -> bool:
+    """True when a coloured answer box (a saturated frame about one line high) stands right
+    before ``box`` (within two line heights)."""
+    x0, y0, x1, y1 = (int(v) for v in box)
+    h = y1 - y0
+    if h < 8:
+        return False
+    rx0 = max(0, x0 - 2 * h)
+    if x0 - rx0 < h // 2:
+        return False
+    region = rgb[max(0, y0 - h // 4):y1 + h // 4, rx0:x0].astype(np.int32)
+    sat = region.max(axis=2) - region.min(axis=2)
+    coloured = (sat >= ANCHOR_MIN_SATURATION) & (np.abs(region - np.median(region.reshape(-1, 3), axis=0)).max(axis=2) > 50)
+    cols = coloured.any(axis=0)
+    rows = coloured.any(axis=1)
+    return bool(cols.sum() >= 0.5 * h and rows.sum() >= 0.6 * h)
+
+
 LOW_CONFIDENCE_SINGLE_CHAR = 0.9
 """A single non-Latin character below this OCR confidence is left in the picture."""
 """OCR polygons slanted more than this (and less than 90 - this) are decorative:
@@ -1034,7 +1055,7 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
     size_pt = round(box_h_px * vertical_points_per_pixel(transform, loaded.height) * FONT_HEIGHT_RATIO, 1)
     bg, _uniform = estimate_background(loaded.rgb, box, loaded.alpha)
     color = estimate_text_color(loaded.rgb, box, bg, loaded.alpha)
-    text = restore_superscripts(loaded, box, normalize_ocr_digits(result.text), bg)
+    text = restore_superscripts(loaded, box, space_after_enumerator(normalize_ocr_digits(result.text)), bg)
     if _EMPTY_QUOTES_RE.search(text):
         filled = fill_empty_quotes(text, detect_quoted_marks(loaded.rgb, box))
         if filled != text:
@@ -1072,10 +1093,17 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
         # counted; the label is erased (scanned pages) instead of being set as an unreadable "(apples)"
         translate, reason = False, "unit label after an answer box (dropped)"
     count_label = bool(_COUNT_LABEL_RE.fullmatch(text.strip()))
-    if (translate and len(letters) == 1 and not letters[0].isascii() and not count_label
+    lone = len(text.strip().strip("。，、：；！？.,:;!? ")) == 1
+    if translate and _WRITING_GRID_RE.fullmatch(text.strip()):
+        translate, reason = False, "writing grid"  # 田 cells for practising characters, not a word
+    elif (translate and lone and len(letters) == 1 and not letters[0].isascii() and not count_label
             and result.confidence < LOW_CONFIDENCE_SINGLE_CHAR):
         # a lone CJK character read with low confidence is usually noise (an arrow, a stroke, a watermark piece)
         translate, reason = False, f"single character with low OCR confidence ({result.confidence:.2f})"
+    elif (translate and lone and text.strip() in MEASURE_WORDS
+            and answer_box_left_of(loaded.rgb, box)):
+        # a lone measure word right after an answer box (□ 个): dropped like （个）
+        translate, reason = False, "unit label after an answer box (dropped)"
     slant = polygon_slant_degrees(result.polygon)
     if translate and MAX_TEXT_SLANT_DEGREES < slant < 90.0 - MAX_TEXT_SLANT_DEGREES:
         translate, reason = False, f"slanted text ({slant:.0f}°): watermark or decoration, kept as is"
@@ -1099,6 +1127,8 @@ def build_image_segment(result: OcrResult, *, page_index: int, xref: int, index:
 
 UNREAD_UNIT = "（?）"
 """Text given to a unit label found in the pixels but misread by the OCR (``(v)``, ``(*)``)."""
+_TRAILING_BOX_RE = re.compile(r"(?<![0-9])[□○OoD0Q口〇◯●◇△▲☐]\s*$")
+"""``=□`` / ``=0`` (a box read as a digit) at the end of a template; ``=230`` is a result."""
 _BARE_UNIT_RE = re.compile(rf"[)）]\s*([{MEASURE_WORDS}])")
 """``）个``: a measure word right after the closing bracket of an answer blank."""
 _MISREAD_UNIT_RE = re.compile(r"^\s*[（(]\s*[^\s()（）]?\s*[)）]|[（(]\s*[^\s()（）]?\s*[)）]\s*$")
@@ -1144,6 +1174,162 @@ def locate_trailing_label(rgb: np.ndarray, box: tuple[int, int, int, int]) -> Op
     return max(0, x0) + start - max(1, min(gap // 2, h // 4))
 
 
+WIDE_GAP = 1.6
+"""An empty stretch wider than this many line heights inside one OCR line separates two
+labels (price tags, captions, table cells) the detector merged."""
+WIDE_GAP_SPACED = 1.0
+"""... or this many when the recogniser itself put a space into the text."""
+_PRICE_TOKENS_RE = re.compile(r"(?:¥?\d+(?:\.\d+)?\s*[元角分](?:\d+\s*[角分])?\s*){2,}")
+
+
+def split_price_tokens(results: list[OcrResult]) -> list[OcrResult]:
+    """``20元1元5角`` (three price tags side by side read as one line) -> one result per
+    amount, cut by the amounts' estimated widths."""
+    out: list[OcrResult] = []
+    for r in results:
+        text = r.text.strip()
+        if not _PRICE_TOKENS_RE.fullmatch(text):
+            out.append(r)
+            continue
+        tokens = re.findall(r"¥?\d+(?:\.\d+)?\s*[元角分](?:\d+\s*[角分])?", text)
+        if len(tokens) < 2:
+            out.append(r)
+            continue
+        xs = [p[0] for p in r.polygon]; ys = [p[1] for p in r.polygon]
+        x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+        widths = [sum(_char_width(c) for c in t) for t in tokens]
+        total = sum(widths) or 1.0
+        pos = x0
+        for t, w in zip(tokens, widths):
+            end = pos + w / total * (x1 - x0)
+            out.append(OcrResult(text=t.strip(), polygon=_rect(pos, y0, end, y1), confidence=r.confidence))
+            pos = end
+    return out
+_ENUM_DIGIT_RE = re.compile(r"^(\s*(?:[（(]\d{1,2}[)）]|[①-⑳]))(\d)")
+
+
+def _ink_runs(rgb: np.ndarray, box: tuple[int, int, int, int]) -> Optional[tuple[list[tuple[int, int]], int]]:
+    """Horizontal ink runs ``[(x0, x1), ...]`` (crop coordinates) of a line box and the line
+    height, or None when the background is not plain."""
+    x0, y0, x1, y1 = (int(v) for v in box)
+    crop = rgb[max(0, y0):y1, max(0, x0):x1]
+    h, w = crop.shape[:2]
+    if h < 8 or w < 2 * h:
+        return None
+    bg, share = _dominant(crop)
+    if share < 0.4:
+        return None
+    ink = np.abs(crop.astype(np.int32) - bg).max(axis=2) > 50
+    runs: list[list[int]] = []
+    for xi in np.flatnonzero(ink.any(axis=0)):
+        if runs and xi - runs[-1][1] <= max(2, h // 8):
+            runs[-1][1] = int(xi) + 1
+        else:
+            runs.append([int(xi), int(xi) + 1])
+    return [(a, b) for a, b in runs], h
+
+
+def split_wide_gaps(results: list[OcrResult], rgb: np.ndarray) -> list[OcrResult]:
+    """Split OCR lines whose ink shows an empty stretch of at least :data:`WIDE_GAP` line
+    heights (``¥32    ¥23``, ``小华   小明``, the cells of a table row) into one result per
+    piece; the characters go to the pieces by their estimated widths, at a space of the OCR
+    text when there is one nearby. Templates and formulas are left alone."""
+    out: list[OcrResult] = []
+    for r in results:
+        text = r.text.strip()
+        if len(text) < 2 or is_fill_in_template(text) or _formula_core(text) or ANCHOR_RE.search(text):
+            out.append(r)
+            continue
+        xs = [p[0] for p in r.polygon]; ys = [p[1] for p in r.polygon]
+        x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+        found = _ink_runs(rgb, (int(x0), int(y0), int(x1 + 0.999), int(y1 + 0.999)))
+        if found is None:
+            out.append(r)
+            continue
+        runs, h = found
+        spaced = " " in text  # the recogniser marked a gap itself: a narrower one will do
+        cuts: list[tuple[int, int]] = []  # (end of the ink before the gap, start of the ink after it)
+        for (_a, b), (c, _d) in zip(runs, runs[1:]):
+            if c - b >= (WIDE_GAP_SPACED if spaced else WIDE_GAP) * h:
+                cuts.append((b, c))
+        if not cuts:
+            out.append(r)
+            continue
+        # character positions along the line by their estimated widths over the ink extent
+        widths = [_char_width(ch) for ch in text]
+        total = sum(widths) or 1.0
+        ink_x0, ink_x1 = runs[0][0], runs[-1][1]
+        ink_w = float(ink_x1 - ink_x0)
+        if ink_w <= 0:
+            out.append(r)
+            continue
+        pieces: list[tuple[int, int]] = []  # (char_from, char_to)
+        start = 0
+        acc = 0.0
+        centres = []
+        for cw in widths:
+            centres.append(ink_x0 + (acc + cw / 2) / total * ink_w)
+            acc += cw
+        ok = True
+        for b, c in cuts:
+            cut = (b + c) // 2
+            k = next((i for i, cx in enumerate(centres) if cx > cut), len(text))
+            # prefer a space of the OCR text within one character of the geometric split
+            for cand in (k, k - 1, k + 1):
+                if 0 < cand < len(text) and text[cand - 1] == " ":
+                    k = cand
+                    break
+                if 0 < cand < len(text) and text[cand] == " ":
+                    k = cand + 1
+                    break
+            if k <= start or k >= len(text) or not text[start:k].strip():
+                ok = False
+                break
+            pieces.append((start, k))
+            start = k
+        if not ok or not text[start:].strip():
+            out.append(r)
+            continue
+        pieces.append((start, len(text)))
+        margin = max(1, h // 10)
+        starts = [int(x0)] + [int(x0) + c - margin for _b, c in cuts]
+        ends = [int(x0) + b + margin for b, _c in cuts] + [int(x1 + 0.999)]
+        for (a, b), px0, px1 in zip(pieces, starts, ends):
+            piece = text[a:b].strip()
+            if not piece:
+                continue
+            out.append(OcrResult(text=piece, polygon=_rect(px0, y0, px1, y1), confidence=r.confidence))
+    return out
+
+
+def split_stacked_repeats(results: list[OcrResult]) -> list[OcrResult]:
+    """``有有`` / ``个个个个`` read down a column (one character per row of a fill-in grid)
+    become one result per character, each with its own row's box."""
+    out: list[OcrResult] = []
+    for r in results:
+        text = r.text.strip()
+        n = len(text)
+        if n < 2 or len(set(text)) != 1 or not is_cjk_char(text[0]):
+            out.append(r)
+            continue
+        xs = [p[0] for p in r.polygon]; ys = [p[1] for p in r.polygon]
+        x0, x1, y0, y1 = min(xs), max(xs), min(ys), max(ys)
+        if (y1 - y0) < max(1.5, 0.7 * n) * (x1 - x0):
+            out.append(r)  # side by side (一一 / 口口), not a column
+            continue
+        step = (y1 - y0) / n
+        for i in range(n):
+            out.append(OcrResult(text=text[0], polygon=_rect(x0, y0 + i * step, x1, y0 + (i + 1) * step),
+                                 confidence=r.confidence))
+    return out
+
+
+def space_after_enumerator(text: str) -> str:
+    """``(2)36`` / ``①3`` -> ``(2) 36`` / ``① 3``: the enumerator and the number that follows
+    it are two tokens (``2.40`` is left to the page-level check: it may be a decimal)."""
+    return _ENUM_DIGIT_RE.sub(lambda m: m.group(1) + " " + m.group(2), text, count=1)
+
+
 def _rect(x0: float, y0: float, x1: float, y1: float) -> list[list[float]]:
     return [[x0, y0], [x1, y0], [x1, y1], [x0, y1]]
 
@@ -1171,8 +1357,8 @@ def _split_template_units(results: list[OcrResult], rgb: Optional[np.ndarray] = 
                 unit = UNREAD_UNIT
         boxes_only = bool(head.strip()) and not _LEADING_BOXES_RE.sub("", head.strip())
         if not (is_fill_in_template(text) or is_fill_in_template(head) or boxes_only
-                or ("=" in head and head.rstrip()[-1:] in _BOX_GLYPHS)):
-            out.append(r)  # a worked result keeps its unit: 10÷5=2（元） -> "10÷5=2 (yuan)"
+                or ("=" in head and _TRAILING_BOX_RE.search(head))):
+            out.append(r)  # a worked result keeps its unit: 10÷5=2（元）, 260-30=230（元）
             continue
         cut = locate_trailing_label(rgb, (int(x0), int(y0), int(x1 + 0.999), int(y1 + 0.999))) \
             if rgb is not None else None
@@ -1273,7 +1459,9 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
                 transform = info.get("transform") or (image_bbox.width, 0.0, 0.0, image_bbox.height,
                                                        image_bbox.x0, image_bbox.y0)
                 kept = translatable = 0
-                for n, result in enumerate(_split_template_units(results, loaded.rgb)):
+                prepared = split_stacked_repeats(split_price_tokens(
+                    split_wide_gaps(_split_template_units(results, loaded.rgb), loaded.rgb)))
+                for n, result in enumerate(prepared):
                     if result.confidence < min_confidence:
                         logger.debug("page %d image %d: dropping %r (confidence %.2f < %.2f)", page.number, xref,
                                      result.text, result.confidence, min_confidence)

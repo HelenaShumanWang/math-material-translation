@@ -867,3 +867,20 @@ def test_sibling_labels_are_grouped_by_size_colour_and_position():
     big = label(5, 400, 500, size=20.0)             # a heading-sized label
     groups = _sibling_label_groups(names + [far, red, big])
     assert [sorted(s.id for s in g) for g in groups] == [["l0", "l1", "l2"]]
+
+
+def test_short_fragments_of_one_sentence_share_a_size():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def frag(i, x0, text, font, role="body", size=10.0):
+        seg = TextSegment(id=f"f{i}", page=0, bbox=BBox(x0=x0, y0=300, x1=x0 + 40, y1=313), source_text="有",
+                          translated_text=text, origin="ocr", style=SegmentStyle(size=size, color=0x202020, role=role))
+        seg.render = RenderInfo(font_size=font, scale=font / size, bbox=seg.bbox)
+        return seg
+
+    pieces = [frag(0, 50, "There are", 5.6), frag(1, 120, "birds", 10.0), frag(2, 190, "has", 10.0)]
+    long = frag(3, 260, "A long sentence of many words that is not a fragment at all, really", 10.0)
+    heading = frag(4, 340, "Practice", 10.0, role="heading")
+    groups = _sibling_label_groups(pieces + [long, heading])
+    assert [sorted(s.id for s in g) for g in groups] == [["f0", "f1", "f2"]]

@@ -297,6 +297,81 @@ def underline_blank_check(loaded_for: Callable[[int], Optional[object]]) -> Blan
     return check
 
 
+_UNIT_NUMERAL_RE = re.compile(r"[一二三四五六七八九十]")
+LONE_CHAR_REASON = "single character with low OCR confidence"
+
+
+def _single_cjk(seg: TextSegment) -> bool:
+    t = seg.source_text.strip()
+    return len(t) == 1 and "\u3400" <= t <= "\u9fff"
+
+
+def _glyph_joinable(left: TextSegment, right: TextSegment) -> bool:
+    """A lone character the detector cut off its word (目|录, 数|学, 一|共有), or a bare unit
+    numeral set before its heading (一  加与减): the pieces are one line."""
+    if not (_single_cjk(left) or _single_cjk(right)) or not _same_row(left, right):
+        return False
+    h = max(left.bbox.height, right.bbox.height)
+    gap = right.bbox.x0 - left.bbox.x1
+    if gap < -0.2 * h:
+        return False
+    if _single_cjk(left) and _single_cjk(right):
+        # the two characters of a title set wide apart (目  录, 数  学): same size, any colour
+        # (a decorated glyph's colour estimate is unreliable)
+        return gap <= 1.2 * h and abs(left.bbox.height - right.bbox.height) <= 0.15 * h
+    if _color_distance(left.style.color, right.style.color) > MAX_COLOR_DISTANCE:
+        return False
+    if _single_cjk(left) and _UNIT_NUMERAL_RE.fullmatch(left.source_text.strip()) \
+            and _letter_count(right.source_text) >= 2:
+        return gap <= 2.5 * h
+    return gap <= 0.6 * h
+
+
+def _glyph_join_text(left: TextSegment, right: TextSegment) -> str:
+    h = max(left.bbox.height, right.bbox.height)
+    numeral = _single_cjk(left) and _UNIT_NUMERAL_RE.fullmatch(left.source_text.strip())
+    sep = " " if numeral and right.bbox.x0 - left.bbox.x1 > 0.6 * h else ""
+    return left.source_text.strip() + sep + right.source_text.strip()
+
+
+LineCheck = Callable[[TextSegment], bool]
+
+
+def bullet_check(loaded_for: Callable[[int], Optional[object]]) -> LineCheck:
+    """A check for a bullet glyph (●, a coloured dot or square) printed just before an OCR
+    line: such a line starts a new paragraph (a list of rules), however close it is to the
+    line above. ``loaded_for(xref)`` returns the decoded image (cached)."""
+    import cv2
+
+    def check(line: TextSegment) -> bool:
+        if line.image is None:
+            return False
+        loaded = loaded_for(line.image.xref)
+        if loaded is None:
+            return False
+        rgb = loaded.rgb  # type: ignore[attr-defined]
+        x0, y0, x1, y1 = (int(v) for v in line.image.pixel_box)
+        h = y1 - y0
+        rx0, rx1 = max(0, x0 - int(1.6 * h)), max(0, x0 - max(2, h // 8))
+        ry0, ry1 = max(0, y0 - h // 6), min(rgb.shape[0], y1 + h // 6)
+        if h < 8 or rx1 - rx0 < h // 2:
+            return False
+        region = rgb[ry0:ry1, rx0:rx1]
+        bg, share = _dominant_colour(region)
+        if share < STRIPE_MIN_SHARE:
+            return False
+        ink = (np.abs(region.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF).astype(np.uint8)
+        n, _labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+        if n != 2:
+            return False  # nothing, or more than one blob (text)
+        bx, by, bw, bh, area = (int(v) for v in stats[1])
+        if not (0.2 * h <= bw <= 0.8 * h and 0.2 * h <= bh <= 0.8 * h) or area < 0.5 * bw * bh:
+            return False  # not a compact dot or square
+        cy = by + bh / 2
+        return (ry1 - ry0) * 0.25 <= cy <= (ry1 - ry0) * 0.75
+    return check
+
+
 def _join_row_pieces(candidates: list[TextSegment], blank_check: Optional[BlankCheck] = None
                      ) -> tuple[list[TextSegment], dict[str, list[TextSegment]]]:
     """Join same-row sentence pieces into one virtual line each (blank marked ``___``).
@@ -305,7 +380,7 @@ def _join_row_pieces(candidates: list[TextSegment], blank_check: Optional[BlankC
     used: set[str] = set()
     units: dict[str, list[TextSegment]] = {}
     out: list[TextSegment] = []
-    for line in sorted(candidates, key=lambda l: (round(l.bbox.y0, 1), l.bbox.x0)):
+    for line in by_x:  # left to right: a chain starts at the leftmost piece of its row
         if line.id in used:
             continue
         chain = [line]
@@ -313,7 +388,7 @@ def _join_row_pieces(candidates: list[TextSegment], blank_check: Optional[BlankC
             last = chain[-1]
             nxt = next((c for c in by_x if c.id not in used and c is not last and c not in chain
                         and c.bbox.x0 >= last.bbox.x1 - 0.2 * last.bbox.height
-                        and _row_joinable(last, c, blank_check)), None)
+                        and (_glyph_joinable(last, c) or _row_joinable(last, c, blank_check))), None)
             if nxt is None:
                 break
             chain.append(nxt)
@@ -324,9 +399,12 @@ def _join_row_pieces(candidates: list[TextSegment], blank_check: Optional[BlankC
         text = chain[0].source_text.strip()
         bbox = chain[0].bbox
         for prev, cur in zip(chain, chain[1:]):
-            gap = cur.bbox.x0 - prev.bbox.x1
-            wide = gap > 1.6 * max(prev.bbox.height, cur.bbox.height)  # an underline blank, not a space
-            text += (BLANK if wide else "") + cur.source_text.strip()
+            if _glyph_joinable(prev, cur):
+                text = _glyph_join_text(prev.model_copy(update={"source_text": text}), cur)
+            else:
+                gap = cur.bbox.x0 - prev.bbox.x1
+                wide = gap > 1.6 * max(prev.bbox.height, cur.bbox.height)  # an underline blank, not a space
+                text += (BLANK if wide else "") + cur.source_text.strip()
             bbox = bbox.union(cur.bbox)
         virtual = chain[0].model_copy(update={"bbox": bbox, "source_text": text, "protected_text": text})
         units[virtual.id] = chain
@@ -386,8 +464,36 @@ def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: La
     )
 
 
+_ENUM_LINE_RE = re.compile(r"^\s*(\d{1,2})[.．、]")
+_ENUM_FUSED_RE = re.compile(r"^(\s*)(\d{1,2})[.．](\d{1,4})(?![.．\d])(?=.*\S)")
+
+
+def space_fused_enumerators(lines: list[TextSegment]) -> int:
+    """``4.10个小朋友在做游戏`` -> ``4. 10个...``: the exercise number and the number that
+    starts its text were read as one decimal. Only a number that continues the page's
+    exercise numbering (1, or the one after the last enumerator seen) is taken for an
+    enumerator; ``2.5米`` elsewhere stays a decimal. ``lines`` must be in reading order."""
+    seen: set[int] = set()
+    changed = 0
+    for line in lines:
+        text = line.source_text
+        m = _ENUM_FUSED_RE.match(text)
+        if m:
+            n = int(m.group(2))
+            if 1 <= n <= 20 and n not in seen and (n == 1 or n - 1 in seen) and m.group(3)[0] != "0":
+                line.source_text = f"{m.group(1)}{n}. {m.group(3)}{text[m.end():]}"
+                seen.add(n)
+                changed += 1
+                continue
+        m = _ENUM_LINE_RE.match(text)
+        if m:
+            seen.add(int(m.group(1)))
+    return changed
+
+
 def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang,
-                    blank_check: Optional[BlankCheck] = None) -> list[TextSegment]:
+                    blank_check: Optional[BlankCheck] = None,
+                    bullet: Optional[LineCheck] = None) -> list[TextSegment]:
     """Merge the OCR line segments of one scanned page into paragraph segments.
 
     The merged lines are marked ``translate=False`` with ``skip_reason``
@@ -402,18 +508,37 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
     # wraps (我的花生比 / 你的多): it joins a paragraph when the joined text has no gap left
     pending = {l.id for l in lines if l.page == page_index and l.kind == SegmentKind.IMAGE_TEXT
                and l.image is not None and l.skip_reason == INLINE_PICTOGRAMS}
+    # a lone character read with low confidence may be the piece of a word the detector cut off
+    # (目|录) or the numeral of a unit heading (一 加与减): it joins its row neighbour, else it stays
+    lone = {l.id for l in lines if l.page == page_index and l.kind == SegmentKind.IMAGE_TEXT
+            and l.image is not None and l.skip_reason.startswith(LONE_CHAR_REASON)}
     for line in lines:
-        if line.id in pending:
+        if line.id in pending or line.id in lone:
             line.translate = True
     candidates = [l for l in lines if l.page == page_index and _mergeable(l)]
     if not candidates:
+        for line in lines:
+            if line.id in lone:
+                line.translate = False
         return []
     candidates, units = _join_row_pieces([c for c in candidates if c.id not in pending], blank_check)
+    joined = {u.id for chain in units.values() for u in chain}
+    for line in lines:
+        if line.id in lone and line.id not in joined:
+            line.translate = False
+    candidates = [c for c in candidates if c.id not in lone or c.id in joined]
     candidates += [l for l in lines if l.id in pending]
     candidates.sort(key=lambda l: (round(l.bbox.y0, 1), l.bbox.x0))
+    if not candidates:
+        return []
+    space_fused_enumerators(candidates)
+    bullets = {l.id for l in candidates if bullet is not None and l.id not in units and bullet(l)}
     page_median_height = statistics.median(l.bbox.height for l in candidates)
     paragraphs: list[_Para] = []
     for line in candidates:
+        if line.id in bullets:
+            paragraphs.append(_Para(line))  # a bulleted rule or question: always its own paragraph
+            continue
         best: Optional[_Para] = None
         best_overlap = -1.0
         for para in paragraphs:
@@ -477,10 +602,11 @@ def build_overlay_segments(doc: TranslatedDocument, scanned: set[int],
         return cache[xref]
 
     check = underline_blank_check(loaded_for) if pdf_doc is not None else None
+    bullets = bullet_check(loaded_for) if pdf_doc is not None else None
     try:
         for page_index in sorted(scanned):
             lines = [s for s in doc.segments if s.page == page_index and s.kind == SegmentKind.IMAGE_TEXT]
-            out.extend(group_ocr_lines(lines, page_index, doc.source_lang, check))
+            out.extend(group_ocr_lines(lines, page_index, doc.source_lang, check, bullets))
     finally:
         if pdf_doc is not None and not isinstance(pdf, pymupdf.Document):
             pdf_doc.close()
@@ -662,12 +788,30 @@ def watermark_alphabet(doc: TranslatedDocument) -> set[str]:
     return alphabet if len(alphabet) >= 3 else set()
 
 
-WATERMARK_CONFUSIONS = set("乐东字五品反童厶")
+WATERMARK_CONFUSIONS = set("乐东字五品反童厶尔中")
 """Characters the OCR reads for pieces of a semi-transparent watermark (京 -> 乐 / 东,
 出 -> 五, 版 -> 反): inside the watermark band they count as watermark letters."""
 BAND_MIN_HALF_WIDTH = 0.025
 """Minimum half-width of the watermark band (share of the page height)."""
 BAND_MAX_LETTERS = 4
+BAND_END_MARGIN = 0.12
+"""How far (share of the page width) the band reaches beyond the outermost slanted piece."""
+BAND_CONFIDENCE = 0.9
+"""Inside the band, a short line half made of watermark letters read below this confidence
+is a misread piece of the watermark."""
+
+
+def _touches_band(seg: TextSegment, band: tuple[float, float, float, float, float], size: tuple[float, float]) -> bool:
+    """True when the watermark's diagonal crosses the segment's box (for trimming watermark
+    letters glued to a long genuine line whose centre is off the band)."""
+    slope, intercept, half, x_min, x_max = band
+    w, h = size
+    if w <= 0 or h <= 0:
+        return False
+    for x in (seg.bbox.x0 / w, (seg.bbox.x0 + seg.bbox.x1) / 2 / w, seg.bbox.x1 / w):
+        if x_min <= x <= x_max and seg.bbox.y0 / h - half <= slope * x + intercept <= seg.bbox.y1 / h + half:
+            return True
+    return False
 
 
 def watermark_band(doc: TranslatedDocument, alphabet: set[str]) -> Optional[tuple[float, float, float, float, float]]:
@@ -703,7 +847,8 @@ def watermark_band(doc: TranslatedDocument, alphabet: set[str]) -> Optional[tupl
     if float(np.median(res)) > 0.02:
         return None  # no consistent diagonal: several watermarks or none
     half = max(BAND_MIN_HALF_WIDTH, 3 * float(np.median(res)))
-    return float(slope), float(intercept), half, float(xs.min()) - 0.05, float(xs.max()) + 0.05
+    # the first and last letters (北, 社) lie beyond the centres of the recognised pieces
+    return float(slope), float(intercept), half, float(xs.min()) - BAND_END_MARGIN, float(xs.max()) + BAND_END_MARGIN
 
 
 def _in_band(seg: TextSegment, band: tuple[float, float, float, float, float], size: tuple[float, float]) -> bool:
@@ -736,18 +881,21 @@ def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
         if not letters:
             continue
         confidence = seg.image.confidence if seg.image is not None else 1.0
-        inside = band is not None and _in_band(seg, band, sizes.get(seg.page, (0.0, 0.0)))
+        size = sizes.get(seg.page, (0.0, 0.0))
+        inside = band is not None and _in_band(seg, band, size)
+        touching = inside or (band is not None and _touches_band(seg, band, size))
         if inside and len(letters) <= BAND_MAX_LETTERS and (
                 all(c in band_letters for c in letters)
-                or (any(c in band_letters for c in letters) and confidence < LOW_CONFIDENCE)):
-            # an upright or misread piece of the watermark (学, 五, 反社) lying on the watermark's diagonal
+                or (sum(c in band_letters for c in letters) * 2 >= len(letters) and confidence < BAND_CONFIDENCE)):
+            # an upright or misread piece of the watermark (学, 五, 反社, 中版社) lying on the watermark's diagonal
             seg.translate = False
             seg.skip_reason = WATERMARK
             changed += 1
             continue
         in_alphabet = sum(c in alphabet for c in letters)
+        bare = text.strip() == "".join(letters)  # only letters: no digits or punctuation around them
         if len(letters) <= MAX_FRAGMENT_LETTERS and (
-                in_alphabet == len(letters)
+                (in_alphabet == len(letters) and (len(letters) >= 2 or bare))
                 or (len(letters) <= 4 and in_alphabet * 2 >= len(letters) and confidence < LOW_CONFIDENCE)):
             # all letters from the watermark, or a short low-confidence piece half made of them
             # (a semi-transparent watermark is misread: "出版社" -> "五社")
@@ -755,7 +903,7 @@ def suppress_watermark_fragments(doc: TranslatedDocument) -> int:
             seg.skip_reason = WATERMARK
             changed += 1
             continue
-        trimmed = _trim_watermark_runs(text, band_letters if inside else alphabet)
+        trimmed = _trim_watermark_runs(text, band_letters if touching else alphabet)
         if trimmed != text:
             rest_letters = sum(c.isalpha() for c in trimmed)
             if rest_letters >= 2:

@@ -556,3 +556,102 @@ def test_trailing_full_stop_is_found_beside_a_bubble_outline():
     box = (0, 8, int(ink_cols.max()) - 28, 52)            # the OCR box ends before the 。
     x0, y0, x1, y1 = _extend_for_punctuation(original, box, [])
     assert x1 >= int(ink_cols.max()) and x1 < 263          # the 。 is taken, the outline is not
+
+
+def test_title_characters_and_unit_numerals_join_their_row():
+    from mathtrans.scanned import LONE_CHAR_REASON
+
+    # the two characters of a title set wide apart, in different colours
+    mu = _gline(0, 100, 50, 112, "目", h=14.0, color=0xFCEE00)
+    lu = _gline(1, 126, 50, 138, "录", h=14.0)
+    # a lone unit numeral (low OCR confidence) before its heading, and a cut-off first character
+    yi = _gline(2, 60, 100, 70, "一", h=12.0)
+    yi.translate, yi.skip_reason = False, f"{LONE_CHAR_REASON} (0.70)"
+    heading = _gline(3, 90, 100, 170, "加与减", h=12.0)
+    cut = _gline(4, 60, 150, 70, "一", h=12.0)
+    cut.translate, cut.skip_reason = False, f"{LONE_CHAR_REASON} (0.70)"
+    rest = _gline(5, 73, 150, 200, "共有5个。", h=12.0)
+    alone = _gline(6, 60, 220, 70, "学", h=12.0)   # nothing beside it: stays as it was
+    alone.translate, alone.skip_reason = False, f"{LONE_CHAR_REASON} (0.70)"
+    paragraphs = group_ocr_lines([mu, lu, yi, heading, cut, rest, alone], 0, Lang.ZH)
+    texts = [p.source_text for p in paragraphs]
+    assert "目录" in texts and "一 加与减" in texts and "一共有5个。" in texts
+    assert alone.translate is False and alone.skip_reason.startswith(LONE_CHAR_REASON)
+    assert yi.skip_reason.startswith(MERGED) and cut.skip_reason.startswith(MERGED)
+
+
+def test_fused_enumerators_get_a_space():
+    from mathtrans.scanned import space_fused_enumerators
+
+    lines = [_gline(0, 50, 100, 300, "1.看图列式。"), _gline(1, 50, 130, 300, "2.40只蚂蚁搬走了8只。"),
+             _gline(2, 50, 160, 300, "3.2436=2000+400+30+6"), _gline(3, 50, 190, 300, "2.5米长的绳子"),
+             _gline(4, 50, 220, 300, "4.05"), _gline(5, 50, 250, 300, "1.5")]
+    assert space_fused_enumerators(lines) == 2
+    assert [l.source_text for l in lines] == ["1.看图列式。", "2. 40只蚂蚁搬走了8只。", "3. 2436=2000+400+30+6",
+                                              "2.5米长的绳子", "4.05", "1.5"]
+
+
+def test_bulleted_lines_start_their_own_paragraphs():
+    first = _gline(0, 60, 100, 300, "每人每次只能移动一张卡片。")
+    second = _gline(1, 60, 114, 300, "移动后卡片必须放回原来的格子里。")
+    plain = group_ocr_lines([first.model_copy(), second.model_copy()], 0, Lang.ZH)
+    assert len(plain) == 1                                                    # close lines: one paragraph ...
+    bulleted = group_ocr_lines([first, second], 0, Lang.ZH, bullet=lambda line: line.id == "g1")
+    assert [p.source_text for p in bulleted] == [first.source_text, second.source_text]   # ... unless a bullet starts the second
+
+
+def test_bullet_check_reads_the_dot_before_a_line():
+    import numpy as np
+    from mathtrans.scanned import bullet_check
+
+    original = _text_image((400, 60), (255, 255, 255), [("rect", [12, 24, 26, 38], (240, 120, 30)),
+                                                        ("text", ((40, 10), "每人每次只能移动", 34), (20, 20, 20))])
+    ink_cols = np.flatnonzero((original[:, 35:].max(axis=2) < 100).any(axis=0)) + 35
+    box = (int(ink_cols.min()) - 2, 6, int(ink_cols.max()) + 2, 54)
+    line = _gline(0, box[0] / 2, box[1] / 2, box[2] / 2, "每人每次只能移动", h=(box[3] - box[1]) / 2)
+    line.image.pixel_box = box
+
+    class Loaded:
+        rgb = original
+
+    assert bullet_check(lambda xref: Loaded())(line) is True
+    no_dot = original.copy(); no_dot[:, :35] = 255
+    Loaded.rgb = no_dot
+    assert bullet_check(lambda xref: Loaded())(line) is False
+
+
+def test_watermark_pieces_beyond_the_slanted_centres_and_short_real_lines():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import WATERMARK, suppress_watermark_fragments
+
+    def seg(i, page, cx, cy, text, translate=True, reason="", confidence=0.97, w=40.0):
+        ref = ImageRef(xref=9, page=page, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int((cx - w / 2) * 2), int((cy - 6) * 2), int((cx + w / 2) * 2), int((cy + 6) * 2)),
+                       confidence=confidence)
+        return TextSegment(id=f"w{i}", page=page, kind=SegmentKind.IMAGE_TEXT,
+                           bbox=BBox(x0=cx - w / 2, y0=cy - 6, x1=cx + w / 2, y1=cy + 6), source_text=text,
+                           protected_text=text, image=ref, style=SegmentStyle(size=10), translate=translate,
+                           skip_reason=reason)
+
+    def on_diag(x):
+        return 700 * (0.66 - 0.3 * x / 500)
+
+    pages = [PageInfo(index=i, width=500, height=700) for i in range(3)]
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN, pages=pages)
+    slanted = "slanted text (17°): watermark or decoration, kept as is"
+    doc.segments = [
+        seg(0, 0, 200, on_diag(200), "师范大学", False, slanted), seg(1, 0, 340, on_diag(340), "学出版社", False, slanted),
+        seg(2, 1, 220, on_diag(220), "京师范大", False, slanted), seg(3, 1, 330, on_diag(330), "出版社", False, slanted),
+        seg(4, 2, 250, on_diag(250), "范大学出", False, slanted), seg(5, 2, 360, on_diag(360), "版社", False, slanted),
+        seg(10, 0, 150, on_diag(150), "北京", w=24),                 # the first letters, left of every slanted piece's centre
+        seg(11, 1, 145, on_diag(145) + 2, "北", w=12, confidence=1.0),
+        seg(12, 2, 300, on_diag(300), "中版社", w=36, confidence=0.88),  # 出 misread as 中, read with little confidence
+        seg(13, 1, 250, on_diag(250) + 150, "14大", w=30),           # a real bubble line far from the band (大 is a watermark letter)
+        seg(14, 2, 400, on_diag(400) + 160, "北京", w=24),           # a real city label far from the band
+        seg(15, 0, 250, on_diag(250) + 150, "学", w=12),             # a lone real character far from the band: still suspect
+    ]
+    suppress_watermark_fragments(doc)
+    by = {s.id: s for s in doc.segments}
+    assert [by[k].skip_reason for k in ("w10", "w11", "w12")] == [WATERMARK] * 3
+    assert by["w13"].translate and by["w14"].translate
+    assert by["w15"].skip_reason == WATERMARK
