@@ -884,3 +884,28 @@ def test_short_fragments_of_one_sentence_share_a_size():
     heading = frag(4, 340, "Practice", 10.0, role="heading")
     groups = _sibling_label_groups(pieces + [long, heading])
     assert [sorted(s.id for s in g) for g in groups] == [["f0", "f1", "f2"]]
+
+
+def test_tight_row_neighbours_keep_a_word_space(tmp_path):
+    import pymupdf
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img_path = tmp_path / "scan.png"
+    Image.new("RGB", (1000, 1400), (255, 255, 255)).save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+
+    def seg(i, x0, x1, source, text):
+        return TextSegment(id=f"p0_s{i}", page=0, bbox=BBox(x0=x0, y0=100, x1=x1, y1=116), source_text=source,
+                           protected_text=source, translated_text=text, origin="ocr",
+                           style=SegmentStyle(size=12, color=0x202020, role="label"))
+
+    a, b = seg(0, 100, 142, "一年级", "Grade 1"), seg(1, 143, 175, "上册", "Volume 1")
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[a, b])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert a.render.bbox.x1 <= b.render.bbox.x0 - 4.5                  # at least 0.4 em (4.8 pt) between the two
+    assert a.render.scale > 0.5 and b.render.scale > 0.5

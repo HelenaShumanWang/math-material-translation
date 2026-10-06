@@ -1964,3 +1964,26 @@ def test_writing_grids_lone_measure_words_and_short_low_confidence_lines():
     assert alone.translate is True
     assert build("凑11", (198, 6, 290, 54), conf=0.81).translate is True     # not a lone character
     assert build("凑", (198, 6, 244, 54), conf=0.81).translate is False
+
+
+def test_skipped_unit_numeral_strokes_join_their_heading():
+    from mathtrans.images import attach_numeral_strokes, numeral_strokes_left_of
+
+    img = Image.new("RGB", (700, 80), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([(40, 36), (84, 42)], fill=(20, 20, 20))                 # 一: one thick stroke
+    d.text((160, 14), "生活中的数", fill=(20, 20, 20), font=pil_font("zh", 44))
+    d.rectangle([(400, 28), (444, 33)], fill=(20, 20, 20))               # 二 before the next column's heading
+    d.rectangle([(400, 44), (444, 49)], fill=(20, 20, 20))
+    d.text((470, 14), "比较", fill=(20, 20, 20), font=pil_font("zh", 44))
+    rgb = np.array(img)
+    first = OcrResult(text="生活中的数", polygon=[[156, 10], [385, 10], [385, 66], [156, 66]], confidence=0.98)
+    second = OcrResult(text="比较", polygon=[[466, 10], [560, 10], [560, 66], [466, 66]], confidence=0.98)
+    assert numeral_strokes_left_of(rgb, first.box) == ("一", 40, 85)
+    out = attach_numeral_strokes([first, second], rgb)
+    assert [o.text for o in out] == ["一 生活中的数", "二 比较"]
+    assert out[0].box[0] <= 40 and out[1].box[0] <= 400                   # the boxes now cover the strokes
+    # a letter (or a frame, a picture) between the strokes and the heading: no numeral
+    d.text((96, 14), "比", fill=(20, 20, 20), font=pil_font("zh", 44))
+    assert numeral_strokes_left_of(np.array(img), first.box) is None
+    assert attach_numeral_strokes([OcrResult(text="三 比较", polygon=second.polygon, confidence=0.9)], rgb)[0].text == "三 比较"

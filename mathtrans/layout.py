@@ -522,7 +522,7 @@ class _PageSpace:
     def extend(self, seg: TextSegment, *, down: bool, horizontal: bool) -> BBox:
         """Grow ``seg.bbox`` into free space (downward and/or sideways). Short labels on a
         scanned page grow further and on both sides (they are then set centred)."""
-        box = seg.bbox
+        box = self.trim_for_neighbours(seg) if self.scanned and seg.origin == "ocr" else seg.bbox
         label = self.scanned and (_short_label(seg) or _centred_heading(seg, self.page_rect))
         obstacles = [b for sid, b in self.occupied.items() if sid != seg.id] + list(self.fixed)
         containers: list[BBox] = []
@@ -563,6 +563,23 @@ class _PageSpace:
                     else:
                         x0 = box.x0
         return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
+
+    def trim_for_neighbours(self, seg: TextSegment) -> BBox:
+        """``seg.bbox`` pulled back from text standing beside it on the same row so that the two
+        keep a word space ("一年级" and "上册" set tight become "Grade 1" and "Volume 1")."""
+        box = seg.bbox
+        gap = max(OBSTACLE_GAP, 0.4 * (seg.style.size if seg.style.size > 0 else 10.0))
+        x0, x1 = box.x0, box.x1
+        for sid, b in self.occupied.items():
+            if sid == seg.id or min(b.y1, box.y1) - max(b.y0, box.y0) <= 0.5 * min(b.height, box.height):
+                continue
+            if b.x0 >= box.x1 - 1.0 and b.x0 - box.x1 < gap:
+                x1 = min(x1, b.x0 - gap)
+            elif b.x1 <= box.x0 + 1.0 and box.x0 - b.x1 < gap:
+                x0 = max(x0, b.x1 + gap)
+        if x1 - x0 < 0.6 * box.width:
+            return box
+        return BBox(x0=x0, y0=box.y0, x1=x1, y1=box.y1)
 
     def _strip_is_free(self, rect: BBox) -> bool:
         """True when the page pixels inside ``rect`` are a plain background (no picture,
@@ -678,7 +695,7 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     cells, whose box already is the cell's interior (growing would cross the rules).
     """
     rotate = html_rotation(seg.style)
-    base = seg.bbox
+    base = space.trim_for_neighbours(seg) if space.scanned and seg.origin == "ocr" else seg.bbox
     growable = rotate == 0 and seg.style.role != "table"
     grown = space.extend(seg, down=True, horizontal=True) if growable else base
     color: Optional[int] = None

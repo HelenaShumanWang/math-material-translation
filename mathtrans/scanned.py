@@ -309,11 +309,19 @@ def _single_cjk(seg: TextSegment) -> bool:
 def _glyph_joinable(left: TextSegment, right: TextSegment) -> bool:
     """A lone character the detector cut off its word (目|录, 数|学, 一|共有), or a bare unit
     numeral set before its heading (一  加与减): the pieces are one line."""
-    if not (_single_cjk(left) or _single_cjk(right)) or not _same_row(left, right):
+    if not (_single_cjk(left) or _single_cjk(right)):
         return False
     h = max(left.bbox.height, right.bbox.height)
     gap = right.bbox.x0 - left.bbox.x1
     if gap < -0.2 * h:
+        return False
+    if _single_cjk(left) and _UNIT_NUMERAL_RE.fullmatch(left.source_text.strip()) \
+            and _letter_count(right.source_text) >= 2 and not _single_cjk(right):
+        # a bare numeral is shorter than the full-height characters of its heading (二 has no
+        # vertical stroke): it only has to sit within the heading's height
+        inside = left.bbox.y0 >= right.bbox.y0 - 0.3 * h and left.bbox.y1 <= right.bbox.y1 + 0.3 * h
+        return inside and gap <= 2.5 * h and _color_distance(left.style.color, right.style.color) <= MAX_COLOR_DISTANCE
+    if not _same_row(left, right):
         return False
     if _single_cjk(left) and _single_cjk(right):
         # the two characters of a title set wide apart (目  录, 数  学): same size, any colour
@@ -321,9 +329,6 @@ def _glyph_joinable(left: TextSegment, right: TextSegment) -> bool:
         return gap <= 1.2 * h and abs(left.bbox.height - right.bbox.height) <= 0.15 * h
     if _color_distance(left.style.color, right.style.color) > MAX_COLOR_DISTANCE:
         return False
-    if _single_cjk(left) and _UNIT_NUMERAL_RE.fullmatch(left.source_text.strip()) \
-            and _letter_count(right.source_text) >= 2:
-        return gap <= 2.5 * h
     return gap <= 0.6 * h
 
 

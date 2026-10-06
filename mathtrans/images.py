@@ -20,7 +20,7 @@ import math
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Callable, Optional, Union
+from typing import Any, Callable, Optional, Sequence, Union
 
 import cv2
 import numpy as np
@@ -876,6 +876,8 @@ def answer_box_left_of(rgb: np.ndarray, box: tuple[int, int, int, int]) -> bool:
     if x0 - rx0 < h // 2:
         return False
     region = rgb[max(0, y0 - h // 4):y1 + h // 4, rx0:x0].astype(np.int32)
+    if region.size == 0:
+        return False
     sat = region.max(axis=2) - region.min(axis=2)
     coloured = (sat >= ANCHOR_MIN_SATURATION) & (np.abs(region - np.median(region.reshape(-1, 3), axis=0)).max(axis=2) > 50)
     cols = coloured.any(axis=0)
@@ -1182,6 +1184,95 @@ WIDE_GAP_SPACED = 1.0
 _PRICE_TOKENS_RE = re.compile(r"(?:¥?\d+(?:\.\d+)?\s*[元角分](?:\d+\s*[角分])?\s*){2,}")
 
 
+NUMERAL_STROKES = {1: "一", 2: "二", 3: "三"}
+
+
+def numeral_strokes_left_of(rgb: np.ndarray, box: tuple[int, int, int, int],
+                            others: Sequence[tuple[int, int, int, int]] = ()) -> Optional[tuple[str, int]]:
+    """The unit numeral 一 / 二 / 三 the detector skipped before a heading (``一  生活中的数``,
+    its strokes look like rules): one to three flat dark strokes stacked within the line's
+    height, left of ``box`` within three line heights, nothing else there, no other OCR box
+    in the way. Returns ``(numeral, x0, x1)`` of the strokes or None."""
+    H, W = rgb.shape[:2]
+    x0, y0, x1, y1 = (int(v) for v in box)
+    x0, x1, y0, y1 = max(0, min(x0, W)), max(0, min(x1, W)), max(0, min(y0, H)), max(0, min(y1, H))
+    h = y1 - y0
+    if h < 10 or x1 <= x0:
+        return None
+    rx0, rx1 = max(0, x0 - 3 * h), max(0, x0 - max(2, h // 8))
+    if rx1 - rx0 < h:
+        return None
+    for ox0, oy0, ox1, oy1 in others:
+        if ox1 > rx0 and ox0 < rx1 and oy1 > y0 and oy0 < y1:
+            rx0 = max(rx0, ox1 + 1)  # another line stands left of this one: search only after it
+    if rx1 - rx0 < h:
+        return None
+    region = rgb[y0:y1, rx0:rx1]
+    if region.size == 0:
+        return None
+    bg, share = _dominant(region)
+    if share < 0.6 or float(bg.max()) < 150:
+        return None
+    ink = (np.abs(region.astype(np.int32) - bg).max(axis=2) > 80).astype(np.uint8)
+    if not ink.any():
+        return None
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+    strokes, others_ink = [], []
+    for i in range(1, n):
+        bx, by, bw, bh, area = (int(v) for v in stats[i])
+        if area < 6:
+            continue  # dust
+        if (0.45 * h <= bw <= 1.3 * h and 0.07 * h <= bh <= 0.28 * h and bw >= 2.5 * bh
+                and area >= 0.6 * bw * bh):
+            strokes.append((bx, by, bw, bh))  # a thick printed stroke, not the hairline of a diagram
+        else:
+            others_ink.append((bx, by, bw, bh))
+    if not 1 <= len(strokes) <= 3:
+        return None
+    strokes.sort(key=lambda t: t[1])
+    xs0, xs1 = min(t[0] for t in strokes), max(t[0] + t[2] for t in strokes)
+    if xs1 - xs0 > 1.4 * h:
+        return None  # not stacked
+    centre = (min(t[1] for t in strokes) + max(t[1] + t[3] for t in strokes)) / 2
+    if not 0.3 * h <= centre <= 0.7 * h:
+        return None  # a rule along the top or bottom of the line, not a numeral beside it
+    if any(bx + bw > xs0 - h // 4 for bx, _by, bw, _bh in others_ink):
+        return None  # a picture, a letter or a frame between the strokes and the line (or among them)
+    gap_to_line = (rx1 - rx0 - xs1) + (x0 - rx1)
+    if gap_to_line > 2.2 * h:
+        return None
+    return NUMERAL_STROKES[len(strokes)], rx0 + xs0, rx0 + xs1
+
+
+def attach_numeral_strokes(results: list[OcrResult], rgb: np.ndarray) -> list[OcrResult]:
+    """Prefix a CJK line with the unit numeral whose strokes the detector skipped before it
+    (see :func:`numeral_strokes_left_of`); the result's box then covers the strokes."""
+    boxes = [r.box for r in results]
+    out: list[OcrResult] = []
+    for i, r in enumerate(results):
+        text = r.text.strip()
+        if not text or not is_cjk_char(text[0]) or _UNIT_NUMERAL_START_RE.match(text):
+            out.append(r)
+            continue
+        bh = r.box[3] - r.box[1]
+        # only text lines of about this size stand in the way; the huge box of a slanted watermark
+        # line or of a picture caption spanning the page does not
+        found = numeral_strokes_left_of(rgb, r.box, [b for j, b in enumerate(boxes)
+                                                     if j != i and 0.5 * bh <= b[3] - b[1] <= 2.0 * bh
+                                                     and b[2] - b[0] <= 12 * bh])
+        if found is None:
+            out.append(r)
+            continue
+        numeral, sx0, sx1 = found
+        bx0, by0, bx1, by1 = r.box
+        sep = " " if bx0 - sx1 > 0.3 * (by1 - by0) else ""  # 一  生活中的数 (a unit heading) / 一共有
+        out.append(OcrResult(text=numeral + sep + text, polygon=_rect(sx0, by0, bx1, by1), confidence=r.confidence))
+    return out
+
+
+_UNIT_NUMERAL_START_RE = re.compile(r"^[一二三四五六七八九十]")
+
+
 def split_price_tokens(results: list[OcrResult]) -> list[OcrResult]:
     """``20元1元5角`` (three price tags side by side read as one line) -> one result per
     amount, cut by the amounts' estimated widths."""
@@ -1214,7 +1305,7 @@ def _ink_runs(rgb: np.ndarray, box: tuple[int, int, int, int]) -> Optional[tuple
     x0, y0, x1, y1 = (int(v) for v in box)
     crop = rgb[max(0, y0):y1, max(0, x0):x1]
     h, w = crop.shape[:2]
-    if h < 8 or w < 2 * h:
+    if h < 8 or w < 2 * h or crop.size == 0:
         return None
     bg, share = _dominant(crop)
     if share < 0.4:
@@ -1461,6 +1552,7 @@ def extract_image_segments(pdf_path: PdfSource, doc: TranslatedDocument, engine:
                 kept = translatable = 0
                 prepared = split_stacked_repeats(split_price_tokens(
                     split_wide_gaps(_split_template_units(results, loaded.rgb), loaded.rgb)))
+                prepared = attach_numeral_strokes(prepared, loaded.rgb)
                 for n, result in enumerate(prepared):
                     if result.confidence < min_confidence:
                         logger.debug("page %d image %d: dropping %r (confidence %.2f < %.2f)", page.number, xref,
