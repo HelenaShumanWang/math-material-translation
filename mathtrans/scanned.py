@@ -73,6 +73,91 @@ UNIT_DROPPED = "unit label after an answer box (dropped)"
 """Prefix of the ``skip_reason`` of OCR lines that became part of a paragraph."""
 
 
+# --------------------------------------------------------------------------- #
+# pages assembled from a page image plus patch images drawn over it
+# --------------------------------------------------------------------------- #
+
+PATCH_DUPLICATE = "duplicate read on a patch image of"
+"""``skip_reason`` (after :data:`MERGED`) of an OCR line read on a patch image - a smaller
+image placed over the page image that repeats the same part of the scan - when the line
+underneath carries the text: the copy is erased from the patch and set once, from the line
+underneath. Followed by the id of that line."""
+PATCH_OVERLAP = 0.6
+"""A patch line and a line underneath are the same text when their intersection covers at
+least this share of the smaller of the two boxes (page space)."""
+
+
+def _patch_pairs(lines: list[TextSegment]) -> list[tuple[int, int]]:
+    """``(patch_xref, base_xref)`` for every image whose placement lies inside another, larger
+    image of the same page (a crop of the scan drawn on top of the page image)."""
+    boxes: dict[int, BBox] = {}
+    for seg in lines:
+        if seg.image is not None and seg.image.xref not in boxes:
+            boxes[seg.image.xref] = seg.image.bbox
+    pairs: list[tuple[int, int]] = []
+    for patch, pb in boxes.items():
+        best: Optional[tuple[float, int]] = None
+        for base, bb in boxes.items():
+            if base == patch:
+                continue
+            inside = (pb.x0 >= bb.x0 - 1 and pb.y0 >= bb.y0 - 1 and pb.x1 <= bb.x1 + 1 and pb.y1 <= bb.y1 + 1)
+            if inside and bb.width * bb.height > pb.width * pb.height * 1.05:
+                area = bb.width * bb.height
+                if best is None or area < best[0]:  # the nearest enclosing image is the one underneath
+                    best = (area, base)
+        if best is not None:
+            pairs.append((patch, best[1]))
+    return pairs
+
+
+def _overlap_share(a: BBox, b: BBox) -> float:
+    ix = max(0.0, min(a.x1, b.x1) - max(a.x0, b.x0))
+    iy = max(0.0, min(a.y1, b.y1) - max(a.y0, b.y0))
+    smaller = min(a.width * a.height, b.width * b.height)
+    return ix * iy / smaller if smaller > 0 else 0.0
+
+
+def suppress_patch_duplicates(lines: list[TextSegment], page_index: int) -> int:
+    """Scanned pages are sometimes assembled from a full-page image plus smaller patch images
+    (crops of the same scan) drawn over it; the OCR then reads the text under a patch twice.
+    The copies read on the patch that repeat a line of the image underneath are marked
+    erase-only (``translate=False``, ``skip_reason`` :data:`MERGED` + :data:`PATCH_DUPLICATE`
+    + the id of the line underneath): the text is set once, from the line underneath, and the
+    glyphs are wiped on the patch, which is the one that shows. Patch lines with nothing
+    underneath stay as they are. Call before :func:`group_ocr_lines`; returns the number marked."""
+    page_lines = [l for l in lines if l.page == page_index and l.kind == SegmentKind.IMAGE_TEXT and l.image is not None]
+    marked = 0
+    for patch, base in _patch_pairs(page_lines):
+        under = [l for l in page_lines if l.image is not None and l.image.xref == base]
+        for line in page_lines:
+            if line.image is None or line.image.xref != patch or line.skip_reason.startswith(MERGED):
+                continue
+            best = max(under, key=lambda u: _overlap_share(u.bbox, line.bbox), default=None)
+            if best is None or _overlap_share(best.bbox, line.bbox) < PATCH_OVERLAP:
+                continue
+            line.translate = False
+            line.skip_reason = f"{MERGED} {PATCH_DUPLICATE} {best.id}"
+            marked += 1
+    if marked:
+        log.info("page %d: %d line(s) read again on a patch image are erased there and set once", page_index, marked)
+    return marked
+
+
+def relink_patch_duplicates(lines: list[TextSegment], page_index: int) -> None:
+    """After grouping: a patch copy follows the line underneath - erased and restored with the
+    paragraph that line was merged into, or left in the picture when that line is."""
+    by_id = {l.id: l for l in lines if l.page == page_index}
+    prefix = f"{MERGED} {PATCH_DUPLICATE} "
+    for line in lines:
+        if line.page != page_index or not line.skip_reason.startswith(prefix):
+            continue
+        under = by_id.get(line.skip_reason[len(prefix):].strip())
+        if under is None:
+            continue
+        if under.skip_reason.startswith(MERGED) or not under.translate:
+            line.skip_reason = under.skip_reason
+
+
 def is_scanned_page(page: pymupdf.Page, min_cover: float = MIN_PAGE_COVER) -> bool:
     """True for a page without text whose one image covers (almost) the whole page."""
     if page.get_text("words"):
@@ -628,7 +713,9 @@ def build_overlay_segments(doc: TranslatedDocument, scanned: set[int],
     try:
         for page_index in sorted(scanned):
             lines = [s for s in doc.segments if s.page == page_index and s.kind == SegmentKind.IMAGE_TEXT]
+            suppress_patch_duplicates(lines, page_index)
             out.extend(group_ocr_lines(lines, page_index, doc.source_lang, check, bullets))
+            relink_patch_duplicates(lines, page_index)
     finally:
         if pdf_doc is not None and not isinstance(pdf, pymupdf.Document):
             pdf_doc.close()
@@ -1154,4 +1241,5 @@ def _trim_watermark_runs(text: str, alphabet: set[str]) -> str:
 
 
 __all__ = ["is_scanned_page", "scanned_pages", "group_ocr_lines", "build_overlay_segments",
-           "erase_merged_lines", "suppress_watermark_fragments", "watermark_alphabet", "MERGED", "WATERMARK"]
+           "erase_merged_lines", "suppress_watermark_fragments", "suppress_patch_duplicates",
+           "relink_patch_duplicates", "watermark_alphabet", "MERGED", "PATCH_DUPLICATE", "WATERMARK"]

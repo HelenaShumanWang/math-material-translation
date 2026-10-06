@@ -660,3 +660,78 @@ def test_watermark_pieces_beyond_the_slanted_centres_and_short_real_lines():
     assert [by[k].skip_reason for k in ("w10", "w11", "w12")] == [WATERMARK] * 3
     assert by["w13"].translate and by["w14"].translate
     assert by["w15"].skip_reason == WATERMARK
+
+
+# --------------------------------------------------------------------------- #
+# patch images drawn over the page image (the scan is read twice where they lie)
+# --------------------------------------------------------------------------- #
+
+
+def _patch_line(i, xref, image_box, x0, y, x1, text, h=12.0, translate=True, reason=""):
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    bx0, by0, bx1, by1 = image_box
+    ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=bx0, y0=by0, x1=bx1, y1=by1), width=int((bx1 - bx0) * 2),
+                   height=int((by1 - by0) * 2),
+                   pixel_box=(int((x0 - bx0) * 2), int((y - by0) * 2), int((x1 - bx0) * 2), int((y + h - by0) * 2)))
+    return TextSegment(id=f"p0_i{xref}_{i}", page=0, kind=SegmentKind.IMAGE_TEXT,
+                       bbox=BBox(x0=x0, y0=y, x1=x1, y1=y + h), source_text=text, protected_text=text, image=ref,
+                       style=SegmentStyle(size=10, color=0x202020), translate=translate, skip_reason=reason)
+
+
+PAGE_IMAGE = (0, 0, 520, 740)
+PATCH_IMAGE = (108, 300, 418, 436)  # a crop of the same scan placed over the middle of the page
+
+
+def test_patch_copies_of_lines_underneath_are_erased_only_and_follow_their_paragraph():
+    from mathtrans.scanned import (MERGED, PATCH_DUPLICATE, group_ocr_lines, relink_patch_duplicates,
+                                   suppress_patch_duplicates)
+
+    lines = [
+        _patch_line(0, 10, PAGE_IMAGE, 120, 320, 400, "正、反比例在生活中无处不在，"),   # under the patch
+        _patch_line(1, 10, PAGE_IMAGE, 120, 334, 390, "想一想，说一说。"),
+        _patch_line(2, 10, PAGE_IMAGE, 60, 600, 300, "练一练"),                   # outside the patch
+        _patch_line(0, 11, PATCH_IMAGE, 121, 321, 399, "正、反比例在生活中无处不在，"),  # the same lines on the patch
+        _patch_line(1, 11, PATCH_IMAGE, 121, 335, 389, "想一想，说一说。"),
+        _patch_line(2, 11, PATCH_IMAGE, 300, 410, 410, "淘气"),                   # read on the patch only
+    ]
+    assert suppress_patch_duplicates(lines, 0) == 2
+    copies = [l for l in lines if l.image.xref == 11]
+    assert [l.translate for l in copies] == [False, False, True]
+    assert copies[0].skip_reason == f"{MERGED} {PATCH_DUPLICATE} p0_i10_0"
+    assert copies[1].skip_reason == f"{MERGED} {PATCH_DUPLICATE} p0_i10_1"
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    relink_patch_duplicates(lines, 0)
+    texts = [p.source_text for p in paragraphs]
+    assert texts.count("正、反比例在生活中无处不在，") == 1  # set once, from the line underneath
+    assert texts.count("想一想，说一说。") == 1
+    assert "淘气" in texts
+    for copy, under_id in ((copies[0], "p0_i10_0"), (copies[1], "p0_i10_1")):
+        under = next(l for l in lines if l.id == under_id)
+        assert under.skip_reason.startswith(MERGED)
+        assert copy.skip_reason == under.skip_reason  # erased and restored together with the paragraph
+
+
+def test_patch_copy_of_a_line_left_in_the_picture_stays_in_the_picture():
+    from mathtrans.scanned import relink_patch_duplicates, suppress_patch_duplicates
+
+    noise = "slanted text (30°): watermark or decoration, kept as is"
+    lines = [
+        _patch_line(0, 10, PAGE_IMAGE, 200, 350, 330, "北京师范大学出版社", translate=False, reason=noise),
+        _patch_line(0, 11, PATCH_IMAGE, 201, 351, 329, "北京师范大学出版社"),
+    ]
+    assert suppress_patch_duplicates(lines, 0) == 1
+    relink_patch_duplicates(lines, 0)
+    assert lines[1].translate is False
+    assert lines[1].skip_reason == noise  # not erased: the line underneath is kept in the picture too
+
+
+def test_images_side_by_side_are_not_patches():
+    from mathtrans.scanned import suppress_patch_duplicates
+
+    lines = [
+        _patch_line(0, 10, (0, 0, 260, 740), 20, 100, 200, "左边的图"),
+        _patch_line(0, 11, (260, 0, 520, 740), 280, 100, 460, "左边的图"),
+    ]
+    assert suppress_patch_duplicates(lines, 0) == 0
+    assert all(l.translate for l in lines)
