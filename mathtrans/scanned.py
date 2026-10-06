@@ -297,6 +297,9 @@ def underline_blank_check(loaded_for: Callable[[int], Optional[object]]) -> Blan
     return check
 
 
+PLACE_VALUE_ABBREVIATIONS = {"个位": "O", "十位": "T", "百位": "H", "千位": "Th", "万位": "TTh", "十万位": "HTh",
+                             "百万位": "M", "千万位": "TM", "亿位": "HM"}
+"""Column headers over a vertical form or place-value chart, as English books abbreviate them."""
 _UNIT_NUMERAL_RE = re.compile(r"[一二三四五六七八九十]")
 LONE_CHAR_REASON = "single character with low OCR confidence"
 
@@ -436,11 +439,17 @@ def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: La
     letters = sum(ch.isalpha() for ch in text)
     han = sum("\u3400" <= ch <= "\u9fff" for ch in text)
     box = para.bbox
-    vertical = (len(lines) == 1 and han >= 2 and box.width > 0 and box.height >= 1.8 * box.width
+    vertical = (len(lines) == 1 and han >= 2 and box.width > 0 and box.height >= 1.5 * box.width
                 and box.height / box.width >= 0.6 * han)
-    if vertical:
-        # 十位 / 个位 stacked in a narrow column over a vertical form: the characters are as tall as
-        # the column is wide; the English is set running down the column
+    column_header = PLACE_VALUE_ABBREVIATIONS.get(text.strip()) if vertical else None
+    if column_header is not None:
+        # 十位 / 个位 stacked over the columns of a vertical form: English books head the columns
+        # with the abbreviations T / O (H, Th ...), set upright at the column's width
+        vertical = False
+        size = max(4.0, round(box.width * FONT_HEIGHT_RATIO, 1))
+        role = "label"
+    elif vertical:
+        # other stacked labels (被减数, 结束): the English is set running down the column
         size = max(4.0, round(min(box.width, box.height / han) * FONT_HEIGHT_RATIO, 1))
         role = "label"
     elif len(lines) == 1 and page_median_height > 0 and h >= 1.4 * page_median_height:
@@ -451,6 +460,14 @@ def _paragraph_segment(para: _Para, index: int, page_index: int, source_lang: La
         role = "body"
     first = lines[0]
     translate = not is_fully_protected(protected) and any(l.translate for l in lines)
+    if column_header is not None:
+        return TextSegment(
+            id=f"p{page_index}_s{index}", page=page_index, kind=SegmentKind.TEXT, bbox=para.bbox,
+            source_text=text, protected_text=protected, protected=fragments,
+            style=SegmentStyle(size=size, color=first.style.color, align="center", line_height=1.1, role="label"),
+            translate=False, skip_reason=f"place-value column header, set as {column_header}",
+            translated_text=column_header, translation_raw=column_header, origin="ocr",
+            members=members if members is not None else [l.id for l in lines], reading_order=index)
     return TextSegment(
         id=f"p{page_index}_s{index}",
         page=page_index,
@@ -574,7 +591,7 @@ def group_ocr_lines(lines: list[TextSegment], page_index: int, source_lang: Lang
         originals = [u for l in para.lines for u in units.get(l.id, [l])]
         seg = _paragraph_segment(para, i, page_index, source_lang, page_median_height,
                                  members=[u.id for u in originals])
-        if not seg.translate:
+        if not seg.translate and not seg.translated_text:
             continue  # formulas and numbers are not translated: they stay in the picture untouched
         for u in originals:
             u.translate = False

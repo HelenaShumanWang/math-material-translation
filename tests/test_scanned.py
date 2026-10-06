@@ -536,11 +536,16 @@ def test_wrapped_line_ending_in_bi_joins_its_sentence():
 
 def test_stacked_column_label_is_set_as_vertical_text():
     label = _gline(0, 100, 100, 108, "十位", h=50.0)
+    other = _gline(2, 200, 100, 208, "被减数", h=60.0)
     body = _gline(1, 50, 300, 300, "用竖式计算下面各题。")
-    paragraphs = group_ocr_lines([label, body], 0, Lang.ZH)
+    paragraphs = group_ocr_lines([label, other, body], 0, Lang.ZH)
     by_text = {p.source_text: p for p in paragraphs}
-    assert by_text["十位"].style.is_vertical and by_text["十位"].style.role == "label"
+    # a stacked place-value header becomes the upright abbreviation English books use
+    assert by_text["十位"].translated_text == "T" and by_text["十位"].translate is False
+    assert not by_text["十位"].style.is_vertical and by_text["十位"].style.role == "label"
     assert by_text["十位"].style.size < 10
+    # any other stacked label runs down its column
+    assert by_text["被减数"].style.is_vertical and by_text["被减数"].style.role == "label"
     assert not by_text["用竖式计算下面各题。"].style.is_vertical
 
 
