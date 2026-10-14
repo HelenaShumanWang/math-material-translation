@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 181 errors, 77 warnings (1223.5 s); proofread: 302 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 169 errors, 75 warnings (1223.5 s); proofread: 302 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数 (zh → en, 99 page(s), 1220 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×323, layout_fit ×59, glossary ×15, placeholders ×7, formatting ×6, image_text ×6, untranslated ×6, completeness ×2, numbers ×2, target_script ×2
 - Round 3: llm_review ×335, layout_fit ×52, glossary ×26, image_text ×6, untranslated ×3, completeness ×2, formatting ×2, numbers ×1, placeholders ×1
 
-## Final issues (258)
+## Final issues (244)
 
 ### `completeness` — 46 errors, 0 warnings
 
@@ -146,20 +146,14 @@
 | error | 83 | p82_s9 | Glossary: translate "百位" as "hundreds" | 百位十位个位 | H T O |
 | error | 84 | p83_s35 | Glossary: translate "集合" as "set" | 运动员集合 | Athletes assemble |
 
-### `layout_fit` — 42 errors, 6 warnings
+### `layout_fit` — 30 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 3 | p2_s12 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 瓜。 | watermelons. |
-| error | 3 | p2_s12 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 瓜。 | watermelons. |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买铅笔 | Buying Pencils |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买铅笔 | Buying Pencils |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 捉迷藏 | Hide and Seek |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 捉迷藏 | Hide and Seek |
-| error | 14 | p13_s7 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r |
-| error | 14 | p13_s7 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r |
-| error | 14 | p13_s8 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 少几 | by how many? |
-| error | 14 | p13_s8 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 少几 | by how many? |
 | error | 16 | p15_s2 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 64.6.l比64.6.0少64.6.1 | 64.6.1 fewer 64.6.l than 64.6.0. |
 | error | 16 | p15_s2 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 64.6.l比64.6.0少64.6.1 | 64.6.1 fewer 64.6.l than 64.6.0. |
 | error | 20 | p19_s25 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 小兰 | Xiaolan |
@@ -168,8 +162,6 @@
 | error | 26 | p25_s1 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 数花生 | Count Peanuts |
 | error | 30 | p29_s0 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数豆子 | Count Beans |
 | error | 30 | p29_s0 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数豆子 | Count Beans |
-| error | 54 | p53_s4 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 每捆10根 | 10 sticks per bundle |
-| error | 54 | p53_s4 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 每捆10根 | 10 sticks per bundle |
 | error | 58 | p57_s25 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 30瓶 | 30 bottles |
 | error | 58 | p57_s25 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 30瓶 | 30 bottles |
 | error | 59 | p58_s0 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 拔萝卜 | Pulling Radishes |
@@ -186,14 +178,8 @@
 | error | 82 | p81_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 跳绳 | Skipping |
 | error | 82 | p81_s1 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
 | error | 82 | p81_s1 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
-| error | 82 | p81_s16 | Shorten the translation to at most 43 characters so it fits the original box (the current translation of 52 characters overflows its box; the minimum allowed size is 55%) | 小亮比小东少跳多少 | How many fewer skips did Xiaoliang do than Xiaodong? |
-| error | 82 | p81_s16 | Shorten the translation to at most 43 characters so it fits the original box (the current translation of 52 characters overflows its box; the minimum allowed size is 55%) | 小亮比小东少跳多少 | How many fewer skips did Xiaoliang do than Xiaodong? |
 | error | 82 | p81_s2 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 小亮 | Xiaoliang |
 | error | 82 | p81_s2 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 小亮 | Xiaoliang |
-| error | 82 | p81_s5 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 小亮 | Xiaoliang |
-| error | 82 | p81_s5 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 小亮 | Xiaoliang |
-| warning | 45 | p44_s14 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 花 | Flower |
-| warning | 45 | p44_s14 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 花 | Flower |
 | warning | 53 | p52_s23 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 减数 | Subtrahend |
 | warning | 53 | p52_s23 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 减数 | Subtrahend |
 | warning | 82 | p81_s3 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 小东 | Xiaodong |
