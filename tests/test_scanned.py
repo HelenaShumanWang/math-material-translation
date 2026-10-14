@@ -801,3 +801,48 @@ def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
     # the lower rows keep the blue of the fade instead of a white block
     assert np.abs(canvas[140, 50:380].astype(int) - expected[140, 0]).max() < 8
     assert np.abs(canvas[100, 50:380].astype(int) - expected[100, 0]).max() < 8
+
+
+def test_indented_first_line_takes_its_short_tail():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 100, 599, 447, "小朋友，数学就在我们身边，你和数学一定会成为", h=15),  # indented by two characters
+        _gline(1, 65, 622, 120, "好朋友。", h=17),                               # the tail, at the left edge
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["小朋友，数学就在我们身边，你和数学一定会成为好朋友。"]
+
+
+def test_short_line_under_a_finished_sentence_stays_apart():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 100, 447, 447, "小朋友，数学就在我们身边，你和数学一定会成为好朋友。", h=15),
+        _gline(1, 65, 622, 120, "编者大朋友", h=17),  # a sign-off, not a tail
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert len(paragraphs) == 2
+
+
+def test_long_english_wraps_onto_a_new_line_at_full_size(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))  # a blank "scan"
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    # a one-line body paragraph that spans the text column: the English is half as long again
+    seg = TextSegment(id="p0_s0", page=0, bbox=BBox(x0=40, y0=300, x1=460, y1=315),
+                      source_text="小朋友，数学就在我们身边，你和数学一定会成为好朋友。",
+                      protected_text="小朋友，数学就在我们身边，你和数学一定会成为好朋友。",
+                      style=SegmentStyle(size=12, color=0x202020, role="body", line_height=1.3), origin="ocr",
+                      translated_text="Children, maths is all around us. You and maths will surely become good friends.")
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[seg])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert seg.render.scale >= 0.95           # not shrunk ...
+    assert seg.render.bbox.y1 >= 315 + 12     # ... set on a second line below instead

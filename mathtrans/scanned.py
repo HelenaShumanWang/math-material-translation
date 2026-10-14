@@ -41,6 +41,9 @@ HEIGHT_RATIO = (0.7, 1.4)
 MIN_WIDTH_SHARE = 0.3
 """A line narrower than this share of the paragraph width joins it only when left-aligned."""
 MAX_X0_JUMP = 2.5
+FIRST_LINE_INDENT = 2.6
+"""A paragraph's first line may be indented by up to this many line heights (two characters
+plus slack): its second line then starts that far to the left of it."""
 """A line whose left edge is more than this many line heights away from a left-aligned
 paragraph's (and that is not centred under it) is in another column: a speech bubble,
 a label next to the instruction."""
@@ -253,11 +256,17 @@ class _Para:
         if narrower < MIN_WIDTH_SHARE * wider:
             # a short label next to / under a long line is a diagram label or a table cell - unless it
             # is the left-aligned tail of an unfinished sentence (…与同伴说一说你的 / 设计意图。)
-            tail = (abs(line.bbox.x0 - self.last.bbox.x0) <= 0.6 * h and line.bbox.width < self.last.bbox.width
+            # the first line of a paragraph is often indented by two characters: its tail then
+            # starts to the LEFT of it (小朋友，数学就在我们身边，你和数学一定会成为 / 好朋友。)
+            indented_first = (len(self.lines) == 1 and 0 < self.last.bbox.x0 - line.bbox.x0 <= FIRST_LINE_INDENT * h)
+            tail = ((abs(line.bbox.x0 - self.last.bbox.x0) <= 0.6 * h or indented_first)
+                    and line.bbox.width < self.last.bbox.width
                     and self.last.source_text.rstrip()[-1:] not in _SENTENCE_END + "：:"
-                    and _letter_count(self.last.source_text) >= 8 and gap <= 0.5 * h)
+                    and _letter_count(self.last.source_text) >= 8 and gap <= MAX_LINE_GAP * h)
             if not tail:
                 return False
+            if indented_first:
+                return True  # it overlaps the indented first line only a little, by nature
         centre_shift = abs((line.bbox.x0 + line.bbox.x1) / 2 - (self.bbox.x0 + self.bbox.x1) / 2)
         if self._left_aligned(h) and abs(line.bbox.x0 - self.bbox.x0) > MAX_X0_JUMP * h and centre_shift > h:
             return False  # another column: a speech bubble or label beside / below the instruction

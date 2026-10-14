@@ -96,6 +96,10 @@ TIGHT_LINE_HEIGHT = 1.1
 """Line height tried when the text does not fit with the original one."""
 MAX_HEIGHT_GROWTH = 0.5
 """A box may grow downward by at most this fraction of its height (=> 1.5 x)."""
+EXTRA_LINE_GROWTH = 1.2
+"""On a scanned page a paragraph of up to three lines may grow downward by this many line
+pitches into free space, so that English longer than the Chinese wraps onto one more line at
+the same size instead of being shrunk."""
 MIN_WIDTH_GROWTH = 60.0
 """Horizontal growth allowance in points for tiny boxes (labels, page numbers)."""
 MAX_WIDTH_GROWTH = 2.0
@@ -533,8 +537,14 @@ class _PageSpace:
                 obstacles.append(d)
         x0, y0, x1, y1 = box.x0, box.y0, box.x1, box.y1
         if down:
-            y1 = self._extend_down(box, obstacles, containers,
-                                   growth=LABEL_HEIGHT_GROWTH if label else MAX_HEIGHT_GROWTH)
+            growth = LABEL_HEIGHT_GROWTH if label else MAX_HEIGHT_GROWTH
+            if self.scanned and seg.origin == "ocr" and seg.style.size > 0:
+                # a line that does not fit is set on one more line at its size rather than shrunk:
+                # the box may grow by one full line (plus a little) where the page below is free
+                line_pitch = seg.style.size * max(1.0, seg.style.line_height)
+                lines = max(1, int(round(box.height / line_pitch)))
+                growth = max(growth, (EXTRA_LINE_GROWTH * line_pitch) / box.height) if lines <= 3 else growth
+            y1 = self._extend_down(box, obstacles, containers, growth=growth)
             if self.scanned:
                 y1 = self._shrink_until_free(box, "down", y1)
         if horizontal:
@@ -932,6 +942,12 @@ def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequenc
 LABEL_SIZE_TOLERANCE = 0.15
 """Short labels whose source sizes differ by at most this share, in the same colour and next
 to each other (name tags under the children of a picture, a row of captions), are siblings ..."""
+COLUMN_SIZE_TOLERANCE = 0.25
+"""Labels standing one under the other on the same left edge (a contents page, a list of
+exercises) are siblings even when their OCR boxes differ in height by up to this much: the
+box height follows the ascenders, dots and brackets of each line, not the type size."""
+COLUMN_PITCH = 8.0
+"""... and up to this many label heights apart, centre to centre."""
 LABEL_ROW_PITCH = 1.6
 """Sibling labels stacked in a column (one per picture row) sit up to this many label heights
 apart, centre to centre."""
@@ -963,16 +979,21 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
     for i, a in enumerate(labels):
         for j in range(i + 1, len(labels)):
             b = labels[j]
-            if abs(a.style.size - b.style.size) > LABEL_SIZE_TOLERANCE * max(a.style.size, b.style.size):
+            h = max(a.bbox.height, b.bbox.height)
+            same_column = abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and (a.bbox.y1 <= b.bbox.y0 + h
+                                                                    or b.bbox.y1 <= a.bbox.y0 + h)
+            tolerance = COLUMN_SIZE_TOLERANCE if same_column else LABEL_SIZE_TOLERANCE
+            if abs(a.style.size - b.style.size) > tolerance * max(a.style.size, b.style.size):
                 continue
             ca, cb = a.style.color, b.style.color
             if max(abs((ca >> k & 255) - (cb >> k & 255)) for k in (0, 8, 16)) > 80:
                 continue
-            h = max(a.bbox.height, b.bbox.height)
             dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
             dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
             if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
                 parent[find(i)] = find(j)
+            elif same_column and dy <= COLUMN_PITCH * h:
+                parent[find(i)] = find(j)  # entries of a list / contents column, one under the other
     groups: dict[int, list[TextSegment]] = {}
     for i, seg in enumerate(labels):
         groups.setdefault(find(i), []).append(seg)

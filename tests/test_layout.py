@@ -909,3 +909,25 @@ def test_tight_row_neighbours_keep_a_word_space(tmp_path):
     render_document(src, doc, tmp_path / "out.pdf")
     assert a.render.bbox.x1 <= b.render.bbox.x0 - 4.5                  # at least 0.4 em (4.8 pt) between the two
     assert a.render.scale > 0.5 and b.render.scale > 0.5
+
+
+def test_contents_column_entries_are_siblings_despite_box_heights():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def entry(i, y, h, size, text):
+        seg = TextSegment(id=f"p3_s{i}", page=3, bbox=BBox(x0=223, y0=y, x1=223 + 90, y1=y + h), source_text=text,
+                          protected_text=text, translated_text=text, origin="ocr",
+                          style=SegmentStyle(size=size, color=0x202020, role="label"))
+        seg.render = RenderInfo(font_size=size, scale=1.0, bbox=seg.bbox)
+        return seg
+
+    entries = [entry(1, 237, 17, 13.9, "Our Lovely School"), entry(3, 316, 17, 14.2, "Unit 1 Numbers in Life"),
+               entry(4, 393, 21, 17.2, "Unit 2 Comparison"), entry(9, 473, 18, 14.9, "Unit 3 Addition (1)"),
+               entry(11, 630, 21, 16.7, "Unit 4 Sorting")]
+    groups = _sibling_label_groups(entries)
+    assert len(groups) == 1 and len(groups[0]) == 5
+    # labels of clearly different type sizes that are not in one column stay apart
+    other = [entry(20, 100, 12, 9.0, "Taoqi"), entry(21, 400, 24, 20.0, "Unit 5")]
+    other[1].bbox = BBox(x0=380, y0=400, x1=470, y1=424)
+    assert _sibling_label_groups(other) == []
