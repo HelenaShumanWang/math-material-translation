@@ -902,6 +902,45 @@ def test_the_border_of_the_cell_a_label_stands_in_is_kept():
     assert (canvas[88:91, 45:148].max(axis=2) < 90).mean() > 0.9                      # bottom border kept
 
 
+def test_bold_outlined_glyphs_on_a_fading_ribbon_leave_no_smear():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    # "你知道吗" in black with a white outline on a yellow ribbon that fades from top to bottom
+    h, w = 120, 420
+    rows = np.linspace(0, 1, h)[:, None, None]
+    band = ((1 - rows) * np.array([255, 226, 108]) + rows * np.array([228, 201, 97])).astype(np.uint8)  # as measured
+    img = Image.fromarray(np.repeat(band, w, axis=1).copy())
+    ImageDraw.Draw(img).text((20, 12), "你知道吗", fill=(15, 15, 15), font=pil_font("zh", 90),
+                             stroke_width=5, stroke_fill=(255, 255, 255))
+    original = np.array(img)
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (10, 4, 410, 116))
+    expected = np.repeat(band, w, axis=1).astype(int)
+    diff = np.abs(canvas.astype(int) - expected).max(axis=2)[4:116, 10:410]
+    assert (diff > 45).mean() < 0.01, (diff > 45).mean()          # back to the ribbon: no grey or white blocks
+
+
+def test_title_glyphs_cut_off_by_their_box_go_whole():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # large title characters whose OCR box stops above their bottoms (and below their tops); the
+    # pinyin line under them, an OCR line of its own, stays
+    original = _text_image((520, 260), (255, 255, 255), [
+        ("text", ((40, 20), "数学", 150), (25, 25, 25)), ("text", ((150, 205), "SHUXUE", 30), (30, 110, 200))])
+    ink = original.max(axis=2) < 100
+    ys, xs = np.where(ink[:200])
+    top, bottom = int(ys.min()), int(ys.max())
+    box = (int(xs.min()) - 4, top + 12, int(xs.max()) + 4, bottom - 18)          # cut at both ends
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, box, [(140, 200, 300, 245)])
+    assert (canvas[:200].max(axis=2) < 100).sum() < 30                             # the whole of 数学 is gone
+    assert (np.abs(canvas[200:245].astype(int) - [30, 110, 200]).max(axis=2) < 60).sum() > 100   # SHUXUE stays
+
+
 def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
     import numpy as np
     from PIL import Image, ImageDraw
