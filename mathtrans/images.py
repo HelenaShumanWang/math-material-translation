@@ -398,10 +398,14 @@ _BOX_GLYPHS = set("□○OoD0Q口〇◯●◇△▲☐")
 _TEMPLATE_DROP = set(" +-−—–×÷=()（）[]［］_")
 _EMPTY_QUOTES_RE = re.compile(r"[“‘「]\s*[”’」\"']|(?<=画)[\"']\s*[\"”’']")
 _PICTOGRAM_GAP_RE = re.compile(
-    r"用\s*表示|^表示(?=[，,。；;、）)]|$)|^比(?![一赛较例如方\d０-９])|(?<![一相])比(?=[，,。？?！!]|$)"
-    r"|有个有个|在的面|的面(?=[，,。]|$)")
+    r"用\s*表示|^表示(?=[，,。；;、）)]|$)|^比(?![一赛较例如方大身长高轻重值号的\d０-９])"
+    r"|(?<![一相对分的量出割数])比(?=[，,。？?！!]|$)"
+    r"|有个有个|在的面|(?<![形体外方面])的面(?=[，,。]|$)")
 """Missing-operand patterns left when OCR drops inline pictograms: 用○表示人 -> 用表示人,
-△比●少□个 -> 比少个, 🍄比🍄多几个 -> 比多几个."""
+△比●少□个 -> 比少个, 🍄比🍄多几个 -> 比多几个. Not: a lesson title (比大小, 比身高), the word 比 of
+ratios (比的认识, 写出比, 百分比, 质量比) or of 对比, the faces of a solid (图形的面, 外面的面)."""
+_RATIO_WORDS_RE = re.compile(r"比值|比例|比号|化简|百分比|的比")
+"""Ratio vocabulary: a line with it reads as text about ratios, not as a comparison of pictures."""
 _GAP_BEFORE_RE = re.compile(r"^(?:比(?![一赛较例如方\d０-９])|表示)")
 """The line starts with 比 / 表示: the picture it compares or stands for sits left of the OCR box."""
 _GAP_AFTER_RE = re.compile(r"(?<![一相])(?:比|用|表示)[，,。？?！!]?$")
@@ -411,7 +415,10 @@ _GAP_AFTER_RE = re.compile(r"(?<![一相])(?:比|用|表示)[，,。？?！!]?$"
 def has_pictogram_gap(text: str) -> bool:
     """True when ``text`` reads like a sentence whose inline pictures the OCR dropped
     (:data:`_PICTOGRAM_GAP_RE`); pictures already anchored in it count as present."""
-    return bool(_PICTOGRAM_GAP_RE.search(ANCHOR_RE.sub("图", text).replace(" ", "")))
+    flat = ANCHOR_RE.sub("图", text).replace(" ", "")
+    if _RATIO_WORDS_RE.search(flat):
+        return False
+    return bool(_PICTOGRAM_GAP_RE.search(flat))
 
 
 _DIGIT_CONFUSION_1_RE = re.compile(r"(?<![A-Za-z0-9])[hI|](?=\d+(?![A-Za-z0-9]))")

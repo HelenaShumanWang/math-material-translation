@@ -1139,3 +1139,17 @@ def test_the_white_glow_round_erased_text_leaves_no_ghost():
     region = canvas[y0:y1, x0:x1].astype(int)
     off = np.abs(region - np.array([252, 234, 215])).max(axis=2)
     assert float((off > 12).mean()) < 0.003, float((off > 12).mean())   # no white outline of the glyphs
+
+
+def test_a_column_label_is_not_extended_sideways_over_the_picture_beside_it():
+    import numpy as np
+    from mathtrans.scanned import _extend_for_punctuation, _extend_over_cut_glyphs, _extend_over_missed_glyphs
+
+    img = np.full((300, 300, 3), 255, np.uint8)
+    img[100:210, 140:146] = 30           # "0.2米" written top to bottom: a column of dark strokes ...
+    img[60:250, 60:66] = 40              # ... beside the outline of a circle and a tile picture
+    img[120:190, 80:130] = (200, 180, 200)
+    box = (130, 95, 158, 215)            # the tall OCR box of the column
+    assert _extend_over_missed_glyphs(img, box, [])[0] == box
+    assert _extend_for_punctuation(img, box, []) == box
+    assert _extend_over_cut_glyphs(img, box, []) == box

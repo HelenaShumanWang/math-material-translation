@@ -747,6 +747,11 @@ def build_overlay_segments(doc: TranslatedDocument, scanned: set[int],
 # --------------------------------------------------------------------------- #
 
 
+EXACT_PIECE_RE = re.compile(r"_p\d+m$")
+"""Ids of the line pieces a proofreader measured (a word between two pictures, ``<line>_p0m``): their boxes
+are erased as given, never extended sideways over the neighbouring glyphs (the 3 of a printed "3○4")."""
+
+
 def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> int:
     """Erase the glyphs of every merged OCR line from its image (flat fill or
     inpainting, as the repaint mode does) and replace the image in ``pdf_doc``.
@@ -787,7 +792,8 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
                 continue
             others = [tuple(int(v) for v in o.image.pixel_box) for o in image_lines[(page_index, _xref)]
                       if o is not seg and o.image is not None]
-            how = _erase_glyphs(canvas, alpha, original, original_alpha, (x0, y0, x1, y1), others)
+            how = _erase_glyphs(canvas, alpha, original, original_alpha, (x0, y0, x1, y1), others,
+                                sideways=not EXACT_PIECE_RE.search(seg.id))
             for _key, (_ax, ax0, ay0, ax1, ay1) in seg.anchors.items():
                 # the picture is drawn inline in the translation: remove it from its old place
                 _clear_box(canvas, alpha, original, original_alpha,
@@ -1180,7 +1186,7 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
     x0, y0, x1, y1 = box
     h = y1 - y0
     ex1 = min(original.shape[1], x1 + h)
-    if ex1 - x1 < 3 or h < 6:
+    if ex1 - x1 < 3 or h < 6 or _column_box(box):
         return box
     for bx0, by0, bx1, by1 in blocked:
         if bx0 < x1 + 0.7 * h and bx1 > x1 and by0 < y1 and by1 > y0:
@@ -1222,6 +1228,14 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
     return x0, y0, min(ex1, x1 + right + max(2, h // 10)), y1
 
 
+
+
+def _column_box(box: tuple[int, int, int, int]) -> bool:
+    """A line box much taller than wide: characters written one under another ("2.4米" beside a
+    side). The extensions that look left and right of a line for glyphs it left out, measured in
+    line heights, do not apply to it."""
+    x0, y0, x1, y1 = box
+    return (y1 - y0) > 1.5 * max(1, x1 - x0)
 
 
 INK_RAMP_DIST = 40.0
@@ -1298,7 +1312,7 @@ def _extend_over_missed_glyphs(original: np.ndarray, box: tuple[int, int, int, i
 
     x0, y0, x1, y1 = box
     h = y1 - y0
-    if h < 6:
+    if h < 6 or _column_box(box):
         return box, []
     bg, share = _dominant_colour(original[y0:y1, x0:x1])
     if share < STRIPE_MIN_SHARE:
@@ -1366,7 +1380,7 @@ def _extend_over_cut_glyphs(original: np.ndarray, box: tuple[int, int, int, int]
     x0, y0, x1, y1 = box
     h = y1 - y0
     H, W = original.shape[:2]
-    if h < 8:
+    if h < 8 or _column_box(box):
         return box
     reach = int(round(CUT_GLYPH_REACH * h))
     ry0, ry1 = max(0, y0 - reach), min(H, y1 + reach)
@@ -1608,7 +1622,7 @@ def _crossing_rulings(original: np.ndarray, box: tuple[int, int, int, int], mask
 
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
                   original_alpha: Optional[np.ndarray], box: tuple[int, int, int, int],
-                  blocked: Optional[list[tuple[int, int, int, int]]] = None) -> str:
+                  blocked: Optional[list[tuple[int, int, int, int]]] = None, sideways: bool = True) -> str:
     """Erase the glyphs of one OCR line.
 
     The line box is cut into glyph-wide strips. Where a strip has a plain local
@@ -1627,8 +1641,10 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
 
     from .images import estimate_background
 
-    box = _extend_for_punctuation(original, box, blocked or [])
-    box, missed = _extend_over_missed_glyphs(original, box, blocked or [])
+    missed: list[tuple[int, int, int, int]] = []
+    if sideways:  # a box measured by hand (one piece of a line beside a picture) is erased as given
+        box = _extend_for_punctuation(original, box, blocked or [])
+        box, missed = _extend_over_missed_glyphs(original, box, blocked or [])
     box = _extend_over_cut_glyphs(original, box, blocked or [])
     box = _grow_on_plain_surroundings(original, original_alpha, box, blocked or [])
     x0, y0, x1, y1 = box

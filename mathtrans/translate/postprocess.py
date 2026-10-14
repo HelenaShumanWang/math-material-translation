@@ -19,6 +19,8 @@ _ORDINAL_RE = re.compile(r"\b(\d+)(st|nd|rd|th)\b")
 _SPACE_BEFORE_PUNCT_RE = re.compile(r" +([,.;:!?)])")
 _MULTI_SPACE_RE = re.compile(r"[ \t]{2,}")
 _EMPTY_BRACKET_RE = re.compile(r"\([ \t\u00a0\u2002\u3000]*\)")
+_UNIT_RE = re.compile(r"(?<![\w.⟧])(\d+(?:\.\d+)?)(mm|cm|dm|km|m|kg|g|mL|ml|L)(?=$|[\s.,;:!?)\]²³/])")
+"""A number written against its metric unit ("2.4m"): English style sets a space between them."""
 ANSWER_BRACKET = "(" + "\u00a0" * 6 + ")"
 """An answer blank in brackets ("（  ）" in the source): room to write, which plain spaces would not
 keep - they collapse when the text is set - and which never splits over two lines."""
@@ -55,6 +57,11 @@ def latinise_punctuation(text: str) -> str:
     return "".join(out)
 
 
+def space_units(text: str) -> str:
+    """``2.4m`` -> ``2.4 m``, ``500g`` -> ``500 g`` (only metric units right after a number)."""
+    return _UNIT_RE.sub("\\1\u00a0\\2", text)
+
+
 def postprocess_translation(text: str, tgt: Lang | str) -> str:
     """Clean ``text`` for ``tgt``; a no-op for CJK targets apart from whitespace."""
     if not text:
@@ -64,10 +71,11 @@ def postprocess_translation(text: str, tgt: Lang | str) -> str:
         text = latinise_punctuation(text)
         text = _SPACE_BEFORE_PUNCT_RE.sub(r"\1", text)
         text = _EMPTY_BRACKET_RE.sub(ANSWER_BRACKET, text)
+        text = space_units(text)
         if lang == Lang.EN:
             text = fix_ordinals(text)
     text = _MULTI_SPACE_RE.sub(" ", text)
     return "\n".join(line.strip() for line in text.split("\n")).strip()
 
 
-__all__ = ["postprocess_translation", "fix_ordinals", "latinise_punctuation", "english_ordinal_suffix"]
+__all__ = ["postprocess_translation", "fix_ordinals", "latinise_punctuation", "english_ordinal_suffix", "space_units"]

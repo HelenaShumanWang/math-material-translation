@@ -1304,3 +1304,23 @@ def test_text_in_a_pale_bubble_does_not_grow_out_onto_the_page(tmp_path):
     page = pymupdf.open(tmp_path / "out.pdf")[0]
     for w in page.get_text("words"):
         assert 60 <= w[0] and w[2] <= 180 and 236 <= w[1] and w[3] <= 292, w
+
+
+def test_a_side_label_written_top_to_bottom_is_set_up_the_side(tmp_path):
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    src = _scan_pdf(tmp_path)
+    # "2.4米" one character under the other beside a giraffe (OCR box 13 x 35 pt, its size read from the
+    # box height), with an erase box a proofreader added
+    label = TextSegment(id="p16_s3", page=0, bbox=BBox(x0=210, y0=149, x1=223, y1=184), source_text="2.4米",
+                        protected_text="2.4米", origin="ocr", translated_text="2.4 m", members=["p16_i64_7", "p16_s3_e0"],
+                        style=SegmentStyle(size=28.4, color=0x202020, role="heading", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[label])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert label.render.font_size >= 8, label.render                   # legible, not the Chinese kept
+    page = pymupdf.open(tmp_path / "out.pdf")[0]
+    lines = [l for b in page.get_text("dict")["blocks"] for l in b.get("lines", [])]
+    assert lines and all(abs(l["dir"][0]) < 0.01 for l in lines), [l["dir"] for l in lines]   # runs up the side
+    assert "2.4" in page.get_text()

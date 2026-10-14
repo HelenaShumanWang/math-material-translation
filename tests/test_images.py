@@ -1987,3 +1987,15 @@ def test_skipped_unit_numeral_strokes_join_their_heading():
     d.text((96, 14), "比", fill=(20, 20, 20), font=pil_font("zh", 44))
     assert numeral_strokes_left_of(np.array(img), first.box) is None
     assert attach_numeral_strokes([OcrResult(text="三 比较", polygon=second.polygon, confidence=0.9)], rgb)[0].text == "三 比较"
+
+
+def test_titles_and_ratio_text_with_bi_are_no_dropped_pictures():
+    from mathtrans.images import has_pictogram_gap
+
+    for text in ("比大小", "比身高", "比的认识", "生活中的比", "比的化简", "比值是", "占总数的百分比",
+                 "3.根据下列信息写出比。", "（1）写出面粉和水的质量比",
+                 "对比，科学界才初步确定这是一群类似于蜥蜴的早已灭绝的爬行动物。",
+                 "1.用红色描出图形的边线，用蓝色涂出图形的面。", "露在外面的面"):
+        assert not has_pictogram_gap(text), text
+    for text in ("比多几个？", "比", "比（多，少），", "用表示", "比小林多3个", "在的面"):
+        assert has_pictogram_gap(text), text                    # a comparison whose pictures the OCR dropped

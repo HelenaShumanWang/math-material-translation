@@ -969,3 +969,12 @@ def test_labels_get_page_context():
     assert "桃子" in seen["l"] and "exercise text above it" in seen["l"]
     assert "第二题" not in seen["l"]          # the sentence below the label is another exercise
     assert "exercise text" not in (seen["b"] or "")
+
+
+def test_a_number_and_its_metric_unit_get_a_space_that_does_not_break():
+    from mathtrans.translate.postprocess import postprocess_translation, space_units
+
+    assert space_units("2.4m and 500g, 6cm.") == "2.4 m and 500 g, 6 cm."
+    assert space_units("5km/h; 2m²") == "5 km/h; 2 m²"
+    assert space_units("3 m, 1st, x2m, 3min, v2.0m") == "3 m, 1st, x2m, 3min, v2.0m"   # nothing else changes
+    assert postprocess_translation("长2.4米", "en") != "" and "2.4 m" in postprocess_translation("It is 2.4m long.", "en")

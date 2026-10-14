@@ -414,6 +414,27 @@ def readable_color(color: int, background: Sequence[float]) -> int:
 _ENUMERATED_RE = re.compile(r"^\s*(?:\d{1,3}[.、．)]|[(（]\d{1,3}[)）]|[①-⑳])")
 
 
+JUSTIFIED_WIDTH = 0.55
+"""A body paragraph of several lines at least this share of the page wide is prose, never centred."""
+STACK_SIZE_SHARE = 0.8
+STACK_MIN_ASPECT = 1.6
+"""A label box at least this many times as tall as wide (two characters or more) is a column."""
+"""Font size of a stacked side label set up the side, as a share of its column's width."""
+
+
+def _upright_stack(seg: TextSegment) -> bool:
+    """A short label written as one column of upright characters (OCR box at least twice as tall
+    as wide, one character wide, a single line): "2.4米" beside the side it measures."""
+    text = (seg.source_text or "").strip()
+    b = seg.bbox
+    lines = [m for m in seg.members or [] if not re.search(r"_e\d+$", m)]  # erase boxes are no text lines
+    if len(text) < 2 or len(text) > 8 or "\n" in text or len(lines) > 1:
+        return False
+    if b.width <= 0 or b.height < STACK_MIN_ASPECT * b.width or b.width > 30:
+        return False
+    return seg.style.size <= 0 or b.width <= 1.6 * seg.style.size
+
+
 def _short_label(seg: TextSegment) -> bool:
     """A free-standing short label (grown on both sides and set centred on a scanned page);
     headings and numbered items keep their left edge. A word or two read with a tall box
@@ -990,6 +1011,21 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     cells, whose box already is the cell's interior (growing would cross the rules).
     """
     rotate = html_rotation(seg.style)
+    if rotate == 0 and space.scanned and seg.origin == "ocr" and _upright_stack(seg):
+        # a side-length label written top to bottom ("2.4米" one character under the other): the
+        # translation runs up the side, at the size of one character of the column
+        rotate = 90
+        stacked_size = min(seg.style.size, STACK_SIZE_SHARE * seg.bbox.width) if seg.style.size > 0 \
+            else STACK_SIZE_SHARE * seg.bbox.width
+        size_before = seg.style.size
+        seg.style.size = stacked_size
+        try:
+            info = _place_segment(page, seg.model_copy(update={"style": seg.style.model_copy(update={"rotation": 90})}),
+                                  text, space, css=css, archive=archive, min_scale=min_scale)
+        finally:
+            seg.style.size = size_before
+        info.notes = "; ".join(n for n in (info.notes, "set up the side like the source column") if n)
+        return info
     base = space.trim_for_neighbours(seg) if space.scanned and seg.origin == "ocr" else seg.bbox
     growable = rotate == 0 and seg.style.role != "table"
     color: Optional[int] = None
@@ -1005,13 +1041,21 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
             and seg.id not in space.column_ids
         if _ENUMERATED_RE.match(seg.source_text or "") and seg.style.align == "center":
             fixed_align = "left"  # a numbered item is set from its number, never centred
+        if (seg.style.align == "center" and seg.style.role == "body" and seg.style.size > 0
+                and base.height >= 2.2 * seg.style.size and base.width >= JUSTIFIED_WIDTH * space.page_rect.width):
+            # a justified block of prose (its full lines read as centred by the OCR): left-aligned like
+            # the paragraphs around it, its last line not centred
+            fixed_align = "left"
         # a label, or centred text (a speech bubble, a sign), may grow upward as well as down and
         # is then set on the middle of its source text, however many lines it takes
         one_source_line = seg.style.size > 0 and base.height <= 1.6 * seg.style.size
         floating = (growable and seg.id not in space.column_ids and not _ENUMERATED_RE.match(seg.source_text or "")
-                    and not _list_item(seg)
+                    and not _list_item(seg) and fixed_align != "left"
                     and (centred_label or seg.style.align == "center" or (seg.style.role == "label" and one_source_line)))
-    grown = space.extend(seg, down=True, horizontal=True, up=floating) if growable else base
+    # growth follows the alignment the text is set with (a justified block read as centred grows right only)
+    gseg = seg if fixed_align is None or fixed_align == seg.style.align else \
+        seg.model_copy(update={"style": seg.style.model_copy(update={"align": fixed_align})})
+    grown = space.extend(gseg, down=True, horizontal=True, up=floating) if growable else base
 
     def align_for(rect: BBox) -> Optional[str]:
         """How the text sits in ``rect``: a label grown symmetrically stays centred on its
@@ -1030,7 +1074,7 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
         # the room bounded only by other text and the page: taken at full size when every word
         # set in it lands on the colour behind the box (a second line under a heading, beside a
         # bubble further right that blocks a whole-width strip)
-        g = space.extend(seg, down=True, horizontal=True, up=floating, scan=False)
+        g = space.extend(gseg, down=True, horizontal=True, up=floating, scan=False)
         if g.contains(grown, tol=0.5) and g.area > grown.area + 1.0:
             generous = g
     attempts: list[tuple[BBox, Optional[float], float, str, bool]] = [(base, None, 1.0, "", False)]
@@ -1040,7 +1084,7 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     if one_line:
         # a line a little too long stays one line, slightly smaller, rather than wrapping; the box
         # may take the height of one full line (where the page below is free), never of two
-        wide = space.extend(seg, down=False, horizontal=True, up=floating)
+        wide = space.extend(gseg, down=False, horizontal=True, up=floating)
         one_h = ONE_LINE_HEIGHT * seg.style.size
         wide = BBox(x0=wide.x0, y0=wide.y0, x1=wide.x1,
                     y1=max(wide.y1, min(grown.y1, wide.y0 + one_h)) if grown.y1 > wide.y1 else wide.y1)
