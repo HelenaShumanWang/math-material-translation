@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 160 errors, 68 warnings (1253.6 s); proofread: 367 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 158 errors, 68 warnings (1253.6 s); proofread: 367 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 109 page(s), 1074 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×323, layout_fit ×93, formatting ×27, placeholders ×15, glossary ×14, image_text ×8, untranslated ×6, length_ratio ×3
 - Round 3: llm_review ×317, layout_fit ×89, formatting ×17, placeholders ×11, image_text ×8, glossary ×5, completeness ×2, untranslated ×2, length_ratio ×1, target_script ×1
 
-## Final issues (228)
+## Final issues (226)
 
 ### `completeness` — 80 errors, 0 warnings
 
@@ -148,7 +148,7 @@
 | error | 94 | p93_s2 | Glossary: translate "比一比" as "Compare" | 2人一组做游戏，比一比哪组堆得又快又高。 | Play in groups of 2. Which group stacks fastest and highest? |
 | error | 100 | p99_s0 | Glossary: translate "练习" as "exercise" | 练习 | Practice |
 
-### `layout_fit` — 32 errors, 18 warnings
+### `layout_fit` — 30 errors, 18 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -182,8 +182,6 @@
 | error | 72 | p71_s11 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
 | error | 78 | p77_s1 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 古人计数 | Ancient Counting |
 | error | 78 | p77_s1 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 古人计数 | Ancient Counting |
-| error | 103 | p102_s6 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
-| error | 103 | p102_s6 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
 | warning | 26 | p25_s3 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 100.3.l比100.3.r | 100.3.l lighter than 100.3.r. |
 | warning | 26 | p25_s3 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 100.3.l比100.3.r | 100.3.l lighter than 100.3.r. |
 | warning | 33 | p32_s6 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 支。 | fewer. |
