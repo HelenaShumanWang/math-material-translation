@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 304 errors, 50 warnings (1884.7 s); proofread: 441 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 316 errors, 50 warnings (1884.7 s); proofread: 513 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 119 page(s), 1867 translatable segment(s))
+**Document:** 数学 (zh → en, 119 page(s), 1864 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×513, layout_fit ×78, formatting ×8, untranslated ×4, completeness ×3, placeholders ×3, image_text ×2, length_ratio ×2, numbers ×2, glossary ×1, target_script ×1
 - Round 3: llm_review ×479, layout_fit ×69, completeness ×7, formatting ×4, glossary ×3, untranslated ×3, image_text ×2, length_ratio ×2, placeholders ×2, target_script ×2, numbers ×1
 
-## Final issues (354)
+## Final issues (366)
 
 ### `completeness` — 114 errors, 0 warnings
 
@@ -234,22 +234,30 @@
 | error | 100 | p99_s15 | Glossary: translate "倍数" as "multiple" | 我按3的倍数跳 | I jump in 3s |
 | error | 102 | p101_s5 | Glossary: translate "找一找" as "Find" | 1.我们学了哪些长度单位？找一找，生活中有哪些物品的长度大约是1厘米，有哪些大约是1米？ | 1. What units of length have we learned? Look around: which… |
 
-### `layout_fit` — 44 errors, 8 warnings
+### `layout_fit` — 56 errors, 8 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 7 | p6_s5 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 奇思妙想 | Qisi Miaoxiang |
 | error | 7 | p6_s5 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 奇思妙想 | Qisi Miaoxiang |
+| error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 秋游 | Autumn Outing |
+| error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 秋游 | Autumn Outing |
 | error | 8 | p7_s2 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 25人 | 25 people |
 | error | 8 | p7_s2 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 25人 | 25 people |
 | error | 13 | p12_s20 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 姓名淘气笑笑奇思 | Name Taoqi Xiaoxiao Qisi |
 | error | 13 | p12_s20 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 姓名淘气笑笑奇思 | Name Taoqi Xiaoxiao Qisi |
 | error | 14 | p13_s1 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 买文具 | Buying Stationery |
 | error | 14 | p13_s1 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 买文具 | Buying Stationery |
+| error | 16 | p15_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买衣服 | Buying Clothes |
+| error | 16 | p15_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买衣服 | Buying Clothes |
 | error | 19 | p18_s10 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | costs how much more? |
 | error | 19 | p18_s10 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | costs how much more? |
 | error | 28 | p27_s5 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 格。 | spaces. |
 | error | 28 | p27_s5 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 格。 | spaces. |
+| error | 34 | p33_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 数松果 | Count Pinecones |
+| error | 34 | p33_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 数松果 | Count Pinecones |
+| error | 64 | p63_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
+| error | 64 | p63_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
 | error | 66 | p65_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 分糖果 | Sharing Candy |
 | error | 66 | p65_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 分糖果 | Sharing Candy |
 | error | 68 | p67_s0 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 分香蕉 | Sharing Bananas |
@@ -260,6 +268,8 @@
 | error | 72 | p71_s0 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 小熊开店 | Little Bear's Shop |
 | error | 75 | p74_s28 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 数是的倍 | number is mouse number × ___. |
 | error | 75 | p74_s28 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 数是的倍 | number is mouse number × ___. |
+| error | 76 | p75_s6 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 的身高是的 | 's height is Clever Dog's × |
+| error | 76 | p75_s6 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 的身高是的 | 's height is Clever Dog's × |
 | error | 84 | p83_s14 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 七七七上 | 4×7= 5×7= 6×7= |
 | error | 84 | p83_s14 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 七七七上 | 4×7= 5×7= 6×7= |
 | error | 86 | p85_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 买球 | Buy Balls |
@@ -282,6 +292,8 @@
 | error | 117 | p116_s5r5 | Shorten the translation to at most 53 characters so it fits the original box (the current translation of 69 characters overflows its box; the minimum allowed size is 55%) | 第次 | Round ___ Round ___ Round ___ Round ___ Round ___ Round ___… |
 | error | 117 | p116_s8 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 39 characters overflows its box; the minimum allowed size is 55%) | 第次 | Round ___ Round ___ Round ___ Round ___ |
 | error | 117 | p116_s8 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 39 characters overflows its box; the minimum allowed size is 55%) | 第次 | Round ___ Round ___ Round ___ Round ___ |
+| error | 117 | p116_s8r3 | Shorten the translation to at most 32 characters so it fits the original box (the current translation of 39 characters overflows its box; the minimum allowed size is 55%) | 第次 | Round ___ Round ___ Round ___ Round ___ |
+| error | 117 | p116_s8r3 | Shorten the translation to at most 32 characters so it fits the original box (the current translation of 39 characters overflows its box; the minimum allowed size is 55%) | 第次 | Round ___ Round ___ Round ___ Round ___ |
 | warning | 34 | p33_s15 | The translation overflows its box and was rendered at 17% of the original size; even a much shorter text would not fit, check this box in the preview | 五五六七八 | 4 × 5 = 5 × 5 = 5 × 6 = 5 × 7 = 5 × 8 = |
 | warning | 34 | p33_s15 | The translation overflows its box and was rendered at 17% of the original size; even a much shorter text would not fit, check this box in the preview | 五五六七八 | 4 × 5 = 5 × 5 = 5 × 6 = 5 × 7 = 5 × 8 = |
 | warning | 40 | p39_s10 | The translation overflows its box and was rendered at 49% of the original size; even a much shorter text would not fit, check this box in the preview | 三五 | 3×5= |
@@ -361,7 +373,7 @@
 | warning | 58 | p57_s3 | Reviewer (format): Answer blank （） rendered as half-width "()". Suggested translation: "About （）cm tall" | 高约（）厘米 | About () cm tall |
 | warning | 58 | p57_s5 | Reviewer (format): Answer blank （） rendered as half-width "()". Suggested translation: "About （）cm tall" | 高约（）厘米 | About () cm tall |
 | warning | 62 | p61_s0 | Reviewer (format): The unit heading should be in Title Case; "Sharing and Division" is correct, but the bare Chinese numeral should map to "Unit 7" consistently (it does), so no change needed beyond noting format. Suggested translation: "Unit 7 Sharing and Division" | 七分一分与除法 | Unit 7 Sharing and Division |
-| warning | 100 | p99_s12 | Reviewer (format): Spelling 'Colour' is British English; the rest of the material appears to use American English (e.g., 'colors'), so casing/variant should be consistent. Suggested translation: "7. Color." | 7.涂一涂。 | 7. Colour. |
+| warning | 100 | p99_s12 | Reviewer (format): Spelling 'Colour' is British English; the rest of the material appears to use American English (e.g., 'colors'), so casing/variant should be consistent. Suggested translation: "7. Color." |  |  |
 | warning | 100 | p99_s16 | Reviewer (format): British spelling 'Colour' inconsistent with American English used elsewhere. Suggested translation: "Color the squares of the numbers they land on in different colors." | 分别把它们跳到的数所在的格子涂上不同的颜色。 | Colour the squares of the numbers they land on in different… |
 | warning | 100 | p99_s2 | Reviewer (grammar): Imperative 'Buy' is acceptable but the sentence is a stated plan; a more natural textbook rendering would use 'I want to buy' or 'Buying' consistent with the surrounding dialogue. | 买6根跳绳和5个皮球。 | Buy 6 jump ropes and 5 balls. |
 | warning | 101 | p100_s23 | Reviewer (grammar): '还可以' means 'There is also...' / 'Another way is...'; the bare 'Also' is incomplete and unnatural. Suggested translation: "There is also" | 还可以 | Also |
