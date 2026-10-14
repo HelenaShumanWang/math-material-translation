@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 161 errors, 68 warnings (1253.6 s); proofread: 369 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 160 errors, 68 warnings (1253.6 s); proofread: 367 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 109 page(s), 1075 translatable segment(s))
+**Document:** 数学 (zh → en, 109 page(s), 1074 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,9 +18,9 @@
 - Round 2: llm_review ×323, layout_fit ×93, formatting ×27, placeholders ×15, glossary ×14, image_text ×8, untranslated ×6, length_ratio ×3
 - Round 3: llm_review ×317, layout_fit ×89, formatting ×17, placeholders ×11, image_text ×8, glossary ×5, completeness ×2, untranslated ×2, length_ratio ×1, target_script ×1
 
-## Final issues (229)
+## Final issues (228)
 
-### `completeness` — 81 errors, 0 warnings
+### `completeness` — 80 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -66,8 +66,7 @@
 | error | 67 | p66_s16 | The segment has no translation; translate the complete source text | 火车站路广场 |  |
 | error | 68 | p67_s10 | The translation ":" contains no words; translate the complete source text | 在 | : |
 | error | 68 | p67_s13 | The translation ":" contains no words; translate the complete source text | 在 | : |
-| error | 68 | p67_s4 | The translation ":" contains no words; translate the complete source text | 在 | : |
-| error | 68 | p67_s5 | The segment has no translation; translate the complete source text | 的 |  |
+| error | 68 | p67_s4 | The translation ":" contains no words; translate the complete source text | 在的 | : |
 | error | 68 | p67_s7 | The translation ":" contains no words; translate the complete source text | 在 | : |
 | error | 69 | p68_s3 | The segment has no translation; translate the complete source text | 面 |  |
 | error | 69 | p68_s4 | The translation ":" contains no words; translate the complete source text | 在 | : |
