@@ -1030,7 +1030,56 @@ def test_squeezed_siblings_do_not_set_the_size_of_the_others(tmp_path):
                              pages=[PageInfo(index=0, width=500, height=700)], segments=segs)
     render_document(src, doc, tmp_path / "out.pdf")
     assert segs[0].render.font_size < 0.8 * 11.5                          # could not be helped
-    assert segs[1].render.font_size >= 0.95 * 11.5, segs[1].render.font_size   # and did not drag the question down
+    assert segs[1].render.font_size >= 0.85 * 11.5, segs[1].render.font_size   # and did not drag the question down
+
+
+def test_a_line_a_little_too_long_stays_one_line_slightly_smaller(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    # a contents entry whose English needs about 10 % more room than its box, nothing right of it
+    # but the dotted leader (an obstacle) and free space below
+    leader = TextSegment(id="p3_s2", page=0, bbox=BBox(x0=300, y0=239, x1=420, y1=256), source_text="……",
+                         protected_text="……", origin="ocr", translated_text="……", translate=False,
+                         style=SegmentStyle(size=14, color=0x202020, role="label"))
+    entry = TextSegment(id="p3_s1", page=0, bbox=BBox(x0=189, y0=239, x1=292, y1=256), source_text="一 除法",
+                        protected_text="一 除法", origin="ocr", translated_text="Unit 1 Division",
+                        style=SegmentStyle(size=14, color=0x202020, role="label", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[entry, leader])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert entry.render.bbox.height <= 1.65 * 14, entry.render.bbox     # room for one line, not two
+    assert entry.render.scale >= 0.85, entry.render.scale               # at most a little smaller
+
+
+def test_a_heading_grows_sideways_past_text_far_below_it(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    # "练习二" centred at the top of the page; wide exercise lines in two columns far below
+    head = TextSegment(id="p24_s0", page=0, bbox=BBox(x0=219, y0=62, x1=303, y1=87), source_text="练习二",
+                       protected_text="练习二", origin="ocr", translated_text="Exercise 2",
+                       style=SegmentStyle(size=20.5, color=0x202020, role="heading", line_height=1.2))
+    lines = [TextSegment(id=f"p24_s{i}", page=0, bbox=BBox(x0=x0, y0=y, x1=x0 + 165, y1=y + 14), source_text="练习",
+                         protected_text="练习", origin="ocr", translated_text="An exercise line of the page",
+                         style=SegmentStyle(size=11, color=0x202020, role="body", line_height=1.2))
+             for i, (x0, y) in enumerate([(60, 545), (304, 545), (60, 587), (302, 587)], start=1)]
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[head] + lines)
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert head.render.scale >= 0.99 and head.render.bbox.height <= 1.65 * 20.5, head.render   # one line, full size
 
 
 def test_column_entries_are_set_left_aligned_at_one_size(tmp_path):

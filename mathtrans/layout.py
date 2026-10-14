@@ -127,6 +127,10 @@ COLUMN_MIN_WIDTH_FRACTION = 0.15
 """Segments at least this wide (fraction of the page width) act as column walls:
 a box never grows sideways past the near edge of such a segment, whatever its
 vertical position, so that multi-column layouts keep their gutters."""
+WALL_REACH = 2.0
+"""On a scanned page only walls within this many box heights above or below the box count:
+the exercise lines at the foot of the page do not stop the heading at its top from growing
+sideways over the white space beside it."""
 PAGE_MARGIN = 10.0
 """Boxes are never extended closer than this to the page edge."""
 DEFAULT_CHECKPOINT_PAGES = 25
@@ -660,9 +664,12 @@ class _PageSpace:
         # Column walls: wide text blocks entirely to one side of the box mark another
         # column; never grow across the gutter, even where that column has white space.
         min_wall_width = COLUMN_MIN_WIDTH_FRACTION * self.page_rect.width
+        reach = WALL_REACH * box.height
         for o in obstacles:
             if o.width < min_wall_width:
                 continue
+            if self.scanned and (o.y0 > box.y1 + reach or o.y1 < box.y0 - reach):
+                continue  # far above or below: not the column beside this line
             if o.x0 >= box.x1 - 1.0:
                 right = min(right, max(o.x0 - OBSTACLE_GAP, box.x1))
             elif o.x1 <= box.x0 + 1.0:
@@ -740,6 +747,17 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     grown_note = "" if grown == base else "box extended into free space"
     tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
     attempts: list[tuple[BBox, Optional[float], float, str]] = [(base, None, 1.0, "")]
+    one_line = (space.scanned and seg.origin == "ocr" and growable and "\n" not in text
+                and len(text.split()) <= ONE_LINE_MAX_WORDS
+                and seg.style.size > 0 and base.height <= 1.6 * seg.style.size)
+    if one_line:
+        # a line a little too long stays one line, slightly smaller, rather than wrapping; the box
+        # may take the height of one full line (where the page below is free), never of two
+        wide = space.extend(seg, down=False, horizontal=True)
+        one_h = ONE_LINE_HEIGHT * seg.style.size
+        wide = BBox(x0=wide.x0, y0=wide.y0, x1=wide.x1,
+                    y1=max(wide.y1, min(grown.y1, wide.y0 + one_h)) if grown.y1 > wide.y1 else wide.y1)
+        attempts.append((wide, None, ONE_LINE_MIN_SCALE, "" if wide == base else grown_note))
     if grown != base:
         attempts.append((grown, None, 1.0, grown_note))
     attempts.append((grown, None, min_scale, grown_note))
@@ -965,6 +983,16 @@ exercises) are siblings even when their OCR boxes differ in height by up to this
 box height follows the ascenders, dots and brackets of each line, not the type size."""
 COLUMN_PITCH = 8.0
 """... and up to this many label heights apart, centre to centre."""
+ONE_LINE_MIN_SCALE = 0.85
+"""A short line of a scanned page (a contents entry, a heading, a label: at most
+``ONE_LINE_MAX_WORDS`` words) whose translation is a little too long for its box is set on one
+line at no less than this scale before it is wrapped onto a second line: "Unit 5" over "Area"
+in a contents column looks broken, the entry at 90 % does not (its siblings are then matched
+to it). A sentence is wrapped at full size instead."""
+ONE_LINE_MAX_WORDS = 6
+ONE_LINE_HEIGHT = 1.6
+"""... and its box may grow down to this many times the type size: room for one line at full
+size, never for two."""
 LABEL_ROW_PITCH = 1.6
 """Sibling labels stacked in a column (one per picture row) sit up to this many label heights
 apart, centre to centre."""
