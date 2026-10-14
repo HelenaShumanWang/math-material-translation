@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 183 errors, 78 warnings (1223.5 s); proofread: 293 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 183 errors, 77 warnings (1223.5 s); proofread: 293 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数 (zh → en, 99 page(s), 1233 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×323, layout_fit ×59, glossary ×15, placeholders ×7, formatting ×6, image_text ×6, untranslated ×6, completeness ×2, numbers ×2, target_script ×2
 - Round 3: llm_review ×335, layout_fit ×52, glossary ×26, image_text ×6, untranslated ×3, completeness ×2, formatting ×2, numbers ×1, placeholders ×1
 
-## Final issues (261)
+## Final issues (260)
 
 ### `completeness` — 46 errors, 0 warnings
 
@@ -71,7 +71,7 @@
 | error | 94 | p93_s5 | The segment has no translation; translate the complete source text | 有 |  |
 | error | 94 | p93_s7 | The translation "△," contains no words; translate the complete source text | 个△ | △, |
 
-### `formatting` — 23 errors, 5 warnings
+### `formatting` — 23 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -102,7 +102,6 @@
 | warning | 33 | p32_s13 | The source does not end with a exclamation mark; do not end the translation with one | 欢迎小于60的朋友 | Under 60? Welcome! |
 | warning | 33 | p32_s14 | The source does not end with a exclamation mark; do not end the translation with one | 欢迎大于60的朋友 | Over 60? Welcome! |
 | warning | 44 | p43_s2 | The source ends with a exclamation mark; end the translation with a exclamation mark too | 宋朝有个叫黄伯思的人发明了一种桌子，可以根据吃饭人数的不同，把桌子拼成不同的形状，比如3人拼成三角形，4人拼成四方形·… | In the Song Dynasty, a man named Huang Bosi invented a tabl… |
-| warning | 63 | p62_s1 | The source ends with a exclamation mark; end the translation with a exclamation mark too | 塑料埋在地下很多年都不会“腐烂”，它对环境的危害可大了！ | Plastic buried in the ground won't "rot" for many years. It… |
 
 ### `glossary` — 38 errors, 0 warnings
 
