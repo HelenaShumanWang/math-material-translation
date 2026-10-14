@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 246 errors, 114 warnings (1929.5 s); proofread: 467 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 222 errors, 107 warnings (1929.5 s); proofread: 529 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数 (zh → en, 109 page(s), 1757 translatable segment(s))
 
@@ -18,9 +18,9 @@
 - Round 2: llm_review ×485, layout_fit ×71, untranslated ×12, target_script ×8, formatting ×7, glossary ×4, image_text ×2, length_ratio ×2, completeness ×1
 - Round 3: llm_review ×507, layout_fit ×87, formatting ×12, length_ratio ×4, completeness ×3, image_text ×2, target_script ×2, untranslated ×2, glossary ×1
 
-## Final issues (360)
+## Final issues (329)
 
-### `completeness` — 56 errors, 0 warnings
+### `completeness` — 57 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -69,6 +69,7 @@
 | error | 64 | p63_s15 | The segment has no translation; translate the complete source text | 处 |  |
 | error | 72 | p71_s17 | The translation "□" contains no words; translate the complete source text | 〇个 | □ |
 | error | 72 | p71_s18 | The translation "□" contains no words; translate the complete source text | 〇个 | □ |
+| error | 76 | p75_s6 | The segment has no translation; translate the complete source text | 个新图形社 |  |
 | error | 83 | p82_s2 | The segment has no translation; translate the complete source text | 90秒= |  |
 | error | 83 | p82_s3 | The segment has no translation; translate the complete source text | 70分= |  |
 | error | 89 | p88_s13 | The segment has no translation; translate the complete source text | WED三四前五 |  |
@@ -129,7 +130,7 @@
 | error | 88 | p87_s8 | Remove the symbol(s) ✓×4: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 花盆的摆放也是有规律的：√√××Vxx··· | The flower pots are also in a pattern: ✓ ✓ × × ✓ ✓ × × …… |
 | error | 90 | p89_s14 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 喜欢356.26.0的有（）人，喜欢喜欢356.28.0的有（）人，喜欢的有（）人，可以选（）作为吉祥物。 | () people like 356.26.0, () people like 356.28.0, () pe… |
 | error | 90 | p89_s9 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 兔猴鱼 | Rabbit Monkey Fish |
-| error | 91 | p90_s12 | Keep the symbol(s) △ ● of the source in the translation, at the matching position | ）个，比●360.22.0多（）个，比△少360.25.0（） | ) and more than 360.22.0 by ( ) and less than 360.25.0 … |
+| error | 91 | p90_s12 | Keep the symbol(s) △ ● of the source in the translation, at the matching position | ）个，比●360.22.0多（）个，比△少360.25.0（） | ) and 360.22.0 by ( ) and 360.25.0 by ( |
 | error | 91 | p90_s4 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 相声魔术杂技歌舞 | Comedy Magic Circus Dance |
 | error | 93 | p92_s10 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 动物园科技馆游乐场公园 | Zoo Museum Funfair Park |
 | error | 93 | p92_s5 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 动物园科技馆游乐场公园 | Zoo Museum Funfair Park |
@@ -166,12 +167,10 @@
 | error | 95 | p94_s9 | Glossary: translate "比一比" as "Compare" | 长方形四个角都是直角，我是用三角板比一比得到的··· | All four angles of a rectangle are right angles. I checked … |
 | error | 98 | p97_s24 | Glossary: translate "笑笑" as "Xiaoxiao" | （1）邮局在果园的（面，书店在笑笑家的 | (1) The post office is to the () of the orchard, and the bo… |
 
-### `layout_fit` — 62 errors, 16 warnings
+### `layout_fit` — 38 errors, 12 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 1 | p0_s3 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数学 | Mathematics |
-| error | 1 | p0_s3 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数学 | Mathematics |
 | error | 3 | p2_s10 | Shorten the translation to at most 18 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 2任何数乘0都为0。 | 2. Any number × 0 = 0. |
 | error | 3 | p2_s10 | Shorten the translation to at most 18 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 2任何数乘0都为0。 | 2. Any number × 0 = 0. |
 | error | 3 | p2_s7 | Shorten the translation to at most 23 characters so it fits the original box (the current translation of 32 characters overflows its box; the minimum allowed size is 55%) | 1.任何数加减0都没有变化。 | 1. Add or subtract 0: no change. |
@@ -180,16 +179,8 @@
 | error | 4 | p3_s13 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 测量 | Unit 4 Measurement |
 | error | 4 | p3_s5 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 12.8.0打谷场 | 12.8.0 Threshing Floor |
 | error | 4 | p3_s5 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 12.8.0打谷场 | 12.8.0 Threshing Floor |
-| error | 4 | p3_s6 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 二 方向与位置 | Unit 2 Direction and Position |
-| error | 4 | p3_s6 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 二 方向与位置 | Unit 2 Direction and Position |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
-| error | 8 | p7_s13 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 算式 | Number sentence |
-| error | 8 | p7_s13 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 算式 | Number sentence |
-| error | 9 | p8_s12 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 算式人 | Number sentence |
-| error | 9 | p8_s12 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 算式人 | Number sentence |
-| error | 9 | p8_s14 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 算式 | Number sentence |
-| error | 9 | p8_s14 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 算式 | Number sentence |
 | error | 12 | p11_s0 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 分草莓 | Sharing Strawberries |
 | error | 12 | p11_s0 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 分草莓 | Sharing Strawberries |
 | error | 14 | p13_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 租船 | Renting Boats |
@@ -198,42 +189,26 @@
 | error | 19 | p18_s30 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 操场 | Playground |
 | error | 22 | p21_s29 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 天津山东 | Tianjin Shandong |
 | error | 22 | p21_s29 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 天津山东 | Tianjin Shandong |
-| error | 23 | p22_s17 | Shorten the translation to at most 22 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 10个一百是一千 | 10 hundreds make a thousand |
-| error | 23 | p22_s17 | Shorten the translation to at most 22 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 10个一百是一千 | 10 hundreds make a thousand |
 | error | 26 | p25_s9 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 千三千、三千 | 1,000, 2,000, 3,000… |
 | error | 26 | p25_s9 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 千三千、三千 | 1,000, 2,000, 3,000… |
-| error | 31 | p30_s11 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 19 characters overflows its box; the minimum allowed size is 55%) | 黄山香山 | Huangshan Xiangshan |
-| error | 31 | p30_s11 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 19 characters overflows its box; the minimum allowed size is 55%) | 黄山香山 | Huangshan Xiangshan |
+| error | 31 | p30_s11 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 19 characters overflows its box; the minimum allowed size is 55%) | 黄山香山 | Huangshan Xiangshan |
+| error | 31 | p30_s11 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 19 characters overflows its box; the minimum allowed size is 55%) | 黄山香山 | Huangshan Xiangshan |
 | error | 31 | p30_s2 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 香山 | Xiangshan |
 | error | 31 | p30_s2 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 香山 | Xiangshan |
-| error | 31 | p30_s24 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 黄山泰山 | Huangshan Taishan |
-| error | 31 | p30_s24 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 黄山泰山 | Huangshan Taishan |
 | error | 47 | p46_s1 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 加与减 | Addition and Subtraction |
 | error | 47 | p46_s1 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 加与减 | Addition and Subtraction |
 | error | 47 | p46_s2 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 买电器 | Buying Appliances |
 | error | 47 | p46_s2 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 买电器 | Buying Appliances |
 | error | 48 | p47_s15 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 周四 | Thursday |
 | error | 48 | p47_s15 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 周四 | Thursday |
-| error | 49 | p48_s22 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 满十进1 | Make ten, carry 1. |
-| error | 49 | p48_s22 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 满十进1 | Make ten, carry 1. |
-| error | 57 | p56_s24 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 答： | Answer: |
-| error | 57 | p56_s24 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 答： | Answer: |
 | error | 61 | p60_s23 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 水浒卡片 | Water Margin |
 | error | 61 | p60_s23 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 水浒卡片 | Water Margin |
-| error | 88 | p87_s2 | Shorten the translation to at most 26 characters so it fits the original box (the current translation of 32 characters overflows its box; the minimum allowed size is 55%) | 348.3.l表示规律 | 348.3.l Ways to show patterns. |
-| error | 88 | p87_s2 | Shorten the translation to at most 26 characters so it fits the original box (the current translation of 32 characters overflows its box; the minimum allowed size is 55%) | 348.3.l表示规律 | 348.3.l Ways to show patterns. |
 | error | 90 | p89_s9 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 兔猴鱼 | Rabbit Monkey Fish |
 | error | 90 | p89_s9 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 兔猴鱼 | Rabbit Monkey Fish |
-| error | 91 | p90_s21 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 只爱吃菜 | Vegetables only |
-| error | 91 | p90_s21 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 只爱吃菜 | Vegetables only |
-| error | 91 | p90_s24 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 3人 | 3 people |
-| error | 91 | p90_s24 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 3人 | 3 people |
 | error | 91 | p90_s4 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 25 characters overflows its box; the minimum allowed size is 55%) | 相声魔术杂技歌舞 | Comedy Magic Circus Dance |
 | error | 91 | p90_s4 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 25 characters overflows its box; the minimum allowed size is 55%) | 相声魔术杂技歌舞 | Comedy Magic Circus Dance |
 | error | 100 | p99_s9 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 汽车慢速中速快速 | Car Slow Medium Fast |
 | error | 100 | p99_s9 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 汽车慢速中速快速 | Car Slow Medium Fast |
-| warning | 8 | p7_s9 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 余数 | remainder |
-| warning | 8 | p7_s9 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 余数 | remainder |
 | warning | 15 | p14_s10 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 答 | Answer |
 | warning | 15 | p14_s10 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 答 | Answer |
 | warning | 22 | p21_s22 | The translation overflows its box and was rendered at 19% of the original size; even a much shorter text would not fit, check this box in the preview | 古 | Inner Mongolia |
@@ -244,12 +219,10 @@
 | warning | 22 | p21_s37 | The translation overflows its box and was rendered at 21% of the original size; even a much shorter text would not fit, check this box in the preview | 庆 | Chongqing |
 | warning | 31 | p30_s1 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 黄山 | Huangshan |
 | warning | 31 | p30_s1 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 黄山 | Huangshan |
-| warning | 66 | p65_s6 | The translation overflows its box and was rendered at 50% of the original size; even a much shorter text would not fit, check this box in the preview | 边 | side |
-| warning | 66 | p65_s6 | The translation overflows its box and was rendered at 50% of the original size; even a much shorter text would not fit, check this box in the preview | 边 | side |
-| warning | 71 | p70_s18 | The translation overflows its box and was rendered at 38% of the original size; even a much shorter text would not fit, check this box in the preview | 宽 | width |
-| warning | 71 | p70_s18 | The translation overflows its box and was rendered at 38% of the original size; even a much shorter text would not fit, check this box in the preview | 宽 | width |
+| warning | 71 | p70_s19 | The translation overflows its box and was rendered at 52% of the original size; even a much shorter text would not fit, check this box in the preview | 长 | length |
+| warning | 71 | p70_s19 | The translation overflows its box and was rendered at 52% of the original size; even a much shorter text would not fit, check this box in the preview | 长 | length |
 
-### `llm_review` — 57 errors, 86 warnings
+### `llm_review` — 56 errors, 83 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -308,7 +281,6 @@
 | error | 98 | p97_s43 | Reviewer (omission): The source's second item is "30厘米=（）分米" (30 cm = () dm); the translation omits the "= () dm" part. Suggested translation: "4000 m = () km 30 cm = () dm" | 4000米=（）千米30厘米=（）分米 | 4000 m = () km 30 cm = () dm |
 | error | 99 | p98_s10 | Reviewer (meaning): "哪几根小棒" is plural: which several sticks can form a rectangle; the translation drops the plural/"several" sense. Suggested translation: "Which of the sticks can be put together to form a rectangle?" | 哪几根小棒可以搭成一个长方形？ | Which sticks can be put together to form a rectangle? |
 | error | 99 | p98_s12 | Reviewer (omission): The list "4厘米2厘米3厘米2厘米5厘米4厘米" is a set of segment lengths; the translation has lost the separators/structure by running them together. Suggested translation: "4 cm, 2 cm, 3 cm, 2 cm, 5 cm, 4 cm" | 4厘米2厘米3厘米2厘米5厘米4厘米 | 4 cm 2 cm 3 cm 2 cm 5 cm 4 cm |
-| error | 99 | p98_s13 | Reviewer (omission): Two separate instructions "画出一个长方形" and "画出一个正方形" are run together without punctuation/line break. Suggested translation: "Draw a rectangle. Draw a square." | 画出一个长方形画出一个正方形 | Draw a rectangle Draw a square |
 | error | 99 | p98_s15 | Reviewer (meaning): "在下面的图中标出三个你认识的图形" = mark three shapes you recognize in the figure below; "three shapes you know" is acceptable, but the translation omits nothing major; still, "know" should be "recognize". Suggested translation: "7. Mark three shapes you recognize in the figure below." | 7.在下面的图中标出三个你认识的图形。 | 7. Mark three shapes you know in the figure below. |
 | warning | 1 | p0_s10 | Reviewer (format): The English source line is already English and matches the translation; no issue. | BEIJING NORMAL UNIVERSITY PRESS | BEIJING NORMAL UNIVERSITY PRESS |
 | warning | 1 | p0_s6 | Reviewer (grammar): "Volume 2" is acceptable, but the standard rendering of 下册 for a textbook is "Volume 2" / "Second Semester"; no meaning change. Suggested translation: "Volume 2" | 下册 | Volume 2 |
@@ -369,8 +341,6 @@
 | warning | 71 | p70_s15 | Reviewer (format): Ellipsis should be three dots, not "···". Suggested translation: "Each side of a square ..." | 正方形的每条边··· | Each side of a square ··· |
 | warning | 71 | p70_s8 | Reviewer (grammar): "The opposite sides of a rectangle are equal." is acceptable but "opposite sides" is the standard term in textbook phrasing. Suggested translation: "The opposite sides of a rectangle are equal." | 长方形对着的边相等。 | The opposite sides of a rectangle are equal. |
 | warning | 71 | p70_s9 | Reviewer (format): The ellipsis dots are rendered as "····"; the source uses an ellipsis marking an unfinished sentence. Suggested translation: "Each angle of a rectangle is ..." | 长方形的每个角都是···· | Each angle of a rectangle is ···· |
-| warning | 76 | p75_s5 | Reviewer (grammar): The fragment duplicates the continuation belonging to the previous line; the sentence should read naturally when the fragments are joined. As split text, capitalization is inconsistent with the previous fragment. Suggested translation: "Use 4 rectangles to make a" | 用4个长方形拼出一 | use 4 rectangles to make a |
-| warning | 79 | p78_s1 | Reviewer (format): The label "Olympic Opening" would read more naturally as "The Olympic Opening Ceremony", though the short form is acceptable as a caption. Suggested translation: "The Olympic Opening Ceremony" | 奥运开幕 | Olympic Opening |
 | warning | 82 | p81_s27 | Reviewer (format): Seconds are abbreviated as 's' here but written 'seconds' in p81_s29 and elsewhere; inconsistent abbreviation style. Suggested translation: "20 seconds" | 20秒 | 20 s |
 | warning | 82 | p81_s4 | Reviewer (format): Source contains numeric placeholders; translation keeps them. Fine. | 324.4.0分324.4.1秒 | 324.4.0 min 324.4.1 s |
 | warning | 82 | p81_s9 | Reviewer (grammar): Missing article before the singular countable noun phrase '1 hour 30 minutes'; textbook English normally writes '1 hour and 30 minutes' (or '1 hour 30 minutes'), but a determiner/article is needed: '1 hour and 30 minutes'. Suggested translation: "A football match took 1 hour and 30 minutes. How many minutes is 1 hour and 30 minutes?" | 踢一场足球比赛用了1时30分。1时30分是多少分？ | A football match took 1 hour 30 minutes. How many minutes i… |
@@ -382,7 +352,6 @@
 | warning | 85 | p84_s32 | Reviewer (grammar): Unit 'min' should be written as 'minutes' in running text. Suggested translation: "Played for _ minutes." | 玩了_分。 | Played for _ min. |
 | warning | 86 | p85_s2 | Reviewer (grammar): Punctuation: comma splice; use a period or semicolon. Suggested translation: "I'm going to school. Bye!" | 我去上学了，再见 | I'm going to school. Bye! |
 | warning | 87 | p86_s6 | Reviewer (format): Two separate column labels merged without separation; should be split. Suggested translation: "Arrival time Time on the way" | 到校时间路上用的时间 | Arrival time Time on the way |
-| warning | 91 | p90_s14 | Reviewer (format): The trailing comma after the answer blank is kept, but the blank's closing parenthesis is missing in the source only; translation is acceptable. No real problem. | ）个， | ), |
 | warning | 91 | p90_s18 | Reviewer (format): Heading/label should be in Title Case per textbook conventions. Suggested translation: "Healthy Eating Day" | 健康饮食日 | Healthy Eating Day |
 | warning | 92 | p91_s0 | Reviewer (grammar): British spelling 'Favourite' while other items use 'favorite'; spelling consistency issue. Suggested translation: "Favorite Fruits" | 最喜欢的水果 | Favourite Fruits |
 | warning | 93 | p92_s15 | Reviewer (format): Answer blanks in the source are full-width parentheses （）; the translation uses empty half-width parentheses (), which is not the standard blank form and may be confused with punctuation. Suggested translation: "(2) There are （） basketballs, （） footballs and （） volleyballs." | (2)篮球有（）个，足球有（）个，排球有（）个。 | (2) There are () basketballs, () footballs and () volleybal… |
