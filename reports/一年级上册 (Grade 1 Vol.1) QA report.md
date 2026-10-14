@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 170 errors, 66 warnings (1253.6 s); proofread: 351 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 169 errors, 66 warnings (1253.6 s); proofread: 368 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 109 page(s), 1076 translatable segment(s))
+**Document:** 数学 (zh → en, 109 page(s), 1077 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,13 +18,12 @@
 - Round 2: llm_review ×323, layout_fit ×93, formatting ×27, placeholders ×15, glossary ×14, image_text ×8, untranslated ×6, length_ratio ×3
 - Round 3: llm_review ×317, layout_fit ×89, formatting ×17, placeholders ×11, image_text ×8, glossary ×5, completeness ×2, untranslated ×2, length_ratio ×1, target_script ×1
 
-## Final issues (236)
+## Final issues (235)
 
-### `completeness` — 82 errors, 0 warnings
+### `completeness` — 81 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 1 | p0_s5 | The segment has no translation; translate the complete source text | 及上册 |  |
 | error | 1 | p0_s7 | The segment has no translation; translate the complete source text | 米2 |  |
 | error | 3 | p2_s7 | The segment has no translation; translate the complete source text | 30元 |  |
 | error | 4 | p3_s2 | The segment has no translation; translate the complete source text | 新国 |  |
