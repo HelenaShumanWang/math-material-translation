@@ -383,6 +383,40 @@ def test_glyph_erase_takes_trailing_punctuation_and_keeps_pictograms():
     assert (canvas.max(axis=2) < 100).sum() == 0
 
 
+def test_glyphs_the_detector_left_out_at_either_end_go_with_the_line():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # the OCR polygon stops after 称一称，: the rest of the line, 掂一掂。, is erased with it
+    original = _text_image((420, 60), (255, 255, 255), [("text", ((10, 10), "称一称，掂一掂。", 34), (20, 20, 20))])
+    cols = np.flatnonzero((original.max(axis=2) < 100).any(axis=0))
+    cut = int(cols.min()) + int(3.6 * 34)                  # after four glyphs
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, cut, 55))
+    assert (canvas.max(axis=2) < 100).sum() == 0
+    # the 一 before 枚 that the polygon left out at the start goes too
+    original = _text_image((420, 60), (255, 255, 255), [("text", ((10, 10), "一枚硬币约重", 34), (20, 20, 20))])
+    cols = np.flatnonzero((original.max(axis=2) < 100).any(axis=0))
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (int(cols.min()) + 36, 5, int(cols.max()) + 2, 55))
+    assert (canvas.max(axis=2) < 100).sum() == 0
+    # ... but not past another OCR line, nor over a picture (taller than the line) or a pictogram
+    original = _text_image((420, 60), (255, 255, 255), [("text", ((10, 10), "称一称，掂一掂。", 34), (20, 20, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, cut, 55), [(cut + 4, 5, 420, 55)])
+    assert (canvas[:, cut + 6:].max(axis=2) < 100).sum() > 0
+    original = _text_image((420, 80), (255, 255, 255), [
+        ("text", ((10, 20), "称一称", 34), (20, 20, 20)), ("rect", [125, 2, 300, 78], (30, 120, 200))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 15, 118, 65))
+    assert np.abs(canvas[20:60, 130:290].astype(int) - [30, 120, 200]).max() < 30
+    original = _text_image((420, 60), (255, 255, 255), [
+        ("text", ((10, 10), "称一称", 34), (20, 20, 20)), ("rect", [125, 14, 160, 50], (240, 160, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, 118, 55))
+    assert np.abs(canvas[18:46, 128:157].astype(int) - [240, 160, 20]).max() < 30
+
+
 def test_same_row_sentence_pieces_are_joined_with_a_blank():
     lines = [
         _gline(0, 50, 100, 110, "七巧板由"),

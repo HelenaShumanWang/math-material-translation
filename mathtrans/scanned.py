@@ -1080,6 +1080,15 @@ is a decorated glyph, not a pictogram to keep."""
 ICON_MIN_FILL = 0.45
 """A solid ink component (fill ratio of its bounding box at least this, at least about a
 glyph in size) in a colour unlike the text is a pictogram and is kept."""
+MISSED_GLYPH_REACH = 0.6
+"""A glyph the detector left out at the end (or the start) of a line stands within this share
+of the line height of the box, or of the glyph taken before it ..."""
+MISSED_GLYPHS_MAX = 6
+"""... and at most this many line heights of them are taken: a tight polygon loses the last
+word or two, not a whole sentence."""
+MISSED_GLYPH_HEIGHT = 1.25
+"""A blob taller than this share of the line height is a bubble outline or a picture, not a
+glyph of the line: the run ends there."""
 PUNCT_MAX_SHARE = 0.12
 """Ink right of the OCR box covering at most this share of a one-glyph strip is trailing
 punctuation (。，！？) the detector left out; it is erased with the line."""
@@ -1149,6 +1158,89 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
     return x0, y0, min(ex1, x1 + right + max(2, h // 10)), y1
 
 
+
+
+def _missed_glyph_run(region: np.ndarray, h: int, bg: np.ndarray, ink_colour: np.ndarray) -> int:
+    """Width of the run of glyphs in the line's colour at the left edge of ``region`` (the
+    pixels right of a line box, or left of it mirrored): ink blobs no taller than a glyph, one
+    after another a short gap apart, in the text colour. 0 when the first blob is too far, too
+    tall or too wide (a rule), or in another colour (a pictogram); the run also ends there."""
+    import cv2
+
+    diff = np.abs(region.astype(np.int32) - bg.astype(np.int32)).max(axis=2)
+    any_ink = (diff > GLYPH_DIFF).astype(np.uint8)
+    if not any_ink.any():
+        return 0
+    dist = np.sqrt(((region.astype(np.int32) - ink_colour) ** 2).sum(axis=2))
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(any_ink, connectivity=8)
+    reach = max(3, int(round(MISSED_GLYPH_REACH * h)))
+    order = sorted(range(1, n), key=lambda i: int(stats[i][0]))
+    taken = 0
+    for i in order:
+        bx, _by, bw, bh, area = (int(v) for v in stats[i])
+        if bx > taken + reach:
+            break  # a gap wider than between two glyphs: the line ended
+        if area >= 0.03 * h * h:  # specks (the anti-aliased rim of a glyph the box cut) are taken as they come
+            if bh > MISSED_GLYPH_HEIGHT * h or bw > 1.5 * h:
+                return 0  # a bubble outline, a picture, a rule: not glyphs of the line
+            comp = labels == i
+            if float((dist[comp] < INK_TOLERANCE).mean()) < 0.5:
+                return 0  # another colour: a pictogram
+        if bx + bw >= region.shape[1] - 1:
+            return 0  # runs to the edge of what we may take: not a word's end
+        taken = max(taken, bx + bw)
+    return taken
+
+
+def _extend_over_missed_glyphs(original: np.ndarray, box: tuple[int, int, int, int],
+                               blocked: list[tuple[int, int, int, int]]) -> tuple[int, int, int, int]:
+    """``box`` extended sideways over whole glyphs the detector left out at either end of the
+    line (掂一掂。 after a polygon that stops at 称一称，; the 一 before 枚), so they are erased
+    with the line instead of staying beside its translation. Only glyph-sized blobs in the
+    line's colour a short gap apart are taken, never past another OCR line, and only over the
+    line's own plain background."""
+    from .images import estimate_text_color
+
+    x0, y0, x1, y1 = box
+    h = y1 - y0
+    if h < 6:
+        return box
+    bg, share = _dominant_colour(original[y0:y1, x0:x1])
+    if share < STRIPE_MIN_SHARE:
+        return box  # a line over a picture: too risky to guess where it ends
+    ink_colour = np.array(estimate_text_color(original, box, bg), dtype=np.int32)
+    pad = int(round(0.15 * h))
+    by0, by1 = max(0, y0 - pad), min(original.shape[0], y1 + pad)
+    limit = int(round(MISSED_GLYPHS_MAX * h))
+
+    def barrier(side: str) -> int:
+        edge = original.shape[1] if side == "right" else 0
+        for bx0, bby0, bx1, bby1 in blocked:
+            if bby0 >= by1 or bby1 <= by0:
+                continue
+            if side == "right" and bx0 >= x1 - 1:
+                edge = min(edge, bx0)
+            elif side == "left" and bx1 <= x0 + 1:
+                edge = max(edge, bx1)
+        return edge
+
+    nx0, nx1 = x0, x1
+    right_lim = min(barrier("right"), x1 + limit)
+    if right_lim - x1 >= 3:
+        run = _missed_glyph_run(original[by0:by1, x1:right_lim], h, bg, ink_colour)
+        if run:
+            nx1 = min(right_lim, x1 + run + max(2, h // 10))
+    left_lim = max(barrier("left"), x0 - limit)
+    if x0 - left_lim >= 3:
+        run = _missed_glyph_run(np.ascontiguousarray(original[by0:by1, left_lim:x0][:, ::-1]), h, bg, ink_colour)
+        if run:
+            nx0 = max(left_lim, x0 - run - max(2, h // 10))
+    if (nx0, nx1) == (x0, x1):
+        return box
+    _bg2, share2 = _dominant_colour(original[y0:y1, nx0:nx1])
+    if share2 < STRIPE_MIN_SHARE or np.abs(_bg2.astype(np.int32) - bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
+        return box  # the extension reaches onto another surface
+    return nx0, y0, nx1, y1
 
 
 GRADIENT_ROWS = 4
@@ -1275,6 +1367,7 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     from .images import estimate_background
 
     box = _extend_for_punctuation(original, box, blocked or [])
+    box = _extend_over_missed_glyphs(original, box, blocked or [])
     box = _grow_on_plain_surroundings(original, original_alpha, box, blocked or [])
     x0, y0, x1, y1 = box
     crop = original[y0:y1, x0:x1].astype(np.int32)
