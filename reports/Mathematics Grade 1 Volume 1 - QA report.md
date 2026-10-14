@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 169 errors, 66 warnings (1253.6 s); proofread: 366 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 169 errors, 66 warnings (1253.6 s); proofread: 367 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 109 page(s), 1076 translatable segment(s))
 
