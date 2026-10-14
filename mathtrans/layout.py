@@ -1156,8 +1156,14 @@ def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space
     for group in _sibling_label_groups(segs):
         # labels squeezed below their source size (no room, even wrapped) do not set the size
         natural = [s for s in group if s.render.font_size >= SQUEEZED_SHARE * s.style.size]  # type: ignore[union-attr]
-        if all(_list_item(s) for s in group):
-            natural = list(group)  # a list follows its smallest item, however that item was set
+        hh = max(s.bbox.height for s in group)
+        lengths = [len((s.translated_text or "").strip()) or 1 for s in group]
+        one_row = (max(s.bbox.y0 + s.bbox.y1 for s in group) - min(s.bbox.y0 + s.bbox.y1 for s in group) <= hh
+                   and max(lengths) <= 3 * min(lengths))  # cells alike (not "and" beside a whole question)
+        if all(_list_item(s) for s in group) or one_row:
+            # a list follows its smallest item, and so do the cells of one row of a table: one roomy
+            # cell set larger than its squeezed neighbours looks careless
+            natural = list(group)
         sizes = sorted(s.render.font_size for s in (natural or group))  # type: ignore[union-attr]
         median = sizes[len(sizes) // 2]
         # one item squeezed far below the others (no room to wrap) does not drag the whole list down

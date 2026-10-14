@@ -1167,6 +1167,31 @@ def test_resetting_a_label_to_its_siblings_size_keeps_the_neighbours_words(tmp_p
     assert "(2) How many times" in text, text                                    # ... and "(2" is still there
 
 
+def test_the_header_cells_of_one_table_row_share_one_size(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+
+    def cell(i, x0, x1, zh, en):
+        return TextSegment(id=f"p30_s{i}", page=0, bbox=BBox(x0=x0, y0=120, x1=x1, y1=134), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=11, color=0x202020, role="label", line_height=1.2))
+    # "7月底" ... in narrow cells side by side, the last one with room to spare to its right
+    cells = [cell(i, 60 + 45 * i, 92 + 45 * i, f"{m}月底", f"End of month {m}") for i, m in enumerate(range(7, 12))]
+    cells.append(cell(5, 60 + 45 * 5, 100 + 45 * 5, "12月底", "End of month 12"))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=cells)
+    render_document(src, doc, tmp_path / "out.pdf")
+    sizes = [c.render.font_size for c in cells]
+    assert max(sizes) <= 1.05 * min(sizes), sizes            # the roomy last cell is not set larger
+
+
 def test_column_entries_are_set_left_aligned_at_one_size(tmp_path):
     from PIL import Image
     from mathtrans.layout import render_document
