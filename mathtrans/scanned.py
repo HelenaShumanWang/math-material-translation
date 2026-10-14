@@ -1129,6 +1129,63 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
 GRADIENT_ROWS = 4
 """Rows sampled at the top and at the bottom of a strip to tell a gradient background (a title
 band fading into colour) from a plain one."""
+GRADIENT_DIFF = 10
+"""Top and bottom rows of a strip whose backgrounds differ by more than this (per channel) lie on
+a gradient; even a faint one shows as a block when refilled with one flat colour."""
+PLAIN_MARGIN = 0.08
+"""Share of the line height added around a box on plain surroundings before erasing, so the
+edges of glyphs that a tight OCR polygon cut off go with the rest."""
+
+
+
+
+
+
+PLAIN_RING_SHARE = 0.7
+"""Share of the pixels in a wide ring around a box that must match the ring's median colour for
+the surroundings to count as plain (the ring may cut through glyph edges a tight box left out)."""
+
+
+def _plain_surroundings(original: np.ndarray, alpha: Optional[np.ndarray],
+                        box: tuple[int, int, int, int]) -> tuple[np.ndarray, bool]:
+    """(median colour, plain?) of a ring a third of the box height wide around ``box``."""
+    from .images import RING_PX, ring_pixels
+
+    x0, y0, x1, y1 = box
+    ring = max(RING_PX, (y1 - y0) // 3)
+    px = ring_pixels(original, box, ring)
+    if alpha is not None:
+        visible = ring_pixels(alpha[..., None], box, ring)[:, 0] > 0
+        if visible.any():
+            px = px[visible]
+    if px.size == 0:
+        return np.array([255, 255, 255], dtype=np.uint8), False
+    median = np.clip(np.round(np.median(px, axis=0)), 0, 255).astype(np.uint8)
+    near = np.abs(px.astype(np.int32) - median.astype(np.int32)).max(axis=1) <= BACKGROUND_TOLERANCE
+    if not near.any():
+        return median, False
+    median = np.clip(np.round(np.median(px[near], axis=0)), 0, 255).astype(np.uint8)
+    return median, bool(near.mean() >= PLAIN_RING_SHARE)
+
+
+def _grow_on_plain_surroundings(original: np.ndarray, alpha: Optional[np.ndarray], box: tuple[int, int, int, int],
+                                blocked: list[tuple[int, int, int, int]]) -> tuple[int, int, int, int]:
+    """A box on a plain background grows by a small margin on every side (a tight OCR polygon
+    cuts the outermost pixels of the glyphs off), unless the margin would reach another box."""
+    x0, y0, x1, y1 = box
+    ih, iw = original.shape[:2]
+    m = max(2, int(round(PLAIN_MARGIN * (y1 - y0))))
+    grown = (max(0, x0 - m), max(0, y0 - m), min(iw, x1 + m), min(ih, y1 + m))
+    if grown == box:
+        return box
+    for bx0, by0, bx1, by1 in blocked:
+        if bx0 < grown[2] and bx1 > grown[0] and by0 < grown[3] and by1 > grown[1]:
+            return box
+    _bg, plain = _plain_surroundings(original, alpha, box)
+    if not plain:
+        return box
+    _bg2, plain2 = _plain_surroundings(original, alpha, grown)
+    return grown if plain2 else box
 
 
 def _fill_gradients(crop: np.ndarray, grown: np.ndarray, strips: list, fill: np.ndarray, h: int) -> None:
@@ -1141,7 +1198,7 @@ def _fill_gradients(crop: np.ndarray, grown: np.ndarray, strips: list, fill: np.
         stripe = crop[:, sx:ex]
         top, _t = _dominant_colour(stripe[:GRADIENT_ROWS].astype(np.uint8))
         bottom, _b = _dominant_colour(stripe[-GRADIENT_ROWS:].astype(np.uint8))
-        if np.abs(top.astype(np.int32) - bottom.astype(np.int32)).max() <= BACKGROUND_TOLERANCE:
+        if np.abs(top.astype(np.int32) - bottom.astype(np.int32)).max() <= GRADIENT_DIFF:
             continue
         free = ~grown[:, sx:ex]
         for y in range(h):
@@ -1172,13 +1229,14 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     from .images import estimate_background
 
     box = _extend_for_punctuation(original, box, blocked or [])
+    box = _grow_on_plain_surroundings(original, original_alpha, box, blocked or [])
     x0, y0, x1, y1 = box
     crop = original[y0:y1, x0:x1].astype(np.int32)
     if crop.size == 0:
         return "empty"
     h, w = crop.shape[:2]
     box_bg, _share = _dominant_colour(original[y0:y1, x0:x1])
-    ring_bg, ring_uniform = estimate_background(original, box, original_alpha)
+    ring_bg, ring_uniform = _plain_surroundings(original, original_alpha, box)
     if ring_uniform and np.abs(ring_bg.astype(np.int32) - box_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
         # bold or wide glyphs (SHUXUE in a tight box) outnumber the background pixels inside the box:
         # the plain surroundings say what the background is, not the most common colour inside
@@ -1198,8 +1256,10 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         if np.abs(bg.astype(np.int32) - ink_colour).max() < GLYPH_DIFF and \
                 np.abs(prev_bg.astype(np.int32) - ink_colour).max() >= GLYPH_DIFF:
             bg, share = prev_bg, prev_share  # a heavy glyph dominates the strip: keep the neighbour's background
-        if ring_uniform and np.abs(bg.astype(np.int32) - ring_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
-            # the strip is mostly glyph: its background is the plain one around the box
+        if ring_uniform and np.abs(bg.astype(np.int32) - ring_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE \
+                and float(np.sqrt(((bg.astype(np.int32) - ink_colour) ** 2).sum())) < INK_TOLERANCE:
+            # the strip is mostly glyph (bold letters): its background is the plain one around the box;
+            # a strip in another solid colour is a pictogram and keeps its own surface
             bg = ring_bg
             share = float((np.abs(crop[:, sx:ex] - ring_bg.astype(np.int32)).max(axis=2)
                            <= BACKGROUND_TOLERANCE).mean())

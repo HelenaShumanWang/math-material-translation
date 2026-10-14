@@ -773,12 +773,12 @@ def test_bold_coloured_glyphs_in_a_tight_box_are_erased_to_the_surroundings():
     original = np.array(img)
     ink_mask = np.abs(original.astype(int) - np.array(bg)).max(axis=2) > 40
     ys, xs = np.where(ink_mask)
-    box = (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1)  # tight, as the OCR box is
+    box = (int(xs.min()) + 2, int(ys.min()) + 2, int(xs.max()) - 1, int(ys.max()) - 1)  # tight OCR polygon
     assert ink_mask[box[1]:box[3], box[0]:box[2]].mean() > 0.45  # the glyphs dominate the box
     canvas = original.copy()
     _erase_glyphs(canvas, None, original, None, box)
-    inside = canvas[box[1] + 2:box[3] - 2, box[0] + 2:box[2] - 2]
-    assert (np.abs(inside.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.97  # plain background now
+    around = canvas[box[1] - 4:box[3] + 4, box[0] - 4:box[2] + 4]  # the cut-off glyph edges go too
+    assert (np.abs(around.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.99  # plain background now
 
 
 def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
@@ -789,15 +789,15 @@ def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
 
     h, w = 160, 420
     rows = np.linspace(0, 1, h)[:, None, None]
-    original = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([120, 190, 240])).astype(np.uint8)
-    original = np.repeat(original, w, axis=1)
+    original = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([225, 238, 250])).astype(np.uint8)
+    original = np.repeat(original, w, axis=1)  # a faint fade, as under a cover title
     img = Image.fromarray(original.copy())
     ImageDraw.Draw(img).text((20, 10), "数学", fill=(30, 30, 30), font=pil_font("zh", 110))
     original = np.array(img)
     canvas = original.copy()
     _erase_glyphs(canvas, None, original, None, (10, 5, 400, 150))
     assert (canvas.max(axis=2) < 80).sum() < 0.02 * (canvas.max(axis=2) < 80).size  # the ink is gone
-    expected = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([120, 190, 240])).astype(np.uint8)
-    # the lower rows keep the blue of the gradient instead of a white block
-    assert np.abs(canvas[140, 50:380].astype(int) - expected[140, 0]).max() < 30
-    assert np.abs(canvas[100, 50:380].astype(int) - expected[100, 0]).max() < 30
+    expected = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([225, 238, 250])).astype(np.uint8)
+    # the lower rows keep the blue of the fade instead of a white block
+    assert np.abs(canvas[140, 50:380].astype(int) - expected[140, 0]).max() < 8
+    assert np.abs(canvas[100, 50:380].astype(int) - expected[100, 0]).max() < 8
