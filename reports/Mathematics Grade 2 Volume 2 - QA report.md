@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 222 errors, 107 warnings (1929.5 s); proofread: 529 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 219 errors, 107 warnings (1929.5 s); proofread: 529 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数 (zh → en, 109 page(s), 1757 translatable segment(s))
+**Document:** 数 (zh → en, 109 page(s), 1756 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,15 +18,14 @@
 - Round 2: llm_review ×485, layout_fit ×71, untranslated ×12, target_script ×8, formatting ×7, glossary ×4, image_text ×2, length_ratio ×2, completeness ×1
 - Round 3: llm_review ×507, layout_fit ×87, formatting ×12, length_ratio ×4, completeness ×3, image_text ×2, target_script ×2, untranslated ×2, glossary ×1
 
-## Final issues (329)
+## Final issues (326)
 
-### `completeness` — 57 errors, 0 warnings
+### `completeness` — 56 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 4 | p3_s0 | The segment has no translation; translate the complete source text | 录 |  |
 | error | 4 | p3_s1 | The segment has no translation; translate the complete source text | 目 |  |
-| error | 4 | p3_s12 | The segment has no translation; translate the complete source text | 四 |  |
 | error | 6 | p5_s13 | The segment has no translation; translate the complete source text | 个 |  |
 | error | 7 | p6_s6 | The segment has no translation; translate the complete source text | 烟花 |  |
 | error | 16 | p15_s8 | The segment has no translation; translate the complete source text | 欢迎参加家长会 |  |
@@ -167,7 +166,7 @@
 | error | 95 | p94_s9 | Glossary: translate "比一比" as "Compare" | 长方形四个角都是直角，我是用三角板比一比得到的··· | All four angles of a rectangle are right angles. I checked … |
 | error | 98 | p97_s24 | Glossary: translate "笑笑" as "Xiaoxiao" | （1）邮局在果园的（面，书店在笑笑家的 | (1) The post office is to the () of the orchard, and the bo… |
 
-### `layout_fit` — 38 errors, 12 warnings
+### `layout_fit` — 36 errors, 12 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -175,8 +174,6 @@
 | error | 3 | p2_s10 | Shorten the translation to at most 18 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 2任何数乘0都为0。 | 2. Any number × 0 = 0. |
 | error | 3 | p2_s7 | Shorten the translation to at most 23 characters so it fits the original box (the current translation of 32 characters overflows its box; the minimum allowed size is 55%) | 1.任何数加减0都没有变化。 | 1. Add or subtract 0: no change. |
 | error | 3 | p2_s7 | Shorten the translation to at most 23 characters so it fits the original box (the current translation of 32 characters overflows its box; the minimum allowed size is 55%) | 1.任何数加减0都没有变化。 | 1. Add or subtract 0: no change. |
-| error | 4 | p3_s13 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 测量 | Unit 4 Measurement |
-| error | 4 | p3_s13 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 测量 | Unit 4 Measurement |
 | error | 4 | p3_s5 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 12.8.0打谷场 | 12.8.0 Threshing Floor |
 | error | 4 | p3_s5 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 12.8.0打谷场 | 12.8.0 Threshing Floor |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
