@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 301 errors, 42 warnings (1884.7 s); proofread: 725 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 293 errors, 42 warnings (1884.7 s); proofread: 725 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 119 page(s), 1853 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×513, layout_fit ×78, formatting ×8, untranslated ×4, completeness ×3, placeholders ×3, image_text ×2, length_ratio ×2, numbers ×2, glossary ×1, target_script ×1
 - Round 3: llm_review ×479, layout_fit ×69, completeness ×7, formatting ×4, glossary ×3, untranslated ×3, image_text ×2, length_ratio ×2, placeholders ×2, target_script ×2, numbers ×1
 
-## Final issues (343)
+## Final issues (335)
 
 ### `completeness` — 121 errors, 0 warnings
 
@@ -241,16 +241,16 @@
 | error | 100 | p99_s15 | Glossary: translate "倍数" as "multiple" | 我按3的倍数跳 | I jump in 3s |
 | error | 102 | p101_s5 | Glossary: translate "找一找" as "Find" | 1.我们学了哪些长度单位？找一找，生活中有哪些物品的长度大约是1厘米，有哪些大约是1米？ | 1. What units of length have we learned? Look around: which… |
 
-### `layout_fit` — 38 errors, 4 warnings
+### `layout_fit` — 30 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 7 | p6_s5 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 奇思妙想 | Qisi Miaoxiang |
-| error | 7 | p6_s5 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 奇思妙想 | Qisi Miaoxiang |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 秋游 | Autumn Outing |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 秋游 | Autumn Outing |
 | error | 8 | p7_s2 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 25人 | 25 people |
 | error | 8 | p7_s2 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 25人 | 25 people |
+| error | 11 | p10_s14 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 灯笼 | Lanterns |
+| error | 11 | p10_s14 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 灯笼 | Lanterns |
 | error | 13 | p12_s20 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 姓名淘气笑笑奇思 | Name Taoqi Xiaoxiao Qisi |
 | error | 13 | p12_s20 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 姓名淘气笑笑奇思 | Name Taoqi Xiaoxiao Qisi |
 | error | 14 | p13_s1 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 买文具 | Buying Stationery |
@@ -259,8 +259,6 @@
 | error | 16 | p15_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买衣服 | Buying Clothes |
 | error | 19 | p18_s10 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | costs how much more? |
 | error | 19 | p18_s10 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | costs how much more? |
-| error | 28 | p27_s5 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 格。 | spaces. |
-| error | 28 | p27_s5 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 格。 | spaces. |
 | error | 34 | p33_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 数松果 | Count Pinecones |
 | error | 34 | p33_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 数松果 | Count Pinecones |
 | error | 64 | p63_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
@@ -275,14 +273,8 @@
 | error | 84 | p83_s14 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 七七七上 | 4×7= 5×7= 6×7= |
 | error | 86 | p85_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 买球 | Buy Balls |
 | error | 86 | p85_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 买球 | Buy Balls |
-| error | 97 | p96_s12 | Shorten the translation to at most 32 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 墙上挂着多少根玉米？ | How many ears of corn are on the wall? |
-| error | 97 | p96_s12 | Shorten the translation to at most 32 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 墙上挂着多少根玉米？ | How many ears of corn are on the wall? |
-| error | 105 | p104_s12 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 少3个。 | 3 fewer than yellow. |
-| error | 105 | p104_s12 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 少3个。 | 3 fewer than yellow. |
-| error | 105 | p104_s17 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 爷爷 | Grandpa |
-| error | 105 | p104_s17 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 爷爷 | Grandpa |
-| error | 107 | p106_s14 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 约（ | About ____ m |
-| error | 107 | p106_s14 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 约（ | About ____ m |
+| error | 103 | p102_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习 | Exercise |
+| error | 103 | p102_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习 | Exercise |
 | warning | 40 | p39_s10 | The translation overflows its box and was rendered at 49% of the original size; even a much shorter text would not fit, check this box in the preview | 三五 | 3×5= |
 | warning | 40 | p39_s10 | The translation overflows its box and was rendered at 49% of the original size; even a much shorter text would not fit, check this box in the preview | 三五 | 3×5= |
 | warning | 115 | p114_s4 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 兵 | Soldier |
