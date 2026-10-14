@@ -92,6 +92,10 @@ SCANNED_PAGE_COVER = 0.85
 FREE_SPACE_DPI = 36
 FREE_SPACE_MAX_STD = 14.0
 """Pixel standard deviation below which a strip of a scanned page counts as plain background."""
+FAINT_MIN_LUMA = 175.0
+"""A strip whose darkest pixel is lighter than this (a faint watermark, a pale gradient) is
+free too, as long as its spread stays below :data:`FAINT_MAX_STD`."""
+FAINT_MAX_STD = 32.0
 """Points by which a segment box is shrunk before redaction (protects neighbours)."""
 TIGHT_LINE_HEIGHT = 1.1
 """Line height tried when the text does not fit with the original one."""
@@ -606,7 +610,13 @@ class _PageSpace:
         if samples.size < 3:
             return True
         arr = samples.reshape(-1, 3).astype(np.float32)
-        return float(arr.std(axis=0).max()) <= FREE_SPACE_MAX_STD
+        std = float(arr.std(axis=0).max())
+        if std <= FREE_SPACE_MAX_STD:
+            return True
+        # a faint watermark or a pale gradient is not an obstacle: nothing in the strip is darker
+        # than light grey, so text set over it reads as it does in the printed book
+        luma = arr.mean(axis=1)
+        return std <= FAINT_MAX_STD and float(luma.min()) >= FAINT_MIN_LUMA
 
     def _shrink_until_free(self, box: BBox, side: str, limit: float) -> float:
         """Reduce a grown edge until the added strip is plain background (two tries)."""

@@ -883,3 +883,32 @@ def test_numbered_items_in_one_column_share_one_size(tmp_path):
     render_document(src, doc, tmp_path / "out.pdf")
     sizes = [s.render.font_size for s in segs]
     assert max(sizes) - min(sizes) < 0.6, sizes  # the three questions are set alike
+
+
+def test_a_faint_watermark_does_not_block_growth_but_a_picture_does(tmp_path):
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.text((300, 560), "北京师范大学出版社", fill=(196, 196, 196), font=pil_font("zh", 60))  # faint grey watermark
+    d.rectangle([60, 900, 940, 1000], fill=(60, 90, 160))                                # a real picture
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    long_en = "Unit 2 Direction and Position of Things Around Us in the Classroom"
+    over_mark = TextSegment(id="p0_s0", page=0, bbox=BBox(x0=150, y0=250, x1=330, y1=268), source_text="二 方向与位置",
+                            protected_text="二 方向与位置", origin="ocr", translated_text=long_en,
+                            style=SegmentStyle(size=14, color=0x202020, role="label", line_height=1.2))
+    over_pic = TextSegment(id="p0_s1", page=0, bbox=BBox(x0=150, y0=428, x1=330, y1=446), source_text="三 生活中的大数",
+                           protected_text="三 生活中的大数", origin="ocr", translated_text=long_en,
+                           style=SegmentStyle(size=14, color=0x202020, role="label", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[over_mark, over_pic])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert over_mark.render.bbox.y1 > 268 + 10      # grew down over the faint watermark and wrapped ...
+    assert over_mark.render.scale > over_pic.render.scale  # ... while the line above the picture could not
+    assert over_pic.render.bbox.y1 <= 450 + 1
