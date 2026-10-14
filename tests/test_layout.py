@@ -1159,8 +1159,11 @@ def test_resetting_a_label_to_its_siblings_size_keeps_the_neighbours_words(tmp_p
     q3b = seg(12, 211, 380, 460, 12.3, "（2）长颈鹿的高度是青蛙的多少倍？", "(2) How many times as tall as the frog is the giraffe?",
               role="body")
     q4 = seg(20, 59, 520, 140, 12.0, "4.算一算。", "4. Work out the following and check your answers.")
+    # the line under question 4 leaves it no room to wrap, so it is set smaller than its size
+    below = seg(21, 59, 537, 460, 12.0, "（1）先估一估，再算一算，最后和同桌说一说你是怎样算的。",
+                "(1) Estimate first, then work it out, and tell your partner how you did it.", role="body")
     doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
-                             pages=[PageInfo(index=0, width=500, height=700)], segments=[q3, q3b, q4])
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[q3, q3b, q4, below])
     render_document(src, doc, tmp_path / "out.pdf")
     assert "size matched" in (q3.render.notes or ""), q3.render                 # it was reset ...
     text = pymupdf.open(tmp_path / "out.pdf")[0].get_text()
@@ -1217,3 +1220,87 @@ def test_column_entries_are_set_left_aligned_at_one_size(tmp_path):
     sizes = [s.render.font_size for s in segs]
     assert max(sizes) - min(sizes) < 0.6, sizes            # one size for the whole column, heading included
     assert all(abs(s.render.bbox.x0 - 189) < 1.0 for s in segs)  # left edge kept: not centred on the box
+
+
+def _scan_pdf(tmp_path, draw=None):
+    """A one-page scanned PDF (a white page image, optionally drawn on) and its path."""
+    from PIL import Image, ImageDraw
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    if draw is not None:
+        draw(ImageDraw.Draw(img))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    return src
+
+
+def _word_rows(page: pymupdf.Page, clip: pymupdf.Rect) -> list[tuple[float, float, str]]:
+    return [(w[1], w[3], w[4]) for w in page.get_text("words", clip=clip)]
+
+
+def test_pieces_of_one_line_split_by_a_picture_share_a_baseline(tmp_path):
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    src = _scan_pdf(tmp_path)
+
+    def seg(i, x0, y0, x1, y1, size, zh, en):
+        return TextSegment(id=f"p64_s{i}", page=0, bbox=BBox(x0=x0, y0=y0, x1=x1, y1=y1), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=size, color=0x202020, role="label", line_height=1.2))
+    # "4.在 ○ 里填上“>”“<”或“=”。": the two pieces were read with boxes of different heights,
+    # and the first is set smaller than its box ("4. Fill" squeezed into the width of "4.在")
+    first = seg(19, 58, 425, 88, 441, 12.8, "4.在", "4. Fill")
+    rest = seg(20, 110, 423, 300, 441, 14.6, "里填上“>”“<”或“=”。", 'with ">", "<" or "=".')
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[first, rest])
+    render_document(src, doc, tmp_path / "out.pdf")
+    page = pymupdf.open(tmp_path / "out.pdf")[0]
+    a = _word_rows(page, pymupdf.Rect(50, 410, 100, 450))
+    b = _word_rows(page, pymupdf.Rect(105, 410, 310, 450))
+    assert a and b, (a, b)
+    assert abs(a[-1][1] - b[0][1]) < 1.5, (a, b)               # one baseline (the boxes' middles differ by 1)
+    for y0, y1, _ in a + b:                                     # on the middle of the source line, not
+        assert abs((y0 + y1) / 2 - 432.5) < 1.5, (a, b)         # at the top of its box
+
+
+def test_table_header_cells_read_at_slightly_different_sizes_share_one_size(tmp_path):
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    src = _scan_pdf(tmp_path)
+
+    def cell(i, x0, x1, size, zh, en):
+        return TextSegment(id=f"p64_s{i}", page=0, bbox=BBox(x0=x0, y0=555, x1=x1, y1=569), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=size, color=0x202020, role="label", line_height=1.2))
+    # "三（4）班" read at 10.2 pt and "合计" beside it at 12.1 pt: the same type in the book
+    cells = [cell(30, 272, 334, 10.2, "三（3）班", "Class 3 (3)"), cell(31, 338, 401, 10.2, "三（4）班", "Class 3 (4)"),
+             cell(32, 419, 445, 12.1, "合计", "Total")]
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=cells)
+    render_document(src, doc, tmp_path / "out.pdf")
+    sizes = [c.render.font_size for c in cells]
+    assert max(sizes) <= 1.05 * min(sizes), sizes
+
+
+def test_text_in_a_pale_bubble_does_not_grow_out_onto_the_page(tmp_path):
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    # a pale orange speech bubble (page points 60..180 x 236..292) with a thin outline on a white page
+    src = _scan_pdf(tmp_path, lambda d: d.rounded_rectangle((120, 472, 360, 584), radius=30,
+                                                            fill=(253, 233, 205), outline=(240, 170, 110), width=2))
+    para = TextSegment(id="p39_s6", page=0, bbox=BBox(x0=75, y0=242, x1=159, y1=282),
+                       source_text="先分3捆，再分剩下的6棵，每班分到12棵。", protected_text="先分3捆，再分剩下的6棵，每班分到12棵。",
+                       origin="ocr", translated_text="First share out 3 bundles, then the 6 left. Each class gets 12 saplings.",
+                       style=SegmentStyle(size=9.8, color=0x202020, role="body", line_height=1.2, align="center"))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[para])
+    render_document(src, doc, tmp_path / "out.pdf")
+    box = para.render.bbox
+    assert box.x0 >= 60 and box.x1 <= 180 and box.y1 <= 292, box     # inside the bubble
+    page = pymupdf.open(tmp_path / "out.pdf")[0]
+    for w in page.get_text("words"):
+        assert 60 <= w[0] and w[2] <= 180 and 236 <= w[1] and w[3] <= 292, w

@@ -89,15 +89,43 @@ PathLike = Union[str, "os.PathLike[str]"]
 REDACT_SHRINK = 0.3
 SCANNED_PAGE_COVER = 0.85
 """An image covering at least this share of the page is the scanned page itself."""
+OVERLAP_TRIM = 0.25
+"""A neighbour on the same row whose box reaches into a segment's box by less than this share
+of its width (OCR boxes of "About ___ claps" and "Write my name" overlapping by a few points)
+pushes that side back too, so the two texts keep a word space instead of touching."""
 FREE_SPACE_DPI = 36
+FREE_SCAN_DPI = 72
+FREE_SCAN_MARGIN = 2.0
+ONE_LINE_BAND = 0.2
+"""Share of a line box's height left out at its top and bottom when scanning sideways for room
+for one line: the text stands in the middle band."""
+"""Points kept between grown text and the outline, rule or picture that stopped its growth."""
+"""Resolution at which a grown edge is scanned outwards one pixel line at a time (one line per
+point): a box in a speech bubble grows right up to the outline, not by coarse fractions."""
 FREE_SPACE_MAX_STD = 14.0
 """Pixel standard deviation below which a strip of a scanned page counts as plain background."""
 FAINT_MIN_LUMA = 175.0
 """A strip whose darkest pixel is lighter than this (a faint watermark, a pale gradient) is
 free too, as long as its spread stays below :data:`FAINT_MAX_STD`."""
 FAINT_MAX_STD = 32.0
+SAME_BACKGROUND_TOL = 20.0
+"""A pixel of a strip a box grows into differs from the colour behind the box when it is
+brighter than it by more than this in some channel, or more or less colourful (spread between
+its channels) by more than this: the white page outside a pale speech bubble, the bubble's
+outline, a pale panel beside a white margin. A grey watermark over the same colour is darker
+and no more colourful, so it does not differ."""
+SAME_BACKGROUND_DARKER = 70.0
+"""... and a pixel darker than it by more than this in some channel differs too (a rule, an
+outline, a stroke of a picture); a faint grey watermark is lighter than that."""
+SAME_BACKGROUND_SHARE = 0.1
+"""Largest share of differing pixels in a strip that still counts as the box's own background:
+text in a pale speech bubble or a coloured panel stays inside it instead of running out onto
+the white page, which the plain-background test alone allows."""
 """Points by which a segment box is shrunk before redaction (protects neighbours)."""
 TIGHT_LINE_HEIGHT = 1.1
+TIGHT_RETRY_SCALE = 0.8
+"""Text that fits only below this share of its size is tried again with the tighter line
+height, which often lets two or three lines stand larger in a cramped bubble or cell."""
 """Line height tried when the text does not fit with the original one."""
 MAX_HEIGHT_GROWTH = 0.5
 """A box may grow downward by at most this fraction of its height (=> 1.5 x)."""
@@ -409,6 +437,25 @@ def _centred_heading(seg: TextSegment, page: BBox) -> bool:
     return abs(centre - (page.x0 + page.x1) / 2) <= 0.06 * page.width
 
 
+def _differs_from_background(pixels: np.ndarray, behind: tuple[float, float, float], *,
+                             darker: bool = False) -> np.ndarray:
+    """Which of the RGB ``pixels`` (... x 3, float) are not the colour ``behind`` a box (see
+    :data:`SAME_BACKGROUND_TOL`); with ``darker`` also those much darker than it."""
+    ref = np.asarray(behind, dtype=np.float32)
+    diff = pixels - ref
+    out = diff.max(axis=-1) > SAME_BACKGROUND_TOL
+    chroma = pixels.max(axis=-1) - pixels.min(axis=-1)
+    out |= np.abs(chroma - float(ref.max() - ref.min())) > SAME_BACKGROUND_TOL
+    if darker:
+        out |= diff.min(axis=-1) < -SAME_BACKGROUND_DARKER
+    return out
+
+
+def _same_background(pixels: np.ndarray, behind: tuple[float, float, float]) -> bool:
+    """Whether the RGB ``pixels`` (N x 3, float) are the colour ``behind`` a box."""
+    return float(_differs_from_background(pixels, behind).mean()) <= SAME_BACKGROUND_SHARE
+
+
 class _PageSpace:
     """Occupied areas of one page, used to extend text boxes into free space.
 
@@ -486,6 +533,7 @@ class _PageSpace:
         self.limit_left = max(min(content.x0 - CONTENT_TOLERANCE, pr.x0 + EDGE_MARGIN), pr.x0 + PAGE_MARGIN)
         self.limit_right = min(max(content.x1 + CONTENT_TOLERANCE, pr.x1 - EDGE_MARGIN), pr.x1 - PAGE_MARGIN)
         self.limit_bottom = min(max(content.y1 + CONTENT_TOLERANCE, pr.y1 - EDGE_MARGIN), pr.y1 - PAGE_MARGIN)
+        self.limit_top = max(min(content.y0 - CONTENT_TOLERANCE, pr.y0 + EDGE_MARGIN), pr.y0 + PAGE_MARGIN)
 
     def staying_text(self, boxes: Sequence[BBox]) -> list[BBox]:
         """Per text line, the box of the glyphs that ``boxes`` (the segments being
@@ -537,11 +585,18 @@ class _PageSpace:
         med = np.median(arr, axis=0)
         return float(med[0]), float(med[1]), float(med[2])
 
-    def extend(self, seg: TextSegment, *, down: bool, horizontal: bool) -> BBox:
-        """Grow ``seg.bbox`` into free space (downward and/or sideways). Short labels on a
-        scanned page grow further and on both sides (they are then set centred)."""
+    def extend(self, seg: TextSegment, *, down: bool, horizontal: bool, up: bool = False,
+               scan: bool = True) -> BBox:
+        """Grow ``seg.bbox`` into free space (downward and/or sideways; with ``up``, on a scanned
+        page, upward as much as downward too, for text then centred on its source line). Short
+        labels on a scanned page grow further and on both sides (they are then set centred).
+        Without ``scan`` only the other segments, drawings and page limits bound the growth, not
+        the page pixels: the room a translation may take if its words land on plain background
+        (checked word by word after setting it, see ``_words_on_background``)."""
         box = self.trim_for_neighbours(seg) if self.scanned and seg.origin == "ocr" else seg.bbox
-        label = self.scanned and (_short_label(seg) or _centred_heading(seg, self.page_rect)) \
+        # text that may also grow upward (a bubble, a label on its own line) is centred on its
+        # place like a short label, so it grows on both sides too
+        label = self.scanned and (_short_label(seg) or _centred_heading(seg, self.page_rect) or up) \
             and seg.id not in self.column_ids
         obstacles = [b for sid, b in self.occupied.items() if sid != seg.id] + list(self.fixed)
         containers: list[BBox] = []
@@ -551,17 +606,18 @@ class _PageSpace:
             elif d.intersection_area(box) <= 0:
                 obstacles.append(d)
         x0, y0, x1, y1 = box.x0, box.y0, box.x1, box.y1
+        behind = self.background(box) if self.scanned else None
+        growth = LABEL_HEIGHT_GROWTH if label else MAX_HEIGHT_GROWTH
+        if self.scanned and seg.origin == "ocr" and seg.style.size > 0:
+            # a line that does not fit is set on one more line at its size rather than shrunk:
+            # the box may grow by one full line (plus a little) where the page below is free
+            line_pitch = seg.style.size * max(1.0, seg.style.line_height)
+            lines = max(1, int(round(box.height / line_pitch)))
+            growth = max(growth, (EXTRA_LINE_GROWTH * line_pitch) / box.height) if lines <= 3 else growth
         if down:
-            growth = LABEL_HEIGHT_GROWTH if label else MAX_HEIGHT_GROWTH
-            if self.scanned and seg.origin == "ocr" and seg.style.size > 0:
-                # a line that does not fit is set on one more line at its size rather than shrunk:
-                # the box may grow by one full line (plus a little) where the page below is free
-                line_pitch = seg.style.size * max(1.0, seg.style.line_height)
-                lines = max(1, int(round(box.height / line_pitch)))
-                growth = max(growth, (EXTRA_LINE_GROWTH * line_pitch) / box.height) if lines <= 3 else growth
             y1 = self._extend_down(box, obstacles, containers, growth=growth)
-            if self.scanned:
-                y1 = self._shrink_until_free(box, "down", y1)
+            if self.scanned and scan:
+                y1 = self._shrink_until_free(box, "down", y1, behind)
         if horizontal:
             # text set next to other text on the same row keeps a word space from it ("Grade 3" "Volume 1")
             text_gap = max(OBSTACLE_GAP, 0.4 * (seg.style.size if seg.style.size > 0 else 10.0))
@@ -576,8 +632,12 @@ class _PageSpace:
                 elif b.x1 <= box.x0 + 1.0:
                     x0 = max(x0, min(b.x1 + text_gap, box.x0))
             if self.scanned:
-                x1 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "right", x1)
-                x0 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "left", x0)
+                if scan:
+                    # one line (no growth down) stands in the middle of its box: only that band has to be
+                    # free, so a label in a rounded pill may run on into the pill's round end
+                    band = ONE_LINE_BAND if not down else 0.0
+                    x1 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "right", x1, behind, band)
+                    x0 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "left", x0, behind, band)
                 if label:  # keep the label centred on its original position ...
                     left, right = box.x0 - x0, x1 - box.x1
                     side = min(left, right)
@@ -587,6 +647,10 @@ class _PageSpace:
                         x1 = box.x1
                     else:
                         x0 = box.x0
+        if up and down and self.scanned:
+            wide = BBox(x0=x0, y0=box.y0, x1=x1, y1=y1)
+            top = self._extend_up(wide, obstacles, containers, growth=growth)
+            y0 = self._shrink_until_free(wide, "up", top, behind) if scan else top
         return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
 
     def trim_for_neighbours(self, seg: TextSegment) -> BBox:
@@ -602,13 +666,18 @@ class _PageSpace:
                 x1 = min(x1, b.x0 - gap)
             elif b.x1 <= box.x0 + 1.0 and box.x0 - b.x1 < gap:
                 x0 = max(x0, b.x1 + gap)
+            elif b.x0 < box.x0 < b.x1 < box.x0 + OVERLAP_TRIM * box.width:
+                x0 = max(x0, b.x1 + gap)    # OCR boxes of one row that overlap a little
+            elif box.x1 - OVERLAP_TRIM * box.width < b.x0 < box.x1 < b.x1:
+                x1 = min(x1, b.x0 - gap)
         if x1 - x0 < 0.6 * box.width:
             return box
         return BBox(x0=x0, y0=box.y0, x1=x1, y1=box.y1)
 
-    def _strip_is_free(self, rect: BBox) -> bool:
+    def _strip_is_free(self, rect: BBox, behind: Optional[tuple[float, float, float]] = None) -> bool:
         """True when the page pixels inside ``rect`` are a plain background (no picture,
-        no text): the standard deviation of a low-resolution render is small."""
+        no text): the standard deviation of a low-resolution render is small. With ``behind``
+        (the colour behind the growing box) the strip must also be mostly that colour."""
         if rect.width < 1.0 or rect.height < 1.0:
             return True
         try:
@@ -620,6 +689,8 @@ class _PageSpace:
         if samples.size < 3:
             return True
         arr = samples.reshape(-1, 3).astype(np.float32)
+        if behind is not None and not _same_background(arr, behind):
+            return False
         std = float(arr.std(axis=0).max())
         if std <= FREE_SPACE_MAX_STD:
             return True
@@ -628,22 +699,86 @@ class _PageSpace:
         luma = arr.mean(axis=1)
         return std <= FAINT_MAX_STD and float(luma.min()) >= FAINT_MIN_LUMA
 
-    def _shrink_until_free(self, box: BBox, side: str, limit: float) -> float:
-        """Reduce a grown edge until the added strip is plain background (two tries)."""
-        base = {"down": box.y1, "right": box.x1, "left": box.x0}[side]
-        if (side == "left" and limit >= base) or (side != "left" and limit <= base):
+    def _shrink_until_free(self, box: BBox, side: str, limit: float,
+                           behind: Optional[tuple[float, float, float]] = None, band: float = 0.0) -> float:
+        """Reduce a grown edge until the added strip is plain background of the colour behind
+        the box (a few tries)."""
+        base = {"down": box.y1, "right": box.x1, "left": box.x0, "up": box.y0}[side]
+        if (side in ("left", "up") and limit >= base) or (side in ("down", "right") and limit <= base):
             return limit
+        if behind is not None:
+            edge = self._scan_free(box, side, limit, behind, band)
+            if edge is not None:
+                return edge
         for fraction in (1.0, 0.5, 0.25, 0.12):  # a name label next to a drawing still gains a little
             edge = base + (limit - base) * fraction
             if side == "down":
                 strip = BBox(x0=box.x0, y0=box.y1, x1=box.x1, y1=edge)
+            elif side == "up":
+                strip = BBox(x0=box.x0, y0=edge, x1=box.x1, y1=box.y0)
             elif side == "right":
                 strip = BBox(x0=box.x1, y0=box.y0, x1=edge, y1=box.y1)
             else:
                 strip = BBox(x0=edge, y0=box.y0, x1=box.x0, y1=box.y1)
-            if self._strip_is_free(strip):
+            if self._strip_is_free(strip, behind):
                 return edge
         return base
+
+    def _scan_free(self, box: BBox, side: str, limit: float, behind: tuple[float, float, float],
+                   band: float = 0.0) -> Optional[float]:
+        """The farthest edge up to ``limit`` such that every pixel line (row or column) added
+        between the box and that edge is the box's own background: grown outwards line by
+        line, stopping :data:`FREE_SCAN_MARGIN` short of the first line that is not (an outline, a rule, a
+        picture, the white page outside a bubble). None when the strip cannot be rendered."""
+        base = {"down": box.y1, "right": box.x1, "left": box.x0, "up": box.y0}[side]
+        if side == "down":
+            strip = BBox(x0=box.x0, y0=box.y1, x1=box.x1, y1=limit)
+        elif side == "up":
+            strip = BBox(x0=box.x0, y0=limit, x1=box.x1, y1=box.y0)
+        elif side == "right":
+            strip = BBox(x0=box.x1, y0=box.y0, x1=limit, y1=box.y1)
+        else:
+            strip = BBox(x0=limit, y0=box.y0, x1=box.x0, y1=box.y1)
+        clip = _clip(strip, self.page_rect)
+        if clip is None or clip.width < 1 or clip.height < 1:
+            return None
+        try:
+            pix = self._page.get_pixmap(clip=clip.to_rect(), dpi=FREE_SCAN_DPI, colorspace=pymupdf.csRGB, alpha=False)
+            arr = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3).astype(np.float32)
+        except Exception as exc:  # pragma: no cover - rendering problems: fall back to the coarse test
+            log.debug("free-space scan failed: %s", exc)
+            return None
+        bad = _differs_from_background(arr, behind, darker=True)
+        if band > 0 and side in ("left", "right") and bad.shape[0] >= 4:
+            cut = int(round(band * bad.shape[0]))
+            bad = bad[cut:bad.shape[0] - cut]
+        if side == "down":
+            share = bad.mean(axis=1)                      # one value per row, nearest the box first
+        elif side == "up":
+            share = bad.mean(axis=1)[::-1]
+        elif side == "right":
+            share = bad.mean(axis=0)
+        else:
+            share = bad.mean(axis=0)[::-1]
+        blocked = np.nonzero(share > SAME_BACKGROUND_SHARE)[0]
+        if not blocked.size:
+            return limit
+        reach = abs(limit - base) * int(blocked[0]) / len(share) - FREE_SCAN_MARGIN
+        if reach <= 0:
+            return base
+        return base - reach if side in ("left", "up") else base + reach
+
+    def _extend_up(self, box: BBox, obstacles: list[BBox], containers: list[BBox],
+                   growth: float = MAX_HEIGHT_GROWTH) -> float:
+        limit = box.y0 - growth * box.height
+        limit = max(limit, min(self.limit_top, box.y0))
+        for c in containers:
+            limit = max(limit, min(c.y0 + OBSTACLE_GAP, box.y0))
+        for o in obstacles:
+            if o.y0 >= box.y0 or min(o.x1, box.x1) - max(o.x0, box.x0) <= 0:
+                continue
+            limit = max(limit, min(o.y1 + OBSTACLE_GAP, box.y0))
+        return limit
 
     def _extend_down(self, box: BBox, obstacles: list[BBox], containers: list[BBox],
                      growth: float = MAX_HEIGHT_GROWTH) -> float:
@@ -705,6 +840,15 @@ def _drawn_extent(page: pymupdf.Page, rect: BBox) -> Optional[BBox]:
     """The extent of what was actually drawn in ``rect``: its words and inline pictures. A box
     is often allotted more room than its text takes (a short heading centred in a line grown
     down, a label grown on both sides); neighbours placed later may use the rest."""
+    used = _drawn_boxes(page, rect)
+    if used is None:
+        return None
+    return BBox(x0=max(used.x0, rect.x0), y0=max(used.y0, rect.y0), x1=min(used.x1, rect.x1), y1=min(used.y1, rect.y1))
+
+
+def _drawn_boxes(page: pymupdf.Page, rect: BBox, lines: Optional[list[float]] = None) -> Optional[BBox]:
+    """Union of the words and inline pictures drawn in ``rect`` (not clipped to it); the
+    vertical centre of every word goes into ``lines`` when a list is given."""
     clip = rect.to_rect()
     boxes: list[BBox] = []
     try:
@@ -722,10 +866,100 @@ def _drawn_extent(page: pymupdf.Page, rect: BBox) -> Optional[BBox]:
     boxes = [b for b in boxes if b.intersection_area(rect) > 0]
     if not boxes:
         return None
+    if lines is not None:
+        lines.extend((b.y0 + b.y1) / 2 for b in boxes)
     used = boxes[0]
     for b in boxes[1:]:
         used = used.union(b)
-    return BBox(x0=max(used.x0, rect.x0), y0=max(used.y0, rect.y0), x1=min(used.x1, rect.x1), y1=min(used.y1, rect.y1))
+    return used
+
+
+WORD_OFF_BACKGROUND = 0.03
+"""Largest share of the page pixels under a word (as they were before it was set) that may
+differ from the colour behind its box when the word is set in room checked word by word."""
+
+
+WORD_BOX_INSET = 0.12
+"""Share of a word box's height left out at its top and at its bottom when checking what the
+word stands on."""
+
+
+def _page_snapshot(page: pymupdf.Page, rect: BBox) -> Optional[np.ndarray]:
+    """The page pixels inside ``rect`` at :data:`FREE_SCAN_DPI` (H x W x 3, float)."""
+    try:
+        pix = page.get_pixmap(clip=rect.to_rect(), dpi=FREE_SCAN_DPI, colorspace=pymupdf.csRGB, alpha=False)
+        return np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3).astype(np.float32)
+    except Exception as exc:  # pragma: no cover - rendering problems: no verified attempt
+        log.debug("snapshot failed: %s", exc)
+        return None
+
+
+def _words_on_background(page: pymupdf.Page, rect: BBox, snapshot: np.ndarray,
+                         behind: tuple[float, float, float]) -> bool:
+    """Whether every word now set inside ``rect`` stands on the colour ``behind`` the box in
+    ``snapshot`` (the page inside ``rect`` before the words were set)."""
+    h, w = snapshot.shape[:2]
+    sx, sy = w / max(rect.width, 1e-6), h / max(rect.height, 1e-6)
+    words = page.get_text("words", clip=rect.to_rect())
+    if not words:
+        return False
+    for x0, y0, x1, y1, *_ in words:
+        # a word box is the whole line box; the ink sits inside it, clear of its top and bottom
+        y0, y1 = y0 + WORD_BOX_INSET * (y1 - y0), y1 - WORD_BOX_INSET * (y1 - y0)
+        px0, px1 = max(0, int((x0 - rect.x0) * sx)), min(w, int(np.ceil((x1 - rect.x0) * sx)))
+        py0, py1 = max(0, int((y0 - rect.y0) * sy)), min(h, int(np.ceil((y1 - rect.y0) * sy)))
+        if px1 <= px0 or py1 <= py0:
+            continue
+        under = snapshot[py0:py1, px0:px1]
+        if float(_differs_from_background(under, behind, darker=True).mean()) > WORD_OFF_BACKGROUND:
+            return False
+    return True
+
+
+LINE_CENTRE_MIN_SHIFT = 0.6
+"""A one-line translation set higher than the middle of its source line by more than this
+(points) is moved down onto it (``_centre_on_source_line``)."""
+
+
+def _centre_on_source_line(page: pymupdf.Page, seg: TextSegment, rect: BBox, base: BBox, html: str,
+                           scale: float, new_streams: list[int], *, css: str,
+                           archive: Optional[pymupdf.Archive], any_lines: bool = False) -> Optional[BBox]:
+    """Move a translation set as one line onto the vertical middle of the source text.
+
+    ``insert_htmlbox`` sets text from the top of its box, so a line smaller than the box it
+    was given - a label in a tall cell or bubble, a piece of a line set at its sibling's
+    size, a line slightly shrunk to stay one line - rides high, and two pieces of one source
+    line (split by a picture) no longer share a baseline. The text is set again lower in
+    ``rect``, by at most the room left under it, so it never leaves the box it was allowed;
+    the first setting is removed only when the second one succeeds at the same size.
+    With ``any_lines`` (a label or centred text whose box also grew upward) a block of several
+    lines is centred the same way. Returns the box used, or None when nothing was moved.
+    """
+    if not new_streams:
+        return None
+    centres: list[float] = []
+    used = _drawn_boxes(page, rect, centres)
+    if used is None or not centres:
+        return None
+    word_h = used.height
+    if not any_lines and (max(centres) - min(centres) > 0.35 * word_h
+                          or used.height > 1.9 * max(1.0, seg.style.size * scale)):
+        return None  # more than one line: a paragraph keeps its first line where the source's was
+    shift = min((base.y0 + base.y1) / 2 - (used.y0 + used.y1) / 2, rect.y1 - used.y1)
+    if shift < LINE_CENTRE_MIN_SHIFT:
+        return None
+    lower = BBox(x0=rect.x0, y0=rect.y0 + shift, x1=rect.x1, y1=rect.y1)
+    before = set(page.get_contents())
+    spare, again = _insert(page, lower, html, css=css, archive=archive, scale_low=scale, rotate=0)
+    added = [x for x in page.get_contents() if x not in before]
+    if spare < 0 or again < scale - 0.005:
+        for xref in added:
+            page.parent.update_stream(xref, b" ")
+        return None
+    for xref in new_streams:
+        page.parent.update_stream(xref, b" ")
+    new_streams[:] = added
+    return lower
 
 
 def _insert(page: pymupdf.Page, rect: BBox, html: str, *, css: str, archive: Optional[pymupdf.Archive],
@@ -758,10 +992,10 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     rotate = html_rotation(seg.style)
     base = space.trim_for_neighbours(seg) if space.scanned and seg.origin == "ocr" else seg.bbox
     growable = rotate == 0 and seg.style.role != "table"
-    grown = space.extend(seg, down=True, horizontal=True) if growable else base
     color: Optional[int] = None
     centred_label = False
     fixed_align: Optional[str] = None
+    floating = False
     if space.scanned and seg.origin == "ocr":
         bg = space.background(base)
         if bg is not None:
@@ -771,11 +1005,18 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
             and seg.id not in space.column_ids
         if _ENUMERATED_RE.match(seg.source_text or "") and seg.style.align == "center":
             fixed_align = "left"  # a numbered item is set from its number, never centred
+        # a label, or centred text (a speech bubble, a sign), may grow upward as well as down and
+        # is then set on the middle of its source text, however many lines it takes
+        one_source_line = seg.style.size > 0 and base.height <= 1.6 * seg.style.size
+        floating = (growable and seg.id not in space.column_ids and not _ENUMERATED_RE.match(seg.source_text or "")
+                    and not _list_item(seg)
+                    and (centred_label or seg.style.align == "center" or (seg.style.role == "label" and one_source_line)))
+    grown = space.extend(seg, down=True, horizontal=True, up=floating) if growable else base
 
     def align_for(rect: BBox) -> Optional[str]:
         """How the text sits in ``rect``: a label grown symmetrically stays centred on its
         place, one grown leftwards only keeps its end where it was."""
-        if centred_label and rect != base:
+        if (centred_label or floating) and rect != base:
             if abs((rect.x0 + rect.x1) - (base.x0 + base.x1)) < 1.0:
                 return "center"
             if rect.x0 < base.x0 - 0.5 and abs(rect.x1 - base.x1) < 0.5:
@@ -783,40 +1024,83 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
         return fixed_align
     grown_note = "" if grown == base else "box extended into free space"
     tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
-    attempts: list[tuple[BBox, Optional[float], float, str]] = [(base, None, 1.0, "")]
+    behind = space.background(base) if growable and space.scanned and seg.origin == "ocr" else None
+    generous: Optional[BBox] = None
+    if behind is not None:
+        # the room bounded only by other text and the page: taken at full size when every word
+        # set in it lands on the colour behind the box (a second line under a heading, beside a
+        # bubble further right that blocks a whole-width strip)
+        g = space.extend(seg, down=True, horizontal=True, up=floating, scan=False)
+        if g.contains(grown, tol=0.5) and g.area > grown.area + 1.0:
+            generous = g
+    attempts: list[tuple[BBox, Optional[float], float, str, bool]] = [(base, None, 1.0, "", False)]
     one_line = (space.scanned and seg.origin == "ocr" and growable and "\n" not in text
                 and len(text.split()) <= ONE_LINE_MAX_WORDS
                 and seg.style.size > 0 and base.height <= 1.6 * seg.style.size)
     if one_line:
         # a line a little too long stays one line, slightly smaller, rather than wrapping; the box
         # may take the height of one full line (where the page below is free), never of two
-        wide = space.extend(seg, down=False, horizontal=True)
+        wide = space.extend(seg, down=False, horizontal=True, up=floating)
         one_h = ONE_LINE_HEIGHT * seg.style.size
         wide = BBox(x0=wide.x0, y0=wide.y0, x1=wide.x1,
                     y1=max(wide.y1, min(grown.y1, wide.y0 + one_h)) if grown.y1 > wide.y1 else wide.y1)
-        attempts.append((wide, None, ONE_LINE_MIN_SCALE, "" if wide == base else grown_note))
+        attempts.append((wide, None, ONE_LINE_MIN_SCALE, "" if wide == base else grown_note, False))
     if grown != base:
-        attempts.append((grown, None, 1.0, grown_note))
-    attempts.append((grown, None, min_scale, grown_note))
+        attempts.append((grown, None, 1.0, grown_note, False))
+    if generous is not None:
+        # the larger room always fits the text at least as large as the smaller one does
+        attempts.append((generous, None, min_scale, "box extended into free space", True))
+    attempts.append((grown, None, min_scale, grown_note, False))
     if tight is not None:
-        attempts.append((grown, tight, min_scale, "tight line height"))
+        attempts.append((grown, tight, min_scale, "tight line height", False))
     size = seg.style.size if seg.style.size > 0 else 10.0
     def html(lh: Optional[float], rect: BBox = grown) -> str:
         return segment_html(seg, text, lh, color=color, align=align_for(rect))
 
     contrast_note = "colour changed for contrast" if color is not None else ""
-    for rect, lh, scale_low, note in attempts:
+    centre_line = (space.scanned and seg.origin == "ocr" and rotate == 0
+                   and (floating or seg.style.role != "body" or base.height <= 1.6 * size))
+    for rect, lh, scale_low, note, verify in attempts:
+        snapshot = _page_snapshot(page, rect) if verify else None
+        if verify and snapshot is None:
+            continue
+        before = set(page.get_contents())
+        start = before
         spare, scale = _insert(page, rect, html(lh, rect), css=css, archive=archive,
                                scale_low=scale_low, rotate=rotate)
         if spare >= 0:
             notes = [n for n in (grown_note if rect == grown else "", note, contrast_note) if n]
+            if scale < TIGHT_RETRY_SCALE and lh is None and tight is not None and rotate == 0:
+                # set well below its size: with the tighter line height the lines may fit larger
+                first = [x for x in page.get_contents() if x not in before]
+                mid = set(page.get_contents())
+                spare2, scale2 = _insert(page, rect, html(tight, rect), css=css, archive=archive,
+                                         scale_low=min(1.0, scale + 0.03), rotate=rotate)
+                if spare2 >= 0:
+                    for xref in first:
+                        page.parent.update_stream(xref, b" ")
+                    before = mid
+                    spare, scale, lh = spare2, scale2, tight
+                    notes.append("tight line height")
             if scale < 1:
                 notes.append(f"shrunk to {scale:.2f}")
+            placed = rect
+            if centre_line:
+                added = [x for x in page.get_contents() if x not in before]
+                lower = _centre_on_source_line(page, seg, rect, base, html(lh, rect), scale, added,
+                                               css=css, archive=archive, any_lines=floating)
+                if lower is not None:
+                    placed = lower
+            if snapshot is not None and behind is not None and not _words_on_background(page, rect, snapshot, behind):
+                for xref in page.get_contents():
+                    if xref not in start:
+                        page.parent.update_stream(xref, b" ")
+                continue  # a word would stand on an outline, a picture or past the edge of a bubble
             return RenderInfo(font_size=round(size * scale, 3), scale=scale, spare_height=spare,
-                              overflow=False, bbox=rect, notes="; ".join(dict.fromkeys(notes)))
+                              overflow=False, bbox=placed, notes="; ".join(dict.fromkeys(notes)))
     # Nothing fits at min_scale: render anyway in the largest box tried, shrinking as
     # much as needed so the text stays on the page (editable), and flag the overflow.
-    rect, lh, _, _ = attempts[-1]
+    rect, lh, _, _, _ = attempts[-1]
     if space.scanned and seg.origin == "ocr":
         scale = _fit_scale(page, rect, html(lh), css=css, archive=archive, rotate=rotate)
         if scale < LEGIBLE_FLOOR or scale * size < LEGIBLE_MIN_PT:
@@ -1123,16 +1407,18 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
             same_column = abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and (a.bbox.y1 <= b.bbox.y0 + h
                                                                     or b.bbox.y1 <= a.bbox.y0 + h)
             same_list = _list_item(a) and _list_item(b) and abs(a.bbox.x0 - b.bbox.x0) <= LIST_INDENT * h
-            tolerance = COLUMN_SIZE_TOLERANCE if same_column or same_list else LABEL_SIZE_TOLERANCE
+            dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
+            dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
+            # pieces of one line, split by an answer blank or a picture (or the cells of one table
+            # row): one baseline, a short gap; their sizes are read from boxes that hug "合计" and
+            # "三（4）班" differently, so they are compared as loosely as a column's
+            same_row = dy <= 0.5 * h and dx <= 3 * h
+            tolerance = COLUMN_SIZE_TOLERANCE if same_column or same_list or same_row else LABEL_SIZE_TOLERANCE
             if abs(a.style.size - b.style.size) > tolerance * max(a.style.size, b.style.size):
                 continue
             ca, cb = a.style.color, b.style.color
             if max(abs((ca >> k & 255) - (cb >> k & 255)) for k in (0, 8, 16)) > 80:
                 continue
-            dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
-            dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
-            # pieces of one line, split by an answer blank or a picture: one baseline, a short gap
-            same_row = dy <= 0.5 * h and dx <= 3 * h
             long_item = not (_short_label(a) or _short_fragment(a)) or not (_short_label(b) or _short_fragment(b))
             if long_item and not (same_column or same_list or same_row):
                 continue  # a numbered item (or a heading-styled entry) is a sibling within its column only

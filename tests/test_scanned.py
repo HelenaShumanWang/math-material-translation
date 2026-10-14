@@ -1070,8 +1070,9 @@ def test_a_faint_watermark_does_not_block_growth_but_a_picture_does(tmp_path):
                              pages=[PageInfo(index=0, width=500, height=700)], segments=[over_mark, over_pic])
     render_document(src, doc, tmp_path / "out.pdf")
     assert over_mark.render.bbox.y1 > 268 + 10      # grew down over the faint watermark and wrapped ...
-    assert over_mark.render.scale > over_pic.render.scale  # ... while the line above the picture could not
-    assert over_pic.render.bbox.y1 <= 450 + 1
+    assert over_pic.render.bbox.y1 <= 450 + 1        # ... while the line above the picture could not:
+    assert over_pic.render.bbox.y0 < 428 - 10        # it grew upward instead, keeping its size
+    assert over_pic.render.scale >= 0.99
 
 
 def test_unit_numeral_in_another_colour_still_joins_its_heading():
@@ -1091,3 +1092,50 @@ def test_title_characters_of_unequal_box_height_still_join():
     lines = [_gline(0, 179, 111, 208, "目", h=30), _gline(1, 243, 108, 282, "录", h=38)]  # 目 has no tall stroke
     paragraphs = group_ocr_lines(lines, 0, "zh")
     assert [p.source_text for p in paragraphs] == ["目录"]
+
+
+def _bubble_line(halo: bool = True, specks: bool = False):
+    """A pale orange bubble with dark text in a white glow (the line box stops before the full
+    stop), and optionally orange specks of a cloud-shaped outline just after the line."""
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+
+    img = Image.new("RGB", (700, 200), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([20, 40, 680, 160], fill=(252, 234, 215))
+    font = pil_font("zh", 44)
+    if halo:
+        d.text((60, 72), "十个一百是一千", font=font, fill=(34, 29, 29), stroke_width=5, stroke_fill=(255, 255, 255))
+    else:
+        d.text((60, 72), "十个一百是一千", font=font, fill=(34, 29, 29))
+    if specks:
+        for x, y in ((392, 80), (398, 100), (394, 120)):
+            d.rectangle([x, y, x + 4, y + 4], fill=(245, 175, 80))   # pieces of a scalloped outline
+    if halo:
+        import io
+        from PIL import ImageFilter
+        img = img.filter(ImageFilter.GaussianBlur(2.0))              # the glow fades out as on a scan
+        buf = io.BytesIO(); img.save(buf, "JPEG", quality=80); img = Image.open(io.BytesIO(buf.getvalue())).convert("RGB")
+    return np.array(img), (56, 66, 375, 128)
+
+
+def test_orange_outline_specks_are_not_taken_for_punctuation_or_missed_glyphs():
+    from mathtrans.scanned import _extend_for_punctuation, _extend_over_missed_glyphs
+
+    orig, box = _bubble_line(specks=True)
+    assert _extend_for_punctuation(orig, box, [])[2] < 390          # the orange specks are no full stop
+    assert _extend_over_missed_glyphs(orig, box, [])[0][2] < 390    # nor glyphs the detector missed
+
+
+def test_the_white_glow_round_erased_text_leaves_no_ghost():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    orig, box = _bubble_line(halo=True)
+    canvas = orig.copy()
+    _erase_glyphs(canvas, None, orig, None, box, [])
+    x0, y0, x1, y1 = box
+    region = canvas[y0:y1, x0:x1].astype(int)
+    off = np.abs(region - np.array([252, 234, 215])).max(axis=2)
+    assert float((off > 12).mean()) < 0.003, float((off > 12).mean())   # no white outline of the glyphs

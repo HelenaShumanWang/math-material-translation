@@ -1069,6 +1069,9 @@ GLYPH_DIFF = 40
 """Per-channel difference from the background colour above which a pixel is ink."""
 GLYPH_DILATE_PX = 2
 GLYPH_FRINGE_DIFF = 18
+HALO_REACH = 0.1
+"""Share of the line height beyond the filled glyphs over which faint pixels near the fill colour
+(the outer rim of a glyph's glow) are evened out to it."""
 """Fainter pixels (above this difference) connected to glyph ink are erased with it."""
 INK_TOLERANCE = 110.0
 """RGB distance to the estimated text colour within which a pixel counts as ink."""
@@ -1195,9 +1198,11 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
     ink = (np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > threshold).astype(np.uint8)
     if not ink.any():
         return box
-    n, _labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(ink, connectivity=8)
     faint = (np.abs(strip.astype(np.int32) - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF).astype(np.uint8)
     _nf, faint_labels, faint_stats, _ = cv2.connectedComponentsWithStats(faint, connectivity=8)
+    from .images import estimate_text_color
+    ink_colour = np.array(estimate_text_color(original, box, bg), dtype=np.int32)
     right = 0
     for i in range(1, n):
         bx, by, bw, bh, area = (int(v) for v in stats[i])
@@ -1205,6 +1210,8 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
             continue  # too far, too big: not a punctuation mark
         if bx + bw >= ink.shape[1] - 1:
             continue
+        if not _on_ink_ramp(strip[labels == i], bg, ink_colour):
+            continue  # a piece of an orange bubble outline, not a full stop in the text's colour
         right = max(right, bx + bw)
         for f in set(faint_labels[by:by + bh, bx:bx + bw][ink[by:by + bh, bx:bx + bw] > 0].tolist()) - {0}:
             fx, _fy, fw, _fh, _fa = (int(v) for v in faint_stats[f])
@@ -1215,6 +1222,25 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
     return x0, y0, min(ex1, x1 + right + max(2, h // 10)), y1
 
 
+
+
+INK_RAMP_DIST = 40.0
+"""A pixel between the background and the text colour (the anti-aliased edge of a glyph) lies
+within this distance of the straight line from one colour to the other; the rim of an orange
+speech bubble on its pale fill does not."""
+
+
+def _on_ink_ramp(pixels: np.ndarray, bg: np.ndarray, ink: np.ndarray) -> bool:
+    """Whether the median of ``pixels`` (N x 3) is a mix of ``bg`` and ``ink``."""
+    if pixels.size == 0:
+        return True
+    px = np.median(pixels.reshape(-1, 3).astype(np.float64), axis=0)
+    b, d = bg.astype(np.float64), ink.astype(np.float64) - bg.astype(np.float64)
+    span = float((d * d).sum())
+    if span < 1.0:
+        return True
+    t = float(np.clip(((px - b) * d).sum() / span, 0.0, 1.0))
+    return float(np.sqrt(((px - (b + t * d)) ** 2).sum())) <= INK_RAMP_DIST
 
 
 def _missed_glyph_run(region: np.ndarray, h: int, bg: np.ndarray, ink_colour: np.ndarray,
@@ -1242,6 +1268,8 @@ def _missed_glyph_run(region: np.ndarray, h: int, bg: np.ndarray, ink_colour: np
         bx, by, bw, bh, area = (int(v) for v in stats[i])
         if bx > taken + reach:
             break  # a gap wider than between two glyphs: the line ended
+        if not _on_ink_ramp(region[labels == i], bg, ink_colour):
+            break  # a speck in another colour: the orange rim of a bubble, not a glyph's anti-aliased edge
         if area >= 0.03 * h * h or bh >= 0.5 * h or bw >= 0.5 * h:
             # specks (the anti-aliased rim of a glyph the box cut) are taken as they come; a long thin
             # line is no speck
@@ -1734,6 +1762,17 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     region = canvas[y0:y1, x0:x1]
     flat_px = grown & flat
     region[flat_px] = fill[flat_px]
+    if flat_px.any():
+        # the faint rim of a glyph's halo (a white glow round dark text on a pale bubble) fades out
+        # beyond the fringe test and would stay as a ghost of the glyph on the flat fill: pixels on a
+        # flat strip close to its fill colour, just beyond what was filled, take the fill colour too
+        reach = max(GLYPH_DILATE_PX + 1, int(round(HALO_REACH * h)))
+        near = cv2.dilate(flat_px.astype(np.uint8), np.ones((2 * reach + 1, 2 * reach + 1), np.uint8)) > 0
+        faint = np.abs(crop - fill.astype(np.int32)).max(axis=2) <= GLYPH_FRINGE_DIFF
+        halo = near & flat & faint & ~grown
+        if rulings.any():
+            halo &= ~rulings
+        region[halo] = fill[halo]
     if (grown & rowwise).any():
         # a band fading from top to bottom (a ribbon, a title strip): every row of a strip takes the
         # colour of its own background pixels, so bold glyphs leave no smear an inpainting would
