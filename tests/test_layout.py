@@ -931,3 +931,30 @@ def test_contents_column_entries_are_siblings_despite_box_heights():
     other = [entry(20, 100, 12, 9.0, "Taoqi"), entry(21, 400, 24, 20.0, "Unit 5")]
     other[1].bbox = BBox(x0=380, y0=400, x1=470, y1=424)
     assert _sibling_label_groups(other) == []
+
+
+def test_column_entries_are_set_left_aligned_at_one_size(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+
+    def entry(i, y, h, size, role, zh, en):
+        return TextSegment(id=f"p3_s{i}", page=0, bbox=BBox(x0=189, y0=y, x1=189 + 70, y1=y + h), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=size, color=0x202020, role=role, line_height=1.2))
+    segs = [entry(2, 239, 21, 17.2, "heading", "一 除法", "Unit 1 Division"),
+            entry(6, 334, 19, 15.6, "label", "二 方向与位置", "Unit 2 Direction and Position"),
+            entry(9, 431, 17, 13.9, "label", "三 生活中的大数", "Unit 3 Large Numbers in Life"),
+            entry(13, 525, 19, 15.8, "label", "四 测量", "Unit 4 Measurement")]
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=segs)
+    render_document(src, doc, tmp_path / "out.pdf")
+    sizes = [s.render.font_size for s in segs]
+    assert max(sizes) - min(sizes) < 0.6, sizes            # one size for the whole column, heading included
+    assert all(abs(s.render.bbox.x0 - 189) < 1.0 for s in segs)  # left edge kept: not centred on the box

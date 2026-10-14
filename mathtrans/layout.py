@@ -425,6 +425,9 @@ class _PageSpace:
         # boxes are huge and text may be set over it
         self.occupied: dict[str, BBox] = {s.id: s.bbox for s in doc.segments
                                           if s.page == page_index and not _watermark_line(s)}
+        # entries of a contents page or a list, one under the other on one left edge: they are
+        # set left-aligned and grow to the right only, never centred on their own box
+        self.column_ids: set[str] = _column_members([s for s in doc.segments if s.page == page_index])
         self.fixed: list[BBox] = []
         self._drawings: Optional[list[BBox]] = None
         try:
@@ -532,7 +535,8 @@ class _PageSpace:
         """Grow ``seg.bbox`` into free space (downward and/or sideways). Short labels on a
         scanned page grow further and on both sides (they are then set centred)."""
         box = self.trim_for_neighbours(seg) if self.scanned and seg.origin == "ocr" else seg.bbox
-        label = self.scanned and (_short_label(seg) or _centred_heading(seg, self.page_rect))
+        label = self.scanned and (_short_label(seg) or _centred_heading(seg, self.page_rect)) \
+            and seg.id not in self.column_ids
         obstacles = [b for sid, b in self.occupied.items() if sid != seg.id] + list(self.fixed)
         containers: list[BBox] = []
         for d in self.drawings():
@@ -726,7 +730,8 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
         if bg is not None:
             fixed = readable_color(seg.style.color, bg)
             color = fixed if fixed != seg.style.color else None
-        if (_short_label(seg) or _centred_heading(seg, space.page_rect)) and grown != base:
+        if (_short_label(seg) or _centred_heading(seg, space.page_rect)) and grown != base \
+                and seg.id not in space.column_ids:
             if abs((grown.x0 + grown.x1) - (base.x0 + base.x1)) < 1.0:
                 align = "center"  # grown symmetrically around the original label
             elif grown.x0 < base.x0 - 0.5 and abs(grown.x1 - base.x1) < 0.5:
@@ -984,8 +989,42 @@ def _list_item(seg: TextSegment) -> bool:
             and "\n" not in (seg.translated_text or ""))
 
 
+
+
+COLUMN_MIN_MEMBERS = 3
+"""At least this many one-line texts on one left edge make a column (a contents page, a list)."""
+
+
+def _column_members(segs: Sequence[TextSegment]) -> set[str]:
+    """Ids of the one-line OCR texts that stand one under the other on one left edge."""
+    cands = [s for s in segs if s.origin == "ocr" and s.kind == SegmentKind.TEXT and s.translate
+             and not s.style.is_vertical and s.style.role in ("label", "heading", "body")
+             and s.style.size > 0 and s.bbox.height <= 2.2 * s.style.size]
+    parent = list(range(len(cands)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i, a in enumerate(cands):
+        for j in range(i + 1, len(cands)):
+            b = cands[j]
+            h = max(a.bbox.height, b.bbox.height)
+            dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
+            if abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and h < dy <= COLUMN_PITCH * h:
+                parent[find(i)] = find(j)
+    groups: dict[int, list[TextSegment]] = {}
+    for i, seg in enumerate(cands):
+        groups.setdefault(find(i), []).append(seg)
+    return {s.id for g in groups.values() if len(g) >= COLUMN_MIN_MEMBERS for s in g}
+
+
 def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]]:
-    labels = [s for s in segs if s.origin == "ocr" and (_short_label(s) or _short_fragment(s) or _list_item(s))
+    column = _column_members(segs)
+    labels = [s for s in segs if s.origin == "ocr"
+              and (_short_label(s) or _short_fragment(s) or _list_item(s) or s.id in column)
               and not s.style.is_vertical and not s.anchors
               and s.render is not None and s.render.font_size > 0
               and s.render.bbox is not None]
@@ -1013,7 +1052,7 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
             dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
             long_item = not (_short_label(a) or _short_fragment(a)) or not (_short_label(b) or _short_fragment(b))
             if long_item and not same_column:
-                continue  # a numbered item is a sibling of the items in its own column only
+                continue  # a numbered item (or a heading-styled entry) is a sibling within its column only
             if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
                 parent[find(i)] = find(j)
             elif same_column and dy <= COLUMN_PITCH * h:

@@ -923,3 +923,11 @@ def test_unit_numeral_in_another_colour_still_joins_its_heading():
     ]
     paragraphs = group_ocr_lines(lines, 0, "zh")
     assert [p.source_text for p in paragraphs] == ["四 测量"]
+
+
+def test_title_characters_of_unequal_box_height_still_join():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [_gline(0, 179, 111, 208, "目", h=30), _gline(1, 243, 108, 282, "录", h=38)]  # 目 has no tall stroke
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["目录"]

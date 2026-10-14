@@ -434,7 +434,7 @@ def _glyph_joinable(left: TextSegment, right: TextSegment) -> bool:
     if _single_cjk(left) and _single_cjk(right):
         # the two characters of a title set wide apart (目  录, 数  学): same size, any colour
         # (a decorated glyph's colour estimate is unreliable)
-        return gap <= 1.2 * h and abs(left.bbox.height - right.bbox.height) <= 0.15 * h
+        return gap <= 1.2 * h and abs(left.bbox.height - right.bbox.height) <= 0.3 * h
     if _color_distance(left.style.color, right.style.color) > MAX_COLOR_DISTANCE:
         return False
     return gap <= 0.6 * h
