@@ -757,3 +757,47 @@ def test_repeated_long_lines_may_still_join():
     lines = [_gline(0, 50, 100, 330, text), _gline(1, 50, 113, 330, text)]
     paragraphs = group_ocr_lines(lines, 0, "zh")
     assert len(paragraphs) == 1
+
+
+def test_bold_coloured_glyphs_in_a_tight_box_are_erased_to_the_surroundings():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    bg = (243, 249, 254)
+    img = Image.new("RGB", (360, 90), bg)
+    d = ImageDraw.Draw(img)
+    font = pil_font("en", 44)
+    d.text((12, 14), "SHUXUE", fill=(0, 151, 219), font=font, stroke_width=6, stroke_fill=(0, 151, 219))
+    original = np.array(img)
+    ink_mask = np.abs(original.astype(int) - np.array(bg)).max(axis=2) > 40
+    ys, xs = np.where(ink_mask)
+    box = (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1)  # tight, as the OCR box is
+    assert ink_mask[box[1]:box[3], box[0]:box[2]].mean() > 0.45  # the glyphs dominate the box
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, box)
+    inside = canvas[box[1] + 2:box[3] - 2, box[0] + 2:box[2] - 2]
+    assert (np.abs(inside.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.97  # plain background now
+
+
+def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    h, w = 160, 420
+    rows = np.linspace(0, 1, h)[:, None, None]
+    original = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([120, 190, 240])).astype(np.uint8)
+    original = np.repeat(original, w, axis=1)
+    img = Image.fromarray(original.copy())
+    ImageDraw.Draw(img).text((20, 10), "数学", fill=(30, 30, 30), font=pil_font("zh", 110))
+    original = np.array(img)
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (10, 5, 400, 150))
+    assert (canvas.max(axis=2) < 80).sum() < 0.02 * (canvas.max(axis=2) < 80).size  # the ink is gone
+    expected = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([120, 190, 240])).astype(np.uint8)
+    # the lower rows keep the blue of the gradient instead of a white block
+    assert np.abs(canvas[140, 50:380].astype(int) - expected[140, 0]).max() < 30
+    assert np.abs(canvas[100, 50:380].astype(int) - expected[100, 0]).max() < 30

@@ -1124,6 +1124,35 @@ def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int]
     return x0, y0, min(ex1, x1 + right + max(2, h // 10)), y1
 
 
+
+
+GRADIENT_ROWS = 4
+"""Rows sampled at the top and at the bottom of a strip to tell a gradient background (a title
+band fading into colour) from a plain one."""
+
+
+def _fill_gradients(crop: np.ndarray, grown: np.ndarray, strips: list, fill: np.ndarray, h: int) -> None:
+    """Where a strip's background changes from its top rows to its bottom rows (a vertical
+    gradient), replace its flat fill colour by one colour per row: the median of the row's
+    pixels outside the glyphs, else the strip's top and bottom colours blended by row."""
+    if h < 3 * GRADIENT_ROWS:
+        return
+    for sx, ex, bg, share in strips:
+        stripe = crop[:, sx:ex]
+        top, _t = _dominant_colour(stripe[:GRADIENT_ROWS].astype(np.uint8))
+        bottom, _b = _dominant_colour(stripe[-GRADIENT_ROWS:].astype(np.uint8))
+        if np.abs(top.astype(np.int32) - bottom.astype(np.int32)).max() <= BACKGROUND_TOLERANCE:
+            continue
+        free = ~grown[:, sx:ex]
+        for y in range(h):
+            samples = stripe[y][free[y]]
+            if len(samples) >= 3:
+                fill[y, sx:ex] = np.median(samples, axis=0).astype(np.uint8)
+            else:
+                t = y / max(1, h - 1)
+                fill[y, sx:ex] = ((1 - t) * top.astype(np.float64) + t * bottom.astype(np.float64)).astype(np.uint8)
+
+
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
                   original_alpha: Optional[np.ndarray], box: tuple[int, int, int, int],
                   blocked: Optional[list[tuple[int, int, int, int]]] = None) -> str:
@@ -1140,6 +1169,8 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
 
     from .images import estimate_text_color
 
+    from .images import estimate_background
+
     box = _extend_for_punctuation(original, box, blocked or [])
     x0, y0, x1, y1 = box
     crop = original[y0:y1, x0:x1].astype(np.int32)
@@ -1147,6 +1178,12 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         return "empty"
     h, w = crop.shape[:2]
     box_bg, _share = _dominant_colour(original[y0:y1, x0:x1])
+    ring_bg, ring_uniform = estimate_background(original, box, original_alpha)
+    if ring_uniform and np.abs(ring_bg.astype(np.int32) - box_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
+        # bold or wide glyphs (SHUXUE in a tight box) outnumber the background pixels inside the box:
+        # the plain surroundings say what the background is, not the most common colour inside
+        box_bg = ring_bg
+        _share = float((np.abs(crop - ring_bg.astype(np.int32)).max(axis=2) <= BACKGROUND_TOLERANCE).mean())
     ink_colour = np.array(estimate_text_color(original, box, box_bg, original_alpha), dtype=np.int32)
     dist_ink = np.sqrt(((crop - ink_colour) ** 2).sum(axis=2))
     mask = np.zeros((h, w), np.uint8)
@@ -1161,6 +1198,12 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         if np.abs(bg.astype(np.int32) - ink_colour).max() < GLYPH_DIFF and \
                 np.abs(prev_bg.astype(np.int32) - ink_colour).max() >= GLYPH_DIFF:
             bg, share = prev_bg, prev_share  # a heavy glyph dominates the strip: keep the neighbour's background
+        if ring_uniform and np.abs(bg.astype(np.int32) - ring_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
+            # the strip is mostly glyph: its background is the plain one around the box
+            bg = ring_bg
+            share = float((np.abs(crop[:, sx:ex] - ring_bg.astype(np.int32)).max(axis=2)
+                           <= BACKGROUND_TOLERANCE).mean())
+            share = max(share, STRIPE_FLAT_SHARE)  # plain surroundings: fill flat, do not inpaint
         prev_bg, prev_share = bg, share
         strips.append((sx, ex, bg, share))
     for k, (sx, ex, bg, share) in enumerate(strips):
@@ -1209,6 +1252,7 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     grown = cv2.dilate(mask, kernel) > 0
     region = canvas[y0:y1, x0:x1]
     flat_px = grown & flat
+    _fill_gradients(crop, grown, strips, fill, h)
     region[flat_px] = fill[flat_px]
     rest = (grown & ~flat).astype(np.uint8)
     if rest.any():

@@ -932,6 +932,9 @@ def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequenc
 LABEL_SIZE_TOLERANCE = 0.15
 """Short labels whose source sizes differ by at most this share, in the same colour and next
 to each other (name tags under the children of a picture, a row of captions), are siblings ..."""
+LABEL_ROW_PITCH = 1.6
+"""Sibling labels stacked in a column (one per picture row) sit up to this many label heights
+apart, centre to centre."""
 LABEL_SIZE_SPREAD = 1.12
 """... and are reset at the smallest size among them when their rendered sizes differ by more
 than this factor ("Xiaolan" squeezed, "Fangfang" at full size looks careless)."""
@@ -968,7 +971,7 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
             h = max(a.bbox.height, b.bbox.height)
             dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
             dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
-            if dy <= 1.2 * h and dx <= 8 * h:
+            if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
                 parent[find(i)] = find(j)
     groups: dict[int, list[TextSegment]] = {}
     for i, seg in enumerate(labels):
