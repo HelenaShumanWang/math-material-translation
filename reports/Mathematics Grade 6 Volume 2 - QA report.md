@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 386 errors, 318 warnings (2222.7 s); proofread: 774 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 392 errors, 315 warnings (2222.7 s); proofread: 6 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数 (zh → en, 119 page(s), 2065 translatable segment(s))
+**Document:** 数 (zh → en, 119 page(s), 2066 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×625, layout_fit ×148, glossary ×22, image_text ×19, formatting ×8, length_ratio ×2, target_script ×2, untranslated ×2, placeholders ×1
 - Round 3: llm_review ×639, layout_fit ×135, image_text ×19, untranslated ×12, glossary ×11, formatting ×10, target_script ×7, completeness ×1, length_ratio ×1
 
-## Final issues (704)
+## Final issues (707)
 
 ### `completeness` — 7 errors, 0 warnings
 
@@ -110,7 +110,7 @@
 | error | 108 | p107_s4 | Glossary: translate "统计" as "statistics" | （2）根据扇形统计图，把下表填写完整 | (2) Use the pie chart to complete the table below. |
 | error | 109 | p108_s5 | Glossary: translate "填一填" as "Fill in" | （3）笑笑列出了下表准备进行比较，填一填，比一比。 | (3) Xiaoxiao has made the table below for comparison. Fill … |
 
-### `layout_fit` — 172 errors, 76 warnings
+### `layout_fit` — 178 errors, 74 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -138,8 +138,6 @@
 | error | 20 | p19_s7 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 认一认。 | Name the parts. |
 | error | 22 | p21_s12 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 19 characters overflows its box; the minimum allowed size is 55%) | （4）买铅笔。 | (4) Buying pencils. |
 | error | 22 | p21_s12 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 19 characters overflows its box; the minimum allowed size is 55%) | （4）买铅笔。 | (4) Buying pencils. |
-| error | 23 | p22_s10 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 10本 | 10 storybooks |
-| error | 23 | p22_s10 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 10本 | 10 storybooks |
 | error | 23 | p22_s12 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 10本 | 10 books |
 | error | 23 | p22_s12 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 10本 | 10 books |
 | error | 25 | p24_s19 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 认一认。 | Name the parts. |
@@ -164,8 +162,6 @@
 | error | 43 | p42_s20 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 温度 /℃ | Temperature /℃ |
 | error | 47 | p46_s12 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 买几枚？ | How many stamps? |
 | error | 47 | p46_s12 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 买几枚？ | How many stamps? |
-| error | 47 | p46_s15 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did you know? |
-| error | 47 | p46_s15 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did you know? |
 | error | 49 | p48_s7 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 人数 | Number of people |
 | error | 49 | p48_s7 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 人数 | Number of people |
 | error | 51 | p50_s4 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 单价数量总价 | Price Quantity Total |
@@ -210,6 +206,8 @@
 | error | 67 | p66_s9 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 正整数 | Positive integers |
 | error | 68 | p67_s8 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 数的扩充 | Extending Numbers |
 | error | 68 | p67_s8 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 数的扩充 | Extending Numbers |
+| error | 70 | p69_s2 | Shorten the translation to at most 29 characters so it fits the original box (the current translation of 35 characters overflows its box; the minimum allowed size is 55%) | 1000块1000块1000块 | 1000 sweets 1000 sweets 1000 sweets |
+| error | 70 | p69_s2 | Shorten the translation to at most 29 characters so it fits the original box (the current translation of 35 characters overflows its box; the minimum allowed size is 55%) | 1000块1000块1000块 | 1000 sweets 1000 sweets 1000 sweets |
 | error | 71 | p70_s16 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 的倍数有（ | that can be formed are ( |
 | error | 71 | p70_s16 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 的倍数有（ | that can be formed are ( |
 | error | 72 | p71_s10 | Shorten the translation to at most 75 characters so it fits the original box (the current translation of 88 characters overflows its box; the minimum allowed size is 55%) | （3）商不变的规律与分数基本性质的关系。 | (3) The link between the rule of unchanged quotient and the… |
@@ -224,6 +222,8 @@
 | error | 77 | p76_s10 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 小华 | Xiaohua |
 | error | 77 | p76_s18 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 巩固与应用 | Consolidation and Application |
 | error | 77 | p76_s18 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 巩固与应用 | Consolidation and Application |
+| error | 77 | p76_s5 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 25 characters overflows its box; the minimum allowed size is 55%) | 我画线段图 | I will draw a bar diagram |
+| error | 77 | p76_s5 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 25 characters overflows its box; the minimum allowed size is 55%) | 我画线段图 | I will draw a bar diagram |
 | error | 77 | p76_s9 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小龙 | Xiaolong |
 | error | 77 | p76_s9 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小龙 | Xiaolong |
 | error | 78 | p77_s21 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 数学家 | Maths Stories |
@@ -234,6 +234,8 @@
 | error | 80 | p79_s9 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 亏。淘气一共 | of them. How much |
 | error | 81 | p80_s10 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 巩固与应用 | Consolidation and Application |
 | error | 81 | p80_s10 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 巩固与应用 | Consolidation and Application |
+| error | 81 | p80_s17 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 21 characters overflows its box; the minimum allowed size is 55%) | 电子词典 | Electronic dictionary |
+| error | 81 | p80_s17 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 21 characters overflows its box; the minimum allowed size is 55%) | 电子词典 | Electronic dictionary |
 | error | 83 | p82_s12 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 巩固与应用 | Consolidation and Application |
 | error | 83 | p82_s12 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 巩固与应用 | Consolidation and Application |
 | error | 88 | p87_s24 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 教学楼 | Teaching building |
@@ -266,6 +268,10 @@
 | error | 103 | p102_s26 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 圆形花坛 | Round Flowerbed |
 | error | 104 | p103_s27 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 经5路 | Jing 5 Road |
 | error | 104 | p103_s27 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 经5路 | Jing 5 Road |
+| error | 104 | p103_s29 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 路 | Road Road |
+| error | 104 | p103_s29 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 路 | Road Road |
+| error | 104 | p103_s29r1 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 路 | Road Road |
+| error | 104 | p103_s29r1 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 路 | Road Road |
 | error | 105 | p104_s16 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did you know? |
 | error | 105 | p104_s16 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did you know? |
 | error | 106 | p105_s0 | Shorten the translation to at most 22 characters so it fits the original box (the current translation of 26 characters overflows its box; the minimum allowed size is 55%) | 统计与概率 | Statistics and Probability |
@@ -286,8 +292,6 @@
 | error | 113 | p112_s6 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 19 characters overflows its box; the minimum allowed size is 55%) | 淘气笑笑奇思 | Taoqi Xiaoxiao Qisi |
 | error | 117 | p116_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 附页 | Appendix |
 | error | 117 | p116_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 附页 | Appendix |
-| warning | 1 | p0_s3 | The translation overflows its box and was rendered at 23% of the original size; even a much shorter text would not fit, check this box in the preview | 数 | Numbers |
-| warning | 1 | p0_s3 | The translation overflows its box and was rendered at 23% of the original size; even a much shorter text would not fit, check this box in the preview | 数 | Numbers |
 | warning | 3 | p2_s8 | The translation overflows its box and was rendered at 29% of the original size; even a much shorter text would not fit, check this box in the preview | 可以分为整数与小数等,在我们学习数的过程中,可以了解到"数”的重要性,从而让生活更加丰富多彩! | They can be divided into integers, decimals and so on. In l… |
 | warning | 3 | p2_s8 | The translation overflows its box and was rendered at 29% of the original size; even a much shorter text would not fit, check this box in the preview | 可以分为整数与小数等,在我们学习数的过程中,可以了解到"数”的重要性,从而让生活更加丰富多彩! | They can be divided into integers, decimals and so on. In l… |
 | warning | 4 | p3_s0 | The translation overflows its box and was rendered at 26% of the original size; even a much shorter text would not fit, check this box in the preview | 目 | Contents |
@@ -308,8 +312,8 @@
 | warning | 62 | p61_s16 | The translation overflows its box and was rendered at 28% of the original size; even a much shorter text would not fit, check this box in the preview | 高 | height |
 | warning | 62 | p61_s21 | The translation overflows its box and was rendered at 29% of the original size; even a much shorter text would not fit, check this box in the preview | 高 | height |
 | warning | 62 | p61_s21 | The translation overflows its box and was rendered at 29% of the original size; even a much shorter text would not fit, check this box in the preview | 高 | height |
-| warning | 62 | p61_s8 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 高 | height |
-| warning | 62 | p61_s8 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 高 | height |
+| warning | 62 | p61_s8 | The translation overflows its box and was rendered at 37% of the original size; even a much shorter text would not fit, check this box in the preview | 高 | height |
+| warning | 62 | p61_s8 | The translation overflows its box and was rendered at 37% of the original size; even a much shorter text would not fit, check this box in the preview | 高 | height |
 | warning | 65 | p64_s8 | The translation overflows its box and was rendered at 27% of the original size; even a much shorter text would not fit, check this box in the preview | xcm | x cm |
 | warning | 65 | p64_s8 | The translation overflows its box and was rendered at 27% of the original size; even a much shorter text would not fit, check this box in the preview | xcm | x cm |
 | warning | 67 | p66_s13 | The translation overflows its box and was rendered at 26% of the original size; even a much shorter text would not fit, check this box in the preview | 数 | Numbers |
@@ -363,7 +367,7 @@
 | warning | 112 | p111_s11 | The translation overflows its box and was rendered at 37% of the original size; even a much shorter text would not fit, check this box in the preview | 素菜 | Vegetables |
 | warning | 112 | p111_s11 | The translation overflows its box and was rendered at 37% of the original size; even a much shorter text would not fit, check this box in the preview | 素菜 | Vegetables |
 
-### `llm_review` — 126 errors, 202 warnings
+### `llm_review` — 126 errors, 201 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -493,7 +497,6 @@
 | error | 112 | p111_s17 | Reviewer (terminology): 'Operations' for 数的运算 drops 'number'; the paired section label is about operations on numbers. Suggested translation: "Number Operations" | 数的运算 | Operations |
 | error | 112 | p111_s18 | Reviewer (terminology): Place-value column labels 个（一）十 must use the standard abbreviations O and T; 'ones (1) tens' is not the required form. Suggested translation: "O (1) T" | 个（一）十 | ones (1) tens |
 | error | 113 | p112_s28 | Reviewer (terminology): The measure word 只 is dropped; the glossary convention writes the counted noun, so 'Chickens' is acceptable but the unit consistency with other labels is lost. Suggested translation: "Chickens" | 鸡/只 | Chickens |
-| warning | 1 | p0_s3 | Reviewer (format): Heading should be in Title Case per convention. Suggested translation: "Numbers" | 数 | Numbers |
 | warning | 3 | p2_s1 | Reviewer (grammar): 'Form the good habit' is less idiomatic; 'Develop the good habit' is more natural English. Suggested translation: "1. Develop the good habit of thinking independently." | 1.养成独立思考问题的好习惯。 | 1. Form the good habit of thinking independently. |
 | warning | 3 | p2_s15 | Reviewer (format): Source uses '...' and '·..….' which are ellipses; translation uses '...' correctly. But '600 毫升' should be '600 mL' per unit convention; translation already does that. No error. | 600 毫升果汁可平均分成若干杯分6 杯,每杯 100 毫升,分 5杯,每杯120毫升,分 4杯,每杯 150 毫升,… | 600 mL of juice can be divided equally into several cups: 6… |
 | warning | 3 | p2_s18 | Reviewer (grammar): Translation is accurate but 'Cups poured' could be 'Number of cups' for clarity. Suggested translation: "The number of cups and the juice per cup are in inverse proportion: their product is constant. More cups mean less juice each; fewer cups mean more juice each; the total is unchanged. So we say they are in inverse proportion!" | 分的杯数与每杯的果汁量成反比例关系,因为它们的积一定,分的杯数多，每杯的果汁量就少,分的杯数少,每杯的果汁量就多,并且… | Cups poured and juice per cup are in inverse proportion: th… |
@@ -686,7 +689,7 @@
 | warning | 102 | p101_s6 | Reviewer (grammar): "Country Love" reads as a title/noun phrase; the seal characters are two separate words and should be represented consistently. Suggested translation: "Country loves" | 国爱 | Country Love |
 | warning | 102 | p101_s8 | Reviewer (grammar): "Country love" is unnatural and inconsistent with the same characters elsewhere; the fragment should be rendered as a recognizable word pair. Suggested translation: "Country loves" | 国爱 | Country love |
 | warning | 104 | p103_s12 | Reviewer (grammar): The final sentence is incomplete: "report ship P" lacks the required object/complement (the source ends with 报告船只P and expects a continuation such as the position). | 搜救船发现以本船为中心在某海域失事的船只P的位置如图，请用学过的知识，报告船只P | The rescue ship found a ship P wrecked in a certain sea are… |
-| warning | 104 | p103_s29 | Reviewer (format): "路路" is a doubled label fragment (two road labels printed together) and should keep the repetition rather than be treated as one word; the doubled form is acceptable but spacing could be clarified. Suggested translation: "Road Road" | 路路 | Road Road |
+| warning | 104 | p103_s29 | Reviewer (format): "路路" is a doubled label fragment (two road labels printed together) and should keep the repetition rather than be treated as one word; the doubled form is acceptable but spacing could be clarified. Suggested translation: "Road Road" | 路 | Road Road |
 | warning | 106 | p105_s12 | Reviewer (grammar): The wording 'the types of rare animals' is awkward; 'the types' would be clearer, but meaning is not changed. Suggested translation: "When collecting the types of rare animals, I got them by looking up information." | 收集珍稀动物种类时，我是通过查阅资料得到的 | When collecting the types of rare animals, I got them by lo… |
 | warning | 107 | p106_s12 | Reviewer (grammar): "Statistical chart of the mean weight of children aged 6~12" is acceptable but 'Statistical chart of mean weights of children aged 6~12' matches the plural noun convention for grouped data. Suggested translation: "Statistical chart of mean weights of children aged 6~12 in a certain area" | 某地区6~12岁儿童平均体重情况统计图 | Statistical chart of the mean weight of children aged 6~12 … |
 | warning | 107 | p106_s31 | Reviewer (grammar): "weather group" is not the standard term; "weather club" or "meteorology group" is used in textbooks. Suggested translation: "3. The school weather club measured the outdoor temperature from Monday to Friday last week and found the mean temperature," | 3.学校气象小组测得上周星期一至星期五的室外气温，并求出了平均气温， | 3. The school weather group measured the outdoor temperatur… |
