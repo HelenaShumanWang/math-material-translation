@@ -1082,6 +1082,62 @@ def test_a_heading_grows_sideways_past_text_far_below_it(tmp_path):
     assert head.render.scale >= 0.99 and head.render.bbox.height <= 1.65 * 20.5, head.render   # one line, full size
 
 
+def test_the_line_under_a_short_heading_may_use_the_room_beside_the_heading(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    # "练习二" centred at the top, question 1 right under it at the left margin, the line to its right free
+    head = TextSegment(id="p24_s0", page=0, bbox=BBox(x0=219, y0=62, x1=303, y1=87), source_text="练习二",
+                       protected_text="练习二", origin="ocr", translated_text="Exercise 2",
+                       style=SegmentStyle(size=20.5, color=0x202020, role="heading", line_height=1.2))
+    item = TextSegment(id="p24_s1", page=0, bbox=BBox(x0=60, y0=87, x1=215, y1=101), source_text="1.说一说，再列式算一算。",
+                       protected_text="1.说一说，再列式算一算。", origin="ocr",
+                       translated_text="1. Talk about it, then write a number sentence and calculate.",
+                       style=SegmentStyle(size=11.4, color=0x202020, role="body", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[head, item])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert item.render.scale >= 0.99, item.render                         # full size ...
+    assert item.render.bbox.x1 > 330, item.render.bbox                     # ... on the free line to its right
+
+
+def test_grown_labels_stay_centred_and_numbered_items_start_at_their_number(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    # "270元" under a brace: its English needs a little more room and grows on both sides
+    label = TextSegment(id="p0_s1", page=0, bbox=BBox(x0=347, y0=197, x1=375, y1=210), source_text="270元",
+                        protected_text="270元", origin="ocr", translated_text="270 yuan",
+                        style=SegmentStyle(size=12.1, color=0x202020, role="label", line_height=1.2))
+    # a numbered question the OCR saw as centred (its second line is indented)
+    item = TextSegment(id="p0_s2", page=0, bbox=BBox(x0=304, y0=545, x1=467, y1=581),
+                       source_text="（1）笑笑排在第5个，应坐第（ ）辆缆车。", protected_text="（1）笑笑排在第5个，应坐第（ ）辆缆车。",
+                       origin="ocr", translated_text="(1) Xiaoxiao is number 5 in line. Which cable car does she take?",
+                       style=SegmentStyle(size=11.9, color=0x202020, role="body", align="center", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[label, item])
+    render_document(src, doc, tmp_path / "out.pdf")
+    out = pymupdf.open(tmp_path / "out.pdf")[0]
+    words = out.get_text("words")
+    lab = [w for w in words if w[1] < 230 and w[3] > 190]
+    centre = (min(w[0] for w in lab) + max(w[2] for w in lab)) / 2
+    assert abs(centre - (347 + 375) / 2) < 2.0, (centre, lab)            # centred on the source label
+    first = min((w for w in words if w[1] > 540), key=lambda w: (round(w[1]), w[0]))
+    assert first[4].startswith("(1)") and first[0] < item.render.bbox.x0 + 1.5   # set from its number
+
+
 def test_column_entries_are_set_left_aligned_at_one_size(tmp_path):
     from PIL import Image
     from mathtrans.layout import render_document

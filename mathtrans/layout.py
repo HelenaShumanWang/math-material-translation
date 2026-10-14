@@ -127,10 +127,10 @@ COLUMN_MIN_WIDTH_FRACTION = 0.15
 """Segments at least this wide (fraction of the page width) act as column walls:
 a box never grows sideways past the near edge of such a segment, whatever its
 vertical position, so that multi-column layouts keep their gutters."""
-WALL_REACH = 2.0
-"""On a scanned page only walls within this many box heights above or below the box count:
-the exercise lines at the foot of the page do not stop the heading at its top from growing
-sideways over the white space beside it."""
+WALL_REACH = 0.0
+"""On a scanned page only walls within this many box heights above or below the box count
+(0: only text on the box's own rows): the exercise lines at the foot of the page do not stop
+the heading at its top from growing sideways, nor does that heading stop the line under it."""
 PAGE_MARGIN = 10.0
 """Boxes are never extended closer than this to the page edge."""
 DEFAULT_CHECKPOINT_PAGES = 25
@@ -668,8 +668,8 @@ class _PageSpace:
         for o in obstacles:
             if o.width < min_wall_width:
                 continue
-            if self.scanned and (o.y0 > box.y1 + reach or o.y1 < box.y0 - reach):
-                continue  # far above or below: not the column beside this line
+            if self.scanned and (o.y0 >= box.y1 + reach or o.y1 <= box.y0 - reach):
+                continue  # above or below: not the column beside this line
             if o.x0 >= box.x1 - 1.0:
                 right = min(right, max(o.x0 - OBSTACLE_GAP, box.x1))
             elif o.x1 <= box.x0 + 1.0:
@@ -698,6 +698,33 @@ class _PageSpace:
 # --------------------------------------------------------------------------- #
 # Placing one segment
 # --------------------------------------------------------------------------- #
+
+
+def _drawn_extent(page: pymupdf.Page, rect: BBox) -> Optional[BBox]:
+    """The extent of what was actually drawn in ``rect``: its words and inline pictures. A box
+    is often allotted more room than its text takes (a short heading centred in a line grown
+    down, a label grown on both sides); neighbours placed later may use the rest."""
+    clip = rect.to_rect()
+    boxes: list[BBox] = []
+    try:
+        for w in page.get_text("words", clip=clip):
+            boxes.append(BBox(x0=w[0], y0=w[1], x1=w[2], y1=w[3]))
+        for b in page.get_text("dict", clip=clip)["blocks"]:
+            if b.get("type") != 1:
+                continue
+            r = BBox.from_rect(pymupdf.Rect(b["bbox"]))
+            if r.x0 <= rect.x0 + 0.5 and r.y0 <= rect.y0 + 0.5 and r.x1 >= rect.x1 - 0.5 and r.y1 >= rect.y1 - 0.5:
+                continue  # the page scan behind everything, not an inline picture
+            boxes.append(r)
+    except Exception:  # pragma: no cover - defensive: exotic content streams
+        return None
+    boxes = [b for b in boxes if b.intersection_area(rect) > 0]
+    if not boxes:
+        return None
+    used = boxes[0]
+    for b in boxes[1:]:
+        used = used.union(b)
+    return BBox(x0=max(used.x0, rect.x0), y0=max(used.y0, rect.y0), x1=min(used.x1, rect.x1), y1=min(used.y1, rect.y1))
 
 
 def _insert(page: pymupdf.Page, rect: BBox, html: str, *, css: str, archive: Optional[pymupdf.Archive],
@@ -732,18 +759,27 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     growable = rotate == 0 and seg.style.role != "table"
     grown = space.extend(seg, down=True, horizontal=True) if growable else base
     color: Optional[int] = None
-    align: Optional[str] = None
+    centred_label = False
+    fixed_align: Optional[str] = None
     if space.scanned and seg.origin == "ocr":
         bg = space.background(base)
         if bg is not None:
             fixed = readable_color(seg.style.color, bg)
             color = fixed if fixed != seg.style.color else None
-        if (_short_label(seg) or _centred_heading(seg, space.page_rect)) and grown != base \
-                and seg.id not in space.column_ids:
-            if abs((grown.x0 + grown.x1) - (base.x0 + base.x1)) < 1.0:
-                align = "center"  # grown symmetrically around the original label
-            elif grown.x0 < base.x0 - 0.5 and abs(grown.x1 - base.x1) < 0.5:
-                align = "right"  # grown leftwards only: keep the label's end where it was
+        centred_label = (_short_label(seg) or _centred_heading(seg, space.page_rect)) \
+            and seg.id not in space.column_ids
+        if _ENUMERATED_RE.match(seg.source_text or "") and seg.style.align == "center":
+            fixed_align = "left"  # a numbered item is set from its number, never centred
+
+    def align_for(rect: BBox) -> Optional[str]:
+        """How the text sits in ``rect``: a label grown symmetrically stays centred on its
+        place, one grown leftwards only keeps its end where it was."""
+        if centred_label and rect != base:
+            if abs((rect.x0 + rect.x1) - (base.x0 + base.x1)) < 1.0:
+                return "center"
+            if rect.x0 < base.x0 - 0.5 and abs(rect.x1 - base.x1) < 0.5:
+                return "right"
+        return fixed_align
     grown_note = "" if grown == base else "box extended into free space"
     tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
     attempts: list[tuple[BBox, Optional[float], float, str]] = [(base, None, 1.0, "")]
@@ -764,12 +800,12 @@ def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _Page
     if tight is not None:
         attempts.append((grown, tight, min_scale, "tight line height"))
     size = seg.style.size if seg.style.size > 0 else 10.0
-    def html(lh: Optional[float]) -> str:
-        return segment_html(seg, text, lh, color=color, align=align)
+    def html(lh: Optional[float], rect: BBox = grown) -> str:
+        return segment_html(seg, text, lh, color=color, align=align_for(rect))
 
     contrast_note = "colour changed for contrast" if color is not None else ""
     for rect, lh, scale_low, note in attempts:
-        spare, scale = _insert(page, rect, html(lh), css=css, archive=archive,
+        spare, scale = _insert(page, rect, html(lh, rect), css=css, archive=archive,
                                scale_low=scale_low, rotate=rotate)
         if spare >= 0:
             notes = [n for n in (grown_note if rect == grown else "", note, contrast_note) if n]
@@ -966,7 +1002,9 @@ def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequenc
                               min_scale=min_font_scale)
         seg.render = info
         if info.bbox is not None:
-            space.update(seg.id, info.bbox)
+            # what was drawn (with the source box) is occupied, not all the room it was allotted
+            drawn = _drawn_extent(page, info.bbox) if space.scanned else None
+            space.update(seg.id, drawn.union(seg.bbox) if drawn is not None else info.bbox)
         infos.append(info)
     if space.scanned:
         _match_sibling_labels(page, todo, space, css=css, archive=archive, min_scale=min_font_scale)
@@ -1140,7 +1178,8 @@ def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space
             info.notes = "; ".join(n for n in (info.notes, "size matched to its sibling labels") if n)
             seg.render = info
             if info.bbox is not None:
-                space.update(seg.id, info.bbox)
+                drawn = _drawn_extent(page, info.bbox) if space.scanned else None
+                space.update(seg.id, drawn.union(seg.bbox) if drawn is not None else info.bbox)
 
 
 # --------------------------------------------------------------------------- #
