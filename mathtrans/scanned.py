@@ -427,7 +427,8 @@ def _glyph_joinable(left: TextSegment, right: TextSegment) -> bool:
         # a bare numeral is shorter than the full-height characters of its heading (二 has no
         # vertical stroke): it only has to sit within the heading's height
         inside = left.bbox.y0 >= right.bbox.y0 - 0.3 * h and left.bbox.y1 <= right.bbox.y1 + 0.3 * h
-        return inside and gap <= 2.5 * h and _color_distance(left.style.color, right.style.color) <= MAX_COLOR_DISTANCE
+        # the numeral is often set apart in colour (white on a badge, red): colour does not decide
+        return inside and gap <= 2.5 * h
     if not _same_row(left, right):
         return False
     if _single_cjk(left) and _single_cjk(right):

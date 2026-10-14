@@ -912,3 +912,14 @@ def test_a_faint_watermark_does_not_block_growth_but_a_picture_does(tmp_path):
     assert over_mark.render.bbox.y1 > 268 + 10      # grew down over the faint watermark and wrapped ...
     assert over_mark.render.scale > over_pic.render.scale  # ... while the line above the picture could not
     assert over_pic.render.bbox.y1 <= 450 + 1
+
+
+def test_unit_numeral_in_another_colour_still_joins_its_heading():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 189, 527, 206, "四", h=14, color=0xFFFFFF),   # white numeral on a coloured badge
+        _gline(1, 220, 525, 260, "测量", h=19),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["四 测量"]
