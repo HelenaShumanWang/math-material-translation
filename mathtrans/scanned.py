@@ -13,6 +13,7 @@ from __future__ import annotations
 import logging
 import re
 import statistics
+import weakref
 from collections import defaultdict
 from pathlib import Path
 from typing import Callable, Optional, Union
@@ -24,7 +25,7 @@ from .extract import is_list_item
 from .images import (INLINE_PICTOGRAMS, _clear_box, encode_image, has_pictogram_gap, load_image, replace_image,
                      resolve_placement)
 from .languages import is_cjk
-from .models import (BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
+from .models import (ANCHOR_RE, BBox, ImageRef, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment,
                      TranslatedDocument)
 from .protect import is_fully_protected, protect_text
 
@@ -764,6 +765,8 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
             if seg.skip_reason.startswith(MERGED):
                 by_image[(seg.page, seg.image.xref)].append(seg)
     modified = 0
+    WIDENED_BOXES.clear()
+    _WIDENED_FOR[0] = weakref.ref(doc)
     for (page_index, _xref), segs in by_image.items():
         if page_index >= pdf_doc.page_count:
             continue
@@ -799,6 +802,7 @@ def erase_merged_lines(pdf_doc: pymupdf.Document, doc: TranslatedDocument) -> in
                 _clear_box(canvas, alpha, original, original_alpha,
                            (max(0, ax0 - 2), max(0, ay0 - 2), min(loaded.width, ax1 + 2), min(loaded.height, ay1 + 2)))
             seg.render = RenderInfo(font_size=0.0, scale=1.0, notes=f"{how}; translation placed as page text")
+        _widen_boards_on_image(canvas, alpha, segs, doc, page_index)
         stream = encode_image(canvas, alpha, loaded.ext, qtables=loaded.jpeg_qtables,
                               subsampling=loaded.jpeg_subsampling)
         try:
@@ -1830,6 +1834,246 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     return "glyphs filled"
 
 
+# --------------------------------------------------------------------------- #
+# Title signboards
+# --------------------------------------------------------------------------- #
+# A lesson title is printed in a small signboard (a flat fill, often inside a frame) sized for two to
+# four Chinese characters; set in the same board the English title would shrink to half its size.
+# Where the page beside the board is blank the board is widened instead - a straight column of it
+# (frame, fill, frame) repeated - and the title is set in the wider board at its own size. The new
+# text boxes are kept in WIDENED_BOXES for the layout of this run only, never stored in the segments.
+
+BOARD_MIN_CONTRAST = 60
+"""The board's fill differs from the page around it by at least this much (largest channel difference)."""
+BOARD_FILL_TOLERANCE = 40
+"""Pixels within this of the fill colour are fill."""
+BOARD_STRONG_FILL = 60
+"""The fill is a strong colour (channel spread) or dark (all channels below 170): a pale bubble is no board."""
+BOARD_FRAME_MAX = 8.0
+"""Points: the widest frame (border plus shadow) between the fill and the page around it."""
+BOARD_UNIFORM_TOLERANCE = 14.0
+"""Mean channel difference allowed between columns of the board: only a straight, flat board is widened."""
+BOARD_PLAIN_TOLERANCE = 30
+"""Pixels within this of the page colour beside the board are plain page."""
+BOARD_LIGHT = 190
+"""Pixels whose every channel is at least this are light paper."""
+BOARD_PLAIN_SHARE = 0.995
+"""Share of plain pixels needed in each column the board grows over."""
+BOARD_GAP = 4.0
+"""Points kept free between the widened board and anything beside it."""
+BOARD_MAX_GROWTH = 3.0
+"""A board grows by at most this many times its own width."""
+BOARD_PAGE_MARGIN = 28.0
+"""Points: a board never grows nearer the page edge than this."""
+BOARD_ROLES = ("heading", "label")
+
+WIDENED_BOXES: dict[str, BBox] = {}
+"""Text box of each paragraph whose board was widened by the last ``erase_merged_lines`` call ..."""
+_WIDENED_FOR: list[Optional[weakref.ref]] = [None]
+"""... and the document it was called with (see ``widened_boxes``)."""
+
+
+def widened_boxes(doc: TranslatedDocument) -> dict[str, BBox]:
+    """The widened text boxes of ``doc``'s paragraphs: empty unless the last erase was of ``doc``."""
+    ref = _WIDENED_FOR[0]
+    return dict(WIDENED_BOXES) if ref is not None and ref() is doc else {}
+
+
+def _text_width(text: str, size: float, lang: Lang, bold: bool = False) -> float:
+    """Width in points of ``text`` set on one line at ``size`` in the font the layout uses."""
+    from .fonts import find_font_file
+
+    path = find_font_file(lang, bold=bold) or (find_font_file(lang) if bold else None)
+    try:
+        font = pymupdf.Font(fontfile=str(path)) if path is not None else pymupdf.Font("helv")
+    except Exception:  # noqa: BLE001 - an unreadable font file: measure with the built-in one
+        font = pymupdf.Font("helv")
+    return float(font.text_length(text, fontsize=size))
+
+
+def _near(colours: np.ndarray, ref: np.ndarray, tol: float) -> np.ndarray:
+    return np.abs(colours.astype(np.int32) - ref.astype(np.int32)).max(axis=-1) <= tol
+
+
+def _board_edges(profile: np.ndarray, start: int, fill: np.ndarray, frame_px: int,
+                 step: int) -> Optional[tuple[int, int, np.ndarray]]:
+    """Along ``profile`` (one colour per column or row), from ``start`` inside the fill in direction
+    ``step``: the last fill position, the first position outside the board (after its frame) and the
+    page colour there. None when the fill does not end in a frame of at most ``frame_px`` followed by
+    page that differs from the fill."""
+    n = len(profile)
+    i = start
+    while 0 <= i + step < n and _near(profile[i + step], fill, BOARD_FILL_TOLERANCE):
+        i += step
+    probe = i + step * (frame_px + 3)
+    if not 0 <= probe < n:
+        return None
+    page_colour = profile[probe]
+    if np.abs(page_colour.astype(np.int32) - fill.astype(np.int32)).max() < BOARD_MIN_CONTRAST:
+        return None
+    j = i + step
+    while j != probe and not _near(profile[j:j + 3] if step > 0 else profile[max(0, j - 2):j + 1],
+                                   page_colour, BOARD_PLAIN_TOLERANCE).all():
+        j += step
+    return i, j, page_colour
+
+
+def _plain_column(column: np.ndarray, page_colour: np.ndarray) -> bool:
+    """A column of page: row by row the page colour (``page_colour``: one colour, or one per row for a page
+    that fades from top to bottom), light paper (a pale sky, the glow round a board) or the faint grey of
+    the publisher's watermark."""
+    c = column.astype(np.int32)
+    light = c.min(axis=1) >= BOARD_LIGHT
+    grey = ((c.max(axis=1) - c.min(axis=1)) <= 25) & (c.min(axis=1) >= 140)
+    return float((_near(column, page_colour, BOARD_PLAIN_TOLERANCE) | light | grey).mean()) >= BOARD_PLAIN_SHARE
+
+
+def _widen_board(canvas: np.ndarray, alpha: Optional[np.ndarray], para: TextSegment, box: tuple[int, int, int, int],
+                 image: ImageRef, obstacles: list[BBox], page_width: float, lang: Lang) -> Optional[BBox]:
+    """Widen the signboard that ``para`` (one line, pixel box ``box``) stands in so that its English fits
+    at its own size; returns the paragraph's new text box in page points, or None (no board, no need,
+    no room)."""
+    h_img, w_img = canvas.shape[:2]
+    sx = image.width / image.bbox.width  # pixels per point (scans are scaled alike on both axes)
+    sy = image.height / image.bbox.height
+    x0, y0, x1, y1 = box
+    h = y1 - y0
+    if h < 6 or x1 - x0 < 6:
+        return None
+    core = canvas[y0 + h // 4:y1 - h // 4, x0:x1]
+    fill, share = _dominant_colour(core)
+    f = fill.astype(np.int32)
+    if share < 0.85 or (f.max() - f.min() < BOARD_STRONG_FILL and f.max() >= 170):
+        return None  # glyphs not erased cleanly, or a pale fill (a bubble, the page itself)
+    frame_px = int(round(BOARD_FRAME_MAX * sx))
+    reach = frame_px * 2 + 6
+    # columns: median colour over the middle half of the line
+    cx0, cx1 = max(0, x0 - reach), min(w_img, x1 + reach)
+    cols = np.median(canvas[y0 + h // 4:max(y0 + h // 4 + 1, y1 - h // 4), cx0:cx1], axis=0)
+    mid = (x0 + x1) // 2 - cx0
+    right = _board_edges(cols, mid, fill, frame_px, +1)
+    left = _board_edges(cols, mid, fill, frame_px, -1)
+    if right is None or left is None:
+        return None
+    fill_r, board_r, page_r = right[0] + cx0, right[1] + cx0, right[2]
+    fill_l, board_l = left[0] + cx0, left[1] + cx0
+    if fill_l > x0 + 2 or fill_r < x1 - 2:
+        return None  # the fill ends inside the line: no board around it
+    # rows: median colour over a few columns at the line's middle
+    xm = (x0 + x1) // 2
+    ry0, ry1 = max(0, y0 - reach), min(h_img, y1 + reach)
+    rows = np.median(canvas[ry0:ry1, max(0, xm - 2):xm + 3], axis=1)
+    top = _board_edges(rows, (y0 + y1) // 2 - ry0, fill, frame_px, -1)
+    bottom = _board_edges(rows, (y0 + y1) // 2 - ry0, fill, frame_px, +1)
+    if top is None or bottom is None:
+        return None
+    b_top, b_bottom = max(0, top[1] + ry0 - 1), min(h_img, bottom[1] + ry0 + 2)
+    if b_bottom - b_top > 3 * h + 2 * frame_px:
+        return None  # a tall shape (a panel, a table) is no signboard
+    # a straight, flat board: across the erased line its columns match the one at the middle; the board is
+    # cut at the last such column before its right end (a rounded corner must not land mid-board)
+    repeat = canvas[b_top:b_bottom, xm].astype(np.float32)
+
+    def straight(x: int) -> bool:
+        return float(np.abs(canvas[b_top:b_bottom, x].astype(np.float32) - repeat).mean()) <= BOARD_UNIFORM_TOLERANCE
+
+    if not all(straight(x) for x in (x0 + (x1 - x0) // 4, x1 - (x1 - x0) // 4, x1 - 1)):
+        return None
+    cut = x1 - 1
+    while cut + 1 < fill_r and straight(cut + 1):
+        cut += 1
+    cut += 1
+    # the page beside the board, row by row (a page may fade from top to bottom): the column beyond the
+    # frame, which must itself be page - near the page colour of the line's rows, or watermark grey
+    probe_x = min(w_img - 1, board_r + frame_px)
+    page_rows = canvas[b_top:b_bottom, probe_x]
+    if float(_near(page_rows, page_r, 2 * BOARD_PLAIN_TOLERANCE).mean()) < BOARD_PLAIN_SHARE:
+        return None
+    page_r = page_rows
+    # the frame's corners and soft edge may reach a little beyond its edge on the line's rows
+    edge_limit = min(w_img, board_r + frame_px)
+    while board_r < edge_limit and not _plain_column(canvas[b_top:b_bottom, board_r], page_r):
+        board_r += 1
+    if board_r >= edge_limit:
+        return None
+    # how much wider: the English on one line at the paragraph's size, with the board's own padding
+    text = (para.translated_text or "").strip()
+    if not text or "\n" in text or "⟦" in text or ANCHOR_RE.search(text):
+        return None  # several lines, or pictures inline: no one-line width to measure
+    size = para.style.size if para.style.size > 0 else h / sy
+    pad = max((x0 - fill_l) / sx, (fill_r - x1) / sx, 0.3 * size)
+    need = int(np.ceil((_text_width(text, size, lang, para.style.bold) + 2 * pad) * sx)) - (fill_r - fill_l)
+    if need <= 2:
+        return None
+    # room beside the board: plain page, clear of every other box, inside the page margins
+    gap_px = int(round(BOARD_GAP * sx))
+    limit = min(w_img, int((page_width - BOARD_PAGE_MARGIN - image.bbox.x0) * sx))
+    to_pt_x = lambda px: image.bbox.x0 + px / sx  # noqa: E731
+    to_pt_y = lambda py: image.bbox.y0 + py / sy  # noqa: E731
+    top_pt, bottom_pt = to_pt_y(b_top), to_pt_y(b_bottom)
+    stop = limit
+    for o in obstacles:
+        if min(o.y1, bottom_pt) - max(o.y0, top_pt) > 0 and o.x1 > to_pt_x(board_r):
+            stop = min(stop, max(board_r, int((o.x0 - image.bbox.x0) * sx)))
+    room = 0
+    x = board_r
+    while x < stop - gap_px and room < need and _plain_column(canvas[b_top:b_bottom, x], page_r):
+        x += 1
+        room += 1
+    # the gap beyond the widened board must be plain too
+    while room > 0 and not all(_plain_column(canvas[b_top:b_bottom, xx], page_r)
+                               for xx in range(board_r + room, min(w_img, board_r + room + gap_px))):
+        room -= 1
+    extra = min(need, room, int(BOARD_MAX_GROWTH * (board_r - board_l)))
+    if extra < 2 * sx:
+        return None
+    # widen: the right end (from the cut: corners, frame, shadow) moves right, the middle column fills the gap
+    end = min(w_img - extra, board_r + 2)
+    tail = canvas[b_top:b_bottom, cut:end].copy()
+    canvas[b_top:b_bottom, cut:cut + extra] = repeat.astype(canvas.dtype)[:, None, :]
+    canvas[b_top:b_bottom, cut + extra:end + extra] = tail
+    if alpha is not None:
+        a_tail = alpha[b_top:b_bottom, cut:end].copy()
+        alpha[b_top:b_bottom, cut:cut + extra] = alpha[b_top:b_bottom, xm][:, None]
+        alpha[b_top:b_bottom, cut + extra:end + extra] = a_tail
+    inset = min(pad, 0.3 * size)
+    return BBox(x0=to_pt_x(fill_l) + inset, y0=para.bbox.y0, x1=to_pt_x(fill_r + extra) - inset, y1=para.bbox.y1)
+
+
+def _widen_boards_on_image(canvas: np.ndarray, alpha: Optional[np.ndarray], lines: list[TextSegment],
+                           doc: TranslatedDocument, page_index: int) -> int:
+    """Widen the signboards of the one-line titles and labels whose lines are all on this image."""
+    on_image = {seg.id: seg for seg in lines}
+    page_width = next((p.width for p in doc.pages if p.index == page_index), None)
+    widened = 0
+    for para in doc.segments:
+        if (para.kind != SegmentKind.TEXT or para.page != page_index or not para.members
+                or para.style.role not in BOARD_ROLES or not (para.translated_text or "").strip()
+                or para.style.is_vertical or para.style.rotation):
+            continue
+        members = [on_image.get(m) for m in para.members]
+        if any(m is None or m.image is None for m in members):
+            continue
+        if len(members) != 1 and max(m.bbox.y1 for m in members) - min(m.bbox.y0 for m in members) > \
+                1.5 * max(m.bbox.height for m in members):
+            continue  # one line only
+        ref = members[0].image
+        box = (min(int(m.image.pixel_box[0]) for m in members), min(int(m.image.pixel_box[1]) for m in members),
+               max(int(m.image.pixel_box[2]) for m in members), max(int(m.image.pixel_box[3]) for m in members))
+        own = {para.id, *para.members}
+        # every other text box counts: an erased line is plain pixels, but its English is set there
+        obstacles = [s.bbox for s in doc.segments if s.page == page_index and s.id not in own
+                     and s.kind in (SegmentKind.TEXT, SegmentKind.IMAGE_TEXT)
+                     and s.bbox.width * s.bbox.height < 0.25 * ref.bbox.width * ref.bbox.height]
+        new = _widen_board(canvas, alpha, para, box, ref, obstacles,
+                           page_width or (ref.bbox.x0 + ref.bbox.width), doc.target_lang)
+        if new is not None:
+            WIDENED_BOXES[para.id] = new
+            widened += 1
+            log.info("page %d: signboard of %s widened to %.0f pt", page_index, para.id, new.width)
+    return widened
+
+
 def _trim_watermark_runs(text: str, alphabet: set[str]) -> str:
     """Remove a run of >= 2 watermark letters at either end of ``text`` (plus the
     whitespace / punctuation between the run and the rest)."""
@@ -1855,4 +2099,5 @@ def _trim_watermark_runs(text: str, alphabet: set[str]) -> str:
 
 __all__ = ["is_scanned_page", "scanned_pages", "group_ocr_lines", "build_overlay_segments",
            "erase_merged_lines", "suppress_watermark_fragments", "suppress_patch_duplicates",
-           "relink_patch_duplicates", "watermark_alphabet", "MERGED", "PATCH_DUPLICATE", "WATERMARK"]
+           "relink_patch_duplicates", "watermark_alphabet", "MERGED", "PATCH_DUPLICATE", "WATERMARK",
+           "WIDENED_BOXES", "widened_boxes"]

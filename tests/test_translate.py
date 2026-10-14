@@ -978,3 +978,15 @@ def test_a_number_and_its_metric_unit_get_a_space_that_does_not_break():
     assert space_units("5km/h; 2m²") == "5 km/h; 2 m²"
     assert space_units("3 m, 1st, x2m, 3min, v2.0m") == "3 m, 1st, x2m, 3min, v2.0m"   # nothing else changes
     assert postprocess_translation("长2.4米", "en") != "" and "2.4 m" in postprocess_translation("It is 2.4m long.", "en")
+
+
+def test_english_is_spelt_one_way_british():
+    from mathtrans.translate.postprocess import british_spelling, postprocess_translation
+
+    assert british_spelling("The perimeter is 12 meters; color it gray.") == "The perimeter is 12 metres; colour it grey."
+    assert british_spelling("Math Is Fun: 3 kilometers, 2 liters, the center, my favorite colors") == \
+        "Maths Is Fun: 3 kilometres, 2 litres, the centre, my favourite colours"
+    # a meter that measures, and other words that end in -meter, are left alone
+    for keep in ("the electricity meter", "a thermometer", "the diameter", "the odometer"):
+        assert british_spelling(keep) == keep
+    assert postprocess_translation("Color the 5 square centimeters.", "en") == "Colour the 5 square centimetres."

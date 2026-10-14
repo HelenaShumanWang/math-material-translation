@@ -985,8 +985,14 @@ def _centre_on_source_line(page: pymupdf.Page, seg: TextSegment, rect: BBox, bas
 
 def _insert(page: pymupdf.Page, rect: BBox, html: str, *, css: str, archive: Optional[pymupdf.Archive],
             scale_low: float, rotate: int) -> tuple[float, float]:
-    spare, scale = page.insert_htmlbox(rect.to_rect(), html, css=css, scale_low=scale_low,
-                                       archive=archive, rotate=rotate)
+    try:
+        spare, scale = page.insert_htmlbox(rect.to_rect(), html, css=css, scale_low=scale_low,
+                                           archive=archive, rotate=rotate)
+    except AssertionError:
+        # PyMuPDF's fit search may land a rounding error below scale_low and assert (before drawing
+        # anything): ask for a hair less
+        spare, scale = page.insert_htmlbox(rect.to_rect(), html, css=css, scale_low=max(0.0, scale_low - 1e-6),
+                                           archive=archive, rotate=rotate)
     return float(spare), float(scale)
 
 
@@ -1558,6 +1564,7 @@ def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLik
     css, archive = page_css(doc.target_lang, fonts_dir)
     pdf = pymupdf.open(str(src_path))
     checkpoint: Optional[str] = None  # temporary file the document is currently open on
+    swapped: list[tuple[TextSegment, BBox, str]] = []
     try:
         if pdf.needs_pass:
             raise ValueError(f"{src_path} is encrypted; decrypt it before translating")
@@ -1577,6 +1584,14 @@ def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLik
                             seg.id, seg.page, src_path, pdf.page_count)
                 continue
             by_page.setdefault(seg.page, []).append(seg)
+        # titles whose signboard the eraser widened are set in the wider board, centred (this run only)
+        from .scanned import widened_boxes
+
+        for sid, box in widened_boxes(doc).items():
+            seg = next((s for segs in by_page.values() for s in segs if s.id == sid), None)
+            if seg is not None:
+                swapped.append((seg, seg.bbox, seg.style.align))
+                seg.bbox, seg.style.align = box, "center"
         infos: list[RenderInfo] = []
         todo = [p for p in wanted if by_page.get(p)]
         since_checkpoint = 0
@@ -1598,6 +1613,8 @@ def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLik
         if pictures_doc is not None:
             pictures_doc.close()
     finally:
+        for seg, box, align in swapped:  # the segments keep their own boxes
+            seg.bbox, seg.style.align = box, align
         if not pdf.is_closed:
             pdf.close()
         if checkpoint and os.path.exists(checkpoint):

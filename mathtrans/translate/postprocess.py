@@ -62,6 +62,34 @@ def space_units(text: str) -> str:
     return _UNIT_RE.sub("\\1\u00a0\\2", text)
 
 
+# One spelling throughout the English books: British, as most of the text already is ("metre", "colour").
+# A meter that measures (an electricity meter, a thermometer) keeps its spelling; so do perimeter and
+# diameter, which are other words.
+_BRITISH = [
+    (re.compile(r"(?<!electricity )(?<!water )(?<!gas )(?<!parking )\b(kilo|centi|milli|deci|micro)?meter(s?)\b",
+                re.I), r"\1metre\2"),
+    (re.compile(r"\b(milli|centi|deci)?liter(s?)\b", re.I), r"\1litre\2"),
+    (re.compile(r"\bcolor(s|ed|ing|ful|less)?\b", re.I), r"colour\1"),
+    (re.compile(r"\bcenter(s?)\b", re.I), r"centre\1"),
+    (re.compile(r"\bcentered\b", re.I), "centred"),
+    (re.compile(r"\bgray(s|er|ish)?\b", re.I), r"grey\1"),
+    (re.compile(r"\bfavorite(s?)\b", re.I), r"favourite\1"),
+    (re.compile(r"\banalyz(e|es|ed|ing)\b", re.I), r"analys\1"),
+    (re.compile(r"\bmath\b", re.I), "maths"),
+]
+
+
+def british_spelling(text: str) -> str:
+    """``The perimeter is 12 meters; color it gray.`` -> ``The perimeter is 12 metres; colour it grey.``
+    (the first letter keeps its case)."""
+    for pattern, repl in _BRITISH:
+        def sub(m: re.Match, repl: str = repl) -> str:
+            out = m.expand(repl)
+            return out[:1].upper() + out[1:] if m.group(0)[:1].isupper() else out
+        text = pattern.sub(sub, text)
+    return text
+
+
 def postprocess_translation(text: str, tgt: Lang | str) -> str:
     """Clean ``text`` for ``tgt``; a no-op for CJK targets apart from whitespace."""
     if not text:
@@ -74,8 +102,10 @@ def postprocess_translation(text: str, tgt: Lang | str) -> str:
         text = space_units(text)
         if lang == Lang.EN:
             text = fix_ordinals(text)
+            text = british_spelling(text)
     text = _MULTI_SPACE_RE.sub(" ", text)
     return "\n".join(line.strip() for line in text.split("\n")).strip()
 
 
-__all__ = ["postprocess_translation", "fix_ordinals", "latinise_punctuation", "english_ordinal_suffix", "space_units"]
+__all__ = ["postprocess_translation", "fix_ordinals", "latinise_punctuation", "english_ordinal_suffix", "space_units",
+           "british_spelling"]

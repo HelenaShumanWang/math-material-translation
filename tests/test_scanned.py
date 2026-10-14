@@ -1153,3 +1153,80 @@ def test_a_column_label_is_not_extended_sideways_over_the_picture_beside_it():
     assert _extend_over_missed_glyphs(img, box, [])[0] == box
     assert _extend_for_punctuation(img, box, []) == box
     assert _extend_over_cut_glyphs(img, box, []) == box
+
+
+def _board_page(tmp_path, picture_at=None):
+    """A 500 x 200 pt scan (2 px per pt) with a lesson-title signboard - a brown frame round a green fill
+    with white characters - and, optionally, a blue picture starting ``picture_at`` px to its right."""
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 400), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([100, 100, 259, 169], fill=(204, 114, 45))
+    d.rectangle([110, 110, 249, 159], fill=(0, 156, 88))
+    font = pil_font("zh", 34)
+    d.text((128, 115), "分桃子", fill=(255, 255, 255), font=font)
+    if picture_at is not None:
+        d.rectangle([picture_at, 60, picture_at + 150, 220], fill=(40, 70, 200))
+    gx0, gy0, gx1, gy1 = d.textbbox((128, 115), "分桃子", font=font)
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=200)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "src.pdf"; pdf.save(str(src))
+    work = pymupdf.open(str(src))
+    xref = work[0].get_image_info(xrefs=True)[0]["xref"]
+    box = (gx0 - 2, gy0 - 2, gx1 + 2, gy1 + 2)
+    ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=200), width=1000, height=400, pixel_box=box)
+    pt = BBox(x0=box[0] / 2, y0=box[1] / 2, x1=box[2] / 2, y1=box[3] / 2)
+    line = TextSegment(id="p0_i0", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=pt, source_text="分桃子", translate=False,
+                       skip_reason=f"{MERGED} p0_s0", image=ref, origin="ocr")
+    title = TextSegment(id="p0_s0", page=0, bbox=pt, source_text="分桃子", protected_text="分桃子", origin="ocr",
+                        members=["p0_i0"], translated_text="Sharing Peaches",
+                        style=SegmentStyle(size=16, color=0xFFFFFF, role="heading", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=200)], segments=[line, title])
+    return work, doc, title, np
+
+
+def _page_pixels(work):
+    import io
+    import numpy as np
+    from PIL import Image
+    out = work.extract_image(work[0].get_image_info(xrefs=True)[0]["xref"])
+    return np.array(Image.open(io.BytesIO(out["image"])).convert("RGB")).astype(int)
+
+
+def test_a_title_signboard_is_widened_so_the_english_keeps_its_size(tmp_path):
+    from mathtrans.layout import render_document
+    from mathtrans.scanned import widened_boxes
+
+    work, doc, title, np = _board_page(tmp_path)
+    original = title.bbox.model_copy()
+    erase_merged_lines(work, doc)
+    boxes = widened_boxes(doc)
+    assert "p0_s0" in boxes and boxes["p0_s0"].width > 2 * original.width
+    arr = _page_pixels(work)
+    right = int(boxes["p0_s0"].x1 * 2)
+    assert np.abs(arr[135, 300] - (0, 156, 88)).max() < 40            # the fill runs on past the old frame ...
+    assert np.abs(arr[105, 300] - (204, 114, 45)).max() < 40          # ... under the frame's top edge
+    assert np.abs(arr[135, right + 12] - (204, 114, 45)).max() < 40   # the right end moved out beyond the text
+    assert arr[135, right + 40].min() > 240                           # and the page beyond stays blank
+    erased = tmp_path / "erased.pdf"; work.save(str(erased))
+    render_document(erased, doc, tmp_path / "out.pdf")
+    assert title.render.scale >= 0.95                                  # set at its own size, in the wider board
+    assert title.bbox == original                                      # the segment keeps its own box
+    assert widened_boxes(type(doc).model_validate(doc.model_dump())) == {}   # only for the document erased
+
+
+def test_a_signboard_grows_only_into_blank_page(tmp_path):
+    from mathtrans.scanned import widened_boxes
+
+    work, doc, title, np = _board_page(tmp_path, picture_at=300)
+    erase_merged_lines(work, doc)
+    box = widened_boxes(doc).get("p0_s0")
+    assert box is None or box.x1 <= 300 / 2 - 4                       # stops a gap short of the picture
+    arr = _page_pixels(work)
+    assert np.abs(arr[135, 305] - (40, 70, 200)).max() < 40           # the picture is untouched
