@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 339 errors, 278 warnings (2497.4 s); proofread: 1002 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 354 errors, 267 warnings (2497.4 s); proofread: 66 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 117 page(s), 2032 translatable segment(s))
 
@@ -18,13 +18,23 @@
 - Round 2: llm_review ×673, layout_fit ×85, glossary ×66, image_text ×54, untranslated ×21, target_script ×16, numbers ×4, formatting ×3, length_ratio ×2
 - Round 3: llm_review ×638, layout_fit ×104, glossary ×73, image_text ×54, untranslated ×12, formatting ×9, target_script ×8, numbers ×4, placeholders ×4, length_ratio ×2
 
-## Final issues (617)
+## Final issues (621)
 
-### `completeness` — 11 errors, 0 warnings
+### `completeness` — 21 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
+| error | 3 | p2_s10 | The segment has no translation; translate the complete source text | 遥了。 |  |
+| error | 6 | p5_s9 | The segment has no translation; translate the complete source text | 等 |  |
+| error | 10 | p9_s12 | The segment has no translation; translate the complete source text | 个 |  |
+| error | 10 | p9_s16 | The segment has no translation; translate the complete source text | 个 |  |
+| error | 10 | p9_s3 | The segment has no translation; translate the complete source text | 元 |  |
+| error | 11 | p10_s8 | The segment has no translation; translate the complete source text | 半圆 |  |
+| error | 14 | p13_s16 | The segment has no translation; translate the complete source text | 长？ |  |
 | error | 14 | p13_s21 | The translation ")," contains no words; translate the complete source text | ）倍， | ), |
+| error | 14 | p13_s9 | The segment has no translation; translate the complete source text | 算 |  |
+| error | 19 | p18_s3 | The segment has no translation; translate the complete source text | (CcC(C |  |
+| error | 22 | p21_s21 | The segment has no translation; translate the complete source text | lm |  |
 | error | 26 | p25_s27 | The translation "?" contains no words; translate the complete source text | ？个 | ? |
 | error | 28 | p27_s13 | The translation "+" contains no words; translate the complete source text | 增如 | + |
 | error | 29 | p28_s27 | The translation "+" contains no words; translate the complete source text | 多 | + |
@@ -36,11 +46,12 @@
 | error | 59 | p58_s23 | The translation "¥?" contains no words; translate the complete source text | ？元 | ¥? |
 | error | 89 | p88_s23 | The translation """ contains no words; translate the complete source text | 画 | " |
 
-### `formatting` — 25 errors, 4 warnings
+### `formatting` — 26 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 11 | p10_s5 | The source ends with a question mark; end the translation with a question mark too | 说一说，上面这些图案是怎样形成的？ | Talk about how the patterns above are formed. |
+| error | 14 | p13_s15 | The source does not end with a question mark; do not end the translation with one | 想一想，怎样得到它的周 | Think: how can we find its circumference? |
 | error | 30 | p29_s15 | The source ends with a question mark; end the translation with a question mark too | 7.公园的园丁新种植了480盆花，其中杜鹃花占这两种花共有多少盆？ | 7. A gardener planted 480 flowers. Azaleas: |
 | error | 30 | p29_s17 | The source does not end with a question mark; do not end the translation with one | 新种植的 | How many of both kinds in all? |
 | error | 35 | p34_s1 | The source ends with a question mark; end the translation with a question mark too | 水资源拥有量的少立方米？ | a fraction of the world average: |
@@ -80,7 +91,7 @@
 | error | 13 | p12_s11 | Glossary: translate "周长" as "perimeter" | 找3个大小不同的圆片，分别测量出周长和直径，做一做，填一填。 | Find 3 discs of different sizes, measure their circumferenc… |
 | error | 13 | p12_s12 | Glossary: translate "周长" as "perimeter" | 圆的周长 | Circumference |
 | error | 13 | p12_s14 | Glossary: translate "周长" as "perimeter" | 圆的周长除以直径的商（结果保留两位小数） | Circumference ÷ diameter (to two decimal places) |
-| error | 13 | p12_s15 | Glossary: translate "平均数" as "mean" | 测量中会有误差。可以多测量几次求平均数 | Measuring has errors. Measure a few times and take the aver… |
+| error | 13 | p12_s15 | Glossary: translate "平均数" as "mean" | 测量中会有误差。可以多测量几次求平均数 | Measurements have errors. Measure a few times and take the … |
 | error | 13 | p12_s16 | Glossary: translate "周长" as "perimeter" | 观察上表，你能发现圆的周长与直径有什么关系吗？ | Look at the table above. What relationship can you find bet… |
 | error | 13 | p12_s17 | Glossary: translate "周长" as "perimeter" | 实际上，圆的周长除以直径的商是一个固定的数，我们把它叫作圆周率，用字母元表示，计算时通常取3.14。 | In fact, the quotient of a circle's circumference divided b… |
 | error | 13 | p12_s18 | Glossary: translate "周长" as "perimeter" | 圆的周长总是直径的3倍多一些。 | The circumference is always a bit more than 3 times the dia… |
@@ -89,20 +100,20 @@
 | error | 13 | p12_s8 | Glossary: translate "周长" as "perimeter" | 圆的周长与什么有关？ | What is a circle's circumference related to? |
 | error | 13 | p12_s9 | Glossary: translate "周长" as "perimeter" | 圆的周长与直径有关 | It's related to the diameter. |
 | error | 14 | p13_s1 | Glossary: translate "周长" as "perimeter" | 你能根据圆的周长与直径之间的关系，写出圆的周长的计算方法吗？ | From the relationship between circumference and diameter, c… |
-| error | 14 | p13_s23 | Glossary: translate "周长" as "perimeter" | 圆周长直径 | C ÷ d |
-| error | 14 | p13_s23 | Glossary: translate "直径" as "diameter" | 圆周长直径 | C ÷ d |
+| error | 14 | p13_s23 | Glossary: translate "周长" as "perimeter" | 圆周长直径 | C/d |
+| error | 14 | p13_s23 | Glossary: translate "直径" as "diameter" | 圆周长直径 | C/d |
 | error | 14 | p13_s3 | Glossary: translate "已知" as "given" | 如果已知半径，怎么求呢？ | If we know the radius, how do we find it? |
 | error | 14 | p13_s4 | Glossary: translate "周长" as "perimeter" | 如果用C表示圆的周长，那么C=πd或C=2πr。 | If C stands for the circumference of a circle, then C=πd or… |
-| error | 14 | p13_s8 | Glossary: translate "周长" as "perimeter" | 我先算大圆周长的一半，再 | I first work out half the circumference of the big circle, … |
+| error | 14 | p13_s8 | Glossary: translate "周长" as "perimeter" | 我先算大圆周长的一半，再 | First I find half the big circle's circumference, then find |
 | error | 15 | p14_s6 | Glossary: translate "周长" as "perimeter" | 8.如图，在一个正方形中放置一个最大的圆。这个圆的周长是多少？ | 8. As shown, the largest possible circle is drawn inside a … |
+| error | 15 | p14_s7 | Glossary: translate "周长" as "perimeter" | 试一试，并求出整个圆的周长。 | Try it, and find the whole circle's circumference. |
 | error | 16 | p15_s3 | Glossary: translate "周长" as "perimeter" | 最早的解决方案是测量。当许多人多次测量之后，人们发现了圆的周长总是其直径的3倍多。在我国，现存有关圆周率的最早记载是2… | The earliest solution was to measure. After many people had… |
 | error | 20 | p19_s7 | Glossary: translate "周长" as "perimeter" | 量得圆形羊圈的周长是125.6m。这个羊圈的面积是多少平方米？ | A circular sheep pen has a circumference of 125.6m. What is… |
 | error | 21 | p20_s1 | Glossary: translate "周长" as "perimeter" | 2.有一圆形蓄水池。它的周长约是31.4m，它的占地面积约是多少？ | 2. There is a circular reservoir. Its circumference is abou… |
 | error | 21 | p20_s3 | Glossary: translate "三角形" as "triangle" | 3.把圆形茶杯垫片沿直径剪开，得到两个近似的三角形，再拼成平行四边形。 | 3. Cut a circular coaster along a diameter to get two nearl… |
 | error | 21 | p20_s8 | Glossary: translate "周长" as "perimeter" | 4.北京天坛公园的回音壁是闻名世界的声学奇迹，它是一道圆形围墙。圆的直径约为61.5m，周长与面积分别是多少？（结果保… | 4. The Echo Wall in Beijing's Temple of Heaven Park is a wo… |
 | error | 21 | p20_s8 | Glossary: translate "积分" as "integral" | 4.北京天坛公园的回音壁是闻名世界的声学奇迹，它是一道圆形围墙。圆的直径约为61.5m，周长与面积分别是多少？（结果保… | 4. The Echo Wall in Beijing's Temple of Heaven Park is a wo… |
-| error | 22 | p21_s3 | Glossary: translate "面积" as "area" | （2）剪去最大的圆，剩下部分的面积是 | (2) Cut off the largest circle. |
-| error | 22 | p21_s9 | Glossary: translate "周长" as "perimeter" | 周长/cm | Circumference /cm |
+| error | 22 | p21_s9 | Glossary: translate "周长" as "perimeter" | 周长/cm | circumference /cm |
 | error | 23 | p22_s23 | Glossary: translate "整数" as "integer" | （结果保留整数） | (Round the result to a whole number.) |
 | error | 29 | p28_s13 | Glossary: translate "整数" as "integer" | 整数的运算律在分数运算中同样适用。 | The laws of operations for whole numbers also apply to frac… |
 | error | 29 | p28_s18 | Glossary: translate "算一算" as "Calculate" | （2）算一算第二天的门票收入是多少元。 | (2) Work out the second day's ticket income in yuan. |
@@ -209,24 +220,20 @@
 | error | 111 | p110_s19 | Glossary: translate "统计" as "statistics" | 你认为三幅统计图分别表示的是什么？ | What do you think each of the three charts shows? |
 | error | 111 | p110_s22 | Glossary: translate "统计" as "statistics" | （3） 2010年每10万人中受教育程度为小学的人数是多少？你是从哪幅统计图中得到这个数据的？ | (3) In 2010, how many people per 100,000 had a primary scho… |
 
-### `layout_fit` — 84 errors, 16 warnings
+### `layout_fit` — 94 errors, 14 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 3 | p2_s11 | Shorten the translation to at most 80 characters so it fits the original box (the current translation of 116 characters overflows its box; the minimum allowed size is 55%) | 阿基米德是古希腊伟大的数学家和力学家，他在几何学等研究领域作出了卓越的贡献。 | Archimedes was a great mathematician and scientist of ancie… |
 | error | 3 | p2_s11 | Shorten the translation to at most 80 characters so it fits the original box (the current translation of 116 characters overflows its box; the minimum allowed size is 55%) | 阿基米德是古希腊伟大的数学家和力学家，他在几何学等研究领域作出了卓越的贡献。 | Archimedes was a great mathematician and scientist of ancie… |
-| error | 3 | p2_s6 | Shorten the translation to at most 293 characters so it fits the original box (the current translation of 392 characters overflows its box; the minimum allowed size is 55%) | 陈景润，福建人，我国著名数学家。陈景润在小时候，最喜欢数学。当老师讲课时，他集中精力认真听讲。课后布置的习题很多，可以… | Chen Jingrun, from Fujian, was a famous Chinese mathematici… |
-| error | 3 | p2_s6 | Shorten the translation to at most 293 characters so it fits the original box (the current translation of 392 characters overflows its box; the minimum allowed size is 55%) | 陈景润，福建人，我国著名数学家。陈景润在小时候，最喜欢数学。当老师讲课时，他集中精力认真听讲。课后布置的习题很多，可以… | Chen Jingrun, from Fujian, was a famous Chinese mathematici… |
-| error | 4 | p3_s3 | Shorten the translation to at most 33 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 二分数混合运算 | Unit 2 Mixed Operations with Fractions |
-| error | 4 | p3_s3 | Shorten the translation to at most 33 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 二分数混合运算 | Unit 2 Mixed Operations with Fractions |
+| error | 3 | p2_s6 | Shorten the translation to at most 278 characters so it fits the original box (the current translation of 322 characters overflows its box; the minimum allowed size is 55%) | 陈景润，福建人，我国著名数学家。陈景润在小时候，最喜欢数学。当老师讲课时，他集中精力认真听讲。课后布置的习题很多，可以… | Chen Jingrun, from Fujian, was a famous Chinese mathematici… |
+| error | 3 | p2_s6 | Shorten the translation to at most 278 characters so it fits the original box (the current translation of 322 characters overflows its box; the minimum allowed size is 55%) | 陈景润，福建人，我国著名数学家。陈景润在小时候，最喜欢数学。当老师讲课时，他集中精力认真听讲。课后布置的习题很多，可以… | Chen Jingrun, from Fujian, was a famous Chinese mathematici… |
+| error | 4 | p3_s3 | Shorten the translation to at most 27 characters so it fits the original box (the current translation of 32 characters overflows its box; the minimum allowed size is 55%) | 二分数混合运算 | Unit 2 Operations with Fractions |
+| error | 4 | p3_s3 | Shorten the translation to at most 27 characters so it fits the original box (the current translation of 32 characters overflows its box; the minimum allowed size is 55%) | 二分数混合运算 | Unit 2 Operations with Fractions |
+| error | 7 | p6_s9 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 半径直径 | Radius Diameter |
+| error | 7 | p6_s9 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 半径直径 | Radius Diameter |
 | error | 8 | p7_s15 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did You Know? |
 | error | 8 | p7_s15 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did You Know? |
-| error | 11 | p10_s0 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 23 characters overflows its box; the minimum allowed size is 55%) | 欣赏与设计 | Appreciation and Design |
-| error | 11 | p10_s0 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 23 characters overflows its box; the minimum allowed size is 55%) | 欣赏与设计 | Appreciation and Design |
-| error | 14 | p13_s16 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 长？ | circumference? |
-| error | 14 | p13_s16 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 长？ | circumference? |
-| error | 17 | p16_s2 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | ，密率为 | , the precise value is |
-| error | 17 | p16_s2 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | ，密率为 | , the precise value is |
 | error | 18 | p17_s8 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 16等分 | 16 equal parts |
 | error | 18 | p17_s8 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 16等分 | 16 equal parts |
 | error | 26 | p25_s25 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 篮球 | basketballs |
@@ -237,16 +244,26 @@
 | error | 34 | p33_s13 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | ？本 | ? books |
 | error | 34 | p33_s3 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 故事书 | Storybooks |
 | error | 34 | p33_s3 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 故事书 | Storybooks |
+| error | 35 | p34_s11 | Shorten the translation to at most 60 characters so it fits the original box (the current translation of 72 characters overflows its box; the minimum allowed size is 55%) | （2）小刚和小明的体重分别是多少千克？算一算 | (2) How many kilograms do Xiaogang and Xiaoming each weigh?… |
+| error | 35 | p34_s11 | Shorten the translation to at most 60 characters so it fits the original box (the current translation of 72 characters overflows its box; the minimum allowed size is 55%) | （2）小刚和小明的体重分别是多少千克？算一算 | (2) How many kilograms do Xiaogang and Xiaoming each weigh?… |
 | error | 35 | p34_s21 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 以碗知僧 | Monks and Bowls |
 | error | 35 | p34_s21 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 以碗知僧 | Monks and Bowls |
-| error | 44 | p43_s32 | Shorten the translation to at most 48 characters so it fits the original box (the current translation of 101 characters overflows its box; the minimum allowed size is 55%) | 的意思。 | Collect percentages you have seen in newspapers, magazines,… |
-| error | 44 | p43_s32 | Shorten the translation to at most 48 characters so it fits the original box (the current translation of 101 characters overflows its box; the minimum allowed size is 55%) | 的意思。 | Collect percentages you have seen in newspapers, magazines,… |
+| error | 43 | p42_s1 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 25 characters overflows its box; the minimum allowed size is 55%) | 百分数的认识 | Understanding Percentages |
+| error | 43 | p42_s1 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 25 characters overflows its box; the minimum allowed size is 55%) | 百分数的认识 | Understanding Percentages |
+| error | 44 | p43_s32 | Shorten the translation to at most 68 characters so it fits the original box (the current translation of 101 characters overflows its box; the minimum allowed size is 55%) | 的意思。 | Collect percentages you have seen in newspapers, magazines,… |
+| error | 44 | p43_s32 | Shorten the translation to at most 68 characters so it fits the original box (the current translation of 101 characters overflows its box; the minimum allowed size is 55%) | 的意思。 | Collect percentages you have seen in newspapers, magazines,… |
 | error | 44 | p43_s4 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 笑笑淘气奇思妙想 | Xiaoxiao Taoqi Qisi Miaoxiang |
 | error | 44 | p43_s4 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 29 characters overflows its box; the minimum allowed size is 55%) | 笑笑淘气奇思妙想 | Xiaoxiao Taoqi Qisi Miaoxiang |
+| error | 45 | p44_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 合格率 | Qualified Rate |
+| error | 45 | p44_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 合格率 | Qualified Rate |
 | error | 46 | p45_s13 | Shorten the translation to at most 28 characters so it fits the original box (the current translation of 33 characters overflows its box; the minimum allowed size is 55%) | 种类小麦稻谷黄豆绿豆 | Type Wheat Rice Soybean Mung bean |
 | error | 46 | p45_s13 | Shorten the translation to at most 28 characters so it fits the original box (the current translation of 33 characters overflows its box; the minimum allowed size is 55%) | 种类小麦稻谷黄豆绿豆 | Type Wheat Rice Soybean Mung bean |
 | error | 49 | p48_s5 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 百分数 | Percentage |
 | error | 49 | p48_s5 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 百分数 | Percentage |
+| error | 50 | p49_s0 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 这月我当家 | I'm in Charge This Month |
+| error | 50 | p49_s0 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 这月我当家 | I'm in Charge This Month |
+| error | 51 | p50_s16 | Shorten the translation to at most 38 characters so it fits the original box (the current translation of 46 characters overflows its box; the minimum allowed size is 55%) | 我们已经求出了总支出··. | We have already found the total expenditure... |
+| error | 51 | p50_s16 | Shorten the translation to at most 38 characters so it fits the original box (the current translation of 46 characters overflows its box; the minimum allowed size is 55%) | 我们已经求出了总支出··. | We have already found the total expenditure... |
 | error | 54 | p53_s10 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 212.35.0书法室 | 212.35.0 Calligraphy |
 | error | 54 | p53_s10 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 212.35.0书法室 | 212.35.0 Calligraphy |
 | error | 56 | p55_s23 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 等然平行四边形 | Equal parts → parallelogram |
@@ -271,10 +288,10 @@
 | error | 74 | p73_s32 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 逗退狗和 | Doudou the Dog and |
 | error | 74 | p73_s8 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 路程 | Distance |
 | error | 74 | p73_s8 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 路程 | Distance |
-| error | 81 | p80_s11 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 京帅汇 | Jingshuai Hui |
-| error | 81 | p80_s11 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 京帅汇 | Jingshuai Hui |
-| error | 83 | p82_s12 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did You Know? |
-| error | 83 | p82_s12 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did You Know? |
+| error | 78 | p77_s0 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 1班30人 | Class 1: 30 pupils |
+| error | 78 | p77_s0 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 1班30人 | Class 1: 30 pupils |
+| error | 78 | p77_s27 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 共有几份呢？ | How many parts in total? |
+| error | 78 | p77_s27 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 共有几份呢？ | How many parts in total? |
 | error | 89 | p88_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 比赛场次 | Number of Games |
 | error | 89 | p88_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 比赛场次 | Number of Games |
 | error | 89 | p88_s21 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 比赛人数 | Players |
@@ -285,8 +302,12 @@
 | error | 94 | p93_s10 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 原来现在 | Before Now |
 | error | 99 | p98_s22 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 二级占 | Level 2 accounts for |
 | error | 99 | p98_s22 | Shorten the translation to at most 16 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 二级占 | Level 2 accounts for |
-| error | 99 | p98_s23 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did You Know? |
-| error | 99 | p98_s23 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did You Know? |
+| error | 100 | p99_s11 | Shorten the translation to at most 61 characters so it fits the original box (the current translation of 74 characters overflows its box; the minimum allowed size is 55%) | 300元存一年，到期时有多少利息？ | If ¥300 is deposited for one year, how much interest is the… |
+| error | 100 | p99_s11 | Shorten the translation to at most 61 characters so it fits the original box (the current translation of 74 characters overflows its box; the minimum allowed size is 55%) | 300元存一年，到期时有多少利息？ | If ¥300 is deposited for one year, how much interest is the… |
+| error | 101 | p100_s4 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 少元？ | matures? |
+| error | 101 | p100_s4 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 少元？ | matures? |
+| error | 102 | p101_s23 | Shorten the translation to at most 18 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 用水160吨 | Used 160 tons of water |
+| error | 102 | p101_s23 | Shorten the translation to at most 18 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 用水160吨 | Used 160 tons of water |
 | error | 102 | p101_s25 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 光明小学 | Guangming School |
 | error | 102 | p101_s25 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 光明小学 | Guangming School |
 | error | 103 | p102_s18 | Shorten the translation to at most 31 characters so it fits the original box (the current translation of 49 characters overflows its box; the minimum allowed size is 55%) | 类别艺术教育小说少儿科技合计 | Type Art Education Fiction Children Science Total |
@@ -301,32 +322,25 @@
 | warning | 4 | p3_s0 | The translation overflows its box and was rendered at 27% of the original size; even a much shorter text would not fit, check this box in the preview | 录 | Contents |
 | warning | 4 | p3_s1 | The translation overflows its box and was rendered at 26% of the original size; even a much shorter text would not fit, check this box in the preview | 目 | Contents |
 | warning | 4 | p3_s1 | The translation overflows its box and was rendered at 26% of the original size; even a much shorter text would not fit, check this box in the preview | 目 | Contents |
-| warning | 6 | p5_s9 | The translation overflows its box and was rendered at 34% of the original size; even a much shorter text would not fit, check this box in the preview | 等 | equal |
-| warning | 6 | p5_s9 | The translation overflows its box and was rendered at 34% of the original size; even a much shorter text would not fit, check this box in the preview | 等 | equal |
 | warning | 56 | p55_s18 | The translation overflows its box and was rendered at 35% of the original size; even a much shorter text would not fit, check this box in the preview | 周长 | Circumference |
 | warning | 56 | p55_s18 | The translation overflows its box and was rendered at 35% of the original size; even a much shorter text would not fit, check this box in the preview | 周长 | Circumference |
 | warning | 56 | p55_s20 | The translation overflows its box and was rendered at 31% of the original size; even a much shorter text would not fit, check this box in the preview | 圆 | Circle |
 | warning | 56 | p55_s20 | The translation overflows its box and was rendered at 31% of the original size; even a much shorter text would not fit, check this box in the preview | 圆 | Circle |
-| warning | 56 | p55_s9 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 算 | find |
-| warning | 56 | p55_s9 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 算 | find |
+| warning | 56 | p55_s9 | The translation overflows its box and was rendered at 54% of the original size; even a much shorter text would not fit, check this box in the preview | 算 | find |
+| warning | 56 | p55_s9 | The translation overflows its box and was rendered at 54% of the original size; even a much shorter text would not fit, check this box in the preview | 算 | find |
 | warning | 60 | p59_s10 | The translation overflows its box and was rendered at 36% of the original size; even a much shorter text would not fit, check this box in the preview | 圆 | Circle |
 | warning | 60 | p59_s10 | The translation overflows its box and was rendered at 36% of the original size; even a much shorter text would not fit, check this box in the preview | 圆 | Circle |
 | warning | 107 | p106_s33 | The translation overflows its box and was rendered at 49% of the original size; even a much shorter text would not fit, check this box in the preview | 食堂 | Canteen |
 | warning | 107 | p106_s33 | The translation overflows its box and was rendered at 49% of the original size; even a much shorter text would not fit, check this box in the preview | 食堂 | Canteen |
 
-### `llm_review` — 79 errors, 148 warnings
+### `llm_review` — 74 errors, 139 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 1 | p0_s6 | Reviewer (omission): The source reads 北京师范大学出, an incomplete fragment (likely 北京师范大学出版社); the translation adds the word "Press" that is not present in the source. Suggested translation: "Beijing Normal University" | 北京师范大学出 | Beijing Normal University Press |
-| error | 3 | p2_s10 | Reviewer (untranslated): Fragment left untranslated in Chinese; it is the continuation of the previous sentence (距离…遥远了). Suggested translation: "far away." | 遥了。 | 遥了。 |
-| error | 6 | p5_s5 | Reviewer (number): The source uses "0" (letter O in the original scan likely representing point O), but mathematically the center should be denoted "O"; using "0" (zero) is misleading. Suggested translation: "Point O is the center of the circle; segment OA is a radius, usually denoted by the letter r; segment BC is a diameter, usually denoted by the letter d." | 点0是圆心；线段OA是半径，通常用字母r表示；线段BC是直径，通常用字母d表示。 | Point 0 is the center of the circle; segment OA is a radius… |
 | error | 11 | p10_s7 | Reviewer (omission): The source ends with 2个小的 (2 small ones); the translation supplies "semicircles" which is not in the source and omits the open-ended 小的. Suggested translation: "The Taiji figure has 1 large circle and 2 small ones" | 太极图中有1个大圆和2个小的 | The Taiji figure has 1 large circle and 2 small semicircles |
 | error | 12 | p11_s10 | Reviewer (meaning): In a time context (a clock face) 10分 means 10 minutes, not 10 points; 'points' changes the meaning. Suggested translation: "10 minutes" | 10分 | 10 points |
 | error | 13 | p12_s17 | Reviewer (terminology): The source says 用字母元表示, i.e. represented by the letter π. The translation says "written with the letter π", which is correct; however, the source character 元 is a typo for π and the provided rendering is fine. No issue: actually the term 圆周率 => pi is correct. | 实际上，圆的周长除以直径的商是一个固定的数，我们把它叫作圆周率，用字母元表示，计算时通常取3.14。 | In fact, the quotient of a circle's circumference divided b… |
-| error | 15 | p14_s7 | Reviewer (terminology): Same issue: a circle has a circumference, not a perimeter. Suggested translation: "Try it, and find the circumference of the whole circle." | 试一试，并求出整个圆的周长。 | Try it, and find the perimeter of the whole circle. |
-| error | 22 | p21_s21 | Reviewer (number): The unit 'lm' was changed to 'm'. Suggested translation: "lm" | lm | m |
-| error | 25 | p24_s0 | Reviewer (terminology): Glossary term 分数 should be rendered "fraction" and 混合运算 as "mixed operations"; "Mixed Operations of Fractions" is acceptable, but the standard phrasing is "Mixed Operations with Fractions" used elsewhere in the same item set (p24_s1), so consistency is broken. Suggested translation: "Unit 2 Mixed Operations with Fractions" | 二 分数混合运算 | Unit 2 Mixed Operations of Fractions |
 | error | 27 | p26_s15 | Reviewer (untranslated): The single character 爪 is an isolated label/heading (probably part of a picture label) and is left untranslated; a target-language reader cannot use it. | 爪 | 爪 |
 | error | 27 | p26_s5 | Reviewer (omission): Source ends with 其中约 followed by a fraction; translation "of which about" ends without the fraction/blank. Ensure the fraction is represented. | 4.我国约有660个城市，其中约 | 4. China has about 660 cities, of which about |
 | error | 27 | p26_s7 | Reviewer (omission): Source 中，又约有 ends mid-sentence with a fraction; translation "of them, about" ends without the fraction/blank. | 中，又约有 | of them, about |
@@ -398,16 +412,10 @@
 | error | 111 | p110_s10 | Reviewer (number): The year '2010' in the chart title was dropped in the translation, changing the data reference. Suggested translation: "Number of people per 100,000 by education level in China in 2010 ___ Distribution of the number of people per 100,000 by education level in 2010" | 高中 | Senior high |
 | error | 111 | p110_s23 | Reviewer (meaning): '篮球赛' is a basketball match/tournament, not a single game; 'game' narrows the meaning. Suggested translation: "4. The school is going to hold a sixth-grade basketball competition. The table below shows the rosters of the teams of Class 6(1) and Class 6(2)." | 4.学校要举办六年级篮球赛，下表是六（1）班和六（2）班代表队阵容。 | 4. The school is going to hold a sixth-grade basketball gam… |
 | warning | 4 | p3_s0 | Reviewer (format): The source is a single character 录 split from the heading 目录; rendering it as "Contents" duplicates the adjacent entry 目 ("Contents"). The two fragments together form "Contents". | 录 | Contents |
-| warning | 4 | p3_s3 | Reviewer (format): Source has no space between 二 and 分数混合运算 while other unit labels separate the numeral; the translation is consistent and acceptable, but "Unit 2" spacing should match the source formatting. | 二分数混合运算 | Unit 2 Mixed Operations with Fractions |
-| warning | 6 | p5_s9 | Reviewer (format): "等" is the truncated ending of the previous sentence (半径都相等), not a standalone label; it should be joined to the preceding clause as "equal." Suggested translation: "equal." | 等 | equal |
-| warning | 7 | p6_s1 | Reviewer (grammar): "Work with your deskmate" is awkward; "partner" is the natural textbook wording. Also the instruction links making the shapes and thinking about using them, which reads more clearly with a comma. Suggested translation: "Why are wheels round? Work with your partner: make the shapes below out of cardboard and think about using them instead of wheels." | 车轮为什么是圆的呢？同桌合作做一做，想一想分别用硬纸板做成下面的图形，代替车轮。 | Why are wheels round? Work with your deskmate: make the sha… |
 | warning | 9 | p8_s7 | Reviewer (format): The ellipsis is rendered as a long line of dots "·····"; standard ellipsis should be used. Suggested translation: "One, two, three..." | 一条、两条三条····· | One, two, three····· |
-| warning | 10 | p9_s3 | Reviewer (format): The bare unit label 元 after an answer blank must be written "yuan" (not translated as a currency amount); the rendering "yuan" here is acceptable, but see p9_s4 where the amount convention matters. Suggested translation: "yuan" | 元 | yuan |
 | warning | 11 | p10_s1 | Reviewer (format): Label "Pinwheel figure" should match the style of other labels (capitalized as a title or lowercase noun). Suggested translation: "Pinwheel Figure" | 风车图 | Pinwheel figure |
 | warning | 11 | p10_s2 | Reviewer (format): Label "Taiji figure" is inconsistently capitalized relative to other labels. Suggested translation: "Taiji Figure" | 太极图 | Taiji figure |
-| warning | 11 | p10_s8 | Reviewer (grammar): The source is a singular label (半圆); the plural form is acceptable for a shape label but the singular 'semicircle' matches the source's number. Suggested translation: "semicircle" | 半圆 | semicircles |
 | warning | 12 | p11_s12 | Reviewer (format): The time expression 12时10分 is a label; writing it as "12:10" is idiomatic and clear, but for a textbook label a colon-free form is common. No meaning change; optional. | 12时10分 | 12:10 |
-| warning | 12 | p11_s14 | Reviewer (grammar): "What do you find?" is slightly awkward. "What do you notice?" is more natural for the textbook register. Suggested translation: "Can you understand the meaning of the two sets of figures below? What do you notice?" | 你能看懂下面两组图的意思吗？你有什么发现？ | Can you understand the meaning of the two sets of figures b… |
 | warning | 13 | p12_s4 | Reviewer (grammar): A label in Chinese is a statement/noun phrase; "Roll the circular disc one turn to the right" is an imperative. This is acceptable but a label reading is more consistent. Suggested translation: "The circular disc rolls one turn to the right" | 圆片向右滚动一周 | Roll the circular disc one turn to the right |
 | warning | 13 | p12_s6 | Reviewer (grammar): "Wrap a string once around the circular disc" is acceptable, though the source describes winding the string around the disc; wording is natural. | 用线绕圆片一周 | Wrap a string once around the circular disc |
 | warning | 14 | p13_s19 | Reviewer (grammar): "Measure several times, and find the mean of the measurement results" is correct; 多量几次 is naturally "measure several times". No change needed. | （3）多量几次，算出测量结果的平均数。 | (3) Measure several times, and find the mean of the measure… |
@@ -415,13 +423,10 @@
 | warning | 14 | p13_s5 | Reviewer (grammar): "roll in one turn" is acceptable; the wheel rolls one full turn. No meaning change. | 自行车车轮的直径是70cm，滚一圈有多远？ | The diameter of a bicycle wheel is 70cm. How far does it ro… |
 | warning | 14 | p13_s6 | Reviewer (grammar): "the figure below" for 下面图形 is fine; however, the source says 图形的周长 (perimeter), which is correct. | 你能计算下面图形的周长吗？ | Can you calculate the perimeter of the figure below? |
 | warning | 18 | p17_s16 | Reviewer (format): Missing space around the multiplication sign; formatting of the formula should match "S = πr × r". Suggested translation: "S = πr × r" | S=πrx r | S=πr × r |
-| warning | 19 | p18_s3 | Reviewer (format): Garbled source fragment kept as is; if it is a figure label it may be intended to read something like "(C) C (C", but no change to meaning is introduced. | (CcC(C | (CcC(C |
 | warning | 20 | p19_s0 | Reviewer (format): Inconsistent with p17_s0 ("The Area of a Circle (1)"): the pair of headings should use the same wording. Suggested translation: "The Area of a Circle (2)" | 圆的面积（二） | Area of a Circle (2) |
 | warning | 21 | p20_s2 | Reviewer (format): Missing space between the number and the unit: '4cm' should be '4 cm'. Suggested translation: "1. A circular coaster has a radius of 4 cm. What is the area of this coaster in square centimeters?" | 1.一个圆形杯垫的半径是4cm，这个杯垫的面积是多少平方厘米？ | 1. A circular coaster has a radius of 4cm. What is the area… |
 | warning | 22 | p21_s16 | Reviewer (format): Missing space between the number and the unit: '10cm' should be '10 cm'. Suggested translation: "4. The minute hand of a clock is 10 cm long." | 4.某钟表的分针长10cm。 | 4. The minute hand of a clock is 10cm long. |
-| warning | 22 | p21_s9 | Reviewer (format): Inconsistent casing of the column label: 'Circumference /cm' vs the lowercase-style labels around it. Suggested translation: "circumference /cm" | 周长/cm | Circumference /cm |
 | warning | 24 | p23_s8 | Reviewer (format): The enumerator 在400m... is a question, but more importantly the source has no sentence break after "不一样"—it reads as one continuous sentence "你知道这是为什么吗？". However the standard wording keeps them together; also the translation splits the sentence and this is acceptable. No change to meaning; but the Chinese word order "运动员所在的起跑线位置" is fine. Reporting the missing 'that' clause is unnecessary. Real issue: none—keeping as format warning is wrong. Removing this finding. | 在400m比赛中，运动员所在的起跑线位置是不一样的，你知道这是为什么吗？ | In a 400m race, the starting line positions of the athletes… |
-| warning | 24 | p23_s9 | Reviewer (grammar): The phrasing "How much does the distance between the starting lines differ?" is awkward; a natural textbook wording is "What is the difference between the starting lines?" Suggested translation: "What is the difference between the starting lines? Let's investigate." | 起跑线之间的距离相差多少呢？我们去调查一下。 | How much does the distance between the starting lines diffe… |
 | warning | 25 | p24_s12 | Reviewer (format): Source ？人 is a bare unit label (question-mark amount with measure word); per conventions a bare unit label is written "yuan/people" style only for currency, but for measure words the counted noun should be dropped when no amount is given. "? people" is acceptable, but "?" alone matches the convention more closely. This is borderline; keep as warning-free unless a stricter reading is required. | ？人 | ? people |
 | warning | 25 | p24_s17 | Reviewer (format): Source =3（人）: the parenthesised measure word after an equation with no named objects should be dropped, not written as "(people)". Suggested translation: "=3" | =3（人） | =3 (people) |
 | warning | 25 | p24_s18 | Reviewer (format): Source （人） is a bare measure word after a blank/equation; it should be dropped rather than written "(people)". | （人） | (people) |
@@ -555,11 +560,10 @@
 | error | 111 | p110_s21 | Number "10" from the source is missing in the translation; keep every number exactly as written in the source | 从哪幅图可以看出每10万人中受教育程度为大学的人数的变化情况？ | From which chart can you see the changes in the number of p… |
 | error | 111 | p110_s22 | Number "10" from the source is missing in the translation; keep every number exactly as written in the source | （3） 2010年每10万人中受教育程度为小学的人数是多少？你是从哪幅统计图中得到这个数据的？ | (3) In 2010, how many people per 100,000 had a primary scho… |
 
-### `untranslated` — 2 errors, 0 warnings
+### `untranslated` — 1 error, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 3 | p2_s10 | 2 letter(s) of the source script remain untranslated ("遥了"); translate all text into English | 遥了。 | 遥了。 |
 | error | 27 | p26_s15 | 1 letter(s) of the source script remain untranslated ("爪"); translate all text into English | 爪 | 爪 |
 
 ### `image_text` — 0 errors, 108 warnings
