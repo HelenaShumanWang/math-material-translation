@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 175 errors, 79 warnings (1223.5 s); proofread: 254 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 167 errors, 77 warnings (1223.5 s); proofread: 289 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数 (zh → en, 99 page(s), 1235 translatable segment(s))
+**Document:** 数 (zh → en, 99 page(s), 1234 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,16 +18,14 @@
 - Round 2: llm_review ×323, layout_fit ×59, glossary ×15, placeholders ×7, formatting ×6, image_text ×6, untranslated ×6, completeness ×2, numbers ×2, target_script ×2
 - Round 3: llm_review ×335, layout_fit ×52, glossary ×26, image_text ×6, untranslated ×3, completeness ×2, formatting ×2, numbers ×1, placeholders ×1
 
-## Final issues (254)
+## Final issues (244)
 
-### `completeness` — 47 errors, 0 warnings
+### `completeness` — 46 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 1 | p0_s3 | The segment has no translation; translate the complete source text | 数 |  |
 | error | 4 | p3_s4 | The segment has no translation; translate the complete source text | 四 |  |
 | error | 9 | p8_s8 | The segment has no translation; translate the complete source text | 139号 |  |
-| error | 13 | p12_s5 | The segment has no translation; translate the complete source text | 并解答 |  |
 | error | 14 | p13_s14 | The segment has no translation; translate the complete source text | 连环画 |  |
 | error | 14 | p13_s15 | The segment has no translation; translate the complete source text | 连环画 |  |
 | error | 14 | p13_s16 | The segment has no translation; translate the complete source text | 连环画 |  |
@@ -38,6 +36,7 @@
 | error | 18 | p17_s3 | The segment has no translation; translate the complete source text | 有 |  |
 | error | 19 | p18_s16 | The segment has no translation; translate the complete source text | Mz |  |
 | error | 20 | p19_s13 | The segment has no translation; translate the complete source text | 只 |  |
+| error | 20 | p19_s15 | The segment has no translation; translate the complete source text | 只。 |  |
 | error | 20 | p19_s17 | The segment has no translation; translate the complete source text | 多 |  |
 | error | 20 | p19_s2 | The segment has no translation; translate the complete source text | 一十+ |  |
 | error | 24 | p23_s7 | The segment has no translation; translate the complete source text | 公安 |  |
@@ -54,6 +53,7 @@
 | error | 66 | p65_s3 | The segment has no translation; translate the complete source text | 22元 |  |
 | error | 66 | p65_s4 | The segment has no translation; translate the complete source text | 20元0//23元M6元 |  |
 | error | 67 | p66_s21 | The translation "−" contains no words; translate the complete source text | 一 | − |
+| error | 71 | p70_s6 | The segment has no translation; translate the complete source text | 在 |  |
 | error | 72 | p71_s15 | The segment has no translation; translate the complete source text | 童话世 |  |
 | error | 72 | p71_s16 | The segment has no translation; translate the complete source text | 丛林世界 |  |
 | error | 72 | p71_s27 | The segment has no translation; translate the complete source text | 登话世 |  |
@@ -68,21 +68,20 @@
 | error | 81 | p80_s28 | The segment has no translation; translate the complete source text | 童话故事 |  |
 | error | 81 | p80_s29 | The segment has no translation; translate the complete source text | 科幻放 |  |
 | error | 81 | p80_s30 | The segment has no translation; translate the complete source text | 的世界 |  |
-| error | 83 | p82_s8 | The segment has no translation; translate the complete source text | 百332.8.0十个位位位 |  |
 | error | 94 | p93_s5 | The segment has no translation; translate the complete source text | 有 |  |
 | error | 94 | p93_s7 | The translation "△," contains no words; translate the complete source text | 个△ | △, |
 
-### `formatting` — 22 errors, 4 warnings
+### `formatting` — 23 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 12 | p11_s6 | Remove the symbol(s) △: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 用48.7.0表示人，用表示椅子。 | Use 48.7.0 for people and △ for chairs. |
-| error | 14 | p13_s8 | The source does not end with a question mark; do not end the translation with one | 少几 | how many fewer? |
-| error | 17 | p16_s3 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 空中有岸上有地上有 | In the sky On the bank On the ground |
+| error | 14 | p13_s8 | The source does not end with a question mark; do not end the translation with one | 少几 | by how many? |
+| error | 17 | p16_s3 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 空中有岸上有地上有 | Sky: Bank: Ground: |
 | error | 20 | p19_s27 | The source does not end with a question mark; do not end the translation with one | 看谁说得多。 | Who can say more? |
 | error | 26 | p25_s5 | Start the translation with the list marker "·" exactly as in the source | ··九十七、九十八九十九后面是·· | 97, 98, 99, and next comes… |
 | error | 26 | p25_s6 | Start the translation with the list marker "·" exactly as in the source | ·…二十七、二十八二十九，后面是 | 27, 28, 29, and next comes… |
-| error | 27 | p26_s11 | The source does not end with a question mark; do not end the translation with one | 看谁数得快 | Who's fastest? |
+| error | 27 | p26_s11 | The source does not end with a question mark; do not end the translation with one | 看谁数得快 | Who counts fastest? |
 | error | 30 | p29_s5 | The source ends with a question mark; end the translation with a question mark too | 我抓的也就二十粒吧？ | I only grabbed about twenty. |
 | error | 32 | p31_s0 | The source does not end with a question mark; do not end the translation with one | 谁的红果多 | Who Has More? |
 | error | 41 | p40_s15 | Remove the symbol(s) □: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 图中有—个△，有个 | In the figure there are __ △ and __ □. |
@@ -91,19 +90,20 @@
 | error | 52 | p51_s15 | Keep the symbol(s) ✓ of the source in the translation, at the matching position | 柳树可能有多少棵？（画“✓”42棵81棵15棵 | How many willow trees might there be? (Tick one.) 42 81 15 |
 | error | 52 | p51_s6 | Keep the symbol(s) ✓ of the source in the translation, at the matching position | （画“✓” | (Tick one.) |
 | error | 63 | p62_s11 | The source does not end with a question mark; do not end the translation with one | 小青收集了多少个252.15.0 | How many 252.15.0 did Xiaoqing collect? |
-| error | 64 | p63_s6 | Keep the symbol(s) ○ of the source in the translation, at the matching position | （1256.7.0）○256.7.1比多5个 | (1) There are 5 more 256.7.0 than 256.7.1. |
+| error | 64 | p63_s6 | Keep the symbol(s) ○ of the source in the translation, at the matching position | （1256.7.0）○256.7.1比多5个 | (1) 5 more 256.7.0 than 256.7.1. |
 | error | 69 | p68_s7 | The source does not end with a question mark; do not end the translation with one | 在这次活动中，我的表现是： | How did I do in this activity? |
 | error | 71 | p70_s4 | Keep the symbol(s) ★ of the source in the translation, at the matching position | 数字迷宫按照从51到100的顺序走走看，遇到284.69.0★要填一个数才能通过 | Number maze. Go in order from 51 to 100. At each 284.69.0… |
 | error | 76 | p75_s32 | Start the translation with the list marker "(3）" exactly as in the source | (3）班 | Class 1 (3) |
 | error | 82 | p81_s16 | The source does not end with a question mark; do not end the translation with one | 小亮比小东少跳多少 | How many fewer skips did Xiaoliang do than Xiaodong? |
 | error | 93 | p92_s9 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 姓名成绩名次 | Name Score Rank |
+| error | 94 | p93_s3 | Remove the symbol(s) □: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 图中有个[有—个 | There are ___ and ___ □, |
 | error | 95 | p94_s0 | The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What did you learn this term? |
 | warning | 30 | p29_s4 | The source does not end with a exclamation mark; do not end the translation with one | 有五十粒 | Fifty beans! |
 | warning | 33 | p32_s13 | The source does not end with a exclamation mark; do not end the translation with one | 欢迎小于60的朋友 | Under 60? Welcome! |
 | warning | 33 | p32_s14 | The source does not end with a exclamation mark; do not end the translation with one | 欢迎大于60的朋友 | Over 60? Welcome! |
 | warning | 44 | p43_s2 | The source ends with a exclamation mark; end the translation with a exclamation mark too | 宋朝有个叫黄伯思的人发明了一种桌子，可以根据吃饭人数的不同，把桌子拼成不同的形状，比如3人拼成三角形，4人拼成四方形·… | In the Song Dynasty, a man named Huang Bosi invented a tabl… |
 
-### `glossary` — 37 errors, 0 warnings
+### `glossary` — 38 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -140,41 +140,36 @@
 | error | 83 | p82_s11 | Glossary: translate "百位" as "hundreds" | 百位十位 | H T |
 | error | 83 | p82_s12 | Glossary: translate "个位" as "ones" | 个位 | O |
 | error | 83 | p82_s7 | Glossary: translate "算一算" as "Calculate" | 拨一拨，再试着用竖式算一算 | Move the beads, then try calculating in vertical form. |
+| error | 83 | p82_s8 | Glossary: translate "个位" as "ones" | 百332.8.0十个位位位 | H 332.8.0 T O |
 | error | 83 | p82_s9 | Glossary: translate "个位" as "ones" | 百位十位个位 | H T O |
 | error | 83 | p82_s9 | Glossary: translate "十位" as "tens" | 百位十位个位 | H T O |
 | error | 83 | p82_s9 | Glossary: translate "百位" as "hundreds" | 百位十位个位 | H T O |
 | error | 84 | p83_s35 | Glossary: translate "集合" as "set" | 运动员集合 | Athletes assemble |
 
-### `layout_fit` — 36 errors, 8 warnings
+### `layout_fit` — 28 errors, 6 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 1 | p0_s4 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 学 | MATHEMATICS |
-| error | 1 | p0_s4 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 学 | MATHEMATICS |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买铅笔 | Buying Pencils |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买铅笔 | Buying Pencils |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 捉迷藏 | Hide and Seek |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 捉迷藏 | Hide and Seek |
-| error | 14 | p13_s7 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 31 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r: |
-| error | 14 | p13_s7 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 31 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r: |
-| error | 14 | p13_s8 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 少几 | how many fewer? |
-| error | 14 | p13_s8 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 少几 | how many fewer? |
+| error | 13 | p12_s5 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 并解答 | and solve it. |
+| error | 13 | p12_s5 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 并解答 | and solve it. |
+| error | 14 | p13_s7 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r |
+| error | 14 | p13_s7 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r |
+| error | 14 | p13_s8 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 少几 | by how many? |
+| error | 14 | p13_s8 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 少几 | by how many? |
 | error | 16 | p15_s2 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 64.6.l比64.6.0少64.6.1 | 64.6.1 fewer 64.6.l than 64.6.0. |
 | error | 16 | p15_s2 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 38 characters overflows its box; the minimum allowed size is 55%) | 64.6.l比64.6.0少64.6.1 | 64.6.1 fewer 64.6.l than 64.6.0. |
 | error | 20 | p19_s25 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 小兰 | Xiaolan |
 | error | 20 | p19_s25 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 小兰 | Xiaolan |
 | error | 30 | p29_s0 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数豆子 | Count Beans |
 | error | 30 | p29_s0 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数豆子 | Count Beans |
-| error | 39 | p38_s1 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 大于50 | More than 50 |
-| error | 39 | p38_s1 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 大于50 | More than 50 |
-| error | 39 | p38_s2 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 小于50 | Less than 50 |
-| error | 39 | p38_s2 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 小于50 | Less than 50 |
 | error | 58 | p57_s25 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 30瓶 | 30 bottles |
 | error | 58 | p57_s25 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 30瓶 | 30 bottles |
 | error | 75 | p74_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 摘苹果 | Picking Apples |
 | error | 75 | p74_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 摘苹果 | Picking Apples |
-| error | 79 | p78_s0 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 阅览室 | Reading Room |
-| error | 79 | p78_s0 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 阅览室 | Reading Room |
 | error | 82 | p81_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 跳绳 | Skipping |
 | error | 82 | p81_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 跳绳 | Skipping |
 | error | 82 | p81_s1 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
@@ -183,10 +178,6 @@
 | error | 82 | p81_s2 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 小亮 | Xiaoliang |
 | error | 82 | p81_s5 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 小亮 | Xiaoliang |
 | error | 82 | p81_s5 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 小亮 | Xiaoliang |
-| error | 90 | p89_s11 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 和（） | and () ones. |
-| error | 90 | p89_s11 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 和（） | and () ones. |
-| warning | 20 | p19_s15 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 只。 | crabs. |
-| warning | 20 | p19_s15 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 只。 | crabs. |
 | warning | 45 | p44_s14 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 花 | Flower |
 | warning | 45 | p44_s14 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 花 | Flower |
 | warning | 53 | p52_s23 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 减数 | Subtrahend |
@@ -194,7 +185,7 @@
 | warning | 82 | p81_s3 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 小东 | Xiaodong |
 | warning | 82 | p81_s3 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 小东 | Xiaodong |
 
-### `llm_review` — 32 errors, 55 warnings
+### `llm_review` — 31 errors, 55 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -229,7 +220,6 @@
 | error | 88 | p87_s15 | Reviewer (terminology): 'pests' for 害虫 is acceptable but 'insect pests' or 'harmful insects' is more precise in a math word problem context. Suggested translation: "I ate 61 insect pests." | 我吃了61只害虫。 | I ate 61 pests. |
 | error | 90 | p89_s9 | Reviewer (omission): The answer blanks （ ） were replaced by '()', losing the blanks. Suggested translation: "37 has ( ) tens and ( ) ones" | 37里有（）个十和（）个一 | 37 has () tens and () ones |
 | error | 91 | p90_s6 | Reviewer (omission): The source has a blank/answer box '364.6.0' with a space and the instruction 'fill in ... with < or >'; the translation keeps '364.6.0' but the item is truncated and the comparison sign is missing. Suggested translation: "6. Fill in 364.6.0 with < or >" | 6.在364.6.0里填上 | 6. Fill in 364.6.0 with |
-| error | 92 | p91_s13 | Reviewer (number): '34根' — '根' is a measure word for logs, so '34 logs' is correct. No error. | 34根 | 34 logs |
 | warning | 4 | p3_s2 | Reviewer (format): The source has no unit number here (it is the title line of Unit 2); adding "Unit 2" duplicates the number given in the preceding item. Suggested translation: "Observing Objects" | 观察物体 | Unit 2 Observing Objects |
 | warning | 4 | p3_s5 | Reviewer (format): The source has no unit number on this line; "Unit 4" duplicates the number already supplied by the preceding item. Suggested translation: "Interesting Shapes" | 有趣的图形 | Unit 4 Interesting Shapes |
 | warning | 8 | p7_s0 | Reviewer (format): Heading '捉迷藏' should be in Title Case; 'Hide and Seek' is acceptable but as a heading it is fine. No real issue. | 捉迷藏 | Hide and Seek |
@@ -290,7 +280,7 @@
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 29 | p28_s8 | Number "3" from the source is missing in the translation; keep every number exactly as written in the source | 如图是人们发现的大约3万年前的狼骨，你能看懂古人是怎么计数的吗？ | Here is a wolf bone people found that is about 30,000 years… |
+| error | 29 | p28_s8 | Number "3" from the source is missing in the translation; keep every number exactly as written in the source | 如图是人们发现的大约3万年前的狼骨，你能看懂古人是怎么计数的吗？ | People found this wolf bone. It is about 30,000 years old. … |
 
 ### `image_text` — 0 errors, 12 warnings
 
