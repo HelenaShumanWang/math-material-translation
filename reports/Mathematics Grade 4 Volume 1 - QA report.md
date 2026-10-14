@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 289 errors, 190 warnings (2309.3 s); proofread: 822 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 286 errors, 182 warnings (2309.3 s); proofread: 118 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 115 page(s), 1885 translatable segment(s))
+**Document:** 数学 (zh → en, 115 page(s), 1892 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,24 +18,40 @@
 - Round 2: llm_review ×520, layout_fit ×106, glossary ×10, numbers ×7, length_ratio ×6, untranslated ×5, formatting ×4, target_script ×4, image_text ×2, placeholders ×1
 - Round 3: llm_review ×553, layout_fit ×98, untranslated ×15, glossary ×8, numbers ×7, formatting ×5, length_ratio ×4, image_text ×2, placeholders ×2, target_script ×1
 
-## Final issues (479)
+## Final issues (468)
 
-### `completeness` — 5 errors, 0 warnings
+### `completeness` — 20 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 4 | p3_s2 | The translation "=" contains no words; translate the complete source text | 二 | = |
-| error | 16 | p15_s12 | The translation "=" contains no words; translate the complete source text | 二 | = |
-| error | 16 | p15_s13 | The translation "≡" contains no words; translate the complete source text | 三 | ≡ |
+| error | 4 | p3_s3 | The segment has no translation; translate the complete source text | 线与角 |  |
+| error | 7 | p6_s4 | The segment has no translation; translate the complete source text | 十万 |  |
+| error | 7 | p6_s6 | The segment has no translation; translate the complete source text | 十万 |  |
+| error | 8 | p7_s34 | The segment has no translation; translate the complete source text | 每单十 |  |
+| error | 8 | p7_s41 | The segment has no translation; translate the complete source text | 万 |  |
+| error | 8 | p7_s42 | The segment has no translation; translate the complete source text | 万 |  |
+| error | 8 | p7_s44 | The segment has no translation; translate the complete source text | 位 |  |
+| error | 8 | p7_s46 | The segment has no translation; translate the complete source text | 位位位位位位位位 |  |
+| error | 8 | p7_s49 | The segment has no translation; translate the complete source text | 十 |  |
+| error | 10 | p9_s28 | The segment has no translation; translate the complete source text | 级 |  |
+| error | 12 | p11_s15 | The segment has no translation; translate the complete source text | 广注 |  |
+| error | 12 | p11_s24 | The segment has no translation; translate the complete source text | 44.28.0自治区 |  |
+| error | 12 | p11_s8 | The segment has no translation; translate the complete source text | 北豪山西河庆津青海：约720000陕西河南 |  |
+| error | 13 | p12_s28 | The segment has no translation; translate the complete source text | 983000·.1000万 |  |
+| error | 14 | p13_s11 | The segment has no translation; translate the complete source text | 18000=2万 |  |
+| error | 16 | p15_s12 | The segment has no translation; translate the complete source text | 二 |  |
+| error | 16 | p15_s13 | The segment has no translation; translate the complete source text | 三 |  |
+| error | 16 | p15_s14 | The segment has no translation; translate the complete source text | 一IT |  |
 | error | 67 | p66_s26 | The translation "..." contains no words; translate the complete source text | 组·· | ... |
 | error | 67 | p66_s27 | The translation "..." contains no words; translate the complete source text | 排···· | ... |
 
-### `formatting` — 18 errors, 4 warnings
+### `formatting` — 19 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 7 | p6_s1 | The source ends with a question mark; end the translation with a question mark too | 1.说一说，一共有多少个？ | 1. Talk about how many there are in total. |
+| error | 7 | p6_s1 | The source ends with a question mark; end the translation with a question mark too | 1.说一说，一共有多少个？ | 1. Say how many small cubes there are in total. |
 | error | 10 | p9_s21 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 个级万千百十个 | Ones TTh Th H T O |
+| error | 12 | p11_s40 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 新疆维吾尔自治区的面积大约是：16644.53.00000平方千米=166万平方千米我国的人口总数大约是：人=14… | The area of the Xinjiang Uygur Autonomous Region is about: … |
 | error | 14 | p13_s13 | The source ends with a question mark; end the translation with a question mark too | 参加国庆阅兵的精确人数是233482人，在下图中找到这个数的大致位置，说一说，“约20万人”这个数是怎样得到的？ | The exact number of people taking part in the National Day … |
 | error | 16 | p15_s11 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 中国算筹数码纵式！横式一 | Rod numerals vertical horizontal |
 | error | 18 | p17_s3 | "(items)" is not a translation of a measure word: write the plural noun of the counted thing ((apples), (chicks), (sticks)) or, when the exercise does not name it, drop the parentheses | 中国国家图书馆建筑面积约为二十五万平方米。截至2012年底，馆藏文献已达三千一百一十九万册（件），居世界国家图书馆第五位 | The National Library of China covers about two hundred and … |
@@ -53,7 +69,7 @@
 | error | 108 | p107_s10 | The source ends with a question mark; end the translation with a question mark too | （2）下午她们又到位置是是什么地方吗？ | (2) In the afternoon, they went to play at the attraction at |
 | error | 108 | p107_s11 | The source does not end with a question mark; do not end the translation with one | （9，9）的景点去玩。你知道妙想去的 | (9, 9). Do you know where Miaoxiang went? |
 | warning | 3 | p2_s10 | The source does not end with a exclamation mark; do not end the translation with one | 样的 | The same! |
-| warning | 3 | p2_s5 | The source does not end with a exclamation mark; do not end the translation with one | 喂？3个“3468 | Hey? 3 "3468"s! |
+| warning | 3 | p2_s5 | The source does not end with a exclamation mark; do not end the translation with one | 喂？3个“3468 | Hey, 3 "3468"s! |
 | warning | 50 | p49_s9 | The source does not end with a exclamation mark; do not end the translation with one | 我想好了 | I've got one! |
 | warning | 91 | p90_s14 | The source ends with a exclamation mark; end the translation with a exclamation mark too | （2）如果笑笑现在在超市，说明她从家向一以表示为米360.26.0。！ | (2) If Xiaoxiao is now at the supermarket, she has gone ___… |
 
@@ -106,22 +122,22 @@
 | error | 104 | p103_s15 | Glossary: translate "锐角" as "acute angle" | 用量角器量角时先看是锐角还是钝角，再决定是看内圈刻度还是··· | When measuring an angle with a protractor, first see whethe… |
 | error | 104 | p103_s22 | Glossary: translate "面积" as "area" | 在飞镖游戏中，把得5分的靶心的面积加大，得最高分的可能性就大了。 | In the dart game, if the 5-point bull's-eye is made bigger,… |
 
-### `layout_fit` — 90 errors, 58 warnings
+### `layout_fit` — 96 errors, 64 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 4 | p3_s3 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 线与角 | Lines and Angles |
-| error | 4 | p3_s3 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 线与角 | Lines and Angles |
-| error | 8 | p7_s34 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 每单十 | Each unit has ten |
-| error | 8 | p7_s34 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 每单十 | Each unit has ten |
+| error | 4 | p3_s2 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 23 characters overflows its box; the minimum allowed size is 55%) | 二 | Unit 2 Lines and Angles |
+| error | 4 | p3_s2 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 23 characters overflows its box; the minimum allowed size is 55%) | 二 | Unit 2 Lines and Angles |
+| error | 4 | p3_s8 | Shorten the translation to at most 22 characters so it fits the original box (the current translation of 26 characters overflows its box; the minimum allowed size is 55%) | 平角周角 | straight angle, full angle |
+| error | 4 | p3_s8 | Shorten the translation to at most 22 characters so it fits the original box (the current translation of 26 characters overflows its box; the minimum allowed size is 55%) | 平角周角 | straight angle, full angle |
 | error | 8 | p7_s43 | Shorten the translation to at most 22 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 十、百、千” | tens, hundreds, thousands". |
 | error | 8 | p7_s43 | Shorten the translation to at most 22 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 十、百、千” | tens, hundreds, thousands". |
+| error | 8 | p7_s45r1 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 位 | place place |
+| error | 8 | p7_s45r1 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 位 | place place |
 | error | 10 | p9_s12 | Shorten the translation to at most 29 characters so it fits the original box (the current translation of 35 characters overflows its box; the minimum allowed size is 55%) | 亿级：万级：个级 | Hundred millions Ten thousands Ones |
 | error | 10 | p9_s12 | Shorten the translation to at most 29 characters so it fits the original box (the current translation of 35 characters overflows its box; the minimum allowed size is 55%) | 亿级：万级：个级 | Hundred millions Ten thousands Ones |
-| error | 10 | p9_s13 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 千万5 | ten millions 5 |
-| error | 10 | p9_s13 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 千万5 | ten millions 5 |
-| error | 10 | p9_s8 | Shorten the translation to at most 27 characters so it fits the original box (the current translation of 63 characters overflows its box; the minimum allowed size is 55%) | 二千一百二十三、 | one hundred and sixty-two thousand one hundred and twenty-t… |
-| error | 10 | p9_s8 | Shorten the translation to at most 27 characters so it fits the original box (the current translation of 63 characters overflows its box; the minimum allowed size is 55%) | 二千一百二十三、 | one hundred and sixty-two thousand one hundred and twenty-t… |
+| error | 10 | p9_s8 | Shorten the translation to at most 30 characters so it fits the original box (the current translation of 63 characters overflows its box; the minimum allowed size is 55%) | 二千一百二十三、 | one hundred and sixty-two thousand one hundred and twenty-t… |
+| error | 10 | p9_s8 | Shorten the translation to at most 30 characters so it fits the original box (the current translation of 63 characters overflows its box; the minimum allowed size is 55%) | 二千一百二十三、 | one hundred and sixty-two thousand one hundred and twenty-t… |
 | error | 12 | p11_s23 | Shorten the translation to at most 39 characters so it fits the original box (the current translation of 46 characters overflows its box; the minimum allowed size is 55%) | 广西壮族广东澳门香港 | Guangxi Zhuang AR, Guangdong, Macao, Hong Kong |
 | error | 12 | p11_s23 | Shorten the translation to at most 39 characters so it fits the original box (the current translation of 46 characters overflows its box; the minimum allowed size is 55%) | 广西壮族广东澳门香港 | Guangxi Zhuang AR, Guangdong, Macao, Hong Kong |
 | error | 12 | p11_s4 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 黑龙江 | Heilongjiang |
@@ -178,6 +194,8 @@
 | error | 76 | p75_s7 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 184人 | 184 people |
 | error | 76 | p75_s8 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 230人 | 230 people |
 | error | 76 | p75_s8 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 230人 | 230 people |
+| error | 77 | p76_s16 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 每箱18千克 | 18 kg a box |
+| error | 77 | p76_s16 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 每箱18千克 | 18 kg a box |
 | error | 77 | p76_s17 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 每箱12千克 | 12 kg a box |
 | error | 77 | p76_s17 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 每箱12千克 | 12 kg a box |
 | error | 80 | p79_s16 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 笑笑 | Xiaoxiao |
@@ -192,20 +210,32 @@
 | error | 91 | p90_s17 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 笑笑 | Xiaoxiao |
 | error | 91 | p90_s20 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 妙想 | Miaoxiang |
 | error | 91 | p90_s20 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 妙想 | Miaoxiang |
+| error | 92 | p91_s5 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 试一试。 | and try it out. |
+| error | 92 | p91_s5 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 试一试。 | and try it out. |
 | error | 95 | p94_s21 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 出生月 | Month of birth |
 | error | 95 | p94_s21 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 出生月 | Month of birth |
 | error | 103 | p102_s27 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 自然数 | Natural numbers |
 | error | 103 | p102_s27 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 自然数 | Natural numbers |
+| error | 103 | p102_s29 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 数 | Numbers |
+| error | 103 | p102_s29 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 数 | Numbers |
 | error | 104 | p103_s5 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 小猴家 | Monkey's home |
 | error | 104 | p103_s5 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 小猴家 | Monkey's home |
 | error | 108 | p107_s29 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 妙想家 | Miaoxiang's House |
 | error | 108 | p107_s29 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 妙想家 | Miaoxiang's House |
-| warning | 6 | p5_s13 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TTh |
-| warning | 6 | p5_s13 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TTh |
-| warning | 8 | p7_s39 | The translation overflows its box and was rendered at 34% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | HM |
-| warning | 8 | p7_s39 | The translation overflows its box and was rendered at 34% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | HM |
-| warning | 8 | p7_s44 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 位 | place |
-| warning | 8 | p7_s44 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 位 | place |
+| warning | 6 | p5_s13 | The translation overflows its box and was rendered at 31% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | HTh |
+| warning | 6 | p5_s13 | The translation overflows its box and was rendered at 31% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | HTh |
+| warning | 8 | p7_s51 | The translation overflows its box and was rendered at 42% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | B HM |
+| warning | 8 | p7_s51 | The translation overflows its box and was rendered at 42% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | B HM |
+| warning | 8 | p7_s51r1 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | HM |
+| warning | 8 | p7_s51r1 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | HM |
+| warning | 10 | p9_s13 | The translation overflows its box and was rendered at 52% of the original size; even a much shorter text would not fit, check this box in the preview | 千万5 | TM 5 |
+| warning | 10 | p9_s13 | The translation overflows its box and was rendered at 52% of the original size; even a much shorter text would not fit, check this box in the preview | 千万5 | TM 5 |
+| warning | 10 | p9_s22 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TM M HTh |
+| warning | 10 | p9_s22 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TM M HTh |
+| warning | 10 | p9_s22r1 | The translation overflows its box and was rendered at 42% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TM M HTh |
+| warning | 10 | p9_s22r1 | The translation overflows its box and was rendered at 42% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TM M HTh |
+| warning | 10 | p9_s22r2 | The translation overflows its box and was rendered at 39% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TM M HTh |
+| warning | 10 | p9_s22r2 | The translation overflows its box and was rendered at 39% of the original size; even a much shorter text would not fit, check this box in the preview | 万 | TM M HTh |
 | warning | 12 | p11_s14 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 上海 | Shanghai |
 | warning | 12 | p11_s14 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 上海 | Shanghai |
 | warning | 12 | p11_s17 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 贵州 | Guizhou |
@@ -226,8 +256,8 @@
 | warning | 46 | p45_s23 | The translation overflows its box and was rendered at 24% of the original size; even a much shorter text would not fit, check this box in the preview | 垂直 | Perpendicular |
 | warning | 46 | p45_s8 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | HM |
 | warning | 46 | p45_s8 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 亿 | HM |
-| warning | 49 | p48_s12 | The translation overflows its box and was rendered at 38% of the original size; even a much shorter text would not fit, check this box in the preview | 江 | jiang |
-| warning | 49 | p48_s12 | The translation overflows its box and was rendered at 38% of the original size; even a much shorter text would not fit, check this box in the preview | 江 | jiang |
+| warning | 49 | p48_s12 | The translation overflows its box and was rendered at 40% of the original size; even a much shorter text would not fit, check this box in the preview | 江 | jiang |
+| warning | 49 | p48_s12 | The translation overflows its box and was rendered at 40% of the original size; even a much shorter text would not fit, check this box in the preview | 江 | jiang |
 | warning | 57 | p56_s6 | The translation overflows its box and was rendered at 25% of the original size; even a much shorter text would not fit, check this box in the preview | 梨 | Pears |
 | warning | 57 | p56_s6 | The translation overflows its box and was rendered at 25% of the original size; even a much shorter text would not fit, check this box in the preview | 梨 | Pears |
 | warning | 65 | p64_s8 | The translation overflows its box and was rendered at 16% of the original size; even a much shorter text would not fit, check this box in the preview | 250米 | 250 m |
@@ -248,18 +278,16 @@
 | warning | 85 | p84_s16 | The translation overflows its box and was rendered at 48% of the original size; even a much shorter text would not fit, check this box in the preview | 米 | Rice |
 | warning | 88 | p87_s1 | The translation overflows its box and was rendered at 36% of the original size; even a much shorter text would not fit, check this box in the preview | 温度 | Temperature |
 | warning | 88 | p87_s1 | The translation overflows its box and was rendered at 36% of the original size; even a much shorter text would not fit, check this box in the preview | 温度 | Temperature |
-| warning | 98 | p97_s2 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 站 | Stop |
-| warning | 98 | p97_s2 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 站 | Stop |
+| warning | 98 | p97_s2 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 站 | Stop |
+| warning | 98 | p97_s2 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 站 | Stop |
 | warning | 98 | p97_s4 | The translation overflows its box and was rendered at 39% of the original size; even a much shorter text would not fit, check this box in the preview | 站 | Stop |
 | warning | 98 | p97_s4 | The translation overflows its box and was rendered at 39% of the original size; even a much shorter text would not fit, check this box in the preview | 站 | Stop |
 | warning | 103 | p102_s24 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 整数 | integers |
 | warning | 103 | p102_s24 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 整数 | integers |
-| warning | 103 | p102_s29 | The translation overflows its box and was rendered at 21% of the original size; even a much shorter text would not fit, check this box in the preview | 数 | Numbers |
-| warning | 103 | p102_s29 | The translation overflows its box and was rendered at 21% of the original size; even a much shorter text would not fit, check this box in the preview | 数 | Numbers |
 | warning | 104 | p103_s8 | The translation overflows its box and was rendered at 24% of the original size; even a much shorter text would not fit, check this box in the preview | 400米 | 400 m |
 | warning | 104 | p103_s8 | The translation overflows its box and was rendered at 24% of the original size; even a much shorter text would not fit, check this box in the preview | 400米 | 400 m |
 
-### `llm_review` — 104 errors, 120 warnings
+### `llm_review` — 80 errors, 107 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -276,46 +304,22 @@
 | error | 7 | p6_s9 | Reviewer (omission): The source uses half-width blank parentheses ( ) matching the answer blanks; the translation keeps ( ) which is fine, but the first blank 5个（） loses its measure-word blank structure: 5个（ ） means "5 ( )". The translation "5 ( )" is acceptable. However, 百位上的"5"表示（）个（） becomes "the '5' in the hundreds place means ( ) ( )", dropping the 个 measure word on both blanks; the source has （）个（）, i.e. "( ) (of the) ( )". The blanks must keep the pattern ( ) ( ). Suggested translation: "The "5" in the ones place means 5 ( ), the "5" in the hundreds place means ( ) ( ), and the "5" in the ten-thousands place means ( ) ( )." | 个位上的“5”表示5个（），百位上的“5”表示（）个（)，万位上的“5”表示（）个（）。 | The "5" in the ones place means 5 ( ), the "5" in the hundr… |
 | error | 8 | p7_s2 | Reviewer (number): 十二万 = 120,000; the translation "one hundred and twenty thousand" is correct but should follow the number style used elsewhere. | 人大约有十二万根头发。 | A person has about one hundred and twenty thousand hairs. |
 | error | 8 | p7_s24 | Reviewer (omission): The source fragment ）倍 is just the closing parenthesis and 倍, an answer blank ending; the translation ") times" drops the opening blank structure that should match ( ) times. The fragment should preserve the blank: "（ ) times" or at least keep the source's punctuation exactly as ") times". Since the source has only ）倍, the translation ") times" is faithful. | ）倍 | ) times |
-| error | 8 | p7_s30 | Reviewer (terminology): "Place-value class" is not a standard term; the standard English term for 数级 in place-value charts is "group". Suggested translation: "Group" | 数级 | Place-value class |
-| error | 8 | p7_s32 | Reviewer (terminology): Inconsistent with the standard grouping terminology: 万级 means the ten-thousands group, not "class". Suggested translation: "Ten-thousands group" | 万级 | Ten-thousands class |
-| error | 8 | p7_s33 | Reviewer (terminology): Inconsistent with the standard grouping terminology: 个级 means the ones group, not "class". Suggested translation: "Ones group" | 个级 | Ones class |
 | error | 8 | p7_s36 | Reviewer (terminology): "Place" alone is vague; the standard term is "place value" (or "place"). Suggested translation: "Place value" | 数位 | Place |
 | error | 8 | p7_s4 | Reviewer (number): 六十九亿 = 6,900,000,000 (six billion nine hundred million). The translation "six billion nine hundred million" is correct numerically, but style should use digits: 6,900,000,000. Suggested translation: "According to the 2010 population statistics, the total world population is about 6.9 billion." | 据2010年人口统计世界人口总数约六十九亿。 | According to the 2010 population statistics, the total worl… |
-| error | 8 | p7_s42 | Reviewer (terminology): 万 as a column label is "TTh" only in a place-value chart, but as a counting unit it is "ten thousand"; the label here is fine, but note the same character is elsewhere translated "ten thousands". | 万 | TTh |
-| error | 8 | p7_s44 | Reviewer (terminology): 位 alone as a label should be "place value" rather than the bare word "place" used elsewhere inconsistently. Suggested translation: "place value" | 位 | place |
-| error | 8 | p7_s45 | Reviewer (terminology): 位位 is two stacked place labels; "place place" is acceptable but should match the wording used for 位 ("place value"). Suggested translation: "place value place value" | 位位 | place place |
-| error | 8 | p7_s46 | Reviewer (terminology): 位位位位位位位位 is eight stacked place labels; consistency with the 位 rendering ("place value") is preferable. Suggested translation: "place value place value place value place value place value place value place value place value" | 位位位位位位位位 | place place place place place place place place |
-| error | 8 | p7_s6 | Reviewer (terminology): 满十进1 is the standard phrase "carry one when the count reaches ten"; the translation "Carry 1 when reaching ten" is acceptable but "1" should match the source's numeral "1". Fine. | 满十进1 | Carry 1 when reaching ten |
-| error | 9 | p8_s14 | Reviewer (omission): The sentence "一亿" at the end is cut off in the translation ("One hundred") and the final 粒呢 is missing; the full question asks about one hundred million grains too. Suggested translation: "2. Look and talk: about how many grains of rice are one million? Ten million? One hundred million grains?" | 2.看一看，说一说，一百万粒大米大约有多少？一千万粒呢？一亿 | 2. Look and talk: about how many grains of rice are one mil… |
 | error | 9 | p8_s30 | Reviewer (terminology): 十万 means hundred thousand, but the translation gives "HTh", which is the abbreviation for hundred thousand only in a place-value chart; as a counting unit it should be "hundred thousand". Suggested translation: "hundred thousand" | 十万 | HTh |
-| error | 10 | p9_s13 | Reviewer (terminology): 千万5 should be 'ten-millions 5' (or 'TTh 5' if abbreviation is used, but the source uses full Chinese words). The translation 'ten millions 5' is missing a hyphen; standard is 'ten-millions'. Suggested translation: "ten-millions 5" | 千万5 | ten millions 5 |
 | error | 10 | p9_s15 | Reviewer (terminology): 十万 is 'hundred thousands' or abbreviation 'HTh'. The translation uses 'HTh' which is correct abbreviation, but the source uses full Chinese word. Inconsistency: other labels use full English words. Better to use 'hundred thousands'. Suggested translation: "hundred thousands" | 十万 | HTh |
 | error | 10 | p9_s16 | Reviewer (terminology): 万千百 is 'TTh Th H' but the source uses full Chinese characters 万, 千, 百. The translation uses abbreviations, which is acceptable for column labels per guidelines, but should be consistent. This is fine. | 万千百 | TTh Th H |
 | error | 11 | p10_s11 | Reviewer (number): The Chinese 九千六百七十二万 is 96,720,000. The translation 'ninety-six million seven hundred twenty thousand' is correct, but should be digits for consistency. However, the exercise may practise reading numbers, so words are fine. Suggested translation: "96,720,000" | 九千六百七十二万 | ninety-six million seven hundred twenty thousand |
 | error | 11 | p10_s12 | Reviewer (number): The Chinese 六千零八十万零七十 is 60,800,070. The translation 'sixty million eight hundred thousand and seventy' is incorrect: 六千零八十万 = 60,800,000; 零七十 = 70; total 60,800,070. The translation says 'sixty million eight hundred thousand and seventy' which is 60,800,070, but the phrasing is awkward. Should be 'sixty million eight hundred thousand and seventy' is acceptable but better as digits: 60,800,070. Suggested translation: "60,800,070" | 六千零八十万零七十 | sixty million eight hundred thousand and seventy |
-| error | 11 | p10_s13 | Reviewer (number): 一百二十亿零八十 is 12,000,000,080. The translation is correct as digits, but the source uses Chinese words. For consistency, digits are fine. Suggested translation: "12,000,000,080" | 一百二十亿零八十 | 12,000,000,080 |
 | error | 11 | p10_s4 | Reviewer (number): 61110000 should be 61,110,000 with commas for readability. Suggested translation: "61,110,000 people." | 61110000 人。 | 61110000 people. |
 | error | 12 | p11_s23 | Reviewer (omission): The source lists 广西壮族自治区 (Guangxi Zhuang Autonomous Region) in full; the translation uses the invented abbreviation "AR" and drops 自治区. Abbreviations must not be invented. Suggested translation: "Guangxi Zhuang Autonomous Region, Guangdong, Macao, Hong Kong" | 广西壮族广东澳门香港 | Guangxi Zhuang AR, Guangdong, Macao, Hong Kong |
-| error | 12 | p11_s24 | Reviewer (omission): "自治区" (Autonomous Region) is omitted and replaced by the invented abbreviation "AR". Suggested translation: "⟦0⟧ Autonomous Region" | 44.28.0自治区 | 44.28.0 AR |
 | error | 12 | p11_s38 | Reviewer (terminology): Quotation marks around "ten thousand" and "hundred million" are fine; no issue. | 把下面各数改写成以“万”或“亿”为单位的数。 | Rewrite each of the following numbers in units of "ten thou… |
 | error | 13 | p12_s2 | Reviewer (number): "960万" means 9.6 million; "960 ten thousand" is not a valid number expression in English. Suggested translation: "9.6 million" | 960万 | 960 ten thousand |
-| error | 13 | p12_s23 | Reviewer (terminology): "投资/元" with 元 as a bare unit label should be written "yuan", not "¥". Suggested translation: "Investment/yuan" | 投资/元 | Investment/¥ |
-| error | 13 | p12_s26 | Reviewer (number): "72万" means 720000/0.72 million; the translation drops the 万, giving just 72. Suggested translation: "720000" | 72万 | 72 |
-| error | 13 | p12_s28 | Reviewer (number): The unit 万 is dropped: "983000·.1000万" becomes "983000·.1000". Suggested translation: "983000·.1000万" | 983000·.1000万 | 983000·.1000 |
-| error | 13 | p12_s3 | Reviewer (number): "850万" means 8.5 million, not "850 million". Suggested translation: "8.5 million" | 850万 | 850 million |
-| error | 13 | p12_s4 | Reviewer (number): "1000万" means 10 million, not "1000 million". Suggested translation: "10 million" | 1000万 | 1000 million |
-| error | 13 | p12_s5 | Reviewer (number): "790万" means 7.9 million, not "790 million". Suggested translation: "7.9 million" | 790万 | 790 million |
-| error | 13 | p12_s6 | Reviewer (number): "800万" means 8 million, not "800 million". Suggested translation: "8 million" | 800万 | 800 million |
-| error | 13 | p12_s7 | Reviewer (number): "900万" means 9 million, not "900 million". Suggested translation: "9 million" | 900万 | 900 million |
-| error | 17 | p16_s3 | Reviewer (number): The source lists three place values (hundred thousands, ten thousands, hundreds) and uses the plural '5个珠子' (5 beads) for each, but the translation omits 'ten thousands'... Actually the translation does include all three places, but it changes 5个珠子 (5 beads) into the singular '5 beads'? No: it says '5 beads', which is fine. The real issue: 'the ten thousands place' vs 'the tens' glossary? The glossary maps 万位 to 'ten thousands place', but also provides 十位 => 'tens'. Wait, 万位 is 'ten thousands place', 百位 is 'hundreds place'. The translation says 'ten thousands place' and 'hundreds place' - fine. However, the source says '十万位' (hundred thousands place) - the translation says 'hundred thousands place' - fine. So no error here? Let me re-check: source '十万位、万位、百位上的5个珠子' - translation '5 beads in the hundred thousands place, the ten thousands place and the hundreds place' - correct. No finding needed. Maybe drop this finding. Suggested translation: "3. How do the meanings of the 5 beads in the hundred thousands place, the ten thousands place and the hundreds place differ?" | 3.十万位、万位、百位上的5个珠子表示的意义有什么不同？ | 3. How do the meanings of 5 beads in the hundred thousands … |
-| error | 17 | p16_s6 | Reviewer (terminology): 'TTh' as a standalone label for 万 may be unclear; 'Ten Thousands' is clearer. Suggested translation: "Ten Thousands" | 万 | TTh |
 | error | 17 | p16_s7 | Reviewer (terminology): The abbreviation 'TTh' for 万 (ten thousands) may be unclear in a label '5个万' (5 ten-thousands); a clearer rendering is '5 ten-thousands'. Suggested translation: "5 ten-thousands" | 5个万 | 5 TTh |
-| error | 17 | p16_s9 | Reviewer (terminology): 'HTTh' is not a standard abbreviation; 十万 (hundred thousands) should be rendered as 'HTh' or in words. Suggested translation: "5 hundred-thousands" | 5个十万 | 5 HTTh |
 | error | 18 | p17_s6 | Reviewer (number): The number is 七十万零六; the translation 'seven hundred thousand and six' is missing 'ten thousand' and misstates the place value (should be seven hundred ten thousand and six / 710006). Suggested translation: "seven hundred ten thousand and six" | 七十万零六 | seven hundred thousand and six |
 | error | 18 | p17_s7 | Reviewer (number): The number is 四百万八千零九十 = 4080090, but the translation reads 'four million eight thousand and ninety', which is 4008090 and changes the value. Suggested translation: "four million eighty thousand and ninety" | 四百万八千零九十 | four million eight thousand and ninety |
 | error | 19 | p18_s11 | Reviewer (omission): The source ends with 得到的 and expects completion; the translation omits the object of 'rounded to', leaving the sentence incomplete ('rounded.'). Suggested translation: "7. Say to which place each of the following approximate numbers was rounded." | 7.说一说下列近似数分别是四舍五入到哪一位得到的 | 7. Say to which place each of the following approximate num… |
 | error | 20 | p19_s3 | Reviewer (terminology): "认一认" corresponds to the glossary-style instruction "Recognize", but "说一说" is rendered "Discuss"; elsewhere 说一说 is rendered "Discuss", so this is consistent, though "Recognize and Discuss" loses the imperative list feel of the source. | 认一认，说一说 | Recognize and Discuss |
-| error | 20 | p19_s9 | Reviewer (number): The source contains an enumerator (1) at the start of the first clause, which is dropped in the translation. Suggested translation: "(1) A line segment has two endpoints. A line segment has a definite length" | 线段有两个端点。线段有一定的长度 | A line segment has two endpoints. A line segment has a defi… |
 | error | 24 | p23_s0 | Reviewer (terminology): 平移 as a geometric transformation is "translation"; the heading should read "Translation and Parallel Lines", which is already used, but 平行 here means parallel lines, so keep "Parallel Lines". No change needed to term; however heading should be Title Case consistently. Suggested translation: "Translation and Parallel Lines" | 平移与平行 | Translation and Parallel Lines |
 | error | 26 | p25_s11 | Reviewer (meaning): 周角 is a full angle (360°), not a reflex angle; 'reflex angle' is wrong and misleading. Suggested translation: "This is a full angle" | 这是周角 | This is a reflex angle |
 | error | 26 | p25_s12 | Reviewer (meaning): A straight angle (180°) is larger than an obtuse angle, but the Chinese term 平角 vs 钝角 comparison is correct; however the statement as rendered is acceptable. Actually the source comparison is fine—no error. Suggested translation: "A straight angle is larger than an obtuse angle" | 平角比钝角大 | A straight angle is larger than an obtuse angle |
@@ -369,41 +373,28 @@
 | error | 107 | p106_s0 | Reviewer (terminology): "Shapes and Geometry" is a reasonable rendering of 图形与几何; however, standard textbook section titles use "Figures and Geometry" or "Shape and Geometry". Wording preference only. Suggested translation: "Figures and Geometry" | 图形与几何 | Shapes and Geometry |
 | warning | 4 | p3_s5 | Reviewer (format): Items in a list should keep consistent capitalization; "Acute angle, right angle, obtuse angle" lowercases terms that function as headers. Suggested translation: "Acute Angle, Right Angle, Obtuse Angle" | 锐角直角钝角 | Acute angle, right angle, obtuse angle |
 | warning | 5 | p4_s2 | Reviewer (format): "五方向与位置" is a unit heading beginning with a bare numeral; should be "Unit 5 Direction and Position" — the translation is correct. | 五方向与位置 | Unit 5 Direction and Position |
-| warning | 6 | p5_s13 | Reviewer (format): The source 万 is the ten-thousands place; on its own label the standard abbreviation is "TTh", but consistency with the other five-column labels in this set (which should be Th H T O) should be checked. | 万 | TTh |
 | warning | 6 | p5_s18 | Reviewer (grammar): "Count by ones" is awkward; the standard phrase is "Count by ones" or "Count one by one". Suggested translation: "Count one by one" | 个一个地数 | Count by ones |
-| warning | 6 | p5_s28 | Reviewer (format): Chinese number words in a reading/thinking context: 一万/十万 are rendered as words here (acceptable), but keep consistency with p7 items where numbers are digits. | 你知道一万有多大吗？十万呢？ | Do you know how big ten thousand is? What about one hundred… |
 | warning | 6 | p5_s29 | Reviewer (grammar): "ten thousand metres" should follow number style; and British spelling "metre" vs "m" for unit consistency. Minor style. | 在400米的跑道上绕25圈是一万米。 | Running 25 laps around a 400-metre track is ten thousand me… |
 | warning | 6 | p5_s3 | Reviewer (format): Place-value column labels may be given as H/T/O; consistent with convention. | 百 | H |
 | warning | 6 | p5_s30 | Reviewer (grammar): "2500 classes have about one hundred thousand students" — number style inconsistent (2500 digits vs words). Consider "2,500 classes have about 100,000 students." Suggested translation: "2,500 classes have about 100,000 students." | 2500个班级大约有十万名学生。 | 2500 classes have about one hundred thousand students. |
-| warning | 7 | p6_s3 | Reviewer (format): The column labels and the instruction are run together without separation; the source combines a place-value row with a sentence. Keep the labels and the sentence as in the source. Suggested translation: "TTh Th H T O Count by ten thousands, up to one hundred thousand." | 万千百十个一万一万地数数到十万 | TTh Th H T O Count by ten thousands, up to one hundred thou… |
-| warning | 7 | p6_s5 | Reviewer (format): The source ends the place-value row with a period: 万千百十个一千一千地数，数到十万。 The translation drops the separation; also the source reads 一千一千地数 (count by thousands), which is correct here, but the label row is merged. Suggested translation: "TTh Th H T O Count by thousands, up to one hundred thousand." | 万千百十个一千一千地数，数到十万。 | TTh Th H T O Count by thousands, up to one hundred thousand. |
-| warning | 7 | p6_s7 | Reviewer (format): Same label-run-together issue; also 六万零五 should read "60,005" in digits for consistency with number style. Suggested translation: "TTh Th H T O Count one by one, up to 60,005." | 万千百十个一个一个地数，数到六万零五。 | TTh Th H T O Count by ones, up to sixty thousand and five. |
-| warning | 8 | p7_s0 | Reviewer (format): "Knowing Larger Numbers" is a heading; the glossary/style prefers Title Case, which is satisfied, but "Understanding Larger Numbers" may be more idiomatic. Warning only. | 认识更大的数 | Knowing Larger Numbers |
 | warning | 8 | p7_s14 | Reviewer (format): 一万 as a label should be "Ten thousand" in words, consistent with other number labels; fine. | 一万 | Ten thousand |
 | warning | 8 | p7_s21 | Reviewer (format): （）倍 is an answer blank; the translation "( ) times" keeps the blank. Fine. | （）倍 | ( ) times |
 | warning | 8 | p7_s3 | Reviewer (grammar): 三十八万四千千米 = 384,000 km; the translation "three hundred and eighty-four thousand km" is correct. Unit abbreviation km is standard, fine. | 月球到地球的平均距离大约是三十八万四千千米。 | The average distance from the Moon to the Earth is about th… |
-| warning | 8 | p7_s5 | Reviewer (grammar): 数一数 has glossary "Count"; rendered correctly. Sentence fine. | 数一数，想一想，相邻两个计数单位之间有什么关系？ | Count, and think: what is the relationship between two adja… |
-| warning | 10 | p9_s25 | Reviewer (grammar): The translation 'Discuss how you read and write numbers?' is a question but missing 'do you'? The Chinese '说一说，你是怎么读数和写数的？' means 'Talk about how you read and write numbers.' The translation is a question, but should be a statement or 'Discuss how you read and write numbers.' Suggested translation: "Discuss how you read and write numbers." | 说一说，你是怎么读数和写数的？ | Discuss how you read and write numbers? |
 | warning | 14 | p13_s3 | Reviewer (format): Mismatched quotation marks: the opening quote is “ but the closing quote is " (straight), and the quoted phrase is not closed before "is". Suggested translation: "In “56 formations and echelons,” “56” is an exact number." | “56个方队和梯队中的“56”是精确数。 | In "56 formations and echelons," "56" is an exact number. |
-| warning | 16 | p15_s19 | Reviewer (grammar): The wording 'the rate between two adjacent counting units is ten' is unnatural; a standard textbook phrasing is preferred. Suggested translation: "The counting method for natural numbers is the decimal counting method; the rate between two adjacent counting units is ten." | 自然数的计数方法是十进制计数法，相邻的两个计数单位之间的进率都是十。 | The counting method for natural numbers is decimal counting… |
 | warning | 18 | p17_s10 | Reviewer (format): 14260000 lacks a thousands separator (14,260,000). Suggested translation: "14,260,000 tonnes" | 14260000吨 | 14260000 tonnes |
 | warning | 18 | p17_s11 | Reviewer (format): 7940000 lacks a thousands separator (7,940,000). Suggested translation: "7,940,000 tonnes" | 7940000吨 | 7940000 tonnes |
 | warning | 18 | p17_s12 | Reviewer (format): 8830000 lacks a thousands separator (8,830,000). Suggested translation: "8,830,000 tonnes" | 8830000吨 | 8830000 tonnes |
 | warning | 18 | p17_s13 | Reviewer (style): 'in units of "ten thousand"' is awkward; standard textbook phrasing is 'in ten-thousands'. Suggested translation: "First rewrite the numbers above in ten-thousands, then arrange them in order from" | 把上面的数先改写成以“万”为单位的数，再按从大到小的顺序 | First rewrite the numbers above in units of "ten thousand",… |
 | warning | 18 | p17_s4 | Reviewer (format): 720000 has no thousands separator; convention is 720,000. Suggested translation: "The Palace Museum in Beijing is the largest palace complex in the world, with an area of about 720,000 square metres." | 北京故宫是世界上最大的宫殿建筑群，面积约为720000平方米。 | The Palace Museum in Beijing is the largest palace complex … |
-| warning | 18 | p17_s8 | Reviewer (grammar): The sentence is incomplete in both source and translation; a colon or 'are as follows:' is acceptable, but the wording 'is as follows' should match the plural noun 'outputs'. Suggested translation: "3. The total outputs of some fruits in China in 2009 are as follows:" | 3. 2009年我国部分水果总产量概况如下 | 3. The total output of some fruits in China in 2009 is as f… |
 | warning | 18 | p17_s9 | Reviewer (format): 31680000 lacks a thousands separator (31,680,000). Suggested translation: "31,680,000 tonnes" | 31680000吨 | 31680000 tonnes |
 | warning | 19 | p18_s0 | Reviewer (style): 'in units of "ten thousand"' is awkward; use 'in ten-thousands'. Suggested translation: "5. The table below shows the average distances between the eight planets of the solar system and the Sun. Read the numbers in the table and rewrite them in ten-thousands." | 5.下表是太阳系八大行星与太阳的平均距离，读出表中的数，并改写成以“万”为单位的数。 | 5. The table below shows the average distances between the … |
 | warning | 20 | p19_s12 | Reviewer (format): The convention "Read as:" is used for a spoken math notation and is acceptable, but the same pattern appears with inconsistent punctuation across items (AB（或BA） vs AB（或BA)). | 读作：线段AB（或BA） | Read as: line segment AB (or BA) |
 | warning | 20 | p19_s17 | Reviewer (grammar): Missing final period at the end of the sentence. Suggested translation: "The length of line segment AB is the distance between points A and B." | 线段AB的长度就是A，B两点之间的距离 | The length of line segment AB is the distance between point… |
 | warning | 20 | p19_s4 | Reviewer (format): Label capitalization is inconsistent: "Line segment"/"Ray"/"Straight line" mix sentence case; labels in this book are normally capitalized consistently. Suggested translation: "Line Segment" | 线段 | Line segment |
-| warning | 21 | p20_s2 | Reviewer (grammar): "Discuss" alone is awkward for 说一说; "Talk about" or "Describe" is more natural in a textbook instruction. Suggested translation: "2. Talk about the straight lines, rays and line segments in the figure." | 2.说一说图中的直线、射线、线段。 | 2. Discuss the straight lines, rays and line segments in th… |
 | warning | 21 | p20_s3 | Reviewer (grammar): "Do it and discuss" is a literal rendering; the textbook convention is "Try it and discuss" / "Do and discuss". Suggested translation: "3. Try it and discuss." | 3.做一做，说一说。 | 3. Do it and discuss. |
 | warning | 21 | p20_s4 | Reviewer (grammar): The sentence reads clumsily; "a cardboard strip" pinned with one thumbtack should be "a strip of cardboard", and "board" is ambiguous. Also the two-line split continues into the next item, which is fine. Suggested translation: "(1) Pin a strip of cardboard to a wooden board with one thumbtack. Can the strip rotate? Through one point, how many" | （1）用一个图钉把一张硬纸条钉在木板上，硬纸条可以转动吗？过一点可以画出多 | (1) Pin a cardboard strip to a board with one thumbtack. Ca… |
 | warning | 22 | p21_s0 | Reviewer (format): Heading lacks Title Case consistency for the second noun phrase; the heading should read "Intersecting and Perpendicular Lines" for clarity as a unit heading. Suggested translation: "Intersecting and Perpendicular Lines" | 相交与垂直 | Intersecting and Perpendicular |
 | warning | 22 | p21_s7 | Reviewer (grammar): "Do it" is an unnatural standalone heading; "Try it" is the textbook convention for 做一做. Suggested translation: "Try it" | 做一做 | Do it |
-| warning | 23 | p22_s4 | Reviewer (grammar): "Small experiment" is an unnatural heading; "A small experiment" or "Experiment" reads better. Suggested translation: "4. A small experiment." | 4.小实验。 | 4. Small experiment. |
-| warning | 25 | p24_s8 | Reviewer (grammar): Dangling modifier: 'Translating a set square' is not the agent that draws; the sentence should say one can draw by translating. Suggested translation: "You can draw a pair of parallel lines by translating a set square." | 用三角尺平移可以画出一组平行线。 | Translating a set square can draw a pair of parallel lines. |
 | warning | 26 | p25_s0 | Reviewer (grammar): Heading is a coordinate pair ('Rotation and Angles'); a chapter heading conventionally reads 'Rotation and Angle' or with 'and' capitalized only in Title Case—no meaning change. Suggested translation: "Rotation and Angle" | 旋转与角 | Rotation and Angles |
 | warning | 26 | p25_s1 | Reviewer (grammar): Missing final punctuation after 'think'. Suggested translation: "Can you make a "moving angle"? Do it and think." | 你能做一个“活动角”吗？做一做，想一想 | Can you make a "moving angle"? Do it and think |
 | warning | 26 | p25_s13 | Reviewer (format): 'The two sides of a straight angle' is acceptable, but the source uses 边 (sides/arms); consistent wording would read 'arms of a straight angle'. | 平角的两条边在一条直线上，周角·.··· | The two sides of a straight angle lie on one straight line;… |
@@ -488,14 +479,13 @@
 | warning | 108 | p107_s0 | Reviewer (format): The coordinates use a mix of fullwidth and halfwidth parentheses/commas in the source; the translation normalizes them, which is acceptable. No problem. | 6.在方格图上标出点A，B，C，D，它们的位置分别是（1，1)，（5，1），（5，4)，（1，4)，并把它们按A→B→… | 6. Mark points A, B, C, D on the grid. Their positions are … |
 | warning | 111 | p110_s0 | Reviewer (format): The source is a heading; headings are written in Title Case. Suggested translation: "What You Learned This Term" | 本学期你学到了什么 | What you learned this term |
 
-### `numbers` — 25 errors, 0 warnings
+### `numbers` — 24 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 14 | p13_s1 | Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 2009年10月1日，国庆60周年庆典在60响礼炮声中开始，国旗护卫队正步行进了169步，寓意着1840年鸦片战争以来… | On 2009-10-1, the celebration of the 60th anniversary of Na… |
 | error | 14 | p13_s1 | Number "20" from the source is missing in the translation; keep every number exactly as written in the source | 2009年10月1日，国庆60周年庆典在60响礼炮声中开始，国旗护卫队正步行进了169步，寓意着1840年鸦片战争以来… | On 2009-10-1, the celebration of the 60th anniversary of Na… |
 | error | 14 | p13_s10 | Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 2万 | 20000 |
-| error | 14 | p13_s11 | Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 18000=2万 | 18000=20000 |
 | error | 14 | p13_s13 | Number "20" from the source is missing in the translation; keep every number exactly as written in the source | 参加国庆阅兵的精确人数是233482人，在下图中找到这个数的大致位置，说一说，“约20万人”这个数是怎样得到的？ | The exact number of people taking part in the National Day … |
 | error | 14 | p13_s14 | Number "20" from the source is missing in the translation; keep every number exactly as written in the source | 20万 | 200000 |
 | error | 14 | p13_s15 | Number "30" from the source is missing in the translation; keep every number exactly as written in the source | 30万 | 300000 |
@@ -535,11 +525,10 @@
 | warning | 52 | p51_i204_3 | The text '请中括\ue000204.3.0\ue001\ue000204.3.1\ue001号“”来帮忙。' was left in the source language (unreadable symbol in quotes (left in the picture)): the line is built around symbols or pictures the OCR could not read - check the page in the preview | 请中括204.3.0204.3.1号“”来帮忙。 |  |
 | warning | 52 | p51_i204_3 | The text '请中括\ue000204.3.0\ue001\ue000204.3.1\ue001号“”来帮忙。' was left in the source language (unreadable symbol in quotes (left in the picture)): the line is built around symbols or pictures the OCR could not read - check the page in the preview | 请中括204.3.0204.3.1号“”来帮忙。 |  |
 
-### `length_ratio` — 0 errors, 4 warnings
+### `length_ratio` — 0 errors, 3 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | warning | 10 | p9_s10 | The translation looks too short: 10 characters for 12 translatable source characters (ratio 0.83, about 2.60 expected); check that nothing was omitted | 五千九百五十万零五百一十 | 59,500,510 |
 | warning | 10 | p9_s24 | The translation looks too short: 7 characters for 8 translatable source characters (ratio 0.88, about 2.60 expected); check that nothing was omitted | 五十五万二千三百 | 552,300 |
 | warning | 10 | p9_s8 | The translation looks too long: 63 characters for 8 translatable source characters (ratio 7.88, about 2.60 expected); check that nothing was added or explained | 二千一百二十三、 | one hundred and sixty-two thousand one hundred and twenty-t… |
-| warning | 12 | p11_s8 | The translation looks too short: 14 characters for 16 translatable source characters (ratio 0.88, about 2.60 expected); check that nothing was omitted | 北豪山西河庆津青海：约720000陕西河南 | Qinghai: about 720000 |
