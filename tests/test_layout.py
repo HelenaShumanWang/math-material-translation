@@ -1138,6 +1138,35 @@ def test_grown_labels_stay_centred_and_numbered_items_start_at_their_number(tmp_
     assert first[4].startswith("(1)") and first[0] < item.render.bbox.x0 + 1.5   # set from its number
 
 
+def test_resetting_a_label_to_its_siblings_size_keeps_the_neighbours_words(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+
+    def seg(i, x0, y0, x1, size, zh, en, role="label"):
+        return TextSegment(id=f"p10_s{i}", page=0, bbox=BBox(x0=x0, y0=y0, x1=x1, y1=y0 + 15), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=size, color=0x202020, role=role, line_height=1.2))
+    # "3.（1）…" and "（2）…" read with overlapping boxes on one row; question 4 below is set smaller,
+    # so question 3 is reset to its size after "（2）…" has been placed
+    q3 = seg(11, 59, 380, 218, 12.3, "3.（1）每班分到多少本？", "3. (1) How many books per class?")
+    q3b = seg(12, 211, 380, 460, 12.3, "（2）长颈鹿的高度是青蛙的多少倍？", "(2) How many times as tall as the frog is the giraffe?",
+              role="body")
+    q4 = seg(20, 59, 520, 140, 12.0, "4.算一算。", "4. Work out the following and check your answers.")
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[q3, q3b, q4])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert "size matched" in (q3.render.notes or ""), q3.render                 # it was reset ...
+    text = pymupdf.open(tmp_path / "out.pdf")[0].get_text()
+    assert "(2) How many times" in text, text                                    # ... and "(2" is still there
+
+
 def test_column_entries_are_set_left_aligned_at_one_size(tmp_path):
     from PIL import Image
     from mathtrans.layout import render_document

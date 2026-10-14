@@ -428,6 +428,7 @@ class _PageSpace:
         self._page = page
         # the faint diagonal watermark (kept in the picture) is no obstacle: its axis-aligned
         # boxes are huge and text may be set over it
+        self.streams: dict[str, list[int]] = {}  # content streams each placed segment added
         self.occupied: dict[str, BBox] = {s.id: s.bbox for s in doc.segments
                                           if s.page == page_index and not _watermark_line(s)}
         # entries of a contents page or a list, one under the other on one left edge: they are
@@ -998,8 +999,10 @@ def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequenc
                      page_index, restored)
     infos: list[RenderInfo] = []
     for seg in todo:
+        before = set(page.get_contents())
         info = _place_segment(page, seg, seg.translated_text or "", space, css=css, archive=archive,
                               min_scale=min_font_scale)
+        space.streams[seg.id] = [x for x in page.get_contents() if x not in before]
         seg.render = info
         if info.bbox is not None:
             # what was drawn (with the source box) is occupied, not all the room it was allotted
@@ -1164,17 +1167,27 @@ def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space
             assert old is not None and old.bbox is not None
             if old.font_size <= LABEL_SIZE_SPREAD * target:
                 continue
-            rect = old.bbox.to_rect()
-            page.add_redact_annot(pymupdf.Rect(rect.x0 + 0.3, rect.y0 + 0.3, rect.x1 - 0.3, rect.y1 - 0.3), fill=False)
-            page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_NONE, graphics=pymupdf.PDF_REDACT_LINE_ART_NONE,
-                                  text=pymupdf.PDF_REDACT_TEXT_REMOVE)
+            own = space.streams.get(seg.id)
+            if own:
+                # remove exactly what this segment drew: a redaction of its box would also take the
+                # words of a neighbour set inside the room this one was allotted but did not use
+                for xref in own:
+                    page.parent.update_stream(xref, b" ")
+            else:
+                rect = old.bbox.to_rect()
+                page.add_redact_annot(pymupdf.Rect(rect.x0 + 0.3, rect.y0 + 0.3, rect.x1 - 0.3, rect.y1 - 0.3),
+                                      fill=False)
+                page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_NONE,
+                                      graphics=pymupdf.PDF_REDACT_LINE_ART_NONE, text=pymupdf.PDF_REDACT_TEXT_REMOVE)
             size = seg.style.size
             seg.style.size = target
+            before = set(page.get_contents())
             try:
                 info = _place_segment(page, seg, seg.translated_text or "", space, css=css, archive=archive,
                                       min_scale=min_scale)
             finally:
                 seg.style.size = size
+            space.streams[seg.id] = [x for x in page.get_contents() if x not in before]
             info.notes = "; ".join(n for n in (info.notes, "size matched to its sibling labels") if n)
             seg.render = info
             if info.bbox is not None:
