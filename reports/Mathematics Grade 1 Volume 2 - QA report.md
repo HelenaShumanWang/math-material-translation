@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 169 errors, 75 warnings (1223.5 s); proofread: 302 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 165 errors, 75 warnings (1223.5 s); proofread: 307 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数 (zh → en, 99 page(s), 1220 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×323, layout_fit ×59, glossary ×15, placeholders ×7, formatting ×6, image_text ×6, untranslated ×6, completeness ×2, numbers ×2, target_script ×2
 - Round 3: llm_review ×335, layout_fit ×52, glossary ×26, image_text ×6, untranslated ×3, completeness ×2, formatting ×2, numbers ×1, placeholders ×1
 
-## Final issues (244)
+## Final issues (240)
 
 ### `completeness` — 46 errors, 0 warnings
 
@@ -146,7 +146,7 @@
 | error | 83 | p82_s9 | Glossary: translate "百位" as "hundreds" | 百位十位个位 | H T O |
 | error | 84 | p83_s35 | Glossary: translate "集合" as "set" | 运动员集合 | Athletes assemble |
 
-### `layout_fit` — 30 errors, 4 warnings
+### `layout_fit` — 26 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -160,10 +160,6 @@
 | error | 20 | p19_s25 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 小兰 | Xiaolan |
 | error | 26 | p25_s1 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 数花生 | Count Peanuts |
 | error | 26 | p25_s1 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 数花生 | Count Peanuts |
-| error | 30 | p29_s0 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数豆子 | Count Beans |
-| error | 30 | p29_s0 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 数豆子 | Count Beans |
-| error | 58 | p57_s25 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 30瓶 | 30 bottles |
-| error | 58 | p57_s25 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 30瓶 | 30 bottles |
 | error | 59 | p58_s0 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 拔萝卜 | Pulling Radishes |
 | error | 59 | p58_s0 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 拔萝卜 | Pulling Radishes |
 | error | 61 | p60_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 收玉米 | Harvesting Corn |
