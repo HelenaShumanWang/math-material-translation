@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 291 errors, 42 warnings (1884.7 s); proofread: 725 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 293 errors, 42 warnings (1884.7 s); proofread: 725 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 119 page(s), 1851 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×513, layout_fit ×78, formatting ×8, untranslated ×4, completeness ×3, placeholders ×3, image_text ×2, length_ratio ×2, numbers ×2, glossary ×1, target_script ×1
 - Round 3: llm_review ×479, layout_fit ×69, completeness ×7, formatting ×4, glossary ×3, untranslated ×3, image_text ×2, length_ratio ×2, placeholders ×2, target_script ×2, numbers ×1
 
-## Final issues (333)
+## Final issues (335)
 
 ### `completeness` — 119 errors, 0 warnings
 
@@ -239,7 +239,7 @@
 | error | 100 | p99_s15 | Glossary: translate "倍数" as "multiple" | 我按3的倍数跳 | I jump in 3s |
 | error | 102 | p101_s5 | Glossary: translate "找一找" as "Find" | 1.我们学了哪些长度单位？找一找，生活中有哪些物品的长度大约是1厘米，有哪些大约是1米？ | 1. What units of length have we learned? Look around: which… |
 
-### `layout_fit` — 30 errors, 4 warnings
+### `layout_fit` — 32 errors, 4 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -267,6 +267,8 @@
 | error | 68 | p67_s0 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 分香蕉 | Sharing Bananas |
 | error | 72 | p71_s0 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 小熊开店 | Little Bear's Shop |
 | error | 72 | p71_s0 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 小熊开店 | Little Bear's Shop |
+| error | 79 | p78_s5 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 列式： | Number sentence: |
+| error | 79 | p78_s5 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 列式： | Number sentence: |
 | error | 84 | p83_s14 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 七七七上 | 4×7= 5×7= 6×7= |
 | error | 84 | p83_s14 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 七七七上 | 4×7= 5×7= 6×7= |
 | error | 86 | p85_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 买球 | Buy Balls |
