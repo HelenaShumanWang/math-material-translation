@@ -1865,6 +1865,8 @@ BOARD_MAX_GROWTH = 3.0
 """A board grows by at most this many times its own width."""
 BOARD_PAGE_MARGIN = 28.0
 """Points: a board never grows nearer the page edge than this."""
+BOARD_FIT_SCALE = 0.9
+"""A board is widened only when its English would otherwise be set below this share of its size."""
 BOARD_ROLES = ("heading", "label")
 
 WIDENED_BOXES: dict[str, BBox] = {}
@@ -2002,9 +2004,10 @@ def _widen_board(canvas: np.ndarray, alpha: Optional[np.ndarray], para: TextSegm
         return None  # several lines, or pictures inline: no one-line width to measure
     size = para.style.size if para.style.size > 0 else h / sy
     pad = max((x0 - fill_l) / sx, (fill_r - x1) / sx, 0.3 * size)
-    need = int(np.ceil((_text_width(text, size, lang, para.style.bold) + 2 * pad) * sx)) - (fill_r - fill_l)
-    if need <= 2:
-        return None
+    wanted = _text_width(text, size, lang, para.style.bold) + 2 * pad
+    if wanted * BOARD_FIT_SCALE <= (fill_r - fill_l) / sx:
+        return None  # it fits nearly at its size: the board stays as printed, like the others of its row
+    need = int(np.ceil(wanted * sx)) - (fill_r - fill_l)
     # room beside the board: plain page, clear of every other box, inside the page margins
     gap_px = int(round(BOARD_GAP * sx))
     limit = min(w_img, int((page_width - BOARD_PAGE_MARGIN - image.bbox.x0) * sx))

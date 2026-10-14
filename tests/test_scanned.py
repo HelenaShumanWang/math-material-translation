@@ -1230,3 +1230,12 @@ def test_a_signboard_grows_only_into_blank_page(tmp_path):
     assert box is None or box.x1 <= 300 / 2 - 4                       # stops a gap short of the picture
     arr = _page_pixels(work)
     assert np.abs(arr[135, 305] - (40, 70, 200)).max() < 40           # the picture is untouched
+
+
+def test_a_board_whose_english_nearly_fits_stays_as_printed(tmp_path):
+    from mathtrans.scanned import widened_boxes
+
+    work, doc, title, np = _board_page(tmp_path)
+    title.translated_text = "Peach"             # no wider than the three characters
+    erase_merged_lines(work, doc)
+    assert widened_boxes(doc) == {}
