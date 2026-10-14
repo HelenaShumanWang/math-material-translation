@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 169 errors, 66 warnings (1253.6 s); proofread: 367 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 169 errors, 66 warnings (1253.6 s); proofread: 369 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 109 page(s), 1076 translatable segment(s))
+**Document:** 数学 (zh → en, 109 page(s), 1075 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
