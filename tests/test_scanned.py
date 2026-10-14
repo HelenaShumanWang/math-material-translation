@@ -735,3 +735,25 @@ def test_images_side_by_side_are_not_patches():
     ]
     assert suppress_patch_duplicates(lines, 0) == 0
     assert all(l.translate for l in lines)
+
+
+def test_repeated_short_lines_stay_separate_labels():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 385, 570, 440, "有几个？"),
+        _gline(1, 385, 591, 440, "有几个？"),
+        _gline(2, 385, 619, 440, "有几个？"),
+        _gline(3, 385, 642, 440, "有几个？"),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["有几个？"] * 4
+
+
+def test_repeated_long_lines_may_still_join():
+    from mathtrans.scanned import group_ocr_lines
+
+    text = "把下面的数按从小到大的顺序排列起来。"
+    lines = [_gline(0, 50, 100, 330, text), _gline(1, 50, 113, 330, text)]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert len(paragraphs) == 1

@@ -68,6 +68,9 @@ def _color_distance(a: int, b: int) -> float:
     rb, gb, bb = (b >> 16) & 255, (b >> 8) & 255, b & 255
     return ((ra - rb) ** 2 + (ga - gb) ** 2 + (ba - bb) ** 2) ** 0.5
 """Font size relative to the OCR line height (box height includes ascender/descender room)."""
+REPEATED_LABEL_LETTERS = 6
+"""A short line (at most this many letters) that repeats the line above it word for word is a
+label of a list (有几个？ under each picture), set on its own; it never continues a paragraph."""
 MERGED = "merged into paragraph"
 UNIT_DROPPED = "unit label after an answer box (dropped)"
 """Prefix of the ``skip_reason`` of OCR lines that became part of a paragraph."""
@@ -225,6 +228,9 @@ class _Para:
             return False  # "2. ..." / "(1) ..." starts a new paragraph (a question, an exercise)
         if _letter_count(line.source_text) <= 1 or _letter_count(self.lines[0].source_text) <= 1:
             return False  # single-character lines are table cells / diagram labels, never paragraph lines
+        if (line.source_text.strip() == self.last.source_text.strip()
+                and _letter_count(line.source_text) <= REPEATED_LABEL_LETTERS):
+            return False  # the same short label line after line (有几个？ × 4): one label each, not a paragraph
         if _closes_paragraph(self.last.source_text):
             return False  # "答：" / "解：" followed by a blank: nothing may be appended to it
         if _ANSWER_START_RE.match(self.lines[0].source_text) or _STARTS_NEW_RE.match(line.source_text):
