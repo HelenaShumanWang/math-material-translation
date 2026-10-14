@@ -259,14 +259,18 @@ class _Para:
             # the first line of a paragraph is often indented by two characters: its tail then
             # starts to the LEFT of it (小朋友，数学就在我们身边，你和数学一定会成为 / 好朋友。)
             indented_first = (len(self.lines) == 1 and 0 < self.last.bbox.x0 - line.bbox.x0 <= FIRST_LINE_INDENT * h)
-            tail = ((abs(line.bbox.x0 - self.last.bbox.x0) <= 0.6 * h or indented_first)
+            # a numbered item wraps with a hanging indent: its tail starts to the RIGHT of the
+            # marker ((1)说一说，图中有哪些数学 / 信息？)
+            hanging = (len(self.lines) == 1 and is_list_item(self.lines[0].source_text)
+                       and 0 < line.bbox.x0 - self.last.bbox.x0 <= FIRST_LINE_INDENT * h)
+            tail = ((abs(line.bbox.x0 - self.last.bbox.x0) <= 0.6 * h or indented_first or hanging)
                     and line.bbox.width < self.last.bbox.width
                     and self.last.source_text.rstrip()[-1:] not in _SENTENCE_END + "：:"
                     and _letter_count(self.last.source_text) >= 8 and gap <= MAX_LINE_GAP * h)
             if not tail:
                 return False
-            if indented_first:
-                return True  # it overlaps the indented first line only a little, by nature
+            if indented_first or hanging:
+                return True  # the indent is the paragraph's shape, not a new column
         centre_shift = abs((line.bbox.x0 + line.bbox.x1) / 2 - (self.bbox.x0 + self.bbox.x1) / 2)
         if self._left_aligned(h) and abs(line.bbox.x0 - self.bbox.x0) > MAX_X0_JUMP * h and centre_shift > h:
             return False  # another column: a speech bubble or label beside / below the instruction

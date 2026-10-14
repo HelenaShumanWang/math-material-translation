@@ -846,3 +846,15 @@ def test_long_english_wraps_onto_a_new_line_at_full_size(tmp_path):
     render_document(src, doc, tmp_path / "out.pdf")
     assert seg.render.scale >= 0.95           # not shrunk ...
     assert seg.render.bbox.y1 >= 315 + 12     # ... set on a second line below instead
+
+
+def test_numbered_item_takes_its_hanging_indent_tail():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 259, 141, 464, "（1）说一说，图中有哪些数学", h=18),
+        _gline(1, 288, 165, 329, "信息？", h=18),                       # continues under the text, not the marker
+        _gline(2, 259, 189, 454, "(2）买7瓶矿泉水需要多少元？", h=18),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["（1）说一说，图中有哪些数学信息？", "(2）买7瓶矿泉水需要多少元？"]
