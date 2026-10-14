@@ -781,6 +781,36 @@ def test_bold_coloured_glyphs_in_a_tight_box_are_erased_to_the_surroundings():
     assert (np.abs(around.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.99  # plain background now
 
 
+def test_decorated_title_glyphs_go_with_their_outline_and_shadow():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    # 目录 in a cloud: yellow strokes with a slate outline and drop shadow on light blue
+    bg, slate, yellow = (207, 225, 238), (70, 80, 90), (254, 240, 9)
+    img = Image.new("RGB", (420, 170), bg)
+    d = ImageDraw.Draw(img)
+    font = pil_font("zh", 100)
+    d.text((36, 26), "目录", fill=slate, font=font, stroke_width=7, stroke_fill=slate)
+    d.text((30, 20), "目录", fill=yellow, font=font, stroke_width=5, stroke_fill=slate)
+    original = np.array(img)
+    ink = np.abs(original.astype(int) - np.array(bg)).max(axis=2) > 40
+    ys, xs = np.where(ink)
+    canvas = original.copy()
+    box = (int(xs.min()) - 10, int(ys.min()) - 10, int(xs.max()) + 10, int(ys.max()) + 10)   # the OCR box, with air
+    assert ink[box[1]:box[3], box[0]:box[2]].mean() < 0.85                                 # not a whole-box fill
+    _erase_glyphs(canvas, None, original, None, box)
+    title = canvas[box[1] - 4:box[3] + 4, box[0] - 4:box[2] + 4]
+    assert (np.abs(title.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.97     # strokes, outline, shadow gone
+    # the same title with its box cut tight to the strokes (the detector's polygon) goes as well
+    canvas = original.copy()
+    tight = (int(xs.min()) + 3, int(ys.min()) + 3, int(xs.max()) - 2, int(ys.max()) - 2)
+    _erase_glyphs(canvas, None, original, None, tight)
+    title = canvas[box[1] - 4:box[3] + 4, box[0] - 4:box[2] + 4]
+    assert (np.abs(title.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.97
+
+
 def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
     import numpy as np
     from PIL import Image, ImageDraw

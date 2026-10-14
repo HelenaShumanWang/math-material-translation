@@ -346,9 +346,11 @@ def estimate_text_color(rgb: np.ndarray, box: tuple[int, int, int, int], backgro
                         alpha: Optional[np.ndarray] = None) -> tuple[int, int, int]:
     """Colour of the glyphs inside ``box``: the pixels farthest from the background.
 
-    The median of the pixels within 80 % of the maximum distance is used so a
-    single stray pixel (anti-aliasing, a crossing line) does not win. With an
-    ``alpha`` channel only opaque pixels (alpha > 128) are candidates.
+    Among the pixels within 80 % of the maximum distance the most common colour
+    (32-level bins, refined by the median of its pixels) is taken, so a single stray
+    pixel (anti-aliasing, a crossing line) does not win and a second colour in the box
+    (the outline of a decorated title, a pictogram) does not blend into a colour that is
+    neither. With an ``alpha`` channel only opaque pixels (alpha > 128) are candidates.
     """
     x0, y0, x1, y1 = box
     region = rgb[y0:y1, x0:x1].reshape(-1, 3).astype(np.float32)
@@ -364,7 +366,10 @@ def estimate_text_color(rgb: np.ndarray, box: tuple[int, int, int, int], backgro
     if far < 20:  # nothing distinguishable from the background: default to dark text
         return (0, 0, 0)
     chosen = region[dist >= 0.8 * far]
-    col = np.median(chosen, axis=0)
+    bins = (chosen // 32).astype(np.int32)
+    keys = (bins[:, 0] << 8 | bins[:, 1]) << 8 | bins[:, 2]
+    values, counts = np.unique(keys, return_counts=True)
+    col = np.median(chosen[keys == values[counts.argmax()]], axis=0)
     return tuple(int(min(max(round(float(c)), 0), 255)) for c in col)
 
 

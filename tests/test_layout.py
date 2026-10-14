@@ -933,6 +933,77 @@ def test_contents_column_entries_are_siblings_despite_box_heights():
     assert _sibling_label_groups(other) == []
 
 
+def test_numbered_items_of_one_page_are_siblings_however_far_apart():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def item(i, x0, y, h, size, zh, en, font=None, color=0x202020):
+        seg = TextSegment(id=f"p19_s{i}", page=19, bbox=BBox(x0=x0, y0=y, x1=x0 + 200, y1=y + h), source_text=zh,
+                          protected_text=zh, translated_text=en, origin="ocr",
+                          style=SegmentStyle(size=size, color=color, role="body"))
+        seg.render = RenderInfo(font_size=font or size, scale=1.0, bbox=seg.bbox)
+        return seg
+
+    # the exercises of one page: 1. and 3. near the top, 4. (1), (2) and 5. far below, pictures between
+    items = [item(1, 56, 132, 17, 13.9, "1.在教室里辨认东、南、西、北。", "1. Find east, south, west, north.", font=10.0),
+             item(5, 57, 264, 15, 12.1, "3.算一算，标一标。", "3. Calculate and mark.", font=10.0),
+             item(19, 57, 490, 16, 13.2, "4.（1）和爸爸、妈妈说一说", "4. (1) Talk with Mum and Dad.", font=10.7),
+             item(20, 74, 513, 18, 14.6, "(2)观察夜晚的星空。", "(2) Observe the night sky.", font=14.6),
+             item(21, 58, 541, 14, 11.6, "5.读一读，讲一讲。", "5. Read and retell.", font=11.6)]
+    groups = _sibling_label_groups(items)
+    assert [sorted(s.id for s in g) for g in groups] == [["p19_s1", "p19_s19", "p19_s20", "p19_s21", "p19_s5"]]
+    # a numbered line of another colour, or set far to the right, belongs to something else
+    others = [item(30, 300, 600, 15, 12.0, "1.小猫", "1. Kitten"),
+              item(31, 57, 650, 15, 12.0, "2.小狗", "2. Puppy", color=0xE02020)]
+    groups = _sibling_label_groups(items + others)
+    assert [sorted(s.id for s in g) for g in groups] == [["p19_s1", "p19_s19", "p19_s20", "p19_s21", "p19_s5"]]
+
+
+def test_numbered_instruction_is_no_sibling_of_the_picture_labels_beside_it():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def seg(i, x0, y0, w, size, zh, en, font=None):
+        s = TextSegment(id=f"p91_s{i}", page=91, bbox=BBox(x0=x0, y0=y0, x1=x0 + w, y1=y0 + 13), source_text=zh,
+                        protected_text=zh, translated_text=en, origin="ocr",
+                        style=SegmentStyle(size=size, color=0x202020, role="label"))
+        s.render = RenderInfo(font_size=font or size, scale=1.0, bbox=s.bbox)
+        return s
+
+    item = seg(0, 56, 63, 114, 10.9, "2.说一说，算一算。", "2. Say it and calculate.")
+    tags = [seg(1, 225, 84, 20, 9.8, "4元", "¥4", font=5.8), seg(3, 373, 76, 31, 10.0, "120个字", "120 characters", font=5.8),
+            seg(5, 331, 94, 24, 10.0, "？只", "? birds", font=5.8)]
+    groups = _sibling_label_groups([item] + tags)
+    assert all("p91_s0" not in [s.id for s in g] for g in groups)    # the instruction keeps its own size
+
+
+def test_squeezed_siblings_do_not_set_the_size_of_the_others(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    from PIL import ImageDraw
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    d = ImageDraw.Draw(img)                       # two pictures either side of "and" (page at 2 px per pt)
+    d.rectangle([80, 160, 196, 280], fill=(120, 180, 90)); d.rectangle([228, 160, 264, 280], fill=(200, 90, 60))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+
+    def seg(i, x0, x1, zh, en):
+        return TextSegment(id=f"p76_s{i}", page=0, bbox=BBox(x0=x0, y0=104, x1=x1, y1=118), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=11.5, color=0x202020, role="label", line_height=1.2))
+    # "and" between two pictures has 12 pt of room: squeezed; the question beside it has plenty
+    segs = [seg(0, 100, 112, "和", "and"), seg(1, 133, 300, "谁大？涂一涂，比一比。", "Which is larger? Colour and compare.")]
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=segs)
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert segs[0].render.font_size < 0.8 * 11.5                          # could not be helped
+    assert segs[1].render.font_size >= 0.95 * 11.5, segs[1].render.font_size   # and did not drag the question down
+
+
 def test_column_entries_are_set_left_aligned_at_one_size(tmp_path):
     from PIL import Image
     from mathtrans.layout import render_document

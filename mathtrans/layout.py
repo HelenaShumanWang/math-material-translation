@@ -967,12 +967,22 @@ COLUMN_PITCH = 8.0
 LABEL_ROW_PITCH = 1.6
 """Sibling labels stacked in a column (one per picture row) sit up to this many label heights
 apart, centre to centre."""
+LIST_INDENT = 2.0
+"""The numbered items of one page (``1.`` … ``5.``, ``(1)`` … ``(3)``) are set in one type size
+wherever they stand on the page, pictures and answer boxes between them notwithstanding; a
+sub-item is indented by up to this many label heights from the items it belongs to."""
 SIBLING_SIZE_FLOOR = 0.7
 """Siblings are reset to the smallest size among them, but never below this share of their
 median size: one member squeezed much smaller stays the odd one out instead of shrinking all."""
-LABEL_SIZE_SPREAD = 1.12
+SQUEEZED_SHARE = 0.8
+"""A label or sentence fragment set below this share of its source size did not get the size
+it wanted (a word in a box too tight for its translation): it does not set the size of the
+other labels of its set, which follow the smallest member that did. The numbered items of a
+list are different: they read as one text and follow their smallest member (down to the floor)."""
+LABEL_SIZE_SPREAD = 1.03
 """... and are reset at the smallest size among them when their rendered sizes differ by more
-than this factor ("Xiaolan" squeezed, "Fangfang" at full size looks careless)."""
+than this factor: the same kind of text in two sizes on one page ("Xiaolan" squeezed, "Fangfang"
+at full size; the items of one list at 11.4 and 12.6 pt) looks careless."""
 
 
 def _short_fragment(seg: TextSegment) -> bool:
@@ -1042,7 +1052,8 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
             h = max(a.bbox.height, b.bbox.height)
             same_column = abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and (a.bbox.y1 <= b.bbox.y0 + h
                                                                     or b.bbox.y1 <= a.bbox.y0 + h)
-            tolerance = COLUMN_SIZE_TOLERANCE if same_column else LABEL_SIZE_TOLERANCE
+            same_list = _list_item(a) and _list_item(b) and abs(a.bbox.x0 - b.bbox.x0) <= LIST_INDENT * h
+            tolerance = COLUMN_SIZE_TOLERANCE if same_column or same_list else LABEL_SIZE_TOLERANCE
             if abs(a.style.size - b.style.size) > tolerance * max(a.style.size, b.style.size):
                 continue
             ca, cb = a.style.color, b.style.color
@@ -1051,12 +1062,16 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
             dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
             dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
             long_item = not (_short_label(a) or _short_fragment(a)) or not (_short_label(b) or _short_fragment(b))
-            if long_item and not same_column:
+            if long_item and not (same_column or same_list):
                 continue  # a numbered item (or a heading-styled entry) is a sibling within its column only
+            if _list_item(a) != _list_item(b) and not same_column:
+                continue  # a numbered instruction and the price tags of the picture beside it are not one set
             if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
                 parent[find(i)] = find(j)
             elif same_column and dy <= COLUMN_PITCH * h:
                 parent[find(i)] = find(j)  # entries of a list / contents column, one under the other
+            elif same_list:
+                parent[find(i)] = find(j)  # the numbered items of one page, however far apart
     groups: dict[int, list[TextSegment]] = {}
     for i, seg in enumerate(labels):
         groups.setdefault(find(i), []).append(seg)
@@ -1067,7 +1082,11 @@ def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space
                           archive: Optional[pymupdf.Archive], min_scale: float) -> None:
     """Re-set the larger members of each sibling-label group at the group's smallest size."""
     for group in _sibling_label_groups(segs):
-        sizes = sorted(s.render.font_size for s in group)  # type: ignore[union-attr]
+        # labels squeezed below their source size (no room, even wrapped) do not set the size
+        natural = [s for s in group if s.render.font_size >= SQUEEZED_SHARE * s.style.size]  # type: ignore[union-attr]
+        if all(_list_item(s) for s in group):
+            natural = list(group)  # a list follows its smallest item, however that item was set
+        sizes = sorted(s.render.font_size for s in (natural or group))  # type: ignore[union-attr]
         median = sizes[len(sizes) // 2]
         # one item squeezed far below the others (no room to wrap) does not drag the whole list down
         target = max(sizes[0], SIBLING_SIZE_FLOOR * median)

@@ -1066,6 +1066,17 @@ of its pixels has a plain local background (text on paper or on a label cell); b
 the strip holds picture content and only pixels of the text colour are erased."""
 STRIPE_FLAT_SHARE = 0.55
 """... and with at least this share the erased pixels are filled flat (else inpainted)."""
+DECORATION_REACH = 0.12
+"""The outline or drop shadow of a decorated title (slate around yellow strokes) lies within
+this share of the line height of the stroke pixels ..."""
+DECORATION_SHARE = 0.85
+"""... a connected patch of pixels in neither the background nor the text colour lying there
+by at least this share of its area is part of the glyphs, not of a picture."""
+DECORATION_MIN = 0.03
+"""Below this share of the box, odd-coloured pixels are JPEG halo, not worth the test."""
+GLYPH_COMPONENT_SHARE = 0.5
+"""A solid component made of at least this share of glyph pixels (strokes with their outline)
+is a decorated glyph, not a pictogram to keep."""
 ICON_MIN_FILL = 0.45
 """A solid ink component (fill ratio of its bounding box at least this, at least about a
 glyph in size) in a colour unlike the text is a pictogram and is kept."""
@@ -1222,6 +1233,26 @@ def _gradient_strip(stripe: np.ndarray) -> bool:
 
 
 
+def _glyph_decoration(crop: np.ndarray, near_ink: np.ndarray, bg: np.ndarray, h: int) -> np.ndarray:
+    """Pixels of a decorated title that belong to its glyphs without being in the text colour:
+    the outline or drop shadow hugging the strokes (slate around yellow 目录). A picture behind
+    the text, or a pictogram beside it, reaches far from the strokes and is left alone."""
+    import cv2
+
+    none = np.zeros(near_ink.shape, bool)
+    other = ~near_ink & (np.abs(crop - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF)
+    if other.mean() < DECORATION_MIN or near_ink.mean() < DECORATION_MIN:
+        return none
+    reach = max(2, int(round(DECORATION_REACH * h)))
+    halo = cv2.dilate(near_ink.astype(np.uint8), np.ones((2 * reach + 1, 2 * reach + 1), np.uint8)) > 0
+    count, labels = cv2.connectedComponents(other.astype(np.uint8), connectivity=8)
+    sizes = np.bincount(labels.ravel(), minlength=count)
+    inside = np.bincount(labels.ravel(), weights=halo.ravel(), minlength=count)
+    hugging = inside >= DECORATION_SHARE * sizes
+    hugging[0] = False
+    return hugging[labels]
+
+
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
                   original_alpha: Optional[np.ndarray], box: tuple[int, int, int, int],
                   blocked: Optional[list[tuple[int, int, int, int]]] = None) -> str:
@@ -1233,6 +1264,9 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     badge, two-colour label cells) - except solid components in a colour unlike the
     text (pictograms), and is filled with the strip's background. Strips holding
     picture content fall back to erasing only pixels of the text colour by inpainting.
+    The background of a strip is the most common colour among its pixels that are not
+    glyph (text colour, or the solid outline and shadow of a decorated title): the
+    glyphs of a bold or decorated line may outnumber the paper behind them.
     """
     import cv2
 
@@ -1256,6 +1290,8 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         _share = float((np.abs(crop - ring_bg.astype(np.int32)).max(axis=2) <= BACKGROUND_TOLERANCE).mean())
     ink_colour = np.array(estimate_text_color(original, box, box_bg, original_alpha), dtype=np.int32)
     dist_ink = np.sqrt(((crop - ink_colour) ** 2).sum(axis=2))
+    near_ink = dist_ink < INK_TOLERANCE
+    glyph = near_ink | _glyph_decoration(crop, near_ink, box_bg, h)
     mask = np.zeros((h, w), np.uint8)
     fill = np.zeros((h, w, 3), np.uint8)
     flat = np.zeros((h, w), bool)
@@ -1264,18 +1300,25 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     prev_bg, prev_share = box_bg, _share
     for sx in range(0, w, step):
         ex = min(w, sx + step)
-        bg, share = _dominant_colour(crop[:, sx:ex].astype(np.uint8))
-        if np.abs(bg.astype(np.int32) - ink_colour).max() < GLYPH_DIFF and \
-                np.abs(prev_bg.astype(np.int32) - ink_colour).max() >= GLYPH_DIFF:
-            bg, share = prev_bg, prev_share  # a heavy glyph dominates the strip: keep the neighbour's background
-        if ring_uniform and np.abs(bg.astype(np.int32) - ring_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE \
-                and float(np.sqrt(((bg.astype(np.int32) - ink_colour) ** 2).sum())) < INK_TOLERANCE:
-            # the strip is mostly glyph (bold letters): its background is the plain one around the box;
+        rest = crop[:, sx:ex][~glyph[:, sx:ex]].astype(np.uint8)
+        total = (ex - sx) * h
+        if rest.shape[0] >= 0.1 * total:
+            bg, share = _dominant_colour(rest)
+            share *= rest.shape[0] / total
+        else:  # a heavy glyph fills the strip: the surface is the neighbour's
+            bg, share = prev_bg, 0.0
+        if share < STRIPE_MIN_SHARE and prev_share >= STRIPE_MIN_SHARE \
+                and np.abs(bg.astype(np.int32) - prev_bg.astype(np.int32)).max() <= BACKGROUND_TOLERANCE:
+            share = prev_share  # a heavy glyph on the same surface as the plain strip before it
+        if ring_uniform and np.abs(bg.astype(np.int32) - ring_bg.astype(np.int32)).max() <= BACKGROUND_TOLERANCE:
+            share = max(share, STRIPE_FLAT_SHARE)  # plain surroundings: fill flat, do not inpaint
+        elif ring_uniform and float(np.sqrt(((bg.astype(np.int32) - ink_colour) ** 2).sum())) < INK_TOLERANCE:
+            # the strip is all glyph (bold letters): its background is the plain one around the box;
             # a strip in another solid colour is a pictogram and keeps its own surface
             bg = ring_bg
             share = float((np.abs(crop[:, sx:ex] - ring_bg.astype(np.int32)).max(axis=2)
                            <= BACKGROUND_TOLERANCE).mean())
-            share = max(share, STRIPE_FLAT_SHARE)  # plain surroundings: fill flat, do not inpaint
+            share = max(share, STRIPE_FLAT_SHARE)
         prev_bg, prev_share = bg, share
         strips.append((sx, ex, bg, share))
     for k, (sx, ex, bg, share) in enumerate(strips):
@@ -1283,8 +1326,8 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         diff = np.abs(stripe - bg.astype(np.int32)).max(axis=2)
         if share >= STRIPE_MIN_SHARE:
             m = diff > GLYPH_DIFF
-        else:  # picture content: only what looks like the text colour
-            m = (diff > GLYPH_DIFF) & (dist_ink[:, sx:ex] < INK_TOLERANCE)
+        else:  # picture content: only what looks like the text (strokes and their decoration)
+            m = (diff > GLYPH_DIFF) & glyph[:, sx:ex]
         # pixels of a neighbouring strip's surface (the next label cell, a pictogram that
         # dominates the next strip) are not ink of this one
         for j in (k - 1, k + 1):
@@ -1304,8 +1347,8 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         bx, by, bw, bh, area = stats[i]
         if area >= 0.5 * h * h and area >= ICON_MIN_FILL * bw * bh:
             comp = labels == i
-            if float(np.median(dist_ink[comp])) >= INK_TOLERANCE:
-                mask[comp] = 0
+            if float(np.median(dist_ink[comp])) >= INK_TOLERANCE and float(glyph[comp].mean()) < GLYPH_COMPONENT_SHARE:
+                mask[comp] = 0  # not a decorated glyph (strokes inside their outline): a pictogram
     if float(mask.mean()) > 0.85:
         _bg, how = _clear_box(canvas, alpha, original, original_alpha, box)
         return how
