@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 167 errors, 77 warnings (1223.5 s); proofread: 292 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 167 errors, 77 warnings (1223.5 s); proofread: 293 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数 (zh → en, 99 page(s), 1234 translatable segment(s))
 
