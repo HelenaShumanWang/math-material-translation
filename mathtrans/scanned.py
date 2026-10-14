@@ -850,6 +850,23 @@ def restore_lines(pdf_doc: pymupdf.Document, source_doc: pymupdf.Document, doc: 
         canvas = np.array(current.rgb, copy=True)
         alpha = np.array(current.alpha, copy=True) if current.alpha is not None else None
         pad = GLYPH_DILATE_PX + 3
+        # the lines that stay erased (their paragraphs are set in English) and the inline pictures drawn
+        # in the text keep their erased pixels: a large box restored around them (a watermark misread
+        # as text) must not bring their Chinese back
+        keep = np.zeros((current.height, current.width), bool)
+        by_para = {p.id: p for p in doc.segments if p.kind == SegmentKind.TEXT}
+        for other in doc.segments:
+            if other.kind != SegmentKind.IMAGE_TEXT or other.image is None or other.page != page_index \
+                    or other.image.xref != _xref or not other.skip_reason.startswith(MERGED):
+                continue
+            parent = other.skip_reason[len(MERGED):].strip()
+            if parent in wanted:
+                continue
+            ox0, oy0, ox1, oy1 = (int(v) for v in other.image.pixel_box)
+            keep[max(0, oy0 - pad):max(0, oy1 + pad), max(0, ox0 - pad):max(0, ox1 + pad)] = True
+            para = by_para.get(parent)
+            for _key, (_ax, ax0, ay0, ax1, ay1) in (para.anchors.items() if para is not None else []):
+                keep[max(0, ay0 - 2):max(0, ay1 + 2), max(0, ax0 - 2):max(0, ax1 + 2)] = True
         for seg in segs:
             assert seg.image is not None
             x0, y0, x1, y1 = (int(v) for v in seg.image.pixel_box)
@@ -857,9 +874,10 @@ def restore_lines(pdf_doc: pymupdf.Document, source_doc: pymupdf.Document, doc: 
             x1, y1 = min(current.width, x1 + pad), min(current.height, y1 + pad)
             if x1 <= x0 or y1 <= y0:
                 continue
-            canvas[y0:y1, x0:x1] = original.rgb[y0:y1, x0:x1]
+            take = ~keep[y0:y1, x0:x1]
+            canvas[y0:y1, x0:x1][take] = original.rgb[y0:y1, x0:x1][take]
             if alpha is not None and original.alpha is not None:
-                alpha[y0:y1, x0:x1] = original.alpha[y0:y1, x0:x1]
+                alpha[y0:y1, x0:x1][take] = original.alpha[y0:y1, x0:x1][take]
             seg.render = RenderInfo(font_size=0.0, scale=1.0, notes="original text restored (translation not set)")
         stream = encode_image(canvas, alpha, current.ext, qtables=current.jpeg_qtables,
                               subsampling=current.jpeg_subsampling)

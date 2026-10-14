@@ -73,6 +73,43 @@ def test_erase_merged_lines_changes_the_image(ocr_lines, scanned_pdf):
     assert all(l.render is not None for l in lines if l.skip_reason.startswith(MERGED))
 
 
+def test_restoring_a_large_box_keeps_the_lines_inside_it_erased(tmp_path):
+    import numpy as np
+    from PIL import Image
+    from mathtrans.models import BBox, ImageRef, PageInfo, TextSegment, TranslatedDocument
+    from mathtrans.scanned import erase_merged_lines, restore_lines
+
+    # one picture: a line set in English (A) and, over it and a word below, a large box the OCR read
+    # out of a watermark (B); B's paragraph has no translation, so its pixels are restored
+    original = _text_image((500, 260), (255, 255, 255), [
+        ("text", ((60, 100), "称一称，掂一掂。", 34), (20, 20, 20)), ("text", ((60, 190), "水印", 34), (20, 20, 20))])
+    img_path = tmp_path / "scan.png"; Image.fromarray(original).save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=260)
+    page.insert_image(page.rect, filename=str(img_path))
+    src_path = tmp_path / "src.pdf"; pdf.save(str(src_path))
+    work = pymupdf.open(str(src_path))
+    xref = work[0].get_image_info(xrefs=True)[0]["xref"]
+
+    def line(i, box, parent):
+        ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=260), width=500, height=260, pixel_box=box)
+        return TextSegment(id=f"p0_i{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=box[0], y0=box[1], x1=box[2],
+                           y1=box[3]), source_text="x", translate=False, skip_reason=f"{MERGED} {parent}", image=ref, origin="ocr")
+    a = line(0, (55, 95, 360, 145), "p0_s0")
+    b = line(1, (40, 80, 400, 240), "p0_s1")
+    pa = TextSegment(id="p0_s0", page=0, bbox=a.bbox, source_text="称一称，掂一掂。", translated_text="Weigh it.", origin="ocr",
+                     members=["p0_i0"])
+    pb = TextSegment(id="p0_s1", page=0, bbox=b.bbox, source_text="萬大学", translated_text="", origin="ocr", members=["p0_i1"])
+    doc = TranslatedDocument(source_path=str(src_path), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=260)], segments=[a, b, pa, pb])
+    erase_merged_lines(work, doc)
+    restore_lines(work, pymupdf.open(str(src_path)), doc, [pb])
+    out = work.extract_image(work[0].get_image_info(xrefs=True)[0]["xref"])
+    import io
+    arr = np.array(Image.open(io.BytesIO(out["image"])).convert("RGB"))
+    assert (arr[95:145, 55:360].max(axis=2) < 100).sum() < 20         # the English line's Chinese stays erased
+    assert (arr[185:235, 55:200].max(axis=2) < 100).sum() > 100       # the restored box's own word is back
+
+
 def test_overlay_pipeline_produces_editable_text(scanned_pdf, tmp_path):
     res = run_pipeline(scanned_pdf, tmp_path, PipelineOptions(
         target_lang=Lang.EN, translator="mock", scanned_mode="overlay", require_qa_pass=False))
