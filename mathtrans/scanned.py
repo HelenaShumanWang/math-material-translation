@@ -1128,6 +1128,45 @@ def _dominant_colour(pixels: np.ndarray) -> tuple[np.ndarray, float]:
     return colour.astype(np.uint8), float(near.mean())
 
 
+def _box_background(pixels: np.ndarray) -> tuple[np.ndarray, float]:
+    """Background colour of a line box and its share, by a vote among the colours of the three fullest
+    bins: the fullest bin itself, the colour ruling the box's outer edge, and the colour ruling a band
+    just inside it. Each alone is fooled by one kind of box - bold strokes outnumbering a background that
+    fades through several shades (a ribbon), a cell border lying on the edge, a big decorated glyph whose
+    outline fills the band - but never two of them at once. Without a majority the fullest bin wins."""
+    h, w = pixels.shape[:2]
+    flat = pixels.reshape(-1, 3)
+    if flat.size == 0:
+        return np.array([255, 255, 255], dtype=np.uint8), 0.0
+    a = max(1, int(round(0.08 * h)))
+    b = max(a + 2, int(round(0.22 * h)))
+    if h <= 2 * b + 2 or w <= 2 * b + 2:
+        return _dominant_colour(pixels)
+    q = (flat // 16).astype(np.int32)
+    keys = (q[:, 0] << 8 | q[:, 1]) << 8 | q[:, 2]
+    values, counts = np.unique(keys, return_counts=True)
+    cands = [np.median(flat[keys == k], axis=0) for k in values[np.argsort(-counts)[:3]]]
+
+    def winner(region: np.ndarray) -> int:
+        px = region.reshape(-1, 3).astype(np.int32)
+        shares = [float((np.abs(px - c.astype(np.int32)).max(axis=1) <= BACKGROUND_TOLERANCE).mean()) for c in cands]
+        return int(np.argmax(shares))
+
+    edge = np.concatenate([pixels[:2].reshape(-1, 3), pixels[-2:].reshape(-1, 3),
+                           pixels[:, :2].reshape(-1, 3), pixels[:, -2:].reshape(-1, 3)])
+    band = np.zeros((h, w), bool)
+    band[a:b, a:w - a] = True
+    band[h - b:h - a, a:w - a] = True
+    band[a:h - a, a:b] = True
+    band[a:h - a, w - b:w - a] = True
+    votes = [0, winner(edge), winner(pixels[band])]
+    pick = max(set(votes), key=votes.count) if max(votes.count(v) for v in votes) >= 2 else 0
+    best = cands[pick]
+    near = np.abs(flat.astype(np.int32) - best.astype(np.int32)).max(axis=1) <= BACKGROUND_TOLERANCE
+    colour = np.median(flat[near], axis=0) if near.any() else best
+    return colour.astype(np.uint8), float(near.mean())
+
+
 def _extend_for_punctuation(original: np.ndarray, box: tuple[int, int, int, int],
                             blocked: list[tuple[int, int, int, int]]) -> tuple[int, int, int, int]:
     """``box`` extended to the right over trailing punctuation the detector left out (。，！？):
@@ -1502,7 +1541,7 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     if crop.size == 0:
         return "empty"
     h, w = crop.shape[:2]
-    box_bg, _share = _dominant_colour(original[y0:y1, x0:x1])
+    box_bg, _share = _box_background(original[y0:y1, x0:x1])
     ring_bg, ring_uniform = _plain_surroundings(original, original_alpha, box)
     if ring_uniform and np.abs(ring_bg.astype(np.int32) - box_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE \
             and float(np.sqrt(((np.array(estimate_text_color(original, box, ring_bg, original_alpha), dtype=np.int32)
@@ -1519,6 +1558,7 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     mask = np.zeros((h, w), np.uint8)
     fill = np.zeros((h, w, 3), np.uint8)
     flat = np.zeros((h, w), bool)
+    rowwise = np.zeros((h, w), bool)  # plain strips on a gradient: filled row by row
     step = max(4, int(round(0.6 * h)))
     strips: list[tuple[int, int, np.ndarray, float]] = []
     prev_bg, prev_share = box_bg, _share
@@ -1562,7 +1602,9 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
                     m &= np.abs(stripe - nbg).max(axis=2) > BACKGROUND_TOLERANCE
         mask[:, sx:ex] = m
         fill[:, sx:ex] = bg
-        flat[:, sx:ex] = share >= STRIPE_FLAT_SHARE and not _gradient_strip(stripe)
+        graded = share >= STRIPE_FLAT_SHARE and _gradient_strip(stripe)
+        flat[:, sx:ex] = share >= STRIPE_FLAT_SHARE and not graded
+        rowwise[:, sx:ex] = graded
     if not mask.any():
         return "nothing to erase"
     # keep pictograms, bars and rulings: large solid components unlike the text colour
@@ -1603,7 +1645,35 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     region = canvas[y0:y1, x0:x1]
     flat_px = grown & flat
     region[flat_px] = fill[flat_px]
-    rest = (grown & ~flat).astype(np.uint8)
+    if (grown & rowwise).any():
+        # a band fading from top to bottom (a ribbon, a title strip): every row of a strip takes the
+        # colour of its own background pixels, so bold glyphs leave no smear an inpainting would
+        for sx, ex, _bg, _share in strips:
+            if not rowwise[0, sx]:
+                continue
+            g = grown[:, sx:ex]
+            if not g.any():
+                continue
+            cols = np.full((h, 3), np.nan)
+            for y in range(h):
+                px = crop[y, sx:ex][~g[y]]
+                if px.shape[0] >= 3:
+                    cols[y] = np.median(px, axis=0)
+            ok = ~np.isnan(cols[:, 0])
+            if ok.sum() < 2:
+                rowwise[:, sx:ex] = False  # nothing to go by: inpaint instead
+                continue
+            ys = np.arange(h)
+            for k in range(3):
+                cols[:, k] = np.interp(ys, ys[ok], cols[ok, k])
+            colour = np.clip(np.round(cols), 0, 255).astype(np.uint8)
+            sub = region[:, sx:ex]
+            yy, xx = np.nonzero(g)
+            sub[yy, xx] = colour[yy]
+        done = grown & rowwise
+    else:
+        done = np.zeros((h, w), bool)
+    rest = (grown & ~flat & ~done).astype(np.uint8)
     if rest.any():
         pad = 6
         cy0, cy1 = max(0, y0 - pad), min(canvas.shape[0], y1 + pad)
