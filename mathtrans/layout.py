@@ -384,11 +384,12 @@ _ENUMERATED_RE = re.compile(r"^\s*(?:\d{1,3}[.、．)]|[(（]\d{1,3}[)）]|[①-
 
 def _short_label(seg: TextSegment) -> bool:
     """A free-standing short label (grown on both sides and set centred on a scanned page);
-    headings and numbered items keep their left edge."""
+    headings and numbered items keep their left edge. A word or two read with a tall box
+    ("答：" before its answer line) takes the heading role but is a label all the same."""
     text = (seg.translated_text or seg.source_text or "").strip()
-    if seg.style.role != "label" or "\n" in text or len(text.split()) > 4:
+    if "\n" in text or len(text.split()) > 4 or _ENUMERATED_RE.match(seg.source_text or ""):
         return False
-    return not _ENUMERATED_RE.match(seg.source_text or "")
+    return seg.style.role == "label" or (seg.style.role == "heading" and len(text.split()) <= 2)
 
 
 def _watermark_line(seg: TextSegment) -> bool:
@@ -1061,10 +1062,12 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
                 continue
             dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
             dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
+            # pieces of one line, split by an answer blank or a picture: one baseline, a short gap
+            same_row = dy <= 0.5 * h and dx <= 3 * h
             long_item = not (_short_label(a) or _short_fragment(a)) or not (_short_label(b) or _short_fragment(b))
-            if long_item and not (same_column or same_list):
+            if long_item and not (same_column or same_list or same_row):
                 continue  # a numbered item (or a heading-styled entry) is a sibling within its column only
-            if _list_item(a) != _list_item(b) and not same_column:
+            if _list_item(a) != _list_item(b) and not (same_column or same_row):
                 continue  # a numbered instruction and the price tags of the picture beside it are not one set
             if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
                 parent[find(i)] = find(j)

@@ -975,6 +975,35 @@ def test_numbered_instruction_is_no_sibling_of_the_picture_labels_beside_it():
             seg(5, 331, 94, 24, 10.0, "？只", "? birds", font=5.8)]
     groups = _sibling_label_groups([item] + tags)
     assert all("p91_s0" not in [s.id for s in g] for g in groups)    # the instruction keeps its own size
+    # ... but the two pieces of one numbered line, split by an answer blank, are one set
+    head = seg(10, 59, 186, 41, 11.4, "1.在（", "1. Fill in (", font=5.7)
+    tail = seg(11, 120, 186, 126, 11.4, "）里填上合适的单位。", ") with a suitable unit.")
+    groups = _sibling_label_groups([head, tail] + tags)
+    assert [sorted(s.id for s in g) for g in groups if "p91_s10" in [s.id for s in g]] == [["p91_s10", "p91_s11"]]
+
+
+def test_a_short_answer_label_read_as_a_heading_grows_like_a_label(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    # "答：" read with a tall box (heading role) at the left margin, its answer line further right
+    label = TextSegment(id="p22_s23", page=0, bbox=BBox(x0=78, y0=471, x1=104, y1=490), source_text="答：",
+                        protected_text="答：", origin="ocr", translated_text="Answer:",
+                        style=SegmentStyle(size=15.3, color=0x202020, role="heading", line_height=1.2))
+    line = TextSegment(id="p22_s24", page=0, bbox=BBox(x0=170, y0=474, x1=420, y1=488), source_text="一共有多少本书？",
+                       protected_text="一共有多少本书？", origin="ocr", translated_text="How many books are there in all?",
+                       style=SegmentStyle(size=12.0, color=0x202020, role="body", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[label, line])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert "left in source" not in (label.render.notes or ""), label.render.notes
+    assert label.render.scale >= 0.8 and label.render.bbox.x0 >= 77.5     # set at (nearly) full size, left edge kept
 
 
 def test_squeezed_siblings_do_not_set_the_size_of_the_others(tmp_path):
