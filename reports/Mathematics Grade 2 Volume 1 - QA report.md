@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 293 errors, 42 warnings (1884.7 s); proofread: 725 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 291 errors, 42 warnings (1884.7 s); proofread: 725 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 119 page(s), 1853 translatable segment(s))
+**Document:** 数学 (zh → en, 119 page(s), 1851 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,9 +18,9 @@
 - Round 2: llm_review ×513, layout_fit ×78, formatting ×8, untranslated ×4, completeness ×3, placeholders ×3, image_text ×2, length_ratio ×2, numbers ×2, glossary ×1, target_script ×1
 - Round 3: llm_review ×479, layout_fit ×69, completeness ×7, formatting ×4, glossary ×3, untranslated ×3, image_text ×2, length_ratio ×2, placeholders ×2, target_script ×2, numbers ×1
 
-## Final issues (335)
+## Final issues (333)
 
-### `completeness` — 121 errors, 0 warnings
+### `completeness` — 119 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -68,7 +68,6 @@
 | error | 30 | p29_s5 | The translation "?" contains no words; translate the complete source text | 吗？ | ? |
 | error | 34 | p33_s15 | The segment has no translation; translate the complete source text | 五五六七八 |  |
 | error | 34 | p33_s20 | The segment has no translation; translate the complete source text | 三五九 |  |
-| error | 34 | p33_s21 | The segment has no translation; translate the complete source text | 三 |  |
 | error | 51 | p50_s19 | The segment has no translation; translate the complete source text | 曹操 |  |
 | error | 51 | p50_s20 | The segment has no translation; translate the complete source text | 曹操 |  |
 | error | 51 | p50_s21 | The segment has no translation; translate the complete source text | 张飞 |  |
@@ -111,7 +110,6 @@
 | error | 84 | p83_s12 | The segment has no translation; translate the complete source text | 七上 |  |
 | error | 86 | p85_s10 | The segment has no translation; translate the complete source text | 五六 |  |
 | error | 86 | p85_s8 | The segment has no translation; translate the complete source text | 四 |  |
-| error | 86 | p85_s9 | The segment has no translation; translate the complete source text | 三 |  |
 | error | 94 | p93_s6 | The segment has no translation; translate the complete source text | 房 |  |
 | error | 94 | p93_s7 | The segment has no translation; translate the complete source text | 间 |  |
 | error | 94 | p93_s8 | The segment has no translation; translate the complete source text | 鸟 |  |
