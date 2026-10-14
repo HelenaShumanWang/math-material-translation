@@ -1317,6 +1317,59 @@ def _extend_over_missed_glyphs(original: np.ndarray, box: tuple[int, int, int, i
     return (nx0, y0, nx1, y1), glyphs
 
 
+CUT_GLYPH_REACH = 0.5
+"""A glyph whose top or bottom the OCR box cut off (large title characters) may reach this many line
+heights beyond the box ..."""
+CUT_GLYPH_INSIDE = 0.5
+"""... and is taken when at least this share of its ink lies inside the box."""
+
+
+def _extend_over_cut_glyphs(original: np.ndarray, box: tuple[int, int, int, int],
+                            blocked: list[tuple[int, int, int, int]]) -> tuple[int, int, int, int]:
+    """``box`` grown over the parts of its glyphs that the OCR polygon cut off above or below (the
+    bottoms of large title characters): connected components of ink in the text colour that lie mostly
+    inside the box and are no taller than a glyph. Never past another OCR line."""
+    import cv2
+    from .images import estimate_text_color
+
+    x0, y0, x1, y1 = box
+    h = y1 - y0
+    H, W = original.shape[:2]
+    if h < 8:
+        return box
+    reach = int(round(CUT_GLYPH_REACH * h))
+    ry0, ry1 = max(0, y0 - reach), min(H, y1 + reach)
+    rx0, rx1 = max(0, x0 - reach // 2), min(W, x1 + reach // 2)
+    for bx0, by0, bx1, by1 in blocked:  # stop at the lines above and below
+        if bx0 < x1 and bx1 > x0:
+            if by1 <= y0 + 1:
+                ry0 = max(ry0, by1)
+            elif by0 >= y1 - 1:
+                ry1 = min(ry1, by0)
+    bg, _share = _box_background(original[y0:y1, x0:x1])
+    ink_colour = np.array(estimate_text_color(original, box, bg), dtype=np.int32)
+    region = original[ry0:ry1, rx0:rx1].astype(np.int32)
+    ink = (np.sqrt(((region - ink_colour) ** 2).sum(axis=2)) < INK_TOLERANCE) & \
+        (np.abs(region - bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF)
+    if not ink.any():
+        return box
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(ink.astype(np.uint8), connectivity=8)
+    inside = np.zeros_like(ink)
+    inside[y0 - ry0:y1 - ry0, x0 - rx0:x1 - rx0] = True
+    nx0, ny0, nx1, ny1 = box
+    for i in range(1, n):
+        cx, cy, cw, ch, area = (int(v) for v in stats[i])
+        if ch > 1.6 * h or area < 4:
+            continue
+        comp = labels == i
+        share = float((comp & inside).sum()) / area
+        if share < CUT_GLYPH_INSIDE or share >= 0.999:
+            continue
+        nx0, ny0 = min(nx0, rx0 + cx - 1), min(ny0, ry0 + cy - 1)
+        nx1, ny1 = max(nx1, rx0 + cx + cw + 1), max(ny1, ry0 + cy + ch + 1)
+    return max(0, nx0), max(0, ny0), min(W, nx1), min(H, ny1)
+
+
 GRADIENT_ROWS = 4
 """Rows sampled at the top and at the bottom of a strip to tell a gradient background (a title
 band fading into colour) from a plain one."""
@@ -1433,10 +1486,16 @@ def _glyph_decoration(crop: np.ndarray, near_ink: np.ndarray, bg: np.ndarray, h:
         return none
     reach = max(2, int(round(DECORATION_REACH * h)))
     halo = cv2.dilate(near_ink.astype(np.uint8), np.ones((2 * reach + 1, 2 * reach + 1), np.uint8)) > 0
-    count, labels = cv2.connectedComponents(other.astype(np.uint8), connectivity=8)
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(other.astype(np.uint8), connectivity=8)
     sizes = np.bincount(labels.ravel(), minlength=count)
     inside = np.bincount(labels.ravel(), weights=halo.ravel(), minlength=count)
     hugging = inside >= DECORATION_SHARE * sizes
+    hgt, wid = near_ink.shape
+    # a surface crossing the whole box (the blue arc under a cover title, the edge of a ribbon) is
+    # background, however close it comes to the strokes: no outline spans the box from side to side
+    across = ((stats[:, 0] <= 1) & (stats[:, 0] + stats[:, 2] >= wid - 1)) | \
+             ((stats[:, 1] <= 1) & (stats[:, 1] + stats[:, 3] >= hgt - 1))
+    hugging &= ~across
     hugging[0] = False
     return hugging[labels]
 
@@ -1469,17 +1528,21 @@ def _crossing_rulings(original: np.ndarray, box: tuple[int, int, int, int], mask
     def ink(patch: np.ndarray) -> np.ndarray:
         return np.abs(patch.astype(np.int32) - bgi).max(axis=2) > GLYPH_DIFF
 
+    # a ruling crossing the box goes on well past it on both sides; a glyph stroke that merely lines up
+    # with a stroke of the next line of text (set tight below) continues on one side only
+    far = max(RULING_BEYOND, int(round(0.25 * h)))
+
     def beyond_rows(gx: int) -> bool:  # the column's line goes on above or below the box
         xs = slice(max(0, gx - 1), min(W, gx + 2))
-        above = original[max(0, y0 - RULING_BEYOND):y0, xs]
-        below = original[y1:min(H, y1 + RULING_BEYOND), xs]
-        return any(p.shape[0] == RULING_BEYOND and bool(ink(p).any(axis=1).all()) for p in (above, below))
+        above = original[max(0, y0 - far):y0, xs]
+        below = original[y1:min(H, y1 + far), xs]
+        return all(p.shape[0] == far and bool(ink(p).any(axis=1).all()) for p in (above, below))
 
     def beyond_cols(gy: int) -> bool:  # the row's line goes on left or right of the box
         ys = slice(max(0, gy - 1), min(H, gy + 2))
-        left = original[ys, max(0, x0 - RULING_BEYOND):x0]
-        right = original[ys, x1:min(W, x1 + RULING_BEYOND)]
-        return any(p.shape[1] == RULING_BEYOND and bool(ink(p).any(axis=0).all()) for p in (left, right))
+        left = original[ys, max(0, x0 - far):x0]
+        right = original[ys, x1:min(W, x1 + far)]
+        return all(p.shape[1] == far and bool(ink(p).any(axis=0).all()) for p in (left, right))
 
     def longest_run(v: np.ndarray) -> int:
         if not v.any():
@@ -1535,6 +1598,7 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
 
     box = _extend_for_punctuation(original, box, blocked or [])
     box, missed = _extend_over_missed_glyphs(original, box, blocked or [])
+    box = _extend_over_cut_glyphs(original, box, blocked or [])
     box = _grow_on_plain_surroundings(original, original_alpha, box, blocked or [])
     x0, y0, x1, y1 = box
     crop = original[y0:y1, x0:x1].astype(np.int32)
@@ -1588,9 +1652,12 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     for k, (sx, ex, bg, share) in enumerate(strips):
         stripe = crop[:, sx:ex]
         diff = np.abs(stripe - bg.astype(np.int32)).max(axis=2)
-        if share >= STRIPE_MIN_SHARE:
+        graded = share >= STRIPE_MIN_SHARE and _gradient_strip(stripe)
+        if share >= STRIPE_MIN_SHARE and not graded:
             m = diff > GLYPH_DIFF
-        else:  # picture content: only what looks like the text (strokes and their decoration)
+        else:
+            # picture content, or a background that changes down the strip (a fading band, the blue
+            # arc under a cover title): only what looks like the text (strokes and their decoration)
             m = (diff > GLYPH_DIFF) & glyph[:, sx:ex]
         # pixels of a neighbouring strip's surface (the next label cell, a pictogram that
         # dominates the next strip) are not ink of this one
@@ -1602,7 +1669,6 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
                     m &= np.abs(stripe - nbg).max(axis=2) > BACKGROUND_TOLERANCE
         mask[:, sx:ex] = m
         fill[:, sx:ex] = bg
-        graded = share >= STRIPE_FLAT_SHARE and _gradient_strip(stripe)
         flat[:, sx:ex] = share >= STRIPE_FLAT_SHARE and not graded
         rowwise[:, sx:ex] = graded
     if not mask.any():
@@ -1614,7 +1680,9 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         if area >= 0.5 * h * h and area >= ICON_MIN_FILL * bw * bh:
             comp = labels == i
             if float(np.median(dist_ink[comp])) >= INK_TOLERANCE and float(glyph[comp].mean()) < GLYPH_COMPONENT_SHARE:
-                mask[comp] = 0  # not a decorated glyph (strokes inside their outline): a pictogram
+                # not a decorated glyph (strokes inside their outline): a pictogram, or a second surface
+                # behind the line (the blue arc under a cover title) - it stays, the glyph strokes on it go
+                mask[comp & ~glyph] = 0
     for mx0, my0, mx1, my1 in missed:
         # a glyph the detector left out goes even where it touches a kept outline (一 against its bubble)
         sl = (slice(max(0, my0 - y0), max(0, min(h, my1 - y0))), slice(max(0, mx0 - x0), max(0, min(w, mx1 - x0))))
