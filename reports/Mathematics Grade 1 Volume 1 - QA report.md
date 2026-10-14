@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 169 errors, 66 warnings (1253.6 s); proofread: 369 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 161 errors, 68 warnings (1253.6 s); proofread: 369 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 109 page(s), 1075 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×323, layout_fit ×93, formatting ×27, placeholders ×15, glossary ×14, image_text ×8, untranslated ×6, length_ratio ×3
 - Round 3: llm_review ×317, layout_fit ×89, formatting ×17, placeholders ×11, image_text ×8, glossary ×5, completeness ×2, untranslated ×2, length_ratio ×1, target_script ×1
 
-## Final issues (235)
+## Final issues (229)
 
 ### `completeness` — 81 errors, 0 warnings
 
@@ -149,20 +149,12 @@
 | error | 94 | p93_s2 | Glossary: translate "比一比" as "Compare" | 2人一组做游戏，比一比哪组堆得又快又高。 | Play in groups of 2. Which group stacks fastest and highest? |
 | error | 100 | p99_s0 | Glossary: translate "练习" as "exercise" | 练习 | Practice |
 
-### `layout_fit` — 40 errors, 16 warnings
+### `layout_fit` — 32 errors, 18 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 5 | p4_s2 | Shorten the translation to at most 23 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 七加与减 | Unit 7 Add and Subtract (2) |
-| error | 5 | p4_s2 | Shorten the translation to at most 23 characters so it fits the original box (the current translation of 27 characters overflows its box; the minimum allowed size is 55%) | 七加与减 | Unit 7 Add and Subtract (2) |
-| error | 8 | p7_s4 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 1筐 | 1 basket |
-| error | 8 | p7_s4 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 1筐 | 1 basket |
-| error | 26 | p25_s2 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 36 characters overflows its box; the minimum allowed size is 55%) | 100.2.l比100.2.0重 | 100.2.l is heavier than 100.2.0. |
-| error | 26 | p25_s2 | Shorten the translation to at most 24 characters so it fits the original box (the current translation of 36 characters overflows its box; the minimum allowed size is 55%) | 100.2.l比100.2.0重 | 100.2.l is heavier than 100.2.0. |
-| error | 26 | p25_s3 | Shorten the translation to at most 27 characters so it fits the original box (the current translation of 33 characters overflows its box; the minimum allowed size is 55%) | 100.3.l比100.3.r | 100.3.l lighter than 100.3.r. |
-| error | 26 | p25_s3 | Shorten the translation to at most 27 characters so it fits the original box (the current translation of 33 characters overflows its box; the minimum allowed size is 55%) | 100.3.l比100.3.r | 100.3.l lighter than 100.3.r. |
-| error | 26 | p25_s9 | Shorten the translation to at most 37 characters so it fits the original box (the current translation of 71 characters overflows its box; the minimum allowed size is 55%) | 100.12.l比100.12.r100.14.l比100.14.r | 100.12.l heavier than 100.12.r. 100.14.l lighter than… |
-| error | 26 | p25_s9 | Shorten the translation to at most 37 characters so it fits the original box (the current translation of 71 characters overflows its box; the minimum allowed size is 55%) | 100.12.l比100.12.r100.14.l比100.14.r | 100.12.l heavier than 100.12.r. 100.14.l lighter than… |
+| error | 26 | p25_s9 | Shorten the translation to at most 54 characters so it fits the original box (the current translation of 71 characters overflows its box; the minimum allowed size is 55%) | 100.12.l比100.12.r100.14.l比100.14.r | 100.12.l heavier than 100.12.r. 100.14.l lighter than… |
+| error | 26 | p25_s9 | Shorten the translation to at most 54 characters so it fits the original box (the current translation of 71 characters overflows its box; the minimum allowed size is 55%) | 100.12.l比100.12.r100.14.l比100.14.r | 100.12.l heavier than 100.12.r. 100.14.l lighter than… |
 | error | 28 | p27_s12 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 加号 | plus sign |
 | error | 28 | p27_s12 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 加号 | plus sign |
 | error | 31 | p30_s11 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 减号 | minus sign |
@@ -173,8 +165,6 @@
 | error | 42 | p41_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 跳绳 | Jump Rope |
 | error | 49 | p48_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 乘车 | Bus Ride |
 | error | 49 | p48_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 乘车 | Bus Ride |
-| error | 58 | p57_s6 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 排第 | is number |
-| error | 58 | p57_s6 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 排第 | is number |
 | error | 61 | p60_s13 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 妙想 | Miaoxiang |
 | error | 61 | p60_s13 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 妙想 | Miaoxiang |
 | error | 62 | p61_s7 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 文具 | Stationery |
@@ -193,8 +183,12 @@
 | error | 72 | p71_s11 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
 | error | 78 | p77_s1 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 古人计数 | Ancient Counting |
 | error | 78 | p77_s1 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 古人计数 | Ancient Counting |
-| warning | 33 | p32_s6 | The translation overflows its box and was rendered at 48% of the original size; even a much shorter text would not fit, check this box in the preview | 支。 | fewer. |
-| warning | 33 | p32_s6 | The translation overflows its box and was rendered at 48% of the original size; even a much shorter text would not fit, check this box in the preview | 支。 | fewer. |
+| error | 103 | p102_s6 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
+| error | 103 | p102_s6 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 小红 | Xiaohong |
+| warning | 26 | p25_s3 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 100.3.l比100.3.r | 100.3.l lighter than 100.3.r. |
+| warning | 26 | p25_s3 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 100.3.l比100.3.r | 100.3.l lighter than 100.3.r. |
+| warning | 33 | p32_s6 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 支。 | fewer. |
+| warning | 33 | p32_s6 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 支。 | fewer. |
 | warning | 56 | p55_s8 | The translation overflows its box and was rendered at 38% of the original size; even a much shorter text would not fit, check this box in the preview | 画 | Draw |
 | warning | 56 | p55_s8 | The translation overflows its box and was rendered at 38% of the original size; even a much shorter text would not fit, check this box in the preview | 画 | Draw |
 | warning | 63 | p62_s1 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 语 | Chinese |
