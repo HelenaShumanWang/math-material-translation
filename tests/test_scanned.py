@@ -858,3 +858,28 @@ def test_numbered_item_takes_its_hanging_indent_tail():
     ]
     paragraphs = group_ocr_lines(lines, 0, "zh")
     assert [p.source_text for p in paragraphs] == ["（1）说一说，图中有哪些数学信息？", "(2）买7瓶矿泉水需要多少元？"]
+
+
+def test_numbered_items_in_one_column_share_one_size(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+
+    def item(i, y, zh, en):
+        return TextSegment(id=f"p0_s{i}", page=0, bbox=BBox(x0=259, y0=y, x1=464, y1=y + 18), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=14.4, color=0x202020, role="body", line_height=1.2))
+    segs = [item(1, 141, "（1）说一说，图中有哪些数学信息？", "(1) Talk about it. What is in the picture?"),
+            item(2, 165, "(2）买7瓶矿泉水需要多少元？", "(2) How much do seven bottles of mineral water cost in all?"),
+            item(3, 189, "（3）算式5×3=15可以解决什么问题？", "(3) What problem can 5 × 3 = 15 solve?")]
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=segs)
+    render_document(src, doc, tmp_path / "out.pdf")
+    sizes = [s.render.font_size for s in segs]
+    assert max(sizes) - min(sizes) < 0.6, sizes  # the three questions are set alike

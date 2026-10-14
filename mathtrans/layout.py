@@ -79,6 +79,7 @@ from PIL import Image
 import pymupdf
 
 from .fonts import find_font_file, html_font_setup
+from .extract import is_list_item
 from .models import ANCHOR_RE, BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment, TranslatedDocument
 
 log = logging.getLogger("mathtrans.layout")
@@ -951,6 +952,9 @@ COLUMN_PITCH = 8.0
 LABEL_ROW_PITCH = 1.6
 """Sibling labels stacked in a column (one per picture row) sit up to this many label heights
 apart, centre to centre."""
+SIBLING_SIZE_FLOOR = 0.7
+"""Siblings are reset to the smallest size among them, but never below this share of their
+median size: one member squeezed much smaller stays the odd one out instead of shrinking all."""
 LABEL_SIZE_SPREAD = 1.12
 """... and are reset at the smallest size among them when their rendered sizes differ by more
 than this factor ("Xiaolan" squeezed, "Fangfang" at full size looks careless)."""
@@ -963,8 +967,15 @@ def _short_fragment(seg: TextSegment) -> bool:
     return "\n" not in text and len(text.split()) <= 6 and len(text) <= 40 and seg.style.role != "heading"
 
 
+def _list_item(seg: TextSegment) -> bool:
+    """A numbered question or exercise line ((1) …, 2. …, ①) set on a scanned page: the items
+    of one list stand one under the other and read as one text, whatever their length."""
+    return (seg.style.role in ("body", "label") and bool(is_list_item(seg.source_text or ""))
+            and "\n" not in (seg.translated_text or ""))
+
+
 def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]]:
-    labels = [s for s in segs if s.origin == "ocr" and (_short_label(s) or _short_fragment(s))
+    labels = [s for s in segs if s.origin == "ocr" and (_short_label(s) or _short_fragment(s) or _list_item(s))
               and not s.style.is_vertical and not s.anchors
               and s.render is not None and s.render.font_size > 0
               and s.render.bbox is not None]
@@ -990,6 +1001,9 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
                 continue
             dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
             dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
+            long_item = not (_short_label(a) or _short_fragment(a)) or not (_short_label(b) or _short_fragment(b))
+            if long_item and not same_column:
+                continue  # a numbered item is a sibling of the items in its own column only
             if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
                 parent[find(i)] = find(j)
             elif same_column and dy <= COLUMN_PITCH * h:
@@ -1004,7 +1018,10 @@ def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space
                           archive: Optional[pymupdf.Archive], min_scale: float) -> None:
     """Re-set the larger members of each sibling-label group at the group's smallest size."""
     for group in _sibling_label_groups(segs):
-        target = min(s.render.font_size for s in group)  # type: ignore[union-attr]
+        sizes = sorted(s.render.font_size for s in group)  # type: ignore[union-attr]
+        median = sizes[len(sizes) // 2]
+        # one item squeezed far below the others (no room to wrap) does not drag the whole list down
+        target = max(sizes[0], SIBLING_SIZE_FLOOR * median)
         for seg in group:
             old = seg.render
             assert old is not None and old.bbox is not None
