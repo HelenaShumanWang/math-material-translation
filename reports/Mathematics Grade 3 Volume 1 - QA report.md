@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 215 errors, 94 warnings (2243.6 s); proofread: 383 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 215 errors, 94 warnings (2243.6 s); proofread: 412 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 111 page(s), 2161 translatable segment(s))
+**Document:** 数学 (zh → en, 111 page(s), 2142 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -97,7 +97,7 @@
 | error | 51 | p50_s10 | The source does not end with a question mark; do not end the translation with one | 长是多少。 | of each shape? |
 | error | 66 | p65_s6 | The source ends with a question mark; end the translation with a question mark too | 算一算，张老师买矿泉水共花多少元？ | Work out how much Teacher Zhang spent in all. |
 | error | 71 | p70_s2 | The source ends with a question mark; end the translation with a question mark too | 说一说，关于年、月、日，你知道些什么？ | Say what you know about years, months and days. |
-| error | 73 | p72_s19 | The source does not end with a question mark; do not end the translation with one | 谁最小，相差多 | who is the youngest, and how many days apart? |
+| error | 73 | p72_s18 | The source does not end with a question mark; do not end the translation with one | （3）把在这个月出生的同学的生日标在上面，比一比，谁最大，谁最小，相差多 | (3) Mark on it the birthdays of classmates born this month.… |
 | error | 73 | p72_s28 | The source ends with a question mark; end the translation with a question mark too | 你知道吗 | Did you know |
 | error | 82 | p81_s10 | Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 用△标出父亲的休息日，用标出母亲的休息日。你发现了什么？ | Mark the father's days off with △ and the mother's days off… |
 | error | 82 | p81_s12 | Remove the symbol(s) △ ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 同时标有和的日子有4号、8 | The days marked with both △ and ○ are the 4th, 8 |
@@ -138,12 +138,12 @@
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 15 | p14_s35 | Glossary: translate "算式" as "number sentence" | 3.在右图中将下面算式的结果涂成红色。 | 3. Colour the answers below red in the picture on the right. |
-| error | 20 | p19_s2 | Glossary: translate "个位" as "ones" | 2.右面这两幅图分别是机灵狗在哪个位置看到的？把位置的编号填 | 2. From which position does Clever Dog see each picture on … |
+| error | 20 | p19_s2 | Glossary: translate "个位" as "ones" | 2.右面这两幅图分别是机灵狗在哪个位置看到的？把位置的编号填在括号里。 | 2. From which position does Clever Dog see each picture on … |
 | error | 26 | p25_s14 | Glossary: translate "算一算" as "Calculate" | 1.说一说，再列式算一算 | 1. Discuss, then write and solve. |
 | error | 27 | p26_s14 | Glossary: translate "算式" as "number sentence" | 6.达·芬奇是文艺复兴时期有名的画家、科学家，留下了许多名画和科学研究成果。你知道他出生于哪一年吗？将下图中得数在40… | 6. Leonardo da Vinci was a famous painter and scientist of … |
 | error | 31 | p30_s31 | Glossary: translate "算一算" as "Calculate" | （2）星期一早上出发时里程表的读数是632千米，算一算，赵叔叔星期五晚上到家时里程表的读数是多少？ | (2) When he set off on Monday morning, the odometer read 63… |
 | error | 45 | p44_s12 | Glossary: translate "竖式" as "vertical form" | 这些题都能用竖式除法来算吗？该怎样写呢？ | Can all these be worked out with long division? How do we s… |
-| error | 48 | p47_s30 | Glossary: translate "算一算" as "Calculate" | （2）算一算李叔叔每天行驶的里程数，哪一天最多？哪一天 | (2) Work out how far Uncle Li drove each day. Which day was… |
+| error | 48 | p47_s30 | Glossary: translate "算一算" as "Calculate" | （2）算一算李叔叔每天行驶的里程数，哪一天最多？哪一天最少？ | (2) Work out how far Uncle Li drove each day. Which day was… |
 | error | 55 | p54_s0 | Glossary: translate "算一算" as "Calculate" | 6.看一看，算一算正方形的边长是多少厘米。 | 6. Look and work out the side length of the square in centi… |
 | error | 56 | p55_s12 | Glossary: translate "个位" as "ones" | 十位个位 | T O |
 | error | 56 | p55_s12 | Glossary: translate "十位" as "tens" | 十位个位 | T O |
@@ -152,7 +152,7 @@
 | error | 73 | p72_s5 | Glossary: translate "统计" as "statistics" | 5.统计本班同学在哪个月出生的人数最多，并制作今年这个月的月历 | 5. Find out which month the most classmates were born in, a… |
 | error | 80 | p79_s10 | Glossary: translate "连一连" as "Match" | 还可以用字母来表示帽子和裤子。你能试着连一连吗？ | We can also use letters for the hats and trousers. Can you … |
 | error | 90 | p89_s6 | Glossary: translate "算一算" as "Calculate" | 算一算，妙想一共要付多少元？ | Work out how much Miaoxiang must pay in total. |
-| error | 102 | p101_s1 | Glossary: translate "个位" as "ones" | 1.下面四幅图分别是机灵狗站在哪个位置看到的？在（）里标出 | 1. Where was Clever Dog standing to see each picture below?… |
+| error | 102 | p101_s1 | Glossary: translate "个位" as "ones" | 1.下面四幅图分别是机灵狗站在哪个位置看到的？在（）里标出序号。实际看一看。 | 1. Where was Clever Dog standing to see each picture below?… |
 
 ### `layout_fit` — 68 errors, 38 warnings
 
@@ -318,7 +318,7 @@
 | warning | 49 | p48_s11 | Reviewer (format): The source is vertical text '厘米' used as a unit label; 'cm' is correct per the abbreviation convention. Suggested translation: "cm" | 厘米 | cm |
 | warning | 50 | p49_s10 | Reviewer (format): Source context is a heading/label written as a bare quantity; translation fine, but no capitalization issue arises. No action needed — reported only if heading casing convention applies. | 110米 | 110 m |
 | warning | 50 | p49_s2 | Reviewer (format): Unit style inconsistency: the source uses 米 and other items in the set use "(m)" after equations, but here the unit is written as "560 m" — check consistency with the rest of the page. | 560米 | 560 m |
-| warning | 53 | p52_s10 | Reviewer (format): The sentence is split across items p52_s10/p52_s11 and the translation of p52_s11 begins lowercase and lacks the article "the"; as a continuation it should read "the square's side length?". Suggested translation: "4. Taoqi used a piece of string 40 cm long to make a square. Do you know" | 4.淘气用一根40厘米长的绳子围成了一个正方形，你知道这个正方 | 4. Taoqi used a piece of string 40 cm long to make a square… |
+| warning | 53 | p52_s10 | Reviewer (format): The sentence is split across items p52_s10/p52_s11 and the translation of p52_s11 begins lowercase and lacks the article "the"; as a continuation it should read "the square's side length?". Suggested translation: "4. Taoqi used a piece of string 40 cm long to make a square. Do you know" | 4.淘气用一根40厘米长的绳子围成了一个正方形，你知道这个正方形的边长是多少吗？ | 4. Taoqi used a piece of string 40 cm long to make a square… |
 | warning | 57 | p56_s15 | Reviewer (format): The two column labels are run together without a separator; the source lists them as separate column headings. Suggested translation: "Large vehicle passenger count Small vehicle passenger count" | 大车乘客数小车乘客数 | Large vehicle passenger count Small vehicle passenger count |
 | warning | 62 | p61_s23 | Reviewer (format): "kilometres" uses British spelling while elsewhere "km" is used; consistency preferred, though not a meaning change. Suggested translation: "How many kilometers is it from Taoqi's home to Grandma's home in total?" | 淘气家到奶奶家一共有多少千米？ | How many kilometres is it from Taoqi's home to Grandma's ho… |
 | warning | 66 | p65_s10 | Reviewer (format): Currency amounts must be written with ¥ before the number; a bare unit label with no amount is written "yuan". Here the amount 72 is present. Suggested translation: "24×3=¥72" | 24×3=72（元） | 24×3=72 (yuan) |
