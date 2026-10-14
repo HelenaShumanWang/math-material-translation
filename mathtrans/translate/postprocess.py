@@ -18,6 +18,10 @@ _HAN_RE = re.compile(r"[㐀-鿿]")
 _ORDINAL_RE = re.compile(r"\b(\d+)(st|nd|rd|th)\b")
 _SPACE_BEFORE_PUNCT_RE = re.compile(r" +([,.;:!?)])")
 _MULTI_SPACE_RE = re.compile(r"[ \t]{2,}")
+_EMPTY_BRACKET_RE = re.compile(r"\([ \t\u00a0\u2002\u3000]*\)")
+ANSWER_BRACKET = "(" + "\u00a0" * 6 + ")"
+"""An answer blank in brackets ("（  ）" in the source): room to write, which plain spaces would not
+keep - they collapse when the text is set - and which never splits over two lines."""
 
 
 def english_ordinal_suffix(n: int) -> str:
@@ -59,6 +63,7 @@ def postprocess_translation(text: str, tgt: Lang | str) -> str:
     if info(lang).script == "latin":
         text = latinise_punctuation(text)
         text = _SPACE_BEFORE_PUNCT_RE.sub(r"\1", text)
+        text = _EMPTY_BRACKET_RE.sub(ANSWER_BRACKET, text)
         if lang == Lang.EN:
             text = fix_ordinals(text)
     text = _MULTI_SPACE_RE.sub(" ", text)

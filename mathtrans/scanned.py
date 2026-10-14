@@ -1317,6 +1317,9 @@ def _extend_over_missed_glyphs(original: np.ndarray, box: tuple[int, int, int, i
     return (nx0, y0, nx1, y1), glyphs
 
 
+RING_INSIDE_SHARE = 0.1
+"""The plain surroundings' colour showing in at least this share of a box (between the strokes of a
+big decorated glyph) makes it the box's background, whatever colour dominates inside."""
 CUT_GLYPH_REACH = 0.5
 """A glyph whose top or bottom the OCR box cut off (large title characters) may reach this many line
 heights beyond the box ..."""
@@ -1607,14 +1610,32 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     h, w = crop.shape[:2]
     box_bg, _share = _box_background(original[y0:y1, x0:x1])
     ring_bg, ring_uniform = _plain_surroundings(original, original_alpha, box)
-    if ring_uniform and np.abs(ring_bg.astype(np.int32) - box_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE \
-            and float(np.sqrt(((np.array(estimate_text_color(original, box, ring_bg, original_alpha), dtype=np.int32)
-                                - box_bg.astype(np.int32)) ** 2).sum())) < INK_TOLERANCE:
-        # bold or wide glyphs (SHUXUE in a tight box) outnumber the background pixels inside the box:
-        # the plain surroundings say what the background is, not the most common colour inside. A box
-        # whose most common colour is not the text's (a label in a yellow cell on white paper) keeps it.
+    ring_inside = float((np.abs(crop - ring_bg.astype(np.int32)).max(axis=2) <= BACKGROUND_TOLERANCE).mean())
+
+    def outline_colour(colour: np.ndarray) -> bool:
+        """``colour`` hugs the strokes of the text (as seen against the plain surroundings): an outline,
+        not a surface such as the fill of a cell, which spreads far from the glyphs."""
+        import cv2 as _cv2
+        ink = np.array(estimate_text_color(original, box, ring_bg, original_alpha), dtype=np.int32)
+        near_ink = np.sqrt(((crop - ink) ** 2).sum(axis=2)) < INK_TOLERANCE
+        dom = np.abs(crop - colour.astype(np.int32)).max(axis=2) <= BACKGROUND_TOLERANCE
+        if not near_ink.any() or not dom.any():
+            return False
+        reach = max(2, int(round(DECORATION_REACH * h)))
+        halo = _cv2.dilate(near_ink.astype(np.uint8), np.ones((2 * reach + 1, 2 * reach + 1), np.uint8)) > 0
+        return float((dom & halo).sum()) >= DECORATION_SHARE * float(dom.sum())
+
+    if ring_uniform and np.abs(ring_bg.astype(np.int32) - box_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE and (
+            float(np.sqrt(((np.array(estimate_text_color(original, box, ring_bg, original_alpha), dtype=np.int32)
+                            - box_bg.astype(np.int32)) ** 2).sum())) < INK_TOLERANCE
+            or (ring_inside >= RING_INSIDE_SHARE and outline_colour(box_bg))):
+        # bold or wide glyphs (SHUXUE in a tight box), or the outline of a big decorated glyph (the slate
+        # edge of a yellow 目), outnumber the background pixels inside the box: the plain surroundings,
+        # whose colour also shows between the strokes, say what the background is. A box whose most
+        # common colour is not the text's and holds none of the surroundings (a label in a yellow cell
+        # on white paper) keeps its own.
         box_bg = ring_bg
-        _share = float((np.abs(crop - ring_bg.astype(np.int32)).max(axis=2) <= BACKGROUND_TOLERANCE).mean())
+        _share = ring_inside
     ink_colour = np.array(estimate_text_color(original, box, box_bg, original_alpha), dtype=np.int32)
     dist_ink = np.sqrt(((crop - ink_colour) ** 2).sum(axis=2))
     near_ink = dist_ink < INK_TOLERANCE

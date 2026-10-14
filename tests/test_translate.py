@@ -898,6 +898,18 @@ def test_style_findings_never_block():
     assert "3 × 7 = 21" in TRANSLATION_SYSTEM_PROMPT  # multiplication-table rhymes become facts
 
 
+def test_answer_brackets_keep_room_to_write():
+    from mathtrans.models import Lang
+    from mathtrans.translate.postprocess import ANSWER_BRACKET, postprocess_translation
+
+    # "（  ）" blanks of the source, however the model spaced them, come out with room to write
+    for raw in ("Which cable car does she take? ( )", "Which cable car does she take? ()", "Which cable car does she take? （  ）"):
+        assert postprocess_translation(raw, Lang.EN) == "Which cable car does she take? " + ANSWER_BRACKET
+    assert postprocess_translation("7 ( ) 8 = 15", Lang.EN) == "7 " + ANSWER_BRACKET + " 8 = 15"
+    # real brackets stay as they are
+    assert postprocess_translation("(2) Find f(x).", Lang.EN) == "(2) Find f(x)."
+
+
 def test_postprocess_translation_cleans_english_output():
     from mathtrans.translate.postprocess import fix_ordinals, latinise_punctuation, postprocess_translation
 
