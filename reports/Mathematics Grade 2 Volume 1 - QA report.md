@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 293 errors, 42 warnings (1884.7 s); proofread: 725 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 293 errors, 40 warnings (1884.7 s); proofread: 727 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 119 page(s), 1851 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×513, layout_fit ×78, formatting ×8, untranslated ×4, completeness ×3, placeholders ×3, image_text ×2, length_ratio ×2, numbers ×2, glossary ×1, target_script ×1
 - Round 3: llm_review ×479, layout_fit ×69, completeness ×7, formatting ×4, glossary ×3, untranslated ×3, image_text ×2, length_ratio ×2, placeholders ×2, target_script ×2, numbers ×1
 
-## Final issues (335)
+## Final issues (333)
 
 ### `completeness` — 119 errors, 0 warnings
 
@@ -239,7 +239,7 @@
 | error | 100 | p99_s15 | Glossary: translate "倍数" as "multiple" | 我按3的倍数跳 | I jump in 3s |
 | error | 102 | p101_s5 | Glossary: translate "找一找" as "Find" | 1.我们学了哪些长度单位？找一找，生活中有哪些物品的长度大约是1厘米，有哪些大约是1米？ | 1. What units of length have we learned? Look around: which… |
 
-### `layout_fit` — 32 errors, 4 warnings
+### `layout_fit` — 32 errors, 2 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -275,8 +275,6 @@
 | error | 86 | p85_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 买球 | Buy Balls |
 | error | 103 | p102_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习 | Exercise |
 | error | 103 | p102_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习 | Exercise |
-| warning | 40 | p39_s10 | The translation overflows its box and was rendered at 49% of the original size; even a much shorter text would not fit, check this box in the preview | 三五 | 3×5= |
-| warning | 40 | p39_s10 | The translation overflows its box and was rendered at 49% of the original size; even a much shorter text would not fit, check this box in the preview | 三五 | 3×5= |
 | warning | 115 | p114_s4 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 兵 | Soldier |
 | warning | 115 | p114_s4 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 兵 | Soldier |
 
