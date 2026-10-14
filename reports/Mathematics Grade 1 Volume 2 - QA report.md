@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 183 errors, 77 warnings (1223.5 s); proofread: 293 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 181 errors, 77 warnings (1223.5 s); proofread: 302 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数 (zh → en, 99 page(s), 1233 translatable segment(s))
+**Document:** 数 (zh → en, 99 page(s), 1220 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×323, layout_fit ×59, glossary ×15, placeholders ×7, formatting ×6, image_text ×6, untranslated ×6, completeness ×2, numbers ×2, target_script ×2
 - Round 3: llm_review ×335, layout_fit ×52, glossary ×26, image_text ×6, untranslated ×3, completeness ×2, formatting ×2, numbers ×1, placeholders ×1
 
-## Final issues (260)
+## Final issues (258)
 
 ### `completeness` — 46 errors, 0 warnings
 
@@ -86,7 +86,7 @@
 | error | 32 | p31_s0 | The source does not end with a question mark; do not end the translation with one | 谁的红果多 | Who Has More? |
 | error | 41 | p40_s15 | Remove the symbol(s) □: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 图中有—个△，有个 | In the figure there are __ △ and __ □. |
 | error | 44 | p43_s2 | The source does not end with a question mark; do not end the translation with one | 宋朝有个叫黄伯思的人发明了一种桌子，可以根据吃饭人数的不同，把桌子拼成不同的形状，比如3人拼成三角形，4人拼成四方形·… | In the Song Dynasty, a man named Huang Bosi invented a tabl… |
-| error | 47 | p46_s6 | The source does not end with a question mark; do not end the translation with one | 些图形。 | use? |
+| error | 47 | p46_s5 | The source does not end with a question mark; do not end the translation with one | 2.在点子图上用学过的图形设计一个图案，说一说用到了哪些图形。 | 2. Design a pattern on the dot grid with shapes you know. W… |
 | error | 52 | p51_s15 | Keep the symbol(s) ✓ of the source in the translation, at the matching position | 柳树可能有多少棵？（画“✓”42棵81棵15棵 | How many willow trees might there be? (Tick one.) 42 81 15 |
 | error | 52 | p51_s6 | Keep the symbol(s) ✓ of the source in the translation, at the matching position | （画“✓” | (Tick one.) |
 | error | 63 | p62_s11 | The source does not end with a question mark; do not end the translation with one | 小青收集了多少个252.15.0 | How many 252.15.0 did Xiaoqing collect? |
@@ -146,7 +146,7 @@
 | error | 83 | p82_s9 | Glossary: translate "百位" as "hundreds" | 百位十位个位 | H T O |
 | error | 84 | p83_s35 | Glossary: translate "集合" as "set" | 运动员集合 | Athletes assemble |
 
-### `layout_fit` — 44 errors, 6 warnings
+### `layout_fit` — 42 errors, 6 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -156,8 +156,6 @@
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买铅笔 | Buying Pencils |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 捉迷藏 | Hide and Seek |
 | error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 捉迷藏 | Hide and Seek |
-| error | 13 | p12_s5 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 并解答 | and solve it. |
-| error | 13 | p12_s5 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 并解答 | and solve it. |
 | error | 14 | p13_s7 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r |
 | error | 14 | p13_s7 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 56.12.l比56.12.r | 56.12.l fewer than 56.12.r |
 | error | 14 | p13_s8 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 少几 | by how many? |
@@ -250,7 +248,7 @@
 | warning | 21 | p20_s49 | Reviewer (grammar): "Discuss: what pattern do you find?" is informal; textbook style prefers "Talk about it: what pattern do you find?" Suggested translation: "Talk about it: what pattern do you find?" | 说一说，你发现了什么规律？ | Discuss: what pattern do you find? |
 | warning | 22 | p21_s1 | Reviewer (format): Section title uses (1) but the unit convention for such labels is (一)/(二) rendered as (1)/(2); acceptable, but keep consistent with p23_s0 "Look (2)". | 看一看（一） | Look (1) |
 | warning | 23 | p22_s1 | Reviewer (format): Quotation marks around the check mark are unnecessary; the standard instruction is (Draw "✓"). Suggested translation: "1. Which picture below does Taoqi see? (Draw "✓")" | 1.下面哪幅图是淘气看到的？（画“✓”） | 1. Which picture below does Taoqi see? (Draw "✓") |
-| warning | 25 | p24_s3 | Reviewer (format): Fragment "see?" is stranded at the start of a new item; it belongs to the preceding question. Suggested translation: "see?" | 笑看到的？ | see? |
+| warning | 25 | p24_s3 | Reviewer (format): Fragment "see?" is stranded at the start of a new item; it belongs to the preceding question. Suggested translation: "see?" |  |  |
 | warning | 26 | p25_s11 | Reviewer (format): "Count again another way" suggests repeating the previous count; the source means count using a different method. Suggested translation: "Count using another method." | 换一种方法数一数 | Count again another way. |
 | warning | 30 | p29_s10 | Reviewer (format): Place-value column labels should use the standard abbreviations "T O". Suggested translation: "T O" | 十位个位 | tens ones |
 | warning | 30 | p29_s9 | Reviewer (format): Place-value column labels should use the standard abbreviations "T O". Suggested translation: "T O" | 十位个位 | tens ones |
