@@ -1131,7 +1131,7 @@ GRADIENT_ROWS = 4
 band fading into colour) from a plain one."""
 GRADIENT_DIFF = 10
 """Top and bottom rows of a strip whose backgrounds differ by more than this (per channel) lie on
-a gradient; even a faint one shows as a block when refilled with one flat colour."""
+a gradient; even a faint one shows as a block or a ghost when refilled with one flat colour."""
 PLAIN_MARGIN = 0.08
 """Share of the line height added around a box on plain surroundings before erasing, so the
 edges of glyphs that a tight OCR polygon cut off go with the rest."""
@@ -1175,12 +1175,20 @@ def _grow_on_plain_surroundings(original: np.ndarray, alpha: Optional[np.ndarray
     x0, y0, x1, y1 = box
     ih, iw = original.shape[:2]
     m = max(2, int(round(PLAIN_MARGIN * (y1 - y0))))
-    grown = (max(0, x0 - m), max(0, y0 - m), min(iw, x1 + m), min(ih, y1 + m))
+
+    def free(margin: tuple[int, int, int, int]) -> bool:
+        mx0, my0, mx1, my1 = margin
+        if mx1 <= mx0 or my1 <= my0:
+            return False
+        return not any(bx0 < mx1 and bx1 > mx0 and by0 < my1 and by1 > my0 for bx0, by0, bx1, by1 in blocked)
+
+    gx0 = max(0, x0 - m) if free((max(0, x0 - m), y0, x0, y1)) else x0
+    gx1 = min(iw, x1 + m) if free((x1, y0, min(iw, x1 + m), y1)) else x1
+    gy0 = max(0, y0 - m) if free((gx0, max(0, y0 - m), gx1, y0)) else y0
+    gy1 = min(ih, y1 + m) if free((gx0, y1, gx1, min(ih, y1 + m))) else y1
+    grown = (gx0, gy0, gx1, gy1)
     if grown == box:
         return box
-    for bx0, by0, bx1, by1 in blocked:
-        if bx0 < grown[2] and bx1 > grown[0] and by0 < grown[3] and by1 > grown[1]:
-            return box
     _bg, plain = _plain_surroundings(original, alpha, box)
     if not plain:
         return box
@@ -1188,26 +1196,16 @@ def _grow_on_plain_surroundings(original: np.ndarray, alpha: Optional[np.ndarray
     return grown if plain2 else box
 
 
-def _fill_gradients(crop: np.ndarray, grown: np.ndarray, strips: list, fill: np.ndarray, h: int) -> None:
-    """Where a strip's background changes from its top rows to its bottom rows (a vertical
-    gradient), replace its flat fill colour by one colour per row: the median of the row's
-    pixels outside the glyphs, else the strip's top and bottom colours blended by row."""
-    if h < 3 * GRADIENT_ROWS:
-        return
-    for sx, ex, bg, share in strips:
-        stripe = crop[:, sx:ex]
-        top, _t = _dominant_colour(stripe[:GRADIENT_ROWS].astype(np.uint8))
-        bottom, _b = _dominant_colour(stripe[-GRADIENT_ROWS:].astype(np.uint8))
-        if np.abs(top.astype(np.int32) - bottom.astype(np.int32)).max() <= GRADIENT_DIFF:
-            continue
-        free = ~grown[:, sx:ex]
-        for y in range(h):
-            samples = stripe[y][free[y]]
-            if len(samples) >= 3:
-                fill[y, sx:ex] = np.median(samples, axis=0).astype(np.uint8)
-            else:
-                t = y / max(1, h - 1)
-                fill[y, sx:ex] = ((1 - t) * top.astype(np.float64) + t * bottom.astype(np.float64)).astype(np.uint8)
+def _gradient_strip(stripe: np.ndarray) -> bool:
+    """True when the background of a strip changes from its top rows to its bottom rows (a title
+    band fading into colour): such glyphs are inpainted from their surroundings, because one
+    flat fill colour would leave a block or a ghost."""
+    if stripe.shape[0] < 3 * GRADIENT_ROWS:
+        return False
+    top, _t = _dominant_colour(stripe[:GRADIENT_ROWS].astype(np.uint8))
+    bottom, _b = _dominant_colour(stripe[-GRADIENT_ROWS:].astype(np.uint8))
+    return bool(np.abs(top.astype(np.int32) - bottom.astype(np.int32)).max() > GRADIENT_DIFF)
+
 
 
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
@@ -1283,7 +1281,7 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
                     m &= np.abs(stripe - nbg).max(axis=2) > BACKGROUND_TOLERANCE
         mask[:, sx:ex] = m
         fill[:, sx:ex] = bg
-        flat[:, sx:ex] = share >= STRIPE_FLAT_SHARE
+        flat[:, sx:ex] = share >= STRIPE_FLAT_SHARE and not _gradient_strip(stripe)
     if not mask.any():
         return "nothing to erase"
     # keep pictograms, bars and rulings: large solid components unlike the text colour
@@ -1312,7 +1310,6 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     grown = cv2.dilate(mask, kernel) > 0
     region = canvas[y0:y1, x0:x1]
     flat_px = grown & flat
-    _fill_gradients(crop, grown, strips, fill, h)
     region[flat_px] = fill[flat_px]
     rest = (grown & ~flat).astype(np.uint8)
     if rest.any():
