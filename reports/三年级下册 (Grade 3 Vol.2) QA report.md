@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 163 errors, 173 warnings (1800.1 s); proofread: 714 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 159 errors, 149 warnings (1800.1 s); proofread: 105 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 113 page(s), 1601 translatable segment(s))
 
@@ -18,12 +18,21 @@
 - Round 2: llm_review ×471, layout_fit ×72, glossary ×27, image_text ×8, formatting ×5, untranslated ×4, completeness ×1
 - Round 3: llm_review ×481, layout_fit ×62, formatting ×10, image_text ×8, glossary ×7, placeholders ×6, untranslated ×5, completeness ×1
 
-## Final issues (336)
+## Final issues (308)
 
-### `completeness` — 6 errors, 0 warnings
+### `completeness` — 15 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
+| error | 6 | p5_s23 | The segment has no translation; translate the complete source text | 到 |  |
+| error | 9 | p8_s7 | The segment has no translation; translate the complete source text | 女★★ |  |
+| error | 9 | p8_s9 | The segment has no translation; translate the complete source text | 分成行。 |  |
+| error | 22 | p21_s2 | The segment has no translation; translate the complete source text | 百科 |  |
+| error | 22 | p21_s3 | The segment has no translation; translate the complete source text | 百科 |  |
+| error | 22 | p21_s4 | The segment has no translation; translate the complete source text | 百科 |  |
+| error | 24 | p23_s5 | The translation "?" contains no words; translate the complete source text | ？个 | ? |
+| error | 25 | p24_s13 | The translation "?" contains no words; translate the complete source text | ？个 | ? |
+| error | 25 | p24_s14 | The segment has no translation; translate the complete source text | 个 |  |
 | error | 25 | p24_s5 | The translation "¥?" contains no words; translate the complete source text | ？元 | ¥? |
 | error | 25 | p24_s6 | The translation "¥?" contains no words; translate the complete source text | ？元 | ¥? |
 | error | 46 | p45_s7 | The translation "¥?" contains no words; translate the complete source text | ？元 | ¥? |
@@ -40,9 +49,9 @@
 | error | 19 | p18_s2 | The source ends with a question mark; end the translation with a question mark too | 每页放5张，估一估，这些邮票大约能放多少页？ | With 5 stamps on each page, estimate about how many pages t… |
 | error | 19 | p18_s5 | The source ends with a question mark; end the translation with a question mark too | 算一算，能放多少页？ | Calculate how many pages can be filled. |
 | error | 20 | p19_s4 | The source ends with a question mark; end the translation with a question mark too | （2）算一算，能剪出多少根跳绳？ | (2) Calculate how many skipping ropes can be cut. |
-| error | 20 | p19_s9 | The source ends with a question mark; end the translation with a question mark too | （1）算一算，需要多少块展板？ | (1) Work out how many display boards are needed. |
 | error | 32 | p31_s6 | The source ends with a question mark; end the translation with a question mark too | 说一说，铅笔和三角尺怎样才能平移到图③的位置？ | Explain how the pencil and the set square can be moved to t… |
 | error | 33 | p32_s10 | The source ends with a question mark; end the translation with a question mark too | 分别需要进行怎样的平移？ | each need to be translated. |
+| error | 41 | p40_s3 | The source ends with a question mark; end the translation with a question mark too | （2）算一算，这所学校有多少名学生？ | (2) Calculate how many students the school has. |
 | error | 49 | p48_s1 | The source does not end with a question mark; do not end the translation with one | 有多重 | How heavy? |
 | error | 51 | p50_s0 | The source does not end with a question mark; do not end the translation with one | 1吨有多重 | How Heavy Is 1 Tonne? |
 | error | 51 | p50_s1 | The source ends with a question mark; end the translation with a question mark too | 猜猜我有多重？ | Guess how heavy I am! |
@@ -61,11 +70,12 @@
 | warning | 12 | p11_s2 | The source does not end with a exclamation mark; do not end the translation with one | 个桃子也没有 | Not a single peach! |
 | warning | 51 | p50_s1 | The source does not end with a exclamation mark; do not end the translation with one | 猜猜我有多重？ | Guess how heavy I am! |
 
-### `glossary` — 22 errors, 0 warnings
+### `glossary` — 23 errors, 0 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 20 | p19_s9 | Glossary: translate "算一算" as "Calculate" | （1）算一算，需要多少块展板？ | (1) Work out how many display boards are needed. |
+| error | 20 | p19_s9 | Glossary: translate "算一算" as "Calculate" | （1）算一算，需要多少块展板？ | (1) How many display boards are needed? |
+| error | 24 | p23_s1 | Glossary: translate "算一算" as "Calculate" | 1.说一说，再列式算一算。 | 1. Discuss, then write a number sentence and solve. |
 | error | 53 | p52_s17 | Glossary: translate "面积" as "area" | 格的面积。 | squares. |
 | error | 54 | p53_s7 | Glossary: translate "积分" as "integral" | 5.（1）数一数，下面图案的面积分别等于多少个方格的面积？ | 5. (1) Count: how many squares is the area of each pattern … |
 | error | 57 | p56_s5 | Glossary: translate "积分" as "integral" | 下面两个长方形的面积分别是多少？摆一摆 | What is the area of each rectangle below? Use squares. |
@@ -88,38 +98,26 @@
 | error | 100 | p99_s10 | Glossary: translate "积分" as "integral" | 8.将一张边长为20厘米的正方形纸，剪成4个完全一样的小正方形纸片，每个小正方形的周长和面积分别是多少？ | 8. Cut a square of paper with side length 20 cm into 4 iden… |
 | error | 103 | p102_s22 | Glossary: translate "统计" as "statistics" | 3.根据统计的结果说一说你的发现 | 3. Say what you found out from the results. |
 
-### `layout_fit` — 52 errors, 36 warnings
+### `layout_fit` — 40 errors, 24 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | error | 3 | p2_s14 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 人的身高和体重有关系吗？ | Are height and weight related? |
 | error | 3 | p2_s14 | Shorten the translation to at most 25 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 人的身高和体重有关系吗？ | Are height and weight related? |
-| error | 4 | p3_s2 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 二图形的运动 | Unit 2 Motion of Figures |
-| error | 4 | p3_s2 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 二图形的运动 | Unit 2 Motion of Figures |
+| error | 4 | p3_s2 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 23 characters overflows its box; the minimum allowed size is 55%) | 二图形的运动 | Unit 2 Motion of Shapes |
+| error | 4 | p3_s2 | Shorten the translation to at most 20 characters so it fits the original box (the current translation of 23 characters overflows its box; the minimum allowed size is 55%) | 二图形的运动 | Unit 2 Motion of Shapes |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 分桃子 | Sharing Peaches |
 | error | 6 | p5_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 分桃子 | Sharing Peaches |
-| error | 12 | p11_s8 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 306个 | 306 peaches |
-| error | 12 | p11_s8 | Shorten the translation to at most 9 characters so it fits the original box (the current translation of 11 characters overflows its box; the minimum allowed size is 55%) | 306个 | 306 peaches |
 | error | 16 | p15_s10 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 商 | Quotient |
 | error | 16 | p15_s10 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 商 | Quotient |
-| error | 21 | p20_s11 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 25本 | 25 books |
-| error | 21 | p20_s11 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 25本 | 25 books |
-| error | 21 | p20_s13 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 书架二退 | Bookcase 2 Return |
-| error | 21 | p20_s13 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 书架二退 | Bookcase 2 Return |
-| error | 21 | p20_s16 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 25本 | 25 books |
-| error | 21 | p20_s16 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 25本 | 25 books |
-| error | 21 | p20_s7 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 25本 | 25 books |
-| error | 21 | p20_s7 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 25本 | 25 books |
-| error | 24 | p23_s3 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 120个 | 120 (cars) |
-| error | 24 | p23_s3 | Shorten the translation to at most 8 characters so it fits the original box (the current translation of 10 characters overflows its box; the minimum allowed size is 55%) | 120个 | 120 (cars) |
-| error | 25 | p24_s11 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 240个 | 240 (peaches) |
-| error | 25 | p24_s11 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 240个 | 240 (peaches) |
-| error | 25 | p24_s12 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 130个 | 130 (peaches) |
-| error | 25 | p24_s12 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 130个 | 130 (peaches) |
+| error | 21 | p20_s13 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 书架二退 | Bookcase 2: Shelves 1, 2, 3, 4 |
+| error | 21 | p20_s13 | Shorten the translation to at most 21 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 书架二退 | Bookcase 2: Shelves 1, 2, 3, 4 |
 | error | 41 | p40_s24 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did you know? |
 | error | 41 | p40_s24 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 你知道吗 | Did you know? |
 | error | 43 | p42_s28 | Shorten the translation to at most 18 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 表示出来， | Mark it on the figure, |
 | error | 43 | p42_s28 | Shorten the translation to at most 18 characters so it fits the original box (the current translation of 22 characters overflows its box; the minimum allowed size is 55%) | 表示出来， | Mark it on the figure, |
+| error | 44 | p43_s3 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 看电影 | At the movies |
+| error | 44 | p43_s3 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 看电影 | At the movies |
 | error | 45 | p44_s1 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 先再我 | Estimate first, |
 | error | 45 | p44_s1 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 先再我 | Estimate first, |
 | error | 49 | p48_s8 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 萬大学 | Wan University |
@@ -144,32 +142,20 @@
 | error | 89 | p88_s14 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 12 characters overflows its box; the minimum allowed size is 55%) | 京帅汇 | Jingshuaihui |
 | error | 103 | p102_s16 | Shorten the translation to at most 34 characters so it fits the original box (the current translation of 40 characters overflows its box; the minimum allowed size is 55%) | 分一组，下半年 | of the year in one group, second half... |
 | error | 103 | p102_s16 | Shorten the translation to at most 34 characters so it fits the original box (the current translation of 40 characters overflows its box; the minimum allowed size is 55%) | 分一组，下半年 | of the year in one group, second half... |
-| warning | 9 | p8_s7 | The translation overflows its box and was rendered at 21% of the original size; even a much shorter text would not fit, check this box in the preview | 女★★ | Girl ★★ |
-| warning | 9 | p8_s7 | The translation overflows its box and was rendered at 21% of the original size; even a much shorter text would not fit, check this box in the preview | 女★★ | Girl ★★ |
-| warning | 19 | p18_s15 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
-| warning | 19 | p18_s15 | The translation overflows its box and was rendered at 45% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
-| warning | 22 | p21_s2 | The translation overflows its box and was rendered at 30% of the original size; even a much shorter text would not fit, check this box in the preview | 百科 | Encyclopedia |
-| warning | 22 | p21_s2 | The translation overflows its box and was rendered at 30% of the original size; even a much shorter text would not fit, check this box in the preview | 百科 | Encyclopedia |
-| warning | 22 | p21_s3 | The translation overflows its box and was rendered at 26% of the original size; even a much shorter text would not fit, check this box in the preview | 百科 | Encyclopedia |
-| warning | 22 | p21_s3 | The translation overflows its box and was rendered at 26% of the original size; even a much shorter text would not fit, check this box in the preview | 百科 | Encyclopedia |
-| warning | 22 | p21_s4 | The translation overflows its box and was rendered at 30% of the original size; even a much shorter text would not fit, check this box in the preview | 百科 | Encyclopedia |
-| warning | 22 | p21_s4 | The translation overflows its box and was rendered at 30% of the original size; even a much shorter text would not fit, check this box in the preview | 百科 | Encyclopedia |
+| warning | 19 | p18_s15 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
+| warning | 19 | p18_s15 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
 | warning | 23 | p22_s23 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
 | warning | 23 | p22_s23 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
 | warning | 23 | p22_s29 | The translation overflows its box and was rendered at 48% of the original size; even a much shorter text would not fit, check this box in the preview | ？字 | ? words |
 | warning | 23 | p22_s29 | The translation overflows its box and was rendered at 48% of the original size; even a much shorter text would not fit, check this box in the preview | ？字 | ? words |
-| warning | 25 | p24_s14 | The translation overflows its box and was rendered at 35% of the original size; even a much shorter text would not fit, check this box in the preview | 个 | peaches |
-| warning | 25 | p24_s14 | The translation overflows its box and was rendered at 35% of the original size; even a much shorter text would not fit, check this box in the preview | 个 | peaches |
-| warning | 32 | p31_s9 | The translation overflows its box and was rendered at 44% of the original size; even a much shorter text would not fit, check this box in the preview | 图 | Figure |
-| warning | 32 | p31_s9 | The translation overflows its box and was rendered at 44% of the original size; even a much shorter text would not fit, check this box in the preview | 图 | Figure |
-| warning | 40 | p39_s20 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
-| warning | 40 | p39_s20 | The translation overflows its box and was rendered at 41% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
+| warning | 32 | p31_s9 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 图 | Figure |
+| warning | 32 | p31_s9 | The translation overflows its box and was rendered at 47% of the original size; even a much shorter text would not fit, check this box in the preview | 图 | Figure |
+| warning | 40 | p39_s20 | The translation overflows its box and was rendered at 44% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
+| warning | 40 | p39_s20 | The translation overflows its box and was rendered at 44% of the original size; even a much shorter text would not fit, check this box in the preview | 答： | Answer: |
 | warning | 50 | p49_s5 | The translation overflows its box and was rendered at 52% of the original size; even a much shorter text would not fit, check this box in the preview | 克 | = () g |
 | warning | 50 | p49_s5 | The translation overflows its box and was rendered at 52% of the original size; even a much shorter text would not fit, check this box in the preview | 克 | = () g |
 | warning | 51 | p50_s15 | The translation overflows its box and was rendered at 32% of the original size; even a much shorter text would not fit, check this box in the preview | 牙膏 | Toothpaste |
 | warning | 51 | p50_s15 | The translation overflows its box and was rendered at 32% of the original size; even a much shorter text would not fit, check this box in the preview | 牙膏 | Toothpaste |
-| warning | 53 | p52_s7 | The translation overflows its box and was rendered at 53% of the original size; even a much shorter text would not fit, check this box in the preview | 元 | yuan |
-| warning | 53 | p52_s7 | The translation overflows its box and was rendered at 53% of the original size; even a much shorter text would not fit, check this box in the preview | 元 | yuan |
 | warning | 57 | p56_s11 | The translation overflows its box and was rendered at 37% of the original size; even a much shorter text would not fit, check this box in the preview | 图 | Figure |
 | warning | 57 | p56_s11 | The translation overflows its box and was rendered at 37% of the original size; even a much shorter text would not fit, check this box in the preview | 图 | Figure |
 | warning | 57 | p56_s12 | The translation overflows its box and was rendered at 51% of the original size; even a much shorter text would not fit, check this box in the preview | 图 | Figure |
@@ -181,11 +167,10 @@
 | warning | 100 | p99_s14 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 15米 | 15 m |
 | warning | 100 | p99_s14 | The translation overflows its box and was rendered at 43% of the original size; even a much shorter text would not fit, check this box in the preview | 15米 | 15 m |
 
-### `llm_review` — 50 errors, 119 warnings
+### `llm_review` — 48 errors, 107 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 8 | p7_s12 | Reviewer (meaning): 'division' is added; the source only says 'the process and result of sharing/distributing'. Suggested translation: "Can you use the vertical form to show the process and result of sharing?" | 你能用竖式表示分的过程和结果吗？ | Can you use the vertical form to show the process and resul… |
 | error | 17 | p16_s0 | Reviewer (meaning): 练习一 is not 'Exercise 1'; the glossary gives 练习 => 'exercise', and here it is the section heading that follows each unit's lesson content. The other items translate 练一练 as 'Practice', so 'Exercise' is inconsistent as well; also 'Exercise 1' would be mistaken for exercise 1 in the lesson. Suggested translation: "Practice" | 练习一 | Exercise 1 |
 | error | 17 | p16_s3 | Reviewer (omission): The source label is only '100个' (a measure word with no noun). The counted object is added; acceptable in context, but the source does not name pine cones in this label. | 100个 | 100 pine cones |
 | error | 17 | p16_s5 | Reviewer (omission): The source has 先圈一圈，再列式计算; the translation drops 先 'first'. Minor, but 'First circle, then write a number sentence.' matches the source more closely. Suggested translation: "First circle, then write a number sentence." | 先圈一圈，再列式计算。 | Circle first, then write a number sentence. |
@@ -197,7 +182,6 @@
 | error | 23 | p22_s16 | Reviewer (meaning): "列式" means set up an expression/number sentence; translation is acceptable, but consistency with 字/words issue. No error here. | 你能列式解决问题吗？ | Can you write a number sentence to solve the problem? |
 | error | 23 | p22_s20 | Reviewer (number): Source unit 字 (characters) rendered as (words). Suggested translation: "170×3=510 (characters)" | 170×3=510（字） | 170×3=510 (words) |
 | error | 23 | p22_s29 | Reviewer (number): ？字 should be ? characters. Suggested translation: "? characters" | ？字 | ? words |
-| error | 27 | p26_s1 | Reviewer (terminology): 轴对称 is rendered "Axial Symmetry"; consistent within page. No change. | 轴对称（一） | Axial Symmetry (1) |
 | error | 27 | p26_s2 | Reviewer (untranslated): 囍 is a decorative symmetry symbol/picture kept exactly as in source; acceptable. | 囍 | 囍 |
 | error | 27 | p26_s8 | Reviewer (untranslated): 囍 kept as symbol; acceptable. | 囍 | 囍 |
 | error | 28 | p27_s0 | Reviewer (terminology): "Practice" matches glossary; no change. | 练一练 | Practice |
@@ -236,19 +220,13 @@
 | error | 103 | p102_s2 | Reviewer (terminology): 养殖场 is "farm" but the diagram label is used as a place name; capitalize consistently with other labels. Suggested translation: "Farm" | 养殖场 | Farm |
 | error | 103 | p102_s8 | Reviewer (meaning): Same blank issue: 的（）面 must be "___ of". Suggested translation: "(4) The farm is on the ___ of the primary school." | （4）养殖场在小学的（）面。 | (4) The farm is on the ___ side of the primary school. |
 | warning | 7 | p6_s5 | Reviewer (grammar): Starts with lower-case 'say', an incomplete sentence fragment. | 说一说每一步的意思。 | say what each step means. |
-| warning | 9 | p8_s13 | Reviewer (format): Money must use ¥ before the number per convention: '80 yuan per box' should be '¥80 per box'. Suggested translation: "¥80 per box" | 每盒80元 | 80 yuan per box |
-| warning | 9 | p8_s14 | Reviewer (format): Money convention: '72 yuan per box' should be '¥72 per box'. Suggested translation: "¥72 per box" | 每盒72元 | 72 yuan per box |
-| warning | 9 | p8_s7 | Reviewer (format): Heading '女★★' rendered 'Girl ★★'; keep the symbols and consider 'Female ★★' or retain as given. Suggested translation: "Female ★★" | 女★★ | Girl ★★ |
 | warning | 10 | p9_s5 | Reviewer (format): The source ellipsis "·····" should be rendered as "..." with three dots; the single ellipsis character is acceptable but the trailing six-dot style is not preserved. Suggested translation: "888 ÷ 6 must be greater than 100, so the quotient is certainly a three-digit number..." | 888÷6肯定比100大，商一定是个三位数····· | 888÷6 must be greater than 100, so the quotient is certainl… |
 | warning | 10 | p9_s7 | Reviewer (grammar): The sentence is missing spacing and article usage before the figure reference; a cleaner textbook wording is needed. Suggested translation: "Using the figure below, explain what each step of the vertical form means." | 结合下图说一说竖式每一步的意思。 | Using the figure below, explain what each step of the verti… |
-| warning | 11 | p10_s4 | Reviewer (format): The source ends without a period; the translation should match the source punctuation. Suggested translation: "2. First estimate how many digits the quotient has, then calculate" | 2.先估一估商是几位数，再计算 | 2. First estimate how many digits the quotient has, then ca… |
 | warning | 12 | p11_s1 | Reviewer (grammar): "Talk about it and think" leaves the second verb without an object and is awkward for a textbook instruction. Suggested translation: "Talk about it and think about it." | 说一说，想一想 | Talk about it and think |
-| warning | 14 | p13_s1 | Reviewer (format): Money amounts must be written with the yuan symbol before the number, not as "912 yuan". Suggested translation: "¥912 in total." | 共912元。 | 912 yuan in total. |
 | warning | 16 | p15_s11 | Reviewer (format): Heading/title capitalization is inconsistent: "Watering Flowers" capitalizes a non-title word in an exercise item; exercise labels are not titles. Suggested translation: "7. Watering flowers" | 7.浇花 | 7. Watering Flowers |
 | warning | 17 | p16_s25 | Reviewer (style): 'Forest Doctor.' is a literal rendering of the activity name 森林医生 (a 'find the mistakes' exercise). Understandable but unnatural as an English exercise title; a clearer rendering would help students know what to do. Suggested translation: "5. Be a Forest Doctor." | 5.森林医生。 | 5. Forest Doctor. |
 | warning | 19 | p18_s15 | Reviewer (format): 答： is an answer label, not a heading; the translation should match p18_s10 ('Answer:') rather than being labelled a heading. The text itself is correct. Suggested translation: "Answer:" | 答： | Answer: |
 | warning | 20 | p19_s11 | Reviewer (format): Enumerator '3.' should be kept at the start, which it is, but the sentence is fine; no real problem. However the translation capitalizes 'First' after '3.' which is acceptable. No finding. | 3.先估一估商是几位数，再计算。 | 3. First estimate how many digits the quotient has, then ca… |
-| warning | 21 | p20_s13 | Reviewer (format): "退" appears to be a stray scan artifact appended to the bookcase label; it is not a meaningful part of "Bookcase 2". Suggested translation: "Bookcase 2" | 书架二退 | Bookcase 2 Return |
 | warning | 26 | p25_s18 | Reviewer (grammar): The English imperative "Buy prizes with ¥100" is an acceptable rendering; no change needed. | 8.用100元买奖品。 | 8. Buy prizes with ¥100. |
 | warning | 26 | p25_s21 | Reviewer (format): Currency formatting follows the convention (¥15); no change. | 15元 | ¥15 |
 | warning | 26 | p25_s22 | Reviewer (format): Label casing: "Pencil case" is fine. | 文具盒 | Pencil case |
@@ -258,21 +236,15 @@
 | warning | 26 | p25_s27 | Reviewer (format): Currency formatting follows the convention (¥1); no change. | 1元 | ¥1 |
 | warning | 26 | p25_s28 | Reviewer (format): Currency formatting follows the convention (¥8); no change. | 8元 | ¥8 |
 | warning | 26 | p25_s29 | Reviewer (format): Currency formatting follows the convention (¥2); no change. | 2元 | ¥2 |
-| warning | 27 | p26_s0 | Reviewer (format): Unit heading: source 图形的运动 is "Motion of Shapes"; translation follows unit-heading convention. No change. | 二 图形的运动 | Unit 2 Motion of Shapes |
 | warning | 27 | p26_s4 | Reviewer (grammar): Translation reads naturally; no change. | 这些图形从中间分开，两边一样。 | When these shapes are divided in the middle, both sides are… |
 | warning | 27 | p26_s5 | Reviewer (grammar): Translation reads naturally; no change. | 怎么知道“两边一样”？ | How do you know that "both sides are the same"? |
 | warning | 27 | p26_s6 | Reviewer (grammar): Translation reads naturally; no change. | 利用附页1中图1折一折，看一看。 | Fold and look at Figure 1 on Appendix page 1. |
-| warning | 28 | p27_s11 | Reviewer (format): Label casing: "Cable-Stayed Bridge" fine. | 斜拉桥 | Cable-Stayed Bridge |
-| warning | 28 | p27_s12 | Reviewer (format): Label "Bouyei Batik" fine. | 布依族的蜡染 | Bouyei Batik |
-| warning | 28 | p27_s9 | Reviewer (grammar): Translation reads naturally; no change. | 5.生活中有许多图案都是轴对称的，请你找一找并和同伴说一说 | 5. There are many axially symmetric patterns in daily life.… |
-| warning | 29 | p28_s0 | Reviewer (format): Heading "Axial Symmetry (2)" matches convention; no change. | 轴对称 （二） | Axial Symmetry (2) |
 | warning | 29 | p28_s2 | Reviewer (grammar): "Fold in half" fine. | 对折 | Fold in half |
 | warning | 29 | p28_s3 | Reviewer (grammar): "Cut out a pattern with scissors" fine. | 用剪刀剪出图案 | Cut out a pattern with scissors |
 | warning | 29 | p28_s4 | Reviewer (grammar): "Unfold" fine. | 展开 | Unfold |
 | warning | 32 | p31_s1 | Reviewer (grammar): '移一移，描一描' means move then trace; 'Move and trace.' is acceptable. | 移一移，描一描。 | Move and trace. |
 | warning | 32 | p31_s6 | Reviewer (grammar): '平移到图③的位置' means 'be translated to the position of figure ③'; 'moved' loses the precise transformation term but is acceptable. Suggested translation: "Explain how the pencil and the set square can be translated to the position of figure ③." | 说一说，铅笔和三角尺怎样才能平移到图③的位置？ | Explain how the pencil and the set square can be moved to t… |
 | warning | 34 | p33_s12 | Reviewer (format): The source lacks a final period; the translation also lacks one. Consistency of punctuation; not misleading. Suggested translation: "50×10 is 10 groups of 50, which is 500." | 50×10就是10个50，是500 | 50×10 is 10 groups of 50, which is 500 |
-| warning | 38 | p37_s2 | Reviewer (format): The source sentence is split across two labels ("14×2=28，接" / "下来怎样算？"); the translation breaks the sentence at an unnatural point ("then" / "how do we calculate next?"). Suggested translation: "14×2=28, next" | 14×2=28，接 | 14×2=28, then |
 | warning | 40 | p39_s11 | Reviewer (grammar): Awkward wording; 'in vertical form' is more natural than 'using the vertical form'. Suggested translation: "Calculate in vertical form···" | 用竖式计算··· | Calculate using the vertical form··· |
 | warning | 42 | p41_s18 | Reviewer (grammar): Missing article: 'with a vertical form'. Suggested translation: "5. Calculate with a vertical form." | 5.用竖式算一算。 | 5. Calculate with vertical form. |
 | warning | 43 | p42_s21 | Reviewer (format): Missing space after the enumerator '(1)'. Suggested translation: "(1) The ship Huoju sets off from Port C and travels east for 12 hours. Is it east or west of Port A? How many km is it from Port A?" | （1）火炬号轮船从丙港出发，向东行驶了12时后，在甲港的东面还是西面？距甲港多少千米？ | (1)The ship Huoju sets off from Port C and travels east for… |
