@@ -1185,9 +1185,11 @@ def _missed_glyph_run(region: np.ndarray, h: int, bg: np.ndarray, ink_colour: np
         bx, by, bw, bh, area = (int(v) for v in stats[i])
         if bx > taken + reach:
             break  # a gap wider than between two glyphs: the line ended
-        if area >= 0.03 * h * h:  # specks (the anti-aliased rim of a glyph the box cut) are taken as they come
-            if bh > MISSED_GLYPH_HEIGHT * h or bw > 1.5 * h:
-                break  # a bubble outline, a picture, a rule: not a glyph of the line
+        if area >= 0.03 * h * h or bh >= 0.5 * h or bw >= 0.5 * h:
+            # specks (the anti-aliased rim of a glyph the box cut) are taken as they come; a long thin
+            # line is no speck
+            if bh > MISSED_GLYPH_HEIGHT * h or bw > 1.5 * h or (bh >= 0.9 * h and bw <= 0.2 * h):
+                break  # a bubble outline, a picture, a rule (a cell border): not a glyph of the line
             comp = labels == i
             if float((dist[comp] < INK_TOLERANCE).mean()) < 0.5:
                 break  # another colour: a pictogram
@@ -1314,10 +1316,32 @@ def _grow_on_plain_surroundings(original: np.ndarray, alpha: Optional[np.ndarray
             return False
         return not any(bx0 < mx1 and bx1 > mx0 and by0 < my1 and by1 > my0 for bx0, by0, bx1, by1 in blocked)
 
-    gx0 = max(0, x0 - m) if free((max(0, x0 - m), y0, x0, y1)) else x0
-    gx1 = min(iw, x1 + m) if free((x1, y0, min(iw, x1 + m), y1)) else x1
-    gy0 = max(0, y0 - m) if free((gx0, max(0, y0 - m), gx1, y0)) else y0
-    gy1 = min(ih, y1 + m) if free((gx0, y1, gx1, min(ih, y1 + m))) else y1
+    ring_bg, _plain = _plain_surroundings(original, alpha, box)
+
+    def lined(band: np.ndarray, along: int) -> bool:
+        """A straight line of ink runs along this side (the border of the cell the label is in):
+        growing over it would take the cell's border, and the paper beyond, into the box."""
+        if band.size == 0:
+            return False
+        ink = np.abs(band.astype(np.int32) - ring_bg.astype(np.int32)).max(axis=2) > GLYPH_DIFF
+        runs = ink if along == 1 else ink.T
+        for line in runs:
+            if not line.any():
+                continue
+            d = np.diff(np.concatenate(([0], line.astype(np.int8), [0])))
+            if int((np.flatnonzero(d == -1) - np.flatnonzero(d == 1)).max()) >= RULING_SPAN * line.size:
+                return True
+        return False
+
+    e = 3
+    gx0 = max(0, x0 - m) if free((max(0, x0 - m), y0, x0, y1)) \
+        and not lined(original[y0:y1, max(0, x0 - m):x0 + e], 0) else x0
+    gx1 = min(iw, x1 + m) if free((x1, y0, min(iw, x1 + m), y1)) \
+        and not lined(original[y0:y1, max(0, x1 - e):min(iw, x1 + m)], 0) else x1
+    gy0 = max(0, y0 - m) if free((gx0, max(0, y0 - m), gx1, y0)) \
+        and not lined(original[max(0, y0 - m):y0 + e, x0:x1], 1) else y0
+    gy1 = min(ih, y1 + m) if free((gx0, y1, gx1, min(ih, y1 + m))) \
+        and not lined(original[max(0, y1 - e):min(ih, y1 + m), x0:x1], 1) else y1
     grown = (gx0, gy0, gx1, gy1)
     if grown == box:
         return box
@@ -1360,6 +1384,77 @@ def _glyph_decoration(crop: np.ndarray, near_ink: np.ndarray, bg: np.ndarray, h:
     return hugging[labels]
 
 
+RULING_SPAN = 0.8
+"""A straight line of ink covering at least this share of a line box's height (or width) ..."""
+RULING_BEYOND = 3
+"""... that goes on for this many pixels past the box (the border of a table the label stands in) ..."""
+RULING_THICK = 0.15
+"""A ruling is at most this share of the line height thick."""
+RULING_MIN_LENGTH = 2.5
+"""... or, for a horizontal line, that crosses a box at least this many line heights wide (a cell
+border; a glyph like 口 is not that wide), with the vertical lines meeting its ends, is a ruling,
+not a stroke of the glyphs: it is kept."""
+
+
+def _crossing_rulings(original: np.ndarray, box: tuple[int, int, int, int], mask: np.ndarray,
+                      bg: np.ndarray) -> np.ndarray:
+    """Pixels of ``mask`` (box coordinates) on table or cell rulings crossing the line box: rows
+    (columns) of ink spanning the box that continue past it in the original image, horizontal
+    lines across a box several glyphs wide, and the vertical lines meeting their ends (the
+    corners of the cell). Glyph strokes stay inside the box read around them."""
+    x0, y0, x1, y1 = box
+    h, w = mask.shape
+    keep = np.zeros((h, w), bool)
+    m = mask > 0
+    H, W = original.shape[:2]
+    bgi = bg.astype(np.int32)
+
+    def ink(patch: np.ndarray) -> np.ndarray:
+        return np.abs(patch.astype(np.int32) - bgi).max(axis=2) > GLYPH_DIFF
+
+    def beyond_rows(gx: int) -> bool:  # the column's line goes on above or below the box
+        xs = slice(max(0, gx - 1), min(W, gx + 2))
+        above = original[max(0, y0 - RULING_BEYOND):y0, xs]
+        below = original[y1:min(H, y1 + RULING_BEYOND), xs]
+        return any(p.shape[0] == RULING_BEYOND and bool(ink(p).any(axis=1).all()) for p in (above, below))
+
+    def beyond_cols(gy: int) -> bool:  # the row's line goes on left or right of the box
+        ys = slice(max(0, gy - 1), min(H, gy + 2))
+        left = original[ys, max(0, x0 - RULING_BEYOND):x0]
+        right = original[ys, x1:min(W, x1 + RULING_BEYOND)]
+        return any(p.shape[1] == RULING_BEYOND and bool(ink(p).any(axis=0).all()) for p in (left, right))
+
+    def longest_run(v: np.ndarray) -> int:
+        if not v.any():
+            return 0
+        d = np.diff(np.concatenate(([0], v.astype(np.int8), [0])))
+        return int((np.flatnonzero(d == -1) - np.flatnonzero(d == 1)).max())
+
+    def thin(lines: list[int], limit: float) -> list[int]:
+        """Lines in bands at most ``limit`` thick (a ruling), not a block of them (a bold glyph)."""
+        out, band = [], []
+        for v in lines + [None]:  # type: ignore[list-item]
+            if band and (v is None or v != band[-1] + 1):
+                if len(band) <= limit:
+                    out += band
+                band = []
+            if v is not None:
+                band.append(v)
+        return out
+
+    rows = thin([int(r) for r in range(h) if longest_run(m[r, :]) >= RULING_SPAN * w
+                 and (w >= RULING_MIN_LENGTH * h or beyond_cols(y0 + r))], max(2.0, RULING_THICK * h))
+    for r in rows:
+        keep[r, :] = m[r, :]
+    cols = thin([int(c) for c in range(w) if longest_run(m[:, c]) >= RULING_SPAN * h], max(2.0, RULING_THICK * h))
+    for c in cols:
+        ys = np.flatnonzero(m[:, c])
+        corner = any(abs(r - int(ys[0])) <= 3 or abs(r - int(ys[-1])) <= 3 for r in rows)
+        if corner or beyond_rows(x0 + c):
+            keep[:, c] = m[:, c]
+    return keep
+
+
 def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.ndarray,
                   original_alpha: Optional[np.ndarray], box: tuple[int, int, int, int],
                   blocked: Optional[list[tuple[int, int, int, int]]] = None) -> str:
@@ -1391,9 +1486,12 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
     h, w = crop.shape[:2]
     box_bg, _share = _dominant_colour(original[y0:y1, x0:x1])
     ring_bg, ring_uniform = _plain_surroundings(original, original_alpha, box)
-    if ring_uniform and np.abs(ring_bg.astype(np.int32) - box_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE:
+    if ring_uniform and np.abs(ring_bg.astype(np.int32) - box_bg.astype(np.int32)).max() > BACKGROUND_TOLERANCE \
+            and float(np.sqrt(((np.array(estimate_text_color(original, box, ring_bg, original_alpha), dtype=np.int32)
+                                - box_bg.astype(np.int32)) ** 2).sum())) < INK_TOLERANCE:
         # bold or wide glyphs (SHUXUE in a tight box) outnumber the background pixels inside the box:
-        # the plain surroundings say what the background is, not the most common colour inside
+        # the plain surroundings say what the background is, not the most common colour inside. A box
+        # whose most common colour is not the text's (a label in a yellow cell on white paper) keeps it.
         box_bg = ring_bg
         _share = float((np.abs(crop - ring_bg.astype(np.int32)).max(axis=2) <= BACKGROUND_TOLERANCE).mean())
     ink_colour = np.array(estimate_text_color(original, box, box_bg, original_alpha), dtype=np.int32)
@@ -1461,6 +1559,11 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         # a glyph the detector left out goes even where it touches a kept outline (一 against its bubble)
         sl = (slice(max(0, my0 - y0), max(0, min(h, my1 - y0))), slice(max(0, mx0 - x0), max(0, min(w, mx1 - x0))))
         mask[sl][near_ink[sl]] = 1
+    rulings = _crossing_rulings(original, box, mask, box_bg)
+    if rulings.any():
+        import cv2 as _cv2
+        rulings = _cv2.dilate(rulings.astype(np.uint8), np.ones((3, 3), np.uint8)) > 0
+        mask[rulings] = 0  # the border of the cell the label stands in stays
     if float(mask.mean()) > 0.85:
         _bg, how = _clear_box(canvas, alpha, original, original_alpha, box)
         return how
@@ -1477,6 +1580,8 @@ def _erase_glyphs(canvas: np.ndarray, alpha: Optional[np.ndarray], original: np.
         mask = mask.astype(np.uint8)
     kernel = np.ones((2 * GLYPH_DILATE_PX + 1, 2 * GLYPH_DILATE_PX + 1), np.uint8)
     grown = cv2.dilate(mask, kernel) > 0
+    if rulings.any():
+        grown &= ~rulings
     region = canvas[y0:y1, x0:x1]
     flat_px = grown & flat
     region[flat_px] = fill[flat_px]

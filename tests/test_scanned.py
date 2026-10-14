@@ -845,6 +845,26 @@ def test_decorated_title_glyphs_go_with_their_outline_and_shadow():
     assert (np.abs(title.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.97
 
 
+def test_the_border_of_the_cell_a_label_stands_in_is_kept():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # "130个" in a yellow cell of a bar model; the black cell border runs on past the OCR box,
+    # which takes in the border on every side
+    yellow, black = (255, 247, 200), (30, 30, 30)
+    original = _text_image((420, 120), (255, 255, 255), [
+        ("rect", [40, 30, 380, 90], black), ("rect", [43, 33, 377, 87], yellow),
+        ("rect", [150, 30, 153, 90], black),                       # the next cell's divider
+        ("text", ((52, 40), "130个", 34), (20, 20, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (41, 31, 152, 89))
+    cell = canvas[36:85, 46:147].astype(int)
+    assert (np.abs(cell - np.array(yellow)).max(axis=2) > 60).sum() < 10           # glyphs gone, no smear
+    assert (canvas[31:89, 40:43].max(axis=2) < 90).mean() > 0.9                       # left border kept
+    assert (canvas[30:33, 45:148].max(axis=2) < 90).mean() > 0.9                      # top border kept
+    assert (canvas[88:91, 45:148].max(axis=2) < 90).mean() > 0.9                      # bottom border kept
+
+
 def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
     import numpy as np
     from PIL import Image, ImageDraw
