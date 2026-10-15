@@ -1239,3 +1239,45 @@ def test_a_board_whose_english_nearly_fits_stays_as_printed(tmp_path):
     title.translated_text = "Peach"             # no wider than the three characters
     erase_merged_lines(work, doc)
     assert widened_boxes(doc) == {}
+
+
+def test_a_round_ended_pill_keeps_its_ends_and_leaves_no_stray_mark(tmp_path):
+    import io
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import widened_boxes
+
+    img = Image.new("RGB", (1000, 400), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([100, 100, 300, 170], radius=35, fill=(150, 210, 240))   # a pale-blue pill, no frame
+    font = pil_font("zh", 34)
+    d.text((140, 115), "一定是", fill=(30, 40, 90), font=font)
+    gx0, gy0, gx1, gy1 = d.textbbox((140, 115), "一定是", font=font)
+    d.rectangle([gx1 + 8, 118, gx1 + 12, 152], fill=(30, 40, 90))              # a stroke the line's box missed
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=200)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "src.pdf"; pdf.save(str(src))
+    work = pymupdf.open(str(src))
+    xref = work[0].get_image_info(xrefs=True)[0]["xref"]
+    box = (gx0 - 2, gy0 - 2, gx1 + 2, gy1 + 2)
+    ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=200), width=1000, height=400, pixel_box=box)
+    pt = BBox(x0=box[0] / 2, y0=box[1] / 2, x1=box[2] / 2, y1=box[3] / 2)
+    line = TextSegment(id="p0_i0", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=pt, source_text="一定是", translate=False,
+                       skip_reason=f"{MERGED} p0_s0", image=ref, origin="ocr")
+    label = TextSegment(id="p0_s0", page=0, bbox=pt, source_text="一定是", protected_text="一定是", origin="ocr",
+                        members=["p0_i0"], translated_text="Must be a teacher",
+                        style=SegmentStyle(size=16, color=0x1E285A, role="label", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=200)], segments=[line, label])
+    erase_merged_lines(work, doc)
+    new = widened_boxes(doc)["p0_s0"]
+    arr = np.array(Image.open(io.BytesIO(work.extract_image(xref)["image"])).convert("RGB")).astype(int)
+    right = int(new.x1 * 2) + 10                       # about where the pill's round end now is
+    blue = lambda y, x: np.abs(arr[y, x] - (150, 210, 240)).max() < 40   # noqa: E731
+    assert all(blue(135, x) for x in range(110, right - 10, 3))            # one even fill: no stray stroke left
+    ends = [x for x in range(right - 20, right + 60) if blue(135, x)]
+    top_ends = [x for x in range(right - 20, right + 60) if blue(104, x)]
+    assert top_ends and ends and max(top_ends) < max(ends) - 10           # the end is still round

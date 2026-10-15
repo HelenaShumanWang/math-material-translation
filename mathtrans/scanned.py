@@ -1902,15 +1902,23 @@ def _near(colours: np.ndarray, ref: np.ndarray, tol: float) -> np.ndarray:
 
 
 def _board_edges(profile: np.ndarray, start: int, fill: np.ndarray, frame_px: int,
-                 step: int) -> Optional[tuple[int, int, np.ndarray]]:
+                 step: int, skip: int = 0) -> Optional[tuple[int, int, np.ndarray]]:
     """Along ``profile`` (one colour per column or row), from ``start`` inside the fill in direction
     ``step``: the last fill position, the first position outside the board (after its frame) and the
     page colour there. None when the fill does not end in a frame of at most ``frame_px`` followed by
-    page that differs from the fill."""
+    page that differs from the fill. A run of at most ``skip`` other positions with fill beyond it (a glyph
+    the line's box missed, a closing bracket) does not end the fill."""
     n = len(profile)
     i = start
-    while 0 <= i + step < n and _near(profile[i + step], fill, BOARD_FILL_TOLERANCE):
-        i += step
+    while True:
+        while 0 <= i + step < n and _near(profile[i + step], fill, BOARD_FILL_TOLERANCE):
+            i += step
+        ahead = [i + step * k for k in range(2, skip + 2) if 0 <= i + step * k < n]
+        back = next((j for j in ahead if _near(profile[j], fill, BOARD_FILL_TOLERANCE)
+                     and 0 <= j + step < n and _near(profile[j + step], fill, BOARD_FILL_TOLERANCE)), None)
+        if back is None:
+            break
+        i = back
     probe = i + step * (frame_px + 3)
     if not 0 <= probe < n:
         return None
@@ -1952,13 +1960,13 @@ def _widen_board(canvas: np.ndarray, alpha: Optional[np.ndarray], para: TextSegm
     if share < 0.85 or (f.max() - f.min() < BOARD_STRONG_FILL and f.max() >= 170):
         return None  # glyphs not erased cleanly, or a pale fill (a bubble, the page itself)
     frame_px = int(round(BOARD_FRAME_MAX * sx))
-    reach = frame_px * 2 + 6
+    reach = frame_px * 2 + 6 + 2 * h  # the frame, plus padding of up to two line heights beside the line
     # columns: median colour over the middle half of the line
     cx0, cx1 = max(0, x0 - reach), min(w_img, x1 + reach)
     cols = np.median(canvas[y0 + h // 4:max(y0 + h // 4 + 1, y1 - h // 4), cx0:cx1], axis=0)
     mid = (x0 + x1) // 2 - cx0
-    right = _board_edges(cols, mid, fill, frame_px, +1)
-    left = _board_edges(cols, mid, fill, frame_px, -1)
+    right = _board_edges(cols, mid, fill, frame_px, +1, skip=int(0.6 * h))
+    left = _board_edges(cols, mid, fill, frame_px, -1, skip=int(0.6 * h))
     if right is None or left is None:
         return None
     fill_r, board_r, page_r = right[0] + cx0, right[1] + cx0, right[2]
@@ -1981,8 +1989,17 @@ def _widen_board(canvas: np.ndarray, alpha: Optional[np.ndarray], para: TextSegm
     # before its right end that matches it on every row (a rounded end or corner must not land mid-board)
     repeat = np.median(canvas[b_top:b_bottom, x0:x1], axis=1).astype(np.float32)
 
+    # straightness is judged on the rows that are not fill (the frame, the board's edges, the page round it): a
+    # glyph remnant the line's box missed (a closing bracket, a full stop) lies on fill and is painted over
+    # plus the fill's two outermost rows at top and bottom, where a rounded end shows first and a glyph never reaches
+    on_fill = np.abs(repeat - fill.astype(np.float32)).max(axis=1) <= BOARD_FILL_TOLERANCE
+    fill_rows = np.where(on_fill)[0]
+    edge_rows = np.concatenate([np.where(~on_fill)[0], fill_rows[:2], fill_rows[-2:]])
+    if len(edge_rows) < 4:
+        edge_rows = np.arange(b_bottom - b_top)
+
     def straight(x: int) -> bool:
-        diff = np.abs(canvas[b_top:b_bottom, x].astype(np.float32) - repeat).max(axis=1)
+        diff = np.abs(canvas[b_top:b_bottom, x].astype(np.float32) - repeat).max(axis=1)[edge_rows]
         return float((diff > BOARD_ROW_TOLERANCE).mean()) <= BOARD_ROW_SHARE
 
     def flat(x: int) -> bool:
@@ -2042,6 +2059,12 @@ def _widen_board(canvas: np.ndarray, alpha: Optional[np.ndarray], para: TextSegm
     # own place (its glyphs are erased there) and the gap
     end = min(w_img - extra, board_r + 2)
     tail = canvas[b_top:b_bottom, cut:end].copy()
+    # between the cut and the fill's end (the inner corners) only the middle of the fill is cleaned: a sliver of
+    # a glyph there would otherwise travel out with the board's end
+    if len(fill_rows) >= 4:
+        mid_rows = fill_rows[len(fill_rows) // 4:len(fill_rows) - len(fill_rows) // 4]
+        span = max(0, min(fill_r + 1, end) - cut)
+        tail[mid_rows, :span] = np.clip(np.round(repeat[mid_rows]), 0, 255).astype(canvas.dtype)[:, None, :]
     canvas[b_top:b_bottom, x0:cut + extra] = np.clip(np.round(repeat), 0, 255).astype(canvas.dtype)[:, None, :]
     canvas[b_top:b_bottom, cut + extra:end + extra] = tail
     if alpha is not None:
