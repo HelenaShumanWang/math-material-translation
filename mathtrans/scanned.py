@@ -1851,6 +1851,10 @@ BOARD_STRONG_FILL = 60
 """The fill is a strong colour (channel spread) or dark (all channels below 170): a pale bubble is no board."""
 BOARD_FRAME_MAX = 8.0
 """Points: the widest frame (border plus shadow) between the fill and the page around it."""
+BOARD_ROW_TOLERANCE = 45
+"""A row of a column differs from the board's column when a channel differs by more than this ..."""
+BOARD_ROW_SHARE = 0.03
+"""... and a column is straight when at most this share of its rows differ (JPEG noise)."""
 BOARD_UNIFORM_TOLERANCE = 14.0
 """Mean channel difference allowed between columns of the board: only a straight, flat board is widened."""
 BOARD_PLAIN_TOLERANCE = 30
@@ -1972,19 +1976,23 @@ def _widen_board(canvas: np.ndarray, alpha: Optional[np.ndarray], para: TextSegm
     b_top, b_bottom = max(0, top[1] + ry0 - 1), min(h_img, bottom[1] + ry0 + 2)
     if b_bottom - b_top > 3 * h + 2 * frame_px:
         return None  # a tall shape (a panel, a table) is no signboard
-    # a straight, flat board: across the erased line its columns match the one at the middle; the board is
-    # cut at the last such column before its right end (a rounded corner must not land mid-board)
-    repeat = canvas[b_top:b_bottom, xm].astype(np.float32)
+    # a straight, flat board: the board's column, row by row the median across the erased line (free of any
+    # faint ghost of the glyphs), matches the columns by the line's ends; the board is cut at the last column
+    # before its right end that matches it on every row (a rounded end or corner must not land mid-board)
+    repeat = np.median(canvas[b_top:b_bottom, x0:x1], axis=1).astype(np.float32)
 
     def straight(x: int) -> bool:
+        diff = np.abs(canvas[b_top:b_bottom, x].astype(np.float32) - repeat).max(axis=1)
+        return float((diff > BOARD_ROW_TOLERANCE).mean()) <= BOARD_ROW_SHARE
+
+    def flat(x: int) -> bool:
         return float(np.abs(canvas[b_top:b_bottom, x].astype(np.float32) - repeat).mean()) <= BOARD_UNIFORM_TOLERANCE
 
-    if not all(straight(x) for x in (x0 + (x1 - x0) // 4, x1 - (x1 - x0) // 4, x1 - 1)):
+    if not all(flat(x) for x in (x0 + (x1 - x0) // 4, x1 - (x1 - x0) // 4, x1 - 1)):
         return None
-    cut = x1 - 1
-    while cut + 1 < fill_r and straight(cut + 1):
+    cut = x1
+    while cut < fill_r and straight(cut):
         cut += 1
-    cut += 1
     # the page beside the board, row by row (a page may fade from top to bottom): the column beyond the
     # frame, which must itself be page - near the page colour of the line's rows, or watermark grey
     probe_x = min(w_img - 1, board_r + frame_px)
@@ -2030,14 +2038,15 @@ def _widen_board(canvas: np.ndarray, alpha: Optional[np.ndarray], para: TextSegm
     extra = min(need, room, int(BOARD_MAX_GROWTH * (board_r - board_l)))
     if extra < 2 * sx:
         return None
-    # widen: the right end (from the cut: corners, frame, shadow) moves right, the middle column fills the gap
+    # widen: the right end (from the cut: corners, frame, shadow) moves right; the board's column fills the line's
+    # own place (its glyphs are erased there) and the gap
     end = min(w_img - extra, board_r + 2)
     tail = canvas[b_top:b_bottom, cut:end].copy()
-    canvas[b_top:b_bottom, cut:cut + extra] = repeat.astype(canvas.dtype)[:, None, :]
+    canvas[b_top:b_bottom, x0:cut + extra] = np.clip(np.round(repeat), 0, 255).astype(canvas.dtype)[:, None, :]
     canvas[b_top:b_bottom, cut + extra:end + extra] = tail
     if alpha is not None:
         a_tail = alpha[b_top:b_bottom, cut:end].copy()
-        alpha[b_top:b_bottom, cut:cut + extra] = alpha[b_top:b_bottom, xm][:, None]
+        alpha[b_top:b_bottom, x0:cut + extra] = alpha[b_top:b_bottom, xm][:, None]
         alpha[b_top:b_bottom, cut + extra:end + extra] = a_tail
     inset = min(pad, 0.3 * size)
     return BBox(x0=to_pt_x(fill_l) + inset, y0=para.bbox.y0, x1=to_pt_x(fill_r + extra) - inset, y1=para.bbox.y1)
