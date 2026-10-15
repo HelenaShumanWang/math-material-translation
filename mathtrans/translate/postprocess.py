@@ -75,6 +75,9 @@ _BRITISH = [
     (re.compile(r"\bgray(s|er|ish)?\b", re.I), r"grey\1"),
     (re.compile(r"\bfavorite(s?)\b", re.I), r"favourite\1"),
     (re.compile(r"\banalyz(e|es|ed|ing)\b", re.I), r"analys\1"),
+    (re.compile(r"\b(recogni|organi|reali|summari|memori|categori|minimi|maximi|emphasi|apologi|visuali|symboli|standardi)"
+                r"z(e|es|ed|ing|ation|ations)\b", re.I), r"\1s\2"),
+    (re.compile(r"\bmom(my|s)?\b", re.I), r"mum\1"),
     (re.compile(r"\bmath\b", re.I), "maths"),
 ]
 

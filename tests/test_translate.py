@@ -990,3 +990,5 @@ def test_english_is_spelt_one_way_british():
     for keep in ("the electricity meter", "a thermometer", "the diameter", "the odometer"):
         assert british_spelling(keep) == keep
     assert postprocess_translation("Color the 5 square centimeters.", "en") == "Colour the 5 square centimetres."
+    assert british_spelling("Recognize the shapes; Mom organized the data.") == "Recognise the shapes; Mum organised the data."
+    assert british_spelling("a prize of the right size") == "a prize of the right size"
