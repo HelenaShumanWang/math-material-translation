@@ -1,0 +1,5 @@
+# The production run of the twelve volumes: the versions the layout was tuned with.
+pymupdf==1.28.2
+# Python 3.12+: rapidocr 3 (mathtrans.ocr pins it to the PP-OCRv4 mobile models of rapidocr-onnxruntime 1.x)
+rapidocr>=3; python_version >= "3.12"
+rapidocr-onnxruntime>=1.3; python_version < "3.12"

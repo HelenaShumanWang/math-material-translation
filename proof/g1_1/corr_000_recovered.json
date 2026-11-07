@@ -1,0 +1,3114 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p0_s0",
+   "translation": "Ministry Approved",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p0_s4",
+   "translation": "Grade 1",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p0_s5",
+   "translation": "Volume 1",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p0_s8",
+   "translation": "Beijing Normal University Press",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s2",
+   "translation": "Dear children,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s3",
+   "translation": "Do you know what \"mathematics\" looks like?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s4",
+   "translation": "\"Mathematics\" is numbers! With numbers, we can tell the time and read dates.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s11",
+   "translation": "I think \"mathematics\" is page numbers, 24 coloured pens, all kinds of shapes…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s13",
+   "translation": "Woof! There's maths in here!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s15",
+   "translation": "Children, maths is all around us. You and maths will surely become good friends.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s16",
+   "translation": "Your friends, the editors",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p4_s1",
+   "translation": "Unit 6 Recognising Shapes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p4_s2",
+   "translation": "Unit 7 Add and Subtract (2)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p4_s4",
+   "translation": "Unit 8 Telling the Time",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s1",
+   "translation": "new class-come,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s2",
+   "translation": "Wel-",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s3",
+   "translation": "mates!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s5",
+   "translation": "School time!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s0",
+   "translation": "Class 2",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s1",
+   "translation": "Class 1",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s3",
+   "translation": "Walk around the school and say what you see and how many.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s2",
+   "translation": "Talk about it and recognise 1.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s3",
+   "translation": "1 tree",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s4",
+   "translation": "1 basket",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s5",
+   "translation": "Count and learn.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s6",
+   "translation": "Find and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s0",
+   "translation": "Try It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s2",
+   "translation": "There are 5 ducks in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s3",
+   "translation": "is 2nd in line.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s4",
+   "translation": "Count and learn.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s7",
+   "translation": "2. Circle as shown in the example.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s1",
+   "translation": "How many geese? In which place is the goose with wings down?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s2",
+   "translation": "How many bears?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s3",
+   "translation": "How many people?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s4",
+   "translation": "In which place is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s5",
+   "translation": "is in which place?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s7",
+   "translation": "5. Find numbers around you.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s1",
+   "translation": "Count and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s3",
+   "translation": "There are 2 helicopters.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s7",
+   "translation": "Sit up straight!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s1",
+   "translation": "1. How many?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s2",
+   "translation": "2. Count, draw, and write.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s3",
+   "translation": "3. Look at the number and colour.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s4",
+   "translation": "4. Count and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s0",
+   "translation": "Cats Fishing",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s1",
+   "translation": "Oh no! I didn't catch a single ﬁsh.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s2",
+   "translation": "Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s4",
+   "translation": "Trace and write.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s5",
+   "translation": "Talk about it: where can you ﬁnd \"0\"?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s6",
+   "translation": "0 on the dial.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s8",
+   "translation": "0 on the phone.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s9",
+   "translation": "0 on the thermometer.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s10",
+   "translation": "0 on the ruler.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s11",
+   "translation": "Also",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s1",
+   "translation": "1. Count. How many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s2",
+   "translation": "2. Read and write.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s3",
+   "translation": "3. Count. How many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s5",
+   "translation": "5. Complete the ruler.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s1",
+   "translation": "Count and match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s2",
+   "translation": "Think and do.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s4",
+   "translation": "Trace and write.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s1",
+   "translation": "In Chinese, these two lines have 10 characters.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s2",
+   "translation": "Find and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s4",
+   "translation": "Jump and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s5",
+   "translation": "Move the beads and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s7",
+   "translation": "1, then 1 more bead makes 2.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s9",
+   "translation": "1. Draw and write.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s10",
+   "translation": "2. Look at the number and draw the rest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s2",
+   "translation": "I'm number",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s4",
+   "translation": "4. Fill in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s5",
+   "translation": "10, 9, 8, …, 1, blast oﬀ!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s7",
+   "translation": "6. Colour to match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s8",
+   "translation": "Talk about it: how did you count?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s1",
+   "translation": "Enough?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s2",
+   "translation": "Same number. Enough!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s3",
+   "translation": "Enough?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s4",
+   "translation": "What about these?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s5",
+   "translation": "1 short, not enough",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s6",
+   "translation": "Talk about it: which has the most? Which has the fewest?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s7",
+   "translation": "the most, the fewest",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s1",
+   "translation": "1. Draw.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s2",
+   "translation": "Draw as many □ as",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s4",
+   "translation": "Draw as many | as nails.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s8",
+   "translation": "Each puppy gets 1",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s11",
+   "translation": "3. Compare. Draw \"✓\" for the most and \"○\" for the fewest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s1",
+   "translation": "Park",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s2",
+   "translation": "Compare and learn.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s6",
+   "translation": "equals sign",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s8",
+   "translation": "Say: 4 equals 4.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s9",
+   "translation": "Say: 4 is less than 5.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s10",
+   "translation": "Say: 3 is greater than 2.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s12",
+   "translation": "Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s13",
+   "translation": "(more, fewer)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s1",
+   "translation": "1. Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s2",
+   "translation": "vs (more, fewer) (more, fewer) vs",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s3",
+   "translation": "(more, fewer)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s6",
+   "translation": "3. Fill in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s11",
+   "translation": "4. From 9, 6, 4, 7, 3, 5, 1, 10, write the numbers greater than 4 below.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s12",
+   "translation": "From 10, 2, 0, 7, 3, 5, 4, 6, write the numbers less than 6 below.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s1",
+   "translation": "Birthday",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s2",
+   "translation": "Talk about it: which piece is the largest? Which piece is the smallest?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s8",
+   "translation": "Not necessarily. Let's pour them into a cup and see.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s9",
+   "translation": "is taller, so it holds more.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s10",
+   "translation": "You could also empty",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s11",
+   "translation": "ﬁrst, then pour",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s12",
+   "translation": "Are there any other ways?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s5",
+   "translation": "3. Which holds more? Draw \"✓\" for the one that holds more and \"○\" for the one that holds less.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s7",
+   "translation": "4. Who drank more?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s8",
+   "translation": "5. Think: after the sugar cubes are put in, which cup is the sweetest? Draw",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s0",
+   "translation": "Playtime",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s2",
+   "translation": "Longer?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s3",
+   "translation": "Shorter?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s4",
+   "translation": "Line them up ﬁrst.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s5",
+   "translation": "Pulled straight, red is longer.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s6",
+   "translation": "Whose path is longer?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s7",
+   "translation": "Not necessarily. Let's count and see...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s8",
+   "translation": "Their paths look the same length...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s1",
+   "translation": "1. Talk about it: which is taller? Which is shorter?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s4",
+   "translation": "3. Think and talk.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s5",
+   "translation": "Can the car go under?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s6",
+   "translation": "Who is the tallest? Who is the shortest?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s7",
+   "translation": "Compare and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s8",
+   "translation": "Order from shortest to longest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s9",
+   "translation": "Draw \"✓\" for the longest and \"○\" for the shortest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s5",
+   "translation": "is heaviest, is lightest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s7",
+   "translation": "Weigh them in your hands.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s8",
+   "translation": "Weigh them and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s7",
+   "translation": "3. Draw \"✓\" on the heavier side.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s8",
+   "translation": "heaviest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s1",
+   "translation": "How Many in All",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s3",
+   "translation": "One hand has 3 pencils, the other has",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s5",
+   "translation": "5, altogether",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s6",
+   "translation": "How many pandas are there? Talk about it and count.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s7",
+   "translation": "3 pandas are eating bamboo",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s8",
+   "translation": "4, 5, altogether",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s9",
+   "translation": "Let's learn.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s13",
+   "translation": "Say: 3 plus 2 equals 5.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s15",
+   "translation": "Use counters and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s1",
+   "translation": "How many in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s2",
+   "translation": "Talk About It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s5",
+   "translation": "1. Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p29_s3",
+   "translation": "Each time,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s2",
+   "translation": "The tree had 5 apples. 2 fell oﬀ, leaving",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s3",
+   "translation": "1, 2, 3. There are 3 left on the tree.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s5",
+   "translation": "are left? Talk about it and count.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s6",
+   "translation": "There were 5 pieces of cheese. 2 were carried away, leaving",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s7",
+   "translation": "3 are left.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s8",
+   "translation": "Let's learn.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s12",
+   "translation": "Say: 5 minus 2 equals 3.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s2",
+   "translation": "Talk About It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s5",
+   "translation": "Each time,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s0",
+   "translation": "The Cute Kitten",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s1",
+   "translation": "Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s2",
+   "translation": "It eats 1, leaving",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s3",
+   "translation": "On the plate there are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s4",
+   "translation": "It eats 1 more, leaving",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s5",
+   "translation": "ﬁsh.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s6",
+   "translation": "It eats 1 more, leaving",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s7",
+   "translation": "Move the beads and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s18",
+   "translation": "Think and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s2",
+   "translation": "Blew",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s7",
+   "translation": "5 balloons in all",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s8",
+   "translation": "I hit 1.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p35_s1",
+   "translation": "2. Talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p35_s17",
+   "translation": "5. Fill in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s2",
+   "translation": "Goes up by",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s3",
+   "translation": "7. Find the homes.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s13",
+   "translation": "There are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s15",
+   "translation": "Guess: what other cards could be in each box?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s0",
+   "translation": "Guessing Game",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s1",
+   "translation": "Think:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s2",
+   "translation": "how many beans inside?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s4",
+   "translation": "4+1=5, and 1 more makes 6.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s5",
+   "translation": "Guess:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s6",
+   "translation": "how many beans inside?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s8",
+   "translation": "Split and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s9",
+   "translation": "Talk About It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s3",
+   "translation": "2. Talk about it. Put 6",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s4",
+   "translation": "on 2 plates. How can you do it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s5",
+   "translation": "3. Talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s15",
+   "translation": "5. Draw and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s24",
+   "translation": "6. Talk about it and play.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s25",
+   "translation": "I show 1.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s26",
+   "translation": "I show 5.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s1",
+   "translation": "In all, how many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s3",
+   "translation": "5+1=6, and 1 more makes 7.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s6",
+   "translation": "Think and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s7",
+   "translation": "What? None left!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s8",
+   "translation": "Talk About It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s3",
+   "translation": ". How can you do it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s4",
+   "translation": "3. Talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s6",
+   "translation": "4. Draw and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s15",
+   "translation": "5. Talk about it and play.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s16",
+   "translation": "I show 4.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s17",
+   "translation": "I show",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s0",
+   "translation": "Skipping",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s1",
+   "translation": "How many children in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s2",
+   "translation": "6+1=7, and 1 more makes 8.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s3",
+   "translation": "6 are jumping, 2 are turning the rope. In all there are...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s4",
+   "translation": "Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s5",
+   "translation": "3 in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s8",
+   "translation": "in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s11",
+   "translation": "Split and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s12",
+   "translation": "Talk About It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s1",
+   "translation": "Colour and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s4",
+   "translation": "Split and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s5",
+   "translation": "Draw and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s10",
+   "translation": "1. Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s11",
+   "translation": "2. Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s2",
+   "translation": "4. Bajie eats watermelon.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s4",
+   "translation": "5. Draw and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s11",
+   "translation": "Guess: what other cards could be in each box?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s1",
+   "translation": "How many penguins in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s2",
+   "translation": "3 in front and 5 behind, so in all there are...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s3",
+   "translation": "8 penguins in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s4",
+   "translation": "How many behind?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s5",
+   "translation": "8 in all, only 2 can be seen. Behind the",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s6",
+   "translation": "Only 2 can be seen, so 6 are missing.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s7",
+   "translation": "Talk About It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p45_s3",
+   "translation": "2. Talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p45_s5",
+   "translation": "3. How many inside?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p45_s6",
+   "translation": "7 in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p45_s16",
+   "translation": "Guess: how many have I covered?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s2",
+   "translation": "9 chicks, and 1 more makes 10.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s3",
+   "translation": "Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s4",
+   "translation": "Move the beads and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s5",
+   "translation": "Come on, 8 steps to go!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s14",
+   "translation": "5. Talk about it and do it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s15",
+   "translation": "I say 1",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s16",
+   "translation": "I say 9",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s17",
+   "translation": "Write the 8 numbers 1, 2, 3, 4, 5, 6, 7, 8 in the",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s19",
+   "translation": "Use each number only once.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s0",
+   "translation": "Bus Ride",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s1",
+   "translation": "2 on the bus.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s3",
+   "translation": "8 on the bus.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s5",
+   "translation": "9 on the bus.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s8",
+   "translation": "Try acting out these pictures with a partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s1",
+   "translation": "Talk about it: what maths information can you see?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s2",
+   "translation": "There are 2 people in the ﬁrst row and 3 people in the second row...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s3",
+   "translation": "In the choir there are 4 boys and 5 girls",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s4",
+   "translation": "Think about it, ask a mathematical question, and solve it with a number sentence",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s5",
+   "translation": "How many children in all? You can write it like this...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s7",
+   "translation": "(1) How many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s8",
+   "translation": "(2) How many people in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s10",
+   "translation": "There are 8 birds. ___ 2 ﬂew away.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s11",
+   "translation": "3 more ﬂew away.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s1",
+   "translation": "(1) Talk about it: what maths information can you see?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s2",
+   "translation": "(2) Ask a mathematical question, and solve it with a number sentence.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s4",
+   "translation": "The rest are hiding here",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s5",
+   "translation": "3 are hiding behind the tree.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s6",
+   "translation": "Ask a mathematical question and try to solve it",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s17",
+   "translation": "Talk about it and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s1",
+   "translation": "1. Draw and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s8",
+   "translation": "2. Find the pairs.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s10",
+   "translation": "3. Target shooting contest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s3",
+   "translation": "6 people in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s14",
+   "translation": "7. Use counters and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s0",
+   "translation": "Addition Table",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s1",
+   "translation": "These number sentences all have the answer 3.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s2",
+   "translation": "These addition number sentences all have a 5.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s17",
+   "translation": "Find the addition number sentences with the answer 3 and arrange them",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s26",
+   "translation": "Which addition sentences make 10? Arrange them",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s31",
+   "translation": "Below is the addition table Taoqi made. Can you help him complete it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s52",
+   "translation": "Look vertically, horizontally and diagonally. What patterns do you ﬁnd?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s0",
+   "translation": "Subtraction Table",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s2",
+   "translation": "These number sentences all have the answer 8.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s17",
+   "translation": "Find the sentences that subtract from 6. Arrange them",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s22",
+   "translation": "Which subtraction sentences make 8? Arrange them",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s26",
+   "translation": "Below is the subtraction table Xiaoxiao made. Can you help her complete it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s50",
+   "translation": "Look vertically, horizontally and diagonally. What patterns do you ﬁnd?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s2",
+   "translation": "Bunny's Party",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s3",
+   "translation": "Compare: mark the heaviest and the lightest with",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s7",
+   "translation": "Who's tallest? Who's shortest?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s11",
+   "translation": "Talk about it. What can 3 mean in everyday life? What about 0?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s12",
+   "translation": "Find things around you and compare them. Which is lighter? Which is heavier? Which is longer? Which is shorter?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s14",
+   "translation": "Go Home",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s20",
+   "translation": "Think about it. What problems can 3 + 7 solve? What about 9 − 1?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s0",
+   "translation": "My Progress",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s1",
+   "translation": "I can compare numbers now! Comparing 3 and 5...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s2",
+   "translation": "I've learned to sort addition number sentences with my partners...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s3",
+   "translation": "The classwork I'm most pleased with is...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s4",
+   "translation": "I listen carefully in maths class, and I sit up straight when I write...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s5",
+   "translation": "My Questions",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s6",
+   "translation": "Is 0 the smallest number? How many numbers are there in everyday life? Are there lots?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s7",
+   "translation": "Why is that?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s9",
+   "translation": "Why are some big things so light? Why are some small things so heavy?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s1",
+   "translation": "1. Draw lines to join groups of the same number.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s3",
+   "translation": "2. Talk and ﬁll in. I'm number 1.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s5",
+   "translation": "animals in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s6",
+   "translation": "is number",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s19",
+   "translation": "4. Write diﬀerent sums.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s23",
+   "translation": "5. Compare. Draw \"✓\" for the heavier one and \"○\" for the lighter one.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s0",
+   "translation": "6. Compare.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s1",
+   "translation": "Draw \"✓\" for the one that climbed highest and \"○\" for the lowest.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s4",
+   "translation": "7. Think and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s10",
+   "translation": "9 in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s7",
+   "translation": "(1) Talk about it: what maths information can you see?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s8",
+   "translation": "(2) Ask two maths questions and solve them with number sentences.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s9",
+   "translation": "Write 2, 3, 4 and 5 in the",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s10",
+   "translation": "In each number sentence, each number can be used only once.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s0",
+   "translation": "Unit 4 Sorting",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s1",
+   "translation": "Tidy Up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s4",
+   "translation": "Look and say.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s11",
+   "translation": "Put the balls, toy cars and ······ together; they are all",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s1",
+   "translation": "1. Colour the animals that can ﬂy.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s2",
+   "translation": "2. Under fruit draw",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s4",
+   "translation": ", under vegetables",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s5",
+   "translation": "3. Sort.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s9",
+   "translation": "Tidy your schoolbag and talk about how you tidied it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s2",
+   "translation": "Maths",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s3",
+   "translation": "Maths Chinese",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s4",
+   "translation": "Chinese Maths",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s7",
+   "translation": "Please sort the books into two groups and talk about how you sorted them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s8",
+   "translation": "Chinese books and Chinese······",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s12",
+   "translation": "Chinese Chinese",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s18",
+   "translation": "Maths",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s19",
+   "translation": "Maths Maths",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s20",
+   "translation": "Maths Chinese",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s21",
+   "translation": "Sort your class into two groups and talk about how you sorted them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s22",
+   "translation": "One group has birthdays in the ﬁrst half of the year, the other in the second half.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s23",
+   "translation": "I put the boys in one group and the girls in another.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s1",
+   "translation": "Look. Cut out the shapes from the appendix page and",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s2",
+   "translation": "sort them. Talk about how you sorted them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s3",
+   "translation": "I sorted by colour; there are yellow ones, and there are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s6",
+   "translation": "1. Colour things of the same kind the same colour.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s7",
+   "translation": "2. Divide into two groups. Sort and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s0",
+   "translation": "3. Sort and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s1",
+   "translation": "Which ones ﬂy in the sky? Which ones run on the ground? Which ones swim in the water?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s2",
+   "translation": "4. Sort as instructed and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s3",
+   "translation": "Two groups:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s4",
+   "translation": "Three groups:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s5",
+   "translation": "5. Calculate. Colour number sentences with the same answer the same colour.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s16",
+   "translation": "6. Look and talk about how they are sorted.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s20",
+   "translation": "Recycle",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s1",
+   "translation": "Front/Back",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s2",
+   "translation": "Forest Games",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s3",
+   "translation": "Talk About It",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s4",
+   "translation": "The deer is at the very front. Who is behind it? What place is the snail in? And the tortoise?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s7",
+   "translation": "In the picture, car 1 is in — place. Car 4 is behind car — and in front of car —.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s8",
+   "translation": "Find examples of \"in front\" and \"behind\" around you. Talk about them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s1",
+   "translation": "1. Who sits in front of you? Who sits behind you?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s2",
+   "translation": "2. Calculate and put in order.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s8",
+   "translation": "Smaller answers go in front!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s10",
+   "translation": "Tickets",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s11",
+   "translation": "In front of me:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s12",
+   "translation": "How many more stops to the zoo?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s14",
+   "translation": "This is Park Stop.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s16",
+   "translation": "Square Station Park Taiping Road",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s18",
+   "translation": "5. A new tortoise and hare race.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s19",
+   "translation": "Talk with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s0",
+   "translation": "Above/Below",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s1",
+   "translation": "Talk about it: who is at the very top?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s2",
+   "translation": "Who is at the very bottom?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s4",
+   "translation": ": the rabbit is it. ____",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s6",
+   "translation": "is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s7",
+   "translation": "it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s9",
+   "translation": "is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s10",
+   "translation": "it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s12",
+   "translation": "is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s13",
+   "translation": "it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s14",
+   "translation": "Guess who it is.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s15",
+   "translation": "I know! It is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s19",
+   "translation": "Put them in place.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s21",
+   "translation": "But how?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s22",
+   "translation": "The pencil case is not at the very top.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s4",
+   "translation": "is ___",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s9",
+   "translation": "2. Who lives where? Cut out the animal pictures on the cut-out page and stick them on the picture on the right. Think and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s10",
+   "translation": "(1) Who lives at the very bottom?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s11",
+   "translation": "(2) Who lives on ﬂoor 2? Who is it above?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s12",
+   "translation": "Who is above it? What about ﬂoor 3?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s13",
+   "translation": "(3) Who lives at the top? Who lives below it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s16",
+   "translation": "The treasure may be in ····",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s18",
+   "translation": "I know! The treasure is in...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s20",
+   "translation": "Who is at the very top? Who is at the very bottom?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s0",
+   "translation": "Left/ Right",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s1",
+   "translation": "Raise your right hand to speak.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s6",
+   "translation": "Lay out and say.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s7",
+   "translation": "Put the eraser to the left of the ruler…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s8",
+   "translation": "Put the pencil sharpener on the far right…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s12",
+   "translation": "and right of the eraser.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s13",
+   "translation": "It is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s15",
+   "translation": "First go up 3 squares, then…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s16",
+   "translation": "You can also ﬁrst go",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s1",
+   "translation": "1. Say who sits next to you.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s3",
+   "translation": "Put",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s4",
+   "translation": "Notes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s5",
+   "translation": "below Maths",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s7",
+   "translation": ", put the ruler to the left of",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s10",
+   "translation": "Maths",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s11",
+   "translation": "3. Talk about it and point.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s12",
+   "translation": "What is the 2nd one to its right?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s13",
+   "translation": "What is the 3rd one to its left?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s14",
+   "translation": "4. Counting from the right, the bus is 5th. There are ( ) vehicles in all. Try drawing a picture.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s16",
+   "translation": "5. Do it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s17",
+   "translation": "Stand to my left.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s18",
+   "translation": "Stand to the left of both of us.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s19",
+   "translation": "Are they all keeping to the right?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s0",
+   "translation": "Classroom",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s1",
+   "translation": "Talk about it: how are things arranged in the classroom?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s3",
+   "translation": "At the front is a blackboard. Left of it is a television…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s4",
+   "translation": "Above the blackboard and below the national ﬂag there are 8 big characters…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s5",
+   "translation": "Think: who are we looking for?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s15",
+   "translation": "Guess which object is being described.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s16",
+   "translation": "It is below the",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s18",
+   "translation": "Below it there are … Which one can it be?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s21",
+   "translation": "is on its right.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s22",
+   "translation": "I know! It is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s1",
+   "translation": "1. Look at the picture and answer.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s2",
+   "translation": "What is in front of you, behind you, to your left and to your right?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s3",
+   "translation": "Funfair",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s5",
+   "translation": "(1) Xiaowen is left of Xiaoli.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s6",
+   "translation": "(2) Counting from right to left, Xiaoming is 1st and Xiaohong is 4th.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s9",
+   "translation": "3. Talk about the 6 faces of your pencil case: top, bottom, front, back, left and right.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s10",
+   "translation": "Draw arrows (→). Talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s11",
+   "translation": "Station",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s12",
+   "translation": "Excuse me, how do we get to the train station?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s5",
+   "translation": "Say what objects you see. How many groups can you sort them into?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s6",
+   "translation": "There are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s7",
+   "translation": "I put the box-shaped ones together.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s8",
+   "translation": "Sort and learn the shapes.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s13",
+   "translation": "Ball",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s16",
+   "translation": "It's round, the same width top and bottom.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s17",
+   "translation": "Hee hee, now I know!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s18",
+   "translation": "It can roll forward and backward...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s1",
+   "translation": "1. Match each object to its shape.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s4",
+   "translation": "3. Build it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s5",
+   "translation": "4. Find objects like",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s6",
+   "translation": "and tell your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s1",
+   "translation": "Talk and build.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s4",
+   "translation": "Place a cube on top of the cuboid.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s5",
+   "translation": "Can your ball roll through underneath?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s7",
+   "translation": "Feel for a cube and put it on the cylinder.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s8",
+   "translation": "Feel for a cylinder and stand it on the table.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s4",
+   "translation": "Place a cuboid on top of the two cylinders.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s5",
+   "translation": "Place two balls on top of the cuboid.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s6",
+   "translation": "Ha ha! I built a city gate!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s8",
+   "translation": "2. Can you name the shapes of the objects in the picture?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s9",
+   "translation": "3. How many small cubes are there in each picture below? Explain how you worked it out.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s1",
+   "translation": "Ancient Counting",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s2",
+   "translation": "Use a stick for each sheep. Lay them out and count.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s3",
+   "translation": "1 more than 10 is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s5",
+   "translation": "Bundle and learn.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s6",
+   "translation": "A counting frame.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s8",
+   "translation": "1 ten",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s9",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s10",
+   "translation": "1 ten and 1 one make 11.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s11",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s13",
+   "translation": "Do it and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s14",
+   "translation": "1 ten and 9 ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s15",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s16",
+   "translation": "2 tens make 20.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s17",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s18",
+   "translation": "make 19.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s4",
+   "translation": "Compare. Which is greater? Which is less?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s6",
+   "translation": "14 is greater",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s7",
+   "translation": "4 is greater than 2, so 14 is greater.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s8",
+   "translation": "People long ago showed 12 like this. Can you show 13 the same way?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s10",
+   "translation": "1. Write the numbers.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s11",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s13",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s14",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s15",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s0",
+   "translation": "3. Fill in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s8",
+   "translation": "7. Count and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s9",
+   "translation": "8. Talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s10",
+   "translation": "1 ten and 8 ones together make 18.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s11",
+   "translation": "The tens digit is 1, the ones digit is 8, so the number is 18.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s0",
+   "translation": "Blocks",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s1",
+   "translation": "How many blocks altogether?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s2",
+   "translation": "Add 2 more.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s7",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s17",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s18",
+   "translation": "Can you follow the methods below?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s6",
+   "translation": "2. Which two numbers add up to 18? Fill them in the number sentence.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s7",
+   "translation": "3. Look and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s22",
+   "translation": "Bump and add",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s23",
+   "translation": "Bump and subtract",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s0",
+   "translation": "How Many Bottles",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s1",
+   "translation": "How many bottles of milk in all? Lay out sticks and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s8",
+   "translation": "Do it and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s11",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s12",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s13",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s6",
+   "translation": "How many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s7",
+   "translation": "3. Climb up.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s23",
+   "translation": "There were",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s24",
+   "translation": "kids playing shuttlecock, then",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s25",
+   "translation": "In the tree , in all",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s26",
+   "translation": ", on the ground .",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s27",
+   "translation": "more came. Now there are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s3",
+   "translation": "How many trees in total?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s8",
+   "translation": "Use the methods below to ﬁnd 8+6=",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s9",
+   "translation": "Do you understand them?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s1",
+   "translation": "1. Lay out and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s6",
+   "translation": "3. Look and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s17",
+   "translation": "5. Match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s19",
+   "translation": "6. Which two boxes should you buy? Match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s20",
+   "translation": "15 children, 1 each.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s1",
+   "translation": "How many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s5",
+   "translation": "Do it and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s6",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s7",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s8",
+   "translation": "Tens Ones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s12",
+   "translation": "Think and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s13",
+   "translation": "Can you keep going?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s4",
+   "translation": "2. Look and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s17",
+   "translation": "4. Colour red where the answer is 12 and green where it is 11.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s0",
+   "translation": "Exercise 3",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s2",
+   "translation": "Which step is each person on? Step ___, step ___, step ___, step ___, step ___, step ___, step ___, step ___. Who is standing on step 9?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s20",
+   "translation": "4. Draw and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s3",
+   "translation": "6. How many in total?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s15",
+   "translation": "8. Talk about it, then do it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s17",
+   "translation": "8+5=",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s26",
+   "translation": "What can",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s27",
+   "translation": "be? Think about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s0",
+   "translation": "Addition Table",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s2",
+   "translation": "Oh! These number sentences all have the answer 14.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s3",
+   "translation": "These number sentences all contain 8.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s16",
+   "translation": "Complete the addition table.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s29",
+   "translation": "Looking down, I notice...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s2",
+   "translation": "Can you ﬁnd maths problems on Taoqi's campus?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s5",
+   "translation": "I'll record.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s6",
+   "translation": "How can we record the maths information we ﬁnd?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s8",
+   "translation": "Jumping rope: 6",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s10",
+   "translation": "1. In groups, ﬁnd the maths information on Taoqi's campus.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s11",
+   "translation": "2. Share what your group found.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s12",
+   "translation": "The classroom building is shaped like a rectangular prism. It has 2 ﬂoors, and I can also see 9 windows.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s13",
+   "translation": "The ﬂagpole is shaped like a cylinder. It is even taller than the trees.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s0",
+   "translation": "3. Count and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s1",
+   "translation": "What maths questions can you ask?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s3",
+   "translation": "children jump rope, children run, and",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s4",
+   "translation": "children kick shuttlecocks, children play soccer.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s7",
+   "translation": "What maths information is there at your school? What maths questions can you ask?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s8",
+   "translation": "Our class has 20 boys...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s9",
+   "translation": "Our school has 6 grades, with 3 classes in each grade...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s10",
+   "translation": "Table tennis balls, rubber balls, basketballs and soccer balls are all round...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s11",
+   "translation": "The school has many female teachers and few male teachers...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s12",
+   "translation": "Reﬂection",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s13",
+   "translation": "How I did in this activity:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s14",
+   "translation": "I can ﬁnd maths problems.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s15",
+   "translation": "I actively share my ideas.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s16",
+   "translation": "I understand what others say.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s0",
+   "translation": "Let's Play",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s1",
+   "translation": "Stack Up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s2",
+   "translation": "Play in groups of 2. Which group stacks fastest and highest?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s5",
+   "translation": "Use all 10 objects. Be creative with your stack.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s6",
+   "translation": "The group that stacks the fastest and highest wins.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s7",
+   "translation": "What did you notice in the game? Talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s8",
+   "translation": "Our group had great fun working together!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s9",
+   "translation": "Balls are the hardest",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s10",
+   "translation": "We put the big ones at the bottom...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s0",
+   "translation": "Play a Game",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s2",
+   "translation": "Let me explain the rules!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s3",
+   "translation": "Draw cards and add up the numbers on them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s4",
+   "translation": "If your total is more than 10, you're out. The highest total wins. Same total? Fewer cards wins.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s9",
+   "translation": "If Taoqi draws another card, what number does he need to win?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s10",
+   "translation": "A 2 makes exactly",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s11",
+   "translation": "Would a 1 work?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s12",
+   "translation": "10...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s2",
+   "translation": "Say what time it is.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s14",
+   "translation": "I go to bed at 9.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s1",
+   "translation": "1. Read the clocks.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s8",
+   "translation": "2. Match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s16",
+   "translation": "Match each shadow to the time of day. B. 8:00 a.m. A. 12:00 noon",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s18",
+   "translation": "C. 10:00 a.m.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s2",
+   "translation": "Number and Algebra",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s3",
+   "translation": "On your own",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s4",
+   "translation": "1. Give examples: what do you know about numbers?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s7",
+   "translation": "Do these two 1s mean the same thing?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s10",
+   "translation": "Tens Ones Talk with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s11",
+   "translation": "4. Can you ﬁnish in 2 minutes? See who does them correctly and neatly.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s24",
+   "translation": "I got 7 ☆ for my maths homework and 9 ☆ for my Chinese homework.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s25",
+   "translation": "What maths questions can you ask? Talk with your partner and try to solve them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s27",
+   "translation": "Can you understand 8+6=14 in the picture on the right?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s29",
+   "translation": "Using sticks or a counting frame, tell how you calculate 8+6.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s31",
+   "translation": "7. Read the clocks and match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s0",
+   "translation": "Share",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s1",
+   "translation": "ideas",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s5",
+   "translation": "How many ☆ did I get in all? 7+9=16. I can solve maths problems now!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s8",
+   "translation": "Shapes and Geometry On your own",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s9",
+   "translation": "1. Sort the objects below and explain why.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s12",
+   "translation": "3. Draw ☆ to the right of the ﬂower, □ above it, △ to its left and ○ below it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s14",
+   "translation": "To the left of the lemon is (grapes).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s15",
+   "translation": "To the left of the pineapple is ( ). The strawberry is ( ) the pineapple. Below the watermelon is ( ).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s17",
+   "translation": "4. When you line up, who is in front of you and who is behind you?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s18",
+   "translation": "ideas",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s19",
+   "translation": "Share",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s21",
+   "translation": "Once I know what is to the left of the lemon, it's easy",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s0",
+   "translation": "Exercise",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s1",
+   "translation": "Number and Algebra",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s2",
+   "translation": "1. Count and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s4",
+   "translation": "children. Counting from Taoqi, number",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s6",
+   "translation": "; counting from Xiaoxiao,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s7",
+   "translation": "the girl",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s8",
+   "translation": "is number",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s12",
+   "translation": ", tens digit Ones digit of 15 18 has tens and ones 1 ten and 3 ones make",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s18",
+   "translation": "4. Colour the 2nd bead from the left red and the 5th bead from the right black.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s0",
+   "translation": "5. Match number sentences with the same answer.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s20",
+   "translation": "7. Fill in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s24",
+   "translation": "8. Colour the number sentences whose answer is 15. What do you notice?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s55",
+   "translation": "9. How many tadpoles are there in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s0",
+   "translation": "10. Colour and ﬁll in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s4",
+   "translation": "How many in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s5",
+   "translation": "15 in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s8",
+   "translation": "Behind me, how many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s22",
+   "translation": "14. Draw and ﬁll in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s1",
+   "translation": "I collected 9 shells.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s7",
+   "translation": "16. Keep drawing.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s1",
+   "translation": "1. Count and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s4",
+   "translation": ".",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s12",
+   "translation": "2. Match and talk",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s13",
+   "translation": "3. Talk and ﬁll in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s15",
+   "translation": ": ( ) : ( )",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s17",
+   "translation": "4. Look and ﬁll in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s20",
+   "translation": "'s (right). 's ( ).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s22",
+   "translation": "is on 's (",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s24",
+   "translation": "is on 's (",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s27",
+   "translation": "What is to the right of the pencil holder?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s28",
+   "translation": "Talk about it: how many groups can they be sorted into?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s30",
+   "translation": "I sorted them diﬀerently from you. I...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p104_s0",
+   "translation": "What did you learn this term?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p105_s1",
+   "translation": "What maths problems have you spotted in daily life? Write them down. Can you solve them?",
+   "reason": "recovered from the checked edition delivered earlier"
+  }
+ ]
+}

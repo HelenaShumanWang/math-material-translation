@@ -1,0 +1,81 @@
+"""Runtime settings (environment variables / .env)."""
+from __future__ import annotations
+
+import os
+from functools import lru_cache
+from pathlib import Path
+from typing import Literal, Optional
+
+from pydantic import AliasChoices, Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
+
+
+class Settings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="MATHTRANS_", env_file=".env", extra="ignore")
+
+    anthropic_api_key: Optional[str] = Field(
+        default=None,
+        validation_alias=AliasChoices("ANTHROPIC_API_KEY", "MATHTRANS_ANTHROPIC_API_KEY"),
+    )
+    deepseek_api_key: Optional[str] = Field(
+        default=None,
+        validation_alias=AliasChoices("DEEPSEEK_API_KEY", "MATHTRANS_DEEPSEEK_API_KEY"),
+    )
+    deepseek_model: str = "deepseek-chat"
+    deepseek_base_url: str = "https://api.deepseek.com"
+    claude_model: str = "claude-opus-5-5"
+    claude_review_model: Optional[str] = None  # defaults to claude_model
+    claude_effort: Literal["low", "medium", "high", "xhigh", "max"] = "medium"
+    enable_fallbacks: bool = True
+    translator: Literal["auto", "claude", "deepseek", "mock"] = "auto"
+    ocr_engine: Literal["auto", "rapid", "claude", "none"] = "auto"
+    ocr_threads: int = 0  # RapidOCR threads per model (0 = onnxruntime default, all cores); 1 when running several jobs
+    ocr_cache_dir: Optional[Path] = None  # OCR results are cached per image here, so a re-run skips recognition
+    data_dir: Path = Path("data")
+    fonts_dir: Optional[Path] = None
+    max_qa_rounds: int = 3
+    require_qa_pass: bool = True
+    min_font_scale: float = 0.55
+    preview_dpi: int = 110
+    batch_chars: int = 6000  # approx. characters of source text per translation request
+    max_workers: int = 2  # concurrent translation jobs in the web service
+    max_upload_mb: int = 100  # per-file upload limit of the web service
+    max_image_megapixels: float = 50.0  # larger embedded images are not decoded / OCR'd (memory budget)
+    max_pages: int = 500  # documents with more pages are rejected (web upload, re-translation and CLI)
+    render_checkpoint_pages: int = 25  # layout: save + reopen the PDF every N rendered pages (bounds memory)
+    api_token: Optional[str] = None  # shared secret required on /api/* when set (MATHTRANS_API_TOKEN)
+    log_level: str = "INFO"
+
+    @property
+    def has_api_key(self) -> bool:
+        return bool(self.anthropic_api_key) or bool(os.environ.get("ANTHROPIC_AUTH_TOKEN"))
+
+    @property
+    def has_deepseek_key(self) -> bool:
+        return bool(self.deepseek_api_key)
+
+    def resolved_translator(self, requested: str = "auto") -> str:
+        req = requested if requested and requested != "auto" else self.translator
+        if req == "auto":
+            if self.has_api_key:
+                return "claude"
+            if self.has_deepseek_key:
+                return "deepseek"
+            return "mock"
+        return req
+
+    def resolved_ocr(self, requested: str = "auto") -> str:
+        req = requested if requested and requested != "auto" else self.ocr_engine
+        return req
+
+    def review_model(self) -> str:
+        return self.claude_review_model or self.claude_model
+
+
+@lru_cache(maxsize=1)
+def get_settings() -> Settings:
+    return Settings()
+
+
+def reset_settings() -> None:
+    get_settings.cache_clear()

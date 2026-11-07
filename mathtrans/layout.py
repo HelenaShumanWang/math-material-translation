@@ -1,0 +1,1695 @@
+"""Re-render translated text into the PDF while preserving the page layout.
+
+For every text segment that has a translation the original glyphs are removed
+with a redaction (images, vector graphics, rules and background fills are kept)
+and the translation is inserted as real, extractable text with
+``Page.insert_htmlbox`` using the original font size, colour, weight, italic,
+alignment and line height. Text that does not fit is shrunk (down to
+``min_font_scale``), set with a tighter line height, or given a slightly larger
+box in free page space; what happened is recorded in ``TextSegment.render`` so
+the QA layer can report overflow.
+
+Empirical contract of ``Page.insert_htmlbox`` (PyMuPDF 1.28.2, verified by
+``tests/test_layout.py::test_insert_htmlbox_contract``)::
+
+    text fits                      -> (spare_height >= 0, scale)   scale_low <= scale <= 1
+    does not fit, scale_low > 0    -> (-1, scale_low)              NOTHING is written to the page
+    scale_low == 0 (unlimited)     -> (spare_height >= 0, scale)   always written, scale as small as needed
+    empty text                     -> (rect height, 1.0)
+
+So "does not fit" is signalled by a negative ``spare_height`` (``scale`` is
+never 0), and a failed attempt leaves the page untouched, which makes it safe
+to retry with other parameters.
+
+Redaction removes a glyph as soon as the redaction rectangle covers roughly
+10 % of the glyph's font box (measured: 1.5pt at 11px, 3pt at 22px). Font boxes
+of adjacent lines overlap by ascender + descender (about 0.35 x font size), so
+besides the 0.3pt shrink the redaction rectangle is cut back wherever it meets
+a text line that does not belong to the segment (see :func:`_redaction_rect`).
+
+``SegmentStyle.rotation`` is the ``rotate`` argument of ``insert_htmlbox`` /
+``insert_text`` that reproduces the extracted writing direction (the convention
+of ``mathtrans.extract``): ``(1, 0) -> 0``, ``(0, -1) -> 90`` (text runs upwards),
+``(-1, 0) -> 180``, ``(0, 1) -> 270`` (text runs downwards). It is passed through
+unchanged; see :func:`html_rotation`.
+
+All geometry (``get_text``, ``get_image_info``, ``get_drawings``,
+``add_redact_annot``, ``insert_htmlbox``) lives in the *unrotated* page space,
+also for pages with a ``/Rotate`` entry, whereas ``page.rect`` describes the
+displayed page; :func:`unrotated_page_rect` gives the matching rectangle.
+PyMuPDF's own methods reach that space by zeroing ``/Rotate`` while they work,
+except ``insert_htmlbox`` (``show_pdf_page``), whose ``Page.transformation_matrix``
+drops the CropBox / MediaBox origin of a rotated page and puts the text partly
+off the page (an auto-cropped landscape scan is the typical case);
+:func:`render_page_segments` therefore zeroes the rotation itself for the whole
+of a page's work and restores it afterwards.
+
+``apply_redactions`` also deletes every Link and FreeText annotation whose
+rectangle meets a redaction rectangle - that is every hyperlink sitting on
+translated text (clickable tables of contents, cross references, URLs). The
+objects are only unlinked from the page's ``/Annots`` array, so
+:func:`_reattach_annotations` puts them back unchanged. Text inside
+annotations (notes, stamps, form field values) is not page content and is
+never redacted; it is therefore left out of the free-space bookkeeping
+(:func:`_content_rawdict`).
+
+Every ``insert_htmlbox`` call embeds a complete copy of the font it used, so
+the document is saved with ``garbage=4`` which merges identical objects
+(a 2-page sample otherwise grows from 0.7 MB to 23 MB). Those copies also stay
+in memory (about 1 MB per rendered segment) until the document is saved, which
+would put a long textbook at several GB; :func:`render_document` therefore
+checkpoints every ``checkpoint_pages`` rendered pages (save with ``garbage=4``
+to a temporary file, reopen, continue). Fonts are deliberately *not* subsetted:
+a fully embedded font lets PDF editors type any character when the translation
+is corrected by hand.
+"""
+from __future__ import annotations
+
+import html as _html
+import io
+import logging
+import os
+import re
+import tempfile
+from pathlib import Path
+from typing import Any, Optional, Sequence, Union
+
+import numpy as np
+from PIL import Image
+import pymupdf
+
+from .fonts import find_font_file, html_font_setup
+from .extract import is_list_item
+from .models import ANCHOR_RE, BBox, Lang, RenderInfo, SegmentKind, SegmentStyle, TextSegment, TranslatedDocument
+
+log = logging.getLogger("mathtrans.layout")
+
+PathLike = Union[str, "os.PathLike[str]"]
+
+REDACT_SHRINK = 0.3
+SCANNED_PAGE_COVER = 0.85
+"""An image covering at least this share of the page is the scanned page itself."""
+OVERLAP_TRIM = 0.25
+"""A neighbour on the same row whose box reaches into a segment's box by less than this share
+of its width (OCR boxes of "About ___ claps" and "Write my name" overlapping by a few points)
+pushes that side back too, so the two texts keep a word space instead of touching."""
+FREE_SPACE_DPI = 36
+FREE_SCAN_DPI = 72
+FREE_SCAN_MARGIN = 2.0
+ONE_LINE_BAND = 0.2
+"""Share of a line box's height left out at its top and bottom when scanning sideways for room
+for one line: the text stands in the middle band."""
+"""Points kept between grown text and the outline, rule or picture that stopped its growth."""
+"""Resolution at which a grown edge is scanned outwards one pixel line at a time (one line per
+point): a box in a speech bubble grows right up to the outline, not by coarse fractions."""
+FREE_SPACE_MAX_STD = 14.0
+"""Pixel standard deviation below which a strip of a scanned page counts as plain background."""
+FAINT_MIN_LUMA = 175.0
+"""A strip whose darkest pixel is lighter than this (a faint watermark, a pale gradient) is
+free too, as long as its spread stays below :data:`FAINT_MAX_STD`."""
+FAINT_MAX_STD = 32.0
+SAME_BACKGROUND_TOL = 20.0
+"""A pixel of a strip a box grows into differs from the colour behind the box when it is
+brighter than it by more than this in some channel, or more or less colourful (spread between
+its channels) by more than this: the white page outside a pale speech bubble, the bubble's
+outline, a pale panel beside a white margin. A grey watermark over the same colour is darker
+and no more colourful, so it does not differ."""
+SAME_BACKGROUND_DARKER = 70.0
+"""... and a pixel darker than it by more than this in some channel differs too (a rule, an
+outline, a stroke of a picture); a faint grey watermark is lighter than that."""
+SAME_BACKGROUND_SHARE = 0.1
+"""Largest share of differing pixels in a strip that still counts as the box's own background:
+text in a pale speech bubble or a coloured panel stays inside it instead of running out onto
+the white page, which the plain-background test alone allows."""
+"""Points by which a segment box is shrunk before redaction (protects neighbours)."""
+TIGHT_LINE_HEIGHT = 1.1
+TIGHT_RETRY_SCALE = 0.8
+"""Text that fits only below this share of its size is tried again with the tighter line
+height, which often lets two or three lines stand larger in a cramped bubble or cell."""
+"""Line height tried when the text does not fit with the original one."""
+MAX_HEIGHT_GROWTH = 0.5
+"""A box may grow downward by at most this fraction of its height (=> 1.5 x)."""
+EXTRA_LINE_GROWTH = 1.2
+"""On a scanned page a paragraph of up to three lines may grow downward by this many line
+pitches into free space, so that English longer than the Chinese wraps onto one more line at
+the same size instead of being shrunk."""
+MIN_WIDTH_GROWTH = 60.0
+"""Horizontal growth allowance in points for tiny boxes (labels, page numbers)."""
+MAX_WIDTH_GROWTH = 2.0
+"""A box may grow horizontally by at most this fraction of its width."""
+LEGIBLE_FLOOR = 0.45
+"""On a scanned page, a translation that would need a smaller scale than this is not
+set at all: the source glyphs are restored and QA asks for a shorter text."""
+LEGIBLE_MIN_PT = 5.5
+"""... nor one that would be set below this many points."""
+KEPT_SOURCE_NOTE = "left in source language: the translation does not fit legibly"
+LABEL_WIDTH_GROWTH = 3.0
+"""Short labels on scanned pages may grow sideways (on both sides, centred) by this
+fraction of their width, where the page is plain background."""
+LABEL_HEIGHT_GROWTH = 1.0
+"""... and downward by this fraction of their height."""
+MIN_CONTRAST = 2.0
+"""Text set on a scanned page needs at least this WCAG contrast ratio against the
+background under it; otherwise it is set in black or white."""
+COLUMN_MIN_WIDTH_FRACTION = 0.15
+"""Segments at least this wide (fraction of the page width) act as column walls:
+a box never grows sideways past the near edge of such a segment, whatever its
+vertical position, so that multi-column layouts keep their gutters."""
+WALL_REACH = 0.0
+"""On a scanned page only walls within this many box heights above or below the box count
+(0: only text on the box's own rows): the exercise lines at the foot of the page do not stop
+the heading at its top from growing sideways, nor does that heading stop the line under it."""
+PAGE_MARGIN = 10.0
+"""Boxes are never extended closer than this to the page edge."""
+DEFAULT_CHECKPOINT_PAGES = 25
+"""``render_document`` saves and reopens the document after this many rendered pages
+(bounds the in-memory font copies of ``insert_htmlbox``); 0 disables checkpointing."""
+EDGE_MARGIN = 72.0
+"""Boxes may grow into the outer inch of the page only where content already is."""
+CONTENT_TOLERANCE = 4.0
+"""Allowed overshoot beyond the page's content area when growing a box."""
+OBSTACLE_GAP = 2.0
+"""Minimum distance kept between an extended box and other content."""
+
+_FACE_VARIANTS: dict[str, tuple[str, ...]] = {
+    "bold": ("-Bold", "Bold", "-bold", "bd", "-B"),
+    "italic": ("-Italic", "-Oblique", "Italic", "Oblique", "-italic", "i"),
+    "bolditalic": ("-BoldItalic", "-BoldOblique", "BoldItalic", "BoldOblique", "bi", "-BI"),
+}
+_FACE_DESCRIPTORS: dict[str, str] = {
+    "bold": "font-weight: bold;",
+    "italic": "font-style: italic;",
+    "bolditalic": "font-weight: bold; font-style: italic;",
+}
+
+
+# --------------------------------------------------------------------------- #
+# HTML / CSS generation
+# --------------------------------------------------------------------------- #
+
+
+def page_css(target_lang: Lang | str, fonts_dir: Optional[PathLike] = None) -> tuple[str, Optional[pymupdf.Archive]]:
+    """CSS and ``Archive`` for ``insert_htmlbox`` when rendering ``target_lang``.
+
+    Uses :func:`mathtrans.fonts.html_font_setup`; when it provides a dedicated
+    font file, matching bold / italic faces found next to it are declared too
+    (otherwise the Story engine would synthesise nothing and headings would lose
+    their weight). The CSS always ends with ``* {font-family: <family>;} p {margin:0}``.
+    """
+    lang = Lang.parse(target_lang)
+    css, archive, family = html_font_setup(lang, fonts_dir)
+    if css and archive is not None:
+        regular = find_font_file(lang, extra_dir=fonts_dir)
+        if regular is not None:
+            css += _extra_face_rules(regular, family)
+    css += f"* {{font-family: {family};}} p {{margin:0}}"
+    return css, archive
+
+
+def _extra_face_rules(regular: Path, family: str) -> str:
+    """``@font-face`` rules for bold / italic files that live beside ``regular``."""
+    stem = regular.stem
+    base = stem[: -len("-Regular")] if stem.endswith("-Regular") else stem
+    rules = []
+    for variant, suffixes in _FACE_VARIANTS.items():
+        for suffix in suffixes:
+            candidate = regular.with_name(base + suffix + regular.suffix)
+            if candidate.is_file():
+                rules.append(f"@font-face {{font-family: {family}; src: url({candidate.name}); "
+                             f"{_FACE_DESCRIPTORS[variant]}}}\n")
+                break
+    return "".join(rules)
+
+
+def segment_html(seg: TextSegment, text: str, line_height: Optional[float] = None, *,
+                 color: Optional[int] = None, align: Optional[str] = None) -> str:
+    """HTML paragraph for ``insert_htmlbox`` reproducing the segment's style.
+
+    The text is HTML-escaped, line breaks become ``<br>`` and the font size
+    (px = pt inside the Story engine), colour, weight, italic, alignment and
+    line height come from ``seg.style``. ``line_height`` overrides the style's
+    line height (used for the tighter-fit attempt).
+    """
+    st = seg.style
+    size = st.size if st.size > 0 else 10.0
+    lh = line_height if line_height is not None else st.line_height
+    if lh <= 0:
+        lh = 1.25
+    style = (
+        f"font-size:{size:.2f}px;"
+        f"color:#{(st.color if color is None else color) & 0xFFFFFF:06x};"
+        f"font-weight:{'bold' if st.bold else 'normal'};"
+        f"font-style:{'italic' if st.italic else 'normal'};"
+        f"text-align:{align or st.align};"
+        f"line-height:{lh:.2f}"
+    )
+    body = text.replace("\r\n", "\n").replace("\r", "\n").replace("\t", " ")
+    parts, pos = [], 0
+    for m in ANCHOR_RE.finditer(body):
+        parts.append(_html.escape(body[pos:m.start()], quote=False).replace("\n", "<br>"))
+        parts.append(_anchor_img(seg, m.group(1)))
+        pos = m.end()
+    parts.append(_html.escape(body[pos:], quote=False).replace("\n", "<br>"))
+    return f'<p style="{style}">{"".join(parts)}</p>'
+
+
+ANCHOR_EM = 1.25
+"""Height of an inline picture, in em of the surrounding text."""
+
+
+def anchor_name(key: str) -> str:
+    return "anchor-" + "".join(c if c.isalnum() else "_" for c in key) + ".png"
+
+
+def _anchor_img(seg: TextSegment, key: str) -> str:
+    box = seg.anchors.get(key)
+    if not box:
+        return ""
+    _xref, x0, y0, x1, y1 = box
+    aspect = max(0.2, min(5.0, (x1 - x0) / max(1, y1 - y0)))
+    return (f'<img src="{anchor_name(key)}" style="height:{ANCHOR_EM:.2f}em;width:{ANCHOR_EM * aspect:.2f}em;'
+            f'vertical-align:middle">')
+
+
+def anchor_archive(segments: Sequence[TextSegment], source: Optional[pymupdf.Document],
+                   base: Optional[pymupdf.Archive]) -> Optional[pymupdf.Archive]:
+    """The font archive plus the crops of every inline picture of ``segments`` (from the
+    unerased ``source`` document); ``base`` unchanged when there is nothing to add."""
+    wanted = {k: v for seg in segments for k, v in seg.anchors.items()}
+    if not wanted or source is None:
+        return base
+    from .images import load_image  # local import: images imports layout helpers indirectly
+
+    archive = pymupdf.Archive()
+    if base is not None:
+        archive.add(base)
+    cache: dict[int, Any] = {}
+    for key, (xref, x0, y0, x1, y1) in wanted.items():
+        try:
+            if xref not in cache:
+                cache[xref] = load_image(source, xref)
+            img = cache[xref]
+            crop = img.rgb[max(0, y0):y1, max(0, x0):x1]
+            if crop.size == 0:
+                continue
+            buf = io.BytesIO()
+            Image.fromarray(crop).save(buf, "PNG")
+            archive.add((buf.getvalue(), anchor_name(key)))
+        except Exception as exc:  # noqa: BLE001 - a missing picture must not stop the page
+            log.warning("inline picture %s could not be prepared: %s", key, exc)
+    return archive
+
+
+def html_rotation(style: SegmentStyle) -> int:
+    """``insert_htmlbox(rotate=...)`` value for ``style``.
+
+    ``SegmentStyle.rotation`` already *is* that value (0 / 90 / 180 / 270, the
+    convention of ``mathtrans.extract``: 90 = text running up the page, 270 =
+    running down); it is only normalised here. Vertical CJK segments without
+    an explicit rotation are laid out running down the page (270), the closest
+    the HTML engine offers to upright vertical writing.
+    """
+    rotation = int(round(style.rotation / 90.0)) * 90 % 360
+    if rotation == 0 and style.is_vertical:
+        rotation = 270
+    return rotation
+
+
+def unrotated_page_rect(page: pymupdf.Page) -> pymupdf.Rect:
+    """The page rectangle in the unrotated space that text, image and drawing
+    coordinates use (``page.rect`` is the displayed, possibly rotated, page)."""
+    rect = pymupdf.Rect(page.rect)
+    if page.rotation:
+        rect = (rect * page.derotation_matrix).normalize()
+    return rect
+
+
+# --------------------------------------------------------------------------- #
+# Free-space bookkeeping for box extension
+# --------------------------------------------------------------------------- #
+
+
+def _inside_any(glyph: BBox, boxes: Sequence[BBox]) -> bool:
+    """Whether the centre of ``glyph`` lies in one of ``boxes``."""
+    cx, cy = (glyph.x0 + glyph.x1) / 2, (glyph.y0 + glyph.y1) / 2
+    return any(b.x0 <= cx <= b.x1 and b.y0 <= cy <= b.y1 for b in boxes)
+
+
+def _covered(block: BBox, glyphs: Sequence[BBox], boxes: Sequence[BBox]) -> bool:
+    """Whether the segments ``boxes`` take over a text block: one segment covers half
+    of it (the usual one segment per block), or - for a block that was split into
+    several segments (table cells, running head + page number) - at least half of
+    its glyphs lie in a segment."""
+    if any(b.intersection_area(block) >= 0.5 * block.area for b in boxes):
+        return True
+    return bool(glyphs) and 2 * sum(1 for g in glyphs if _inside_any(g, boxes)) >= len(glyphs)
+
+
+def _clip(box: BBox, page: BBox) -> Optional[BBox]:
+    c = BBox(x0=max(box.x0, page.x0), y0=max(box.y0, page.y0), x1=min(box.x1, page.x1), y1=min(box.y1, page.y1))
+    if c.x1 - c.x0 <= 0 or c.y1 - c.y0 <= 0:
+        return None
+    return c
+
+
+def _content_rawdict(page: pymupdf.Page, flags: int) -> dict:
+    """``page.get_text("rawdict", flags=flags)`` restricted to the page *content*.
+
+    ``Page.get_text`` also renders the appearance streams of annotations and
+    form fields (FreeText notes, stamps, field values). Those are not page
+    content: the redaction never removes their glyphs and the annotations stay
+    on the page (see :func:`_reattach_annotations`), so counting them as text
+    that must be spared would make :func:`_redaction_rect` cut the redaction of
+    the paragraph under a note short and leave source glyphs behind. The text
+    page is therefore built from the page contents only (the display list is
+    produced in the rotated space, hence the temporary ``/Rotate`` reset, as in
+    PyMuPDF's own ``get_textpage``). Blocks and lines outside the page are
+    dropped like the page-based extraction does; falls back to the plain
+    extraction when the content-only one is not available.
+    """
+    try:
+        rotation = page.rotation
+        if rotation:
+            page.set_rotation(0)
+        try:
+            textpage = pymupdf.TextPage(page.get_displaylist(annots=False).get_textpage(flags=flags))
+        finally:
+            if rotation:
+                page.set_rotation(rotation)
+        textpage.parent = page
+        return page.get_text("rawdict", textpage=textpage)
+    except Exception as exc:  # pragma: no cover - defensive: PyMuPDF internals changed
+        log.warning("page %d: content-only text extraction failed (%s); annotation text counts as page text",
+                    page.number, exc)
+        return page.get_text("rawdict", flags=flags)
+
+
+def _luminance(rgb: Sequence[float]) -> float:
+    def channel(c: float) -> float:
+        c = c / 255.0
+        return c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+    r, g, b = (channel(float(v)) for v in rgb[:3])
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def contrast_ratio(a: Sequence[float], b: Sequence[float]) -> float:
+    """WCAG contrast ratio of two RGB colours (1 .. 21)."""
+    la, lb = _luminance(a), _luminance(b)
+    hi, lo = max(la, lb), min(la, lb)
+    return (hi + 0.05) / (lo + 0.05)
+
+
+def int_to_rgb(color: int) -> tuple[int, int, int]:
+    return (color >> 16) & 255, (color >> 8) & 255, color & 255
+
+
+def readable_color(color: int, background: Sequence[float]) -> int:
+    """``color`` when it contrasts enough with ``background``, else black or white."""
+    if contrast_ratio(int_to_rgb(color), background) >= MIN_CONTRAST:
+        return color
+    return 0x000000 if contrast_ratio((0, 0, 0), background) >= contrast_ratio((255, 255, 255), background) \
+        else 0xFFFFFF
+
+
+_ENUMERATED_RE = re.compile(r"^\s*(?:\d{1,3}[.、．)]|[(（]\d{1,3}[)）]|[①-⑳])")
+
+
+JUSTIFIED_WIDTH = 0.55
+"""A body paragraph of several lines at least this share of the page wide is prose, never centred."""
+STACK_SIZE_SHARE = 0.8
+STACK_MIN_ASPECT = 1.6
+"""A label box at least this many times as tall as wide (two characters or more) is a column."""
+"""Font size of a stacked side label set up the side, as a share of its column's width."""
+
+
+def _upright_stack(seg: TextSegment) -> bool:
+    """A short label written as one column of upright characters (OCR box at least twice as tall
+    as wide, one character wide, a single line): "2.4米" beside the side it measures."""
+    text = (seg.source_text or "").strip()
+    b = seg.bbox
+    lines = [m for m in seg.members or [] if not re.search(r"_e\d+$", m)]  # erase boxes are no text lines
+    if len(text) < 2 or len(text) > 8 or "\n" in text or len(lines) > 1:
+        return False
+    if b.width <= 0 or b.height < STACK_MIN_ASPECT * b.width or b.width > 30:
+        return False
+    return seg.style.size <= 0 or b.width <= 1.6 * seg.style.size
+
+
+def _short_label(seg: TextSegment) -> bool:
+    """A free-standing short label (grown on both sides and set centred on a scanned page);
+    headings and numbered items keep their left edge. A word or two read with a tall box
+    ("答：" before its answer line) takes the heading role but is a label all the same."""
+    text = (seg.translated_text or seg.source_text or "").strip()
+    if "\n" in text or len(text.split()) > 4 or _ENUMERATED_RE.match(seg.source_text or ""):
+        return False
+    return seg.style.role == "label" or (seg.style.role == "heading" and len(text.split()) <= 2)
+
+
+def _watermark_line(seg: TextSegment) -> bool:
+    return seg.kind == SegmentKind.IMAGE_TEXT and not seg.translate and (
+        seg.skip_reason.startswith("slanted text") or seg.skip_reason == "watermark fragment")
+
+
+def _centred_heading(seg: TextSegment, page: BBox) -> bool:
+    """A one-line heading centred on the page (a unit or lesson title)."""
+    if seg.style.role != "heading" or "\n" in (seg.translated_text or ""):
+        return False
+    centre = (seg.bbox.x0 + seg.bbox.x1) / 2
+    return abs(centre - (page.x0 + page.x1) / 2) <= 0.06 * page.width
+
+
+def _differs_from_background(pixels: np.ndarray, behind: tuple[float, float, float], *,
+                             darker: bool = False) -> np.ndarray:
+    """Which of the RGB ``pixels`` (... x 3, float) are not the colour ``behind`` a box (see
+    :data:`SAME_BACKGROUND_TOL`); with ``darker`` also those much darker than it."""
+    ref = np.asarray(behind, dtype=np.float32)
+    diff = pixels - ref
+    out = diff.max(axis=-1) > SAME_BACKGROUND_TOL
+    chroma = pixels.max(axis=-1) - pixels.min(axis=-1)
+    out |= np.abs(chroma - float(ref.max() - ref.min())) > SAME_BACKGROUND_TOL
+    if darker:
+        out |= diff.min(axis=-1) < -SAME_BACKGROUND_DARKER
+    return out
+
+
+def _same_background(pixels: np.ndarray, behind: tuple[float, float, float]) -> bool:
+    """Whether the RGB ``pixels`` (N x 3, float) are the colour ``behind`` a box."""
+    return float(_differs_from_background(pixels, behind).mean()) <= SAME_BACKGROUND_SHARE
+
+
+class _PageSpace:
+    """Occupied areas of one page, used to extend text boxes into free space.
+
+    Obstacles are the other segments of the page (their *used* box once they
+    are rendered), the page images, text blocks that no segment covers (they
+    stay on the page; a block split into several segments - table cells, running
+    head + page number - counts as covered when its lines are) and vector
+    drawings that do not touch the box. Drawings
+    that enclose a box (frames, boxed examples) act as containers: the box may
+    grow inside them but never across their border. Growth also stops at the
+    page's content area (union of text and images, plus a small tolerance) so
+    that no translation ends up in the page margins.
+    """
+
+    def __init__(self, page: pymupdf.Page, page_index: int, doc: TranslatedDocument):
+        self.page_rect = BBox.from_rect(unrotated_page_rect(page))
+        self._page = page
+        # the faint diagonal watermark (kept in the picture) is no obstacle: its axis-aligned
+        # boxes are huge and text may be set over it
+        self.streams: dict[str, list[int]] = {}  # content streams each placed segment added
+        self.occupied: dict[str, BBox] = {s.id: s.bbox for s in doc.segments
+                                          if s.page == page_index and not _watermark_line(s)}
+        # entries of a contents page or a list, one under the other on one left edge: they are
+        # set left-aligned and grow to the right only, never centred on their own box
+        self.column_ids: set[str] = _column_members([s for s in doc.segments if s.page == page_index])
+        self.fixed: list[BBox] = []
+        self._drawings: Optional[list[BBox]] = None
+        try:
+            image_boxes = [BBox.from_rect(info["bbox"]) for info in page.get_image_info()]
+        except Exception as exc:  # corrupt image dictionaries: fall back to the extractor's placements
+            log.warning("page %d: cannot read image placements (%s); using the extracted ones", page_index, exc)
+            image_boxes = []
+        for pi in doc.pages:
+            if pi.index == page_index:
+                image_boxes.extend(pi.image_bboxes)
+        page_area = max(self.page_rect.area, 1.0)
+        self.scanned = False
+        for box in image_boxes:
+            clipped = _clip(box, self.page_rect)
+            if clipped is None:
+                continue
+            if clipped.area >= SCANNED_PAGE_COVER * page_area:
+                # a scanned page: the image *is* the page; boxes may grow over it where the
+                # pixels are plain background (checked in extend()), never over pictures
+                self.scanned = True
+                continue
+            self.fixed.append(clipped)
+        page_segments = list(self.occupied.values())
+        content: Optional[BBox] = None
+        self._line_glyphs: list[list[BBox]] = []  # per text line: the boxes of its glyphs (no spaces)
+        flags = pymupdf.TEXTFLAGS_DICT & ~pymupdf.TEXT_PRESERVE_IMAGES
+        for raw in _content_rawdict(page, flags)["blocks"]:
+            if raw["type"] != 0:
+                continue
+            block = BBox.from_rect(raw["bbox"])
+            if block.area <= 0 or block.intersection_area(self.page_rect) <= 0:
+                continue
+            glyphs: list[BBox] = []
+            for line in raw["lines"]:
+                if BBox.from_rect(line["bbox"]).intersection_area(self.page_rect) <= 0:
+                    continue
+                line_glyphs = [BBox.from_rect(ch["bbox"]) for span in line["spans"] for ch in span["chars"]
+                               if not str(ch.get("c", "")).isspace()]
+                line_glyphs = [g for g in line_glyphs if g.area > 0 and _inside_any(g, (self.page_rect,))]
+                self._line_glyphs.append(line_glyphs)
+                glyphs.extend(line_glyphs)
+            content = block if content is None else content.union(block)
+            if not _covered(block, glyphs, page_segments):
+                self.fixed.append(block)
+        for box in page_segments + self.fixed:
+            content = box if content is None else content.union(box)
+        if content is None:
+            content = self.page_rect
+        pr = self.page_rect
+        self.limit_left = max(min(content.x0 - CONTENT_TOLERANCE, pr.x0 + EDGE_MARGIN), pr.x0 + PAGE_MARGIN)
+        self.limit_right = min(max(content.x1 + CONTENT_TOLERANCE, pr.x1 - EDGE_MARGIN), pr.x1 - PAGE_MARGIN)
+        self.limit_bottom = min(max(content.y1 + CONTENT_TOLERANCE, pr.y1 - EDGE_MARGIN), pr.y1 - PAGE_MARGIN)
+        self.limit_top = max(min(content.y0 - CONTENT_TOLERANCE, pr.y0 + EDGE_MARGIN), pr.y0 + PAGE_MARGIN)
+
+    def staying_text(self, boxes: Sequence[BBox]) -> list[BBox]:
+        """Per text line, the box of the glyphs that ``boxes`` (the segments being
+        rendered) do not take over: they stay on the page and redactions must spare
+        them. A line shared by a rendered cell and an untouched one (a number) is
+        protected only where the number is."""
+        out: list[BBox] = []
+        for glyphs in self._line_glyphs:
+            staying = [g for g in glyphs if not _inside_any(g, boxes)]
+            if not staying:
+                continue
+            box = staying[0]
+            for g in staying[1:]:
+                box = box.union(g)
+            out.append(box)
+        return out
+
+    def drawings(self) -> list[BBox]:
+        if self._drawings is None:
+            boxes: list[BBox] = []
+            try:
+                for d in self._page.get_drawings():
+                    r = d.get("rect")
+                    if r is None or r.is_empty or r.is_infinite:
+                        continue
+                    boxes.append(BBox.from_rect(r))
+            except Exception as exc:  # pragma: no cover - defensive: exotic content streams
+                log.warning("get_drawings failed on page %d: %s", self._page.number, exc)
+            self._drawings = boxes
+        return self._drawings
+
+    def update(self, seg_id: str, used: BBox) -> None:
+        self.occupied[seg_id] = used
+
+    def background(self, rect: BBox) -> Optional[tuple[float, float, float]]:
+        """Median colour of the page pixels inside ``rect`` (the background under text
+        set there on an already erased scanned page); None when it cannot be rendered."""
+        try:
+            clip = _clip(rect, self.page_rect)
+            if clip is None or clip.width < 1 or clip.height < 1:
+                return None
+            pix = self._page.get_pixmap(clip=clip.to_rect(), dpi=FREE_SPACE_DPI, colorspace=pymupdf.csRGB, alpha=False)
+            arr = np.frombuffer(pix.samples, dtype=np.uint8).reshape(-1, 3)
+        except Exception as exc:  # pragma: no cover - rendering problems
+            log.debug("background sampling failed: %s", exc)
+            return None
+        if arr.size == 0:
+            return None
+        med = np.median(arr, axis=0)
+        return float(med[0]), float(med[1]), float(med[2])
+
+    def extend(self, seg: TextSegment, *, down: bool, horizontal: bool, up: bool = False,
+               scan: bool = True) -> BBox:
+        """Grow ``seg.bbox`` into free space (downward and/or sideways; with ``up``, on a scanned
+        page, upward as much as downward too, for text then centred on its source line). Short
+        labels on a scanned page grow further and on both sides (they are then set centred).
+        Without ``scan`` only the other segments, drawings and page limits bound the growth, not
+        the page pixels: the room a translation may take if its words land on plain background
+        (checked word by word after setting it, see ``_words_on_background``)."""
+        box = self.trim_for_neighbours(seg) if self.scanned and seg.origin == "ocr" else seg.bbox
+        # text that may also grow upward (a bubble, a label on its own line) is centred on its
+        # place like a short label, so it grows on both sides too
+        label = self.scanned and (_short_label(seg) or _centred_heading(seg, self.page_rect) or up) \
+            and seg.id not in self.column_ids
+        obstacles = [b for sid, b in self.occupied.items() if sid != seg.id] + list(self.fixed)
+        containers: list[BBox] = []
+        for d in self.drawings():
+            if d.contains(box, tol=1.0):
+                containers.append(d)
+            elif d.intersection_area(box) <= 0:
+                obstacles.append(d)
+        x0, y0, x1, y1 = box.x0, box.y0, box.x1, box.y1
+        behind = self.background(box) if self.scanned else None
+        growth = LABEL_HEIGHT_GROWTH if label else MAX_HEIGHT_GROWTH
+        if self.scanned and seg.origin == "ocr" and seg.style.size > 0:
+            # a line that does not fit is set on one more line at its size rather than shrunk:
+            # the box may grow by one full line (plus a little) where the page below is free
+            line_pitch = seg.style.size * max(1.0, seg.style.line_height)
+            lines = max(1, int(round(box.height / line_pitch)))
+            growth = max(growth, (EXTRA_LINE_GROWTH * line_pitch) / box.height) if lines <= 3 else growth
+        if down:
+            y1 = self._extend_down(box, obstacles, containers, growth=growth)
+            if self.scanned and scan:
+                y1 = self._shrink_until_free(box, "down", y1, behind)
+        if horizontal:
+            # text set next to other text on the same row keeps a word space from it ("Grade 3" "Volume 1")
+            text_gap = max(OBSTACLE_GAP, 0.4 * (seg.style.size if seg.style.size > 0 else 10.0))
+            side_by_side = [b for sid, b in self.occupied.items() if sid != seg.id
+                            and min(b.y1, box.y1) - max(b.y0, box.y0) > 0.5 * min(b.height, box.height)]
+            x0, x1 = self._extend_horizontal(BBox(x0=x0, y0=y0, x1=x1, y1=y1),
+                                             "both" if label else seg.style.align, obstacles, containers,
+                                             growth_factor=LABEL_WIDTH_GROWTH if label else MAX_WIDTH_GROWTH)
+            for b in side_by_side:
+                if b.x0 >= box.x1 - 1.0:
+                    x1 = min(x1, max(b.x0 - text_gap, box.x1))
+                elif b.x1 <= box.x0 + 1.0:
+                    x0 = max(x0, min(b.x1 + text_gap, box.x0))
+            if self.scanned:
+                if scan:
+                    # one line (no growth down) stands in the middle of its box: only that band has to be
+                    # free, so a label in a rounded pill may run on into the pill's round end
+                    band = ONE_LINE_BAND if not down else 0.0
+                    x1 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "right", x1, behind, band)
+                    x0 = self._shrink_until_free(BBox(x0=box.x0, y0=y0, x1=box.x1, y1=y1), "left", x0, behind, band)
+                if label:  # keep the label centred on its original position ...
+                    left, right = box.x0 - x0, x1 - box.x1
+                    side = min(left, right)
+                    if side >= 0.5 * max(left, right):
+                        x0, x1 = box.x0 - side, box.x1 + side
+                    elif left > right:  # ... unless only one side is free ("答：" before its sentence)
+                        x1 = box.x1
+                    else:
+                        x0 = box.x0
+        if up and down and self.scanned:
+            wide = BBox(x0=x0, y0=box.y0, x1=x1, y1=y1)
+            top = self._extend_up(wide, obstacles, containers, growth=growth)
+            y0 = self._shrink_until_free(wide, "up", top, behind) if scan else top
+        return BBox(x0=x0, y0=y0, x1=x1, y1=y1)
+
+    def trim_for_neighbours(self, seg: TextSegment) -> BBox:
+        """``seg.bbox`` pulled back from text standing beside it on the same row so that the two
+        keep a word space ("一年级" and "上册" set tight become "Grade 1" and "Volume 1")."""
+        box = seg.bbox
+        gap = max(OBSTACLE_GAP, 0.4 * (seg.style.size if seg.style.size > 0 else 10.0))
+        x0, x1 = box.x0, box.x1
+        for sid, b in self.occupied.items():
+            if sid == seg.id or min(b.y1, box.y1) - max(b.y0, box.y0) <= 0.5 * min(b.height, box.height):
+                continue
+            if b.x0 >= box.x1 - 1.0 and b.x0 - box.x1 < gap:
+                x1 = min(x1, b.x0 - gap)
+            elif b.x1 <= box.x0 + 1.0 and box.x0 - b.x1 < gap:
+                x0 = max(x0, b.x1 + gap)
+            elif b.x0 < box.x0 < b.x1 < box.x0 + OVERLAP_TRIM * box.width:
+                x0 = max(x0, b.x1 + gap)    # OCR boxes of one row that overlap a little
+            elif box.x1 - OVERLAP_TRIM * box.width < b.x0 < box.x1 < b.x1:
+                x1 = min(x1, b.x0 - gap)
+        if x1 - x0 < 0.6 * box.width:
+            return box
+        return BBox(x0=x0, y0=box.y0, x1=x1, y1=box.y1)
+
+    def _strip_is_free(self, rect: BBox, behind: Optional[tuple[float, float, float]] = None) -> bool:
+        """True when the page pixels inside ``rect`` are a plain background (no picture,
+        no text): the standard deviation of a low-resolution render is small. With ``behind``
+        (the colour behind the growing box) the strip must also be mostly that colour."""
+        if rect.width < 1.0 or rect.height < 1.0:
+            return True
+        try:
+            pix = self._page.get_pixmap(clip=rect.to_rect(), dpi=FREE_SPACE_DPI, colorspace=pymupdf.csRGB, alpha=False)
+            samples = np.frombuffer(pix.samples, dtype=np.uint8)
+        except Exception as exc:  # pragma: no cover - rendering problems: be conservative
+            log.debug("free-space check failed: %s", exc)
+            return False
+        if samples.size < 3:
+            return True
+        arr = samples.reshape(-1, 3).astype(np.float32)
+        if behind is not None and not _same_background(arr, behind):
+            return False
+        std = float(arr.std(axis=0).max())
+        if std <= FREE_SPACE_MAX_STD:
+            return True
+        # a faint watermark or a pale gradient is not an obstacle: nothing in the strip is darker
+        # than light grey, so text set over it reads as it does in the printed book
+        luma = arr.mean(axis=1)
+        return std <= FAINT_MAX_STD and float(luma.min()) >= FAINT_MIN_LUMA
+
+    def _shrink_until_free(self, box: BBox, side: str, limit: float,
+                           behind: Optional[tuple[float, float, float]] = None, band: float = 0.0) -> float:
+        """Reduce a grown edge until the added strip is plain background of the colour behind
+        the box (a few tries)."""
+        base = {"down": box.y1, "right": box.x1, "left": box.x0, "up": box.y0}[side]
+        if (side in ("left", "up") and limit >= base) or (side in ("down", "right") and limit <= base):
+            return limit
+        if behind is not None:
+            edge = self._scan_free(box, side, limit, behind, band)
+            if edge is not None:
+                return edge
+        for fraction in (1.0, 0.5, 0.25, 0.12):  # a name label next to a drawing still gains a little
+            edge = base + (limit - base) * fraction
+            if side == "down":
+                strip = BBox(x0=box.x0, y0=box.y1, x1=box.x1, y1=edge)
+            elif side == "up":
+                strip = BBox(x0=box.x0, y0=edge, x1=box.x1, y1=box.y0)
+            elif side == "right":
+                strip = BBox(x0=box.x1, y0=box.y0, x1=edge, y1=box.y1)
+            else:
+                strip = BBox(x0=edge, y0=box.y0, x1=box.x0, y1=box.y1)
+            if self._strip_is_free(strip, behind):
+                return edge
+        return base
+
+    def _scan_free(self, box: BBox, side: str, limit: float, behind: tuple[float, float, float],
+                   band: float = 0.0) -> Optional[float]:
+        """The farthest edge up to ``limit`` such that every pixel line (row or column) added
+        between the box and that edge is the box's own background: grown outwards line by
+        line, stopping :data:`FREE_SCAN_MARGIN` short of the first line that is not (an outline, a rule, a
+        picture, the white page outside a bubble). None when the strip cannot be rendered."""
+        base = {"down": box.y1, "right": box.x1, "left": box.x0, "up": box.y0}[side]
+        if side == "down":
+            strip = BBox(x0=box.x0, y0=box.y1, x1=box.x1, y1=limit)
+        elif side == "up":
+            strip = BBox(x0=box.x0, y0=limit, x1=box.x1, y1=box.y0)
+        elif side == "right":
+            strip = BBox(x0=box.x1, y0=box.y0, x1=limit, y1=box.y1)
+        else:
+            strip = BBox(x0=limit, y0=box.y0, x1=box.x0, y1=box.y1)
+        clip = _clip(strip, self.page_rect)
+        if clip is None or clip.width < 1 or clip.height < 1:
+            return None
+        try:
+            pix = self._page.get_pixmap(clip=clip.to_rect(), dpi=FREE_SCAN_DPI, colorspace=pymupdf.csRGB, alpha=False)
+            arr = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3).astype(np.float32)
+        except Exception as exc:  # pragma: no cover - rendering problems: fall back to the coarse test
+            log.debug("free-space scan failed: %s", exc)
+            return None
+        bad = _differs_from_background(arr, behind, darker=True)
+        if band > 0 and side in ("left", "right") and bad.shape[0] >= 4:
+            cut = int(round(band * bad.shape[0]))
+            bad = bad[cut:bad.shape[0] - cut]
+        if side == "down":
+            share = bad.mean(axis=1)                      # one value per row, nearest the box first
+        elif side == "up":
+            share = bad.mean(axis=1)[::-1]
+        elif side == "right":
+            share = bad.mean(axis=0)
+        else:
+            share = bad.mean(axis=0)[::-1]
+        blocked = np.nonzero(share > SAME_BACKGROUND_SHARE)[0]
+        if not blocked.size:
+            return limit
+        reach = abs(limit - base) * int(blocked[0]) / len(share) - FREE_SCAN_MARGIN
+        if reach <= 0:
+            return base
+        return base - reach if side in ("left", "up") else base + reach
+
+    def _extend_up(self, box: BBox, obstacles: list[BBox], containers: list[BBox],
+                   growth: float = MAX_HEIGHT_GROWTH) -> float:
+        limit = box.y0 - growth * box.height
+        limit = max(limit, min(self.limit_top, box.y0))
+        for c in containers:
+            limit = max(limit, min(c.y0 + OBSTACLE_GAP, box.y0))
+        for o in obstacles:
+            if o.y0 >= box.y0 or min(o.x1, box.x1) - max(o.x0, box.x0) <= 0:
+                continue
+            limit = max(limit, min(o.y1 + OBSTACLE_GAP, box.y0))
+        return limit
+
+    def _extend_down(self, box: BBox, obstacles: list[BBox], containers: list[BBox],
+                     growth: float = MAX_HEIGHT_GROWTH) -> float:
+        limit = box.y1 + growth * box.height
+        limit = min(limit, max(self.limit_bottom, box.y1))
+        for c in containers:
+            limit = min(limit, max(c.y1 - OBSTACLE_GAP, box.y1))
+        for o in obstacles:
+            if o.y1 <= box.y1 or min(o.x1, box.x1) - max(o.x0, box.x0) <= 0:
+                continue
+            limit = min(limit, max(o.y0 - OBSTACLE_GAP, box.y1))
+        return limit
+
+    def _extend_horizontal(self, box: BBox, align: str, obstacles: list[BBox],
+                           containers: list[BBox], growth_factor: float = MAX_WIDTH_GROWTH) -> tuple[float, float]:
+        growth = max(growth_factor * box.width, MIN_WIDTH_GROWTH)
+        right = min(box.x1 + growth, max(self.limit_right, box.x1))
+        left = max(box.x0 - growth, min(self.limit_left, box.x0))
+        # Column walls: wide text blocks entirely to one side of the box mark another
+        # column; never grow across the gutter, even where that column has white space.
+        min_wall_width = COLUMN_MIN_WIDTH_FRACTION * self.page_rect.width
+        reach = WALL_REACH * box.height
+        for o in obstacles:
+            if o.width < min_wall_width:
+                continue
+            if self.scanned and (o.y0 >= box.y1 + reach or o.y1 <= box.y0 - reach):
+                continue  # above or below: not the column beside this line
+            if o.x0 >= box.x1 - 1.0:
+                right = min(right, max(o.x0 - OBSTACLE_GAP, box.x1))
+            elif o.x1 <= box.x0 + 1.0:
+                left = max(left, min(o.x1 + OBSTACLE_GAP, box.x0))
+        for c in containers:
+            right = min(right, max(c.x1 - OBSTACLE_GAP, box.x1))
+            left = max(left, min(c.x0 + OBSTACLE_GAP, box.x0))
+        for o in obstacles:
+            if min(o.y1, box.y1) - max(o.y0, box.y0) <= 0:
+                continue
+            # An obstacle that already reaches into the box blocks that side entirely.
+            if o.x1 > box.x1:
+                right = min(right, max(o.x0 - OBSTACLE_GAP, box.x1))
+            if o.x0 < box.x0:
+                left = max(left, min(o.x1 + OBSTACLE_GAP, box.x0))
+        if align == "right":
+            return left, box.x1
+        if align == "center":
+            side = min(box.x0 - left, right - box.x1)
+            return box.x0 - side, box.x1 + side
+        if align == "both":
+            return left, right
+        return box.x0, right
+
+
+# --------------------------------------------------------------------------- #
+# Placing one segment
+# --------------------------------------------------------------------------- #
+
+
+def _drawn_extent(page: pymupdf.Page, rect: BBox) -> Optional[BBox]:
+    """The extent of what was actually drawn in ``rect``: its words and inline pictures. A box
+    is often allotted more room than its text takes (a short heading centred in a line grown
+    down, a label grown on both sides); neighbours placed later may use the rest."""
+    used = _drawn_boxes(page, rect)
+    if used is None:
+        return None
+    return BBox(x0=max(used.x0, rect.x0), y0=max(used.y0, rect.y0), x1=min(used.x1, rect.x1), y1=min(used.y1, rect.y1))
+
+
+def _drawn_boxes(page: pymupdf.Page, rect: BBox, lines: Optional[list[float]] = None) -> Optional[BBox]:
+    """Union of the words and inline pictures drawn in ``rect`` (not clipped to it); the
+    vertical centre of every word goes into ``lines`` when a list is given."""
+    clip = rect.to_rect()
+    boxes: list[BBox] = []
+    try:
+        for w in page.get_text("words", clip=clip):
+            boxes.append(BBox(x0=w[0], y0=w[1], x1=w[2], y1=w[3]))
+        for b in page.get_text("dict", clip=clip)["blocks"]:
+            if b.get("type") != 1:
+                continue
+            r = BBox.from_rect(pymupdf.Rect(b["bbox"]))
+            if r.x0 <= rect.x0 + 0.5 and r.y0 <= rect.y0 + 0.5 and r.x1 >= rect.x1 - 0.5 and r.y1 >= rect.y1 - 0.5:
+                continue  # the page scan behind everything, not an inline picture
+            boxes.append(r)
+    except Exception:  # pragma: no cover - defensive: exotic content streams
+        return None
+    boxes = [b for b in boxes if b.intersection_area(rect) > 0]
+    if not boxes:
+        return None
+    if lines is not None:
+        lines.extend((b.y0 + b.y1) / 2 for b in boxes)
+    used = boxes[0]
+    for b in boxes[1:]:
+        used = used.union(b)
+    return used
+
+
+WORD_OFF_BACKGROUND = 0.03
+"""Largest share of the page pixels under a word (as they were before it was set) that may
+differ from the colour behind its box when the word is set in room checked word by word."""
+
+
+WORD_BOX_INSET = 0.12
+"""Share of a word box's height left out at its top and at its bottom when checking what the
+word stands on."""
+
+
+def _page_snapshot(page: pymupdf.Page, rect: BBox) -> Optional[np.ndarray]:
+    """The page pixels inside ``rect`` at :data:`FREE_SCAN_DPI` (H x W x 3, float)."""
+    try:
+        pix = page.get_pixmap(clip=rect.to_rect(), dpi=FREE_SCAN_DPI, colorspace=pymupdf.csRGB, alpha=False)
+        return np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width, 3).astype(np.float32)
+    except Exception as exc:  # pragma: no cover - rendering problems: no verified attempt
+        log.debug("snapshot failed: %s", exc)
+        return None
+
+
+def _words_on_background(page: pymupdf.Page, rect: BBox, snapshot: np.ndarray,
+                         behind: tuple[float, float, float]) -> bool:
+    """Whether every word now set inside ``rect`` stands on the colour ``behind`` the box in
+    ``snapshot`` (the page inside ``rect`` before the words were set)."""
+    h, w = snapshot.shape[:2]
+    sx, sy = w / max(rect.width, 1e-6), h / max(rect.height, 1e-6)
+    words = page.get_text("words", clip=rect.to_rect())
+    if not words:
+        return False
+    for x0, y0, x1, y1, *_ in words:
+        # a word box is the whole line box; the ink sits inside it, clear of its top and bottom
+        y0, y1 = y0 + WORD_BOX_INSET * (y1 - y0), y1 - WORD_BOX_INSET * (y1 - y0)
+        px0, px1 = max(0, int((x0 - rect.x0) * sx)), min(w, int(np.ceil((x1 - rect.x0) * sx)))
+        py0, py1 = max(0, int((y0 - rect.y0) * sy)), min(h, int(np.ceil((y1 - rect.y0) * sy)))
+        if px1 <= px0 or py1 <= py0:
+            continue
+        under = snapshot[py0:py1, px0:px1]
+        if float(_differs_from_background(under, behind, darker=True).mean()) > WORD_OFF_BACKGROUND:
+            return False
+    return True
+
+
+LINE_CENTRE_MIN_SHIFT = 0.6
+"""A one-line translation set higher than the middle of its source line by more than this
+(points) is moved down onto it (``_centre_on_source_line``)."""
+
+
+def _centre_on_source_line(page: pymupdf.Page, seg: TextSegment, rect: BBox, base: BBox, html: str,
+                           scale: float, new_streams: list[int], *, css: str,
+                           archive: Optional[pymupdf.Archive], any_lines: bool = False) -> Optional[BBox]:
+    """Move a translation set as one line onto the vertical middle of the source text.
+
+    ``insert_htmlbox`` sets text from the top of its box, so a line smaller than the box it
+    was given - a label in a tall cell or bubble, a piece of a line set at its sibling's
+    size, a line slightly shrunk to stay one line - rides high, and two pieces of one source
+    line (split by a picture) no longer share a baseline. The text is set again lower in
+    ``rect``, by at most the room left under it, so it never leaves the box it was allowed;
+    the first setting is removed only when the second one succeeds at the same size.
+    With ``any_lines`` (a label or centred text whose box also grew upward) a block of several
+    lines is centred the same way. Returns the box used, or None when nothing was moved.
+    """
+    if not new_streams:
+        return None
+    centres: list[float] = []
+    used = _drawn_boxes(page, rect, centres)
+    if used is None or not centres:
+        return None
+    word_h = used.height
+    if not any_lines and (max(centres) - min(centres) > 0.35 * word_h
+                          or used.height > 1.9 * max(1.0, seg.style.size * scale)):
+        return None  # more than one line: a paragraph keeps its first line where the source's was
+    shift = min((base.y0 + base.y1) / 2 - (used.y0 + used.y1) / 2, rect.y1 - used.y1)
+    if shift < LINE_CENTRE_MIN_SHIFT:
+        return None
+    lower = BBox(x0=rect.x0, y0=rect.y0 + shift, x1=rect.x1, y1=rect.y1)
+    before = set(page.get_contents())
+    spare, again = _insert(page, lower, html, css=css, archive=archive, scale_low=scale, rotate=0)
+    added = [x for x in page.get_contents() if x not in before]
+    if spare < 0 or again < scale - 0.005:
+        for xref in added:
+            page.parent.update_stream(xref, b" ")
+        return None
+    for xref in new_streams:
+        page.parent.update_stream(xref, b" ")
+    new_streams[:] = added
+    return lower
+
+
+def _insert(page: pymupdf.Page, rect: BBox, html: str, *, css: str, archive: Optional[pymupdf.Archive],
+            scale_low: float, rotate: int) -> tuple[float, float]:
+    try:
+        spare, scale = page.insert_htmlbox(rect.to_rect(), html, css=css, scale_low=scale_low,
+                                           archive=archive, rotate=rotate)
+    except AssertionError:
+        # PyMuPDF's fit search may land a rounding error below scale_low and assert (before drawing
+        # anything): ask for a hair less
+        spare, scale = page.insert_htmlbox(rect.to_rect(), html, css=css, scale_low=max(0.0, scale_low - 1e-6),
+                                           archive=archive, rotate=rotate)
+    return float(spare), float(scale)
+
+
+def _place_segment(page: pymupdf.Page, seg: TextSegment, text: str, space: _PageSpace, *, css: str,
+                   archive: Optional[pymupdf.Archive], min_scale: float) -> RenderInfo:
+    """Insert ``text`` for ``seg`` and report what was done.
+
+    Attempts, in order (a failed ``insert_htmlbox`` writes nothing, so retrying
+    is safe):
+
+    1. the original box at the original size (nothing changes);
+    2. the box grown into free space (down by <= 50 % of its height, sideways
+       on the side its alignment anchors away from), still at full size -
+       growing into white space is far less visible than a different font size;
+    3. the grown box shrunk down to ``min_scale``;
+    4. the grown box with the tighter line height (1.1) shrunk to ``min_scale``;
+    5. otherwise the grown box with unlimited shrinking: the translation stays on
+       the page as editable text and ``overflow=True`` makes QA report it.
+
+    Rotated / vertical segments skip the growth (their flow direction is not the
+    page's) and go through the same ladder with their original box, as do table
+    cells, whose box already is the cell's interior (growing would cross the rules).
+    """
+    rotate = html_rotation(seg.style)
+    if rotate == 0 and space.scanned and seg.origin == "ocr" and _upright_stack(seg):
+        # a side-length label written top to bottom ("2.4米" one character under the other): the
+        # translation runs up the side, at the size of one character of the column
+        rotate = 90
+        stacked_size = min(seg.style.size, STACK_SIZE_SHARE * seg.bbox.width) if seg.style.size > 0 \
+            else STACK_SIZE_SHARE * seg.bbox.width
+        size_before = seg.style.size
+        seg.style.size = stacked_size
+        try:
+            info = _place_segment(page, seg.model_copy(update={"style": seg.style.model_copy(update={"rotation": 90})}),
+                                  text, space, css=css, archive=archive, min_scale=min_scale)
+        finally:
+            seg.style.size = size_before
+        info.notes = "; ".join(n for n in (info.notes, "set up the side like the source column") if n)
+        return info
+    base = space.trim_for_neighbours(seg) if space.scanned and seg.origin == "ocr" else seg.bbox
+    growable = rotate == 0 and seg.style.role != "table"
+    color: Optional[int] = None
+    centred_label = False
+    fixed_align: Optional[str] = None
+    floating = False
+    if space.scanned and seg.origin == "ocr":
+        bg = space.background(base)
+        if bg is not None:
+            fixed = readable_color(seg.style.color, bg)
+            color = fixed if fixed != seg.style.color else None
+        centred_label = (_short_label(seg) or _centred_heading(seg, space.page_rect)) \
+            and seg.id not in space.column_ids
+        if _ENUMERATED_RE.match(seg.source_text or "") and seg.style.align == "center":
+            fixed_align = "left"  # a numbered item is set from its number, never centred
+        if (seg.style.align == "center" and seg.style.role == "body" and seg.style.size > 0
+                and base.height >= 2.2 * seg.style.size and base.width >= JUSTIFIED_WIDTH * space.page_rect.width):
+            # a justified block of prose (its full lines read as centred by the OCR): left-aligned like
+            # the paragraphs around it, its last line not centred
+            fixed_align = "left"
+        # a label, or centred text (a speech bubble, a sign), may grow upward as well as down and
+        # is then set on the middle of its source text, however many lines it takes
+        one_source_line = seg.style.size > 0 and base.height <= 1.6 * seg.style.size
+        floating = (growable and seg.id not in space.column_ids and not _ENUMERATED_RE.match(seg.source_text or "")
+                    and not _list_item(seg) and fixed_align != "left"
+                    and (centred_label or seg.style.align == "center" or (seg.style.role == "label" and one_source_line)))
+    # growth follows the alignment the text is set with (a justified block read as centred grows right only)
+    gseg = seg if fixed_align is None or fixed_align == seg.style.align else \
+        seg.model_copy(update={"style": seg.style.model_copy(update={"align": fixed_align})})
+    grown = space.extend(gseg, down=True, horizontal=True, up=floating) if growable else base
+
+    def align_for(rect: BBox) -> Optional[str]:
+        """How the text sits in ``rect``: a label grown symmetrically stays centred on its
+        place, one grown leftwards only keeps its end where it was."""
+        if (centred_label or floating) and rect != base:
+            if abs((rect.x0 + rect.x1) - (base.x0 + base.x1)) < 1.0:
+                return "center"
+            if rect.x0 < base.x0 - 0.5 and abs(rect.x1 - base.x1) < 0.5:
+                return "right"
+        return fixed_align
+    grown_note = "" if grown == base else "box extended into free space"
+    tight = TIGHT_LINE_HEIGHT if seg.style.line_height > TIGHT_LINE_HEIGHT + 1e-6 else None
+    behind = space.background(base) if growable and space.scanned and seg.origin == "ocr" else None
+    generous: Optional[BBox] = None
+    if behind is not None:
+        # the room bounded only by other text and the page: taken at full size when every word
+        # set in it lands on the colour behind the box (a second line under a heading, beside a
+        # bubble further right that blocks a whole-width strip)
+        g = space.extend(gseg, down=True, horizontal=True, up=floating, scan=False)
+        if g.contains(grown, tol=0.5) and g.area > grown.area + 1.0:
+            generous = g
+    attempts: list[tuple[BBox, Optional[float], float, str, bool]] = [(base, None, 1.0, "", False)]
+    one_line = (space.scanned and seg.origin == "ocr" and growable and "\n" not in text
+                and len(text.split()) <= ONE_LINE_MAX_WORDS
+                and seg.style.size > 0 and base.height <= 1.6 * seg.style.size)
+    if one_line:
+        # a line a little too long stays one line, slightly smaller, rather than wrapping; the box
+        # may take the height of one full line (where the page below is free), never of two
+        wide = space.extend(gseg, down=False, horizontal=True, up=floating)
+        one_h = ONE_LINE_HEIGHT * seg.style.size
+        wide = BBox(x0=wide.x0, y0=wide.y0, x1=wide.x1,
+                    y1=max(wide.y1, min(grown.y1, wide.y0 + one_h)) if grown.y1 > wide.y1 else wide.y1)
+        attempts.append((wide, None, ONE_LINE_MIN_SCALE, "" if wide == base else grown_note, False))
+    if grown != base:
+        attempts.append((grown, None, 1.0, grown_note, False))
+    if generous is not None:
+        # the larger room always fits the text at least as large as the smaller one does
+        attempts.append((generous, None, min_scale, "box extended into free space", True))
+    attempts.append((grown, None, min_scale, grown_note, False))
+    if tight is not None:
+        attempts.append((grown, tight, min_scale, "tight line height", False))
+    size = seg.style.size if seg.style.size > 0 else 10.0
+    def html(lh: Optional[float], rect: BBox = grown) -> str:
+        return segment_html(seg, text, lh, color=color, align=align_for(rect))
+
+    contrast_note = "colour changed for contrast" if color is not None else ""
+    centre_line = (space.scanned and seg.origin == "ocr" and rotate == 0
+                   and (floating or seg.style.role != "body" or base.height <= 1.6 * size))
+    for rect, lh, scale_low, note, verify in attempts:
+        snapshot = _page_snapshot(page, rect) if verify else None
+        if verify and snapshot is None:
+            continue
+        before = set(page.get_contents())
+        start = before
+        spare, scale = _insert(page, rect, html(lh, rect), css=css, archive=archive,
+                               scale_low=scale_low, rotate=rotate)
+        if spare >= 0:
+            notes = [n for n in (grown_note if rect == grown else "", note, contrast_note) if n]
+            if scale < TIGHT_RETRY_SCALE and lh is None and tight is not None and rotate == 0:
+                # set well below its size: with the tighter line height the lines may fit larger
+                first = [x for x in page.get_contents() if x not in before]
+                mid = set(page.get_contents())
+                spare2, scale2 = _insert(page, rect, html(tight, rect), css=css, archive=archive,
+                                         scale_low=min(1.0, scale + 0.03), rotate=rotate)
+                if spare2 >= 0:
+                    for xref in first:
+                        page.parent.update_stream(xref, b" ")
+                    before = mid
+                    spare, scale, lh = spare2, scale2, tight
+                    notes.append("tight line height")
+            if scale < 1:
+                notes.append(f"shrunk to {scale:.2f}")
+            placed = rect
+            if centre_line:
+                added = [x for x in page.get_contents() if x not in before]
+                lower = _centre_on_source_line(page, seg, rect, base, html(lh, rect), scale, added,
+                                               css=css, archive=archive, any_lines=floating)
+                if lower is not None:
+                    placed = lower
+            if snapshot is not None and behind is not None and not _words_on_background(page, rect, snapshot, behind):
+                for xref in page.get_contents():
+                    if xref not in start:
+                        page.parent.update_stream(xref, b" ")
+                continue  # a word would stand on an outline, a picture or past the edge of a bubble
+            return RenderInfo(font_size=round(size * scale, 3), scale=scale, spare_height=spare,
+                              overflow=False, bbox=placed, notes="; ".join(dict.fromkeys(notes)))
+    # Nothing fits at min_scale: render anyway in the largest box tried, shrinking as
+    # much as needed so the text stays on the page (editable), and flag the overflow.
+    rect, lh, _, _, _ = attempts[-1]
+    if space.scanned and seg.origin == "ocr":
+        scale = _fit_scale(page, rect, html(lh), css=css, archive=archive, rotate=rotate)
+        if scale < LEGIBLE_FLOOR or scale * size < LEGIBLE_MIN_PT:
+            # unreadable specks help nobody: leave the source glyphs (restored after layout)
+            missing = rect.height * ((min_scale / scale) ** 2 - 1) if scale > 0 else rect.height
+            log.warning("segment %s: translation would need scale %.2f; source text kept", seg.id, scale)
+            return RenderInfo(font_size=0.0, scale=scale, spare_height=-round(missing, 2), overflow=True,
+                              bbox=rect, notes=KEPT_SOURCE_NOTE)
+    _, scale = _insert(page, rect, html(lh), css=css, archive=archive,
+                       scale_low=0, rotate=rotate)
+    # The text just fits the box at ``scale``; set at ``min_scale`` it would need about
+    # (min_scale / scale)^2 times the area, i.e. that much more height at the same width.
+    missing = rect.height * ((min_scale / scale) ** 2 - 1) if scale > 0 else rect.height
+    log.warning("segment %s overflows its box: rendered at scale %.2f (< %.2f)", seg.id, scale, min_scale)
+    return RenderInfo(font_size=round(size * scale, 3), scale=scale, spare_height=-round(missing, 2),
+                      overflow=True, bbox=rect,
+                      notes=f"text does not fit at scale {min_scale:.2f}; shrunk to {scale:.2f}")
+
+
+def _fit_scale(page: pymupdf.Page, rect: BBox, html: str, *, css: str, archive: Optional[pymupdf.Archive],
+               rotate: int) -> float:
+    """Scale at which ``html`` fits ``rect``, measured on a scratch page (nothing is written)."""
+    scratch = pymupdf.open()
+    try:
+        sp = scratch.new_page(width=page.rect.width, height=page.rect.height)
+        _, scale = _insert(sp, rect, html, css=css, archive=archive, scale_low=0, rotate=rotate)
+        return scale
+    finally:
+        scratch.close()
+
+
+def _cut_away(rect: pymupdf.Rect, other: BBox, gap: float) -> pymupdf.Rect:
+    """Shrink ``rect`` so that it no longer intersects ``other`` (plus ``gap``),
+    cutting on the side that loses the least area; unchanged when impossible."""
+    options: list[tuple[float, pymupdf.Rect]] = []
+    if other.y0 - gap > rect.y0:
+        options.append(((rect.y1 - other.y0 + gap) * rect.width, pymupdf.Rect(rect.x0, rect.y0, rect.x1, other.y0 - gap)))
+    if other.y1 + gap < rect.y1:
+        options.append(((other.y1 + gap - rect.y0) * rect.width, pymupdf.Rect(rect.x0, other.y1 + gap, rect.x1, rect.y1)))
+    if other.x0 - gap > rect.x0:
+        options.append(((rect.x1 - other.x0 + gap) * rect.height, pymupdf.Rect(rect.x0, rect.y0, other.x0 - gap, rect.y1)))
+    if other.x1 + gap < rect.x1:
+        options.append(((other.x1 + gap - rect.x0) * rect.height, pymupdf.Rect(other.x1 + gap, rect.y0, rect.x1, rect.y1)))
+    if not options:
+        return rect
+    return min(options, key=lambda o: o[0])[1]
+
+
+def _redaction_rect(seg: TextSegment, page_rect: pymupdf.Rect, lines: Sequence[BBox]) -> Optional[pymupdf.Rect]:
+    """Rectangle whose redaction removes the segment's glyphs and nothing else.
+
+    The segment box is shrunk by ``REDACT_SHRINK`` and then cut back wherever it
+    still intersects one of ``lines`` - the text (per line) that stays on the
+    page because no rendered segment takes it over - since adjacent lines' font
+    boxes overlap and MuPDF drops a glyph at ~10 % coverage. Returns None for a
+    degenerate box or one outside the page (``page_rect`` is the unrotated
+    page rectangle).
+    """
+    rect = seg.bbox.to_rect() & page_rect
+    if rect.is_empty:
+        return None
+    if rect.width > 2 * REDACT_SHRINK + 0.1 and rect.height > 2 * REDACT_SHRINK + 0.1:
+        rect = pymupdf.Rect(rect.x0 + REDACT_SHRINK, rect.y0 + REDACT_SHRINK,
+                            rect.x1 - REDACT_SHRINK, rect.y1 - REDACT_SHRINK)
+    for line in lines:
+        if line.area <= 0 or BBox.from_rect(rect).intersection_area(line) <= 0:
+            continue
+        rect = _cut_away(rect, line, REDACT_SHRINK)
+    return rect
+
+
+def _reattach_annotations(page: pymupdf.Page, xrefs_before: Sequence[int]) -> int:
+    """Put back the annotations that ``apply_redactions`` removed from ``page``.
+
+    MuPDF deletes every Link and FreeText annotation whose rectangle meets a
+    redaction rectangle - and links sit exactly on the text they belong to
+    (clickable table of contents, cross references, URLs) - but it only unlinks
+    the objects from the page's ``/Annots`` array. ``xrefs_before`` is the
+    page's annotation list (``page.annot_xrefs()``) from before the redactions
+    were added; every entry that is gone is appended to ``/Annots`` again at the
+    xref level, which keeps the original objects with all their keys
+    (destinations, borders, appearance streams, popups) and avoids PyMuPDF's
+    ``insert_link``, whose page transform ignores the CropBox origin of rotated
+    pages. Pending ``/Redact`` annotations of the source are not restored
+    (``apply_redactions`` consumed them). Returns the number of objects put back.
+    """
+    doc = page.parent
+    present = {xref for xref, _type, _name in page.annot_xrefs()}
+    missing: list[int] = []
+    for xref in xrefs_before:
+        if xref <= 0 or xref in present or xref in missing:
+            continue
+        try:
+            kind, subtype = doc.xref_get_key(xref, "Subtype")
+        except Exception:  # noqa: BLE001 - the object is gone: nothing to restore
+            continue
+        if kind != "name" or subtype == "/Redact":
+            continue
+        missing.append(xref)
+    if not missing:
+        return 0
+    refs = " ".join(f"{xref} 0 R" for xref in missing)
+    kind, value = doc.xref_get_key(page.xref, "Annots")
+    if kind == "array":  # direct array: append before the closing bracket
+        doc.xref_set_key(page.xref, "Annots", value.rstrip()[:-1] + " " + refs + "]")
+    elif kind == "xref":  # the array is an object of its own
+        array_xref = int(value.split()[0])
+        source = doc.xref_object(array_xref, compressed=True).strip()
+        doc.update_object(array_xref, source[:-1] + " " + refs + "]")
+    else:  # every annotation of the page was removed and the key with it
+        doc.xref_set_key(page.xref, "Annots", "[" + refs + "]")
+    log.debug("page %d: re-attached annotations %s removed by the redaction", page.number, missing)
+    return len(missing)
+
+
+def _renderable(seg: TextSegment) -> bool:
+    """Text segments with a translation that differs from the source."""
+    if seg.kind != SegmentKind.TEXT or seg.translated_text is None:
+        return False
+    if not seg.translated_text.strip():
+        log.debug("segment %s: empty translation, keeping the original text", seg.id)
+        return False
+    if seg.translated_text == seg.source_text:
+        log.debug("segment %s: translation identical to the source, keeping the original glyphs", seg.id)
+        return False
+    return True
+
+
+def render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequence[TextSegment],
+                         doc: TranslatedDocument, *, css: str, archive: Optional[pymupdf.Archive],
+                         min_font_scale: float) -> list[RenderInfo]:
+    """Redact and re-insert ``segments`` (all on ``page``); fills ``seg.render``.
+
+    The page is worked on with its ``/Rotate`` entry zeroed and restored at the
+    end: every coordinate here is in the unrotated space anyway, and
+    ``insert_htmlbox`` is the one PyMuPDF method that does not neutralise the
+    rotation itself and mislocates the text on a rotated page whose CropBox or
+    MediaBox origin is not (0, 0) (see the module docstring). Links and
+    annotations that the redaction removes are re-attached afterwards.
+    """
+    rotation = page.rotation
+    if rotation:
+        page.set_rotation(0)
+    try:
+        return _render_page_segments(page, page_index, segments, doc, css=css, archive=archive,
+                                     min_font_scale=min_font_scale)
+    finally:
+        if rotation:
+            page.set_rotation(rotation)
+
+
+def _render_page_segments(page: pymupdf.Page, page_index: int, segments: Sequence[TextSegment],
+                          doc: TranslatedDocument, *, css: str, archive: Optional[pymupdf.Archive],
+                          min_font_scale: float) -> list[RenderInfo]:
+    page_rect = unrotated_page_rect(page)
+    ordered = sorted(segments, key=lambda s: (s.reading_order, s.bbox.y0, s.bbox.x0))
+    space = _PageSpace(page, page_index, doc)  # must inspect the text blocks before redaction
+    # Text that stays on the page must be spared by the redactions; the part of a line
+    # that a rendered segment takes over (a table cell MuPDF merged with its neighbour) is not.
+    staying = space.staying_text([s.bbox for s in ordered])
+    annots_before = [xref for xref, _type, _name in page.annot_xrefs()]  # links, notes, form fields
+    todo: list[TextSegment] = []
+    for seg in ordered:
+        rect = _redaction_rect(seg, page_rect, staying)
+        if rect is None:
+            log.warning("segment %s: box %s is empty or lies outside page %d, skipped",
+                        seg.id, seg.bbox.as_tuple(), page_index)
+            seg.render = RenderInfo(font_size=seg.style.size, scale=1.0, overflow=False, bbox=seg.bbox,
+                                    notes="box empty or outside the page; not rendered")
+            continue
+        page.add_redact_annot(rect, fill=False)
+        todo.append(seg)
+    if todo:
+        page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_NONE,
+                              graphics=pymupdf.PDF_REDACT_LINE_ART_NONE,
+                              text=pymupdf.PDF_REDACT_TEXT_REMOVE)
+        restored = _reattach_annotations(page, annots_before)
+        if restored:
+            log.info("page %d: re-attached %d link(s)/annotation(s) that the redaction removed",
+                     page_index, restored)
+    infos: list[RenderInfo] = []
+    for seg in todo:
+        before = set(page.get_contents())
+        info = _place_segment(page, seg, seg.translated_text or "", space, css=css, archive=archive,
+                              min_scale=min_font_scale)
+        space.streams[seg.id] = [x for x in page.get_contents() if x not in before]
+        seg.render = info
+        if info.bbox is not None:
+            # what was drawn (with the source box) is occupied, not all the room it was allotted
+            drawn = _drawn_extent(page, info.bbox) if space.scanned else None
+            space.update(seg.id, drawn.union(seg.bbox) if drawn is not None else info.bbox)
+        infos.append(info)
+    if space.scanned:
+        _match_sibling_labels(page, todo, space, css=css, archive=archive, min_scale=min_font_scale)
+        infos = [seg.render for seg in todo if seg.render is not None]
+    return infos
+
+
+LABEL_SIZE_TOLERANCE = 0.15
+"""Short labels whose source sizes differ by at most this share, in the same colour and next
+to each other (name tags under the children of a picture, a row of captions), are siblings ..."""
+COLUMN_SIZE_TOLERANCE = 0.25
+"""Labels standing one under the other on the same left edge (a contents page, a list of
+exercises) are siblings even when their OCR boxes differ in height by up to this much: the
+box height follows the ascenders, dots and brackets of each line, not the type size."""
+COLUMN_PITCH = 8.0
+"""... and up to this many label heights apart, centre to centre."""
+ONE_LINE_MIN_SCALE = 0.85
+"""A short line of a scanned page (a contents entry, a heading, a label: at most
+``ONE_LINE_MAX_WORDS`` words) whose translation is a little too long for its box is set on one
+line at no less than this scale before it is wrapped onto a second line: "Unit 5" over "Area"
+in a contents column looks broken, the entry at 90 % does not (its siblings are then matched
+to it). A sentence is wrapped at full size instead."""
+ONE_LINE_MAX_WORDS = 6
+ONE_LINE_HEIGHT = 1.6
+"""... and its box may grow down to this many times the type size: room for one line at full
+size, never for two."""
+LABEL_ROW_PITCH = 1.6
+"""Sibling labels stacked in a column (one per picture row) sit up to this many label heights
+apart, centre to centre."""
+LIST_INDENT = 2.0
+"""The numbered items of one page (``1.`` … ``5.``, ``(1)`` … ``(3)``) are set in one type size
+wherever they stand on the page, pictures and answer boxes between them notwithstanding; a
+sub-item is indented by up to this many label heights from the items it belongs to."""
+SIBLING_SIZE_FLOOR = 0.7
+"""Siblings are reset to the smallest size among them, but never below this share of their
+median size: one member squeezed much smaller stays the odd one out instead of shrinking all."""
+SQUEEZED_SHARE = 0.8
+"""A label or sentence fragment set below this share of its source size did not get the size
+it wanted (a word in a box too tight for its translation): it does not set the size of the
+other labels of its set, which follow the smallest member that did. The numbered items of a
+list are different: they read as one text and follow their smallest member (down to the floor)."""
+LABEL_SIZE_SPREAD = 1.03
+"""... and are reset at the smallest size among them when their rendered sizes differ by more
+than this factor: the same kind of text in two sizes on one page ("Xiaolan" squeezed, "Fangfang"
+at full size; the items of one list at 11.4 and 12.6 pt) looks careless."""
+
+
+def _short_fragment(seg: TextSegment) -> bool:
+    """A one-line piece of text of a few words: a label, or a fragment of a sentence that
+    pictures or answer boxes split (``There are`` ``birds`` ``has``)."""
+    text = (seg.translated_text or seg.source_text or "").strip()
+    return "\n" not in text and len(text.split()) <= 6 and len(text) <= 40 and seg.style.role != "heading"
+
+
+def _list_item(seg: TextSegment) -> bool:
+    """A numbered question or exercise line ((1) …, 2. …, ①) set on a scanned page: the items
+    of one list stand one under the other and read as one text, whatever their length."""
+    return (seg.style.role in ("body", "label") and bool(is_list_item(seg.source_text or ""))
+            and "\n" not in (seg.translated_text or ""))
+
+
+
+
+COLUMN_MIN_MEMBERS = 3
+"""At least this many one-line texts on one left edge make a column (a contents page, a list)."""
+
+
+def _column_members(segs: Sequence[TextSegment]) -> set[str]:
+    """Ids of the one-line OCR texts that stand one under the other on one left edge."""
+    cands = [s for s in segs if s.origin == "ocr" and s.kind == SegmentKind.TEXT and s.translate
+             and not s.style.is_vertical and s.style.role in ("label", "heading", "body")
+             and s.style.size > 0 and s.bbox.height <= 2.2 * s.style.size]
+    parent = list(range(len(cands)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i, a in enumerate(cands):
+        for j in range(i + 1, len(cands)):
+            b = cands[j]
+            h = max(a.bbox.height, b.bbox.height)
+            dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
+            if abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and h < dy <= COLUMN_PITCH * h:
+                parent[find(i)] = find(j)
+    groups: dict[int, list[TextSegment]] = {}
+    for i, seg in enumerate(cands):
+        groups.setdefault(find(i), []).append(seg)
+    return {s.id for g in groups.values() if len(g) >= COLUMN_MIN_MEMBERS for s in g}
+
+
+def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]]:
+    column = _column_members(segs)
+    labels = [s for s in segs if s.origin == "ocr"
+              and (_short_label(s) or _short_fragment(s) or _list_item(s) or s.id in column)
+              and not s.style.is_vertical and not s.anchors
+              and s.render is not None and s.render.font_size > 0
+              and s.render.bbox is not None]
+    parent = list(range(len(labels)))
+
+    def find(i: int) -> int:
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i, a in enumerate(labels):
+        for j in range(i + 1, len(labels)):
+            b = labels[j]
+            h = max(a.bbox.height, b.bbox.height)
+            same_column = abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and (a.bbox.y1 <= b.bbox.y0 + h
+                                                                    or b.bbox.y1 <= a.bbox.y0 + h)
+            same_list = _list_item(a) and _list_item(b) and abs(a.bbox.x0 - b.bbox.x0) <= LIST_INDENT * h
+            dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
+            dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
+            # pieces of one line, split by an answer blank or a picture (or the cells of one table
+            # row): one baseline, a short gap; their sizes are read from boxes that hug "合计" and
+            # "三（4）班" differently, so they are compared as loosely as a column's
+            same_row = dy <= 0.5 * h and dx <= 3 * h
+            tolerance = COLUMN_SIZE_TOLERANCE if same_column or same_list or same_row else LABEL_SIZE_TOLERANCE
+            if abs(a.style.size - b.style.size) > tolerance * max(a.style.size, b.style.size):
+                continue
+            ca, cb = a.style.color, b.style.color
+            if max(abs((ca >> k & 255) - (cb >> k & 255)) for k in (0, 8, 16)) > 80:
+                continue
+            long_item = not (_short_label(a) or _short_fragment(a)) or not (_short_label(b) or _short_fragment(b))
+            if long_item and not (same_column or same_list or same_row):
+                continue  # a numbered item (or a heading-styled entry) is a sibling within its column only
+            if _list_item(a) != _list_item(b) and not (same_column or same_row):
+                continue  # a numbered instruction and the price tags of the picture beside it are not one set
+            if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
+                parent[find(i)] = find(j)
+            elif same_column and dy <= COLUMN_PITCH * h:
+                parent[find(i)] = find(j)  # entries of a list / contents column, one under the other
+            elif same_list:
+                parent[find(i)] = find(j)  # the numbered items of one page, however far apart
+    groups: dict[int, list[TextSegment]] = {}
+    for i, seg in enumerate(labels):
+        groups.setdefault(find(i), []).append(seg)
+    return [g for g in groups.values() if len(g) > 1]
+
+
+def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space: "_PageSpace", *, css: str,
+                          archive: Optional[pymupdf.Archive], min_scale: float) -> None:
+    """Re-set the larger members of each sibling-label group at the group's smallest size."""
+    for group in _sibling_label_groups(segs):
+        # labels squeezed below their source size (no room, even wrapped) do not set the size
+        natural = [s for s in group if s.render.font_size >= SQUEEZED_SHARE * s.style.size]  # type: ignore[union-attr]
+        hh = max(s.bbox.height for s in group)
+        lengths = [len((s.translated_text or "").strip()) or 1 for s in group]
+        one_row = (max(s.bbox.y0 + s.bbox.y1 for s in group) - min(s.bbox.y0 + s.bbox.y1 for s in group) <= hh
+                   and max(lengths) <= 3 * min(lengths))  # cells alike (not "and" beside a whole question)
+        if all(_list_item(s) for s in group) or one_row:
+            # a list follows its smallest item, and so do the cells of one row of a table: one roomy
+            # cell set larger than its squeezed neighbours looks careless
+            natural = list(group)
+        sizes = sorted(s.render.font_size for s in (natural or group))  # type: ignore[union-attr]
+        median = sizes[len(sizes) // 2]
+        # one item squeezed far below the others (no room to wrap) does not drag the whole list down
+        target = max(sizes[0], SIBLING_SIZE_FLOOR * median)
+        for seg in group:
+            old = seg.render
+            assert old is not None and old.bbox is not None
+            if old.font_size <= LABEL_SIZE_SPREAD * target:
+                continue
+            own = space.streams.get(seg.id)
+            if own:
+                # remove exactly what this segment drew: a redaction of its box would also take the
+                # words of a neighbour set inside the room this one was allotted but did not use
+                for xref in own:
+                    page.parent.update_stream(xref, b" ")
+            else:
+                rect = old.bbox.to_rect()
+                page.add_redact_annot(pymupdf.Rect(rect.x0 + 0.3, rect.y0 + 0.3, rect.x1 - 0.3, rect.y1 - 0.3),
+                                      fill=False)
+                page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_NONE,
+                                      graphics=pymupdf.PDF_REDACT_LINE_ART_NONE, text=pymupdf.PDF_REDACT_TEXT_REMOVE)
+            size = seg.style.size
+            seg.style.size = target
+            before = set(page.get_contents())
+            try:
+                info = _place_segment(page, seg, seg.translated_text or "", space, css=css, archive=archive,
+                                      min_scale=min_scale)
+            finally:
+                seg.style.size = size
+            space.streams[seg.id] = [x for x in page.get_contents() if x not in before]
+            info.notes = "; ".join(n for n in (info.notes, "size matched to its sibling labels") if n)
+            seg.render = info
+            if info.bbox is not None:
+                drawn = _drawn_extent(page, info.bbox) if space.scanned else None
+                space.update(seg.id, drawn.union(seg.bbox) if drawn is not None else info.bbox)
+
+
+# --------------------------------------------------------------------------- #
+# Public entry points
+# --------------------------------------------------------------------------- #
+
+
+def render_document(src_pdf: PathLike, doc: TranslatedDocument, out_pdf: PathLike, *,
+                    min_font_scale: float = 0.55, fonts_dir: Optional[PathLike] = None,
+                    pages: Optional[list[int]] = None,
+                    checkpoint_pages: int = DEFAULT_CHECKPOINT_PAGES,
+                    anchor_source: Optional[PathLike] = None) -> list[RenderInfo]:
+    """Write ``out_pdf`` = ``src_pdf`` with every translated text segment re-rendered.
+
+    Only ``SegmentKind.TEXT`` segments whose ``translated_text`` is set (and
+    differs from the source) are touched; image text is handled by
+    ``images.render_image_segments``. Page count, page sizes, images and vector
+    graphics are preserved. ``pages`` restricts the work to those 0-based pages.
+    After every ``checkpoint_pages`` rendered pages the document is saved to a
+    temporary file (duplicate fonts merged) and reopened, so memory stays
+    bounded for long documents; ``0`` disables that. Returns the ``RenderInfo``
+    of every rendered segment (also stored in ``seg.render``).
+    """
+    if not 0 < min_font_scale <= 1:
+        raise ValueError(f"min_font_scale must be in (0, 1], got {min_font_scale}")
+    src_path, out_path = Path(src_pdf), Path(out_pdf)
+    css, archive = page_css(doc.target_lang, fonts_dir)
+    pdf = pymupdf.open(str(src_path))
+    checkpoint: Optional[str] = None  # temporary file the document is currently open on
+    swapped: list[tuple[TextSegment, BBox, str]] = []
+    try:
+        if pdf.needs_pass:
+            raise ValueError(f"{src_path} is encrypted; decrypt it before translating")
+        if pages is None:
+            wanted = list(range(pdf.page_count))
+        else:
+            bad = [p for p in pages if not 0 <= p < pdf.page_count]
+            if bad:
+                raise ValueError(f"page indices out of range for a {pdf.page_count}-page document: {bad}")
+            wanted = sorted(set(pages))
+        by_page: dict[int, list[TextSegment]] = {}
+        for seg in doc.segments:
+            if not _renderable(seg):
+                continue
+            if not 0 <= seg.page < pdf.page_count:
+                log.warning("segment %s refers to page %d but %s has %d page(s); skipped",
+                            seg.id, seg.page, src_path, pdf.page_count)
+                continue
+            by_page.setdefault(seg.page, []).append(seg)
+        # titles whose signboard the eraser widened are set in the wider board, centred (this run only)
+        from .scanned import widened_boxes
+
+        for sid, box in widened_boxes(doc).items():
+            seg = next((s for segs in by_page.values() for s in segs if s.id == sid), None)
+            if seg is not None:
+                swapped.append((seg, seg.bbox, seg.style.align))
+                seg.bbox, seg.style.align = box, "center"
+        infos: list[RenderInfo] = []
+        todo = [p for p in wanted if by_page.get(p)]
+        since_checkpoint = 0
+        pictures_doc = None
+        if anchor_source is not None and any(seg.anchors for segs in by_page.values() for seg in segs):
+            pictures_doc = pymupdf.open(str(anchor_source))
+        for pno in todo:
+            page_archive = anchor_archive(by_page[pno], pictures_doc, archive)
+            page_infos = render_page_segments(pdf[pno], pno, by_page[pno], doc, css=css, archive=page_archive,
+                                              min_font_scale=min_font_scale)
+            infos.extend(page_infos)
+            log.info("page %d: rendered %d segments (%d overflow, %d shrunk)", pno, len(page_infos),
+                     sum(1 for i in page_infos if i.overflow), sum(1 for i in page_infos if i.scale < 1))
+            since_checkpoint += 1
+            if checkpoint_pages > 0 and since_checkpoint >= checkpoint_pages and pno != todo[-1]:
+                pdf, checkpoint = _checkpoint(pdf, checkpoint, out_path)
+                since_checkpoint = 0
+        _save(pdf, src_path, out_path)
+        if pictures_doc is not None:
+            pictures_doc.close()
+    finally:
+        for seg, box, align in swapped:  # the segments keep their own boxes
+            seg.bbox, seg.style.align = box, align
+        if not pdf.is_closed:
+            pdf.close()
+        if checkpoint and os.path.exists(checkpoint):
+            os.unlink(checkpoint)
+    log.info("rendered %d segments into %s (%d overflow)", len(infos), out_path,
+             sum(1 for i in infos if i.overflow))
+    return infos
+
+
+def _checkpoint(pdf: pymupdf.Document, previous: Optional[str], out_path: Path) -> tuple[pymupdf.Document, str]:
+    """Save ``pdf`` (duplicate objects merged) to a fresh temporary file next to
+    ``out_path``, close it and reopen the saved file; the previous checkpoint file,
+    if any, is removed. Returns ``(reopened document, its file)``."""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    fd, tmp = tempfile.mkstemp(prefix=out_path.stem + "-checkpoint-", suffix=".pdf", dir=str(out_path.parent))
+    os.close(fd)
+    try:
+        # garbage=4 merges the font copies made so far; the streams must stay uncompressed, or the
+        # final save could no longer merge them with the (raw) copies inserted after the checkpoint
+        pdf.save(tmp, garbage=4, deflate=False)
+        pdf.close()
+        reopened = pymupdf.open(tmp)
+    except Exception:
+        if os.path.exists(tmp):
+            os.unlink(tmp)
+        raise
+    if previous and os.path.exists(previous):
+        os.unlink(previous)
+    log.debug("layout checkpoint written to %s", tmp)
+    return reopened, tmp
+
+
+def _save(pdf: pymupdf.Document, src_path: Path, out_path: Path) -> None:
+    """Save with duplicate-object merging (``garbage=4``): every ``insert_htmlbox``
+    call embeds its own full copy of the font, which would otherwise multiply
+    the file size by the number of segments."""
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    options = dict(garbage=4, deflate=True)
+    if out_path.exists() and out_path.resolve() == src_path.resolve():
+        fd, tmp = tempfile.mkstemp(prefix=out_path.stem + "-", suffix=".pdf", dir=str(out_path.parent))
+        os.close(fd)
+        try:
+            pdf.save(tmp, **options)
+            os.replace(tmp, out_path)
+        finally:
+            if os.path.exists(tmp):
+                os.unlink(tmp)
+        return
+    pdf.save(str(out_path), **options)
+
+
+def render_page_previews(pdf: Union[PathLike, pymupdf.Document], out_dir: PathLike, dpi: int = 110,
+                         pages: Optional[list[int]] = None) -> list[str]:
+    """Rasterise pages to ``out_dir/page-NNN.png`` (1-based numbers) and return the paths."""
+    if dpi <= 0:
+        raise ValueError(f"dpi must be positive, got {dpi}")
+    out = Path(out_dir)
+    out.mkdir(parents=True, exist_ok=True)
+    owned = not isinstance(pdf, pymupdf.Document)
+    document = pymupdf.open(str(pdf)) if owned else pdf
+    try:
+        if pages is None:
+            wanted = list(range(document.page_count))
+        else:
+            bad = [p for p in pages if not 0 <= p < document.page_count]
+            if bad:
+                raise ValueError(f"page indices out of range for a {document.page_count}-page document: {bad}")
+            wanted = sorted(set(pages))
+        paths: list[str] = []
+        for pno in wanted:
+            target = out / f"page-{pno + 1:03d}.png"
+            document[pno].get_pixmap(dpi=dpi).save(str(target))
+            paths.append(str(target))
+    finally:
+        if owned:
+            document.close()
+    log.info("wrote %d preview(s) at %d dpi to %s", len(paths), dpi, out)
+    return paths

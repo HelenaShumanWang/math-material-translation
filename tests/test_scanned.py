@@ -1,0 +1,1283 @@
+"""Scanned pages in overlay mode: OCR lines -> paragraphs -> erased image + editable text."""
+import hashlib
+
+import pymupdf
+import pytest
+
+from mathtrans.extract import extract_document
+from mathtrans.images import extract_image_segments
+from mathtrans.models import Lang, PipelineOptions, SegmentKind
+from mathtrans.ocr import RapidOcrEngine
+from mathtrans.pipeline import run_pipeline
+from mathtrans.samples import make_sample_pdf
+from mathtrans.scanned import MERGED, erase_merged_lines, group_ocr_lines, is_scanned_page, scanned_pages
+
+
+@pytest.fixture(scope="module")
+def scanned_pdf(tmp_path_factory):
+    base = tmp_path_factory.mktemp("scan")
+    src = make_sample_pdf(base / "src.pdf", "zh")
+    d = pymupdf.open(str(src))
+    out = pymupdf.open()
+    for p in d:
+        pix = p.get_pixmap(dpi=150)
+        page = out.new_page(width=p.rect.width, height=p.rect.height)
+        page.insert_image(page.rect, stream=pix.tobytes("jpg"))
+    path = base / "scanned.pdf"
+    out.save(str(path))
+    return path
+
+
+@pytest.fixture(scope="module")
+def ocr_lines(scanned_pdf):
+    doc = extract_document(scanned_pdf, target_lang=Lang.EN, source_lang=Lang.ZH)
+    assert not doc.text_segments()
+    lines = extract_image_segments(scanned_pdf, doc, RapidOcrEngine(), pages=[0])
+    doc.segments.extend(lines)
+    return doc, lines
+
+
+def test_is_scanned_page(scanned_pdf, sample_pdf_zh):
+    assert scanned_pages(scanned_pdf) == {0, 1}
+    assert scanned_pages(sample_pdf_zh) == set()
+    assert is_scanned_page(pymupdf.open(str(scanned_pdf))[0])
+
+
+def test_lines_are_grouped_into_paragraphs(ocr_lines):
+    doc, lines = ocr_lines
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert paragraphs and all(p.kind == SegmentKind.TEXT and p.origin == "ocr" for p in paragraphs)
+    body = [p for p in paragraphs if "直角三角形" in p.source_text and "勾股定理" in p.source_text]
+    assert body, [p.source_text[:30] for p in paragraphs]
+    para = max(body, key=lambda p: len(p.members))
+    assert len(para.members) >= 2 and "⟦" in para.protected_text  # formula protected inside the paragraph
+    by_id = {l.id: l for l in lines}
+    for mid in para.members:
+        assert by_id[mid].skip_reason.startswith(MERGED) and not by_id[mid].translate
+        assert para.bbox.contains(by_id[mid].bbox, tol=1.0)
+    assert 5 <= para.style.size <= 40 and 1.0 <= para.style.line_height <= 1.8
+    title = [p for p in paragraphs if "勾股定理" in p.source_text and len(p.members) == 1]
+    assert any(p.style.role == "heading" for p in title)
+    assert all(l.translate or l.skip_reason for l in lines)
+
+
+def test_erase_merged_lines_changes_the_image(ocr_lines, scanned_pdf):
+    doc, lines = ocr_lines
+    group_ocr_lines(lines, 0, Lang.ZH)
+    pdf = pymupdf.open(str(scanned_pdf))
+    xref = pdf[0].get_image_info(xrefs=True)[0]["xref"]
+    before = hashlib.md5(pdf.extract_image(xref)["image"]).hexdigest()
+    assert erase_merged_lines(pdf, doc) == 1
+    after = hashlib.md5(pdf.extract_image(pdf[0].get_image_info(xrefs=True)[0]["xref"])["image"]).hexdigest()
+    assert before != after
+    assert all(l.render is not None for l in lines if l.skip_reason.startswith(MERGED))
+
+
+def test_restoring_a_large_box_keeps_the_lines_inside_it_erased(tmp_path):
+    import numpy as np
+    from PIL import Image
+    from mathtrans.models import BBox, ImageRef, PageInfo, TextSegment, TranslatedDocument
+    from mathtrans.scanned import erase_merged_lines, restore_lines
+
+    # one picture: a line set in English (A) and, over it and a word below, a large box the OCR read
+    # out of a watermark (B); B's paragraph has no translation, so its pixels are restored
+    original = _text_image((500, 260), (255, 255, 255), [
+        ("text", ((60, 100), "称一称，掂一掂。", 34), (20, 20, 20)), ("text", ((60, 190), "水印", 34), (20, 20, 20))])
+    img_path = tmp_path / "scan.png"; Image.fromarray(original).save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=260)
+    page.insert_image(page.rect, filename=str(img_path))
+    src_path = tmp_path / "src.pdf"; pdf.save(str(src_path))
+    work = pymupdf.open(str(src_path))
+    xref = work[0].get_image_info(xrefs=True)[0]["xref"]
+
+    def line(i, box, parent):
+        ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=260), width=500, height=260, pixel_box=box)
+        return TextSegment(id=f"p0_i{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=box[0], y0=box[1], x1=box[2],
+                           y1=box[3]), source_text="x", translate=False, skip_reason=f"{MERGED} {parent}", image=ref, origin="ocr")
+    a = line(0, (55, 95, 360, 145), "p0_s0")
+    b = line(1, (40, 80, 400, 240), "p0_s1")
+    pa = TextSegment(id="p0_s0", page=0, bbox=a.bbox, source_text="称一称，掂一掂。", translated_text="Weigh it.", origin="ocr",
+                     members=["p0_i0"])
+    pb = TextSegment(id="p0_s1", page=0, bbox=b.bbox, source_text="萬大学", translated_text="", origin="ocr", members=["p0_i1"])
+    doc = TranslatedDocument(source_path=str(src_path), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=260)], segments=[a, b, pa, pb])
+    erase_merged_lines(work, doc)
+    restore_lines(work, pymupdf.open(str(src_path)), doc, [pb])
+    out = work.extract_image(work[0].get_image_info(xrefs=True)[0]["xref"])
+    import io
+    arr = np.array(Image.open(io.BytesIO(out["image"])).convert("RGB"))
+    assert (arr[95:145, 55:360].max(axis=2) < 100).sum() < 20         # the English line's Chinese stays erased
+    assert (arr[185:235, 55:200].max(axis=2) < 100).sum() > 100       # the restored box's own word is back
+
+
+def test_overlay_pipeline_produces_editable_text(scanned_pdf, tmp_path):
+    res = run_pipeline(scanned_pdf, tmp_path, PipelineOptions(
+        target_lang=Lang.EN, translator="mock", scanned_mode="overlay", require_qa_pass=False))
+    assert res.status == "completed", res.error
+    out = pymupdf.open(res.output_pdf)
+    assert out.page_count == 2
+    text = out[0].get_text()
+    assert "Pythagorean theorem" in text and "勾股定理" not in text  # real, extractable text on a scanned page
+    src = pymupdf.open(str(scanned_pdf))
+    assert [i["bbox"] for i in out[0].get_image_info()] == [i["bbox"] for i in src[0].get_image_info()]
+    # the replaced page image leaves no never-drawn duplicate behind (it would double the file size)
+    for page in out:
+        assert len(page.get_images()) == len(page.get_image_info()) == 1
+    import json
+    segs = json.load(open(res.segments_json, encoding="utf-8"))["segments"]
+    paragraphs = [s for s in segs if s["origin"] == "ocr"]
+    assert paragraphs and all(s["translated_text"] for s in paragraphs if s["translate"])
+    assert not any(s["kind"] == "image_text" and s["translate"] and s.get("translated_text") for s in segs
+                   if s["page"] == 0 and s["skip_reason"].startswith(MERGED))
+
+
+def test_formula_lines_stay_in_the_picture():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    def line(i, y, text, translate, reason=""):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(100, int(y * 2), 600, int(y * 2) + 24))
+        return TextSegment(id=f"l{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=50, y0=y, x1=300, y1=y + 12),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10),
+                           translate=translate, skip_reason=reason)
+
+    lines = [
+        line(0, 100, "解：先算一共有多少只", True),
+        line(1, 114, "4×4=16", False, "pure number / formula"),
+        line(2, 128, "16-1=15", False, "pure number / formula"),
+        line(3, 142, "所以还剩 15 只。", True),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["l0"], ["l3"]]
+    assert lines[1].skip_reason == "pure number / formula" and lines[2].skip_reason == "pure number / formula"
+    assert all(p.translate for p in paragraphs)
+
+
+def test_watermark_fragments_are_suppressed_and_trimmed():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import WATERMARK, suppress_watermark_fragments, watermark_alphabet
+
+    def line(i, text, translate=True, reason="", confidence=0.97):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(10, 10 + 30 * i, 300, 34 + 30 * i), confidence=confidence)
+        return TextSegment(id=f"l{i}", page=0, kind=SegmentKind.IMAGE_TEXT,
+                           bbox=BBox(x0=5, y0=5 + 15 * i, x1=150, y1=17 + 15 * i),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10),
+                           translate=translate, skip_reason=reason)
+
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)])
+    doc.segments = [
+        line(0, "北京师范大学出版社", False, "slanted text (17°): watermark"),
+        line(1, "师范大学出版", False, "slanted text (15°): watermark"),
+        line(2, "北京师范大学出版社", False, "slanted text (18°): watermark"),
+        line(3, "五社", confidence=0.71),     # low-confidence misread of "出版社"
+        line(7, "学校", confidence=0.99),     # genuine label sharing one letter: kept
+        line(4, "观察物体！版社"),              # genuine title with a glued fragment
+        line(5, "数学是由无数个数学故事组成的。"),  # genuine text sharing letters (数, 学) with the watermark
+        line(6, "大学"),                      # short, only watermark letters -> suppressed (acceptable loss)
+    ]
+    assert {"北", "京", "师", "范", "大", "学", "出", "版", "社"} <= watermark_alphabet(doc)
+    changed = suppress_watermark_fragments(doc)
+    by = {s.id: s for s in doc.segments}
+    assert by["l3"].translate is False and by["l3"].skip_reason == WATERMARK
+    assert by["l4"].translate and by["l4"].source_text == "观察物体！"
+    assert by["l5"].translate and by["l5"].source_text.startswith("数学是由")
+    assert by["l6"].translate is False
+    assert by["l7"].translate and by["l7"].source_text == "学校"
+    assert changed == 3
+
+
+def test_lines_with_different_colours_are_not_merged():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    def line(i, y, text, color):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(100, int(y * 2), 600, int(y * 2) + 24))
+        return TextSegment(id=f"c{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=50, y0=y, x1=300, y1=y + 12),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=color))
+
+    white_heading = line(0, 100, "植树", 0xFFFFFF)
+    black_body = line(1, 113, "平均每班分到多少棵树苗？", 0x202020)
+    black_body2 = line(2, 126, "每班分到的树苗一样多。", 0x242424)
+    paragraphs = group_ocr_lines([white_heading, black_body, black_body2], 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["c0"], ["c1", "c2"]]
+    assert paragraphs[0].style.color == 0xFFFFFF and paragraphs[1].style.color == 0x202020
+
+
+def _gline(i, x0, y, x1, text, h=12.0, color=0x202020):
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                   pixel_box=(int(x0 * 2), int(y * 2), int(x1 * 2), int((y + h) * 2)))
+    return TextSegment(id=f"g{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=x0, y0=y, x1=x1, y1=y + h),
+                       source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=color))
+
+
+def test_answer_lines_and_instruction_verbs_start_new_paragraphs():
+    lines = [
+        _gline(0, 50, 100, 330, "还剩下多少个苹果？"),
+        _gline(1, 50, 113, 250, "答：还剩下____个。"),          # answer line: its own paragraph
+        _gline(2, 50, 126, 300, "做一做，说一说，再填一填。"),    # reduplicated verb: new paragraph
+        _gline(3, 50, 139, 320, "用你喜欢的方法算一算。"),       # continues the instruction above
+        _gline(4, 50, 152, 300, "● 比一比，谁的多？"),           # bullet: new paragraph
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["g0"], ["g1"], ["g2", "g3"], ["g4"]]
+
+
+def test_speech_bubble_beside_instruction_is_not_merged():
+    lines = [
+        _gline(0, 50, 100, 400, "小明和小红一共有多少本书？请你算一算吧"),
+        _gline(1, 200, 113, 330, "我有17本书。"),                 # bubble: x0 jumps, not centred
+        _gline(2, 50, 113, 380, "然后和同伴说一说你是怎样想的"),     # left-aligned continuation
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert sorted(p.members for p in paragraphs) == [["g0", "g2"], ["g1"]]
+
+
+def test_line_after_a_finished_sentence_needs_alignment_and_no_gap():
+    lines = [
+        _gline(0, 50, 100, 300, "淘气有15个苹果，"),
+        _gline(1, 50, 113, 300, "笑笑有8个苹果。"),
+        _gline(2, 50, 132, 300, "他们一共有多少个苹果"),  # gap of 7 pt (> 0.5 h) after a full stop
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["g0", "g1"], ["g2"]]
+    # a centred multi-line bubble still joins (the left edges differ, the centres agree)
+    centred = [_gline(5, 100, 200, 260, "鸡比鹅多得多，"), _gline(6, 112, 213, 248, "鹅比鸭少一些")]
+    assert [p.members for p in group_ocr_lines(centred, 0, Lang.ZH)] == [["g5", "g6"]]
+
+
+def test_grouping_keeps_questions_labels_and_answer_lines_apart():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    def line(i, x0, y, w, text, h=12):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int(x0 * 2), int(y * 2), int((x0 + w) * 2), int((y + h) * 2)))
+        return TextSegment(id=f"g{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=x0, y0=y, x1=x0 + w, y1=y + h),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=0x202020))
+
+    lines = [
+        line(0, 50, 100, 300, "1.笑笑一共需要多少元？"),
+        line(1, 60, 114, 40, "18元"),                      # narrow diagram label right under the question
+        line(2, 50, 128, 300, "答："),                      # answer line followed by a blank
+        line(3, 50, 142, 300, "2.淘气买了3本书，每本8元。"),   # next exercise: list marker
+        line(4, 50, 156, 300, "一共花了多少元？"),           # continuation of exercise 2
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    members = [p.members for p in paragraphs]
+    assert ["g0"] in members and ["g2"] in members and ["g3", "g4"] in members
+    assert all("g1" not in m for m in members) or ["g1"] in members
+
+
+def test_watermark_alphabet_ignores_letters_common_in_upright_text():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import watermark_alphabet
+
+    def line(i, text, translate=True, reason=""):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(10, 10 + 20 * i, 300, 30 + 20 * i))
+        return TextSegment(id=f"w{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=5, y0=5 + 10 * i, x1=150, y1=15 + 10 * i),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10),
+                           translate=translate, skip_reason=reason)
+
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)])
+    doc.segments = [line(i, t, False, "slanted text (16°): watermark")
+                    for i, t in enumerate(["北京师范大学出版社", "师范大学", "出版社", "410米", "305米"])]
+    doc.segments += [line(10 + i, t) for i, t in enumerate(["200米", "150米", "75米", "4米", "10米", "一共多少米"])]
+    alphabet = watermark_alphabet(doc)
+    assert {"师", "范", "出", "版", "社"} <= alphabet and "米" not in alphabet
+
+
+def test_single_characters_and_equations():
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+    from mathtrans.scanned import _join_lines
+
+    def line(i, x0, y, w, text):
+        ref = ImageRef(xref=9, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int(x0 * 2), int(y * 2), int((x0 + w) * 2), int((y + 12) * 2)))
+        return TextSegment(id=f"q{i}", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=BBox(x0=x0, y0=y, x1=x0 + w, y1=y + 12),
+                           source_text=text, protected_text=text, image=ref, style=SegmentStyle(size=10, color=0x202020))
+
+    cells = [line(0, 50, 100, 14, "四"), line(1, 50, 114, 14, "四"), line(2, 50, 128, 14, "四")]
+    assert all(len(p.members) == 1 for p in group_ocr_lines(cells, 0, Lang.ZH))
+    assert _join_lines(["160-35=125（千米)", "350-160=190(千米)", "555-350=205(千米)"], Lang.ZH) == \
+        "160-35=125（千米)\n350-160=190(千米)\n555-350=205(千米)"
+    assert _join_lines(["数学是由无数个数", "学故事组成的。"], Lang.ZH) == "数学是由无数个数学故事组成的。"
+    assert _join_lines(["In a right", "triangle"], Lang.EN) == "In a right triangle"
+
+
+def test_glyph_erase_keeps_picture_content():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    img = Image.new("RGB", (300, 80), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([0, 60, 300, 80], fill=(30, 120, 200))        # a blue ruling / bar crossing the box bottom
+    d.text((10, 10), "斜边 c", fill=(20, 20, 20), font=pil_font("zh", 28))
+    original = np.array(img)
+    canvas = original.copy()
+    how = _erase_glyphs(canvas, None, original, None, (0, 0, 300, 80))
+    assert how in ("glyphs filled", "glyphs inpainted")
+    # the dark ink is gone ...
+    ink_before = (original.max(axis=2) < 80).sum()
+    ink_after = (canvas.max(axis=2) < 80).sum()
+    assert ink_after < 0.1 * ink_before
+    # ... while the blue bar inside the box survives (a whole-box fill would have erased it)
+    bar = canvas[65:78, 150:290]
+    assert np.abs(bar.astype(int) - np.array([30, 120, 200])).max() < 40
+
+
+def test_scanned_page_boxes_grow_only_into_plain_background(tmp_path):
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    # a "scan": white page image with a dark picture on the right half, below the text box
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    ImageDraw.Draw(img).rectangle([520, 150, 980, 900], fill=(60, 90, 160))  # points x 260-490, y 75-450
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    seg = TextSegment(id="p0_s0", page=0, bbox=BBox(x0=40, y0=100, x1=240, y1=124), source_text="一句很短的中文",
+                      protected_text="一句很短的中文", style=SegmentStyle(size=12, color=0x202020), origin="ocr",
+                      translated_text="A translation that is far too long for the little box it has to go into, so it must grow")
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[seg])
+    render_document(src, doc, tmp_path / "out.pdf")
+    used = seg.render.bbox
+    assert used.y1 > 124 or used.x1 > 240  # it grew into the white area ...
+    assert used.x1 <= 262  # ... but never over the dark picture that starts at x = 260 points
+    assert seg.render.scale > 0.6
+
+
+def _text_image(size, bg, items):
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+
+    img = Image.new("RGB", size, bg)
+    d = ImageDraw.Draw(img)
+    for kind, args, colour in items:
+        if kind == "rect":
+            d.rectangle(args, fill=colour)
+        else:
+            xy, text, px = args
+            d.text(xy, text, fill=colour, font=pil_font("zh", px))
+    return np.array(img)
+
+
+def test_glyph_erase_handles_coloured_words_and_two_colour_cells():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # a red word inside black text on paper: every glyph goes, whatever its colour
+    original = _text_image((320, 60), (255, 255, 255), [
+        ("text", ((10, 12), "位是", 32), (20, 20, 20)), ("text", ((80, 12), "百位", 32), (225, 30, 35))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, 160, 55))
+    region = canvas[5:55, 0:160].astype(int)
+    assert (region.max(axis=2) < 120).sum() == 0                                  # no dark ink left
+    assert ((region[:, :, 0] > 150) & (region[:, :, 1] < 110)).sum() == 0         # no red ink left
+    # two label cells of different colours on one OCR line keep their own backgrounds
+    original = _text_image((240, 50), (255, 255, 255), [
+        ("rect", [0, 0, 119, 49], (205, 255, 255)), ("rect", [120, 0, 239, 49], (255, 250, 205)),
+        ("text", ((20, 8), "十位", 30), (10, 10, 10)), ("text", ((140, 8), "个位", 30), (10, 10, 10))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 0, 240, 50))
+    assert np.abs(canvas[10:40, 15:100].astype(int) - [205, 255, 255]).max() < 40
+    assert np.abs(canvas[10:40, 135:220].astype(int) - [255, 250, 205]).max() < 40
+
+
+def test_glyph_erase_takes_trailing_punctuation_and_keeps_pictograms():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # the OCR box ends before the full stop: the small blob right of it is erased too
+    original = _text_image((260, 60), (255, 255, 255), [("text", ((10, 10), "试一试。", 34), (20, 20, 20))])
+    ink_cols = np.flatnonzero((original.max(axis=2) < 100).any(axis=0))
+    box_right = int(ink_cols.max()) - 30          # cut the box before the 。
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, box_right, 55))
+    assert (canvas.max(axis=2) < 100).sum() == 0
+    # ... unless another OCR line starts right there
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, box_right, 55), [(box_right + 5, 5, 260, 55)])
+    assert (canvas[:, box_right + 2:].max(axis=2) < 100).sum() > 0
+    # a solid coloured pictogram inside the line survives, the glyphs around it go
+    original = _text_image((300, 60), (255, 255, 255), [
+        ("text", ((10, 10), "用", 34), (20, 20, 20)), ("rect", [60, 12, 100, 50], (240, 160, 20)),
+        ("text", ((110, 10), "表示人", 34), (20, 20, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, 230, 55))
+    assert np.abs(canvas[20:45, 68:92].astype(int) - [240, 160, 20]).max() < 30
+    assert (canvas.max(axis=2) < 100).sum() == 0
+
+
+def test_glyphs_the_detector_left_out_at_either_end_go_with_the_line():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # the OCR polygon stops after 称一称，: the rest of the line, 掂一掂。, is erased with it
+    original = _text_image((420, 60), (255, 255, 255), [("text", ((10, 10), "称一称，掂一掂。", 34), (20, 20, 20))])
+    cols = np.flatnonzero((original.max(axis=2) < 100).any(axis=0))
+    cut = int(cols.min()) + int(3.6 * 34)                  # after four glyphs
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, cut, 55))
+    assert (canvas.max(axis=2) < 100).sum() == 0
+    # the 一 before 枚 that the polygon left out at the start goes too
+    original = _text_image((420, 60), (255, 255, 255), [("text", ((10, 10), "一枚硬币约重", 34), (20, 20, 20))])
+    cols = np.flatnonzero((original.max(axis=2) < 100).any(axis=0))
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (int(cols.min()) + 36, 5, int(cols.max()) + 2, 55))
+    assert (canvas.max(axis=2) < 100).sum() == 0
+    # ... but not past another OCR line, nor over a picture (taller than the line) or a pictogram
+    original = _text_image((420, 60), (255, 255, 255), [("text", ((10, 10), "称一称，掂一掂。", 34), (20, 20, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, cut, 55), [(cut + 4, 5, 420, 55)])
+    assert (canvas[:, cut + 6:].max(axis=2) < 100).sum() > 0
+    original = _text_image((420, 80), (255, 255, 255), [
+        ("text", ((10, 20), "称一称", 34), (20, 20, 20)), ("rect", [125, 2, 300, 78], (30, 120, 200))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 15, 118, 65))
+    assert np.abs(canvas[20:60, 130:290].astype(int) - [30, 120, 200]).max() < 30
+    original = _text_image((420, 60), (255, 255, 255), [
+        ("text", ((10, 10), "称一称", 34), (20, 20, 20)), ("rect", [125, 14, 160, 50], (240, 160, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (0, 5, 118, 55))
+    assert np.abs(canvas[18:46, 128:157].astype(int) - [240, 160, 20]).max() < 30
+
+
+def test_same_row_sentence_pieces_are_joined_with_a_blank():
+    lines = [
+        _gline(0, 50, 100, 110, "七巧板由"),
+        _gline(1, 160, 100, 400, "种图形组成，其中有—个三角形。"),   # after an answer blank
+        _gline(2, 50, 125, 110, "种类"), _gline(3, 140, 125, 200, "文学类"), _gline(4, 230, 125, 290, "科普类"),
+        _gline(5, 50, 170, 150, "是18吗？"), _gline(6, 170, 170, 290, "比18多得多。"),  # two bubbles
+    ]
+    unjoined = group_ocr_lines([l.model_copy() for l in lines], 0, Lang.ZH)  # no pixels: nothing joins
+    assert all(len(p.members) == 1 for p in unjoined)
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH, blank_check=lambda a, b: True)
+    texts = {p.source_text: p.members for p in paragraphs}
+    assert texts["七巧板由___种图形组成，其中有—个三角形。"] == ["g0", "g1"]
+    assert "种类" in texts and "文学类" in texts and "科普类" in texts      # table cells stay apart
+    assert "是18吗？" in texts and "比18多得多。" in texts                  # a finished sentence is not continued
+    by = {l.id: l for l in lines}
+    assert by["g0"].skip_reason == by["g1"].skip_reason and by["g0"].translate is False
+
+
+def test_watermark_band_catches_upright_fragments_on_the_diagonal():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import WATERMARK, suppress_watermark_fragments, watermark_alphabet, watermark_band
+
+    def seg(i, page, cx, cy, text, translate=True, reason="", confidence=0.97, w=40.0):
+        ref = ImageRef(xref=9, page=page, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int((cx - w / 2) * 2), int((cy - 6) * 2), int((cx + w / 2) * 2), int((cy + 6) * 2)),
+                       confidence=confidence)
+        return TextSegment(id=f"w{i}", page=page, kind=SegmentKind.IMAGE_TEXT,
+                           bbox=BBox(x0=cx - w / 2, y0=cy - 6, x1=cx + w / 2, y1=cy + 6), source_text=text,
+                           protected_text=text, image=ref, style=SegmentStyle(size=10), translate=translate,
+                           skip_reason=reason)
+
+    def on_diag(x):  # the watermark runs from lower left to upper right: y = 0.66 - 0.3 x (page-relative)
+        return 700 * (0.66 - 0.3 * x / 500)
+
+    pages = [PageInfo(index=i, width=500, height=700) for i in range(3)]
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN, pages=pages)
+    slanted = "slanted text (17°): watermark or decoration, kept as is"
+    doc.segments = [
+        seg(0, 0, 150, on_diag(150), "北京师范", False, slanted), seg(1, 0, 340, on_diag(340), "学出版社", False, slanted),
+        seg(2, 1, 170, on_diag(170), "京师范大", False, slanted), seg(3, 1, 330, on_diag(330), "出版社", False, slanted),
+        seg(4, 2, 250, on_diag(250), "范大学出", False, slanted), seg(5, 2, 360, on_diag(360), "版社", False, slanted),
+        seg(10, 0, 260, on_diag(260) + 3, "学", w=12),               # upright piece on the diagonal
+        seg(11, 1, 290, on_diag(290) - 4, "五", w=12),               # misread of 出 on the diagonal
+        seg(12, 2, 200, on_diag(200), "反社", w=24),                 # misread of 版社
+        seg(13, 1, 260, on_diag(260) + 120, "五", w=12),             # a real label (五) far from the band
+        seg(14, 2, 300, on_diag(300), "学校门口", w=60),             # real text on the band, other letters
+        seg(15, 0, 250, on_diag(250), "大小比一比，谁大？", w=150),    # long genuine line crossing the band
+    ]
+    alphabet = watermark_alphabet(doc)
+    band = watermark_band(doc, alphabet)
+    assert band is not None and abs(band[0] - (-0.3 * 500 / 700 * 700 / 500)) < 0.05
+    suppress_watermark_fragments(doc)
+    by = {s.id: s for s in doc.segments}
+    assert [by[k].skip_reason for k in ("w10", "w11", "w12")] == [WATERMARK] * 3
+    assert by["w13"].translate and by["w14"].translate and by["w15"].translate
+
+
+
+def test_underline_blank_check_looks_for_a_rule_in_the_gap():
+    import types
+    import numpy as np
+    from mathtrans.scanned import underline_blank_check
+
+    rgb = np.full((60, 400, 3), 255, np.uint8)
+    rgb[46:49, 130:250] = 30            # an answer-blank underline between x 120 and 260
+    rgb[10:45, 300:340] = (240, 160, 20)  # a picture in the second gap (x 280 .. 360)
+    loaded = types.SimpleNamespace(rgb=rgb)
+    check = underline_blank_check(lambda xref: loaded)
+    left, mid, right = _gline(0, 10, 10, 60, "七巧板由"), _gline(1, 130, 10, 140, "种图形"), _gline(2, 180, 10, 200, "个。")
+    left.image = left.image.model_copy(update={"pixel_box": (20, 12, 120, 44)})
+    mid.image = mid.image.model_copy(update={"pixel_box": (260, 12, 280, 44)})
+    right.image = right.image.model_copy(update={"pixel_box": (360, 12, 395, 44)})
+    assert check(left, mid) is True
+    assert check(mid, right) is False
+    # a narrow empty gap (one sentence split at a quoted mark) joins too; a wide empty one does not
+    near = _gline(3, 10, 10, 60, "多的画")
+    near.image = near.image.model_copy(update={"pixel_box": (290, 12, 300, 44)})
+    after = _gline(4, 10, 10, 60, "“✓”。")
+    after.image = after.image.model_copy(update={"pixel_box": (330, 12, 340, 44)})
+    rgb[10:45, 300:340] = 255
+    assert check(near, after) is True
+    after.image = after.image.model_copy(update={"pixel_box": (395, 12, 399, 44)})
+    assert check(near, after) is False
+
+
+def test_watermark_lines_are_not_layout_obstacles():
+    import pymupdf
+    from mathtrans.layout import _PageSpace
+    from mathtrans.models import PageInfo, TranslatedDocument
+
+    pdf = pymupdf.open()
+    page = pdf.new_page(width=500, height=700)
+    wm = _gline(0, 200, 300, 420, "北京师范大学出版社")
+    wm.translate, wm.skip_reason = False, "slanted text (20°): watermark or decoration, kept as is"
+    frag = _gline(1, 300, 320, 330, "版社")
+    frag.translate, frag.skip_reason = False, "watermark fragment"
+    label = _gline(2, 50, 400, 90, "12")
+    label.translate, label.skip_reason = False, "pure number / formula"
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[wm, frag, label])
+    space = _PageSpace(page, 0, doc)
+    assert set(space.occupied) == {"g2"}   # numbers left in the picture still block, the watermark does not
+
+
+
+def test_left_aligned_tail_of_a_sentence_joins_its_paragraph():
+    lines = [
+        _gline(0, 90, 477, 464, "请用轴对称或平移的知识，为自己的班级设计班徽。与同伴说一说你的"),
+        _gline(1, 90, 491, 146, "设计意图。"),                 # short tail, left-aligned, sentence unfinished above
+        _gline(2, 300, 520, 340, "合计"),                     # a short label under a long line stays alone
+        _gline(3, 90, 540, 460, "这是一句完整的话，到这里结束了。"),
+        _gline(4, 90, 554, 140, "下一题"),                    # after a full stop: not a tail
+    ]
+    paragraphs = group_ocr_lines(lines, 0, Lang.ZH)
+    members = sorted(p.members for p in paragraphs)
+    assert ["g0", "g1"] in members and ["g2"] in members and ["g3"] in members and ["g4"] in members
+
+
+def test_dropped_unit_labels_are_marked_for_erasing():
+    from mathtrans.scanned import UNIT_DROPPED
+
+    unit = _gline(0, 200, 100, 230, "（个）")
+    unit.translate, unit.skip_reason = False, UNIT_DROPPED
+    sentence = _gline(1, 50, 130, 300, "树上有8个桃子，摘了3个。")
+    paragraphs = group_ocr_lines([unit, sentence], 0, Lang.ZH)
+    assert [p.members for p in paragraphs] == [["g1"]]                 # nothing is set for the unit ...
+    assert unit.skip_reason == f"{MERGED} {UNIT_DROPPED}"              # ... but it is erased with the merged lines
+
+
+def test_wrapped_line_ending_in_bi_joins_its_sentence():
+    from mathtrans.images import INLINE_PICTOGRAMS
+
+    first = _gline(0, 50, 100, 120, "我的花生比")
+    first.translate, first.skip_reason = False, INLINE_PICTOGRAMS
+    second = _gline(1, 50, 115, 110, "你的多。")
+    paragraphs = group_ocr_lines([first, second], 0, Lang.ZH)
+    assert [p.source_text for p in paragraphs] == ["我的花生比你的多。"]
+    assert first.skip_reason.startswith(MERGED) and second.skip_reason.startswith(MERGED)
+    # a picture really is missing: the joined text still has the gap, the line stays in the picture
+    gap = _gline(2, 50, 200, 140, "用表示人，用")
+    gap.translate, gap.skip_reason = False, INLINE_PICTOGRAMS
+    rest = _gline(3, 50, 215, 120, "表示椅子。")
+    paragraphs = group_ocr_lines([gap, rest], 0, Lang.ZH)
+    assert [p.source_text for p in paragraphs] == ["表示椅子。"]
+    assert gap.skip_reason == INLINE_PICTOGRAMS and gap.translate is False
+    # alone it stays as it was
+    alone = _gline(4, 50, 300, 120, "我的花生比")
+    alone.translate, alone.skip_reason = False, INLINE_PICTOGRAMS
+    assert group_ocr_lines([alone], 0, Lang.ZH) == [] and alone.skip_reason == INLINE_PICTOGRAMS
+
+
+def test_stacked_column_label_is_set_as_vertical_text():
+    label = _gline(0, 100, 100, 108, "十位", h=50.0)
+    other = _gline(2, 200, 100, 208, "被减数", h=60.0)
+    body = _gline(1, 50, 300, 300, "用竖式计算下面各题。")
+    paragraphs = group_ocr_lines([label, other, body], 0, Lang.ZH)
+    by_text = {p.source_text: p for p in paragraphs}
+    # a stacked place-value header becomes the upright abbreviation English books use
+    assert by_text["十位"].translated_text == "T" and by_text["十位"].translate is False
+    assert not by_text["十位"].style.is_vertical and by_text["十位"].style.role == "label"
+    assert by_text["十位"].style.size < 10
+    # any other stacked label runs down its column
+    assert by_text["被减数"].style.is_vertical and by_text["被减数"].style.role == "label"
+    assert not by_text["用竖式计算下面各题。"].style.is_vertical
+
+
+def test_trailing_full_stop_is_found_beside_a_bubble_outline():
+    from mathtrans.scanned import _extend_for_punctuation
+
+    # light bubble interior, the full stop, then the bubble's outline and the white page beyond
+    original = _text_image((300, 60), (255, 255, 255), [
+        ("rect", [0, 0, 262, 59], (255, 236, 200)), ("rect", [263, 0, 268, 59], (230, 150, 60)),
+        ("text", ((10, 10), "我踢了下。", 34), (30, 30, 30))])
+    import numpy as np
+    ink_cols = np.flatnonzero((original[:, :255].max(axis=2) < 100).any(axis=0))
+    box = (0, 8, int(ink_cols.max()) - 28, 52)            # the OCR box ends before the 。
+    x0, y0, x1, y1 = _extend_for_punctuation(original, box, [])
+    assert x1 >= int(ink_cols.max()) and x1 < 263          # the 。 is taken, the outline is not
+
+
+def test_title_characters_and_unit_numerals_join_their_row():
+    from mathtrans.scanned import LONE_CHAR_REASON
+
+    # the two characters of a title set wide apart, in different colours
+    mu = _gline(0, 100, 50, 112, "目", h=14.0, color=0xFCEE00)
+    lu = _gline(1, 126, 50, 138, "录", h=14.0)
+    # a lone unit numeral (low OCR confidence) before its heading, and a cut-off first character
+    yi = _gline(2, 60, 100, 70, "一", h=12.0)
+    yi.translate, yi.skip_reason = False, f"{LONE_CHAR_REASON} (0.70)"
+    heading = _gline(3, 90, 100, 170, "加与减", h=12.0)
+    cut = _gline(4, 60, 150, 70, "一", h=12.0)
+    cut.translate, cut.skip_reason = False, f"{LONE_CHAR_REASON} (0.70)"
+    rest = _gline(5, 73, 150, 200, "共有5个。", h=12.0)
+    alone = _gline(6, 60, 220, 70, "学", h=12.0)   # nothing beside it: stays as it was
+    alone.translate, alone.skip_reason = False, f"{LONE_CHAR_REASON} (0.70)"
+    paragraphs = group_ocr_lines([mu, lu, yi, heading, cut, rest, alone], 0, Lang.ZH)
+    texts = [p.source_text for p in paragraphs]
+    assert "目录" in texts and "一 加与减" in texts and "一共有5个。" in texts
+    assert alone.translate is False and alone.skip_reason.startswith(LONE_CHAR_REASON)
+    assert yi.skip_reason.startswith(MERGED) and cut.skip_reason.startswith(MERGED)
+
+
+def test_fused_enumerators_get_a_space():
+    from mathtrans.scanned import space_fused_enumerators
+
+    lines = [_gline(0, 50, 100, 300, "1.看图列式。"), _gline(1, 50, 130, 300, "2.40只蚂蚁搬走了8只。"),
+             _gline(2, 50, 160, 300, "3.2436=2000+400+30+6"), _gline(3, 50, 190, 300, "2.5米长的绳子"),
+             _gline(4, 50, 220, 300, "4.05"), _gline(5, 50, 250, 300, "1.5")]
+    assert space_fused_enumerators(lines) == 2
+    assert [l.source_text for l in lines] == ["1.看图列式。", "2. 40只蚂蚁搬走了8只。", "3. 2436=2000+400+30+6",
+                                              "2.5米长的绳子", "4.05", "1.5"]
+
+
+def test_bulleted_lines_start_their_own_paragraphs():
+    first = _gline(0, 60, 100, 300, "每人每次只能移动一张卡片。")
+    second = _gline(1, 60, 114, 300, "移动后卡片必须放回原来的格子里。")
+    plain = group_ocr_lines([first.model_copy(), second.model_copy()], 0, Lang.ZH)
+    assert len(plain) == 1                                                    # close lines: one paragraph ...
+    bulleted = group_ocr_lines([first, second], 0, Lang.ZH, bullet=lambda line: line.id == "g1")
+    assert [p.source_text for p in bulleted] == [first.source_text, second.source_text]   # ... unless a bullet starts the second
+
+
+def test_bullet_check_reads_the_dot_before_a_line():
+    import numpy as np
+    from mathtrans.scanned import bullet_check
+
+    original = _text_image((400, 60), (255, 255, 255), [("rect", [12, 24, 26, 38], (240, 120, 30)),
+                                                        ("text", ((40, 10), "每人每次只能移动", 34), (20, 20, 20))])
+    ink_cols = np.flatnonzero((original[:, 35:].max(axis=2) < 100).any(axis=0)) + 35
+    box = (int(ink_cols.min()) - 2, 6, int(ink_cols.max()) + 2, 54)
+    line = _gline(0, box[0] / 2, box[1] / 2, box[2] / 2, "每人每次只能移动", h=(box[3] - box[1]) / 2)
+    line.image.pixel_box = box
+
+    class Loaded:
+        rgb = original
+
+    assert bullet_check(lambda xref: Loaded())(line) is True
+    no_dot = original.copy(); no_dot[:, :35] = 255
+    Loaded.rgb = no_dot
+    assert bullet_check(lambda xref: Loaded())(line) is False
+
+
+def test_watermark_pieces_beyond_the_slanted_centres_and_short_real_lines():
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import WATERMARK, suppress_watermark_fragments
+
+    def seg(i, page, cx, cy, text, translate=True, reason="", confidence=0.97, w=40.0):
+        ref = ImageRef(xref=9, page=page, bbox=BBox(x0=0, y0=0, x1=500, y1=700), width=1000, height=1400,
+                       pixel_box=(int((cx - w / 2) * 2), int((cy - 6) * 2), int((cx + w / 2) * 2), int((cy + 6) * 2)),
+                       confidence=confidence)
+        return TextSegment(id=f"w{i}", page=page, kind=SegmentKind.IMAGE_TEXT,
+                           bbox=BBox(x0=cx - w / 2, y0=cy - 6, x1=cx + w / 2, y1=cy + 6), source_text=text,
+                           protected_text=text, image=ref, style=SegmentStyle(size=10), translate=translate,
+                           skip_reason=reason)
+
+    def on_diag(x):
+        return 700 * (0.66 - 0.3 * x / 500)
+
+    pages = [PageInfo(index=i, width=500, height=700) for i in range(3)]
+    doc = TranslatedDocument(source_path="x.pdf", source_lang=Lang.ZH, target_lang=Lang.EN, pages=pages)
+    slanted = "slanted text (17°): watermark or decoration, kept as is"
+    doc.segments = [
+        seg(0, 0, 200, on_diag(200), "师范大学", False, slanted), seg(1, 0, 340, on_diag(340), "学出版社", False, slanted),
+        seg(2, 1, 220, on_diag(220), "京师范大", False, slanted), seg(3, 1, 330, on_diag(330), "出版社", False, slanted),
+        seg(4, 2, 250, on_diag(250), "范大学出", False, slanted), seg(5, 2, 360, on_diag(360), "版社", False, slanted),
+        seg(10, 0, 150, on_diag(150), "北京", w=24),                 # the first letters, left of every slanted piece's centre
+        seg(11, 1, 145, on_diag(145) + 2, "北", w=12, confidence=1.0),
+        seg(12, 2, 300, on_diag(300), "中版社", w=36, confidence=0.88),  # 出 misread as 中, read with little confidence
+        seg(13, 1, 250, on_diag(250) + 150, "14大", w=30),           # a real bubble line far from the band (大 is a watermark letter)
+        seg(14, 2, 400, on_diag(400) + 160, "北京", w=24),           # a real city label far from the band
+        seg(15, 0, 250, on_diag(250) + 150, "学", w=12),             # a lone real character far from the band: still suspect
+    ]
+    suppress_watermark_fragments(doc)
+    by = {s.id: s for s in doc.segments}
+    assert [by[k].skip_reason for k in ("w10", "w11", "w12")] == [WATERMARK] * 3
+    assert by["w13"].translate and by["w14"].translate
+    assert by["w15"].skip_reason == WATERMARK
+
+
+# --------------------------------------------------------------------------- #
+# patch images drawn over the page image (the scan is read twice where they lie)
+# --------------------------------------------------------------------------- #
+
+
+def _patch_line(i, xref, image_box, x0, y, x1, text, h=12.0, translate=True, reason=""):
+    from mathtrans.models import BBox, ImageRef, SegmentStyle, TextSegment
+
+    bx0, by0, bx1, by1 = image_box
+    ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=bx0, y0=by0, x1=bx1, y1=by1), width=int((bx1 - bx0) * 2),
+                   height=int((by1 - by0) * 2),
+                   pixel_box=(int((x0 - bx0) * 2), int((y - by0) * 2), int((x1 - bx0) * 2), int((y + h - by0) * 2)))
+    return TextSegment(id=f"p0_i{xref}_{i}", page=0, kind=SegmentKind.IMAGE_TEXT,
+                       bbox=BBox(x0=x0, y0=y, x1=x1, y1=y + h), source_text=text, protected_text=text, image=ref,
+                       style=SegmentStyle(size=10, color=0x202020), translate=translate, skip_reason=reason)
+
+
+PAGE_IMAGE = (0, 0, 520, 740)
+PATCH_IMAGE = (108, 300, 418, 436)  # a crop of the same scan placed over the middle of the page
+
+
+def test_patch_copies_of_lines_underneath_are_erased_only_and_follow_their_paragraph():
+    from mathtrans.scanned import (MERGED, PATCH_DUPLICATE, group_ocr_lines, relink_patch_duplicates,
+                                   suppress_patch_duplicates)
+
+    lines = [
+        _patch_line(0, 10, PAGE_IMAGE, 120, 320, 400, "正、反比例在生活中无处不在，"),   # under the patch
+        _patch_line(1, 10, PAGE_IMAGE, 120, 334, 390, "想一想，说一说。"),
+        _patch_line(2, 10, PAGE_IMAGE, 60, 600, 300, "练一练"),                   # outside the patch
+        _patch_line(0, 11, PATCH_IMAGE, 121, 321, 399, "正、反比例在生活中无处不在，"),  # the same lines on the patch
+        _patch_line(1, 11, PATCH_IMAGE, 121, 335, 389, "想一想，说一说。"),
+        _patch_line(2, 11, PATCH_IMAGE, 300, 410, 410, "淘气"),                   # read on the patch only
+    ]
+    assert suppress_patch_duplicates(lines, 0) == 2
+    copies = [l for l in lines if l.image.xref == 11]
+    assert [l.translate for l in copies] == [False, False, True]
+    assert copies[0].skip_reason == f"{MERGED} {PATCH_DUPLICATE} p0_i10_0"
+    assert copies[1].skip_reason == f"{MERGED} {PATCH_DUPLICATE} p0_i10_1"
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    relink_patch_duplicates(lines, 0)
+    texts = [p.source_text for p in paragraphs]
+    assert texts.count("正、反比例在生活中无处不在，") == 1  # set once, from the line underneath
+    assert texts.count("想一想，说一说。") == 1
+    assert "淘气" in texts
+    for copy, under_id in ((copies[0], "p0_i10_0"), (copies[1], "p0_i10_1")):
+        under = next(l for l in lines if l.id == under_id)
+        assert under.skip_reason.startswith(MERGED)
+        assert copy.skip_reason == under.skip_reason  # erased and restored together with the paragraph
+
+
+def test_patch_copy_of_a_line_left_in_the_picture_stays_in_the_picture():
+    from mathtrans.scanned import relink_patch_duplicates, suppress_patch_duplicates
+
+    noise = "slanted text (30°): watermark or decoration, kept as is"
+    lines = [
+        _patch_line(0, 10, PAGE_IMAGE, 200, 350, 330, "北京师范大学出版社", translate=False, reason=noise),
+        _patch_line(0, 11, PATCH_IMAGE, 201, 351, 329, "北京师范大学出版社"),
+    ]
+    assert suppress_patch_duplicates(lines, 0) == 1
+    relink_patch_duplicates(lines, 0)
+    assert lines[1].translate is False
+    assert lines[1].skip_reason == noise  # not erased: the line underneath is kept in the picture too
+
+
+def test_images_side_by_side_are_not_patches():
+    from mathtrans.scanned import suppress_patch_duplicates
+
+    lines = [
+        _patch_line(0, 10, (0, 0, 260, 740), 20, 100, 200, "左边的图"),
+        _patch_line(0, 11, (260, 0, 520, 740), 280, 100, 460, "左边的图"),
+    ]
+    assert suppress_patch_duplicates(lines, 0) == 0
+    assert all(l.translate for l in lines)
+
+
+def test_repeated_short_lines_stay_separate_labels():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 385, 570, 440, "有几个？"),
+        _gline(1, 385, 591, 440, "有几个？"),
+        _gline(2, 385, 619, 440, "有几个？"),
+        _gline(3, 385, 642, 440, "有几个？"),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["有几个？"] * 4
+
+
+def test_repeated_long_lines_may_still_join():
+    from mathtrans.scanned import group_ocr_lines
+
+    text = "把下面的数按从小到大的顺序排列起来。"
+    lines = [_gline(0, 50, 100, 330, text), _gline(1, 50, 113, 330, text)]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert len(paragraphs) == 1
+
+
+def test_bold_coloured_glyphs_in_a_tight_box_are_erased_to_the_surroundings():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    bg = (243, 249, 254)
+    img = Image.new("RGB", (360, 90), bg)
+    d = ImageDraw.Draw(img)
+    font = pil_font("en", 44)
+    d.text((12, 14), "SHUXUE", fill=(0, 151, 219), font=font, stroke_width=6, stroke_fill=(0, 151, 219))
+    original = np.array(img)
+    ink_mask = np.abs(original.astype(int) - np.array(bg)).max(axis=2) > 40
+    ys, xs = np.where(ink_mask)
+    box = (int(xs.min()) + 2, int(ys.min()) + 2, int(xs.max()) - 1, int(ys.max()) - 1)  # tight OCR polygon
+    assert ink_mask[box[1]:box[3], box[0]:box[2]].mean() > 0.45  # the glyphs dominate the box
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, box)
+    around = canvas[box[1] - 4:box[3] + 4, box[0] - 4:box[2] + 4]  # the cut-off glyph edges go too
+    assert (np.abs(around.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.99  # plain background now
+
+
+def test_decorated_title_glyphs_go_with_their_outline_and_shadow():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    # 目录 in a cloud: yellow strokes with a slate outline and drop shadow on light blue
+    bg, slate, yellow = (207, 225, 238), (70, 80, 90), (254, 240, 9)
+    img = Image.new("RGB", (420, 170), bg)
+    d = ImageDraw.Draw(img)
+    font = pil_font("zh", 100)
+    d.text((36, 26), "目录", fill=slate, font=font, stroke_width=7, stroke_fill=slate)
+    d.text((30, 20), "目录", fill=yellow, font=font, stroke_width=5, stroke_fill=slate)
+    original = np.array(img)
+    ink = np.abs(original.astype(int) - np.array(bg)).max(axis=2) > 40
+    ys, xs = np.where(ink)
+    canvas = original.copy()
+    box = (int(xs.min()) - 10, int(ys.min()) - 10, int(xs.max()) + 10, int(ys.max()) + 10)   # the OCR box, with air
+    assert ink[box[1]:box[3], box[0]:box[2]].mean() < 0.85                                 # not a whole-box fill
+    _erase_glyphs(canvas, None, original, None, box)
+    title = canvas[box[1] - 4:box[3] + 4, box[0] - 4:box[2] + 4]
+    assert (np.abs(title.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.97     # strokes, outline, shadow gone
+    # the same title with its box cut tight to the strokes (the detector's polygon) goes as well
+    canvas = original.copy()
+    tight = (int(xs.min()) + 3, int(ys.min()) + 3, int(xs.max()) - 2, int(ys.max()) - 2)
+    _erase_glyphs(canvas, None, original, None, tight)
+    title = canvas[box[1] - 4:box[3] + 4, box[0] - 4:box[2] + 4]
+    assert (np.abs(title.astype(int) - np.array(bg)).max(axis=2) <= 30).mean() > 0.97
+
+
+def test_the_border_of_the_cell_a_label_stands_in_is_kept():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # "130个" in a yellow cell of a bar model; the black cell border runs on past the OCR box,
+    # which takes in the border on every side
+    yellow, black = (255, 247, 200), (30, 30, 30)
+    original = _text_image((420, 120), (255, 255, 255), [
+        ("rect", [40, 30, 380, 90], black), ("rect", [43, 33, 377, 87], yellow),
+        ("rect", [150, 30, 153, 90], black),                       # the next cell's divider
+        ("text", ((52, 40), "130个", 34), (20, 20, 20))])
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (41, 31, 152, 89))
+    cell = canvas[36:85, 46:147].astype(int)
+    assert (np.abs(cell - np.array(yellow)).max(axis=2) > 60).sum() < 10           # glyphs gone, no smear
+    assert (canvas[31:89, 40:43].max(axis=2) < 90).mean() > 0.9                       # left border kept
+    assert (canvas[30:33, 45:148].max(axis=2) < 90).mean() > 0.9                      # top border kept
+    assert (canvas[88:91, 45:148].max(axis=2) < 90).mean() > 0.9                      # bottom border kept
+
+
+def test_bold_outlined_glyphs_on_a_fading_ribbon_leave_no_smear():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    # "你知道吗" in black with a white outline on a yellow ribbon that fades from top to bottom
+    h, w = 120, 420
+    rows = np.linspace(0, 1, h)[:, None, None]
+    band = ((1 - rows) * np.array([255, 226, 108]) + rows * np.array([228, 201, 97])).astype(np.uint8)  # as measured
+    img = Image.fromarray(np.repeat(band, w, axis=1).copy())
+    ImageDraw.Draw(img).text((20, 12), "你知道吗", fill=(15, 15, 15), font=pil_font("zh", 90),
+                             stroke_width=5, stroke_fill=(255, 255, 255))
+    original = np.array(img)
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (10, 4, 410, 116))
+    expected = np.repeat(band, w, axis=1).astype(int)
+    diff = np.abs(canvas.astype(int) - expected).max(axis=2)[4:116, 10:410]
+    assert (diff > 45).mean() < 0.01, (diff > 45).mean()          # back to the ribbon: no grey or white blocks
+
+
+def test_title_glyphs_cut_off_by_their_box_go_whole():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    # large title characters whose OCR box stops above their bottoms (and below their tops); the
+    # pinyin line under them, an OCR line of its own, stays
+    original = _text_image((520, 260), (255, 255, 255), [
+        ("text", ((40, 20), "数学", 150), (25, 25, 25)), ("text", ((150, 205), "SHUXUE", 30), (30, 110, 200))])
+    ink = original.max(axis=2) < 100
+    ys, xs = np.where(ink[:200])
+    top, bottom = int(ys.min()), int(ys.max())
+    box = (int(xs.min()) - 4, top + 12, int(xs.max()) + 4, bottom - 18)          # cut at both ends
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, box, [(140, 200, 300, 245)])
+    assert (canvas[:200].max(axis=2) < 100).sum() < 30                             # the whole of 数学 is gone
+    assert (np.abs(canvas[200:245].astype(int) - [30, 110, 200]).max(axis=2) < 60).sum() > 100   # SHUXUE stays
+
+
+def test_glyphs_on_a_vertical_gradient_are_filled_row_by_row():
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.scanned import _erase_glyphs
+
+    h, w = 160, 420
+    rows = np.linspace(0, 1, h)[:, None, None]
+    original = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([225, 238, 250])).astype(np.uint8)
+    original = np.repeat(original, w, axis=1)  # a faint fade, as under a cover title
+    img = Image.fromarray(original.copy())
+    ImageDraw.Draw(img).text((20, 10), "数学", fill=(30, 30, 30), font=pil_font("zh", 110))
+    original = np.array(img)
+    canvas = original.copy()
+    _erase_glyphs(canvas, None, original, None, (10, 5, 400, 150))
+    assert (canvas.max(axis=2) < 80).sum() < 0.02 * (canvas.max(axis=2) < 80).size  # the ink is gone
+    expected = ((1 - rows) * np.array([255, 255, 255]) + rows * np.array([225, 238, 250])).astype(np.uint8)
+    # the lower rows keep the blue of the fade instead of a white block
+    assert np.abs(canvas[140, 50:380].astype(int) - expected[140, 0]).max() < 8
+    assert np.abs(canvas[100, 50:380].astype(int) - expected[100, 0]).max() < 8
+
+
+def test_indented_first_line_takes_its_short_tail():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 100, 599, 447, "小朋友，数学就在我们身边，你和数学一定会成为", h=15),  # indented by two characters
+        _gline(1, 65, 622, 120, "好朋友。", h=17),                               # the tail, at the left edge
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["小朋友，数学就在我们身边，你和数学一定会成为好朋友。"]
+
+
+def test_short_line_under_a_finished_sentence_stays_apart():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 100, 447, 447, "小朋友，数学就在我们身边，你和数学一定会成为好朋友。", h=15),
+        _gline(1, 65, 622, 120, "编者大朋友", h=17),  # a sign-off, not a tail
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert len(paragraphs) == 2
+
+
+def test_long_english_wraps_onto_a_new_line_at_full_size(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))  # a blank "scan"
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    # a one-line body paragraph that spans the text column: the English is half as long again
+    seg = TextSegment(id="p0_s0", page=0, bbox=BBox(x0=40, y0=300, x1=460, y1=315),
+                      source_text="小朋友，数学就在我们身边，你和数学一定会成为好朋友。",
+                      protected_text="小朋友，数学就在我们身边，你和数学一定会成为好朋友。",
+                      style=SegmentStyle(size=12, color=0x202020, role="body", line_height=1.3), origin="ocr",
+                      translated_text="Children, maths is all around us. You and maths will surely become good friends.")
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[seg])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert seg.render.scale >= 0.95           # not shrunk ...
+    assert seg.render.bbox.y1 >= 315 + 12     # ... set on a second line below instead
+
+
+def test_numbered_item_takes_its_hanging_indent_tail():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 259, 141, 464, "（1）说一说，图中有哪些数学", h=18),
+        _gline(1, 288, 165, 329, "信息？", h=18),                       # continues under the text, not the marker
+        _gline(2, 259, 189, 454, "(2）买7瓶矿泉水需要多少元？", h=18),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["（1）说一说，图中有哪些数学信息？", "(2）买7瓶矿泉水需要多少元？"]
+
+
+def test_numbered_items_in_one_column_share_one_size(tmp_path):
+    from PIL import Image
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+
+    def item(i, y, zh, en):
+        return TextSegment(id=f"p0_s{i}", page=0, bbox=BBox(x0=259, y0=y, x1=464, y1=y + 18), source_text=zh,
+                           protected_text=zh, origin="ocr", translated_text=en,
+                           style=SegmentStyle(size=14.4, color=0x202020, role="body", line_height=1.2))
+    segs = [item(1, 141, "（1）说一说，图中有哪些数学信息？", "(1) Talk about it. What is in the picture?"),
+            item(2, 165, "(2）买7瓶矿泉水需要多少元？", "(2) How much do seven bottles of mineral water cost in all?"),
+            item(3, 189, "（3）算式5×3=15可以解决什么问题？", "(3) What problem can 5 × 3 = 15 solve?")]
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=segs)
+    render_document(src, doc, tmp_path / "out.pdf")
+    sizes = [s.render.font_size for s in segs]
+    assert max(sizes) - min(sizes) < 0.6, sizes  # the three questions are set alike
+
+
+def test_a_faint_watermark_does_not_block_growth_but_a_picture_does(tmp_path):
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.layout import render_document
+    from mathtrans.models import BBox, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 1400), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.text((300, 560), "北京师范大学出版社", fill=(196, 196, 196), font=pil_font("zh", 60))  # faint grey watermark
+    d.rectangle([60, 900, 940, 1000], fill=(60, 90, 160))                                # a real picture
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=700)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "scan.pdf"; pdf.save(str(src))
+    long_en = "Unit 2 Direction and Position of Things Around Us in the Classroom"
+    over_mark = TextSegment(id="p0_s0", page=0, bbox=BBox(x0=150, y0=250, x1=330, y1=268), source_text="二 方向与位置",
+                            protected_text="二 方向与位置", origin="ocr", translated_text=long_en,
+                            style=SegmentStyle(size=14, color=0x202020, role="label", line_height=1.2))
+    over_pic = TextSegment(id="p0_s1", page=0, bbox=BBox(x0=150, y0=428, x1=330, y1=446), source_text="三 生活中的大数",
+                           protected_text="三 生活中的大数", origin="ocr", translated_text=long_en,
+                           style=SegmentStyle(size=14, color=0x202020, role="label", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=700)], segments=[over_mark, over_pic])
+    render_document(src, doc, tmp_path / "out.pdf")
+    assert over_mark.render.bbox.y1 > 268 + 10      # grew down over the faint watermark and wrapped ...
+    assert over_pic.render.bbox.y1 <= 450 + 1        # ... while the line above the picture could not:
+    assert over_pic.render.bbox.y0 < 428 - 10        # it grew upward instead, keeping its size
+    assert over_pic.render.scale >= 0.99
+
+
+def test_unit_numeral_in_another_colour_still_joins_its_heading():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [
+        _gline(0, 189, 527, 206, "四", h=14, color=0xFFFFFF),   # white numeral on a coloured badge
+        _gline(1, 220, 525, 260, "测量", h=19),
+    ]
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["四 测量"]
+
+
+def test_title_characters_of_unequal_box_height_still_join():
+    from mathtrans.scanned import group_ocr_lines
+
+    lines = [_gline(0, 179, 111, 208, "目", h=30), _gline(1, 243, 108, 282, "录", h=38)]  # 目 has no tall stroke
+    paragraphs = group_ocr_lines(lines, 0, "zh")
+    assert [p.source_text for p in paragraphs] == ["目录"]
+
+
+def _bubble_line(halo: bool = True, specks: bool = False):
+    """A pale orange bubble with dark text in a white glow (the line box stops before the full
+    stop), and optionally orange specks of a cloud-shaped outline just after the line."""
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+
+    img = Image.new("RGB", (700, 200), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([20, 40, 680, 160], fill=(252, 234, 215))
+    font = pil_font("zh", 44)
+    if halo:
+        d.text((60, 72), "十个一百是一千", font=font, fill=(34, 29, 29), stroke_width=5, stroke_fill=(255, 255, 255))
+    else:
+        d.text((60, 72), "十个一百是一千", font=font, fill=(34, 29, 29))
+    if specks:
+        for x, y in ((392, 80), (398, 100), (394, 120)):
+            d.rectangle([x, y, x + 4, y + 4], fill=(245, 175, 80))   # pieces of a scalloped outline
+    if halo:
+        import io
+        from PIL import ImageFilter
+        img = img.filter(ImageFilter.GaussianBlur(2.0))              # the glow fades out as on a scan
+        buf = io.BytesIO(); img.save(buf, "JPEG", quality=80); img = Image.open(io.BytesIO(buf.getvalue())).convert("RGB")
+    return np.array(img), (56, 66, 375, 128)
+
+
+def test_orange_outline_specks_are_not_taken_for_punctuation_or_missed_glyphs():
+    from mathtrans.scanned import _extend_for_punctuation, _extend_over_missed_glyphs
+
+    orig, box = _bubble_line(specks=True)
+    assert _extend_for_punctuation(orig, box, [])[2] < 390          # the orange specks are no full stop
+    assert _extend_over_missed_glyphs(orig, box, [])[0][2] < 390    # nor glyphs the detector missed
+
+
+def test_the_white_glow_round_erased_text_leaves_no_ghost():
+    import numpy as np
+    from mathtrans.scanned import _erase_glyphs
+
+    orig, box = _bubble_line(halo=True)
+    canvas = orig.copy()
+    _erase_glyphs(canvas, None, orig, None, box, [])
+    x0, y0, x1, y1 = box
+    region = canvas[y0:y1, x0:x1].astype(int)
+    off = np.abs(region - np.array([252, 234, 215])).max(axis=2)
+    assert float((off > 12).mean()) < 0.003, float((off > 12).mean())   # no white outline of the glyphs
+
+
+def test_a_column_label_is_not_extended_sideways_over_the_picture_beside_it():
+    import numpy as np
+    from mathtrans.scanned import _extend_for_punctuation, _extend_over_cut_glyphs, _extend_over_missed_glyphs
+
+    img = np.full((300, 300, 3), 255, np.uint8)
+    img[100:210, 140:146] = 30           # "0.2米" written top to bottom: a column of dark strokes ...
+    img[60:250, 60:66] = 40              # ... beside the outline of a circle and a tile picture
+    img[120:190, 80:130] = (200, 180, 200)
+    box = (130, 95, 158, 215)            # the tall OCR box of the column
+    assert _extend_over_missed_glyphs(img, box, [])[0] == box
+    assert _extend_for_punctuation(img, box, []) == box
+    assert _extend_over_cut_glyphs(img, box, []) == box
+
+
+def _board_page(tmp_path, picture_at=None):
+    """A 500 x 200 pt scan (2 px per pt) with a lesson-title signboard - a brown frame round a green fill
+    with white characters - and, optionally, a blue picture starting ``picture_at`` px to its right."""
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+
+    img = Image.new("RGB", (1000, 400), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rectangle([100, 100, 259, 169], fill=(204, 114, 45))
+    d.rectangle([110, 110, 249, 159], fill=(0, 156, 88))
+    font = pil_font("zh", 34)
+    d.text((128, 115), "分桃子", fill=(255, 255, 255), font=font)
+    if picture_at is not None:
+        d.rectangle([picture_at, 60, picture_at + 150, 220], fill=(40, 70, 200))
+    gx0, gy0, gx1, gy1 = d.textbbox((128, 115), "分桃子", font=font)
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=200)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "src.pdf"; pdf.save(str(src))
+    work = pymupdf.open(str(src))
+    xref = work[0].get_image_info(xrefs=True)[0]["xref"]
+    box = (gx0 - 2, gy0 - 2, gx1 + 2, gy1 + 2)
+    ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=200), width=1000, height=400, pixel_box=box)
+    pt = BBox(x0=box[0] / 2, y0=box[1] / 2, x1=box[2] / 2, y1=box[3] / 2)
+    line = TextSegment(id="p0_i0", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=pt, source_text="分桃子", translate=False,
+                       skip_reason=f"{MERGED} p0_s0", image=ref, origin="ocr")
+    title = TextSegment(id="p0_s0", page=0, bbox=pt, source_text="分桃子", protected_text="分桃子", origin="ocr",
+                        members=["p0_i0"], translated_text="Sharing Peaches",
+                        style=SegmentStyle(size=16, color=0xFFFFFF, role="heading", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=200)], segments=[line, title])
+    return work, doc, title, np
+
+
+def _page_pixels(work):
+    import io
+    import numpy as np
+    from PIL import Image
+    out = work.extract_image(work[0].get_image_info(xrefs=True)[0]["xref"])
+    return np.array(Image.open(io.BytesIO(out["image"])).convert("RGB")).astype(int)
+
+
+def test_a_title_signboard_is_widened_so_the_english_keeps_its_size(tmp_path):
+    from mathtrans.layout import render_document
+    from mathtrans.scanned import widened_boxes
+
+    work, doc, title, np = _board_page(tmp_path)
+    original = title.bbox.model_copy()
+    erase_merged_lines(work, doc)
+    boxes = widened_boxes(doc)
+    assert "p0_s0" in boxes and boxes["p0_s0"].width > 2 * original.width
+    arr = _page_pixels(work)
+    right = int(boxes["p0_s0"].x1 * 2)
+    assert np.abs(arr[135, 300] - (0, 156, 88)).max() < 40            # the fill runs on past the old frame ...
+    assert np.abs(arr[105, 300] - (204, 114, 45)).max() < 40          # ... under the frame's top edge
+    assert np.abs(arr[135, right + 12] - (204, 114, 45)).max() < 40   # the right end moved out beyond the text
+    assert arr[135, right + 40].min() > 240                           # and the page beyond stays blank
+    erased = tmp_path / "erased.pdf"; work.save(str(erased))
+    render_document(erased, doc, tmp_path / "out.pdf")
+    assert title.render.scale >= 0.95                                  # set at its own size, in the wider board
+    assert title.bbox == original                                      # the segment keeps its own box
+    assert widened_boxes(type(doc).model_validate(doc.model_dump())) == {}   # only for the document erased
+
+
+def test_a_signboard_grows_only_into_blank_page(tmp_path):
+    from mathtrans.scanned import widened_boxes
+
+    work, doc, title, np = _board_page(tmp_path, picture_at=300)
+    erase_merged_lines(work, doc)
+    box = widened_boxes(doc).get("p0_s0")
+    assert box is None or box.x1 <= 300 / 2 - 4                       # stops a gap short of the picture
+    arr = _page_pixels(work)
+    assert np.abs(arr[135, 305] - (40, 70, 200)).max() < 40           # the picture is untouched
+
+
+def test_a_board_whose_english_nearly_fits_stays_as_printed(tmp_path):
+    from mathtrans.scanned import widened_boxes
+
+    work, doc, title, np = _board_page(tmp_path)
+    title.translated_text = "Peach"             # no wider than the three characters
+    erase_merged_lines(work, doc)
+    assert widened_boxes(doc) == {}
+
+
+def test_a_round_ended_pill_keeps_its_ends_and_leaves_no_stray_mark(tmp_path):
+    import io
+    import numpy as np
+    from PIL import Image, ImageDraw
+    from mathtrans.fonts import pil_font
+    from mathtrans.models import BBox, ImageRef, PageInfo, SegmentStyle, TextSegment, TranslatedDocument
+    from mathtrans.scanned import widened_boxes
+
+    img = Image.new("RGB", (1000, 400), (255, 255, 255))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle([100, 100, 300, 170], radius=35, fill=(150, 210, 240))   # a pale-blue pill, no frame
+    font = pil_font("zh", 34)
+    d.text((140, 115), "一定是", fill=(30, 40, 90), font=font)
+    gx0, gy0, gx1, gy1 = d.textbbox((140, 115), "一定是", font=font)
+    d.rectangle([gx1 + 8, 118, gx1 + 12, 152], fill=(30, 40, 90))              # a stroke the line's box missed
+    img_path = tmp_path / "scan.png"; img.save(img_path)
+    pdf = pymupdf.open(); page = pdf.new_page(width=500, height=200)
+    page.insert_image(page.rect, filename=str(img_path))
+    src = tmp_path / "src.pdf"; pdf.save(str(src))
+    work = pymupdf.open(str(src))
+    xref = work[0].get_image_info(xrefs=True)[0]["xref"]
+    box = (gx0 - 2, gy0 - 2, gx1 + 2, gy1 + 2)
+    ref = ImageRef(xref=xref, page=0, bbox=BBox(x0=0, y0=0, x1=500, y1=200), width=1000, height=400, pixel_box=box)
+    pt = BBox(x0=box[0] / 2, y0=box[1] / 2, x1=box[2] / 2, y1=box[3] / 2)
+    line = TextSegment(id="p0_i0", page=0, kind=SegmentKind.IMAGE_TEXT, bbox=pt, source_text="一定是", translate=False,
+                       skip_reason=f"{MERGED} p0_s0", image=ref, origin="ocr")
+    label = TextSegment(id="p0_s0", page=0, bbox=pt, source_text="一定是", protected_text="一定是", origin="ocr",
+                        members=["p0_i0"], translated_text="Must be a teacher",
+                        style=SegmentStyle(size=16, color=0x1E285A, role="label", line_height=1.2))
+    doc = TranslatedDocument(source_path=str(src), source_lang=Lang.ZH, target_lang=Lang.EN,
+                             pages=[PageInfo(index=0, width=500, height=200)], segments=[line, label])
+    erase_merged_lines(work, doc)
+    new = widened_boxes(doc)["p0_s0"]
+    arr = np.array(Image.open(io.BytesIO(work.extract_image(xref)["image"])).convert("RGB")).astype(int)
+    right = int(new.x1 * 2) + 10                       # about where the pill's round end now is
+    blue = lambda y, x: np.abs(arr[y, x] - (150, 210, 240)).max() < 40   # noqa: E731
+    assert all(blue(135, x) for x in range(110, right - 10, 3))            # one even fill: no stray stroke left
+    ends = [x for x in range(right - 20, right + 60) if blue(135, x)]
+    top_ends = [x for x in range(right - 20, right + 60) if blue(104, x)]
+    assert top_ends and ends and max(top_ends) < max(ends) - 10           # the end is still round
