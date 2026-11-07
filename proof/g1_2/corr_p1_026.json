@@ -1,0 +1,694 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s6",
+   "erase": [
+    [
+     80,
+     312,
+     87,
+     319
+    ],
+    [
+     175,
+     323,
+     192,
+     336
+    ]
+   ],
+   "reason": "leftover dots of the Chinese ellipses"
+  },
+  {
+   "segment_id": "p25_s5",
+   "erase": [
+    [
+     302,
+     309,
+     314,
+     317
+    ],
+    [
+     409,
+     320,
+     418,
+     330
+    ]
+   ],
+   "reason": "leftover dots of the Chinese ellipses"
+  },
+  {
+   "segment_id": "p25_s12",
+   "translation": "Five, ten, fifteen…",
+   "reason": "source ends with an ellipsis"
+  },
+  {
+   "segment_id": "p25_s12",
+   "erase": [
+    [
+     237,
+     575,
+     242,
+     581
+    ]
+   ],
+   "reason": "leftover dot of the Chinese ellipsis after the text"
+  },
+  {
+   "segment_id": "p25_s13",
+   "translation": "Ten, twenty…",
+   "reason": "source ends with an ellipsis"
+  },
+  {
+   "segment_id": "p26_s3",
+   "translation": "⟦0⟧. Say what comes next.",
+   "reason": "'Say.' is incomplete; checked edition wording"
+  },
+  {
+   "segment_id": "p26_s4",
+   "translation": "Ninety, eighty, seventy,",
+   "reason": "dropped ⟦0⟧: OCR crop of the bubble edge; capitalise like the other speakers"
+  },
+  {
+   "split": "p26_s8",
+   "translations": [
+    "3. Say the next five numbers after each one.",
+    "BLANK"
+   ],
+   "reason": "instruction and the number row are separate texts"
+  },
+  {
+   "add": "p26_a1",
+   "page": 26,
+   "box": [
+    72,
+    322,
+    372,
+    339
+   ],
+   "translation": "twenty-three, fifty-six, seventy-seven, eighty-nine, ninety-five",
+   "source": "二十三 五十六 七十七 八十九 九十五",
+   "align": "left",
+   "reason": "the number row, set as one line over the whole row (Chinese numbers were left)",
+   "size": 10
+  },
+  {
+   "segment_id": "p26_s11",
+   "translation": "Who counts fastest?",
+   "box": [
+    346,
+    558,
+    415,
+    573
+   ],
+   "reason": "set at 0.65 and ran over the bubble outline; use the rest of the bubble"
+  },
+  {
+   "merge": [
+    "p27_s2",
+    "p27_s4"
+   ],
+   "translation": "91, 92… 98, 99, and 1 more stick makes 100 sticks.",
+   "reason": "one bubble split by OCR"
+  },
+  {
+   "segment_id": "p27_s1",
+   "translation": "How many sticks? Count them and read the number.",
+   "reason": "shorter so it does not wrap over the sticks"
+  },
+  {
+   "segment_id": "p27_s8",
+   "translation": "⟦0⟧ tens make 100.",
+   "reason": "shorter, shrunk to 0.71; matches p27_s5"
+  },
+  {
+   "split": "p28_s9",
+   "at": [
+    375
+   ],
+   "translations": [
+    "Group 2: 30 marks",
+    "Group 1: 25 marks"
+   ],
+   "reason": "two labels under the bone"
+  },
+  {
+   "split": "p29_s9",
+   "at": [
+    202.6
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p29_s10",
+   "at": [
+    310
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p29_s13",
+   "at": [
+    102
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p29_s14",
+   "at": [
+    179.3
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p29_s15",
+   "at": [
+    256.8
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p29_s16",
+   "at": [
+    320.7,
+    348
+   ],
+   "translations": [
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell; 'hundreds' does not fit the narrow cell, so the standard H T O column labels"
+  },
+  {
+   "split": "p30_s4",
+   "at": [
+    290.9
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p30_s12",
+   "at": [
+    150
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell; Chinese left visible"
+  },
+  {
+   "split": "p30_s13",
+   "at": [
+    223.9
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p30_s14",
+   "at": [
+    297.1
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p30_s15",
+   "at": [
+    370.8
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p30_s17",
+   "at": [
+    119.5
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "segment_id": "p30_s7",
+   "translation": "⟦0⟧",
+   "reason": "label on the pencil box; only the number fits"
+  },
+  {
+   "segment_id": "p30_s11",
+   "box": [
+    55,
+    342,
+    200,
+    360
+   ],
+   "reason": "wraps in a tight box; free paper to the right"
+  },
+  {
+   "merge": [
+    "p30_s19",
+    "p30_s22"
+   ],
+   "translation": "This jar holds 100 sweets.",
+   "reason": "one sentence split by OCR"
+  },
+  {
+   "merge": [
+    "p30_s20",
+    "p30_s23"
+   ],
+   "translation": "I've read to page 100.",
+   "reason": "one sentence split by OCR"
+  },
+  {
+   "split": "p31_s8",
+   "at": [
+    316.8
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p31_s9",
+   "at": [
+    402
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p31_s11",
+   "at": [
+    132.7
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p31_s12",
+   "at": [
+    200.2
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p31_s13",
+   "at": [
+    298.3,
+    325.2
+   ],
+   "translations": [
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell; 'hundreds' does not fit the narrow cell, so the standard H T O column labels"
+  },
+  {
+   "split": "p31_s14",
+   "at": [
+    388.3
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "segment_id": "p31_s4",
+   "box": [
+    300.8,
+    231.6,
+    455,
+    247.5
+   ],
+   "reason": "wraps; free paper to the right"
+  },
+  {
+   "segment_id": "p31_s7",
+   "translation": "⟦0⟧, so ⟦1⟧ has more.",
+   "box": [
+    70,
+    289,
+    150,
+    306
+   ],
+   "reason": "set at 0.59; use the rest of the bubble"
+  },
+  {
+   "split": "p32_s2",
+   "at": [
+    220.1
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p32_s3",
+   "at": [
+    280.8
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p32_s4",
+   "at": [
+    93.6
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p32_s5",
+   "at": [
+    154.8
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p32_s6",
+   "at": [
+    347.5,
+    374.4
+   ],
+   "translations": [
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell; 'hundreds' does not fit the narrow cell, so the standard H T O column labels"
+  },
+  {
+   "split": "p32_s7",
+   "at": [
+    432.5
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell; 'H T O' was wrong"
+  },
+  {
+   "segment_id": "p32_s15",
+   "translation": "⟦0⟧. ⟦1⟧ means ⟦2⟧, ⟦3⟧ means ⟦4⟧. Tick the numbers greater than ⟦5⟧.",
+   "erase": [
+    [
+     403,
+     517,
+     446,
+     537
+    ]
+   ],
+   "box": [
+    57.3,
+    518,
+    452,
+    538
+   ],
+   "reason": "shorter so it is set at the size of the other instructions; the printed tick and full stop are now said in words"
+  },
+  {
+   "segment_id": "p27_s2",
+   "erase": [
+    [
+     203,
+     246,
+     211,
+     256
+    ]
+   ],
+   "reason": "leftover dot of the Chinese ellipsis"
+  },
+  {
+   "segment_id": "p30_s5",
+   "box": [
+    149,
+    224.5,
+    369,
+    241.5
+   ],
+   "reason": "the widened answer brackets pushed the line left off the pink plate; a box over the whole plate keeps it closer"
+  },
+  {
+   "restore": [
+    175.3,
+    384.0,
+    230.2,
+    399.5
+   ],
+   "page": 29,
+   "reason": "tens/ones cell under the first abacus: the erase drew the rods through the cell and lost its top border; put the box back"
+  },
+  {
+   "paint": [
+    176.4,
+    385.0,
+    202.5,
+    398.3
+   ],
+   "page": 29,
+   "colour": [
+    200,
+    234,
+    250
+   ],
+   "reason": "clear the Chinese from the tens cell (cell colour)"
+  },
+  {
+   "paint": [
+    203.3,
+    385.0,
+    229.2,
+    398.3
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    251,
+    212
+   ],
+   "reason": "clear the Chinese from the ones cell (cell colour)"
+  },
+  {
+   "restore": [
+    123.4,
+    405.5,
+    178.0,
+    421.0
+   ],
+   "page": 30,
+   "reason": "first tens/ones cell of 3: the erase drew a rod through 'tens' and smudged 'ones'; put the box back"
+  },
+  {
+   "paint": [
+    124.5,
+    406.5,
+    150.3,
+    419.9
+   ],
+   "page": 30,
+   "colour": [
+    200,
+    234,
+    250
+   ],
+   "reason": "clear the Chinese from the tens cell (cell colour)"
+  },
+  {
+   "paint": [
+    151.1,
+    406.5,
+    177.0,
+    419.9
+   ],
+   "page": 30,
+   "colour": [
+    255,
+    251,
+    212
+   ],
+   "reason": "clear the Chinese from the ones cell (cell colour)"
+  },
+  {
+   "restore": [
+    88,
+    405,
+    135,
+    424.3
+   ],
+   "page": 32,
+   "reason": "left sign: the erase made a flat plate up into the sky and lost the sign's top edge"
+  },
+  {
+   "restore": [
+    135,
+    405,
+    158,
+    423.6
+   ],
+   "page": 32,
+   "reason": "left sign: top edge (right part, above the Chinese)"
+  },
+  {
+   "restore": [
+    86,
+    424,
+    101,
+    456
+   ],
+   "page": 32,
+   "reason": "left sign: its left edge"
+  },
+  {
+   "restore": [
+    151.5,
+    421,
+    162,
+    447.6
+   ],
+   "page": 32,
+   "reason": "left sign: its right edge"
+  },
+  {
+   "restore": [
+    128,
+    447.6,
+    162,
+    458
+   ],
+   "page": 32,
+   "reason": "left sign: the bear's ear, turned into a dark blob by the erase"
+  },
+  {
+   "restore": [
+    352,
+    405,
+    385,
+    422.6
+   ],
+   "page": 32,
+   "reason": "right sign: the erase made a flat plate up into the sky and lost the sign's top edge"
+  },
+  {
+   "restore": [
+    385,
+    405,
+    400,
+    423.6
+   ],
+   "page": 32,
+   "reason": "right sign: top edge (middle)"
+  },
+  {
+   "restore": [
+    400,
+    405,
+    420,
+    424.8
+   ],
+   "page": 32,
+   "reason": "right sign: top edge (right part)"
+  },
+  {
+   "restore": [
+    350,
+    422,
+    360.8,
+    455
+   ],
+   "page": 32,
+   "reason": "right sign: its left edge"
+  },
+  {
+   "restore": [
+    409.5,
+    423,
+    420,
+    460
+   ],
+   "page": 32,
+   "reason": "right sign: its right edge"
+  },
+  {
+   "paint": [
+    149.3,
+    446.5,
+    151.8,
+    448.3
+   ],
+   "page": 32,
+   "colour": [
+    220,
+    178,
+    137
+   ],
+   "reason": "left sign: the tail of the last Chinese character left by the ear restore"
+  }
+ ],
+ "flags": []
+}

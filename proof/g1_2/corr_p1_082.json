@@ -1,0 +1,97 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p81_s18",
+   "translation": "T O",
+   "reason": "column labels tens/ones over the vertical form; '(skips)' does not belong here; box on the first line only (erase the second) so it prints the size of the first T O",
+   "box": [338, 418, 370, 433],
+   "erase": [[338, 433, 370, 451]]
+  },
+  {
+   "segment_id": "p81_s15",
+   "translation": "Answer: Xiaohong did ___ more skips than Xiaoliang.",
+   "box": [77.7, 353.8, 300, 367.9],
+   "erase": [[245, 354, 277, 368], [216, 362, 250, 369]],
+   "reason": "erase leftover 下。 and printed blank under the English; free line"
+  },
+  {"segment_id": "p81_s2", "box": [346, 154, 396, 170], "reason": "table cell has room"},
+  {"segment_id": "p81_s1", "box": [292, 154, 341, 170], "reason": "table cell has room"},
+  {"segment_id": "p81_s3", "box": [397, 154, 443, 170], "reason": "table cell has room"},
+  {"segment_id": "p81_s6", "box": [222, 184, 268, 197], "reason": "free grass to the right"},
+  {"segment_id": "p81_s5", "box": [166, 184, 216, 197], "reason": "free grass"},
+  {
+   "segment_id": "p82_s7",
+   "translation": "Move the beads, then try calculating in vertical form.",
+   "box": [77.1, 261.1, 400, 276.1],
+   "reason": "free line to the right; stops wrapping over the counting frame"
+  },
+  {"segment_id": "p82_s8", "translation": "H T O", "reason": "dropped ⟦0⟧: OCR noise of the red borrow dots"},
+  {"split": "p82_s9", "at": [85.5, 112.8], "translations": ["H", "T", "O"], "reason": "one label per cell of the counting frame"},
+  {"split": "p82_s10", "at": [191.5, 218], "translations": ["H", "T", "O"], "reason": "one label per cell"},
+  {"split": "p82_s11", "at": [298.3], "translations": ["H", "T"], "reason": "one label per cell"},
+  {"segment_id": "p82_s12", "translation": "O", "reason": "consistent with the other cells"},
+  {
+   "split": "p85_s21",
+   "translations": ["How many stamps does Lele have?", "How many stamps does Jingjing have?"],
+   "reason": "two numbered questions (1) and (2), each on its own line"
+  },
+  {
+   "add": "p86_a1",
+   "page": 86,
+   "box": [332, 327, 358, 338],
+   "translation": "¥5",
+   "source": "5元",
+   "reason": "price plate left in Chinese"
+  },
+  {"segment_id": "p86_s22", "translation": "⟦0⟧ less than me is ⟦1⟧.", "reason": "'Me minus 13 is 60' is unnatural"},
+  {"segment_id": "p86_s23", "translation": "⟦0⟧ more than me is ⟦1⟧.", "reason": "'Me plus 20 is 52' is unnatural"},
+  {
+   "split": "p87_s1",
+   "translations": ["Review and Share", "Number and Algebra"],
+   "reason": "banner title and the sub-heading beside the red dot are two texts"
+  },
+  {
+   "segment_id": "p87_s12",
+   "translation": "6. What real-life problems can \"50 − 18\" solve? Give two examples.",
+   "box": [62.6, 339.9, 459.5, 355.2],
+   "erase": [[62, 339, 148, 356], [373, 339, 460, 356]],
+   "reason": "item 6 lost its number, the expression 50 − 18 and 'two examples' left of and right of the OCR box; whole sentence set over the full line"
+  },
+  {"split": "p87_s22", "at": [273.6], "translations": ["tens", "ones"], "reason": "one label per cell, as on page 78"},
+  {"segment_id": "p87_s25", "translation": "I forgot to add the \"⟦0⟧\" carried over from the ones.", "reason": "full stop; shorter"},
+  {"segment_id": "p87_s14", "translation": "Explain why you wrote the number sentence this way.", "reason": "full stop; more natural"},
+  {
+   "merge": ["p88_s8", "p88_s9"],
+   "translation": "Share ideas",
+   "reason": "one two-line badge label; 'Share' overprinted the Chinese"
+  },
+  {
+   "paint": [85, 556, 109.5, 569],
+   "page": 88,
+   "colour": [137, 186, 64],
+   "reason": "相互 on the green badge is not erased; paint the plate before the English is set"
+  },
+  {"segment_id": "p88_s5", "translation": "Football", "reason": "British English"},
+  {"segment_id": "p88_s7", "translation": "⟦0⟧. What does each child see? Draw lines to match.", "reason": "clearer instruction for 连一连"},
+  {
+   "add": "p87_a1",
+   "page": 87,
+   "box": [360, 436, 398, 454],
+   "translation": "(pests)",
+   "source": "（只）",
+   "reason": "unit (只) after the number sentence was erased and lost",
+   "color": 0,
+   "size": 10
+  }
+ ],
+ "flags": [
+  {
+   "page": 86,
+   "issue": "Label 'Jingjing' (p85_s25) under the third child prints much smaller than 'Huanhuan' and 'Lele'; a larger box did not change its size."
+  },
+  {
+   "page": 83,
+   "issue": "Counting-frame labels: H T O under the first frame (p82_s9) print larger than under the second and third frames (p82_s10, p82_s11/s12)."
+  }
+ ]
+}

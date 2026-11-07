@@ -1,0 +1,479 @@
+{
+ "corrections": [
+  {
+   "split": "p89_s8",
+   "translations": [
+    "Tens Ones",
+    "51 has (     ) tens",
+    "and (     ) ones."
+   ],
+   "reason": "place-value labels are separate from the sentence"
+  },
+  {
+   "segment_id": "p89_s9",
+   "translation": "⟦0⟧ has (     ) tens and (     ) ones.",
+   "reason": "full stop"
+  },
+  {
+   "merge": [
+    "p89_s10",
+    "p89_s11"
+   ],
+   "translation": "24 has (     ) tens and (     ) ones.",
+   "reason": "one sentence split by OCR"
+  },
+  {
+   "segment_id": "p89_s10",
+   "erase": [
+    [
+     262,
+     341,
+     326,
+     358
+    ],
+    [
+     258,
+     358,
+     302,
+     376
+    ]
+   ],
+   "reason": "leftover Chinese ( )个十 / 个一。"
+  },
+  {
+   "segment_id": "p89_s10",
+   "box": [
+    214,
+    342,
+    335,
+    378
+   ],
+   "reason": "free room after erase"
+  },
+  {
+   "segment_id": "p90_s5",
+   "translation": "BLANK",
+   "reason": "rest of the instruction (\"<\" or \"=\") already said in p90_s6"
+  },
+  {
+   "segment_id": "p90_s6",
+   "box": [
+    57,
+    207,
+    300,
+    228
+   ],
+   "reason": "free room where the rest of the line was"
+  },
+  {
+   "split": "p91_s3",
+   "translations": [
+    "Need",
+    "Left:"
+   ],
+   "reason": "two lines of two sentences around the answer boxes; short enough for the space"
+  },
+  {
+   "split": "p91_s4",
+   "translations": [
+    "buses.",
+    "empty seats."
+   ],
+   "reason": "two lines of two sentences around the answer boxes"
+  },
+  {
+   "segment_id": "p91_s6",
+   "translation": "⟦0⟧ more rabbits than sheep.",
+   "box": [
+    62,
+    262,
+    142,
+    282
+   ],
+   "reason": "the rabbit compares rabbits with sheep; use the whole bubble"
+  },
+  {
+   "merge": [
+    "p91_s9",
+    "p91_s10"
+   ],
+   "translation": "Ask two maths questions and try to answer them.",
+   "reason": "one sentence split in two sizes; 付 is OCR noise"
+  },
+  {
+   "segment_id": "p91_s13",
+   "translation": "(1) How many logs in all?",
+   "box": [
+    288,
+    404,
+    458,
+    421
+   ],
+   "reason": "same size as siblings: shorter wording, room inside bubble"
+  },
+  {
+   "segment_id": "p91_s15",
+   "box": [
+    288,
+    428,
+    458,
+    445
+   ],
+   "reason": "same size as siblings, room inside bubble"
+  },
+  {
+   "segment_id": "p91_s24",
+   "translation": "– how many in total?",
+   "reason": "continues '(1) [card] and [card]'"
+  },
+  {
+   "segment_id": "p91_s26",
+   "translation": "– how many are there?",
+   "reason": "asks how many of the pictured card; not 'sheets'"
+  },
+  {
+   "segment_id": "p91_s12",
+   "translation": "⟦0⟧",
+   "reason": "the narrow yellow tag holds only the number (as the checked edition); 'logs' spilled onto the picture and the title says what is counted",
+   "box": [
+    205.5,
+    391.5,
+    235.0,
+    406.2
+   ]
+  },
+  {
+   "segment_id": "p91_s14",
+   "translation": "⟦0⟧",
+   "reason": "the narrow yellow tag holds only the number (as the checked edition); 'logs' spilled onto the picture and the title says what is counted",
+   "box": [
+    95.0,
+    416.7,
+    125.3,
+    432.0
+   ]
+  },
+  {
+   "segment_id": "p91_s16",
+   "translation": "⟦0⟧",
+   "reason": "the narrow yellow tag holds only the number (as the checked edition); 'logs' spilled onto the picture and the title says what is counted",
+   "box": [
+    205.5,
+    454.1,
+    234.7,
+    468.3
+   ]
+  },
+  {
+   "split": "p92_s1",
+   "at": [
+    147,
+    188
+   ],
+   "translations": [
+    "Qisi",
+    "Xiaoxiao",
+    "Miaoxiang"
+   ],
+   "reason": "three name tags under three children"
+  },
+  {
+   "segment_id": "p92_s5",
+   "translation": "I came second.",
+   "reason": "natural English"
+  },
+  {
+   "segment_id": "p92_s4",
+   "box": [
+    263,
+    224,
+    470,
+    242
+   ],
+   "reason": "free paper to the right; avoid wrapping"
+  },
+  {
+   "split": "p92_s9",
+   "translations": [
+    "Name",
+    "Score",
+    "Rank"
+   ],
+   "reason": "three row headers of the table"
+  },
+  {
+   "segment_id": "p92_s22",
+   "translation": "(3) Second place did ___ more skips than third place.",
+   "box": [
+    78.5,
+    590.2,
+    345,
+    608
+   ],
+   "reason": "enumerator (3) was lost"
+  },
+  {
+   "segment_id": "p93_s2",
+   "translation": "There are ___ ▭,",
+   "reason": "first item of the list: rectangles (shape was erased)"
+  },
+  {
+   "segment_id": "p93_s4",
+   "translation": "___ □,",
+   "box": [
+    150.5,
+    165.8,
+    238,
+    188.2
+   ],
+   "reason": "list item; covers leftover 个",
+   "erase": [
+    [
+     148,
+     165,
+     245,
+     188
+    ]
+   ]
+  },
+  {
+   "segment_id": "p93_s5",
+   "translation": "BLANK",
+   "reason": "有 is set by the next paragraph's line"
+  },
+  {
+   "segment_id": "p93_s6",
+   "translation": "___ △,",
+   "box": [
+    150.5,
+    189.6,
+    238,
+    210
+   ],
+   "reason": "list item aligned with siblings",
+   "erase": [
+    [
+     148,
+     189,
+     245,
+     211
+    ]
+   ]
+  },
+  {
+   "segment_id": "p93_s8",
+   "translation": "and ___ ○.",
+   "box": [
+    150.5,
+    210.3,
+    240,
+    232.7
+   ],
+   "reason": "last list item; covers leftover 个",
+   "erase": [
+    [
+     148,
+     212,
+     245,
+     235
+    ]
+   ]
+  },
+  {
+   "split": "p93_s3",
+   "translations": [
+    "There are ___ ▭,",
+    "___ □,"
+   ],
+   "reason": "two lines of the list"
+  },
+  {
+   "segment_id": "p93_s7",
+   "translation": "___ △,",
+   "box": [
+    352,
+    191.6,
+    438,
+    208.9
+   ],
+   "reason": "list item; covers leftover 有",
+   "erase": [
+    [
+     352,
+     190,
+     449,
+     211
+    ]
+   ]
+  },
+  {
+   "add": "p93_a1",
+   "page": 93,
+   "box": [
+    352,
+    212,
+    449,
+    235
+   ],
+   "translation": "and ___ ○.",
+   "source": "有___个○。",
+   "reason": "last line of right cell had no paragraph"
+  },
+  {
+   "segment_id": "p93_s14",
+   "box": [
+    57,
+    521,
+    470,
+    537
+   ],
+   "reason": "shrunk to 0.76: slightly shorter wording and free paper to the right",
+   "translation": "4. Can you make a picture like the one below with the flat shapes you know?"
+  },
+  {
+   "restore": [
+    242,
+    309,
+    256,
+    327.5
+   ],
+   "page": 89,
+   "reason": "erasing 支 smeared the blue patch on the pencil box; put the picture back"
+  },
+  {
+   "paint": [
+    242.3,
+    317.2,
+    252.6,
+    325.2
+   ],
+   "page": 89,
+   "colour": [
+    253,
+    214,
+    75
+   ],
+   "reason": "cover 支 with the box yellow, as the checked edition"
+  },
+  {
+   "restore": [
+    280,
+    309,
+    294,
+    327.5
+   ],
+   "page": 89,
+   "reason": "erasing 支 left a black smear on the pencil box; put the picture back"
+  },
+  {
+   "paint": [
+    280.4,
+    317.2,
+    290.6,
+    325.2
+   ],
+   "page": 89,
+   "colour": [
+    253,
+    214,
+    75
+   ],
+   "reason": "cover 支 with the box yellow, as the checked edition"
+  },
+  {
+   "segment_id": "p92_s19",
+   "translation": "(1) Work out their ranks and write them in the table.",
+   "box": [
+    79,
+    541.5,
+    470,
+    559.5
+   ],
+   "erase": [
+    [
+     79,
+     541.5,
+     104,
+     559.5
+    ]
+   ],
+   "reason": "enumerator (1) set with the sentence in the same font as (2)-(5)"
+  },
+  {
+   "restore": [
+    235.8,
+    390.5,
+    248,
+    407.5
+   ],
+   "page": 91,
+   "reason": "the erase of 根 spilled past the tag's right edge onto the logs; put the picture and the tag border back"
+  },
+  {
+   "paint": [
+    206.7,
+    392.4,
+    235.6,
+    406.0
+   ],
+   "page": 91,
+   "colour": [
+    255,
+    247,
+    162
+   ],
+   "reason": "clean the log tag where 根 was erased (smear and border remnant)"
+  },
+  {
+   "restore": [
+    124.5,
+    416,
+    138,
+    433.5
+   ],
+   "page": 91,
+   "reason": "the erase of 根 spilled past the tag's right edge onto the logs; put the picture and the tag border back"
+  },
+  {
+   "paint": [
+    95.9,
+    417.6,
+    124.6,
+    431.2
+   ],
+   "page": 91,
+   "colour": [
+    255,
+    247,
+    162
+   ],
+   "reason": "clean the log tag where 根 was erased (smear and border remnant)"
+  },
+  {
+   "restore": [
+    235.4,
+    452.5,
+    248,
+    469
+   ],
+   "page": 91,
+   "reason": "the erase of 根 spilled past the tag's right edge onto the logs; put the picture and the tag border back"
+  },
+  {
+   "paint": [
+    206.6,
+    454.1,
+    235.0,
+    467.5
+   ],
+   "page": 91,
+   "colour": [
+    255,
+    247,
+    162
+   ],
+   "reason": "clean the log tag where 根 was erased (smear and border remnant)"
+  }
+ ],
+ "flags": []
+}

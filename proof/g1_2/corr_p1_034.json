@@ -1,0 +1,415 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s6",
+   "translation": "Of the three, there are the most chickens and the fewest geese.",
+   "reason": "'chickens are the most' is unidiomatic"
+  },
+  {
+   "segment_id": "p34_s4",
+   "translation": "How many might do the long jump? (Draw \"○\")\nHow many might skip rope? (Draw \"✓\")",
+   "erase": [
+    [
+     355,
+     256,
+     400,
+     274
+    ]
+   ],
+   "reason": "sentence was cut before the ✓ symbol; leftover Chinese quote/✓ erased and set in English",
+   "box": [
+    156.2,
+    234.1,
+    415,
+    273.8
+   ]
+  },
+  {
+   "segment_id": "p34_s17",
+   "translation": "Draw \"✓\" under the answer you think is right.",
+   "erase": [
+    [
+     372,
+     608,
+     390,
+     624
+    ]
+   ],
+   "reason": "the ✓ symbol of the instruction was missing; leftover mark erased",
+   "box": [
+    145.7,
+    608.6,
+    395,
+    623.3
+   ]
+  },
+  {
+   "segment_id": "p35_s4",
+   "translation": "Look across...",
+   "erase": [
+    [
+     262,
+     462,
+     289,
+     471
+    ]
+   ],
+   "reason": "ellipsis dots of the Chinese left in the bubble",
+   "box": [
+    225,
+    459,
+    288,
+    472
+   ]
+  },
+  {
+   "segment_id": "p35_s5",
+   "translation": "Look diagonally...",
+   "erase": [
+    [
+     370,
+     452,
+     397,
+     463
+    ]
+   ],
+   "reason": "ellipsis dots of the Chinese left in the bubble",
+   "box": [
+    335,
+    450,
+    398,
+    464
+   ]
+  },
+  {
+   "segment_id": "p36_s4",
+   "translation": "(⟦0⟧) Colour yellow the numbers whose two digits are the same.",
+   "reason": "shorter, same meaning, so it is set at sibling size"
+  },
+  {
+   "line": "p37_i152_9",
+   "translation": "3. Who ate the most bugs? (Draw \"○\") The fewest? (Draw \"✓\")",
+   "force": true,
+   "reason": "whole instruction line, only text in the box; symbols written out"
+  },
+  {
+   "segment_id": "p38_s3",
+   "translation": "⟦0⟧. Draw \"○\" under the answer you think is right.",
+   "reason": "the ○ symbol of the instruction was missing; leftover quote mark erased",
+   "erase": [
+    [
+     300,
+     216,
+     322,
+     231
+    ]
+   ],
+   "box": [
+    57.8,
+    214.6,
+    400,
+    228.8
+   ]
+  },
+  {
+   "segment_id": "p38_s7",
+   "translation": "⟦0⟧",
+   "reason": "table cell; 'peaches' shrank the label to 0.58, question already says peaches"
+  },
+  {
+   "segment_id": "p38_s8",
+   "translation": "⟦0⟧",
+   "reason": "same as sibling cells"
+  },
+  {
+   "segment_id": "p38_s9",
+   "translation": "⟦0⟧",
+   "reason": "same as sibling cells"
+  },
+  {
+   "segment_id": "p38_s15",
+   "translation": "Are there ⟦0⟧?",
+   "reason": "dropped ⟦1⟧: OCR noise"
+  },
+  {
+   "merge": [
+    "p38_s13",
+    "p38_s14"
+   ],
+   "translation": "There are 36 picture books.",
+   "reason": "one sentence split by OCR"
+  },
+  {
+   "segment_id": "p38_s20",
+   "translation": "⟦0⟧. What numbers can you show with 4 beads? Draw and write.",
+   "reason": "shorter so it fits one line and does not run into the counting frames"
+  },
+  {
+   "segment_id": "p38_s27",
+   "translation": "BLANK",
+   "reason": "用 is said in the next part ('Use two of these cards'); 'Use' alone came out tiny between the number and the cards"
+  },
+  {
+   "restore": [
+    86.3,
+    630.5,
+    107,
+    651.5
+   ],
+   "page": 38,
+   "reason": "pink card 2 was damaged by the erase of 用"
+  },
+  {
+   "segment_id": "p38_s28",
+   "translation": "Use two of these cards to make a two-digit number.",
+   "reason": "reads on from the cards 2 5 8 (三张卡片中的两张)"
+  },
+  {
+   "segment_id": "p38_s29",
+   "translation": "What is the largest? What is the smallest?",
+   "reason": "both questions on the second line"
+  },
+  {
+   "line": "p39_i160_8",
+   "translation": "circle",
+   "force": true,
+   "reason": "shape label under the circle, only text in the box"
+  },
+  {
+   "segment_id": "p40_s7",
+   "box": [
+    157,
+    295,
+    178.5,
+    307
+   ],
+   "reason": "colour label left in Chinese; use the whole circle"
+  },
+  {
+   "merge": [
+    "p40_s10",
+    "p40_s11"
+   ],
+   "translation": "3. On the dot grid, draw a rectangle, a square and a triangle.",
+   "reason": "one sentence split in two at different sizes"
+  },
+  {
+   "segment_id": "p36_s5",
+   "translation": "(⟦0⟧) Colour red where the ones digit is ⟦1⟧ less than the tens digit.",
+   "reason": "shorter, same meaning, fits one line at sibling size"
+  },
+  {
+   "split": "p37_s6",
+   "at": [
+    222.5
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p37_s3",
+   "at": [
+    158.7
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "segment_id": "p37_s4",
+   "erase": [
+    [
+     448,
+     290,
+     459,
+     302
+    ]
+   ],
+   "reason": "leftover Chinese full stop at the end of the row"
+  },
+  {
+   "segment_id": "p37_s6_k0",
+   "box": [
+    196,
+    374.2,
+    222.5,
+    387.5
+   ],
+   "reason": "set inside the tens cell"
+  },
+  {
+   "segment_id": "p36_s6",
+   "box": [
+    55.8,
+    278.6,
+    330,
+    294.8
+   ],
+   "reason": "wraps; free paper to the right"
+  },
+  {
+   "split": "p38_s21",
+   "at": [
+    159.5
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p38_s22",
+   "at": [
+    223.4
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p38_s23",
+   "at": [
+    287.2
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p38_s24",
+   "at": [
+    350.5
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p38_s25",
+   "at": [
+    414
+   ],
+   "translations": [
+    "tens",
+    "ones"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "segment_id": "p40_s15",
+   "translation": "The figure has __ △ and __ □.",
+   "box": [
+    195,
+    643,
+    412,
+    661
+   ],
+   "reason": "shorter so it fits on the plate in one line"
+  },
+  {
+   "restore": [
+    180,
+    371.5,
+    249.5,
+    388.5
+   ],
+   "page": 37,
+   "reason": "the erase of 十位个位 took the cell borders and the girl's leg; put the source back"
+  },
+  {
+   "paint": [
+    195.8,
+    374.0,
+    221.0,
+    386.5
+   ],
+   "page": 37,
+   "colour": [
+    198,
+    233,
+    248
+   ],
+   "reason": "clear 十位 inside the tens cell, borders kept"
+  },
+  {
+   "paint": [
+    222.3,
+    374.0,
+    247.8,
+    386.5
+   ],
+   "page": 37,
+   "colour": [
+    253,
+    249,
+    210
+   ],
+   "reason": "clear 个位 inside the ones cell, borders kept"
+  },
+  {
+   "segment_id": "p33_s4",
+   "box": [
+    77,
+    260.5,
+    330,
+    276
+   ],
+   "reason": "one line from the bullet instead of three right-aligned lines"
+  },
+  {
+   "segment_id": "p40_s8",
+   "translation": "BLANK",
+   "reason": "the label grew past the rectangle and its plate stretched the blue rectangle; set as an add inside the shape instead"
+  },
+  {
+   "segment_id": "p40_s9",
+   "translation": "BLANK",
+   "reason": "the label grew past the square and its plate turned the yellow square into a rectangle; set as an add inside the shape instead"
+  },
+  {
+   "add": "p40_a1",
+   "page": 40,
+   "box": [
+    94,
+    322,
+    143,
+    336.5
+   ],
+   "translation": "blue",
+   "source": "蓝",
+   "size": 7.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "colour label inside the blue rectangle, shape kept"
+  },
+  {
+   "add": "p40_a2",
+   "page": 40,
+   "box": [
+    160,
+    322,
+    175.5,
+    336.5
+   ],
+   "translation": "yellow",
+   "source": "黄",
+   "size": 5.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "colour label inside the yellow square, shape kept"
+  }
+ ],
+ "flags": []
+}

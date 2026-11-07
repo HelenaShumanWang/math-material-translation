@@ -1,0 +1,335 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p57_s4",
+   "box": [
+    274,
+    135,
+    458,
+    163
+   ],
+   "reason": "same size as siblings"
+  },
+  {
+   "segment_id": "p57_s5",
+   "translation": "(⟦0⟧) How many fewer did the small woodpecker eat than the big one?",
+   "box": [
+    274,
+    164,
+    458,
+    212
+   ],
+   "reason": "shorter; same size"
+  },
+  {
+   "segment_id": "p57_s25",
+   "box": [
+    240,
+    630,
+    292,
+    646
+   ],
+   "reason": "label too small"
+  },
+  {
+   "merge": [
+    "p58_s10",
+    "p58_s11"
+   ],
+   "translation": "Answer: They pulled",
+   "reason": "Answer: printed twice; shorter so the words stay clear of the printed blank"
+  },
+  {
+   "segment_id": "p58_s13",
+   "box": [
+    75,
+    415,
+    250,
+    431
+   ],
+   "reason": "heading set much larger than siblings"
+  },
+  {
+   "segment_id": "p58_s15",
+   "box": [
+    146,
+    452,
+    164,
+    467
+   ],
+   "reason": "T set sideways"
+  },
+  {
+   "segment_id": "p62_s9",
+   "translation": "How many bottles did Xiaohong collect?",
+   "reason": "the bottle picture overlapped the words in the small bubble"
+  },
+  {
+   "segment_id": "p62_s3",
+   "translation": "I collected 13 bottles.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p62_s3",
+   "erase": [
+    [
+     166,
+     191,
+     177,
+     202
+    ]
+   ],
+   "reason": "leftover 。"
+  },
+  {
+   "segment_id": "p62_s10",
+   "translation": "How many bottles did Xiaoqing collect?",
+   "reason": "the bottle picture overlapped the words in the small bubble"
+  },
+  {
+   "segment_id": "p62_s11",
+   "translation": "How many ⟦0⟧ did Xiaohong collect?",
+   "reason": "bottle picture as noun"
+  },
+  {
+   "segment_id": "p62_s17",
+   "translation": "How many ⟦0⟧ did Xiaoqing collect?",
+   "reason": "bottle picture as noun"
+  },
+  {
+   "segment_id": "p62_s12",
+   "translation": "Use ⟦0⟧ stick for ⟦1⟧ ⟦2⟧, then place ⟦3⟧ more sticks to show how many bottles Xiaohong collected.",
+   "reason": "1 stick; bottle picture"
+  },
+  {
+   "line": "p62_i252_18",
+   "translation": "3 more than Xiaolin",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "merge": [
+    "p62_s13",
+    "p62_i252_18_t"
+   ],
+   "translation": "3 more than Xiaolin means 3 more than 13.",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p62_s14",
+   "translation": "DROP",
+   "reason": "circles read as zeros; labels set by add"
+  },
+  {
+   "add": "p62_a1",
+   "page": 62,
+   "box": [
+    236,
+    488,
+    278.5,
+    500
+   ],
+   "translation": "Xiaolin:",
+   "source": "小林：",
+   "size": 8,
+   "align": "right",
+   "reason": "label"
+  },
+  {
+   "add": "p62_a2",
+   "page": 62,
+   "box": [
+    236,
+    508,
+    278.5,
+    520
+   ],
+   "translation": "Xiaohong:",
+   "source": "小红：",
+   "size": 8,
+   "align": "right",
+   "reason": "label"
+  },
+  {
+   "segment_id": "p58_s16",
+   "box": [
+    166,
+    452,
+    186,
+    467
+   ],
+   "reason": "O set sideways"
+  },
+  {
+   "segment_id": "p58_s17",
+   "box": [
+    280,
+    452,
+    299,
+    467
+   ],
+   "reason": "T set sideways"
+  },
+  {
+   "segment_id": "p58_s18",
+   "box": [
+    301,
+    452,
+    320,
+    467
+   ],
+   "reason": "O set sideways"
+  },
+  {
+   "segment_id": "p60_s13",
+   "box": [
+    333,
+    431,
+    355,
+    446
+   ],
+   "reason": "O set sideways"
+  },
+  {
+   "segment_id": "p60_s14",
+   "box": [
+    176,
+    431,
+    194,
+    446
+   ],
+   "reason": "T set sideways"
+  },
+  {
+   "segment_id": "p60_s15",
+   "box": [
+    196,
+    431,
+    216,
+    446
+   ],
+   "reason": "O set sideways"
+  },
+  {
+   "segment_id": "p60_s16",
+   "box": [
+    315,
+    431,
+    333,
+    446
+   ],
+   "reason": "T set sideways"
+  },
+  {
+   "segment_id": "p60_s21",
+   "translation": "Calculate carefully...",
+   "reason": "more natural, keeps the trailing dots"
+  },
+  {
+   "segment_id": "p61_s14",
+   "box": [
+    57,
+    528,
+    300,
+    544
+   ],
+   "reason": "wrapped onto two lines; free paper to the right"
+  },
+  {
+   "segment_id": "p63_s6",
+   "translation": "(⟦0⟧) ⟦3⟧ more ⟦1⟧ than ⟦2⟧.",
+   "reason": "garbled; circles are 5 more than triangles; dropped literal ○ (OCR noise)"
+  },
+  {
+   "segment_id": "p63_s7",
+   "translation": "(⟦0⟧) ⟦4⟧ fewer ⟦1⟧ than ⟦2⟧.",
+   "reason": "word order; dropped ⟦3⟧: OCR noise 0"
+  },
+  {
+   "segment_id": "p63_s9",
+   "translation": "I folded ⟦0⟧ lucky stars.",
+   "reason": "full stop"
+  },
+  {
+   "add": "p63_a1",
+   "page": 63,
+   "box": [
+    196,
+    362,
+    229,
+    382
+   ],
+   "translation": "BLANK",
+   "source": "（个）",
+   "reason": "measure word after answer box left in Chinese"
+  },
+  {
+   "merge": [
+    "p64_s29",
+    "p64_s30"
+   ],
+   "translation": "6. Fill in each ○ with >, < or =.",
+   "reason": "one sentence; > was lost and quotes left in Chinese style"
+  },
+  {
+   "segment_id": "p64_s29",
+   "erase": [
+    [
+     200,
+     592,
+     230,
+     614
+    ],
+    [
+     262,
+     592,
+     325,
+     614
+    ]
+   ],
+   "reason": "leftover quote marks and full stop"
+  },
+  {
+   "segment_id": "p60_s10",
+   "reason": "'harvested' ran onto the printed answer blank",
+   "translation": "Answer: Xiaoxiao picked",
+   "box": [
+    77,
+    366,
+    229,
+    383
+   ]
+  },
+  {
+   "segment_id": "p62_s8",
+   "translation": "BLANK",
+   "reason": "set much smaller than its sibling headings; re-set by add p62_a3"
+  },
+  {
+   "add": "p62_a3",
+   "page": 62,
+   "box": [
+    77,
+    300,
+    300,
+    317
+   ],
+   "translation": "What maths problems can you ask?",
+   "source": "你能提出哪些数学问题？",
+   "size": 12.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "heading at the size of its siblings"
+  }
+ ],
+ "flags": [
+  {
+   "page": 63,
+   "issue": "'What maths problems can you ask?' (p62_s8) is set much smaller than the matching green-dot headings on the page ('How many ... did Xiaohong collect?'); a wider box did not change its size."
+  },
+  {
+   "page": 58,
+   "issue": "The '30瓶' sign is now empty and '30 bottles' sits on the free paper to its left, because the English does not fit inside the small sign at a readable size."
+  }
+ ]
+}

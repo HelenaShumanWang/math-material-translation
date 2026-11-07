@@ -1,0 +1,131 @@
+{
+ "code": "g1_2",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 5,
+   "issue": "Watermark 北京师范大学出版社 is partly erased around the Unit 5 / Maths Is Fun rows (北 missing). It overlaps 数学好玩, so it cannot be restored without bringing the Chinese back. 'Maths Is Fun' touches its leader dots, and a narrower box does not stop the layout widening it."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 6,
+   "issue": "'How many pencils are left?' is set noticeably smaller than the other bullet headings ('Try it, then explain.', 'Calculate.'). There is no free room before the answer banner."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 14,
+   "issue": "The first answer line 'Answer: [red] has ___ more than [yellow].' (p13_s5/p13_s6) is set smaller than the second answer line p13_s12; the parachute pictograms in the sentences are partial OCR crops."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 17,
+   "issue": "The fill-in rows are now 'Sky: [] [bird]  Tree: [] [bird]' etc.; the commas between the two entries of rows 1 and 2 were erased by the pipeline and are not back (row 3 keeps its comma). The answer lines on this page (p16_s10) are set larger than the source."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 24,
+   "issue": "公安 decal on the toy police car (p23_s7) kept in Chinese: too small for English"
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 27,
+   "issue": "Item 5: the inline cloud icon (an image cropped from the source) carries a stray dot just before it ('and .[cloud]'). The checked edition has the same dot, and a correction cannot fix the icon crop."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 31,
+   "issue": "Item 1 '( ) tens and ( ) ones make 26.': the widened answer brackets make the line wider than the pink plate, so the layout lets it grow left and the first '(' sits about 10 pt left of the plate. The checked edition used narrow '()' and fitted. A box over the whole plate brings it closer but cannot stop the growth. Fixing it would need shorter wording, such as 'is 26'."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 44,
+   "issue": "faint leftover underline of a printed answer blank under \"including\" in the fill-in sentence (p43_s4); cosmetic"
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 52,
+   "issue": "Item (1) 'How many more cypress trees than pine trees?' starts a little to the right of items (2) and (3); moving the box start does not move it."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 53,
+   "issue": "Vertical labels 'Addend' (0.61) and 'Subtrahend' (0.58) are small in their narrow boxes; readable."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 58,
+   "issue": "The '30瓶' sign is now empty and '30 bottles' sits on the free paper to its left, because the English does not fit inside the small sign at a readable size. The '42 people' sign is still set very small (scale 0.60)."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 63,
+   "issue": "The bubble '3 more than Xiaolin means 3 more than 13.' wraps onto three lines, with '13.' alone on the last one. It is legible but tight."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 64,
+   "issue": "The bubble 'I'm 37 years older than the deer.' is still set very small (scale 0.71). It was not changed by this file."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 72,
+   "issue": "Book-cover titles (童话世界 Fairy Tale World, 丛林世界 Jungle World, 海底世界 Ocean World, p71_s4/s5/s8/s15/s16/s30/s31) are printed tiny on the covers and are left in Chinese; English does not fit legibly. p71_s27 is set at 0.56 on one cover while the others are Chinese - inconsistent."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 72,
+   "issue": "Second 'Answer:' (p71_s32) is size-matched down to the small 'and' labels (about 9pt) while the first 'Answer:' is 12.8pt; the checked edition had both at full size. A box change or a BLANK+add at size 12.8 is matched down again by the layout, so it needs a layout fix."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 75,
+   "issue": "Faint pale residue of the erased 十位/个位 header row remains under the T O labels of the vertical form (barely visible)."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 77,
+   "issue": "The unit (根) after each answer box is erased by policy and not translated. The dashed dividers and the cloud outline that the erase damaged are now restored."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 79,
+   "issue": "Housekeeping: a paint entry for page index 78 ('stroke of 十 left in the middle plate's tens cell') had been written into this file by mistake, probably by a check working on other pages through a shared scratch file. It is removed from this file and may be missing from the file that owns page 78."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 79,
+   "issue": "The table row header 'At first' and the column header 'Storybooks' are set small in narrow table cells. The unit (本) after the answer boxes is erased by policy."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 81,
+   "issue": "The Fairy Tales cover title is hand lettering and stays in Chinese (DROP); the spine label carries the English title. Price tags ¥8 and ¥22 keep pale white patches over the right edge of the tag where 元 was erased."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 83,
+   "issue": "Counting-frame labels: H T O under the first frame (p82_s9) print larger than under the second and third frames (p82_s10, p82_s11/s12)."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 86,
+   "issue": "Label 'Jingjing' (p85_s25) under the third child prints much smaller than 'Huanhuan' and 'Lele'; a larger box ([217,661,256,676]) did not change its size."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 90,
+   "issue": "'Tens Ones' over the abacus is one label at 0.76 and is not split into the two cells. It is readable."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 93,
+   "issue": "The children's name tags (Qisi / Xiaoxiao / Miaoxiang) are small: Xiaoxiao is set at 0.68 because each cell is narrow. They are readable but tiny."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 94,
+   "issue": "In both 'Find and count' cells the middle list lines (___ □, / ___ △,) come out a little smaller than the first and last lines, and the shapes are set as glyphs (▭ □ △ ○). The English is correct and nothing is left in Chinese."
+  }
+ ]
+}

@@ -1,0 +1,288 @@
+{
+ "corrections": [
+  {
+   "add": "p9_a1",
+   "page": 9,
+   "box": [297, 335, 330, 354],
+   "translation": "BLANK",
+   "source": "（只）",
+   "reason": "(只) after the answer box was left in Chinese; measure words after answer boxes are erased"
+  },
+  {
+   "segment_id": "p11_s4",
+   "translation": "⟦0⟧ people, but only ⟦1⟧ chairs…",
+   "erase": [[286, 324, 302, 333]],
+   "reason": "ellipsis as in the source; leftover dot of …… erased"
+  },
+  {
+   "segment_id": "p11_s5",
+   "translation": "How many more chairs are needed?",
+   "reason": "more natural"
+  },
+  {
+   "paint": [106, 409, 121, 423],
+   "page": 11,
+   "colour": [252, 234, 212],
+   "reason": "leftover fragment of the triangle under the English"
+  },
+  {
+   "segment_id": "p11_s6",
+   "translation": "Use ⟦0⟧ for people and △ for chairs.",
+   "reason": "the triangle picture for chairs was missing from the English; △ set in the text, damaged fragment painted"
+  },
+  {
+   "segment_id": "p11_s7",
+   "translation": "We need 4 more chairs.",
+   "box": [368, 414, 457, 432],
+   "reason": "more natural speech; box widened inside the bubble"
+  },
+  {
+   "restore": [158, 437, 206, 463],
+   "page": 11,
+   "reason": "picture part erased by an OCR box (answer box / animal picture / circle); no Chinese inside"
+  },
+  {
+   "segment_id": "p12_s1",
+   "translation": "⟦0⟧. Each child gets ⟦1⟧ shovel. How many more shovels are needed?",
+   "reason": "'1. 1 shovel each' read oddly; the shovel picture is gone, so name the shovel"
+  },
+  {
+   "line": "p13_i56_4",
+   "pieces": [[203, 227.5, ", and"], [239, 262.5, "for"]],
+   "reason": "line left in Chinese between pictograms: translate the words, keep the circle and parachute pictures"
+  },
+  {
+   "add": "p13_a1",
+   "page": 13,
+   "box": [273, 268, 282, 279],
+   "translation": ".",
+   "source": "。",
+   "reason": "Chinese full stop at the end of the bubble"
+  },
+  {
+   "segment_id": "p13_s6",
+   "translation": "has ___ more than ⟦0⟧.",
+   "box": [122, 379, 228, 393],
+   "erase": [[204, 379, 228, 393]],
+   "reason": "answer sentence was '[red] [yellow] — more 个。'; now '[red] has ___ more than [yellow].', 个。 erased"
+  },
+  {
+   "merge": ["p13_s7", "p13_s8"],
+   "translation": "How many fewer ⟦0⟧ than ⟦1⟧?",
+   "reason": "was '[blue] than [red]' + 'by how many?': one question"
+  },
+  {
+   "segment_id": "p13_s7",
+   "translation": "How many fewer 56.12.l than 56.12.r?",
+   "box": [76, 401, 250, 417],
+   "reason": "set at 0.68 in a tiny box; the merged line has room (the pictogram markers are written out because a merge clears the placeholders)"
+  },
+  {
+   "segment_id": "p13_s10",
+   "translation": "How many fewer ⟦0⟧ than ⟦1⟧ is the same as how many more ⟦3⟧ than ⟦4⟧.",
+   "reason": "dropped ⟦2⟧: OCR crop of 少; full stop"
+  },
+  {
+   "segment_id": "p13_s12",
+   "translation": "Answer: There are ___ fewer ⟦0⟧ than ⟦1⟧.",
+   "reason": "blank was missing and 'has [red] fewer' was wrong"
+  },
+  {
+   "segment_id": "p13_s14",
+   "translation": "DROP",
+   "reason": "decorative comic-book cover text; only 5 of 18 covers were translated"
+  },
+  {
+   "segment_id": "p13_s15",
+   "translation": "DROP",
+   "reason": "decorative comic-book cover text; only 5 of 18 covers were translated"
+  },
+  {
+   "segment_id": "p13_s16",
+   "translation": "DROP",
+   "reason": "decorative comic-book cover text; only 5 of 18 covers were translated"
+  },
+  {
+   "segment_id": "p13_s17",
+   "translation": "DROP",
+   "reason": "decorative comic-book cover text; only 5 of 18 covers were translated"
+  },
+  {
+   "segment_id": "p13_s18",
+   "translation": "DROP",
+   "reason": "decorative comic-book cover text; only 5 of 18 covers were translated"
+  },
+  {
+   "merge": ["p14_s14", "p14_s15"],
+   "translation": "How many fewer ⟦0⟧ than ⟦1⟧?",
+   "reason": "'is greater than' was wrong: 比…少几朵 asks how many fewer; one question"
+  },
+  {
+   "segment_id": "p14_s14",
+   "translation": "How many fewer 60.19.l than 60.19.r?",
+   "box": [72, 571, 250, 588],
+   "reason": "room to the right on the merged line (the pictogram markers are written out because a merge clears the placeholders)"
+  },
+  {
+   "segment_id": "p14_s10",
+   "translation": "⟦0⟧. Who picked more? How many more?",
+   "box": [56.7, 433.7, 330, 450.4],
+   "reason": "wrapped onto two lines; free paper to the right"
+  },
+  {
+   "segment_id": "p15_s2",
+   "translation": "⟦0⟧ has ⟦2⟧ fewer than ⟦1⟧.",
+   "box": [328, 219, 456, 239],
+   "reason": "set at 0.48; free room in the panel to the right; full stop"
+  },
+  {
+   "segment_id": "p15_s4",
+   "translation": "⟦0⟧ has ⟦2⟧ more than ⟦1⟧.",
+   "box": [328, 267, 456, 287],
+   "reason": "set at 0.57; free room in the panel to the right"
+  },
+  {
+   "segment_id": "p15_s3",
+   "translation": "BLANK",
+   "reason": "measure word after the table blank: the cells hold shapes, not apples"
+  },
+  {
+   "segment_id": "p15_s5",
+   "translation": "BLANK",
+   "reason": "measure word after the table blank: the cells hold shapes, not apples"
+  },
+  {
+   "segment_id": "p15_s17",
+   "translation": "Less than ⟦0⟧.",
+   "box": [103, 488, 149, 505],
+   "reason": "full stop; box kept inside the bubble outline"
+  },
+  {
+   "segment_id": "p15_s21",
+   "translation": "⟦1⟧ more than ⟦0⟧.",
+   "box": [91, 532, 136, 550],
+   "reason": "full stop; box kept inside the bubble outline"
+  },
+  {
+   "segment_id": "p15_s20",
+   "translation": "⟦0⟧ books and ⟦1⟧ books make ⟦2⟧ books.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p15_s22",
+   "translation": "⟦0⟧. How many fewer teachers than students?",
+   "box": [56.7, 568.9, 296, 584.5],
+   "reason": "ran into the picture on two lines; free paper to the right"
+  },
+  {
+   "split": "p16_s3",
+   "translations": ["Sky:", "Bank:", "Ground:"],
+   "reason": "three row labels of the fill-in table printed as one run-on sentence"
+  },
+  {
+   "split": "p16_s4",
+   "translations": ["Tree:", "River:"],
+   "reason": "two row labels printed as one run-on sentence (row 1 is the tree, row 2 the river)"
+  },
+  {
+   "segment_id": "p16_s4_k1",
+   "translation": "River:",
+   "box": [270, 349, 328, 366],
+   "reason": "'River:' ran into the duck picture; set after the comma's place"
+  },
+  {
+   "segment_id": "p16_s6",
+   "translation": "BLANK",
+   "reason": "measure word 只。 set as 'goats.' over the goat picture"
+  },
+  {
+   "add": "p16_a1",
+   "page": 16,
+   "box": [225, 325, 241, 342],
+   "translation": "BLANK",
+   "source": "只",
+   "reason": "measure word 只 left in Chinese after the answer box"
+  },
+  {
+   "add": "p16_a2",
+   "page": 16,
+   "box": [355, 325, 372, 342],
+   "translation": "BLANK",
+   "source": "只",
+   "reason": "measure word 只 left in Chinese after the answer box"
+  },
+  {
+   "restore": [247, 348, 262, 366],
+   "page": 16,
+   "reason": "picture part erased by an OCR box (answer box / animal picture / circle); no Chinese inside"
+  },
+  {
+   "restore": [373, 348, 392, 368],
+   "page": 16,
+   "reason": "picture part erased by an OCR box (answer box / animal picture / circle); no Chinese inside"
+  },
+  {
+   "restore": [242, 372, 260, 390],
+   "page": 16,
+   "reason": "picture part erased by an OCR box (answer box / animal picture / circle); no Chinese inside"
+  },
+  {
+   "restore": [324, 372, 340, 390],
+   "page": 16,
+   "reason": "picture part erased by an OCR box (answer box / animal picture / circle); no Chinese inside"
+  },
+  {
+   "restore": [270, 647, 293, 672],
+   "page": 16,
+   "reason": "picture part erased by an OCR box (answer box / animal picture / circle); no Chinese inside"
+  },
+  {
+   "line": "p16_i68_16",
+   "pieces": [[326, 360, "BLANK"]],
+   "reason": "(只) left in Chinese after the answer box"
+  },
+  {
+   "merge": ["p16_s13", "p16_s14"],
+   "translation": "First find out what the 8 stands for…",
+   "reason": "one sentence in one bubble split over two lines"
+  },
+  {
+   "segment_id": "p16_s7",
+   "translation": "How many fewer birds are in the tree than in the sky?",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p13_s5",
+   "translation": "Answer:",
+   "box": [60, 378, 104, 393],
+   "reason": "'Answer:' had shrunk to 0.6 after the box of p13_s6 changed"
+  },
+  {
+   "paint": [174, 386.5, 206, 392],
+   "page": 13,
+   "colour": [255, 255, 255],
+   "reason": "purple answer line under 'more than' now that the blank is ___ in the text"
+  },
+  {
+   "restore": [358, 171, 383, 195],
+   "page": 14,
+   "reason": "picture part erased by an OCR box (answer box / animal picture / circle); no Chinese inside"
+  },
+  {
+   "paint": [393, 334, 401, 342],
+   "page": 16,
+   "colour": "border",
+   "reason": "stray Chinese full stop at the end of row 1 (rows 2 and 3 lost theirs)"
+  }
+ ],
+ "flags": [
+  {
+   "page": 14,
+   "issue": "The first answer line 'Answer: [red] has ___ more than [yellow].' (p13_s5/p13_s6) is set smaller than the second answer line p13_s12; the parachute pictograms in the sentences are partial OCR crops."
+  },
+  {
+   "page": 17,
+   "issue": "The fill-in rows are now 'Sky: [] [bird]  Tree: [] [bird]' etc.; the commas between the two entries of rows 1 and 2 were erased by the pipeline and are not back (row 3 keeps its comma). The answer lines on this page (p16_s10) are set larger than the source."
+  }
+ ]
+}

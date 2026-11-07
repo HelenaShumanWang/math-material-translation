@@ -1,0 +1,37 @@
+{
+ "corrections": [
+  {"segment_id": "p17_s2", "translation": "⟦0⟧ Fill in.", "reason": "'there are' duplicated the next line"},
+  {"line": "p17_i72_15", "translation": "? pencils", "force": true, "reason": "label on the box of pencils (支), only text in the box"},
+  {"segment_id": "p18_s16", "translation": "DROP", "reason": "OCR noise on the fish picture"},
+  {"segment_id": "p19_s2", "translation": "DROP", "reason": "OCR noise: misread of the + and = signs in the card, it covers the printed signs"},
+  {"add": "p19_a1", "page": 19, "box": [296, 281, 311, 296], "translation": ":", "source": "有", "reason": "first 有 in (1) left in Chinese"},
+  {"segment_id": "p19_s11", "translation": ",", "reason": "pattern: [shrimp]: □, [hermit crab]: □, [crab]: □."},
+  {"segment_id": "p19_s12", "translation": ":", "reason": "pattern with icons"},
+  {"segment_id": "p19_s13", "translation": ",", "reason": "'birds' was wrong (hermit crabs)"},
+  {"segment_id": "p19_s14", "translation": ":", "reason": "left in Chinese; pattern with icons"},
+  {"segment_id": "p19_s15", "translation": ".", "reason": "'birds' was wrong (crabs)"},
+  {"segment_id": "p19_s17", "translation": "BLANK", "reason": "多 moved into 'more' after the answer box"},
+  {"add": "p19_a2", "page": 19, "box": [382, 328, 407, 343], "translation": "more.", "source": "只。", "reason": "[shrimp] vs [hermit crab]: □ more."},
+  {"segment_id": "p19_s18", "translation": "Ask another maths question.", "reason": "British 'maths'"},
+  {"segment_id": "p19_s23", "box": [232, 511, 272, 524], "reason": "name clear of the boy's shoe; free paper to the right"},
+  {"segment_id": "p19_s27", "translation": "See who can say the most.", "reason": "看谁说得多 = who can say the most"},
+  {"segment_id": "p20_s2", "translation": "All start with 12.", "reason": "'All are 12 minus…' unclear"},
+  {"segment_id": "p21_s9", "translation": "Which picture does Xiaoxia see? (Draw “✓”)", "box": [78, 371, 330, 389], "erase": [[226, 370, 318, 390]], "reason": "one line with the instruction; the printed ？（画“✓”） erased, same size as sibling lines"},
+  {"segment_id": "p22_s1", "box": [56, 122, 430, 140], "reason": "wrapped into two lines; free paper to the right"},
+  {"segment_id": "p23_s7", "translation": "DROP", "reason": "tiny decal on the toy police car; no room for English"},
+  {"add": "p19_a3", "page": 19, "box": [298, 329, 311, 341], "translation": "vs", "source": "比", "reason": "比 between two icons"},
+  {"restore": [355, 326, 373, 345], "page": 19, "reason": "answer box edge in (2) damaged by the erase of 多"},
+  {"segment_id": "p17_s10", "translation": "(⟦0⟧) Ask another maths question and try to answer it.", "reason": "maths; ASCII brackets"},
+  {"split": "p18_s30", "translations": ["tables,", "chairs."], "reason": "two bubble lines: There are □ tables, □ chairs."},
+  {"segment_id": "p23_s13", "translation": "Which picture shows the back of the schoolbag? (Draw \"✓\")\nWhich picture shows the side of the schoolbag? (Draw \"○\")", "box": [76, 446, 480, 488], "reason": "two questions, one per line"},
+  {"segment_id": "p18_s29", "erase": [[140, 634, 158, 649]], "reason": "leftover 子，"},
+  {"segment_id": "p18_s30_k0", "box": [211, 615, 256, 632], "reason": "tables,: own place after the first answer box (was set at 0.62)"},
+  {"segment_id": "p18_s30_k1", "box": [186, 633, 246, 649], "reason": "chairs.: after the second answer box"},
+  {"segment_id": "p21_s10", "translation": "BLANK", "reason": "画 folded into p21_s9 'Draw “✓”'"},
+  {"segment_id": "p19_s25", "box": [138, 519.5, 182, 533.5], "reason": "name set at 0.59; free paper to the left"},
+  {"segment_id": "p19_s19", "translation": "Shrimp and crabs\nin all:", "reason": "wrapped awkwardly; two lines before the answer box"}
+ ],
+ "flags": [
+  {"page": 24, "issue": "公安 decal on the toy police car (p23_s7) kept in Chinese: too small for English"}
+ ]
+}

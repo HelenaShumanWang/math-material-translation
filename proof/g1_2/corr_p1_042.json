@@ -1,0 +1,18 @@
+{
+ "corrections": [
+  {"segment_id": "p42_s1", "translation": "⟦0⟧. Fold a paper aeroplane.", "reason": "British spelling"},
+  {"segment_id": "p45_s9", "erase": [[160, 587, 169, 596]], "reason": "leftover dot of the Chinese ellipsis beside the bubble text"},
+  {"segment_id": "p45_s9", "box": [90.0, 573.0, 176.0, 600.0], "reason": "use the free room of the bubble so the text fits on two lines inside the outline; was shrunk to 0.78"},
+  {"segment_id": "p46_s1", "translation": "⟦0⟧. Colour the shapes that match the one in the top left corner.", "reason": "shorter, fits one line without wrapping into the frame"},
+  {"segment_id": "p46_s2", "translation": "BLANK", "reason": "colour label cannot be set in the tiny triangle; the yellow fill shows the colour (as in checked edition)"},
+  {"segment_id": "p46_s3", "translation": "BLANK", "reason": "colour label too small to read; red fill shows the colour (as in checked edition)"},
+  {"segment_id": "p46_s4", "translation": "BLANK", "reason": "colour label cannot be set; green fill shows the colour (as in checked edition)"},
+  {"restore": [185.5, 184, 197.5, 193], "page": 46, "reason": "edge of the yellow triangle damaged by erasing 黄"},
+  {"restore": [176.5, 191, 185.5, 198], "page": 46, "reason": "edge of the yellow triangle damaged by erasing 黄"},
+  {"add": "p47_a1", "page": 47, "box": [158, 259, 208, 274], "translation": "6 plates", "source": "6个", "size": 9, "color": 2302755, "reason": "label above the cat's plates left in Chinese"},
+  {"segment_id": "p47_s6", "box": [78.0, 348.0, 233.0, 388.0], "reason": "\"your\" ran into the dashed border of the box on the right"}
+ ],
+ "flags": [
+  {"page": 44, "issue": "faint leftover underline of a printed answer blank under \"including\" in the fill-in sentence (p43_s4); cosmetic"}
+ ]
+}
