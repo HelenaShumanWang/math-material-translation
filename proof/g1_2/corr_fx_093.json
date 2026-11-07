@@ -1,0 +1,356 @@
+{
+ "corrections": [
+  {
+   "split": "p92_s1",
+   "translations": [
+    "BLANK",
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "name tags set as adds with room to be legible"
+  },
+  {
+   "add": "p92_a1",
+   "page": 92,
+   "box": [
+    110,
+    174.5,
+    143,
+    187.5
+   ],
+   "translation": "Qisi",
+   "source": "奇思",
+   "size": 8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "name tag under Qisi"
+  },
+  {
+   "add": "p92_a2",
+   "page": 92,
+   "box": [
+    144,
+    174.5,
+    185,
+    187.5
+   ],
+   "translation": "Xiaoxiao",
+   "source": "笑笑",
+   "size": 8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "name tag under Xiaoxiao"
+  },
+  {
+   "add": "p92_a3",
+   "page": 92,
+   "box": [
+    186,
+    174.5,
+    230,
+    187.5
+   ],
+   "translation": "Miaoxiang",
+   "source": "妙想",
+   "size": 8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "name tag under Miaoxiang"
+  },
+  {
+   "segment_id": "p93_s2",
+   "translation": "BLANK",
+   "reason": "list re-set: English words as adds, the printed blanks and drawn shapes restored from the source"
+  },
+  {
+   "segment_id": "p93_s4",
+   "translation": "BLANK",
+   "reason": "list re-set: English words as adds, the printed blanks and drawn shapes restored from the source"
+  },
+  {
+   "segment_id": "p93_s6",
+   "translation": "BLANK",
+   "reason": "list re-set: English words as adds, the printed blanks and drawn shapes restored from the source"
+  },
+  {
+   "segment_id": "p93_s8",
+   "translation": "BLANK",
+   "reason": "list re-set: English words as adds, the printed blanks and drawn shapes restored from the source"
+  },
+  {
+   "segment_id": "p93_s7",
+   "translation": "BLANK",
+   "reason": "list re-set: English words as adds, the printed blanks and drawn shapes restored from the source"
+  },
+  {
+   "segment_id": "p93_a1_p0",
+   "translation": "BLANK",
+   "reason": "list re-set: English words as adds, the printed blanks and drawn shapes restored from the source"
+  },
+  {
+   "split": "p93_s3",
+   "translations": [
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "list re-set: English words as adds, printed blanks and drawn shapes restored"
+  },
+  {
+   "add": "p93_a2",
+   "page": 93,
+   "box": [
+    112,
+    142,
+    165,
+    159
+   ],
+   "translation": "There are",
+   "source": "图中有",
+   "size": 10.5,
+   "align": "right",
+   "color": 2301728,
+   "reason": "first line of the list"
+  },
+  {
+   "add": "p93_a3",
+   "page": 93,
+   "box": [
+    300,
+    142,
+    368,
+    159
+   ],
+   "translation": "There are",
+   "source": "图中有",
+   "size": 10.5,
+   "align": "right",
+   "color": 2301728,
+   "reason": "first line of the list"
+  },
+  {
+   "add": "p93_a4",
+   "page": 93,
+   "box": [
+    138,
+    217,
+    165,
+    236
+   ],
+   "translation": "and",
+   "source": "有",
+   "size": 10.5,
+   "align": "right",
+   "color": 2301728,
+   "reason": "last line of the list"
+  },
+  {
+   "add": "p93_a5",
+   "page": 93,
+   "box": [
+    342,
+    217,
+    368,
+    236
+   ],
+   "translation": "and",
+   "source": "有",
+   "size": 10.5,
+   "align": "right",
+   "color": 2301728,
+   "reason": "last line of the list"
+  },
+  {
+   "add": "p93_a6",
+   "page": 93,
+   "box": [
+    233,
+    217,
+    243,
+    236
+   ],
+   "translation": ".",
+   "source": "。",
+   "size": 10.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "full stop after the last shape"
+  },
+  {
+   "add": "p93_a7",
+   "page": 93,
+   "box": [
+    436,
+    217,
+    446,
+    236
+   ],
+   "translation": ".",
+   "source": "。",
+   "size": 10.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "full stop after the last shape"
+  },
+  {
+   "restore": [
+    166.5,
+    156.3,
+    196,
+    159.5
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    212.2,
+    142,
+    242,
+    159
+   ],
+   "page": 93,
+   "reason": "drawn shape and comma"
+  },
+  {
+   "restore": [
+    166.5,
+    180.2,
+    196,
+    183.4
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    212.2,
+    167,
+    242,
+    186
+   ],
+   "page": 93,
+   "reason": "drawn shape and comma"
+  },
+  {
+   "restore": [
+    166.5,
+    204.2,
+    196,
+    207.4
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    212.2,
+    192,
+    242,
+    211
+   ],
+   "page": 93,
+   "reason": "drawn shape and comma"
+  },
+  {
+   "restore": [
+    166.5,
+    228.4,
+    196,
+    231.6
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    212.2,
+    217,
+    232,
+    236
+   ],
+   "page": 93,
+   "reason": "drawn shape"
+  },
+  {
+   "restore": [
+    369.5,
+    156.3,
+    399,
+    159.5
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    415.3,
+    142,
+    445,
+    159
+   ],
+   "page": 93,
+   "reason": "drawn shape and comma"
+  },
+  {
+   "restore": [
+    369.5,
+    180.2,
+    399,
+    183.4
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    415.3,
+    167,
+    445,
+    186
+   ],
+   "page": 93,
+   "reason": "drawn shape and comma"
+  },
+  {
+   "restore": [
+    369.5,
+    204.2,
+    399,
+    207.4
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    415.3,
+    192,
+    445,
+    211
+   ],
+   "page": 93,
+   "reason": "drawn shape and comma"
+  },
+  {
+   "restore": [
+    369.5,
+    228.4,
+    399,
+    231.6
+   ],
+   "page": 93,
+   "reason": "printed answer blank"
+  },
+  {
+   "restore": [
+    415.3,
+    217,
+    435,
+    236
+   ],
+   "page": 93,
+   "reason": "drawn shape"
+  }
+ ],
+ "left": []
+}

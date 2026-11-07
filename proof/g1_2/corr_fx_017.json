@@ -1,0 +1,9 @@
+{"corrections": [
+ {"segment_id": "p16_s10", "translation": "Answer: ___ fewer birds in the tree than in the sky.", "box": [80.0, 525.5, 470.0, 539.5], "reason": "answer line set at body size like the source (was 16pt, larger than the questions)"},
+ {"add": "p16_a10", "page": 16, "box": [262.5, 327.0, 271.5, 341.0], "translation": ",", "source": "，", "size": 14.9, "align": "left", "color": 2301728, "reason": "comma between Sky and Tree entries erased by the pipeline"},
+ {"add": "p16_a11", "page": 16, "box": [263.0, 350.0, 269.5, 364.0], "translation": ",", "source": "，", "size": 14.9, "align": "left", "color": 2301728, "reason": "comma between Bank and River entries erased by the pipeline"},
+ {"segment_id": "p23_s7", "translation": "Police", "box": [229.5, 335.0, 256.0, 344.0], "reason": "公安 decal on the toy police car door, set in English on the free white of the door"}
+],
+"left": [
+ {"page": 27, "issue": "Item 5: the stray dot before the cloud icon is part of the inline picture itself - the anchor crop p26_s10 / 108.12.1 (pixel x 386-445 of image xref 108) takes in the last stroke of 和 at its left edge, and the crop is cut from the unerased source, so erase/paint/add-BLANK under it cannot remove it (tried: an add BLANK at [196.8, 522.5, 199.4, 528.5] leaves the dot). Needs the anchor box narrowed (x0 about 391) in the pipeline."}
+]}

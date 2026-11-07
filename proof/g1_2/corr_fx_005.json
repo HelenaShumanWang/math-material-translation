@@ -1,0 +1,78 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p4_s3",
+   "translation": "Maths Is Fun",
+   "erase": [
+    [
+     171.8,
+     423.5,
+     175.6,
+     431.5
+    ]
+   ],
+   "reason": "British spelling; first leader dot erased so the title does not run into the dots"
+  },
+  {
+   "segment_id": "p5_s3",
+   "box": [
+    68,
+    171.5,
+    151,
+    186
+   ],
+   "reason": "bubble text set across the bubble so it no longer shares a left edge with the heading below"
+  },
+  {
+   "merge": [
+    "p13_s5",
+    "p13_s6"
+   ],
+   "translation": "BLANK",
+   "reason": "answer sentence set as one line by p13_a2"
+  },
+  {
+   "add": "p13_a2",
+   "page": 13,
+   "box": [
+    76,
+    376.5,
+    372,
+    397.5
+   ],
+   "translation": "Answer: There are ___ more red than yellow.",
+   "source": "答：[red]比[yellow]多___个。",
+   "size": 13.9,
+   "align": "left",
+   "color": 2301728,
+   "reason": "one answer line at the size of the second answer line; colour words instead of partial pictogram crops"
+  },
+  {
+   "segment_id": "p13_s7",
+   "translation": "BLANK",
+   "reason": "question set as one line by p13_a3"
+  },
+  {
+   "add": "p13_a3",
+   "page": 13,
+   "box": [
+    75,
+    400,
+    290,
+    420
+   ],
+   "translation": "How many fewer blue than red?",
+   "source": "[blue]比[red]少几个？",
+   "size": 14.2,
+   "align": "left",
+   "color": 2301728,
+   "reason": "bullet heading at the size of the one above; colour words instead of partial pictogram crops"
+  }
+ ],
+ "left": [
+  {
+   "page": 5,
+   "issue": "Watermark 北京师范大学出版社: the lower part of 北 stays erased where it overlapped 数学好玩; restoring it would bring back Chinese under 'Maths Is Fun' (a restore above the title was tried and changed nothing). Cosmetic only."
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+ "corrections": [
+  {"segment_id": "p63_s2", "translation": "I'm 37 years older than the deer.", "box": [131.0, 147.5, 239.0, 161.5], "reason": "use the whole width of the bubble (clear of its outline) so the line is not set tiny: 0.71 -> 0.75, in line with the 0.78 bubble beside it"},
+  {"segment_id": "p71_s27", "translation": "DROP", "reason": "a 2 pt English cover title was an unreadable smudge; keep the title as part of the cover picture, like every other book cover on the page"},
+  {"paint": [360.0, 452.0, 400.0, 470.0], "page": 74, "colour": [255, 255, 255], "reason": "faint pale residue of the erased 十位/个位 under the T and O labels, on the white panel"},
+  {"segment_id": "p71_s32", "translation": "BLANK", "reason": "second 'Answer:' re-set as an add so it is not size-tied to the small 'and'"},
+  {"add": "p71_a40", "page": 71, "box": [46.0, 655.0, 99.0, 670.5], "translation": "Answer:", "source": "答：", "size": 14.5, "align": "left", "color": 2301728, "reason": "same size as the first 'Answer:' line (nominal 14.5 keeps it out of the small 'and' size group; it is fitted down to the box)"}
+ ],
+ "left": [
+  {"page": 72, "issue": "Book-cover titles (童话世界, 丛林世界, 海底世界) stay in Chinese as part of the cover pictures. They are 4-6 pt drawn lettering on 20-25 pt-wide covers, so English fits only at about 2-3.5 pt. A try on the first cover (p71_s8) was unreadable and ran over the red sword. Readers know the books by their cover art (boy, tiger, octopus). p71_s27 is now dropped too, so all the covers match."}
+ ]
+}

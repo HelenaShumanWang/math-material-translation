@@ -1,0 +1,6 @@
+{"corrections": [
+ {"segment_id": "p30_s5", "box": [152, 225.5, 366, 240.5], "reason": "a box over the plate's interior: the line is set at 11.7 pt (like the other '( ) tens and ( ) ones' lines) and stays inside the pink plate instead of starting left of it"},
+ {"segment_id": "p43_s4", "erase": [[139, 385.3, 169, 389.3]], "reason": "leftover magenta underline of the first printed answer blank under 'including'"},
+ {"segment_id": "p51_s19", "translation": "​         How many more cypress trees than pine trees?", "box": [72, 574.5, 380, 588.5], "reason": "the wide OCR box of the kept '(1)' (to x 107.4) made the layout trim the text box to x 112.5, so (1) started right of (2) and (3); a box starting left of that OCR box (no trim) with a leading indent sets the text at x 105.9 and 11 pt, the same as (2)"}
+],
+"left": []}

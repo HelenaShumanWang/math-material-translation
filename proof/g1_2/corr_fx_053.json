@@ -1,0 +1,33 @@
+{
+ "corrections": [
+  {"segment_id": "p52_s19", "translation": "BLANK", "reason": "re-set horizontally by add p52_a3"},
+  {"segment_id": "p52_s20", "translation": "BLANK", "reason": "re-set horizontally by add p52_a4"},
+  {"segment_id": "p52_s21", "translation": "BLANK", "reason": "re-set by add p52_a5 at the common label size"},
+  {"segment_id": "p52_s22", "translation": "BLANK", "reason": "re-set horizontally by add p52_a6"},
+  {"segment_id": "p52_s23", "translation": "BLANK", "reason": "re-set horizontally by add p52_a7"},
+  {"segment_id": "p52_s24", "translation": "BLANK", "reason": "re-set by add p52_a8 at the common label size"},
+  {"paint": [93, 628.5, 243, 668.5], "page": 52, "colour": [255, 255, 255], "reason": "faint ghosts of the erased vertical Chinese labels"},
+  {"paint": [273, 628.5, 420, 668.5], "page": 52, "colour": [255, 255, 255], "reason": "faint ghosts of the erased vertical Chinese labels"},
+  {"add": "p52_a3", "page": 52, "box": [96, 629.5, 136, 642], "translation": "Addend", "source": "加数", "size": 9.5, "align": "center", "color": 15539236, "reason": "vertical label was too small; horizontal at the common size"},
+  {"add": "p52_a4", "page": 52, "box": [140, 629.5, 180, 642], "translation": "Addend", "source": "加数", "size": 9.5, "align": "center", "color": 15539236, "reason": "vertical label was too small; horizontal at the common size"},
+  {"add": "p52_a5", "page": 52, "box": [184, 629.5, 214, 642], "translation": "Sum", "source": "和", "size": 9.5, "align": "center", "color": 15539236, "reason": "common label size"},
+  {"add": "p52_a6", "page": 52, "box": [271, 629.5, 315, 642], "translation": "Minuend", "source": "被减数", "size": 9.5, "align": "center", "color": 15539236, "reason": "common label size, horizontal"},
+  {"add": "p52_a7", "page": 52, "box": [306, 646, 366, 658.5], "translation": "Subtrahend", "source": "减数", "size": 9.5, "align": "center", "color": 15539236, "reason": "vertical label was too small; horizontal on a second row so it does not run into Minuend/Difference"},
+  {"add": "p52_a8", "page": 52, "box": [366, 629.5, 424, 642], "translation": "Difference", "source": "差", "size": 9.5, "align": "left", "color": 15539236, "reason": "common label size"},
+  {"restore": [110.5, 621, 116.5, 627.2], "page": 52, "reason": "dotted pointer line under the number was cut by the label erase"},
+  {"restore": [155.5, 621, 161.5, 627.2], "page": 52, "reason": "dotted pointer line under the number was cut by the label erase"},
+  {"restore": [288, 621, 294, 627.2], "page": 52, "reason": "dotted pointer line under the number was cut by the label erase"},
+  {"restore": [333, 621, 339, 627.2], "page": 52, "reason": "dotted pointer line under the number was cut by the label erase"},
+  {"restore": [372, 621, 378, 627.2], "page": 52, "reason": "dotted pointer line under the number was cut by the label erase"},
+  {"segment_id": "p57_s24", "translation": "BLANK", "reason": "re-set on the widened plate by add p57_a1"},
+  {"segment_id": "p57_s25", "translation": "BLANK", "reason": "re-set inside the widened sign by add p57_a2"},
+  {"paint": [327.5, 602.2, 377, 615.2], "page": 57, "colour": [168, 128, 92], "reason": "widen the 42 sign plate (edge) so the English fits at a readable size"},
+  {"paint": [328.2, 602.9, 376.2, 614.4], "page": 57, "colour": [225, 174, 118], "reason": "widen the 42 sign plate (face)"},
+  {"paint": [270, 630, 300, 646], "page": 57, "colour": [70, 72, 75], "reason": "widen the 30 sign to the left (edge) so the English fits inside"},
+  {"paint": [270.7, 630.7, 318, 645.3], "page": 57, "colour": [185, 229, 250], "reason": "widen the 30 sign (face)"},
+  {"add": "p57_a1", "page": 57, "box": [329, 603, 375.5, 614.2], "translation": "42 people", "source": "42人", "size": 8.5, "align": "center", "color": 2301728, "reason": "sign label at a readable size"},
+  {"add": "p57_a2", "page": 57, "box": [272.5, 631.5, 320, 644.5], "translation": "30 bottles", "source": "30瓶", "size": 8.5, "align": "center", "color": 2301728, "reason": "sign label inside the sign at a readable size"},
+  {"segment_id": "p62_s13", "translation": "3 more than Xiaolin is 3 more than 13.", "box": [326, 444, 407, 470], "reason": "box fills the bubble for two lines: no orphan '13.', larger text"}
+ ],
+ "left": []
+}
