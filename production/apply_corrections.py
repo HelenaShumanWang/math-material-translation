@@ -422,6 +422,9 @@ def add_text(c) -> tuple[bool, str]:
     return ok, f"{pid} added; {why}"
 
 
+LIGATURE_TEXT = {"\ufb00": "ff", "\ufb01": "fi", "\ufb02": "fl", "\ufb03": "ffi", "\ufb04": "ffl", "\ufb05": "st", "\ufb06": "st"}
+LIGATURES = re.compile("[\ufb00-\ufb06]")
+
 # --------------------------------------------------------------------------- apply, file by file
 files = sorted(glob.glob(f"{PROOF}/corr_*.json"), key=lambda f: (os.path.getmtime(f), f))
 for path in files:
@@ -433,6 +436,10 @@ for path in files:
     for c in data.get("corrections", []) if isinstance(data, dict) else []:
         if not isinstance(c, dict):
             continue
+        # English recovered from a delivered PDF carries its typographic ligatures (ﬁ ﬂ ﬀ): plain letters
+        for k in ("translation", "translations", "pieces"):
+            if c.get(k) is not None:
+                c[k] = json.loads(LIGATURES.sub(lambda m: LIGATURE_TEXT[m.group()], json.dumps(c[k], ensure_ascii=False)))
         try:
             if c.get("restore") is not None or c.get("paint") is not None:
                 why = image_fixes.check(c, len(doc.pages), page_rects)
