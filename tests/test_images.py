@@ -598,6 +598,7 @@ def test_rapid_engine_import_failure_returns_empty(monkeypatch, caplog):
     RapidOcrEngine.reset()
     try:
         monkeypatch.setitem(sys.modules, "rapidocr_onnxruntime", None)  # makes the import raise ImportError
+        monkeypatch.setitem(sys.modules, "rapidocr", None)  # ... for the 3.x package too
         engine = RapidOcrEngine()
         image = np.full((50, 50, 3), 255, dtype=np.uint8)
         with caplog.at_level(logging.WARNING, logger="mathtrans.ocr"):
@@ -1999,3 +2000,39 @@ def test_titles_and_ratio_text_with_bi_are_no_dropped_pictures():
         assert not has_pictogram_gap(text), text
     for text in ("比多几个？", "比", "比（多，少），", "用表示", "比小林多3个", "在的面"):
         assert has_pictogram_gap(text), text                    # a comparison whose pictures the OCR dropped
+
+
+def test_rapidocr3_adapter_passes_explicit_flags_and_old_shapes(monkeypatch):
+    """rapidocr 3 keeps the use_det of an earlier call when the next call passes None: the adapter must
+    always say what it wants, and hand back the 1.x result shapes."""
+    import types
+    import numpy as np
+    from mathtrans import ocr as ocr_mod
+
+    calls = []
+
+    class FakeOut:
+        def __init__(self, det):
+            self.txts = ("12",) if det else ("一生",)
+            self.scores = (0.9,)
+            self.boxes = np.array([[[0, 0], [10, 0], [10, 5], [0, 5]]]) if det else None
+            self.elapse = 0.1
+
+    class FakeRapid:
+        def __init__(self, params=None):
+            self.params = params
+
+        def __call__(self, img, use_det=None, use_cls=None, use_rec=None):
+            calls.append((use_det, use_cls, use_rec))
+            return FakeOut(use_det)
+
+    fake = types.SimpleNamespace(RapidOCR=FakeRapid, OCRVersion=types.SimpleNamespace(PPOCRV4="v4"),
+                                 ModelType=types.SimpleNamespace(MOBILE="mobile"))
+    monkeypatch.setitem(sys.modules, "rapidocr", fake)
+    adapter = ocr_mod._RapidOcrV3()
+    assert adapter.__dict__["_ocr"].params["Det.ocr_version"] == "v4"
+    items, _ = adapter(np.zeros((8, 8, 3), np.uint8), use_det=False, use_cls=False)
+    assert items == [["一生", 0.9]]
+    items, _ = adapter(np.zeros((8, 8, 3), np.uint8))
+    assert items[0][1:] == ["12", 0.9] and len(items[0][0]) == 4
+    assert all(None not in c for c in calls)

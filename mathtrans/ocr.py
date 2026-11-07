@@ -163,6 +163,43 @@ def merge_ocr_passes(first: list[OcrResult], second: list[OcrResult],
 # --------------------------------------------------------------------------- #
 
 
+class _RapidOcrV3:
+    """``rapidocr`` 3.x behind the call interface of ``rapidocr_onnxruntime`` 1.x (which has no wheels for
+    Python 3.12+): ``engine(bgr, use_det=..., use_cls=...)`` returns ``(items, elapse)`` with items
+    ``[box, text, score]`` (or ``[text, score]`` without detection). The PP-OCRv4 mobile models and the
+    side limit of 1.x are kept, so lines are found and read as before."""
+
+    def __init__(self, threads: int = 0):
+        from rapidocr import ModelType, OCRVersion, RapidOCR
+
+        params: dict[str, Any] = {
+            "Global.max_side_len": RAPID_MAX_SIDE_LEN, "Global.log_level": "error",
+            "Det.ocr_version": OCRVersion.PPOCRV4, "Det.model_type": ModelType.MOBILE,
+            "Rec.ocr_version": OCRVersion.PPOCRV4, "Rec.model_type": ModelType.MOBILE,
+        }
+        if threads > 0:
+            params["EngineConfig.onnxruntime.intra_op_num_threads"] = threads
+            params["EngineConfig.onnxruntime.inter_op_num_threads"] = 1
+        self._ocr = RapidOCR(params=params)
+
+    def __call__(self, img: Any, use_det: Optional[bool] = None, use_cls: Optional[bool] = None,
+                 use_rec: Optional[bool] = None) -> tuple[list, float]:
+        # always explicit: rapidocr 3 keeps a use_det=False of an earlier crop call for later calls
+        use_det = True if use_det is None else use_det
+        use_cls = True if use_cls is None else use_cls
+        use_rec = True if use_rec is None else use_rec
+        out = self._ocr(img, use_det=use_det, use_cls=use_cls, use_rec=use_rec)
+        txts = list(getattr(out, "txts", None) or [])
+        scores = list(getattr(out, "scores", None) or [])
+        elapse = getattr(out, "elapse", 0.0)
+        if use_det is False:
+            return [[t, sc] for t, sc in zip(txts, scores) if t], elapse
+        boxes = getattr(out, "boxes", None)
+        if boxes is None or not txts:
+            return [], elapse
+        return [[np.asarray(b).tolist(), t, sc] for b, t, sc in zip(boxes, txts, scores)], elapse
+
+
 class RapidOcrEngine:
     """Offline OCR through ``rapidocr_onnxruntime`` (PP-OCR models).
 
@@ -206,10 +243,13 @@ class RapidOcrEngine:
     @staticmethod
     def available() -> bool:
         """True when ``rapidocr_onnxruntime`` is importable."""
-        try:
-            return importlib.util.find_spec("rapidocr_onnxruntime") is not None
-        except (ImportError, ValueError):
-            return False
+        for name in ("rapidocr_onnxruntime", "rapidocr"):
+            try:
+                if importlib.util.find_spec(name) is not None:
+                    return True
+            except (ImportError, ValueError):
+                continue
+        return False
 
     @classmethod
     def _engine(cls) -> Any:
@@ -220,11 +260,14 @@ class RapidOcrEngine:
             if cls._import_error is not None:
                 return None
             try:
-                from rapidocr_onnxruntime import RapidOCR
-
                 threads = get_settings().ocr_threads
-                extra = {"intra_op_num_threads": threads, "inter_op_num_threads": 1} if threads > 0 else {}
-                cls._shared = RapidOCR(max_side_len=RAPID_MAX_SIDE_LEN, **extra)
+                try:
+                    from rapidocr_onnxruntime import RapidOCR
+                except ImportError:  # Python 3.12+: the 3.x package, pinned to the same PP-OCRv4 models
+                    cls._shared = _RapidOcrV3(threads)
+                else:
+                    extra = {"intra_op_num_threads": threads, "inter_op_num_threads": 1} if threads > 0 else {}
+                    cls._shared = RapidOCR(max_side_len=RAPID_MAX_SIDE_LEN, **extra)
             except Exception as exc:  # ImportError, missing models, onnxruntime failures
                 cls._import_error = exc
                 if not cls._import_error_logged:
