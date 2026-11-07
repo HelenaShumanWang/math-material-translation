@@ -1,0 +1,4879 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p0_s0",
+   "translation": "Ministry Approved",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p0_s4",
+   "translation": "Grade 3",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s0",
+   "translation": "Dear children,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s2",
+   "translation": "The students asked all kinds of questions...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s4",
+   "translation": "Where is math from?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s5",
+   "translation": "Why is there math in travel too?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s6",
+   "translation": "What is math for?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s8",
+   "translation": "I think math comes from life, and there are many math problems in life too.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s11",
+   "translation": "Cabbage ¥3.00 per kg Carrot ¥4.00 per kg Green pepper ¥6.00 per kg How heavy is 1 kg?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s13",
+   "translation": "Please ask a question too.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s14",
+   "translation": "Are height and weight related?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s16",
+   "translation": "Children, I hope you will think actively and ﬁnd questions of your own. I'm sure you can become a little expert at ﬁnding and thinking about questions.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p2_s17",
+   "translation": "Your editor friend",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p3_s3",
+   "translation": "Tickets",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p3_s6",
+   "translation": "Unit 4 Kilograms, Grams, Tons",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p4_s3",
+   "translation": "Unit 7 Organizing and Presenting Data ·80",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s1",
+   "translation": "Sharing Peaches",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s8",
+   "translation": "These peaches are shared equally among 2 monkeys. How many does each monkey get? Share them and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s9",
+   "translation": "Use sticks instead of peaches to share: ﬁrst share 6 bundles, then...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s10",
+   "translation": "A number sentence can show the process of sharing.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s18",
+   "translation": "8 sticks left; each monkey gets",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s19",
+   "translation": "tensones",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s21",
+   "translation": "First share 6 bundles: 6 tens shared equally into 2 parts, each part...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s22",
+   "translation": "After sharing 6 bundles, there are still",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p5_s25",
+   "translation": "1 more monkey comes, so 68 peaches are shared equally among 3 monkeys. How many does each get, and how many are left?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s1",
+   "translation": "1. The kindergarten has 86 blocks.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s3",
+   "translation": "Share these blocks equally among 2 large classes. How many does each class get? Share them and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s4",
+   "translation": "(2) Calculate in vertical form. Using how the",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s5",
+   "translation": "blocks were shared, say what each step means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s6",
+   "translation": "(3) If these blocks are shared equally among 4 small classes, how many does each class get, and how many are left?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s8",
+   "translation": "3. Fill in the blanks.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s9",
+   "translation": "4. Taoqi loves taking photos, and Xiaoxiao helps him organize the album. How many pages can be ﬁlled, and how many photos are left?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s10",
+   "translation": "46 photos",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p6_s12",
+   "translation": "5. Fill in the blanks.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s0",
+   "translation": "Sharing Oranges",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s1",
+   "translation": "Let's make 3 equal shares!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s2",
+   "translation": "Use sticks as oranges to help them share and calculate. How many does each get?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s3",
+   "translation": "First each person gets 1 bundle, leaving...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s4",
+   "translation": "1 bundle is 10 sticks, 18 sticks in all, shared among 3 people, each person...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s5",
+   "translation": "Each gets",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s12",
+   "translation": "Can you show the sharing process and result in vertical form?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s13",
+   "translation": "Using the sharing process, explain what each step means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s17",
+   "translation": "Why do we start dividing from the highest place?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p7_s18",
+   "translation": "I tried it. Starting from the lowest place is sometimes a lot of trouble!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s2",
+   "translation": "(1) 64 saplings are shared equally among 4 groups. How many does each group get? Share them and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s3",
+   "translation": "(2) Calculate in vertical form, and use the sharing process to explain what each step means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s11",
+   "translation": "Kangquan Pharmacy Oral liquid, 8 bottles",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s12",
+   "translation": "Yimin Pharmacy Oral liquid, 6 bottles",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s13",
+   "translation": "¥80 per box",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s14",
+   "translation": "¥72 per box",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s15",
+   "translation": "Guess how many beads there might be.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p8_s16",
+   "translation": "A string of beads has four colors, the same number of each.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s0",
+   "translation": "Digits in the Quotient",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s1",
+   "translation": "The railway from Beijing to Siping is 888 km long, and the bullet train takes about 6 hours.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s2",
+   "translation": "Have you heard of \"high-speed rail\"? China's high-speed railways hold many \"world records\". Find out about this new \"world champion\" and share with a partner!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s3",
+   "translation": "How many km does it travel per hour on average? First estimate how many digits the quotient has, then calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s5",
+   "translation": "888÷6 must be greater than 100, so the quotient is certainly a three-digit number…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p9_s7",
+   "translation": "Using the ﬁgure below, explain what each step of the vertical form means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s1",
+   "translation": "1. Share out the blocks and calculate in vertical form. Use the sharing to explain what each step means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s4",
+   "translation": "2. First estimate how many digits the quotient has, then calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s11",
+   "translation": "3. (1) How many books per class?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s12",
+   "translation": ") How many times as tall as the frog is the giraﬀe?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s14",
+   "translation": "A giraﬀe is 584 cm tall. A frog is only 4 cm",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s15",
+   "translation": "tall.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p10_s17",
+   "translation": "4. Xiaoxiao folded 375 lucky stars and Taoqi folded 309. They want to share the stars equally among 6 gift boxes to give to 6 kindergarten classes. How many stars go in each box?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s0",
+   "translation": "Monkey Trouble",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s2",
+   "translation": "Not a single peach!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s6",
+   "translation": "0 divided by any number except 0 is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s7",
+   "translation": "How many peaches does each monkey get on average? Explain your thinking.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s8",
+   "translation": "306 peaches",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s10",
+   "translation": "It can be written like this:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p11_s18",
+   "translation": "It can be written like this:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s1",
+   "translation": "1. How many ﬁsh does each kitten get when shared equally?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s2",
+   "translation": "Look at the ﬁgure and explain why 0÷2=0.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s9",
+   "translation": "4. Forest Doctor",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s10",
+   "translation": "5. On average, how many chairs are moved each trip in the afternoon?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s11",
+   "translation": "There are 970 chairs in all. 450 were moved in the morning.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p12_s12",
+   "translation": "We need 4 trips this afternoon.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s1",
+   "translation": "¥912 in total.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s2",
+   "translation": "These are the newspapers and water bottles our 3 classes collected.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s3",
+   "translation": "How much did each class make on average? Explain how you calculated.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s10",
+   "translation": "Write it like this:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s11",
+   "translation": "Not enough for 1? Write 0.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s12",
+   "translation": "Answer:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s13",
+   "translation": "The school used the money from selling recyclables to buy 522 pens and gave them to the children in 4 classes of its sister rural primary school. How many pens does each class get on average, and how many are left?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p13_s15",
+   "translation": "It can be written like this:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s1",
+   "translation": "Are their calculations correct? Think and explain.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s5",
+   "translation": "It's important to check again. It reduces mistakes.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s6",
+   "translation": "is much bigger than 200, so the quotient must be more than 100. 26 is wrong.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s7",
+   "translation": "I checked with multiplication, and 206 is also wrong.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s8",
+   "translation": "Use vertical form and check.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s12",
+   "translation": "Talk with a partner about what each step of the vertical form means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s15",
+   "translation": "2. Lele's family took 412 photos on their trip and put them equally into 4 albums. How many in each album? How did you",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p14_s16",
+   "translation": "calculate? Talk with a partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s1",
+   "translation": "5. Calculate ﬁrst, then check.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s9",
+   "translation": "Dividend Divisor Quotient",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s20",
+   "translation": "Estimate, calculate, and match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p15_s21",
+   "translation": "Which two numbers have a quotient closest to the number in the bull's-eye?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s1",
+   "translation": "1. (1) How many apples does each person get on average? Circle ﬁrst, then write a number sentence.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s2",
+   "translation": "(2) 216 pine cones are put equally into 2 baskets. How many go in each basket?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s5",
+   "translation": "Circle ﬁrst, then write a number sentence.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p16_s6",
+   "translation": "2. What is the largest number that ﬁts in ()?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s0",
+   "translation": "6. Unlocking game.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s7",
+   "translation": "I'm 5 this year.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s8",
+   "translation": "I'm 65 this year.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s9",
+   "translation": "(1) This year,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s10",
+   "translation": "is how many times",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s12",
+   "translation": "(2) Next year,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s13",
+   "translation": "is how many times",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s15",
+   "translation": "8. Chunfeng Primary School has 540 students in the group calisthenics performance. They form 4 formations. On average, how many students are in each formation? What if they form 5 formations?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s16",
+   "translation": "9. The PE monitor accidentally stained the purchase record. Can you work out how much each tube of shuttlecocks costs?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s17",
+   "translation": "Basketball",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s18",
+   "translation": "Shuttles¥65 each; ¥__ per tube; ¥137 in total.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s19",
+   "translation": "1 ball",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s23",
+   "translation": "In 2 min I typed",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s24",
+   "translation": "In 3 min I typed",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p17_s26",
+   "translation": "Think and ﬁll in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s0",
+   "translation": "Stamps",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s1",
+   "translation": "Here are 285 stamps.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s2",
+   "translation": "With 5 stamps on each page, estimate about how many pages these stamps will ﬁll.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s3",
+   "translation": "Fewer than 300 stamps, so surely fewer than 60 pages are needed.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s4",
+   "translation": "200 stamps need 40 pages, so 285 stamps need more than 40 pages.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s5",
+   "translation": "Calculate how many pages can be ﬁlled.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s6",
+   "translation": "Not enough hundreds for a 1, so write 0.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s7",
+   "translation": "If the hundreds aren't enough for a 1, look at the ﬁrst two digits. You can write it like this.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s9",
+   "translation": "Oh, they really mean the same thing!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s11",
+   "translation": "If 8 stamps go on each page, how many pages can be ﬁlled and how many are left over?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p18_s12",
+   "translation": "Using the situation, explain how to check a division with a remainder.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s2",
+   "translation": "(1) Estimate: about how many skipping ropes can be cut from this bundle of rope?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s3",
+   "translation": "One skipping rope needs 6 m of rope.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s4",
+   "translation": "(2) Calculate how many skipping ropes can be cut.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s5",
+   "translation": "(3) If each skipping rope is 5 m long, how many can be cut and how many metres are left? Write a number sentence, calculate and check.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s7",
+   "translation": "2. Taoqi is a military fan. He has 144 diﬀerent rocket launch pictures. He plans to show them to his classmates. Each display board can hold 9 pictures.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s8",
+   "translation": "(1) How many display boards are needed?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s9",
+   "translation": "(2) Using the situation, explain what each step means. 3. First estimate how many digits the quotient has, then",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s19",
+   "translation": "write \">\", \"<\" or",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s30",
+   "translation": "344 pages in total. I plan to ﬁnish in 4 days.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s31",
+   "translation": "I read 6 fewer pages than Taoqi every day.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s32",
+   "translation": "189 pages in total. I read 9 pages every day.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p19_s33",
+   "translation": "Fairy Tales",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s0",
+   "translation": "New Books",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s2",
+   "translation": "How many books are placed on each shelf of each bookcase on average? Draw a diagram ﬁrst.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s8",
+   "translation": "Bookcase",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s13",
+   "translation": "Bookcase 2: Shelves 1, 2, 3, 4",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s18",
+   "translation": "8 shelves in all",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s21",
+   "translation": "Write a number sentence and calculate, then talk about it with a partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s22",
+   "translation": "I ﬁrst ﬁnd how many books are placed on each bookcase, then...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s23",
+   "translation": "I ﬁrst ﬁnd how many shelves the two bookcases have in all, then...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s30",
+   "translation": "First write a number sentence and calculate, then explain your thinking.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s33",
+   "translation": "How many pigeons are there in each level of each pigeon cage on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s34",
+   "translation": "Grades 1, 2 and 3 have 270 students in total, and each grade has 3 classes.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s35",
+   "translation": "96 pigeons in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p20_s36",
+   "translation": "Guangming School",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s1",
+   "translation": "1. The library bought 4 sets of the Encyclopaedia for ¥384 in total. On average, how much does each book cost? Draw a diagram ﬁrst, then write a number sentence and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s6",
+   "translation": "(1) How many cases are needed? Circle and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s7",
+   "translation": "(2) How many players per team on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s8",
+   "translation": "736 people in all.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s10",
+   "translation": "6 balls per box",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s11",
+   "translation": "The \"Youth Cup\" football tournament has 8 groups, and each group has 4 teams.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s17",
+   "translation": "The answer to each problem is the ﬁrst number of the next one!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p21_s24",
+   "translation": "5. Qisi went swimming. He swam 3 times there and back along the lane, 150 m in total. How long is the lane of this swimming pool?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s0",
+   "translation": "Story Time",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s1",
+   "translation": "In Chinese class, students take turns telling stories. Taoqi chose a story of 850 words.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s2",
+   "translation": "Practising before class took me 5 min.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s3",
+   "translation": "The class agreed each story should take no more than 3 min.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s4",
+   "translation": "How many words can Taoqi tell in 3 min? Find a way to show the information in the problem.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s5",
+   "translation": "850 words",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s7",
+   "translation": "850 words",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s17",
+   "translation": "First ﬁnd how many words he can tell in 1 min, then…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s18",
+   "translation": "Taoqi could cut some of the story, or tell it faster.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s19",
+   "translation": "Another number sentence:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s24",
+   "translation": "Xiaoxiao took 4 min to tell a story, 150 words per minute on average. To ﬁnish in 3 min, how many words should she tell per minute?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s26",
+   "translation": "First work out how many words there are in total, then …",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p22_s27",
+   "translation": "150 150 150 150 words",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s1",
+   "translation": "1. Discuss, then write a number sentence and solve.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s8",
+   "translation": "(2) A toy factory has to make a batch of toy planes. It plans to make 180 planes a day and ﬁnish in 5 days. In fact the job took only 4 days. On average, how many planes were made each day?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s14",
+   "translation": "(2) In 4 rows, how many are in each row?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s16",
+   "translation": "In 6 rows, exactly 8 in each row",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s17",
+   "translation": "5. They each typed a manuscript of the same length. On average, how many words did Xiaoxiao type per minute?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s18",
+   "translation": "I type 96 words per minute on average, and need 10 min to ﬁnish.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p23_s19",
+   "translation": "I typed this manuscript in only 8 min.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s24",
+   "translation": "3. In the picture, 3 small red squares represent 120.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s26",
+   "translation": "What do the 2 small green squares above represent?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s27",
+   "translation": "What do the 4 small yellow squares below represent?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s28",
+   "translation": "(1) Xiaoxiao is number 5 in line. She should take cable car number ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s29",
+   "translation": "Cable car limit:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s30",
+   "translation": "(2) Qisi is number 15 in line. He should take cable car number ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p24_s32",
+   "translation": "(3) Taoqi is number 52 in line. He should take cable car number ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s7",
+   "translation": "This article has 2 pages, with 120 characters per page.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s8",
+   "translation": "The blackboard bulletin has only 8 lines. How many characters per line on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s10",
+   "translation": "7. The table shows the number of students in each grade at Xinhua Primary School.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s11",
+   "translation": "Grade Pupils",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s16",
+   "translation": "(1) The pupils go to the Natural History Museum in 9 buses. How many are on each bus on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s17",
+   "translation": "(2) The museum allows at most 200 visitors per group. How should the visits be arranged?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s19",
+   "translation": "We'll buy 10 pens.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s25",
+   "translation": "Ballpoint",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s30",
+   "translation": "(1) How much do 10 pens cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s31",
+   "translation": "(2) How many ballpoint pens can you buy with the money left?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p25_s32",
+   "translation": "(3) With ¥100 for prizes, what else could you buy? Write two buying plans.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s0",
+   "translation": "Unit 2 Motion of Figures",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s1",
+   "translation": "Line Symmetry (1)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s3",
+   "translation": "Look at these ﬁgures. What do they have in common?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s4",
+   "translation": "When these shapes are divided in the middle, both sides are the same.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s5",
+   "translation": "How do you know that \"both sides are the same\"?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s6",
+   "translation": "Fold and look at Figure 1 on Appendix page 1.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s7",
+   "translation": "Look and say.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s9",
+   "translation": "Line of symmetry",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s10",
+   "translation": "How can we ﬁnd the line of symmetry of a line-symmetric ﬁgure?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s11",
+   "translation": "Figures like these are line-symmetric.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p26_s12",
+   "translation": "The halves match when folded.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s1",
+   "translation": "1. Fold and look at Figure 2 on Appendix page 1. Which of the ﬁgures below are line-symmetric?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s2",
+   "translation": "2. Which ﬁgures below are line-symmetric? Mark them with a",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s4",
+   "translation": "3. Find out which of these digits, Chinese characters and letters are line-symmetric.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s8",
+   "translation": "4. Fold in half to ﬁnd the lines of symmetry of the ﬁgures below (Figure 3 on Appendix page 1).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s9",
+   "translation": "5. Many patterns in daily life are line-symmetric. Find some and talk about them with a partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s10",
+   "translation": "Ginkgo leaf",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p27_s13",
+   "translation": "Beijing Opera mask",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s0",
+   "translation": "Line Symmetry (2)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s1",
+   "translation": "Try it. What do you notice?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s5",
+   "translation": "To make a line-symmetric ﬁgure, ﬁrst fold the paper in half.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s6",
+   "translation": "After folding, you only need to make half of the ﬁgure…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s7",
+   "translation": "Each ﬁgure below is half of a line-symmetric ﬁgure. What is the whole ﬁgure? Try it with Figure 4 on Appendix page 1.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s8",
+   "translation": "Fold a sheet of paper in half and cut out two circles. Which one is it when unfolded? Think, then try it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s13",
+   "translation": "The unfolded ﬁgure should be line-symmetric.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p28_s14",
+   "translation": "The lower circle is near the line of symmetry, and the upper circle is far from it…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p29_s1",
+   "translation": "1. As shown, fold a square sheet of paper in half and cut oﬀ a triangle. What ﬁgure do you get when you unfold it? Try it and see.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p29_s2",
+   "translation": "2. Each ﬁgure below is half of a line-symmetric ﬁgure. What is the whole ﬁgure? Try it with Figure 1 on Appendix page 2.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p29_s3",
+   "translation": "3. Taoqi cut two holes in a folded sheet of paper. Which one will it be when opened? Think about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p29_s4",
+   "translation": "4. In the children's gallery, half of each face is drawn. Guess which face is happy and which is angry.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p29_s5",
+   "translation": "5. Below is Xiaoxiao's paper cutting. Make a line-symmetric paper cutting of your own and show it in the class display.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s1",
+   "translation": "How do they all move? Can you divide them into two groups by the way they move?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s2",
+   "translation": "The steering wheel, pinwheel and clock hands are all rotating.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s3",
+   "translation": "Flag, sliding window and",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s4",
+   "translation": "box are all…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s5",
+   "translation": "Look and learn.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s8",
+   "translation": "Try to make a motion showing translation or rotation.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p30_s9",
+   "translation": "What other examples of translation and rotation have you seen? Talk about them with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s2",
+   "translation": "What picture do they make?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s3",
+   "translation": "Move the counter down 4 squares.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s4",
+   "translation": "Move the pencil right 3 squares.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s5",
+   "translation": "Move the set square left 2 squares.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s6",
+   "translation": "Explain how the pencil and the set square can be moved to the position of ﬁgure ③.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s7",
+   "translation": "First translate the pencil right…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s11",
+   "translation": "1. How do the objects below move? Draw \"△\" for translation; for rotation draw",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s13",
+   "translation": "2. Color.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p31_s14",
+   "translation": "Color the ﬁgures that ﬁt exactly onto Figure A by translation alone.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s1",
+   "translation": "(1) Translate ﬁgure ① left 5 squares;",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s2",
+   "translation": "(2) Translate ﬁgure ② right 4 squares;",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s3",
+   "translation": "(3) Translate ﬁgure ③ up 1 square.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s6",
+   "translation": "What picture do they make?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s8",
+   "translation": "4. To ﬁll the bottom row, say how",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s10",
+   "translation": "each need to be translated.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p32_s11",
+   "translation": "5. On the right is an animal board game. Toss a coin to decide who goes ﬁrst. Each turn you may translate only 1 square. See if the cat can catch the mouse. Cut out Figure 2 on Appendix page 2 and play with a partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s1",
+   "translation": "Patterns",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s2",
+   "translation": "Calculate and say how you calculated.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s14",
+   "translation": "Look at the number sentences above. What do you notice?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s15",
+   "translation": "I notice the two rows below are related to the ﬁrst row.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s19",
+   "translation": "Write a few more sets of number sentences based on your discovery and calculate the results.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p33_s23",
+   "translation": "Based on 16×3=48, can you directly write the results of the following number sentences?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s1",
+   "translation": "1. Calculate, then write another group of number sentences like these.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s9",
+   "translation": "2. Based on 24×20=480, write the results of the following number sentences directly.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s22",
+   "translation": "How many eggs can 10 trays hold? 20 trays? 30 trays?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s23",
+   "translation": "Trays Eggs",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s25",
+   "translation": "5. Buying tracksuits.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s26",
+   "translation": "(1) The gymnastics team needs to buy 13 large tracksuits and 16 small tracksuits. How much will each size cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s28",
+   "translation": "Teacher Zhang brought ¥2000 to buy the tracksuits. Is that enough?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s29",
+   "translation": "Large tracksuit: ¥70 each",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p34_s30",
+   "translation": "Small tracksuit: ¥60 each",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p35_s0",
+   "translation": "Formation Drill (1)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p35_s1",
+   "translation": "The school is holding a formation drill. There are 12 rows in total, with 14 students in each row.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p35_s3",
+   "translation": "How many students take part in the formation drill? Circle and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p35_s17",
+   "translation": "Can you understand the method below? Explain it using the dot diagram.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s11",
+   "translation": "4. How much altogether?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s13",
+   "translation": "Our class has 32 students, and each buys 1 pen.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s14",
+   "translation": "5. How much do the father walrus and the mother walrus weigh, in kilograms?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s15",
+   "translation": "Dad weighs 32 times as much as you.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s16",
+   "translation": "Mum weighs 23 times as much as you",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p36_s17",
+   "translation": "I weigh only 33 kilograms.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s0",
+   "translation": "Formation Drill (2)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s2",
+   "translation": "14×2=28.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s3",
+   "translation": "what do we do next?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s6",
+   "translation": "Look, think, and explain what each step in the vertical form means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s7",
+   "translation": "The vertical form can also be written like this. Note that this row shows the product of 10 and 14.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p37_s15",
+   "translation": "Tell your partner how you worked it out.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s1",
+   "translation": "1. The students are doing a gymnastics display, with 13 in each row and 12 rows. How many students are there in total?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s3",
+   "translation": "(2) Circle and explain what each step in the vertical form means",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s9",
+   "translation": "(1) The little frog jumps 11 squares each time. How many squares in 18 jumps?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s13",
+   "translation": "(2) The big frog jumps 21 squares each time. How many squares in 14 jumps?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s17",
+   "translation": "4. The football World Cup has 32 teams",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p38_s22",
+   "translation": "Last year we planted 11 rows, with 25 trees in each row.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s1",
+   "translation": "Tickets",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s3",
+   "translation": "There are 21 rows of seats, and each row can seat 26 people",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s4",
+   "translation": "We want to take 500 students to see a movie.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s5",
+   "translation": "Estimate. Are there enough seats in the cinema?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s6",
+   "translation": "Treat 21 rows as 20 rows; with 26 people in each row, it can seat 520 people. That is enough.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s10",
+   "translation": "Calculate. How many seats does the cinema have?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s11",
+   "translation": "Calculate using the vertical form···",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s18",
+   "translation": "Class 3(1) has 38 students. Each movie ticket costs ¥12. How much will the tickets cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p39_s19",
+   "translation": "I estimate it is more than ¥380 but less than ¥480...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s1",
+   "translation": "1. Guangming School has 15 classes, with an average of 38 students per class.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s2",
+   "translation": "(1) Does the school have 600 students? How did you estimate?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s3",
+   "translation": "(2) Calculate how many students the school has.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s4",
+   "translation": "2. Can he ﬁnish typing this manuscript in 30 minutes?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s5",
+   "translation": "I type 52 characters per minute on average.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s16",
+   "translation": "4. Class 3(2) has 42 students. Each buys 1 schoolbag and 1 pencil case.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s18",
+   "translation": "How much do the pencil cases cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s20",
+   "translation": "How much do the schoolbags cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s24",
+   "translation": "Did you know?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s25",
+   "translation": "There are many ways to calculate multiplication. Look at the calculation below. Can you understand it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s26",
+   "translation": "In Taiwan, China, a \"window\" is used to record the result of mental calculation.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s27",
+   "translation": "Ancient Indians calculated from the highest place.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s28",
+   "translation": "You can also multiply by drawing",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s29",
+   "translation": "lines For example, 24×23.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p40_s30",
+   "translation": "window",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s4",
+   "translation": "2. Given 12×2=24, write the results of the following number sentences directly.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s9",
+   "translation": "3. Explain each step of the vertical forms below in ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s18",
+   "translation": "5. Calculate in vertical form.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p41_s27",
+   "translation": "6. Are the calculations below correct? Estimate and explain",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s1",
+   "translation": "8. How many seats can 35 buses like this provide?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s9",
+   "translation": "Each box has 24 bottles. How many bottles in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s12",
+   "translation": "Tickets",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s15",
+   "translation": "How much do the children's tickets cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s17",
+   "translation": "How much do the adult tickets cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s18",
+   "translation": "Child ¥15 Adult ¥30",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s19",
+   "translation": "(3) How much did they spend in total?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s21",
+   "translation": "(1) The ship Huoju sets oﬀ from Port C and travels east for 12 hours. Is it east or west of Port A? How many kilometers is it from Port A?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s22",
+   "translation": "Port B",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s26",
+   "translation": "(2) The ship Hongqi left Port C and traveled north for 18 hours. About where is it? Mark it with a dot. How many kilometers is it from Port B now?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s27",
+   "translation": "Port C",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p42_s29",
+   "translation": "400 km Port A",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s2",
+   "translation": "Milk Yield",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s3",
+   "translation": "Cinema",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s4",
+   "translation": "11 rows, 15 seats in each row. Is there room for 150 people?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s5",
+   "translation": "Today 8 cows produce 184 kg of milk in total",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s6",
+   "translation": "How many kilograms does each cow give on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s7",
+   "translation": "How many digits does the quotient of 184÷8 have? Can you work it out in vertical form? Explain what each step means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s9",
+   "translation": "Circle and calculate",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s11",
+   "translation": "Which ones have line symmetry?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p43_s12",
+   "translation": "Look at the picture above. What kind of ﬁgure has line symmetry? Where do you see translation and rotation in everyday life?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s2",
+   "translation": "Estimate ﬁrst, then calculate. I make far fewer mistakes!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s3",
+   "translation": "I know that many beautiful patterns have line symmetry.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s4",
+   "translation": "I like using dot diagrams to multiply; they show me what each step of the vertical form means.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s5",
+   "translation": "I like solving problems by drawing pictures best, because pictures are so concrete.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s7",
+   "translation": "A parallelogram looks so perfect. Why doesn't it have line symmetry?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s8",
+   "translation": "Besides translation and rotation, how else can ﬁgures move?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s9",
+   "translation": "Can I multiply a three-digit number by a two-digit number this way too?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p44_s11",
+   "translation": "Why is the vertical form of division diﬀerent from that of addition, subtraction and multiplication?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p45_s1",
+   "translation": "1. Circle, then calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p45_s4",
+   "translation": "2. Discuss, then calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p45_s9",
+   "translation": "3. Think, then ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s7",
+   "translation": "8. Look and think. Tick the ﬁgures with line symmetry.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s8",
+   "translation": "9. Follow the steps below. What ﬁgure do you get after unfolding? Think and try.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s11",
+   "translation": "10. Which ﬁgures in the picture ﬁt exactly onto each other after a translation?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s12",
+   "translation": "11. A group exercise display by 225 people uses diﬀerent formations.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s14",
+   "translation": "(1) In 3 rows, how many in each row?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s16",
+   "translation": "In 5 rows, how many in each row?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p46_s20",
+   "translation": "(3) In 9 rows, how many in each row?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s0",
+   "translation": "12. Grandma Li spent ¥130 on 5 rabbits. She wants to buy 15 more rabbits. How much more money does she need?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s1",
+   "translation": "13. A book has 104 pages. Taoqi has read 19 pages and wants to ﬁnish the rest in 5 days. On average, how pages are read each day?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s5",
+   "translation": "Tickets",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s6",
+   "translation": "The Forest Concert Hall has 76 seats.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s7",
+   "translation": "(1) 42 tickets were sold. How much was collected?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s8",
+   "translation": "(2) The rest sell at ¥12 each. At most, how much more can be collected?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s9",
+   "translation": "15. Xiangyang Community has 6 apartment buildings like this, with 480 households in all. On average, how many households live in each unit?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s11",
+   "translation": "16. A pony delivers corn. It takes 8 minutes to go and 6 minutes to come back. On the way back, on average, meters did it run per minute on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p47_s13",
+   "translation": "Much faster going back!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s0",
+   "translation": "Unit 4 Kilograms, Grams, Tons",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s1",
+   "translation": "How heavy?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s5",
+   "translation": "How heavy is 1 kg? Weigh it and feel it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s10",
+   "translation": "How heavy is 1 g? Weigh it and feel it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p48_s18",
+   "translation": "Find some objects, feel them, estimate how heavy they are, and then weigh them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s7",
+   "translation": "This egg weighs () g",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s9",
+   "translation": "Watermelon weighs (",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s10",
+   "translation": "Xiaoxiao weighs (",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s12",
+   "translation": "2. Fill in the brackets with suitable units.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s19",
+   "translation": "4000 g = () kg",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s20",
+   "translation": "8000 g = () kg",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s21",
+   "translation": "4. Weigh and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s24",
+   "translation": "My bag",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s25",
+   "translation": "A potato",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s26",
+   "translation": "A peanut",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s27",
+   "translation": "My estimate Measured",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s28",
+   "translation": "5. Which is heavier, 1 kg of cotton or 1 kg of salt? Explain your thinking.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p49_s30",
+   "translation": "How many oranges are on the right side?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s0",
+   "translation": "How Heavy Is 1 Tonne?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s1",
+   "translation": "Guess my weight!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s2",
+   "translation": "Too heavy! Switch scales.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s5",
+   "translation": "Look and say: about how heavy is 1 tonne?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s6",
+   "translation": "Each of us weighs about 25 kg, so 40 of us weigh about 1 tonne.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s8",
+   "translation": "Tonne can be written as",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s10",
+   "translation": "Look and say: where have you seen \"tonnes\" in daily life?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s11",
+   "translation": "I can lift a load of 8 tonnes.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s12",
+   "translation": "Elevator limit: 1000 kg, at most 13 people",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s14",
+   "translation": "Fill in the correct unit (gram, kilogram, tonne).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s17",
+   "translation": "A bottle of cooking oil",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s20",
+   "translation": "Weighs 3 ()",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p50_s21",
+   "translation": "Weighs 2 ()",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s1",
+   "translation": "1. Read and ﬁll in the correct unit (gram, kilogram, tonne).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s2",
+   "translation": "Today the sun is shining. Mom and Dad took me to the zoo. First we bought some food. Dad bought 1___ of apples and 1___ of pears, and also a 50___ boiled egg. The supermarket has an electronic scale. I stepped on it, and I already weigh 35___!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s5",
+   "translation": "At 9 o'clock we arrived at the zoo. There are so many kinds of animals! I estimated their weights: a lion weighs about 350___, an elephant at least 2___, a talking parrot about 95___, and a big water buﬀalo at least 450___. After visiting the zoo, we went home happily.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s8",
+   "translation": "3 tonnes = () kg () tonnes =2000 kg",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s9",
+   "translation": "5000 g = () kg () kg =6 tonnes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s10",
+   "translation": "3. Math story.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s11",
+   "translation": "The stones were weighed in 8 batches. See the table.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s12",
+   "translation": "Batch Mass/kg",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s13",
+   "translation": "How heavy is this elephant? Work it out.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s14",
+   "translation": "Did you know?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s15",
+   "translation": "Besides tonnes, kilograms and grams, there are many other units of mass. For example, the units commonly used in China include jin and liang: 1 jin =500 g, 1 liang =50 g. Britain uses pounds and ounces as units of mass.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p51_s16",
+   "translation": "Want to know more units of mass? Look them up!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s1",
+   "translation": "What Is Area?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s2",
+   "translation": "Look and compare",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s3",
+   "translation": "Math",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s8",
+   "translation": "The size of the surface of an object or of a closed ﬁgure is its area.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s9",
+   "translation": "Compare: which ﬁgure has the larger area? Cut out Figure 3 from Appendix 2 and try.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s12",
+   "translation": "I'll cover them with small squares.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s13",
+   "translation": "I can cut and",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s15",
+   "translation": "rearrange them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p52_s16",
+   "translation": "In the grid on the right, draw 3 diﬀerent ﬁgures, each with an area of 7 squares.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s1",
+   "translation": "1. Say which ﬁgure has the largest area and which has the smallest area.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s2",
+   "translation": "2. Do it yourself.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s3",
+   "translation": "Cut out ﬁgure 4 from appendix page 2. Compare: which ﬁgure has the largest area? Tell your partner how you compared.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s4",
+   "translation": "3. Square tiles cover each plot of ground, as shown. Which plot needs the fewest tiles?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s5",
+   "translation": "4. Say how many small squares make up the area of each coloured ﬁgure.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s6",
+   "translation": "5. (1) Count: how many squares is the area of each pattern below?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p53_s7",
+   "translation": "(2) Design a pattern with the same area as Figure ②. Draw it in Figure 1 of Appendix 3.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s1",
+   "translation": "Math",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s2",
+   "translation": "Math",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s4",
+   "translation": "The area of the math book cover is 6 squares.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s5",
+   "translation": "I measured 24 squares!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s6",
+   "translation": "Why are the results diﬀerent?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s7",
+   "translation": "The squares they used are not the same size.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s8",
+   "translation": "We need a standard unit.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s10",
+   "translation": "What units of area do you know? Let's ﬁnd out.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s11",
+   "translation": "A square with side length 1 cm has an area of 1 square centimetre (cm²). A square with side length 1 dm has an area of 1 square decimetre (dm²). A square with side length 1 m has an area of 1 square metre (m²).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s12",
+   "translation": "How big are these units of area? Try it and talk about it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s13",
+   "translation": "About 1 cm².",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p54_s16",
+   "translation": "Use newspaper to make a 1 m² square. About 12 students can stand on 11 m² of ground.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s1",
+   "translation": "1. Do you agree with Xiaoxiao? Tell your reason to a partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s3",
+   "translation": "The paper in my hand is 8 squares, so its area must be larger than yours.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s4",
+   "translation": "2. In the grid below, draw a 1 cm line segment, a 1 square centimetre square, a 1",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s5",
+   "translation": "dm line segment and a 1 square decimetre square.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s6",
+   "translation": "3. Make squares of 1 square centimetre, 1 square decimetre and 1 square metre. Use them as units of area to measure the surfaces of some objects in the classroom.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s8",
+   "translation": "4. Fill in the appropriate area unit (square metre, square decimetre, square centimetre).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s9",
+   "translation": "(1) Floor area of a room: about 50 (3) Area of a stamp: about 6",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s10",
+   "translation": "(2) A notebook: about 2",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p55_s12",
+   "translation": "(4) A single bed: about 2",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s1",
+   "translation": "What is the area of rectangle ①? Use squares of 1 square centimetre to cover it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s2",
+   "translation": "I used 6 small squares in all, so its area is 6 square centimetres.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s3",
+   "translation": "3 in each row, exactly 2 rows, so the area is:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s5",
+   "translation": "What is the area of each rectangle below? Use squares.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s6",
+   "translation": "Fill in and think: what do you notice?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s8",
+   "translation": "Length/cm|Width/ cm",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s9",
+   "translation": "rea/cm²",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s10",
+   "translation": "Area of rectangle =",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s13",
+   "translation": "Think: how do you work out the area of a square?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s15",
+   "translation": "Each row holds 3 squares of 1 square centimetre, and 3 rows ﬁt, so…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p56_s18",
+   "translation": "Area of square =",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s1",
+   "translation": "Estimate the area of each ﬁgure below. Then measure and work it out.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s3",
+   "translation": "Figure ① is about as big as 2 squares of 1 square centimetre. Figure",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s4",
+   "translation": "I put the 1-square-centimetre square on ﬁgure ③. Its area is about ···",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s5",
+   "translation": "Estimate the area of the classroom.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s6",
+   "translation": "Each ﬂoor tile's area is about ···",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s7",
+   "translation": "The classroom is about 8 m long and 6 m wide ···",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s9",
+   "translation": "1. Lay 1-square-centimetre paper squares on ﬁgure 2 in Appendix 3 to ﬁnd its area, and tell your partner your method.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p57_s10",
+   "translation": "2. Find the area of the rectangular lawn and the square ﬂower bed below. (Unit: metres)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s0",
+   "translation": "3. Estimate ﬁrst, then measure and work out the area of each ﬁgure below.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s1",
+   "translation": "4. Estimate ﬁrst, then measure and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s6",
+   "translation": "Maths book cover Classroom ﬂoor Floor of a room at home",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s7",
+   "translation": "5. Cut the largest possible square from the rectangular paper on the right. What shape is the part left over? What is its area in square decimetres?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s10",
+   "translation": "6. A rectangular tablecloth has an area of 72 square decimetres and is 9 decimetres long. How wide is it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p58_s11",
+   "translation": "7. A square fountain has a perimeter of 20 metres. How many metres long is each side? What is its area in square metres?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s0",
+   "translation": "Converting Area Units",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s1",
+   "translation": "Use 1-square-centimetre paper squares to cover a 1-square-decimetre square. How many",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s2",
+   "translation": "small squares do you need? Draw and explain.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s3",
+   "translation": "Each row has 10 squares of 1 square centimetre, and there are () rows.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s4",
+   "translation": "1 square decimetre = () square centimetres",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s5",
+   "translation": "1 square decimetre =100 square centimetres. So how many square decimetres is 1 square metre?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s6",
+   "translation": "Explain your thinking.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s7",
+   "translation": "Using the ﬁgure above, think of 1 square decimetre as 1 square metre and 1 square centimetre as 1 square decimetre. Then you can see 1 square metre has ·····",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s8",
+   "translation": "1 decimetre =10 centimetres, 1 square decimetre =100 square centimetres; 1 metre =10 decimetres, so I think 1 square metre = ·····",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s9",
+   "translation": "1 square metre is the area of a square with sides of 1 metre, that is, a square with sides of 10 decimetres, so",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p59_s10",
+   "translation": "1 square metre = (",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s1",
+   "translation": "1. Tell your partner how you worked out that 1 square metre =100 square decimetres and 1 square decimetre =100 square centimetres.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s2",
+   "translation": "2. Fill in the blanks.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s3",
+   "translation": "3 dm² = () cm² 500 cm² = () dm² 20 dm² = () m²",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s5",
+   "translation": "2 m² = () dm² 400 dm² = () cm² 1000 dm² = () m²",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s7",
+   "translation": "3. Fill in suitable units of area.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s9",
+   "translation": "The area of the blackboard is about 400 (), that is, 4 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s10",
+   "translation": "(2) The area of the classroom ﬂoor is about 60 (), that is, 6000",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s13",
+   "translation": "The maths book's cover is about 5 square decimetres.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s14",
+   "translation": "The door's area is about 200 square decimetres.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s15",
+   "translation": "Is it that big? It should be 20 square decimetres.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s16",
+   "translation": "No, it's 500 square centimetres.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s17",
+   "translation": "Maths",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s18",
+   "translation": "Did you know?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s19",
+   "translation": "In ancient times, people had to measure land to work out harvests and taxes, and so they came to understand area. In ancient China, the characters “幂” (mì) or “积” (jī) were used to stand for area.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p60_s20",
+   "translation": "幂 (mì): a square cloth for covering things; 积 (jī): to pile up. Can you understand the meanings of these two characters?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s0",
+   "translation": "Exercise 4",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s2",
+   "translation": "2. Write the area of each ﬁgure below. (Each small square has an area of 1 square centimetre.)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s3",
+   "translation": "3. Compare the areas of the two ﬁgures in each group below and say how you compared them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s6",
+   "translation": "4. Fill in suitable units.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s7",
+   "translation": "(1) A jump rope is about 2 () long.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s8",
+   "translation": "(2) A bedroom's area is about 22 (",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s10",
+   "translation": "(3) The top of a pencil case has an area of about 70 (). (4) A square handkerchief has an area of about 400 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s11",
+   "translation": "5. Fill in the blanks.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p61_s16",
+   "translation": "4 m",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s0",
+   "translation": "7. On the right is a living room ﬂoor laid with",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s1",
+   "translation": "square tiles. (1) How many tiles cover this living room?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s2",
+   "translation": "(2) If each tile has sides of 5 decimetres, what is the area of the living room in square metres?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s3",
+   "translation": "A square has a perimeter of 16 centimetres. What is its area?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s4",
+   "translation": "9. How can two tables like this be put together? What are the area and perimeter each way?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s6",
+   "translation": "Draw ﬁrst to see how many ways there are.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s8",
+   "translation": "10. Xiaoxiao's family's kitchen is to be tiled. There are two kinds of tiles.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s11",
+   "translation": "The kitchen is 36 decimetres long.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s18",
+   "translation": "(1) Exactly 180 tiles of the ﬁrst kind are needed. What is the area of the kitchen?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s19",
+   "translation": "(2) How many tiles of the second kind?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p62_s21",
+   "translation": "Mr Wang has a rectangular sheet of coloured paper 32 centimetres long and 15 centimetres wide for the children. At most how many squares with sides of 2 centimetres can be cut from it?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s1",
+   "translation": "(1) How many rectangles can you make with a 16-centimetre wire? Fill in the table.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s3",
+   "translation": "Use whole centimetres!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s4",
+   "translation": "What do you notice?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s5",
+   "translation": "The perimeter stays the same, but the area changes...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s6",
+   "translation": "The closer the length and width, the area...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s7",
+   "translation": "(2) Measure each square below, ﬁnd its perimeter and area, and ﬁll in the table.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s8",
+   "translation": "What do you notice?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s9",
+   "translation": "Side length/cm Perimeter/cm Area/cm²",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s10",
+   "translation": "Side × 2, perimeter × 2 too, area...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s11",
+   "translation": "Side × 3, perimeter...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s13",
+   "translation": "Cut a square of coloured paper with sides of 4 centimetres into small squares with sides of 2 centimetres. How many can you cut?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s14",
+   "translation": "Let's just draw and count.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p63_s15",
+   "translation": "Can we cut 2?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s3",
+   "translation": "The 5th School Art Festival will be held on 6/1–15. The Student Council is collecting festival logo designs from the whole school. If you are interested, please hand in your entry to the Student Council by 5/25. We hope everyone will take part!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s4",
+   "translation": "Student Council",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s6",
+   "translation": "Design an Art Festival logo.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s8",
+   "translation": "1. Below are patterns and logos we collected. What design features do they have?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s13",
+   "translation": "Beijing Olympics logo",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s14",
+   "translation": "Shanghai World Expo emblem",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s16",
+   "translation": "The symmetrical ﬁve rings show the beauty of harmony; the asymmetrical Chinese seal shows the beauty of movement.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s17",
+   "translation": "Yang Xizun designed this. The ﬁve coloured circles stand for the whole class, and the pattern shows the beauty of symmetry.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s18",
+   "translation": "It neatly combines the character “世” (shì) with \"2010\".",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s19",
+   "translation": "2. How can we design a good Art Festival logo?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s20",
+   "translation": "It should highlight the event's theme.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s21",
+   "translation": "It should show what is special about our school.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p64_s22",
+   "translation": "You can use ﬁgures with line symmetry.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s1",
+   "translation": "Design a logo as required below and draw it in the grid. (1) Give the logo a name.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s4",
+   "translation": "It needs to reﬂect a theme.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s5",
+   "translation": "(3) All or part of it can be a ﬁgure with line symmetry.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s7",
+   "translation": "1. What features does the logo you created have?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s8",
+   "translation": "2. Which shapes and knowledge that you have learned did you use?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s9",
+   "translation": "3. What did you gain in the process of designing the logo?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s12",
+   "translation": "Able to use line-symmetric ﬁgures to create patterns.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s13",
+   "translation": "My logo has meaning and shows my personality.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s14",
+   "translation": "Able to actively communicate with classmates.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p65_s15",
+   "translation": "Able to reﬂect on what I learned.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s0",
+   "translation": "Let's Go to the Park",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s1",
+   "translation": "Bus rental.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s2",
+   "translation": "1. How can we rent buses? How much will it cost? Talk with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s3",
+   "translation": "¥120 per bus, up to 12 passengers",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s5",
+   "translation": "¥160 per bus, up to 18 passengers",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s6",
+   "translation": "Rent 3 big buses, and there are 54 seats...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s7",
+   "translation": "We can also rent 1 big bus and 3 small buses.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s8",
+   "translation": "2. How many bus rental plans are there in all? Let's sort them out!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s9",
+   "translation": "Small buses",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s10",
+   "translation": "Big buses",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s12",
+   "translation": "Rent (¥)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s14",
+   "translation": "3. Which rental plan saves the most money?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p66_s15",
+   "translation": "If there are 40 of us, which plan saves the most money?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s0",
+   "translation": "Buying Souvenirs.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s1",
+   "translation": "1. We want 30 dolls. How can we buy them?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s2",
+   "translation": "Small pack: 3 in a box, ¥5 a box.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s3",
+   "translation": "Large pack: 4 in a box, ¥6 a box",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s4",
+   "translation": "10 small packs make 30 dolls.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s5",
+   "translation": "We can also",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s6",
+   "translation": "2. Write down 3 buying plans. Which one saves the most money?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s7",
+   "translation": "Let's use a table",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s8",
+   "translation": "Small packs",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s9",
+   "translation": "Large packs",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s10",
+   "translation": "Total dolls",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s11",
+   "translation": "Cost (¥)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s15",
+   "translation": "3. What other problems can you solve by making a table?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s16",
+   "translation": "What is the cheapest way to buy 50 dolls?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p67_s17",
+   "translation": "If a big bus seats 8 and a small bus seats 5, and there are 28 of us, which buses should we take to have the fewest empty seats?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s1",
+   "translation": "Which interest group each of them is in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s2",
+   "translation": "The school has soccer, model plane and computer interest groups. Taoqi, Xiaoxiao and Qisi each joined one of them according to their own interests. No two of them are in the same group.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s3",
+   "translation": "I don't like playing soccer",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s4",
+   "translation": "I'm not in the computer group",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s5",
+   "translation": "I like model planes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s6",
+   "translation": "1. Try it out and discuss with your partner",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s7",
+   "translation": "Taoqi is not in the computer group, so he may be in the soccer or model plane group. Xiaoxiao doesn't like soccer, so she may be... There's too much information, I'm getting mixed up.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s8",
+   "translation": "How should we organize the information?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s9",
+   "translation": "2. Draw a table to help, and record the information you know.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s10",
+   "translation": "Soccer",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s11",
+   "translation": "Model plane",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s13",
+   "translation": "Soccer",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s14",
+   "translation": "Model plane",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s18",
+   "translation": "Taoqi is not in the computer group, so draw \"×\" in that cell of the table.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s19",
+   "translation": "Qisi is in the model plane group, so draw \"√\". Xiaoxiao and Taoqi can't be in this group, so draw...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p68_s20",
+   "translation": "3. Finish the table above. Can you work out which group each of them is in?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s0",
+   "translation": "Where the model planes are placed in the cabinet.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s1",
+   "translation": "The model plane group has 6 model planes: Taoqi, Qisi, Miaoxiang, Xiaoxiao, Lele and Coach, kept in a cabinet. Use the clues below to ﬁnd their positions.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s2",
+   "translation": "Taoqi and Lele are both placed on the left side of the cabinet, and Taoqi is above Lele.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s3",
+   "translation": "Coach is on the left of the top row. Miaoxiang is not in the top row or the bottom",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s4",
+   "translation": "row.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s5",
+   "translation": "Qisi is not placed next to Coach.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s6",
+   "translation": "1. Where is Taoqi? Share your ideas with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s7",
+   "translation": "Taoqi is on the left side of the cabinet, so it could be in position ①, ② or ③",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s8",
+   "translation": "Taoqi is above Lele, so it could be in position ① or ②.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s9",
+   "translation": "Coach is on the left of the top row...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s10",
+   "translation": "2. Where is Miaoxiang? Share your ideas with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s11",
+   "translation": "Miaoxiang is not in the top or bottom row.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s12",
+   "translation": "I've got it! Miaoxiang is in position ⑤.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s13",
+   "translation": "3. Which models are not placed yet? How can we place them? Discuss with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s14",
+   "translation": "Qisi and Xiaoxiao are not placed yet.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p69_s15",
+   "translation": "Qisi is not next to Coach, so it should be in...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s1",
+   "translation": "Sharing (1)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s3",
+   "translation": "Each person gets 1 apple.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s6",
+   "translation": "One half is written as",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s10",
+   "translation": "Color each shape below to show",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s11",
+   "translation": "Fold and color a sheet of paper. What other fractions can you get?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s12",
+   "translation": "Fold into equal parts",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s13",
+   "translation": "This is how I got",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s15",
+   "translation": ".",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s16",
+   "translation": "Get to know them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s18",
+   "translation": "Can you think of another fraction and draw a picture to show what it means?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p70_s22",
+   "translation": "Read as: three-quarters",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s1",
+   "translation": "of the sheet? Explain why.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s2",
+   "translation": "Is each colored part below",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s3",
+   "translation": "In each one, a sheet is divided into 4 equal parts and 1 part is colored, so...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s4",
+   "translation": "They are divided equally in diﬀerent ways, so the colored parts have diﬀerent shapes, but they are all...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s5",
+   "translation": "Divide a square sheet of paper into 4 equal parts. Color 1 part, 2 parts, 3 parts and 4 parts of it. Fill in the blanks and explain.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s6",
+   "translation": "Color 1 of the parts. The colored part",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s7",
+   "translation": "of this sheet is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s9",
+   "translation": "1. Is each blue part",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s10",
+   "translation": "of its shape? Explain.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p71_s11",
+   "translation": "2. Color each shape below to show",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s0",
+   "translation": "3. Is each colored part below",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s1",
+   "translation": "of the sheet? Explain why.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s2",
+   "translation": "4. Divide a rectangular sheet of paper into 5 equal parts. Color 1 part, 2 parts, 3 parts, 4 parts and 5 parts of it. Fill in the blanks and explain.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s3",
+   "translation": "5. Color each shape below to show",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s4",
+   "translation": "6. Fold and color.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s5",
+   "translation": "(1) Fold a sheet to show",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s8",
+   "translation": "Did you know?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s9",
+   "translation": "Writing fractions has a long history.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s10",
+   "translation": "Over 3000 years ago, Egyptians used an egg-shaped symbol",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s12",
+   "translation": "Over 2000 years ago, people in ancient China used counting rods to show fractions.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s13",
+   "translation": "to show fractions with numerator 1.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s14",
+   "translation": "Indian mathematicians wrote fractions like this in their maths books.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p72_s16",
+   "translation": "No fraction line in the middle",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s0",
+   "translation": "Divide (2)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s1",
+   "translation": "Color the small squares below in the 3 colors red, yellow, and blue. What fraction of the shape does each color take up? Use Figure 3 in Appendix 3 to try.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s2",
+   "translation": "The red part takes up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s3",
+   "translation": "The yellow part takes up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s4",
+   "translation": "The blue part takes up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s5",
+   "translation": "I colored 3 small squares in each color, so",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s6",
+   "translation": "I colored 1 red, and 4 each of yellow and blue",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s7",
+   "translation": "each takes up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s8",
+   "translation": "Cut Figure 3 in Appendix 3 into 9 small squares. What fraction of the 9 small squares does each color take up?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s9",
+   "translation": "1 large square became 9 small squares, so 1 of these",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s10",
+   "translation": "The squares of each color",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s11",
+   "translation": "still take up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s12",
+   "translation": "small squares is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s14",
+   "translation": "Look at the picture below. What fractions can you ﬁnd? Tell your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s15",
+   "translation": "There are 7 butterﬂies, and 3 are white. The white ones are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p73_s16",
+   "translation": "4 girls and 2 boys. Of all the children, the boys are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s1",
+   "translation": "There are 5 ducklings. Circle",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s2",
+   "translation": "There are 5 ducks in total. I need to circle...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s3",
+   "translation": "There are 5 rows of ducklings. Circle",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s5",
+   "translation": "There are 5 rows of ducks in total. How many rows do I need to circle?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s8",
+   "translation": "(1) Color and ﬁll in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s9",
+   "translation": "Color 2 triangles in the picture red. They take up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s10",
+   "translation": "Color 3 triangles yellow. They take up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s11",
+   "translation": "Color 3 triangles blue. They take up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s12",
+   "translation": "(2) What fraction of the 8 small triangles is each color? Tell your",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s13",
+   "translation": "partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p74_s14",
+   "translation": "2. Look at the picture on the right. What fractions can you ﬁnd? Tell your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s0",
+   "translation": "3. Circle and explain.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s7",
+   "translation": "Children with braids make up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p75_s8",
+   "translation": "of the total",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s2",
+   "translation": "Which is larger? Color and compare.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s3",
+   "translation": "Both fractions have the denominator 4. The larger the numerator...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s4",
+   "translation": "Both divide the square into 4 equal parts; the more parts colored, the larger the fraction.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s5",
+   "translation": "Using the picture below, ﬁnd a group of fractions with the same denominator, color and compare.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s8",
+   "translation": "Draw a picture to compare, and you'll see which is larger.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s10",
+   "translation": "which is larger?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s11",
+   "translation": "In Grade 5, we will learn more...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p76_s12",
+   "translation": "Let me try drawing too!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s1",
+   "translation": "1. Color and compare",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s3",
+   "translation": "2. Color a set of fractions with the same denominator below and order them by size.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s4",
+   "translation": "3. Draw, color and compare.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s5",
+   "translation": "4. Xiaoxiao brought a basket of 7 apples",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s6",
+   "translation": "Red apples make up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s7",
+   "translation": "Green apples make up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s8",
+   "translation": "5. Write suitable fractions and compare each pair.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p77_s9",
+   "translation": "Colored part Uncolored part",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s0",
+   "translation": "Eating Watermelon",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s1",
+   "translation": "Of this watermelon, I ate",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s2",
+   "translation": "Of this watermelon, I ate",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s3",
+   "translation": "What fraction of the watermelon did Big Bear and Little Bear eat in total?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s5",
+   "translation": "What fraction more did Big Bear eat than Little Bear?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p78_s8",
+   "translation": "Color and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s1",
+   "translation": "1. Look and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s2",
+   "translation": "2. Color and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s6",
+   "translation": "4. What fraction of this paper did they use in total? What fraction is left?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s7",
+   "translation": "Of this paper, I used",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p79_s8",
+   "translation": "Of this paper, I used",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s0",
+   "translation": "Exercise 5",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s1",
+   "translation": "1. What fraction of each shape is colored?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s2",
+   "translation": "2. Think and ﬁll in",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s3",
+   "translation": "Red stars make up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s4",
+   "translation": "Pears make up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s5",
+   "translation": "Blue stars make up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s6",
+   "translation": "Apples make up",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s8",
+   "translation": "4. Look and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s9",
+   "translation": "(1) In all, () children are skipping rope.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s11",
+   "translation": "of the children, and girls are",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p80_s12",
+   "translation": "(3) Please ask another math question and try to answer it.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s0",
+   "translation": "5. Color and compare.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s1",
+   "translation": "6. Look at the picture and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s6",
+   "translation": "8. A birthday cake is cut into 8 equal pieces. What fraction of it did the two children eat in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s10",
+   "translation": "9. Qisi is reading a book. On the ﬁrst day he read",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s11",
+   "translation": "On the second day he read just as much.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s12",
+   "translation": "What fraction did he read in the two days? What fraction is left unread?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p81_s13",
+   "translation": "10. What fraction of each ﬁgure is colored?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s1",
+   "translation": "(1) Take a rectangular piece of paper, fold out the largest square, and cut it out.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s2",
+   "translation": "(2) Use the cut-out square to make a tangram in the order below, and colour the pieces diﬀerent colors.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s3",
+   "translation": "(3) What fraction of the original square is piece 1? Piece 2? Together, the two pieces are of the original square?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p82_s4",
+   "translation": "What fraction of the original square is each of pieces 3, 4, 5, 6 and 7?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s1",
+   "translation": "Little Shoe Store",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s2",
+   "translation": "Taoqi's class wants to open a pretend shoe store. To \"stock\" it, they need to do a survey.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s3",
+   "translation": "Talk about it: how could we do the survey?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s4",
+   "translation": "We can survey classmates' shoe sizes and stock more of the common ones.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s5",
+   "translation": "Let's survey the boys and girls separately.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s6",
+   "translation": "The survey results are below. Organize them and present the results.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s9",
+   "translation": "I put the same sizes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s10",
+   "translation": "One girl wears size 32 shoes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s13",
+   "translation": "This is how Miaoxiang did it. Do you understand? Continue the drawing.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s17",
+   "translation": "What do you notice? What would you suggest for \"stocking\" the shoe store?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s18",
+   "translation": "The largest boys' shoe size is 38 and the smallest is ···",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p83_s19",
+   "translation": "The most popular girls' size is..., so stock more of those",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s1",
+   "translation": "1. Now pretend to open your own shoe store and do a \"stocking\" survey. (1)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s2",
+   "translation": "Discuss: how can you carry out the survey?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s3",
+   "translation": "(2) In pairs, survey your classmates' shoe sizes, then organize and show the results.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s4",
+   "translation": "(3) What did you ﬁnd? What are your ideas for \"stocking\" the shoe store?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s5",
+   "translation": "2. Class 3(2) voted for their favorite farm animal. The votes are recorded below.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s11",
+   "translation": "Which animal is the most popular?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p84_s13",
+   "translation": "(3) Which group below shows exactly the same data as the chart above?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s0",
+   "translation": "Happy Growth",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s1",
+   "translation": "On 2010-12-1, the Ministry of Railways changed the height range for children's half-price tickets to 120–150 cm.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s2",
+   "translation": "Here are the heights of Taoqi's classmates. Do you know how many of them can still the class can still buy half-price tickets?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s3",
+   "translation": "Heights of Taoqi's Classmates",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s11",
+   "translation": "I see that one student in Group 4 is 151 cm tall...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s12",
+   "translation": "Going group by group, it's easy to miss some! What can we do?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s13",
+   "translation": "Xiaoxiao thought of a way. She marked the heights of Group 1 on the chart below. Can you go on and mark the heights of the whole class?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s14",
+   "translation": "I can see how many in our class can buy half-price tickets!",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s15",
+   "translation": "Look at the chart above. What else can you see?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s16",
+   "translation": "Most students in our class are around 140 cm tall",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p85_s17",
+   "translation": "The tallest is 156 cm and the shortest is 120 cm.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s1",
+   "translation": "1. Yao Ming was 147 cm tall when he started primary school. How tall are your classmates? Work in groups: survey ﬁrst, organize the data in the chart below, then compare with Yao Ming's height when he started school.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s2",
+   "translation": ") Class Heights",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s3",
+   "translation": "2. The chart below shows how long Class 3(2) students sleep.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s15",
+   "translation": "(1) Fill in from the chart above.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s16",
+   "translation": "Sleep time 7 h 30 min",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s23",
+   "translation": "Number",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s24",
+   "translation": "(2) Do you know how many students are in Class 3(2)?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s25",
+   "translation": "(3) If primary school children should get 10 h of sleep, what do you think thoughts about the survey results?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p86_s26",
+   "translation": "(4) In groups, survey your own class's sleep times, make a chart and compare with Class 3(2). What is diﬀerent?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s2",
+   "translation": "We learned about numbers, and shapes too",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s3",
+   "translation": "I have learned some ways to think about and solve problems.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s4",
+   "translation": "Can you now solve the questions in the question bank? What new questions do you want to explore?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s5",
+   "translation": "Numbers: Review and Discuss",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s6",
+   "translation": "1. Talk about numbers in everyday life.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s7",
+   "translation": "My student number is 7, and I am 129 cm tall...",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s8",
+   "translation": "Divide an apple into 4 equal parts,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s9",
+   "translation": "1 of them is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s10",
+   "translation": "This book costs ¥12.8 and its cover is 0.23 m long.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s12",
+   "translation": "2. Do you still remember the place value chart? Think and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s13",
+   "translation": "Place Value Chart",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s14",
+   "translation": "() place",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s15",
+   "translation": "() place",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s16",
+   "translation": "() place",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s19",
+   "translation": "Write the following numbers, and explain what \"5\" means in each number.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s24",
+   "translation": "3. Give an example of how to compare numbers.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s25",
+   "translation": "4. Draw diagrams to show",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p87_s27",
+   "translation": ", then draw and explain how to calculate",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s0",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s1",
+   "translation": "1. Write the numbers.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s9",
+   "translation": "About one thousand three hundred kinds of birds have been found in China.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s10",
+   "translation": "The stadium holds ten thousand.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s11",
+   "translation": "Batteries collected: Trees planted:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s12",
+   "translation": "one thousand and ﬁve.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s13",
+   "translation": "four thousand and eighty.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s17",
+   "translation": "4. Find the pattern and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s25",
+   "translation": "5. Can you represent the number 127 in diﬀerent ways?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p88_s26",
+   "translation": "6. On the tape measure, ﬁnd how long 0.3 m is. What about 1.05 m?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s0",
+   "translation": "Number Operations: Review and Discuss",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s1",
+   "translation": "1. Which operations have we learned? Please give examples.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s3",
+   "translation": "Little Shop bought 200 balls in total",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s4",
+   "translation": "Planting Trees",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s5",
+   "translation": "There are 15 rows, with 32 trees in each row",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s6",
+   "translation": "90 balls 45 balls",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s8",
+   "translation": "150 eggs",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s9",
+   "translation": "(1) What math questions can you ask from the picture? Tell a partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s10",
+   "translation": "(2) In solving the problems, which operations did you use?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p89_s26",
+   "translation": "(3) Color and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s0",
+   "translation": "4. Organize frequently mistaken problems, and explain how to avoid these",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s1",
+   "translation": "mistakes 5. (1) First draw a diagram to understand the problem, then solve it",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s2",
+   "translation": "How much change should she get?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s3",
+   "translation": "How many did they pick in all?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s4",
+   "translation": "I picked 20 fewer than you",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s5",
+   "translation": "I picked 180 carrots",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s6",
+   "translation": "I'll buy 3.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s7",
+   "translation": "Each costs ¥12",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s8",
+   "translation": "How many in each row on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s9",
+   "translation": "Each formation has 6 rows",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s10",
+   "translation": "72 people in total, divided equally into 2 formations.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s11",
+   "translation": "(2) Tell a partner how you solve real-life problems.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s12",
+   "translation": "First I read the problem, then draw a picture to show how the numbers relate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s13",
+   "translation": "Then I choose a suitable method, write a number sentence and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s14",
+   "translation": "Finally, I must check the answer",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s15",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p90_s16",
+   "translation": "1. Try it out and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p91_s0",
+   "translation": "2. Talk about it and calculate.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s0",
+   "translation": "7. Calculate, and say what you work out ﬁrst and what next.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s7",
+   "translation": "8. 97 students go to the park with ¥300. Is it enough for the tickets?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s8",
+   "translation": "Tickets ¥3 each",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s9",
+   "translation": "9. The school set up a \"Red Scarf Charity Donation Station\". In the ﬁrst week the students donated 56 storybooks. In the second week they donated 14 more than 2 times as many. How many storybooks did they donate in the second week?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s10",
+   "translation": "10. How many books can all these bookcases hold?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s11",
+   "translation": "Each shelf of each bookcase holds 25 books.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s12",
+   "translation": "11. To take part in a yo-yo competition, Mr. Wang bought 4 boxes of yo-yos, with 2 in each box, for ¥9 in total. How much does each yo-yo cost on average?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s13",
+   "translation": "12. How much do 7 pencil boxes cost?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s14",
+   "translation": "3 pencil boxes cost ¥36.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s15",
+   "translation": "13. Two teachers take 51 students boating in the park. Each big boat seats 6 people and costs ¥60 to rent; each small boat seats 4 people and costs ¥48. Work in groups: write at least 4 boat-rental plans and compare their costs.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s16",
+   "translation": "Big boats",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s17",
+   "translation": "Small boats",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p92_s20",
+   "translation": "Plan 1 Plan 2 Plan 3 Plan 4",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s2",
+   "translation": "Zhou Lulu broke the world record in the women's over 75 kg weightlifting ﬁnal with a total of 333 kg, and won the gold medal.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s4",
+   "translation": "Give examples of about how long 4 minutes is and about how heavy 300 kg is.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s5",
+   "translation": "What other units of time, money and mass do you know? Give examples.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s6",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s7",
+   "translation": "1. Fill in a suitable unit in each (). ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s9",
+   "translation": "(2) A camel weighs about 420 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s10",
+   "translation": "(3) An egg weighs about 55 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s11",
+   "translation": "(4) Xiaoming's dad works 8 () a day",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s12",
+   "translation": "(5) Xiaojun ran 60 m in 10 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s13",
+   "translation": "(6) A mathematics lesson lasts 40 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s14",
+   "translation": "2. Fill in the blanks.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s15",
+   "translation": "2 h = () min 3 t = () kg 30 jiao = () yuan",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p93_s16",
+   "translation": "5 min = () s 4000 g = () kg 6 jiao = () fen",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s0",
+   "translation": "3. (1) This year, February (month 2) has ___ days, and it is a ___ (common, leap) year.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s2",
+   "translation": "__ (month) ___ (day), and that month has ___ days.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s3",
+   "translation": "(3) The \"June 1\" Children's Day gala started at 20:00 and lasted 2 h 30 min. It ended at ___ h ___ min.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s4",
+   "translation": "4. These 5 animals cross the river together. Which boat should each take? Draw lines to match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s12",
+   "translation": "5. An adult female Tibetan antelope weighs about 25 kg, and a wild yak weighs about 20 times as much. About how many kilograms does a wild yak weigh? How many wild yaks together weigh about 1 tonne?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s13",
+   "translation": "6. On 15/3/2012, Uncle Wang took a train from Beijing to Shenyang. Of the 3 trains below, he chose the one that reaches Shenyang earliest. Guess which train he took.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s15",
+   "translation": "Train type",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s16",
+   "translation": "From Beijing",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s17",
+   "translation": "Departs",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s19",
+   "translation": "Duration 5 h 55 min 4 h 48 min",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s25",
+   "translation": "Bullet train",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p94_s30",
+   "translation": "Bullet train",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s0",
+   "translation": "Understanding Shapes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s1",
+   "translation": "Review and Discuss",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s2",
+   "translation": "1. What shapes have we learned about? Talk about them with your partner.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s5",
+   "translation": "Cube Cuboid Cylinder Sphere",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s6",
+   "translation": "Rectangle Square Triangle Parallelogram",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s7",
+   "translation": "We learned about various angles:",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s8",
+   "translation": "acute right",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s9",
+   "translation": "obtuse",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s10",
+   "translation": "2. Fold a right, an obtuse and an acute angle; check with a set square.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s11",
+   "translation": "This angle is bigger than a right angle, so it is an ··",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s12",
+   "translation": "This is an acute angle, so it is ··· than a right angle.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s13",
+   "translation": "3. Which shape is a rectangle? Which is a square? How did you decide?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p95_s14",
+   "translation": "4. Choose an object, look at it from diﬀerent positions, and say what you notice.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s0",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s1",
+   "translation": "1. Find a pair of equal sides in each ﬁgure below and trace them with a coloured pen.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s2",
+   "translation": "2. In the constellation on the right, trace 5 angles in red, then look for acute and obtuse angles among them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s3",
+   "translation": "3. Which chair was each photo below taken from? Draw lines to match.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p96_s5",
+   "translation": "Taoqi and Xiaoxiao put a sheet of coloured paper in an envelope. Can you tell from the dialogue below the shape of this sheet of paper?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s0",
+   "translation": "Figures and Measurement: Review and Discuss",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s1",
+   "translation": "1. Which length units and which area units have we learned? Sort them out and talk about them with your",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s6",
+   "translation": "square centimetre",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s8",
+   "translation": "It is good for measuring",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s9",
+   "translation": "Measuring a desktop's area",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s10",
+   "translation": "short objects.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s11",
+   "translation": "with it is too much trouble.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s13",
+   "translation": "The distance around a leaf is the perimeter of the leaf.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s14",
+   "translation": "The size of the surface of a leaf is the area of the leaf.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s15",
+   "translation": "3. How do we ﬁnd the perimeter and area of a rectangle and a square? How did we get these",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s19",
+   "translation": "Adding the lengths of the four sides gives the perimeter of this rectangle.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s20",
+   "translation": "4 squares ﬁt in each row, and 3 rows ﬁt. The area of this rectangle is 4×3=12 (square centimetres).",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s21",
+   "translation": "(4+3) ×2=14 (cm)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p97_s22",
+   "translation": "4. Try it: how big is 1 square centimetre? 1 square decimetre? 1 square metre?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s0",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s1",
+   "translation": "1. Fill in (",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s2",
+   "translation": ") with a suitable unit.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s3",
+   "translation": "(1) A big tree is about 8 () tall.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s4",
+   "translation": "(2) The area of a stamp is 6 () (3)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s5",
+   "translation": "The area of the classroom is 55 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s6",
+   "translation": "(4) A pen is 15 () long.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s8",
+   "translation": "The area of the cover of a mathematics book is about 5 ().",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s9",
+   "translation": "(6) The railway from Beijing to Xi'an is about 1200 () long.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s10",
+   "translation": "2. What are the perimeter and area of the ﬁgures below? (Each small square has side length 1 cm)",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s14",
+   "translation": "5 m = () dm",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s16",
+   "translation": "What is the area of this lawn in square metres? Put a fence around the lawn; how many metres long is the fence?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p98_s18",
+   "translation": "15 m",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s0",
+   "translation": "5. A water truck travels 150 m per minute and the sprinkling width is 8 m. If the truck travels for 7 minutes, what area of ground can it sprinkle?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s1",
+   "translation": "6. A pavement is 27 m long and 3 m wide. Square tiles of area 9 square decimetres are used to pave it. How many such tiles are needed?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s2",
+   "translation": "7. Taoqi's family is tiling the living room ﬂoor. Which tile is cheaper to use? How many of such tiles are needed?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s5",
+   "translation": "living room",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s9",
+   "translation": "8. Cut a square of paper with side length 20 cm into 4 identical small squares. What are the perimeter and area of each small square?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s10",
+   "translation": "20 cm",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s11",
+   "translation": "9. A narrow path 1 m wide is laid around a rectangular ﬂower bed.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s12",
+   "translation": "(1) How many square metres is the ﬂower bed?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s14",
+   "translation": "(2) How many square metres is the path?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p99_s15",
+   "translation": "20 m",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s0",
+   "translation": "Motion of Shapes",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s1",
+   "translation": "Review and Discuss",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s2",
+   "translation": "1. Give examples to explain what a symmetrical ﬁgure is. Which of the ﬁgures below are symmetrical?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s3",
+   "translation": "2. Give some examples of translations and rotations.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s4",
+   "translation": "The movement of a pinwheel is a rotation.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s5",
+   "translation": "Sliding a window is a translation.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s6",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s7",
+   "translation": "1. Which movements below are translations, and which are rotations?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p100_s8",
+   "translation": "2. Which ﬁgures below ﬁt exactly onto ﬁgure A after a translation? Colour them in a colour you like.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s1",
+   "translation": "Figures and Position: Review and Discuss",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s2",
+   "translation": "1. In the classroom, use above, below, in front, behind, left and right to say where things are in relation to each other. On the playground, ﬁnd east, south, west and north.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s3",
+   "translation": "2. Which directions have we learned? Look at the map, talk and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s7",
+   "translation": "Post Oﬃce",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s13",
+   "translation": "The park is to the ___of the Post Oﬃce. The cinema is to the ___of the Shop. The shop is to the",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s14",
+   "translation": "___ of Yuying Primary School.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s15",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s16",
+   "translation": "1. Look and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s18",
+   "translation": "Taoqi is to the () of Xiaoxiao; Xiaoxiao is to the () of Taoqi.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p101_s19",
+   "translation": "(2) The book is () the pencil case.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s0",
+   "translation": "2. Look and ﬁll in.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s7",
+   "translation": "Fish Pond",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s8",
+   "translation": "(4) The farm is () of the primary school.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s9",
+   "translation": "Village Committee",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s10",
+   "translation": "Farm Machinery Station",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s11",
+   "translation": "Statistics: Review and Discuss",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s12",
+   "translation": "Primary School",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s13",
+   "translation": "1. Choose diﬀerent ways to divide the whole class into two groups, and say how you divided them.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s14",
+   "translation": "By gender: boys in one group, girls in another.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s15",
+   "translation": "By birthday: Jan–Jun",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s16",
+   "translation": "in one group, Jul–Dec…",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s17",
+   "translation": "By height: 140 cm or taller in one group, shorter ones ·····",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s18",
+   "translation": "2. In groups, choose one way to sort the class and record the results.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s19",
+   "translation": "Jan– Jun Jul– Dec",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s20",
+   "translation": "140 cm or more Under 140 cm",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s22",
+   "translation": "3. Say what you found out from the results.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s23",
+   "translation": "Our class has more boys than girls···",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p102_s24",
+   "translation": "In our class, those under 140 cm tall ····",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s0",
+   "translation": "Consolidate and Apply",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s1",
+   "translation": "1. On the right is a small cube. Its 6 faces are marked 1,",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s3",
+   "translation": "(1) Toss it 20 times and record the number that faces up each time.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s4",
+   "translation": "Throw Number",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s5",
+   "translation": "(2) Summarize the results recorded by the whole class.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s6",
+   "translation": "Number Times",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s7",
+   "translation": "(3) Observe how many times each number appears in the table above. What do you ﬁnd?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s8",
+   "translation": "2. Below are the 1-minute skipping test results of the boys in Grade 3, Class 1",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s9",
+   "translation": "Pupil",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s10",
+   "translation": "Score",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s11",
+   "translation": "Pupil",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s12",
+   "translation": "Score",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s13",
+   "translation": "Pupil",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s14",
+   "translation": "Score",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s15",
+   "translation": "Pupil",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s16",
+   "translation": "Score",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s17",
+   "translation": "Pupil",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s18",
+   "translation": "Score",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s19",
+   "translation": "(1) Complete the chart below using the table above.",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s20",
+   "translation": "(2) Which boy had the best 1-minute skipping score? How many skips did he do?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p103_s21",
+   "translation": "(3) The school's pass mark for the 1-minute skipping test is 110 skips. The number of boys who pass is () and as a fraction of all the boys that is",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p104_s0",
+   "translation": "What did you learn this term?",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p105_s0",
+   "translation": "Problem Bank",
+   "reason": "recovered from the checked edition delivered earlier"
+  },
+  {
+   "segment_id": "p105_s1",
+   "translation": "What math problems have you found in everyday life and in your studies? Write them down. Can you solve them?",
+   "reason": "recovered from the checked edition delivered earlier"
+  }
+ ]
+}
