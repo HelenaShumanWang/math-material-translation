@@ -1,7 +1,7 @@
 #!/bin/bash
 # save_state.sh [code...]: push what a run cannot rebuild cheaply to the work-state branch (worktree
 # $BNU_STATE, default /tmp/piptest/state): every volume's corrections (proof/<code>/corr_*.json, file times kept in
-# times.json), its pristine segments (gzip), the OCR cache and the afterword texts.
+# times.json) and open flags (flags_*.json), its pristine segments (gzip), the OCR cache and the afterword texts.
 set -e
 W=${BNU_WORK:-/tmp/piptest/real}; ST=${BNU_STATE:-/tmp/piptest/state}
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
@@ -13,6 +13,7 @@ codes="$*"; [ -z "$codes" ] && codes="$(ls "$W/proof" 2>/dev/null)"
 for c in $codes; do
   mkdir -p "$ST/proof/$c"
   cp -p "$W"/proof/$c/corr_*.json "$ST/proof/$c/" 2>/dev/null || true
+  cp -p "$W"/proof/$c/flags_*.json "$ST/proof/$c/" 2>/dev/null || true  # what the proofreaders could not fix
   python3 - "$W/proof/$c" "$ST/proof/$c/times.json" <<'PY'
 import json, os, sys, glob
 json.dump({os.path.basename(f): os.path.getmtime(f) for f in glob.glob(sys.argv[1] + "/corr_*.json")}, open(sys.argv[2], "w"), indent=0)

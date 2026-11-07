@@ -14,8 +14,9 @@ Everything a run makes is under `$BNU_WORK` (default `/tmp/piptest/real`), see `
 packs), `afterword/`, `previews/`, `deliver/` (compact copies). The earlier checked edition is read from the
 `deliveries` branch checked out at `$BNU_DELIVERIES` (default `/tmp/piptest/deliveries`).
 
-**Save the state often** (`save_state.sh`): it pushes every volume's corrections, pristine segments and the OCR cache
-to the `work-state` branch. A container that is reset loses `$BNU_WORK`.
+**Save the state often** (`save_state.sh`): it pushes every volume's corrections, open flags, pristine segments and the
+OCR cache to the `work-state` branch. A container that is reset loses `$BNU_WORK`; `restore_state.sh` brings it back
+(the source PDFs come from Google Drive, `common.DRIVE_IDS`). Where the work stands: `STATUS.md`.
 
 ## One volume, in order
 
