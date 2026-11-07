@@ -87,7 +87,15 @@ class _DeepSeekChat:
                     continue
                 raise TranslationError(f"Could not reach the DeepSeek API ({last_error})") from exc
             if resp.status_code == 200:
-                return self._parse(resp)
+                try:
+                    return self._parse(resp)
+                except TranslationError as exc:  # a 200 with a broken body ("null") happens while the service is degraded
+                    last_error = str(exc)
+                    if attempt < self.max_retries:
+                        log.warning("DeepSeek returned an unreadable body; retrying in %ds (%s)", 2 ** attempt, resp.text[:80])
+                        time.sleep(2 ** attempt)
+                        continue
+                    raise
             detail = _error_detail(resp)
             if resp.status_code in (401, 403):
                 raise TranslationError(f"DeepSeek authentication failed ({resp.status_code}): check DEEPSEEK_API_KEY. {detail}")

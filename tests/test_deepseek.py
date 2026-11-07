@@ -275,10 +275,17 @@ def test_network_errors_raise_translation_error():
     assert len(rec.requests) == 4
 
 
-def test_unexpected_body_is_an_error():
-    tr, _ = make_translator(lambda body, n: httpx.Response(200, json={"weird": True}))
+def test_unexpected_body_is_an_error_after_retries():
+    tr, rec = make_translator(lambda body, n: httpx.Response(200, json={"weird": True}))
     with pytest.raises(TranslationError, match="unexpected response"):
         tr.translate([TranslationItem(id="a", text="你好")], Lang.ZH, Lang.EN, [])
+    assert len(rec.requests) == 4  # 1 + max_retries
+
+
+def test_null_body_during_an_outage_is_retried():
+    tr, rec = make_translator(lambda body, n: httpx.Response(200, text="\n\n\n\nnull") if n < 3 else completion(echo(body)))
+    results = tr.translate([TranslationItem(id="a", text="你好")], Lang.ZH, Lang.EN, [])
+    assert results[0].text == "EN 你好" and len(rec.requests) == 3
 
 
 def test_usage_is_logged(caplog):
