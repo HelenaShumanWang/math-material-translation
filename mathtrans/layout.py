@@ -1435,6 +1435,78 @@ def _column_members(segs: Sequence[TextSegment]) -> set[str]:
     return {s.id for g in groups.values() if len(g) >= COLUMN_MIN_MEMBERS for s in g}
 
 
+def _line_height(seg: TextSegment) -> float:
+    """The height of one line of ``seg``: its box, or no more than ``ONE_LINE_HEIGHT`` type sizes
+    when the box holds a paragraph of two or more lines (a speech bubble), so that distances to
+    its neighbours are measured in lines, not in paragraphs."""
+    if seg.style.size > 0:
+        return min(seg.bbox.height, ONE_LINE_HEIGHT * seg.style.size)
+    return seg.bbox.height
+
+
+def _one_line_box(seg: TextSegment) -> bool:
+    """The OCR box holds one line (the test of :func:`_column_members`)."""
+    return seg.style.size > 0 and seg.bbox.height <= 2.2 * seg.style.size
+
+
+def _same_row(a: TextSegment, b: TextSegment) -> bool:
+    """Pieces of one line (split by an answer blank or a picture) or cells of one table row."""
+    h = max(_line_height(a), _line_height(b))
+    dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
+    dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
+    return dy <= 0.5 * h and dx <= 3 * h
+
+
+def _split_by_size(group: list[TextSegment]) -> list[list[TextSegment]]:
+    """Members are linked pair by pair, so a chain can join texts of clearly different type sizes
+    (a lesson heading, a two-line bubble below it on the same left edge, a smaller bubble beside
+    that): such a group is cut at its largest step in source size until its sizes span no more
+    than one pair of column siblings may differ, and each part is a set of its own. The pieces of
+    one line stay together (their OCR sizes are read from boxes that hug ":" and "is" differently),
+    and so do the numbered items of the page: the group is cut between such blocks, each standing
+    at its median size."""
+    rows: list[list[TextSegment]] = []
+    for seg in group:
+        # ... and so do the numbered items of the page: they read as one list
+        hit = [r for r in rows if any(_same_row(seg, m) or (_list_item(seg) and _list_item(m)) for m in r)]
+        for r in hit:
+            rows.remove(r)
+        rows.append([m for r in hit for m in r] + [seg])
+
+    def wordy(m: TextSegment) -> bool:
+        return any(ch.isalnum() for ch in (m.translated_text or ""))
+
+    def size(row: list[TextSegment]) -> float:
+        sizes = sorted(m.style.size for m in row if wordy(m)) or sorted(m.style.size for m in row)
+        return sizes[len(sizes) // 2]
+
+    def split(rs: list[list[TextSegment]]) -> list[list[list[TextSegment]]]:
+        rs = sorted(rs, key=size)
+        lo, hi = size(rs[0]), size(rs[-1])
+        if len(rs) < 2 or lo <= 0 or hi * (1 - COLUMN_SIZE_TOLERANCE) <= lo:
+            return [rs]
+        cut = max(range(1, len(rs)), key=lambda k: size(rs[k]) / max(size(rs[k - 1]), 0.1))
+        return split(rs[:cut]) + split(rs[cut:])
+
+    # a row of punctuation only (the ":" and "." left between answer blanks) has no type size worth
+    # the name: it goes with the part of the member nearest to it
+    words = [r for r in rows if any(wordy(m) for m in r)]
+    marks = [r for r in rows if not any(wordy(m) for m in r)]
+    if not words:
+        return [group]
+    parts = split(words)
+
+    def centre(m: TextSegment) -> tuple[float, float]:
+        return (m.bbox.x0 + m.bbox.x1) / 2, (m.bbox.y0 + m.bbox.y1) / 2
+
+    for r in marks:
+        cx, cy = centre(r[0])
+        near = min(range(len(parts)), key=lambda k: min(
+            (centre(m)[0] - cx) ** 2 + (centre(m)[1] - cy) ** 2 for row in parts[k] for m in row))
+        parts[near].append(r)
+    return [[m for r in part for m in r] for part in parts]
+
+
 def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]]:
     column = _column_members(segs)
     labels = [s for s in segs if s.origin == "ocr"
@@ -1453,9 +1525,11 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
     for i, a in enumerate(labels):
         for j in range(i + 1, len(labels)):
             b = labels[j]
-            h = max(a.bbox.height, b.bbox.height)
-            same_column = abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and (a.bbox.y1 <= b.bbox.y0 + h
-                                                                    or b.bbox.y1 <= a.bbox.y0 + h)
+            h = max(_line_height(a), _line_height(b))
+            # a column (a contents page, a list) is made of one-line texts: a two-line bubble that
+            # happens to start on the left edge of a lesson heading is not one of its entries
+            same_column = (abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and _one_line_box(a) and _one_line_box(b)
+                           and (a.bbox.y1 <= b.bbox.y0 + h or b.bbox.y1 <= a.bbox.y0 + h))
             same_list = _list_item(a) and _list_item(b) and abs(a.bbox.x0 - b.bbox.x0) <= LIST_INDENT * h
             dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
             dx = max(0.0, max(a.bbox.x0, b.bbox.x0) - min(a.bbox.x1, b.bbox.x1))
@@ -1474,6 +1548,8 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
                 continue  # a numbered item (or a heading-styled entry) is a sibling within its column only
             if _list_item(a) != _list_item(b) and not (same_column or same_row):
                 continue  # a numbered instruction and the price tags of the picture beside it are not one set
+            if _one_line_box(a) != _one_line_box(b) and not (same_row or same_list):
+                continue  # a speech bubble of two lines and the one-word labels of a picture are not one set
             if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
                 parent[find(i)] = find(j)
             elif same_column and dy <= COLUMN_PITCH * h:
@@ -1483,7 +1559,9 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
     groups: dict[int, list[TextSegment]] = {}
     for i, seg in enumerate(labels):
         groups.setdefault(find(i), []).append(seg)
-    return [g for g in groups.values() if len(g) > 1]
+    order = {s.id: k for k, s in enumerate(labels)}
+    parts = [sorted(part, key=lambda s: order[s.id]) for g in groups.values() for part in _split_by_size(g)]
+    return [g for g in parts if len(g) > 1]
 
 
 def _match_sibling_labels(page: pymupdf.Page, segs: Sequence[TextSegment], space: "_PageSpace", *, css: str,

@@ -933,6 +933,58 @@ def test_contents_column_entries_are_siblings_despite_box_heights():
     assert _sibling_label_groups(other) == []
 
 
+def test_lesson_headings_are_not_chained_to_the_bubbles_and_row_labels_near_them():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def seg(i, x0, y0, x1, y1, size, en, font=None, role="label"):
+        s = TextSegment(id=f"p27_s{i}", page=27, bbox=BBox(x0=x0, y0=y0, x1=x1, y1=y1), source_text="说",
+                        protected_text="说", translated_text=en, origin="ocr",
+                        style=SegmentStyle(size=size, color=0x231F20, role=role))
+        s.render = RenderInfo(font_size=font or size, scale=1.0, bbox=s.bbox)
+        return s
+
+    # page 28 of g1_1: two green-dot headings on one left edge, a two-line bubble starting on that edge
+    # above them and a smaller bubble beside it
+    learn, use = seg(9, 76, 457, 129, 473, 12.8, "Let's learn."), seg(15, 77, 582, 191, 597, 12.3, "Use counters and calculate.")
+    bubble = seg(7, 75, 344, 148, 374, 10.8, "3 pandas are eating bamboo.", font=9.0, role="body")
+    small = seg(8, 362, 350, 423, 362, 9.5, "4, 5, altogether", font=9.0)
+    groups = _sibling_label_groups([bubble, small, learn, use])
+    assert sorted(sorted(s.id for s in g) for g in groups) == [["p27_s15", "p27_s9"]]
+    # page 72: two headings and the row labels of a picture between them, on about the same left edge
+    think, guess = seg(5, 77, 304, 330, 321, 13.5, "Think: who are we looking for?"), \
+        seg(16, 76, 484, 380, 500, 13.0, "Guess which object is being described.", role="body")
+    row2, row3 = seg(10, 82, 407, 115, 419, 9.8, "Row 2"), seg(14, 72, 433, 105, 446, 10.5, "Row 3")
+    groups = _sibling_label_groups([think, row2, row3, guess])
+    assert sorted(sorted(s.id for s in g) for g in groups) == [["p27_s10", "p27_s14"], ["p27_s16", "p27_s5"]]
+
+
+def test_a_size_split_keeps_the_numbered_items_and_the_pieces_of_a_line_together():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def seg(i, x0, y0, x1, y1, size, zh, en):
+        s = TextSegment(id=f"p11_s{i}", page=11, bbox=BBox(x0=x0, y0=y0, x1=x1, y1=y1), source_text=zh,
+                        protected_text=zh, translated_text=en, origin="ocr",
+                        style=SegmentStyle(size=size, color=0x231F20, role="label"))
+        s.render = RenderInfo(font_size=size, scale=1.0, bbox=s.bbox)
+        return s
+
+    # page 12 of g1_1: items 1. and 2. read at 12 pt, 3. and 4. at 14.4 pt; one list all the same
+    items = [seg(1, 56, 125, 109, 141, 12.0, "1.数一数。", "1. How many?"),
+             seg(2, 57, 300, 247, 315, 11.9, "2.数一数，画一画，写一写。", "2. Count, draw, and write."),
+             seg(3, 56, 448, 155, 466, 14.4, "3.看数涂色。", "3. Look at the number and colour."),
+             seg(4, 56, 543, 183, 561, 14.4, "4.数一数，填一填。", "4. Count and fill in.")]
+    groups = _sibling_label_groups(items)
+    assert [sorted(s.id for s in g) for g in groups] == [["p11_s1", "p11_s2", "p11_s3", "p11_s4"]]
+    # page 104: a column of ":" left between answer blanks, read at 18 pt, above the answer lines of the
+    # same column: punctuation has no type size worth the name and does not split the set
+    marks = [seg(22, 362, 115, 379, 138, 18.4, "：", ":"), seg(23, 362, 138, 379, 160, 18.1, "：", ":")]
+    lines = [seg(24, 363, 168, 430, 186, 14.8, "（ ）个", "(   ) cm"), seg(25, 363, 191, 431, 208, 13.5, "（ ）个", "(   ) cm")]
+    groups = _sibling_label_groups(marks + lines)
+    assert [sorted(s.id for s in g) for g in groups] == [["p11_s22", "p11_s23", "p11_s24", "p11_s25"]]
+
+
 def test_numbered_items_of_one_page_are_siblings_however_far_apart():
     from mathtrans.layout import _sibling_label_groups
     from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
