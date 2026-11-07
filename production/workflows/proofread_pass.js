@@ -148,7 +148,8 @@ it (Chinese left, overlap, text too small, a wrong translation). Many paragraphs
 
 SEE AND TRY BEFORE YOU WRITE (run with Bash; PYTHONPATH=/home/user/math-material-translation): the pP_out.png pictures show the
 last full render. To see a page as it renders now: python3 ${T}/preview_pages.py ${v.code} <page>[,<page>] --dpi 110 (-> ${W}/previews/preview_${v.code}_<page>.png,
-source left, English right). To try corrections before writing them, put {"corrections": [...]} in a scratch file and run
+source left, English right). To try corrections before writing them, put {"corrections": [...]} in a scratch file of your own (name it after
+your volume and first page, e.g. /tmp/try_${v.code}_${pages[0]}.json: other agents run at the same time) and run
 python3 ${T}/try_fix.py ${v.code} <page>[,...] <file> <tag> (prints applied/rejected, renders ${W}/previews/try_<tag>_${v.code}_<page>.png);
 zoom into details with python PIL. Try every structural fix (box, line, pieces, add, erase, restore, paint) and look at the result.
 Two pixel fixes are also allowed: {"restore": [x0, y0, x1, y1], "page": N} puts the source scan's pixels back in the box (an outline,
@@ -184,7 +185,8 @@ function checkPrompt(v, pages, file) {
 Chinese primary-school maths textbook (北师大版 ${v.title}, code ${v.code}). They are in ${file} ({"corrections": [...], "flags": [...]}).
 The proof files are in ${W}/proof/${v.code}/ (pPPP_src.png, pPPP_out.png, pPPP_old.png = the checked edition delivered earlier, pPPP.json).
 
-Assume each correction may be wrong. Render them (PYTHONPATH=/home/user/math-material-translation python3 ${T}/try_fix.py ${v.code}
+Assume each correction may be wrong (scratch files you make: name them after ${v.code} and page ${pages[0]}; other agents run at the same
+time). Render them (PYTHONPATH=/home/user/math-material-translation python3 ${T}/try_fix.py ${v.code}
 <pages> ${file} chk) and compare each changed spot with the Chinese source half of the png and with pPPP_old.png, zooming in with
 python PIL. For every entry: is the English correct, natural and complete for the Chinese and the picture (numbers, names, what is
 counted)? Did it keep the ⟦n⟧ placeholders of its "protected" text? Did a box, line, pieces, add, erase, restore or paint damage

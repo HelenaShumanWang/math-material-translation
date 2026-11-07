@@ -15,7 +15,7 @@ from common import PREVIEWS, out_dir, proof_dir  # noqa: E402
 
 code, pages, corr = sys.argv[1], sys.argv[2], sys.argv[3]
 tag = "try_" + (sys.argv[4] if len(sys.argv) > 4 else str(os.getpid()))
-work = PREVIEWS / f".{tag}_{code}"
+work = PREVIEWS / f".{tag}_{code}_{os.getpid()}"  # one scratch folder per run: checkers often share a tag
 shutil.rmtree(work, ignore_errors=True)
 (work / "out").mkdir(parents=True)
 (work / "proof").mkdir(parents=True)

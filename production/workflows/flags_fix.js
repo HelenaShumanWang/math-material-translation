@@ -24,7 +24,8 @@ const RESULT = {
 const TOOLS = (code) => `TOOLS (run them with Bash; page numbers 1-based as in the proof files, "page index" in corrections = that minus 1):
 - See a page as it renders NOW (all corrections so far applied): python3 ${S}/preview_pages.py ${code} <page>[,<page>...] --dpi 110
   -> /tmp/piptest/real/previews/preview_${code}_<page>.png (source left, English right). Run with PYTHONPATH=/home/user/math-material-translation.
-- Try corrections before writing them: put {"corrections": [...]} in a scratch file and run
+- Try corrections before writing them: put {"corrections": [...]} in a scratch file of your own (name it after the volume and
+  your first page, e.g. /tmp/try_${code}_<page>.json: other agents run at the same time) and run
   python3 ${S}/try_fix.py ${code} <page>[,...] <file> <tag>  -> prints what was applied/rejected and renders
   /tmp/piptest/real/previews/try_<tag>_${code}_<page>.png. Look at the png (crop/zoom with python PIL into your own png when details are small).
 - Exact positions: python3 ${S}/ruler.py ${code} <page index> x0 y0 x1 y1 <out.png> 3
