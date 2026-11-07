@@ -1,0 +1,12 @@
+{
+ "corrections": [
+  {"segment_id": "p4_s2", "translation": "Unit 7 Addition and Subtraction (2)", "box": [55.8, 392.6, 190, 422], "reason": "same wording as Unit 3 in the TOC and the unit headings; two lines like Unit 3"},
+  {"add": "p4_a1", "page": 4, "box": [197, 397, 252, 410], "translation": "·········", "source": "·········", "size": 11, "align": "left", "color": 2301728, "reason": "TOC leader dots for Unit 7, which the wider text box erased, as for Unit 3"},
+  {"segment_id": "p17_s2", "translation": "Just enough!", "box": [287, 289, 367, 305], "reason": "shorter natural wording so the bubble text is readable size"},
+  {"line": "p18_i72_6", "pieces": [[97, 186, "BLANK", 223.4, 242.1], [200.6, 226, "BLANK", 223.4, 242.1]], "reason": "keep the printed squirrel picture"},
+  {"segment_id": "p18_s6", "box": [288, 229, 406, 246], "reason": "same size as the other three cell instructions"},
+  {"add": "p18_a1", "page": 18, "box": [89, 226, 185.5, 240], "translation": "Draw more ○ than", "source": "画○，○比", "size": 9.9, "align": "left", "color": 2301728, "reason": "text before the printed squirrel, same size as the other cell instructions"},
+  {"add": "p18_a2", "page": 18, "box": [200.6, 226, 206.5, 240], "translation": ".", "source": "。", "size": 9.9, "align": "left", "color": 2301728, "reason": "full stop after the printed squirrel"}
+ ],
+ "left": []
+}

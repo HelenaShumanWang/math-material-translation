@@ -1,0 +1,106 @@
+{
+ "corrections": [
+  {
+   "add": "p70_a2",
+   "page": 70,
+   "box": [
+    114.6,
+    172,
+    149.8,
+    191
+   ],
+   "translation": "below",
+   "source": "放在",
+   "size": 11.6,
+   "color": 2301728,
+   "reason": "use the whole gap between the two books; at 11.6 pt the whole item-2 row (Put, below, put) is set at one size"
+  },
+  {
+   "add": "p70_a9",
+   "page": 70,
+   "box": [
+    55,
+    324,
+    135.8,
+    342
+   ],
+   "translation": "4. In this row,",
+   "source": "从右数，",
+   "size": 11.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "item 4 line 1 at the size of items 3 and 5"
+  },
+  {
+   "add": "p70_a10",
+   "page": 70,
+   "box": [
+    152.5,
+    324,
+    256,
+    342
+   ],
+   "translation": "is 5th from the",
+   "source": "是第5辆，一",
+   "size": 11.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "item 4 after the bus"
+  },
+  {
+   "add": "p70_a11",
+   "page": 70,
+   "box": [
+    55,
+    343.5,
+    256,
+    362
+   ],
+   "translation": "right. There are (         ) vehicles",
+   "source": "共有(　)辆车。请画图试",
+   "size": 11.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "line 2 re-set with its answer brackets so the item can be the size of items 3 and 5"
+  },
+  {
+   "add": "p70_a12",
+   "page": 70,
+   "box": [
+    55,
+    363,
+    252,
+    389.5
+   ],
+   "translation": "altogether. Try drawing a picture.",
+   "source": "一试。",
+   "size": 11.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "item 4 line 3"
+  },
+  {
+   "add": "p70_a13",
+   "page": 70,
+   "box": [
+    60,
+    380,
+    61,
+    381
+   ],
+   "translation": "BLANK",
+   "source": "",
+   "reason": "line 3 is now set by p70_a12"
+  }
+ ],
+ "left": [
+  {
+   "page": 72,
+   "issue": "Desk name tags (Xiaoxiao, Xiaohong, Xiaolan, Xiaoqiang, Xiaoqing) stay at about 4-5 pt: each tag is a white plate only 15-20 pt wide between the children's heads and the desk edges; a larger name would spill over the picture, and no free paper nearby belongs to the tag. They are readable when zoomed in."
+  },
+  {
+   "page": 74,
+   "issue": "The toothpaste label in the cuboid group (p73_i292_8_t) stays small (scale 0.63) because the tube is only about 33 x 8 pt; 'Toothpaste' already fills the tube and reads clearly on the blue."
+  }
+ ]
+}

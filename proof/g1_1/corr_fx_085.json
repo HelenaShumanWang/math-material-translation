@@ -1,0 +1,362 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p84_s8",
+   "translation": "Use these ways to find ⟦0⟧",
+   "reason": "shorter wording so it sets at the same size as 'Do you understand them?'"
+  },
+  {
+   "paint": [
+    79.7,
+    159.4,
+    110.9,
+    175.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    141.1,
+    159.4,
+    193.0,
+    175.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    212.2,
+    159.4,
+    242.4,
+    175.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    271.7,
+    159.4,
+    323.5,
+    175.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    341.8,
+    159.4,
+    372.5,
+    175.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    401.3,
+    159.4,
+    454.1,
+    175.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    79.7,
+    183.4,
+    110.9,
+    199.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    141.1,
+    183.4,
+    193.0,
+    199.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    212.2,
+    183.4,
+    244.0,
+    199.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    271.7,
+    183.4,
+    323.5,
+    199.7
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    79.7,
+    207.4,
+    110.9,
+    224.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    141.1,
+    207.4,
+    193.0,
+    224.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    212.2,
+    207.4,
+    242.4,
+    224.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    271.7,
+    207.4,
+    323.5,
+    224.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    79.7,
+    231.4,
+    110.9,
+    248.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    141.1,
+    231.4,
+    193.0,
+    248.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    212.2,
+    231.4,
+    242.4,
+    248.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    271.7,
+    231.4,
+    288.0,
+    248.6
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    70.1,
+    254.4,
+    226.6,
+    275.5
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "paint": [
+    68.2,
+    279.4,
+    116.2,
+    299.5
+   ],
+   "page": 88,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "flat white paper under the English so no grey trace of the erased Chinese shows"
+  },
+  {
+   "line": "p97_i388_14",
+   "pieces": [
+    [
+     300.7,
+     318.8,
+     "BLANK",
+     282.2,
+     291.5
+    ],
+    [
+     319.6,
+     337.8,
+     "BLANK",
+     282.2,
+     291.5
+    ]
+   ],
+   "reason": "cells re-set below with adds at a legible size"
+  },
+  {
+   "add": "p97_a30",
+   "page": 97,
+   "box": [
+    301.2,
+    282.4,
+    318.4,
+    291.3
+   ],
+   "translation": "T",
+   "source": "十位",
+   "size": 8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "tens cell is only 19 pt wide: British place-value heading T at a legible size"
+  },
+  {
+   "add": "p97_a31",
+   "page": 97,
+   "box": [
+    320.1,
+    282.4,
+    337.4,
+    291.3
+   ],
+   "translation": "O",
+   "source": "个位",
+   "size": 8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "ones cell is only 19 pt wide: British place-value heading O at a legible size"
+  }
+ ],
+ "left": []
+}

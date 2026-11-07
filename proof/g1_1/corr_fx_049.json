@@ -1,0 +1,245 @@
+{
+ "corrections": [
+  {
+   "paint": [
+    264.6,
+    172.3,
+    278.8,
+    194.8
+   ],
+   "page": 48,
+   "colour": [
+    253,
+    253,
+    253
+   ],
+   "reason": "clean sign plate (erase smudge)"
+  },
+  {
+   "paint": [
+    440.8,
+    291.4,
+    458.6,
+    320.9
+   ],
+   "page": 48,
+   "colour": [
+    253,
+    253,
+    253
+   ],
+   "reason": "clean sign plate (erase left a dark bump)"
+  },
+  {
+   "paint": [
+    433.2,
+    491.8,
+    450.9,
+    518.9
+   ],
+   "page": 48,
+   "colour": [
+    253,
+    253,
+    253
+   ],
+   "reason": "clean sign plate"
+  },
+  {
+   "segment_id": "p48_s2",
+   "translation": "Sanjiadian",
+   "box": [
+    267.2,
+    172.8,
+    276.2,
+    194.6
+   ],
+   "reason": "centred on the sign plate"
+  },
+  {
+   "segment_id": "p48_s4",
+   "translation": "Qilizhuang",
+   "box": [
+    445.2,
+    291.6,
+    454.2,
+    320.8
+   ],
+   "reason": "centred on the sign plate"
+  },
+  {
+   "segment_id": "p48_s7",
+   "translation": "Jiukeshu",
+   "box": [
+    437.5,
+    493.3,
+    446.5,
+    517.4
+   ],
+   "reason": "centred on the sign plate, clear of its top edge"
+  },
+  {
+   "restore": [
+    268,
+    317,
+    325,
+    358
+   ],
+   "page": 55,
+   "reason": "bubble outline damaged by the erase"
+  },
+  {
+   "restore": [
+    337,
+    315,
+    393,
+    357
+   ],
+   "page": 55,
+   "reason": "bubble outline damaged by the erase"
+  },
+  {
+   "restore": [
+    396,
+    317,
+    451,
+    359
+   ],
+   "page": 55,
+   "reason": "bubble outline damaged by the erase"
+  },
+  {
+   "paint": [
+    277,
+    325,
+    313,
+    349.5
+   ],
+   "page": 55,
+   "colour": [
+    250,
+    234,
+    212
+   ],
+   "reason": "flat bubble interior under the English (Chinese and watermark)"
+  },
+  {
+   "paint": [
+    345.5,
+    324.5,
+    380,
+    351.2
+   ],
+   "page": 55,
+   "colour": [
+    250,
+    234,
+    212
+   ],
+   "reason": "flat bubble interior under the English (Chinese and watermark)"
+  },
+  {
+   "paint": [
+    402,
+    326,
+    443,
+    352
+   ],
+   "page": 55,
+   "colour": [
+    250,
+    234,
+    212
+   ],
+   "reason": "flat bubble interior under the English"
+  },
+  {
+   "paint": [
+    312.5,
+    330.5,
+    317.3,
+    346.5
+   ],
+   "page": 55,
+   "colour": [
+    250,
+    234,
+    212
+   ],
+   "reason": "watermark stroke inside the bubble, next to the English"
+  },
+  {
+   "segment_id": "p55_s5",
+   "translation": "I'm shorter than Taoqi!",
+   "box": [
+    275.5,
+    330.5,
+    316.8,
+    350
+   ],
+   "clip": [
+    277,
+    325,
+    313,
+    349.5
+   ],
+   "reason": "inside the bubble"
+  },
+  {
+   "segment_id": "p55_s6",
+   "translation": "I'm taller than Taoqi!",
+   "box": [
+    347.5,
+    327,
+    382,
+    349.5
+   ],
+   "clip": [
+    345.5,
+    324.5,
+    380,
+    351.2
+   ],
+   "reason": "inside the bubble"
+  },
+  {
+   "segment_id": "p55_s7",
+   "translation": "Who's tallest? Shortest?",
+   "box": [
+    403.5,
+    328.5,
+    442,
+    352
+   ],
+   "clip": [
+    402,
+    326,
+    443,
+    352
+   ],
+   "reason": "inside the bubble"
+  },
+  {
+   "segment_id": "p59_s0",
+   "translation": "⟦0⟧. Draw. Which lily pad can each frog jump onto?",
+   "box": [
+    55.6,
+    83.5,
+    420,
+    98.5
+   ],
+   "reason": "one sentence in words: the inline frog and lily-pad crops carried a wide blank margin and a stray dot, and forced a larger size than the other numbered instructions"
+  },
+  {
+   "segment_id": "p59_s1",
+   "translation": "BLANK",
+   "reason": "second half now in p59_s0"
+  }
+ ],
+ "left": [
+  {
+   "page": 49,
+   "issue": "Bus-stop names stay small (about 0.59-0.67 scale, rotated): the narrow plates have no more length. Plates cleaned of erase smudges and the names centred clear of the edges; Sanjiadian's plate is shorter, so it is slightly smaller than the other two."
+  }
+ ]
+}

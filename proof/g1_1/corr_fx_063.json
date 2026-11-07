@@ -1,0 +1,36 @@
+{
+ "corrections": [
+  {"segment_id": "p62_s1", "translation": "Chinese", "clip": [216.2, 198.2, 221.9, 205.8], "box": [218.5, 208.0, 236.8, 212.9], "align": "center", "reason": "book label 语文 = Chinese on the girl's book (top left), set on the free cover below her fingers so it no longer runs onto the hand or off the spine; 语 erased on the glyph only"},
+  {"restore": [223.4, 201.2, 231.0, 208.2], "page": 62, "reason": "source fingers of the girl's hand on her 语文 book: the erase of 文 had smudged the fingertips"},
+  {"restore": [226.3, 198.8, 231.8, 201.2], "page": 62, "reason": "source top outline of the girl's index finger, right of 文 (no glyph strokes inside)"},
+  {"paint": [226.3, 198.8, 227.5, 199.95], "page": 62, "colour": [192, 228, 245], "reason": "cover colour over the last speck of 文 above the girl's index finger"},
+  {"paint": [207.75, 237.5, 209.4, 238.4], "page": 62, "colour": [236, 182, 204], "reason": "pink cover colour over the dark smudge at the top left of the boy's 语文练习本 (bottom left), right of the spine outline"},
+  {"paint": [208.15, 238.4, 210.0, 239.6], "page": 62, "colour": [236, 182, 204], "reason": "pink cover colour over the rest of that smudge"},
+  {"paint": [122.2, 400.9, 122.7, 402.0], "page": 62, "colour": [60, 55, 60], "reason": "redraw the left edge of the girl's blue 数学 book that the label erase wiped out (top segment)"},
+  {"paint": [121.8, 402.0, 122.3, 403.3], "page": 62, "colour": [60, 55, 60], "reason": "redraw the left edge of the blue book (middle segment)"},
+  {"paint": [121.4, 403.3, 121.9, 404.9], "page": 62, "colour": [60, 55, 60], "reason": "redraw the left edge of the blue book (bottom segment)"},
+  {"restore": [176.5, 597.5, 184.2, 601.5], "page": 64, "reason": "source eyes of the drinks fridge character: the label erase cut off the bottom of the left eye"},
+  {"restore": [187.6, 597.5, 195.6, 601.5], "page": 64, "reason": "source eyes: the label erase cut off the bottom of the right eye"},
+  {"restore": [184.6, 601.6, 190.2, 605.3], "page": 64, "reason": "source mouth (smile and tongue) of the fridge character, erased with 饮料; no glyph strokes inside"},
+  {"restore": [186.4, 605.3, 190.0, 606.9], "page": 64, "reason": "lower part of the tongue, kept clear of 饮's stroke on the left"},
+  {"paint": [198.0, 601.0, 200.0, 616.0], "page": 64, "colour": [172, 220, 246], "reason": "plate colour over the leftover vertical stroke of 料 that showed through 'Drinks'"},
+  {"paint": [193.0, 606.3, 205.2, 609.3], "page": 64, "colour": [172, 220, 246], "reason": "plate colour over the leftover horizontal stroke of 料"},
+  {"paint": [193.8, 615.9, 205.6, 616.95], "page": 64, "colour": [178, 214, 232], "reason": "plate colour over the leftover foot of 料 above the shelf"},
+  {"segment_id": "p64_s17", "translation": "Drinks", "box": [175.0, 607.5, 204.0, 616.3], "reason": "Drinks set below the restored mouth, centred on the fridge plate"},
+  {"segment_id": "p66_s17", "translation": "BLANK", "clip": [148.5, 493.6, 160.5, 518.5], "reason": "公园 erased on the glyphs only (not the red stop line and dot above); the name is set with an add that reads upward like the other columns"},
+  {"add": "p66_a4", "page": 66, "box": [149.0, 493.6, 159.8, 519.0], "translation": "Park", "source": "公园", "size": 7, "color": 13902892, "reason": "Park, set up the column like Station, Taiping Road and Square (all names now read bottom to top), near the size of the other names"},
+  {"segment_id": "p66_s15", "translation": "BLANK", "clip": [184.6, 493.6, 195.3, 518.5], "reason": "动物园 erased on the glyphs only, so the fifth red stop dot above stays"},
+  {"add": "p66_a5", "page": 66, "box": [184.8, 493.6, 195.3, 519.0], "translation": "Zoo", "source": "动物园", "size": 8, "color": 2235677, "reason": "Zoo, set up the column like the other station names (it ran downward)"},
+  {"restore": [187.5, 488.3, 192.6, 492.3], "page": 66, "reason": "source red stop dot of the last station, which the old 动物园 erase had removed"},
+  {"paint": [184.8, 492.3, 194.5, 519.0], "page": 66, "colour": [218, 228, 130], "reason": "flat plate colour over the erase blotches in the Zoo column (stops short of the frame's inner edge)"},
+  {"restore": [194.5, 492.3, 196.0, 519.0], "page": 66, "reason": "source dark inner edge of the sign's right frame, which the plate paint for the Zoo column had covered; no glyph strokes inside"},
+  {"segment_id": "p62_a2_p0", "box": [121.0, 401.0, 133.5, 405.6], "reason": "Maths on the girl's blue book set above her fingertips (it ran over them); the box still covers 数"},
+  {"restore": [120.5, 405.6, 125.3, 411.0], "page": 62, "reason": "source fingertips of the girl's hand below 数, smeared by the old label box erase; no glyph strokes inside"},
+  {"segment_id": "p62_a3_p0", "box": [149.6, 404.6, 161.9, 410.6], "reason": "Maths on the girl's pink 数学练习本 kept on the cover (it ran past the left edge onto her hand) and nearer the size of the other cover labels"},
+  {"segment_id": "p62_a7_p0", "box": [200.0, 411.2, 215.5, 416.8], "reason": "Chinese on the boy's 语文练习本 set on the cover above his hands (it ran onto both thumbs)"}
+ ],
+ "left": [
+  {"page": 63, "issue": "Watermark over the girl's pink 数学练习本 (middle row) stays slightly blurred where the label was erased: the grey watermark stroke cannot be redrawn with flat paint, and restoring the scan brings 数学练习本 back."},
+  {"page": 67, "issue": "Arch sign 儿童乐园 kept in Chinese: the plate is a curved band - rectangular paints spill onto sky and mushroom and straight text does not fit the curve; the result was worse than the Chinese."}
+ ]
+}

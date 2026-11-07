@@ -1,0 +1,9 @@
+{"corrections": [
+{"restore": [52, 588, 74.5, 622], "page": 76},
+{"segment_id": "p76_s9", "translation": "How many small cubes are in each? Say how you know.", "box": [75.5, 595.6, 466, 612.3], "reason": "keep the printed 3. with its green doodle (restored from the scan); English set after it on one line"},
+{"restore": [304, 250, 327.5, 288], "page": 78},
+{"restore": [415.2, 256, 422, 288], "page": 78},
+{"restore": [398, 280.5, 416, 288], "page": 78},
+{"segment_id": "p78_s7", "translation": "4 is greater than 2, so 14 is greater.", "box": [329, 257, 408, 287], "reason": "set the English right of the stick bundles (restored) inside the bubble; bubble outline restored"}
+],
+"left": []}

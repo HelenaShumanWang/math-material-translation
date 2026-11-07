@@ -1,0 +1,29 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p103_s19",
+   "translation": "is\non",
+   "box": [288.5, 400.0, 310.0, 425.0],
+   "reason": "'is on' set on two lines in the whole gap between the pictures, same size in all four rows (was 0.54)"
+  },
+  {
+   "segment_id": "p103_s21",
+   "translation": "is\non",
+   "box": [287.5, 424.0, 312.0, 448.0],
+   "reason": "'is on' set on two lines in the whole gap between the pictures, same size in all four rows (was 0.54)"
+  },
+  {
+   "segment_id": "p103_s22",
+   "translation": "is\non",
+   "box": [286.5, 446.5, 314.0, 470.5],
+   "reason": "'is on' set on two lines in the whole gap between the pictures, same size in all four rows (was 0.54)"
+  },
+  {
+   "segment_id": "p103_s24",
+   "translation": "is\non",
+   "box": [286.0, 469.0, 302.0, 493.0],
+   "reason": "'is on' set on two lines in the gap between the pictures; box narrowed so it renders the same size as the three rows above (was visibly larger)"
+  }
+ ],
+ "left": []
+}

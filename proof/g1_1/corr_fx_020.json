@@ -1,0 +1,49 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p19_s1",
+   "translation": "Animal\nPark",
+   "box": [
+    196.0,
+    149.8,
+    226.0,
+    167.2
+   ],
+   "reason": "sign name matches heading"
+  },
+  {
+   "segment_id": "p24_s9",
+   "translation": "BLANK",
+   "reason": "re-set as an add at the neighbour label size",
+   "erase": [
+    [
+     366.0,
+     547.0,
+     392.0,
+     562.0
+    ]
+   ]
+  },
+  {
+   "add": "p24_a1",
+   "page": 24,
+   "box": [
+    292.0,
+    514.0,
+    452.0,
+    550.0
+   ],
+   "translation": "Draw \"✓\" for the longest\nand \"○\" for the shortest.",
+   "source": "最长的画“✓”，最短的画“○”。",
+   "size": 11.6,
+   "align": "center",
+   "color": 2301728
+  }
+ ],
+ "left": [
+  {
+   "page": 26,
+   "issue": "Bubble 1 (p25_s2) stays at about 6.7 pt: the free inside of the bubble after the lion is only ~47 pt wide, so 'is heavier than' cannot grow without the text or the erase touching the bubble's outline (tried a wider box and a BLANK+add at 7.2 pt: the add shrank to fit, and a box to x=170 broke the outline). It is only ~7% smaller than bubble 2 (7.2 pt) and looks the same size on the page."
+  }
+ ]
+}
