@@ -52,7 +52,7 @@ Your pages (1-based): ${pages.join(', ')}. For each page P (three-digit, e.g. 00
 
 For every paragraph whose English is wrong or poor, write a corrected translation. Fix: mistranslations and changed meaning;
 omissions or additions; unnatural or non-idiomatic English; grammar (number agreement 1 apple / 2 apples, articles, tense);
-terminology (standard UK primary maths terms, British spelling - metre, colour, centre, maths: number sentence, vertical form, tens/ones, counting frame, sticks, more/fewer,
+terminology (standard UK primary maths terms, British spelling - metre, colour, centre, maths: number sentence, column method (竖式), tens/ones, counting frame, sticks, more/fewer,
 "How many more ... than ...?"); character names in pinyin (淘气 Taoqi, 笑笑 Xiaoxiao, 奇思 Qisi, 妙想 Miaoxiang, 智慧老人 Wise Old Man,
 机灵狗 Clever Dog); measure words in brackets after an answer blank (use the counted noun from the picture or the exercise, e.g.
 "(apples)", or drop the brackets; never "(pieces)", "(items)", "(count)"); multiplication-table rhymes as facts (三七二十一 =
@@ -61,7 +61,7 @@ compared, who speaks, and what an inline [picture] is (put its placeholder where
 Fragments: OCR sometimes splits one sentence into several paragraphs (look at the pages); translate each fragment so the pieces read
 correctly together in their positions. Numbers written in Chinese words (七十七) become English words ("seventy-seven") when the exercise
 is about reading or writing numbers, digits otherwise. A lone measure word after an answer blank (个, 只) becomes the counted noun
-from the picture ("apples"), never "(items)". Vertical labels (十位/个位 over a vertical form) are "tens"/"ones"; 答： is "Answer:"; single-character
+from the picture ("apples"), never "(items)". Place-value labels (十位/个位 over a column-method sum or a counting frame) are "Tens"/"Ones" (T/O where a cell is too narrow); 答： is "Answer:"; single-character
 column labels of a counting frame (万 千 百 十 个) are the standard abbreviations TTh Th H T O (they must fit one-character cells). For paragraphs with note "left in source language", write a SHORTER English that keeps the
 meaning (labels: 1-3 words) so it can fit.
 
