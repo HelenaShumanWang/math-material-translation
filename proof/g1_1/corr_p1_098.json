@@ -1,0 +1,706 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p97_s1",
+   "translation": "Review and Share",
+   "reason": "回顾与交流: natural heading"
+  },
+  {
+   "segment_id": "p97_s10",
+   "translation": "Talk with your partner.",
+   "reason": "Tens/Ones duplicated from the abacus label"
+  },
+  {
+   "merge": [
+    "p97_s6",
+    "p97_s8"
+   ],
+   "translation": "Can you think of another way to show 12?",
+   "reason": "one question split over two paragraphs"
+  },
+  {
+   "line": "p97_i388_14",
+   "pieces": [
+    [
+     300.7,
+     318.8,
+     "Tens",
+     282.2,
+     291.5
+    ],
+    [
+     319.6,
+     337.8,
+     "Ones",
+     282.2,
+     291.5
+    ]
+   ],
+   "reason": "two label cells under the abacus; set inside the cells so their outlines stay"
+  },
+  {
+   "restore": [
+    68,
+    471,
+    85.5,
+    492
+   ],
+   "page": 97,
+   "reason": "question number 6. was erased"
+  },
+  {
+   "paint": [
+    85.5,
+    475.5,
+    88.8,
+    491
+   ],
+   "page": 97,
+   "colour": [
+    184,
+    229,
+    250
+   ],
+   "reason": "white strip the erase left at the left edge of the blue box"
+  },
+  {
+   "segment_id": "p97_s29",
+   "translation": "Using sticks or a counting frame, explain how you work out ⟦0⟧.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p98_s2",
+   "translation": "⟦0⟧ ⟦1⟧ and ⟦2⟧ basket can both be shown by ⟦3⟧.",
+   "reason": "1 basket (singular), 都 = both; dropped ⟦4⟧: blank OCR crop after 表示"
+  },
+  {
+   "segment_id": "p98_s3",
+   "translation": "BLANK",
+   "reason": "都 now said by 'both' in p98_s2"
+  },
+  {
+   "line": "p98_i392_5",
+   "pieces": [
+    [
+     306,
+     317,
+     "vs"
+    ]
+   ],
+   "reason": "比 between two pictures"
+  },
+  {
+   "split": "p98_s8",
+   "translations": [
+    "Shapes and Geometry",
+    "On your",
+    "own"
+   ],
+   "reason": "heading and icon label are different texts"
+  },
+  {
+   "segment_id": "p98_s8_k1",
+   "translation": "On your own",
+   "box": [
+    86,
+    278,
+    111,
+    303
+   ],
+   "reason": "icon label set over both lines like on page 94"
+  },
+  {
+   "segment_id": "p98_s8_k2",
+   "translation": "BLANK",
+   "reason": "second line of the icon label, set with p98_s8_k1"
+  },
+  {
+   "segment_id": "p98_s9",
+   "erase": [
+    [
+     350,
+     317,
+     359,
+     326
+    ]
+   ],
+   "reason": "leftover full stop"
+  },
+  {
+   "split": "p98_s12",
+   "translations": [
+    "Draw ☆ to its right, □ above it,",
+    "3. Look at the",
+    "△ to its left and ○ below it."
+   ],
+   "reason": "the flower picture sits in the first line; text no longer runs over it (parts are in reading-line order: line 2, line 1, line 3)"
+  },
+  {
+   "segment_id": "p98_s12_k0",
+   "box": [
+    285,
+    406,
+    452,
+    425
+   ],
+   "reason": "line 2"
+  },
+  {
+   "segment_id": "p98_s12_k1",
+   "box": [
+    285,
+    387,
+    381,
+    403
+   ],
+   "reason": "first line, ends before the flower picture"
+  },
+  {
+   "segment_id": "p98_s12_k2",
+   "box": [
+    285,
+    427,
+    452,
+    446
+   ],
+   "reason": "line 3"
+  },
+  {
+   "restore": [
+    213,
+    159,
+    250,
+    172
+   ],
+   "page": 98,
+   "reason": "bubble outline under the radish sentence was erased"
+  },
+  {
+   "segment_id": "p98_s13",
+   "translation": ".",
+   "reason": "的右边 now said in line 2 ('to its right'); a full stop after the flower picture",
+   "box": [
+    402,
+    388,
+    412,
+    402
+   ]
+  },
+  {
+   "segment_id": "p98_s15",
+   "translation": "To the left of the pineapple is ( ). The strawberry is to the ( ) of the pineapple. Below the watermelon is ( ).",
+   "reason": "blank holds a direction word"
+  },
+  {
+   "segment_id": "p98_s21",
+   "translation": "Once I know what's left of the lemon, it's easy...",
+   "reason": "keep the trailing dots; set below the lemon picture so it is not covered",
+   "box": [
+    292,
+    630,
+    390,
+    650
+   ]
+  },
+  {
+   "segment_id": "p98_s21",
+   "erase": [
+    [
+     379,
+     637,
+     388,
+     646
+    ]
+   ],
+   "reason": "leftover dot of the Chinese ellipsis"
+  },
+  {
+   "segment_id": "p99_s6",
+   "box": [
+    396,
+    252,
+    472,
+    272
+   ],
+   "reason": "keep clear of the boy picture"
+  },
+  {
+   "segment_id": "p99_s8",
+   "box": [
+    117,
+    278,
+    172,
+    295
+   ],
+   "reason": "room for one line after the girl picture"
+  },
+  {
+   "segment_id": "p98_s22",
+   "translation": "BLANK",
+   "reason": "fragment already in p98_s21"
+  },
+  {
+   "segment_id": "p99_s7",
+   "translation": "BLANK",
+   "reason": "数 already in p99_s6; the girl is shown by the picture"
+  },
+  {
+   "restore": [
+    100,
+    274,
+    117,
+    298
+   ],
+   "page": 99,
+   "reason": "girl pictogram erased"
+  },
+  {
+   "split": "p99_s12",
+   "translations": [
+    "15's ones digit is",
+    "18 has",
+    "1 ten and 3 ones make"
+   ],
+   "reason": "three different lines"
+  },
+  {
+   "split": "p99_s13",
+   "translations": [
+    ", the tens digit is",
+    "tens and"
+   ],
+   "reason": "two different lines"
+  },
+  {
+   "segment_id": "p99_s13_k0",
+   "box": [
+    190,
+    416,
+    277,
+    432
+   ],
+   "reason": "keep clear of the answer box"
+  },
+  {
+   "segment_id": "p99_s13_k1",
+   "box": [
+    164,
+    440,
+    217,
+    456
+   ],
+   "reason": "room between the answer boxes"
+  },
+  {
+   "segment_id": "p99_s14",
+   "translation": "ones.",
+   "reason": "shorter so it fits",
+   "box": [
+    237,
+    440,
+    275,
+    456
+   ]
+  },
+  {
+   "split": "p99_s15",
+   "at": [
+    112
+   ],
+   "translations": [
+    "Tens",
+    "Ones"
+   ],
+   "reason": "two label cells"
+  },
+  {
+   "split": "p99_s16",
+   "at": [
+    190.5
+   ],
+   "translations": [
+    "Tens",
+    "Ones"
+   ],
+   "reason": "two label cells"
+  },
+  {
+   "split": "p99_s17",
+   "at": [
+    269
+   ],
+   "translations": [
+    "Tens",
+    "Ones"
+   ],
+   "reason": "two label cells"
+  },
+  {
+   "add": "p99_a1",
+   "page": 99,
+   "box": [
+    193.5,
+    281,
+    203,
+    296
+   ],
+   "translation": ".",
+   "source": "个。",
+   "size": 11,
+   "align": "left",
+   "reason": "sentence end after the answer box"
+  },
+  {
+   "add": "p99_a2",
+   "page": 99,
+   "box": [
+    302.5,
+    418,
+    313,
+    434
+   ],
+   "translation": ".",
+   "source": "。",
+   "size": 11,
+   "align": "left",
+   "reason": "Chinese full stop left after the answer box"
+  },
+  {
+   "add": "p99_a3",
+   "page": 99,
+   "box": [
+    267.5,
+    463,
+    279,
+    481
+   ],
+   "translation": ".",
+   "source": "。",
+   "size": 11,
+   "align": "left",
+   "reason": "Chinese full stop left after the answer box"
+  },
+  {
+   "segment_id": "p100_s13",
+   "translation": "⟦0⟧. Fill in each ○ with >, < or =.",
+   "box": [
+    57.0,
+    213.2,
+    320,
+    228.8
+   ],
+   "reason": "rest of the line was left in Chinese; the circle crop carried slivers of 在 and 里, so ○ is typed"
+  },
+  {
+   "segment_id": "p100_s13",
+   "erase": [
+    [
+     150,
+     211,
+     318,
+     231
+    ]
+   ],
+   "reason": "leftover quotes and 或"
+  },
+  {
+   "segment_id": "p100_s25",
+   "translation": "DROP",
+   "reason": "OCR noise of the ring-binder pattern"
+  },
+  {
+   "segment_id": "p101_s0",
+   "translation": "⟦0⟧. Colour and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p101_s22",
+   "translation": "⟦0⟧. Draw and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p101_s7",
+   "translation": "In all, how many",
+   "reason": "reads with the chick picture and ?"
+  },
+  {
+   "segment_id": "p101_s8",
+   "box": [
+    382,
+    333,
+    428,
+    351
+   ],
+   "reason": "keep clear of the chick picture"
+  },
+  {
+   "segment_id": "p102_s4",
+   "translation": "Xiaoming",
+   "box": [
+    224,
+    205.5,
+    267,
+    219.1
+   ],
+   "reason": "left in Chinese; room on the sand"
+  },
+  {
+   "segment_id": "p102_s6",
+   "translation": "Xiaohong",
+   "box": [
+    334,
+    213,
+    376,
+    227.6
+   ],
+   "reason": "left in Chinese; room on the sand, clear of the shell"
+  },
+  {
+   "merge": [
+    "p102_s8",
+    "p102_s9"
+   ],
+   "translation": "17. Draw ✓ for the heaviest and ○ for the lightest.",
+   "reason": "one instruction split around the symbols"
+  },
+  {
+   "segment_id": "p102_s8",
+   "box": [
+    56.4,
+    403.4,
+    385,
+    421
+   ],
+   "reason": "free paper to the right; one line"
+  },
+  {
+   "segment_id": "p102_s8",
+   "erase": [
+    [
+     298,
+     402,
+     324,
+     422
+    ],
+    [
+     186,
+     408,
+     202,
+     425
+    ]
+   ],
+   "reason": "leftover quote and full stop"
+  },
+  {
+   "segment_id": "p102_s11",
+   "translation": "⟦0⟧:00",
+   "reason": "clock time"
+  },
+  {
+   "split": "p103_s2",
+   "translations": [
+    "Top left",
+    "Bottom left",
+    "Top right",
+    "Bottom right"
+   ],
+   "reason": "four row labels"
+  },
+  {
+   "segment_id": "p103_s3",
+   "translation": ":",
+   "reason": "row: Top left [cuboid]: ___."
+  },
+  {
+   "segment_id": "p103_s4",
+   "translation": ".",
+   "reason": "row end"
+  },
+  {
+   "segment_id": "p103_s5",
+   "translation": ":",
+   "reason": "row form"
+  },
+  {
+   "segment_id": "p103_s6",
+   "translation": ".",
+   "reason": "row end"
+  },
+  {
+   "segment_id": "p103_s7",
+   "translation": ":",
+   "reason": "left in Chinese"
+  },
+  {
+   "segment_id": "p103_s8",
+   "translation": ".",
+   "reason": "left in Chinese"
+  },
+  {
+   "segment_id": "p103_s9",
+   "translation": "BLANK",
+   "reason": "duplicate read of row 4's 有 (p103_s10)"
+  },
+  {
+   "segment_id": "p103_s10",
+   "translation": ":",
+   "reason": "left in Chinese"
+  },
+  {
+   "segment_id": "p103_s11",
+   "translation": ".",
+   "reason": "row end"
+  },
+  {
+   "restore": [
+    375,
+    199,
+    412,
+    206
+   ],
+   "page": 103,
+   "reason": "answer line of row 4"
+  },
+  {
+   "segment_id": "p103_s12",
+   "translation": "⟦0⟧. Match and talk about it.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p103_s13",
+   "translation": "⟦0⟧. Talk about it and fill in.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p103_s17",
+   "translation": "⟦0⟧. Look and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "split": "p103_s14",
+   "translations": [
+    ": (      ).",
+    ": (      )."
+   ],
+   "reason": "two rows"
+  },
+  {
+   "split": "p103_s15",
+   "translations": [
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "row 3 is set by p103_a2; 不 is a misread of row 4"
+  },
+  {
+   "add": "p103_a2",
+   "page": 103,
+   "box": [
+    362,
+    304,
+    432,
+    322
+   ],
+   "translation": ": (      ).",
+   "source": "有(  )个，",
+   "reason": "row 3 of question 3, set like the other rows"
+  },
+  {
+   "segment_id": "p103_s16",
+   "translation": ": (      ).",
+   "reason": "row 4, aligned with the other rows and clear of the ball",
+   "box": [
+    363,
+    326,
+    432,
+    348
+   ]
+  },
+  {
+   "segment_id": "p103_s22",
+   "translation": "is on",
+   "reason": "duplicated 's ("
+  },
+  {
+   "segment_id": "p103_s24",
+   "translation": "is on",
+   "reason": "duplicated 's ("
+  },
+  {
+   "segment_id": "p103_s23",
+   "translation": "'s (      ).",
+   "box": [
+    328.3,
+    449.3,
+    428,
+    468.3
+   ],
+   "reason": "closing bracket lost"
+  },
+  {
+   "segment_id": "p103_s25",
+   "translation": "'s (      ).",
+   "box": [
+    327.4,
+    473.1,
+    428,
+    492.7
+   ],
+   "reason": "closing bracket lost"
+  },
+  {
+   "restore": [
+    307,
+    451,
+    325,
+    472
+   ],
+   "page": 103,
+   "reason": "pencil-holder picture erased"
+  },
+  {
+   "restore": [
+    307,
+    472,
+    327,
+    492
+   ],
+   "page": 103,
+   "reason": "balloon picture erased"
+  },
+  {
+   "add": "p103_a1",
+   "page": 103,
+   "box": [
+    189,
+    282,
+    205,
+    291
+   ],
+   "translation": "Soap",
+   "source": "肥皂",
+   "size": 5,
+   "reason": "label on the soap box"
+  },
+  {
+   "segment_id": "p103_s28",
+   "box": [
+    58.1,
+    549.1,
+    420,
+    564.1
+   ],
+   "reason": "free paper to the right; avoid wrapping"
+  }
+ ],
+ "flags": [
+  {
+   "page": 98,
+   "issue": "Tens/Ones labels under the small abacus in question 3 are very small (cells about 19 pt wide); legible only when zoomed."
+  },
+  {
+   "page": 104,
+   "issue": "'is on' between the pictures in question 4 is set at about half size (17 pt gap between the two pictures); no room to enlarge."
+  }
+ ]
+}

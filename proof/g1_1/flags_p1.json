@@ -1,0 +1,131 @@
+{
+ "code": "g1_1",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 4,
+   "issue": "TOC: Unit 3 reads Addition and Subtraction (1) and Unit 7 (page 5) reads Add and Subtract (2); the wording differs because the longer form does not fit on one line on page 5."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 18,
+   "issue": "Bubble 'Same number. Enough!' (p17_s2) stays at about 0.6 scale even with the box over the whole bubble; the bubble is very small."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 19,
+   "issue": "Row 2 left \"Draw more ○ than [squirrel].\" (p18_s5) is now boxed to the size of the other cell instructions; its squirrel icon is small at that size."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 20,
+   "issue": "Tree sign 动物乐园 is set as 'Park' only: 'Animal Park' does not fit the small yellow plate at a legible size (tried a box over the whole plate: runs onto the sky)."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 25,
+   "issue": "Panel label 'Draw \"✓\" for the longest and \"○\" for the shortest.' (p24_s9) is set larger than its neighbour 'Order from shortest to longest.'; boxes tried (wider, shorter, narrower) either ran over the panel's right border or right-aligned the text, so it keeps the source box."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 26,
+   "issue": "Bubble 1 (p25_s2) can only be set at about 7 pt (scale 0.49) inside the small bubble after the lion picture; readable but smaller than the other bubbles."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 28,
+   "issue": "'Let's learn.' (p27_s9) and 'Use counters and calculate.' (p27_s15) are set at 9.5 pt by the renderer's sibling-label matching (grouped with the bubble labels), while the other bullet instructions of the page are 12-14 pt; a box cannot enlarge them."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 49,
+   "issue": "Bus-stop sign names (Sanjiadian, Qilizhuang, Jiukeshu) are set rotated at about 0.66 scale on the narrow vertical signs; 'Jiukeshu' touches the top edge of its sign. The signs have no more room."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 56,
+   "issue": "Speech bubbles p55_s5, p55_s6, p55_s7 are small; English set at 0.57-0.70 because the bubbles have no more room; the publisher watermark crosses \"I'm taller\"."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 60,
+   "issue": "9. Draw. Each [frog] can jump onto which [lily pad]?: the two halves carry inline pictures, so they are set at about 13 pt (the other numbered instructions 11.6 pt), with a small gap after the frog and a faint dot before the lily pad."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 63,
+   "issue": "Book-cover labels (Chinese / Maths) are tiny (3.5-6 pt) on tilted, partly upside-down books; erases now measured on the glyphs only, but faint smudges remain where a label touches a hand (girl's 语文 book top left, boy's 语文练习本 bottom left, girl's blue 数学 book) and the watermark over the girl's pink book is blurred."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 65,
+   "issue": "'Drinks' on the drinks crate (p64_s17, untouched here) runs under the hand of the bottle character."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 67,
+   "issue": "Bus-stop sign: Station and the two added columns (Taiping Road, Square) run upward (the stacked-column rule), while Park and Zoo, set from vertical OCR lines, run downward; all names are English and legible, but the reading direction is mixed."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 67,
+   "issue": "Arch sign 儿童乐园 (Children's Park) is curved/slanted text (OCR refuses it); kept in Chinese as in the checked edition."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 71,
+   "issue": "Item 4 is set at 9 pt in all five pieces so line 1 matches lines 2-3 (\"4. From the right,\" has only 80 pt before the bus picture); it is smaller than items 3 and 5. Item 2 piece \"below\" is a little smaller than its row."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 72,
+   "issue": "Desk name tags (Xiaoxiao, Xiaohong, Xiaolan, Xiaoqiang, Xiaoqing) are tiny (about 4 pt) because the tags are 15-20 pt wide."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 72,
+   "issue": "Bullet headings 'Think: who are we looking for?' and 'Guess which object is being described.' stay at about 9.5 pt (the wider box does not raise the size); the first bullet heading is about 12 pt."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 74,
+   "issue": "The toothpaste label in the cuboid group (p73_i292_8_t) is small (0.63) because the tube is tiny. It can still be read on the blue tube."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 77,
+   "issue": "The small green doodle on the '3.' of instruction 3 (p76_s9) is erased along with the Chinese, the same as in the checked edition. It overlaps the number, so it cannot be restored cleanly."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 79,
+   "issue": "In the '4 is greater than 2, so 14 is greater.' bubble (p78_s7), the English partly covers or erases the small stick-bundle pictures, the same as in the checked edition."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 83,
+   "issue": "'Do it and talk about it.' (p82_s8) is set much smaller than the other green-dot instructions on the page ('Circle and calculate.'): its size is matched to the sibling labels; on page 85 'Use these methods to find 8+6=' is also set smaller than 'Do you understand them?'. No text fix changes the size."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 84,
+   "issue": "split of p83_s25 is placed in reverse by the renderer: the texts were given as [', in all', 'In the tree'] so that 'In the tree' lands on line 1 (树上有) and ', in all' on line 2 (，一共有); check if the split order logic changes."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 89,
+   "issue": "Q1 rebuilt with ADDs so the nine stick-figure icons stay: '[icon] on step ___,' and 'The one on step 9 is ___.'; light grey traces of the erased Chinese remain faintly visible on the textured paper."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 98,
+   "issue": "Tens/Ones labels under the small abacus in question 3 are very small (cells about 19 pt wide); legible only when zoomed."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 104,
+   "issue": "'is on' between the pictures in question 4 is set at about half size (17 pt gap between the two pictures); no room to enlarge."
+  }
+ ]
+}

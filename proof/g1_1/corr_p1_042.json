@@ -1,0 +1,130 @@
+{
+ "corrections": [
+  {
+   "restore": [
+    181,
+    402,
+    202.5,
+    418
+   ],
+   "page": 41,
+   "reason": "skirt picture in bubble was erased"
+  },
+  {
+   "segment_id": "p43_s1",
+   "translation": "DROP",
+   "reason": "OCR noise"
+  },
+  {
+   "merge": [
+    "p43_s4",
+    "p43_s5"
+   ],
+   "translation": "5. Draw and fill in.",
+   "reason": "one instruction split by OCR; 'Fill in' printed twice"
+  },
+  {
+   "restore": [
+    207,
+    377,
+    226,
+    384
+   ],
+   "page": 43,
+   "reason": "bottom edge of the red answer box above item 5 was erased with the OCR fragment"
+  },
+  {
+   "segment_id": "p43_s2",
+   "box": [
+    56,
+    237,
+    260,
+    255
+   ],
+   "reason": "free paper to the right; avoid wrapping"
+  },
+  {
+   "split": "p44_s5",
+   "translations": [
+    "8 in all. I see only 2.",
+    "Behind it are..."
+   ],
+   "reason": "line 2 follows the iceberg picture"
+  },
+  {
+   "segment_id": "p44_s5_k0",
+   "erase": [
+    [
+     72,
+     428,
+     82,
+     437
+    ]
+   ],
+   "reason": "leftover 一"
+  },
+  {
+   "segment_id": "p44_s6",
+   "translation": "I see only ⟦0⟧, so ⟦1⟧ are missing.",
+   "box": [
+    387,
+    437,
+    456,
+    469
+   ],
+   "reason": "more room in bubble"
+  },
+  {
+   "segment_id": "p45_s5",
+   "translation": "⟦0⟧. How many are in the house?",
+   "box": [
+    56,
+    403,
+    210,
+    417
+   ],
+   "reason": "says what is asked"
+  },
+  {
+   "segment_id": "p45_s16",
+   "box": [
+    338,
+    588,
+    422,
+    623
+   ],
+   "reason": "more room in bubble"
+  },
+  {
+   "segment_id": "p46_s1",
+   "translation": "How many",
+   "reason": "chick picture follows; shorter fits"
+  },
+  {
+   "segment_id": "p47_s17",
+   "translation": "Write each of the ⟦8⟧ numbers ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧, ⟦6⟧, ⟦7⟧ in a",
+   "reason": "sentence reads with following box"
+  },
+  {
+   "segment_id": "p47_s18",
+   "translation": "⟦0⟧.",
+   "reason": "'in the ... into' doubled"
+  },
+  {
+   "segment_id": "p47_s19",
+   "box": [
+    122,
+    630,
+    187,
+    660
+   ],
+   "reason": "more room in bubble, kept inside its outline"
+  }
+ ],
+ "flags": [
+  {
+   "page": 49,
+   "issue": "Bus-stop sign names (Sanjiadian, Qilizhuang, Jiukeshu) are set rotated at about 0.66 scale on the narrow vertical signs; 'Jiukeshu' touches the top edge of its sign. The signs have no more room."
+  }
+ ]
+}

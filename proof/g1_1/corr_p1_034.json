@@ -1,0 +1,27 @@
+{
+ "corrections": [
+  {"segment_id": "p33_s3", "translation": "The plate has", "box": [86, 210.0, 152.5, 226.8], "reason": "shorter, natural"},
+  {"restore": [198, 211, 226, 223], "page": 33, "reason": "fish picture after first box was erased"},
+  {"segment_id": "p33_s5", "translation": "BLANK", "reason": "measure word after answer box; other cells have none"},
+  {"segment_id": "p34_s1", "translation": "⟦0⟧. How many ⟦1⟧ are left?", "reason": "question mark"},
+  {"line": "p34_i136_2", "pieces": [[124, 139, "BLANK"], [161, 169, "."]], "reason": "个 and Chinese full stop left in picture"},
+  {"line": "p34_i136_24", "pieces": [[321, 361.5, "How many", 570, 587], [370, 422.5, "missing? How many", 566, 590]], "reason": "the English ran over the cup picture; set around the cup and spoon: How many [cup] missing? How many [spoon]?"},
+  {"segment_id": "p36_s1", "translation": "Goes down by", "reason": "natural; matches Goes up by"},
+  {"segment_id": "p36_s6", "translation": "DROP", "reason": "window plate 5-2; 目/日 are shutters"},
+  {"segment_id": "p36_s10", "translation": "DROP", "reason": "三 is window shutter decoration"},
+  {"segment_id": "p36_s12", "translation": "DROP", "reason": "window plate 5-5; 日 is shutter"},
+  {"segment_id": "p36_s13", "erase": [[126, 508, 141, 521], [158, 515, 163, 522]], "reason": "个 and the Chinese full stop after the peach left in the picture (the checked edition had erased the full stop)"},
+  {"add": "p37_a1", "page": 37, "box": [268, 180, 301, 192], "translation": "5, 6.", "source": "5，6。", "size": 10, "reason": "Chinese punctuation in bubble"},
+  {"segment_id": "p39_s4", "translation": "How many left", "reason": "shorter, fits one line"},
+  {"segment_id": "p39_s8", "box": [76.3, 568.9, 190, 584.5], "reason": "section label wrapped onto two lines; free paper to its right"},
+  {"add": "p39_a1", "page": 39, "box": [192, 291, 226, 303], "translation": "6, 7.", "source": "6，7。", "size": 10, "reason": "Chinese punctuation in bubble"},
+  {"segment_id": "p40_s2", "translation": "⟦0⟧. Share ⟦1⟧ ⟦2⟧ between ⟦3⟧", "reason": "根 counts bananas, not sticks"},
+  {"restore": [248, 239, 272, 258], "page": 40, "reason": "monkey picture cut by erase"},
+  {"segment_id": "p40_s17", "translation": "I show …", "reason": "ellipsis of 我出……"},
+  {"segment_id": "p38_s4", "translation": "BLANK", "reason": "re-set below at the size of the first half of the sentence"},
+  {"add": "p38_a1", "page": 38, "box": [182.6, 225.4, 394.6, 239.5], "translation": "on 2 plates. How can you do it?", "source": "放在2个盘子里，可以怎么放？", "size": 10, "align": "left", "reason": "second half of item 2 was set much larger than the first half"},
+  {"segment_id": "p40_s3", "translation": "BLANK", "reason": "re-set below at the size of the first half of the sentence"},
+  {"add": "p40_a1", "page": 40, "box": [275, 242.8, 380, 259.5], "translation": ". How can you do it?", "source": "，可以怎么分？", "size": 12.1, "align": "left", "reason": "second half of item 2 was set much larger than the first half"}
+ ],
+ "flags": []
+}

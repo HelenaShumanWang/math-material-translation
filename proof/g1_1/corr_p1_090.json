@@ -1,0 +1,485 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s4",
+   "translation": "⟦0⟧ bees",
+   "reason": "label on the hive counts bees"
+  },
+  {
+   "merge": [
+    "p91_s4",
+    "p91_s7"
+   ],
+   "translation": "Let's share the jobs. I'll count. Skipping: 6...",
+   "reason": "one speech bubble split by OCR"
+  },
+  {
+   "segment_id": "p91_s2",
+   "translation": "Can you find maths problems at Taoqi's school?",
+   "reason": "primary school, not campus"
+  },
+  {
+   "segment_id": "p91_s10",
+   "translation": "⟦0⟧. In groups, find the maths information at Taoqi's school.",
+   "reason": "primary school, not campus"
+  },
+  {
+   "segment_id": "p92_s2",
+   "translation": "BLANK",
+   "reason": "有 folded into the row text"
+  },
+  {
+   "segment_id": "p92_s5",
+   "translation": "BLANK",
+   "reason": "有 folded into the row text"
+  },
+  {
+   "split": "p92_s3",
+   "translations": [
+    "children skip,",
+    "children run,"
+   ],
+   "reason": "two rows of the exercise joined"
+  },
+  {
+   "split": "p92_s4",
+   "translations": [
+    "play shuttlecock.",
+    "play football."
+   ],
+   "reason": "two rows of the exercise joined"
+  },
+  {
+   "segment_id": "p93_s2",
+   "box": [
+    74,
+    340,
+    470,
+    360
+   ],
+   "reason": "free paper to the right"
+  },
+  {
+   "segment_id": "p93_s5",
+   "translation": "BLANK",
+   "reason": "two bullet points set left-aligned as adds below (the paragraph centres them)"
+  },
+  {
+   "add": "p93_a1",
+   "page": 93,
+   "box": [
+    110,
+    413,
+    330,
+    430
+   ],
+   "translation": "Use all 10 objects.",
+   "source": "10个物体都要用上。",
+   "size": 12.5,
+   "align": "left",
+   "reason": "first bullet, left-aligned like the third"
+  },
+  {
+   "add": "p93_a2",
+   "page": 93,
+   "box": [
+    110,
+    436,
+    330,
+    453
+   ],
+   "translation": "Be creative with your stack.",
+   "source": "堆出的作品要有创意。",
+   "size": 12.5,
+   "align": "left",
+   "reason": "second bullet, left-aligned like the third"
+  },
+  {
+   "segment_id": "p93_s9",
+   "translation": "Balls are the hardest to stack...",
+   "box": [
+    211,
+    559,
+    289,
+    578
+   ],
+   "reason": "complete the bubble; kept inside the outline"
+  },
+  {
+   "split": "p94_s4",
+   "translations": [
+    "Same total? Fewer cards wins.",
+    "The highest total wins.",
+    "If your total is more than 10, you're out."
+   ],
+   "reason": "three bullet points, one beside each bullet dot (the tool orders these lines bottom first)"
+  },
+  {
+   "segment_id": "p94_s4_k0",
+   "box": [
+    97,
+    379,
+    345,
+    401
+   ],
+   "reason": "line runs over free paper to the right"
+  },
+  {
+   "segment_id": "p94_s4_k1",
+   "box": [
+    97,
+    355.5,
+    345,
+    377.5
+   ],
+   "reason": "line runs over free paper to the right"
+  },
+  {
+   "segment_id": "p94_s4_k2",
+   "box": [
+    97,
+    331,
+    345,
+    353
+   ],
+   "reason": "line runs over free paper to the right"
+  },
+  {
+   "segment_id": "p95_s0",
+   "translation": "Unit 8 Telling the Time",
+   "reason": "standard title; dropped ⟦0⟧: OCR crop of part of 八"
+  },
+  {
+   "segment_id": "p95_s3",
+   "translation": "⟦0⟧:00",
+   "reason": "fits the tag"
+  },
+  {
+   "segment_id": "p95_s4",
+   "translation": "⟦0⟧:00",
+   "reason": "fits the tag"
+  },
+  {
+   "segment_id": "p95_s8",
+   "translation": "⟦0⟧:00",
+   "reason": "fits the tag"
+  },
+  {
+   "segment_id": "p95_s10",
+   "translation": "⟦0⟧:00",
+   "reason": "fits the tag"
+  },
+  {
+   "segment_id": "p95_s7",
+   "erase": [
+    [
+     208,
+     313,
+     219,
+     327
+    ]
+   ],
+   "translation": "9:30",
+   "reason": "9 before 时半 in the picture; half past cannot follow it"
+  },
+  {
+   "segment_id": "p95_s7",
+   "box": [
+    207,
+    311,
+    253,
+    328
+   ],
+   "reason": "whole tag"
+  },
+  {
+   "segment_id": "p95_s11",
+   "erase": [
+    [
+     274,
+     439,
+     282,
+     453
+    ]
+   ],
+   "translation": "8:30",
+   "reason": "8 before 时半 in the picture"
+  },
+  {
+   "segment_id": "p95_s11",
+   "box": [
+    273,
+    437,
+    318,
+    454
+   ],
+   "reason": "whole tag"
+  },
+  {
+   "segment_id": "p95_s9",
+   "translation": "DROP",
+   "reason": "OCR of clock numerals"
+  },
+  {
+   "segment_id": "p95_s13",
+   "translation": "I get up at ⟦0⟧:30.",
+   "reason": "speaker; fits",
+   "box": [
+    142,
+    581,
+    206,
+    598
+   ]
+  },
+  {
+   "segment_id": "p96_s4",
+   "translation": "BLANK",
+   "reason": "arch letters too small for English; the school name is set on the wall"
+  },
+  {
+   "segment_id": "p96_s5",
+   "translation": "BLANK",
+   "reason": "arch letters too small for English; the school name is set on the wall"
+  },
+  {
+   "segment_id": "p96_s6",
+   "translation": "BLANK",
+   "reason": "arch letters too small for English; the school name is set on the wall"
+  },
+  {
+   "split": "p96_s16",
+   "translations": [
+    "A. 12:00 noon",
+    "Look at the shadows. Match each one to the approximate time."
+   ],
+   "reason": "instruction and label A joined (the tool orders the label line first)"
+  },
+  {
+   "segment_id": "p96_s17",
+   "translation": "⟦0⟧. ⟦1⟧ a.m.",
+   "reason": "consistent with C"
+  },
+  {
+   "segment_id": "p96_s18",
+   "translation": "⟦0⟧. ⟦1⟧:⟦2⟧ a.m.",
+   "reason": "placeholders restored"
+  },
+  {
+   "add": "p96_a1",
+   "page": 96,
+   "box": [
+    386,
+    206,
+    414,
+    221
+   ],
+   "translation": "Farm\nSchool",
+   "source": "农场小学",
+   "size": 5.5,
+   "reason": "school name from the arch"
+  },
+  {
+   "segment_id": "p95_s14",
+   "box": [
+    322,
+    584,
+    388,
+    600
+   ],
+   "reason": "fill the bubble"
+  },
+  {
+   "restore": [
+    326,
+    175,
+    375,
+    199
+   ],
+   "page": 96,
+   "reason": "arch rings back after the erase; the letters are painted out next"
+  },
+  {
+   "paint": [
+    329.5,
+    187.5,
+    337.5,
+    195.8
+   ],
+   "page": 96,
+   "colour": [
+    239,
+    231,
+    200
+   ],
+   "reason": "Chinese letter inside an arch ring"
+  },
+  {
+   "paint": [
+    339.8,
+    179.4,
+    347.4,
+    187
+   ],
+   "page": 96,
+   "colour": [
+    239,
+    231,
+    200
+   ],
+   "reason": "Chinese letter inside an arch ring"
+  },
+  {
+   "paint": [
+    352,
+    177.6,
+    359.5,
+    184.2
+   ],
+   "page": 96,
+   "colour": [
+    239,
+    231,
+    200
+   ],
+   "reason": "Chinese letter inside an arch ring"
+  },
+  {
+   "paint": [
+    362.6,
+    183.8,
+    370.5,
+    191.7
+   ],
+   "page": 96,
+   "colour": [
+    239,
+    231,
+    200
+   ],
+   "reason": "Chinese letter inside an arch ring"
+  },
+  {
+   "segment_id": "p96_s16_k1",
+   "box": [
+    76,
+    516,
+    470,
+    534
+   ],
+   "reason": "instruction line runs over free paper to the right"
+  },
+  {
+   "segment_id": "p96_s11",
+   "reason": "digital time as in the checked edition and on p.92 (o'clock / half past were shrunk and stretched the tags)",
+   "translation": "⟦0⟧:00"
+  },
+  {
+   "segment_id": "p96_s12",
+   "reason": "digital time as in the checked edition and on p.92 (o'clock / half past were shrunk and stretched the tags)",
+   "translation": "⟦0⟧:30",
+   "box": [
+    161,
+    478.5,
+    201,
+    496.3
+   ]
+  },
+  {
+   "segment_id": "p96_s13",
+   "reason": "digital time as in the checked edition and on p.92 (o'clock / half past were shrunk and stretched the tags)",
+   "translation": "⟦0⟧:00"
+  },
+  {
+   "segment_id": "p96_s14",
+   "reason": "digital time as in the checked edition and on p.92 (o'clock / half past were shrunk and stretched the tags)",
+   "translation": "⟦0⟧:30",
+   "box": [
+    320,
+    478,
+    360,
+    497
+   ]
+  },
+  {
+   "segment_id": "p96_s15",
+   "reason": "digital time as in the checked edition and on p.92 (o'clock / half past were shrunk and stretched the tags)",
+   "translation": "⟦0⟧:30"
+  },
+  {
+   "segment_id": "p92_s10",
+   "translation": "Table tennis balls, rubber balls, basketballs and footballs are all round...",
+   "reason": "British: footballs"
+  },
+  {
+   "restore": [
+    100,
+    440,
+    109,
+    449
+   ],
+   "page": 93,
+   "reason": "bullet dot cut by the erase"
+  },
+  {
+   "segment_id": "p91_s13",
+   "translation": "The flagpole is a cylinder. It's even taller than the trees.",
+   "reason": "shorter, so it is not shrunk below 0.7"
+  },
+  {
+   "segment_id": "p91_s8",
+   "translation": "Skipping: ⟦0⟧",
+   "reason": "same word as in the speech bubble; British 'skipping'"
+  },
+  {
+   "segment_id": "p94_s3",
+   "box": [
+    97,
+    312.5,
+    345,
+    327.5
+   ],
+   "reason": "starts after the bullet dot; set a point lower so it is not sized with the speech bubble beside it"
+  },
+  {
+   "restore": [
+    89.5,
+    314.5,
+    95.3,
+    321
+   ],
+   "page": 94,
+   "reason": "first bullet dot cut by the erase"
+  },
+  {
+   "restore": [
+    400,
+    316,
+    427,
+    341
+   ],
+   "page": 95,
+   "reason": "clock numerals 10, 11 and the hour hand erased (p95_s9 is OCR of the clock)"
+  },
+  {
+   "restore": [
+    363.8,
+    475,
+    371.5,
+    499
+   ],
+   "page": 96,
+   "reason": "right end of the 11:30 tag outline cut by the erase"
+  },
+  {
+   "segment_id": "p94_s7",
+   "box": [
+    109,
+    444.5,
+    165,
+    457
+   ],
+   "reason": "centred under 3, 2, 2, 7; off the rules' left edge so the rules are not sized with this bubble"
+  }
+ ],
+ "flags": []
+}

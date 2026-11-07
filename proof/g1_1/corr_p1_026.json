@@ -1,0 +1,281 @@
+{
+ "corrections": [
+  {
+   "restore": [86, 247, 192, 285],
+   "page": 25,
+   "reason": "bubble 1: the anchor clearing smeared the outline and lion; put the original bubble back (its Chinese is painted over next)"
+  },
+  {
+   "paint": [120.5, 256, 171.5, 273],
+   "page": 25,
+   "colour": "border",
+   "reason": "bubble 1: flat bubble colour over 比/tiger/重。 (right of the lion, inside the outline) so the English sits on a clean plate"
+  },
+  {
+   "segment_id": "p25_s2",
+   "translation": "is heavier than\nthe tiger.",
+   "box": [120.5, 256, 171.5, 273],
+   "reason": "lion picture ⟦0⟧ kept in place by the restore; tiger ⟦1⟧ named in words (as in the checked edition); was 0.47 scale with a damaged bubble"
+  },
+  {
+   "restore": [214, 246, 310, 283],
+   "page": 25,
+   "reason": "bubble 2: outline and leopard smeared by the anchor clearing"
+  },
+  {
+   "paint": [245.5, 253.5, 297.5, 271.5],
+   "page": 25,
+   "colour": "border",
+   "reason": "bubble 2: clean plate over 比/tiger/轻。 after the leopard, inside the outline"
+  },
+  {
+   "segment_id": "p25_s3",
+   "translation": "is lighter than\nthe tiger.",
+   "box": [245.5, 253.5, 297.5, 271.5],
+   "reason": "比...轻 means lighter, not heavier (was left in Chinese); leopard ⟦0⟧ kept in place by the restore; dropped ⟦1⟧: crop of the bubble outline"
+  },
+  {
+   "segment_id": "p25_s4",
+   "translation": "BLANK",
+   "reason": "the tiger and 轻 are said in p25_s3"
+  },
+  {
+   "split": "p25_s5",
+   "translations": ["is heaviest,", "is lightest."],
+   "reason": "one line beside each picture (lion, leopard)"
+  },
+  {
+   "segment_id": "p25_s5_k0",
+   "box": [391, 263.5, 428, 277],
+   "reason": "free bubble space right of the picture, inside the outline (wider boxes ran over it)"
+  },
+  {
+   "segment_id": "p25_s5_k1",
+   "box": [391, 283, 427, 296.5],
+   "reason": "free bubble space right of the picture, inside the outline (wider boxes ran over it)"
+  },
+  {
+   "segment_id": "p25_s6",
+   "box": [340, 325, 372, 337.5],
+   "reason": "name label was set far larger than the small source label"
+  },
+  {
+   "restore": [366, 438, 456, 492],
+   "page": 25,
+   "reason": "bubble 4: outline and pictures damaged by the anchor clearing"
+  },
+  {
+   "paint": [393, 450, 440, 480.5],
+   "page": 25,
+   "colour": "border",
+   "reason": "bubble 4: clean plate right of the pear/apple column, inside the outline"
+  },
+  {
+   "segment_id": "p25_s9",
+   "translation": "is heavier than the apple,\nis lighter than the pear.",
+   "box": [393, 450, 440, 480.5],
+   "reason": "was left in Chinese; pear ⟦0⟧ and apple ⟦2⟧ kept in place by the restore, ⟦1⟧ is a crop of the bubble outline, ⟦3⟧ (pear) named in words"
+  },
+  {
+   "segment_id": "p25_s10",
+   "translation": "BLANK",
+   "reason": "said in p25_s9"
+  },
+  {
+   "segment_id": "p25_s11",
+   "translation": "BLANK",
+   "reason": "said in p25_s9 (was left in Chinese)"
+  },
+  {
+   "segment_id": "p25_s12",
+   "translation": "Circle the right words.",
+   "reason": "圈一圈 here: circle the word in brackets; 'Circle.' alone is incomplete"
+  },
+  {
+   "segment_id": "p25_s13",
+   "translation": "⟦0⟧ is (bigger, smaller) than the grey ball.\n⟦1⟧ is (heavier, lighter) than the grey ball.",
+   "reason": "two separate sentences, both comparing the beach ball with the grey ball; the old text compared the two beach balls"
+  },
+  {
+   "merge": ["p26_s1", "p26_s2"],
+   "translation": "1. Draw \"✓\" for the lighter one and \"○\" for the heavier one.",
+   "reason": "one instruction split in two; the pieces read wrongly and the end of the line stayed Chinese"
+  },
+  {
+   "segment_id": "p26_s1",
+   "box": [57, 121, 430, 141],
+   "erase": [[118.8, 121, 137.5, 141], [233, 121, 295, 141]],
+   "reason": "free paper to the right; erase the leftover “ and “○”。"
+  },
+  {
+   "merge": ["p26_s4", "p26_s6"],
+   "translation": "2. Draw \"✓\" for the lightest and \"○\" for the heaviest.",
+   "reason": "one instruction split in two"
+  },
+  {
+   "segment_id": "p26_s4",
+   "box": [56.4, 286, 350, 303],
+   "erase": [[134.6, 285, 184.5, 304], [264.5, 285, 330, 304]],
+   "reason": "room up to the label pad; erase the leftover “✓” and “○”。"
+  },
+  {
+   "segment_id": "p26_s7",
+   "box": [57, 396, 300, 413],
+   "erase": [[165.5, 396, 220, 414]],
+   "reason": "erase the leftover “✓”。 after the English; keep the size of its sibling instructions"
+  },
+  {
+   "line": "p26_i104_18",
+   "translation": "BLANK",
+   "reason": "closing quote of the instruction, said in p26_s8"
+  },
+  {
+   "line": "p26_i104_19",
+   "translation": "for the heaviest.",
+   "force": true,
+   "reason": "rest of instruction 4 left in Chinese (only text in its box)"
+  },
+  {
+   "merge": ["p26_s8", "p26_i104_18_t", "p26_i104_19_t"],
+   "translation": "Draw \"✓\" for the lightest and \"○\" for the heaviest.",
+   "reason": "p26_s8 said 'heaviest.' only and the rest of the line stayed Chinese; the decorative 4. stays in the picture"
+  },
+  {
+   "segment_id": "p26_s8",
+   "box": [72, 565.5, 420, 579],
+   "erase": [[134.9, 563, 150.5, 582], [299, 563, 330, 583]],
+   "reason": "one line at the size of instructions 1-3; erase leftover “ and 。"
+  },
+  {
+   "segment_id": "p27_s0",
+   "translation": "Unit 3  Addition and Subtraction (1)",
+   "box": [60, 80, 484, 105],
+   "reason": "dropped ⟦0⟧ and ⟦1⟧: OCR crops of the 一 stroke and the closing bracket; one line across the title area"
+  },
+  {
+   "segment_id": "p27_s2",
+   "translation": "How many ⟦0⟧ are there? Talk about it and count.",
+   "reason": "the pencil picture ⟦0⟧ stands for the counted noun"
+  },
+  {
+   "segment_id": "p27_s3",
+   "translation": "One hand has ⟦0⟧\nthe other has…",
+   "box": [75, 204, 152, 229.8],
+   "erase": [[145.5, 220, 169.5, 229]],
+   "reason": "one line per bubble line so the pencil picture follows '3'; erase the leftover dots of ……; box kept taller than one line so it is not sized with the instructions"
+  },
+  {
+   "restore": [157.5, 200, 177, 218.5],
+   "page": 27,
+   "reason": "the pencil picture and comma after '3' were erased with the line"
+  },
+  {
+   "segment_id": "p27_s5",
+   "translation": "⟦0⟧, altogether…",
+   "reason": "the child is still counting (……)"
+  },
+  {
+   "segment_id": "p27_s7",
+   "translation": "⟦0⟧ pandas are eating bamboo…",
+   "erase": [[111.5, 364, 136, 373]],
+   "reason": "leftover dots of …… showed through the English; the ellipsis is now in the text"
+  },
+  {
+   "segment_id": "p27_s8",
+   "translation": "⟦0⟧, ⟦1⟧, altogether…",
+   "reason": "the child is still counting (……)"
+  },
+  {
+   "segment_id": "p27_s10",
+   "box": [266, 474.5, 340, 491],
+   "reason": "was 0.65 scale; free room inside the bubble"
+  },
+  {
+   "segment_id": "p27_s12",
+   "box": [110, 523.5, 182, 538],
+   "reason": "'plus sign' on one line in the free card space"
+  },
+  {
+   "segment_id": "p28_s5",
+   "translation": "⟦0⟧. Talk about it and fill in.",
+   "reason": "plain 'fi' instead of the ligature character; keep the enumerator placeholder"
+  },
+  {
+   "restore": [261.5, 495.5, 283.5, 519],
+   "page": 29,
+   "reason": "the answer box was half erased by p29_s4"
+  },
+  {
+   "segment_id": "p29_s3",
+   "box": [205.5, 498, 260, 517],
+   "reason": "was 0.61 scale; use the free banner space before the answer box; kept clear of the banner edge"
+  },
+  {
+   "segment_id": "p29_s4",
+   "box": [287.5, 498.6, 315, 517.3],
+   "reason": "box overlapped the answer box; move it after it inside the banner; kept clear of the banner edge"
+  },
+  {
+   "segment_id": "p30_s1",
+   "translation": "How many ⟦0⟧ are left on the tree? Talk about it and count.",
+   "reason": "the apple picture ⟦0⟧ stands for the counted noun"
+  },
+  {
+   "segment_id": "p30_s2",
+   "translation": "The tree had ⟦0⟧\n⟦1⟧ fell off, leaving…",
+   "reason": "one line per bubble line so the apple picture follows '5'"
+  },
+  {
+   "segment_id": "p30_s3",
+   "translation": "⟦0⟧, ⟦1⟧, ⟦2⟧, the tree\nstill has ⟦3⟧",
+   "erase": [[440, 170, 452, 185]],
+   "reason": "English ran over the apple picture; one line per bubble line, the picture follows '3'; erase the leftover Chinese full stop"
+  },
+  {
+   "segment_id": "p30_s4",
+   "translation": "How many",
+   "reason": "fragment before the cheese picture; the rest is p30_s5"
+  },
+  {
+   "segment_id": "p30_s6",
+   "translation": "There were ⟦0⟧\ntook away ⟦1⟧, leaving…",
+   "box": [67, 309, 187, 334.5],
+   "reason": "the mouse picture is the one who takes the cheese (🐭搬走2块): 'There were 5 [cheese], [mouse] took away 2, leaving…'; English ran over the cheese picture; one line per bubble line"
+  },
+  {
+   "segment_id": "p30_s9",
+   "box": [280, 463, 357, 484],
+   "reason": "was 0.56 scale; free room inside the bubble"
+  },
+  {
+   "segment_id": "p30_s11",
+   "box": [110, 505, 185, 522],
+   "reason": "'minus sign' on one line in the free card space (was 0.54)"
+  },
+  {
+   "segment_id": "p32_s3",
+   "translation": "DROP",
+   "reason": "OCR of the drawn circles (000Og), not text"
+  },
+  {
+   "segment_id": "p32_s5",
+   "box": [208, 548, 262, 563.5],
+   "reason": "was 0.66 scale; banner space before the answer box"
+  },
+  {
+   "segment_id": "p32_s6",
+   "box": [288, 546, 318, 566],
+   "reason": "was 0.62 scale; banner space after the answer box; kept clear of the banner edge"
+  }
+ ],
+ "flags": [
+  {
+   "page": 28,
+   "issue": "'Let's learn.' (p27_s9) and 'Use counters and calculate.' (p27_s15) are set at 9.5 pt by the renderer's sibling-label matching (grouped with the bubble labels), while the other bullet instructions of the page are 12-14 pt; a box cannot enlarge them."
+  },
+  {
+   "page": 26,
+   "issue": "Bubble 1 (p25_s2) can only be set at about 7 pt (scale 0.49) inside the small bubble after the lion picture; readable but smaller than the other bubbles."
+  }
+ ]
+}

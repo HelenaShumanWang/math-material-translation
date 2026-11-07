@@ -1,0 +1,294 @@
+{
+ "corrections": [
+  {
+   "line": "p9_i36_9",
+   "translation": "Wow!",
+   "reason": "speech bubble 哇！ was left in Chinese"
+  },
+  {
+   "segment_id": "p9_i36_9_t",
+   "box": [
+    116,
+    352,
+    141,
+    369
+   ],
+   "reason": "Wow! set at 0.6; free room inside the same bubble"
+  },
+  {
+   "segment_id": "p9_s5",
+   "translation": "is in which place?",
+   "box": [
+    140.9,
+    272.4,
+    205,
+    290.0
+   ],
+   "reason": "English ran over the inline boy picture; keep it right of the picture"
+  },
+  {
+   "restore": [
+    112,
+    266,
+    140,
+    291
+   ],
+   "page": 9,
+   "reason": "the running boy picture before 排第几 was erased; no Chinese inside"
+  },
+  {
+   "segment_id": "p11_s5",
+   "translation": "BLANK",
+   "reason": "第□节 = train car number, not 'Section 44.11.0'; the line is re-set as five 'Car □' labels"
+  },
+  {
+   "restore": [
+    112.3,
+    653.5,
+    133.4,
+    675.5
+   ],
+   "page": 11,
+   "reason": "put back the red answer box of 第□节 after the line was blanked"
+  },
+  {
+   "restore": [
+    179.5,
+    653.5,
+    200.6,
+    675.5
+   ],
+   "page": 11,
+   "reason": "put back the red answer box of 第□节 after the line was blanked"
+  },
+  {
+   "restore": [
+    243.8,
+    653.5,
+    265,
+    675.5
+   ],
+   "page": 11,
+   "reason": "put back the red answer box of 第□节 after the line was blanked"
+  },
+  {
+   "restore": [
+    310,
+    653.5,
+    331,
+    675.5
+   ],
+   "page": 11,
+   "reason": "put back the red answer box of 第□节 after the line was blanked"
+  },
+  {
+   "restore": [
+    376,
+    653.5,
+    397.4,
+    675.5
+   ],
+   "page": 11,
+   "reason": "put back the red answer box of 第□节 after the line was blanked"
+  },
+  {
+   "add": "p11_a1",
+   "page": 11,
+   "box": [
+    90,
+    656,
+    111.4,
+    673
+   ],
+   "translation": "Car",
+   "source": "第",
+   "size": 10,
+   "align": "right",
+   "reason": "第□节 (which car of the train) set as 'Car □' in front of each answer box"
+  },
+  {
+   "add": "p11_a2",
+   "page": 11,
+   "box": [
+    157.5,
+    656,
+    178.8,
+    673
+   ],
+   "translation": "Car",
+   "source": "第",
+   "size": 10,
+   "align": "right",
+   "reason": "第□节 (which car of the train) set as 'Car □' in front of each answer box"
+  },
+  {
+   "add": "p11_a3",
+   "page": 11,
+   "box": [
+    222,
+    656,
+    243.2,
+    673
+   ],
+   "translation": "Car",
+   "source": "第",
+   "size": 10,
+   "align": "right",
+   "reason": "第□节 (which car of the train) set as 'Car □' in front of each answer box"
+  },
+  {
+   "add": "p11_a4",
+   "page": 11,
+   "box": [
+    288.5,
+    656,
+    309.5,
+    673
+   ],
+   "translation": "Car",
+   "source": "第",
+   "size": 10,
+   "align": "right",
+   "reason": "第□节 (which car of the train) set as 'Car □' in front of each answer box"
+  },
+  {
+   "add": "p11_a5",
+   "page": 11,
+   "box": [
+    354.5,
+    656,
+    375.7,
+    673
+   ],
+   "translation": "Car",
+   "source": "第",
+   "size": 10,
+   "align": "right",
+   "reason": "第□节 (which car of the train) set as 'Car □' in front of each answer box"
+  },
+  {
+   "segment_id": "p12_s3",
+   "translation": "No fish at all: we write ⟦0⟧.",
+   "reason": "dropped ⟦1⟧: duplicate OCR read of the red 0 (printed '0 0.'); clearer wording"
+  },
+  {
+   "segment_id": "p12_s7",
+   "translation": "DROP",
+   "reason": "OCR noise read from the thermometer scale"
+  },
+  {
+   "segment_id": "p12_s11",
+   "translation": "Also…",
+   "reason": "还有…… keeps its trailing ellipsis"
+  },
+  {
+   "segment_id": "p15_s3",
+   "translation": "DROP",
+   "reason": "the bubble counts these 10 Chinese characters, so the poem stays in Chinese (as in the checked edition); English was set at 0.51"
+  },
+  {
+   "segment_id": "p15_s6",
+   "translation": "9, then ⟦0⟧ more bead makes ⟦1⟧.",
+   "erase": [
+    [
+     379,
+     322,
+     400,
+     337
+    ]
+   ],
+   "reason": "the '9，' at the start of the bubble was left in the picture overlapping 'Add'; say it in English like the 1 → 2 bubble"
+  },
+  {
+   "segment_id": "p16_s0",
+   "translation": "⟦0⟧. There are",
+   "box": [
+    55.6,
+    81.4,
+    122.5,
+    97.8
+   ],
+   "reason": "wrapped to 'There / are'; one more point of width keeps it on one line"
+  },
+  {
+   "segment_id": "p16_s2",
+   "translation": "I'm number…",
+   "reason": "我排第…… keeps its trailing ellipsis"
+  },
+  {
+   "add": "p16_a1",
+   "page": 16,
+   "box": [
+    412,
+    183,
+    461,
+    194
+   ],
+   "translation": "Dangdang",
+   "source": "当当",
+   "size": 9,
+   "align": "center",
+   "reason": "name label 当当 under the last child was left in Chinese (sibling of Dingding); set at Dingding's size centred under the boy (at size 7 in a 22pt box it was pushed right of the boy), the box kept below the grass"
+  },
+  {
+   "restore": [404, 174, 426.5, 184],
+   "page": 16,
+   "reason": "put back the grass edge left of 当当 that the Dangdang box erased (no Chinese inside)"
+  },
+  {
+   "restore": [426.5, 174, 434, 180.6],
+   "page": 16,
+   "reason": "put back the grass edge above 当当 that the Dangdang box erased"
+  },
+  {
+   "paint": [428.5, 178.8, 431, 180.6],
+   "page": 16,
+   "colour": [220, 233, 173],
+   "reason": "top stroke of the first 当 touches the grass edge: grass colour"
+  },
+  {
+   "paint": [431, 179, 446.5, 183.4],
+   "page": 16,
+   "colour": [255, 255, 255],
+   "reason": "top strokes of 当当 above the Dangdang box (white paper)"
+  },
+  {
+   "paint": [426.5, 180.6, 431, 183.4],
+   "page": 16,
+   "colour": [255, 255, 255],
+   "reason": "top strokes of 当当 above the Dangdang box (white paper below the grass)"
+  },
+  {
+   "segment_id": "p16_s4",
+   "translation": "⟦0⟧. Fill in the numbers.",
+   "reason": "填数 = fill in the numbers"
+  },
+  {
+   "segment_id": "p16_s6",
+   "translation": "⟦0⟧. Talk about it: who is closer to the ⟦1⟧?",
+   "box": [
+    55.8,
+    299.5,
+    290,
+    315
+   ],
+   "reason": "⟦1⟧ is the carrot picture; question was incomplete; box set so it prints at the size of its siblings"
+  },
+  {
+   "segment_id": "p16_s7",
+   "translation": "⟦0⟧. Look at the number and colour.",
+   "reason": "看数涂一涂: same instruction as page 8, exercise 3"
+  },
+  {
+   "segment_id": "p16_s10",
+   "box": [
+    384.9,
+    569.8,
+    444,
+    587.9
+   ],
+   "reason": "wrapped to 'How / many?' at 0.67; free paper to the right on the same note"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,33 @@
+{
+ "corrections": [
+  {"segment_id": "p49_s2", "translation": "There are ⟦0⟧ people in the first row and ⟦1⟧ in the second row...", "reason": "shorter so it is set larger; restore placeholders"},
+  {"split": "p49_s10", "translations": ["There are 8 birds.", "2 flew away."], "reason": "two signs over two different pictures; the joined text printed a stray blank between them"},
+  {"segment_id": "p49_s3", "translation": "There are ⟦0⟧ boys and ⟦1⟧ girls in the choir.", "reason": "natural order, full stop, restore placeholders"},
+  {"segment_id": "p49_s4", "translation": "Think about it: ask a maths question and solve it with a number sentence.", "reason": "comma splice; natural wording"},
+  {"segment_id": "p50_s2", "translation": "(⟦0⟧) Ask a maths question and solve it with a number sentence.", "reason": "stray comma; natural wording"},
+  {"segment_id": "p50_s4", "translation": "The rest are hiding here.", "reason": "full stop as in source"},
+  {"segment_id": "p50_s6", "translation": "Ask a maths question and try to solve it.", "reason": "full stop; natural wording"},
+  {"segment_id": "p53_s17", "translation": "Find the addition sentences that make ⟦0⟧. Arrange them.", "reason": "wrapped a lone word onto a second line; shorter, parallel with the next task"},
+  {"segment_id": "p53_s26", "translation": "Which addition sentences make ⟦0⟧? Arrange them.", "reason": "full stop"},
+  {"segment_id": "p54_s17", "translation": "Find the subtraction sentences that start with ⟦0⟧. Arrange them.", "reason": "'subtract from 6' unclear for 6 − ?; full stop"},
+  {"segment_id": "p54_s22", "translation": "Which subtraction sentences have the answer ⟦0⟧? Arrange them.", "reason": "'make 8' for subtraction is unidiomatic; full stop"},
+  {"segment_id": "p52_s4", "box": [55.8, 265.0, 150.0, 280.0], "reason": "label set huge and wrapped in a narrow box; free paper to the right"},
+  {"segment_id": "p52_s27", "translation": "⟦0⟧. How many ⟦1⟧ might there be in each vase?", "reason": "inline flower picture belongs after 'How many' (as in the checked edition)"},
+  {"segment_id": "p54_s21", "translation": "DROP", "reason": "OCR misread of the card 6−0=; restore the card"},
+  {"split": "p55_s3", "translations": ["Compare", "Heaviest: draw", "Lightest: draw"], "reason": "label plus two lines that each end before the printed tick / circle; the joined text overlapped the quote marks"},
+  {"segment_id": "p55_s4", "translation": "How many rabbits? Are there enough ⟦0⟧? What about cups?", "reason": "rabbit and cup pictures were lost; name them (as in the checked edition)"},
+  {"segment_id": "p55_s8", "box": [108.5, 345.0, 126.5, 359.5], "reason": "left in Chinese; use the free space between picture and circle"},
+  {"segment_id": "p55_s5", "box": [273.0, 321.5, 320.5, 353.0], "reason": "more room inside the bubble"},
+  {"merge": ["p55_s11", "p55_s13"], "translation": "Talk about it. What can 3 mean in everyday life? What about 0? ...", "reason": "one bubble text; 'What about 0?' was printed twice and at a larger size"},
+  {"segment_id": "p56_s1", "erase": [[191, 161, 229, 174]], "reason": "leftover 比 and dots of the bubble's last line"},
+  {"segment_id": "p56_s1", "box": [192.5, 133.2, 259.1, 174.0], "reason": "use the whole bubble after the erase"},
+  {"segment_id": "p55_s10", "box": [108.5, 382.0, 126.5, 395.5], "reason": "use the free space between picture and triangle"},
+  {"segment_id": "p55_s9", "translation": "BLANK", "reason": "its OCR box is too tall to set 'Draw' (left in Chinese); the word is set by p55_a1"},
+  {"add": "p55_a1", "page": 55, "box": [110.0, 364.0, 125.5, 376.0], "translation": "Draw", "source": "画", "size": 6, "align": "left", "color": 2301728, "reason": "row 2 of the key: chair - draw a tick"},
+  {"restore": [270.0, 268.0, 312.0, 282.5], "page": 54, "reason": "put back the card 6−0= (maths only, no Chinese)"},
+  {"restore": [107.0, 358.8, 128.0, 362.0], "page": 55, "reason": "blanking p55_s9 (tall OCR box) cut the dashed line between rows 1 and 2 of the key; put it back (no Chinese in the strip)"}
+ ],
+ "flags": [
+  {"page": 56, "issue": "Speech bubbles p55_s5, p55_s6, p55_s7 are small; English set at 0.57-0.70 because the bubbles have no more room; the publisher watermark crosses \"I'm taller\"."}
+ ]
+}

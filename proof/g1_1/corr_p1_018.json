@@ -1,0 +1,690 @@
+{
+ "corrections": [
+  {
+   "restore": [
+    74,
+    279,
+    105,
+    295
+   ],
+   "page": 17,
+   "reason": "plate icon before Enough? was erased"
+  },
+  {
+   "segment_id": "p17_s2",
+   "box": [
+    287,
+    289,
+    367,
+    305
+   ],
+   "reason": "use the bubble"
+  },
+  {
+   "split": "p17_s7",
+   "translations": [
+    "the most,",
+    "the fewest."
+   ],
+   "reason": "one line per icon: [cup] the most, [spoon] the fewest"
+  },
+  {
+   "segment_id": "p18_s2",
+   "box": [
+    72,
+    151,
+    172,
+    169
+   ],
+   "reason": "room"
+  },
+  {
+   "segment_id": "p18_s3",
+   "translation": ".",
+   "reason": "sentence ends after the cap picture"
+  },
+  {
+   "segment_id": "p18_s5",
+   "translation": "Draw more ○ than ⟦0⟧.",
+   "reason": "meaning"
+  },
+  {
+   "segment_id": "p18_s5",
+   "box": [
+    97.2,
+    226.5,
+    222.5,
+    240.5
+   ],
+   "reason": "same size as the other three cell instructions"
+  },
+  {
+   "segment_id": "p18_s6",
+   "translation": "Draw fewer △ than ⟦0⟧.",
+   "reason": "meaning"
+  },
+  {
+   "segment_id": "p18_s7",
+   "translation": "⟦0⟧. Which pile is just right? Draw \"✓\".",
+   "reason": "tick was erased"
+  },
+  {
+   "segment_id": "p18_s7",
+   "box": [
+    56.4,
+    305.3,
+    262,
+    320.6
+   ],
+   "erase": [
+    [
+     245,
+     312,
+     256,
+     322
+    ]
+   ],
+   "reason": "room; leftover full stop"
+  },
+  {
+   "segment_id": "p18_s8",
+   "erase": [
+    [
+     216,
+     342,
+     227,
+     353
+    ]
+   ],
+   "reason": "leftover full stop"
+  },
+  {
+   "segment_id": "p18_s9",
+   "erase": [
+    [
+     389,
+     342,
+     400,
+     353
+    ]
+   ],
+   "reason": "leftover full stop"
+  },
+  {
+   "merge": [
+    "p18_s11",
+    "p18_s12"
+   ],
+   "translation": "3. Compare. Draw \"✓\" for the most and \"○\" for the fewest.",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p18_s11",
+   "box": [
+    56.4,
+    447.5,
+    440,
+    464
+   ],
+   "erase": [
+    [
+     371,
+     455,
+     382,
+     465
+    ]
+   ],
+   "reason": "room; leftover full stop"
+  },
+  {
+   "segment_id": "p18_s13",
+   "translation": "Guess: how many ⟦0⟧ did the grey rabbit pick?",
+   "reason": "rabbit icon erased"
+  },
+  {
+   "segment_id": "p18_s16",
+   "translation": "I picked more ⟦0⟧ than the white rabbit, but fewer than the brown rabbit.",
+   "reason": "dropped ⟦1⟧: OCR crop of the bubble outline, not the brown rabbit; both rabbit icons were erased"
+  },
+  {
+   "segment_id": "p18_s17",
+   "translation": "BLANK",
+   "reason": "covered by p18_s16"
+  },
+  {
+   "segment_id": "p18_s16",
+   "box": [
+    317,
+    619,
+    413,
+    651
+   ],
+   "reason": "inside the bubble outline"
+  },
+  {
+   "line": "p19_i76_13",
+   "pieces": [
+    [
+     197,
+     211,
+     "vs"
+    ],
+    [
+     243,
+     322,
+     "(more, fewer),"
+    ],
+    [
+     345.5,
+     360,
+     "vs"
+    ]
+   ],
+   "reason": "words between pictures"
+  },
+  {
+   "segment_id": "p19_s13",
+   "translation": "(more, fewer).",
+   "reason": "end of sentence"
+  },
+  {
+   "segment_id": "p19_s13",
+   "box": [
+    384,
+    611.7,
+    464,
+    628.4
+   ],
+   "reason": "room"
+  },
+  {
+   "restore": [
+    361,
+    610,
+    382,
+    630
+   ],
+   "page": 19,
+   "reason": "rabbit icon damaged by the erase of 比"
+  },
+  {
+   "line": "p20_i80_2",
+   "translation": "vs",
+   "force": true,
+   "reason": "only 比 in the box"
+  },
+  {
+   "line": "p20_i80_7",
+   "translation": "vs",
+   "force": true,
+   "reason": "only 比 in the box"
+  },
+  {
+   "line": "p20_i80_3",
+   "pieces": [
+    [
+     127.5,
+     203.5,
+     "(more, fewer),"
+    ]
+   ],
+   "reason": "keep the number"
+  },
+  {
+   "line": "p20_i80_8",
+   "pieces": [
+    [
+     127.5,
+     203.5,
+     "(more, fewer),"
+    ]
+   ],
+   "reason": "keep the numbers"
+  },
+  {
+   "line": "p20_i80_5",
+   "pieces": [
+    [
+     293,
+     308,
+     "vs"
+    ],
+    [
+     339,
+     416.5,
+     "(more, fewer),"
+    ]
+   ],
+   "reason": "words between pictures"
+  },
+  {
+   "line": "p20_i80_9",
+   "pieces": [
+    [
+     293,
+     308,
+     "vs"
+    ]
+   ],
+   "reason": "only 比 after the bird"
+  },
+  {
+   "line": "p20_i80_10",
+   "pieces": [
+    [
+     339,
+     416.5,
+     "(more, fewer),"
+    ]
+   ],
+   "reason": "keep the numbers"
+  },
+  {
+   "segment_id": "p20_i80_3_p0",
+   "erase": [
+    [
+     245.5,
+     239.5,
+     251.5,
+     246.5
+    ],
+    [
+     245.5,
+     264.5,
+     251.5,
+     270.5
+    ]
+   ],
+   "reason": "Chinese full stops"
+  },
+  {
+   "segment_id": "p20_i80_5_p1",
+   "erase": [
+    [
+     457,
+     238.5,
+     463.5,
+     244.5
+    ],
+    [
+     457,
+     262.5,
+     463.5,
+     268.5
+    ]
+   ],
+   "reason": "Chinese full stops"
+  },
+  {
+   "restore": [
+    97.5,
+    228,
+    118,
+    248
+   ],
+   "page": 20,
+   "reason": "rabbit icon damaged"
+  },
+  {
+   "restore": [
+    60,
+    251,
+    80.8,
+    271
+   ],
+   "page": 20,
+   "reason": "rabbit icon damaged"
+  },
+  {
+   "merge": [
+    "p20_s4",
+    "p20_s5"
+   ],
+   "translation": "2. Draw \"✓\" for the one with more and \"○\" for the one with fewer.",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p20_s4",
+   "box": [
+    56.0,
+    297.5,
+    445,
+    318.5
+   ],
+   "erase": [
+    [
+     280,
+     310.5,
+     286,
+     316.5
+    ]
+   ],
+   "reason": "room; leftover full stop"
+  },
+  {
+   "merge": [
+    "p21_s3",
+    "p21_s4"
+   ],
+   "translation": "Which glass holds the most? Draw \"✓\" for the most and \"○\" for the least.",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p21_s3",
+   "box": [
+    77.4,
+    421.8,
+    455,
+    443.6
+   ],
+   "erase": [
+    [
+     424,
+     434,
+     431,
+     442
+    ]
+   ],
+   "reason": "room; leftover full stop"
+  },
+  {
+   "segment_id": "p21_s10",
+   "translation": "Or first empty",
+   "reason": "fits before the bottle: Or first empty [bottle], then pour [carton] into [bottle]"
+  },
+  {
+   "segment_id": "p21_s10",
+   "box": [
+    128,
+    623,
+    197,
+    638
+   ],
+   "reason": "room inside the bubble"
+  },
+  {
+   "segment_id": "p21_s13",
+   "translation": "into",
+   "reason": "pour [carton] into [bottle]"
+  },
+  {
+   "merge": [
+    "p22_s1",
+    "p22_s2"
+   ],
+   "translation": "1. Draw \"✓\" for the bigger one and \"○\" for the smaller one.",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p22_s1",
+   "box": [
+    56.3,
+    121.5,
+    365,
+    141.5
+   ],
+   "erase": [
+    [
+     280,
+     133.5,
+     286,
+     140
+    ]
+   ],
+   "reason": "room; full stop"
+  },
+  {
+   "merge": [
+    "p22_s3",
+    "p22_s4"
+   ],
+   "translation": "2. Draw \"✓\" for the biggest one and \"○\" for the smallest one.",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p22_s3",
+   "box": [
+    56.7,
+    251.4,
+    345,
+    269.6
+   ],
+   "erase": [
+    [
+     310,
+     262,
+     316,
+     269.5
+    ]
+   ],
+   "reason": "room; full stop"
+  },
+  {
+   "merge": [
+    "p22_s5",
+    "p22_s6"
+   ],
+   "translation": "3. Which holds more? Draw \"✓\" for more and \"○\" for less.",
+   "reason": "one sentence, same size as the other instructions"
+  },
+  {
+   "segment_id": "p22_s5",
+   "box": [
+    57,
+    361.7,
+    440,
+    377.3
+   ],
+   "erase": [
+    [
+     383.5,
+     373,
+     390.5,
+     380.5
+    ]
+   ],
+   "reason": "room so it stays on one line; full stop"
+  },
+  {
+   "segment_id": "p22_s7",
+   "box": [
+    56.7,
+    475.1,
+    220,
+    491.8
+   ],
+   "reason": "room so it stays on one line"
+  },
+  {
+   "segment_id": "p22_s8",
+   "translation": "⟦0⟧. Think: with the sugar cubes in, which glass is the sweetest? Draw \"✓\".",
+   "reason": "the quoted tick was erased; short enough to end inside the text column"
+  },
+  {
+   "segment_id": "p22_s8",
+   "box": [
+    57.3,
+    591.9,
+    475,
+    607.7
+   ],
+   "erase": [
+    [
+     435,
+     601,
+     442,
+     609
+    ]
+   ],
+   "reason": "room; full stop"
+  },
+  {
+   "merge": [
+    "p23_s2",
+    "p23_s3"
+   ],
+   "translation": "Which is longer? Which is shorter?",
+   "reason": "one question pair, set at one size"
+  },
+  {
+   "segment_id": "p23_s2",
+   "box": [
+    76.5,
+    414.5,
+    250,
+    430.5
+   ],
+   "reason": "room; clear of the bubble below"
+  },
+  {
+   "segment_id": "p23_s4",
+   "box": [
+    229,
+    433,
+    279,
+    452
+   ],
+   "reason": "inside the bubble outline"
+  },
+  {
+   "segment_id": "p23_s5",
+   "translation": "Pulled straight, the red rope is longer.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p23_s5",
+   "box": [
+    331,
+    433,
+    424,
+    450
+   ],
+   "reason": "inside the bubble outline"
+  },
+  {
+   "segment_id": "p23_s6",
+   "box": [
+    78,
+    539,
+    210,
+    553
+   ],
+   "reason": "one line, clear of the bubble"
+  },
+  {
+   "segment_id": "p24_s2",
+   "translation": "⟦0⟧. Which rope is the longest? Draw \"✓\".",
+   "reason": "tick in the picture"
+  },
+  {
+   "segment_id": "p24_s2",
+   "box": [
+    57,
+    228,
+    300,
+    245
+   ],
+   "erase": [
+    [
+     203,
+     226,
+     255,
+     245
+    ]
+   ],
+   "reason": "room; quoted tick and full stop now in the English"
+  },
+  {
+   "segment_id": "p24_s9",
+   "erase": [
+    [
+     416,
+     551.5,
+     422.5,
+     558.5
+    ]
+   ],
+   "reason": "full stop"
+  },
+  {
+   "line": "p24_i96_16",
+   "pieces": [
+    [
+     106.5,
+     118.3,
+     "BLANK"
+    ],
+    [
+     150.2,
+     160.8,
+     "BLANK"
+    ],
+    [
+     193.5,
+     203.8,
+     "BLANK"
+    ]
+   ],
+   "reason": "号 after answer boxes not needed in English; keep boxes and arrows"
+  },
+  {
+   "line": "p24_i96_17",
+   "pieces": [
+    [
+     236.2,
+     246.6,
+     "BLANK"
+    ]
+   ],
+   "reason": "号"
+  },
+  {
+   "segment_id": "p24_s12",
+   "translation": "BLANK",
+   "reason": "号"
+  },
+  {
+   "restore": [
+    236,
+    252,
+    245,
+    268
+   ],
+   "page": 20,
+   "reason": "digit 3 damaged by the full-stop erase"
+  },
+  {
+   "restore": [
+    448,
+    252,
+    456.3,
+    268
+   ],
+   "page": 20,
+   "reason": "digit 3 damaged by the full-stop erase"
+  },
+  {
+   "segment_id": "p21_s11",
+   "translation": ", then pour",
+   "reason": "reads on from the bottle picture"
+  }
+ ],
+ "flags": [
+  {
+   "page": 20,
+   "issue": "Tree sign 动物乐园 is set as 'Park' only: 'Animal Park' does not fit the small yellow plate at a legible size (tried a box over the whole plate: runs onto the sky)."
+  },
+  {
+   "page": 18,
+   "issue": "Bubble 'Same number. Enough!' (p17_s2) stays at about 0.6 scale even with the box over the whole bubble; the bubble is very small."
+  },
+  {
+   "page": 19,
+   "issue": "Row 2 left \"Draw more ○ than [squirrel].\" (p18_s5) is now boxed to the size of the other cell instructions; its squirrel icon is small at that size."
+  },
+  {
+   "page": 25,
+   "issue": "Panel label 'Draw \"✓\" for the longest and \"○\" for the shortest.' (p24_s9) is set larger than its neighbour 'Order from shortest to longest.'; boxes tried (wider, shorter, narrower) either ran over the panel's right border or right-aligned the text, so it keeps the source box."
+  }
+ ]
+}
