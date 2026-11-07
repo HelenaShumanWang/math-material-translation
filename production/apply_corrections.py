@@ -424,6 +424,7 @@ def add_text(c) -> tuple[bool, str]:
 
 LIGATURE_TEXT = {"\ufb00": "ff", "\ufb01": "fi", "\ufb02": "fl", "\ufb03": "ffi", "\ufb04": "ffl", "\ufb05": "st", "\ufb06": "st"}
 LIGATURES = re.compile("[\ufb00-\ufb06]")
+TRAILING_DOTS = re.compile(r"\s?(?:\.{3,}|…+|·{2,}|⋯+)(?=[\s\"'”’)）]*$)", re.M)
 
 # --------------------------------------------------------------------------- apply, file by file
 files = sorted(glob.glob(f"{PROOF}/corr_*.json"), key=lambda f: (os.path.getmtime(f), f))
@@ -475,6 +476,10 @@ for seg in doc.segments:
         if "(" in t:
             t = _EMPTY_BRACKET_RE.sub(ANSWER_BRACKET, t)
         t = british_spelling(space_units(t))
+        # one ellipsis: "...", "……" and "······" ending a sentence or a bubble are "…" (a run of dots in the
+        # middle of a line can be a blank to fill in, and a text of dots only is a printed line: left)
+        if re.search(r"[^\s.·…]", t):
+            t = TRAILING_DOTS.sub("…", t)
         key = re.sub(r"[？?。.!！\s]", "", seg.source_text or "")
         if (seg.kind == SegmentKind.TEXT and key in SECTION_LABELS and seg.style.role in ("heading", "label")
                 and not DELIBERATE.search(seg.id)):
