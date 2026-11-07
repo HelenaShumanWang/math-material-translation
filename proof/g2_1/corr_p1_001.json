@@ -1,0 +1,392 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p0_s4",
+   "translation": "Grade 2",
+   "reason": "checked edition wording"
+  },
+  {
+   "segment_id": "p0_s5",
+   "translation": "Volume 1",
+   "reason": "checked edition wording; natural volume label"
+  },
+  {
+   "segment_id": "p2_s12",
+   "translation": "DROP",
+   "reason": "pupil's handwritten maths on the drawing, OCR noise"
+  },
+  {
+   "segment_id": "p3_s2",
+   "translation": "¥⟦0⟧.⟦1⟧0",
+   "reason": "2 yuan 5 jiao = ¥2.50"
+  },
+  {
+   "segment_id": "p3_s3",
+   "translation": "¥4",
+   "reason": "price tag 4元; replaced misread fragment '- 4' by 4"
+  },
+  {
+   "merge": [
+    "p3_s6",
+    "p3_s7"
+   ],
+   "translation": "¥1.50",
+   "reason": "one price tag 1元5角"
+  },
+  {
+   "split": "p3_s8",
+   "at": [
+    172.5
+   ],
+   "translations": [
+    "¥72",
+    "¥68"
+   ],
+   "reason": "two separate price tags"
+  },
+  {
+   "segment_id": "p3_s9",
+   "translation": "¥⟦0⟧",
+   "reason": "yuan amounts as ¥"
+  },
+  {
+   "split": "p3_s13",
+   "at": [
+    425
+   ],
+   "translations": [
+    "Unit 5 Multiplication Facts for 2–5",
+    "DROP"
+   ],
+   "reason": "page number was swallowed into the title and the printed 30 erased"
+  },
+  {
+   "segment_id": "p4_s5",
+   "translation": "Maths Is Fun",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p4_s6",
+   "translation": "DROP",
+   "reason": "OCR noise in the picture"
+  },
+  {
+   "add": "p4_a1",
+   "page": 4,
+   "box": [
+    262,
+    400,
+    281,
+    414
+   ],
+   "translation": "78",
+   "source": "78",
+   "size": 12,
+   "reason": "page number of Unit 8 erased"
+  },
+  {
+   "segment_id": "p5_s0",
+   "translation": "Unit 1 Addition and Subtraction",
+   "reason": "dropped ⟦0⟧: OCR noise between characters"
+  },
+  {
+   "split": "p5_s3",
+   "translations": [
+    "Taoqi",
+    "Xiaoxiao"
+   ],
+   "reason": "row labels of two table rows"
+  },
+  {
+   "split": "p5_s2",
+   "at": [
+    372,
+    419
+   ],
+   "translations": [
+    "Throw 1",
+    "Throw 2",
+    "Throw 3"
+   ],
+   "reason": "three header cells"
+  },
+  {
+   "segment_id": "p5_s11",
+   "translation": "Calculate: how many points did each of them get? Who wins in the end?",
+   "reason": "more natural"
+  },
+  {
+   "split": "p6_s5",
+   "translations": [
+    "Qisi",
+    "Miaoxiang"
+   ],
+   "reason": "row labels of two table rows, left in Chinese"
+  },
+  {
+   "segment_id": "p6_s13",
+   "translation": "Drums",
+   "reason": "short label like its siblings; was shrunk"
+  },
+  {
+   "segment_id": "p6_s23",
+   "translation": "Gold",
+   "reason": "shorter header"
+  },
+  {
+   "segment_id": "p6_s24",
+   "translation": "Silver",
+   "reason": "was wrongly 'Gold Silver'"
+  },
+  {
+   "segment_id": "p6_s25",
+   "translation": "Bronze",
+   "reason": "shorter header"
+  },
+  {
+   "segment_id": "p6_s26",
+   "translation": "(⟦0⟧) How many medals altogether in ⟦1⟧?",
+   "reason": "stray 'Bronze' removed; shorter so it fits"
+  },
+  {
+   "segment_id": "p6_s28",
+   "translation": "(⟦0⟧) How many medals altogether in ⟦1⟧?",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p6_s7",
+   "translation": "(⟦0⟧) Talk about it: what maths information can you find in the table?",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p6_s31",
+   "translation": "(⟦0⟧) Ask another maths question and try to answer it.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p7_s14",
+   "translation": "DROP",
+   "reason": "minus sign of the column method read as 一"
+  },
+  {
+   "split": "p8_s5",
+   "translations": [
+    "Receipt",
+    "Story Books ¥18",
+    "Craft Books ¥32"
+   ],
+   "reason": "receipt title and two item lines"
+  },
+  {
+   "split": "p8_s21",
+   "translations": [
+    "Children's News",
+    "Little Pictorial",
+    "Little Stories",
+    "Total"
+   ],
+   "reason": "four row labels of the table"
+  },
+  {
+   "segment_id": "p8_s25",
+   "translation": "Maths game.",
+   "reason": "stray 'Total' removed; British spelling"
+  },
+  {
+   "segment_id": "p8_s20",
+   "translation": "Which class ordered the fewest papers?",
+   "reason": "shorter, was shrunk"
+  },
+  {
+   "segment_id": "p8_s6",
+   "translation": "¥⟦0⟧.",
+   "reason": "completes 'This is ¥100.'"
+  },
+  {
+   "segment_id": "p6_s5_k1",
+   "box": [
+    268,
+    176,
+    308,
+    191
+   ],
+   "reason": "use the whole table cell"
+  },
+  {
+   "segment_id": "p5_s3_k1",
+   "box": [
+    289,
+    197,
+    323,
+    213
+   ],
+   "reason": "use the whole table cell"
+  },
+  {
+   "restore": [
+    370.5,
+    165,
+    372.5,
+    180
+   ],
+   "page": 5,
+   "reason": "header cell border erased"
+  },
+  {
+   "restore": [
+    417.6,
+    165,
+    419.6,
+    180
+   ],
+   "page": 5,
+   "reason": "header cell border erased"
+  },
+  {
+   "paint": [
+    365,
+    670,
+    411,
+    675
+   ],
+   "page": 5,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "leftover purple answer underline under 'Xiaoxiao'"
+  },
+  {
+   "split": "p8_s18",
+   "at": [
+    146,
+    175,
+    203
+   ],
+   "translations": [
+    "Class 1",
+    "Class 2",
+    "Class 3",
+    "Class 4"
+   ],
+   "reason": "four header cells; dropped OCR noise 32.22.0"
+  },
+  {
+   "restore": [
+    145,
+    396,
+    147,
+    410
+   ],
+   "page": 8,
+   "reason": "header cell border"
+  },
+  {
+   "restore": [
+    173.7,
+    396,
+    175.7,
+    410
+   ],
+   "page": 8,
+   "reason": "header cell border"
+  },
+  {
+   "restore": [
+    201.6,
+    396,
+    203.6,
+    410
+   ],
+   "page": 8,
+   "reason": "header cell border"
+  },
+  {
+   "merge": [
+    "p8_s26",
+    "p8_s28"
+   ],
+   "translation": "Look and try.",
+   "reason": "one bubble 看一看，做一做; shorter to fit"
+  },
+  {
+   "segment_id": "p8_s22",
+   "translation": "(⟦0⟧) How many Children's News did Class 2 order?",
+   "reason": "shorter so it fits one line"
+  },
+  {
+   "segment_id": "p8_s23",
+   "translation": "(⟦0⟧) How many Little Pictorial did Class 3 order?",
+   "reason": "shorter so it fits one line"
+  },
+  {
+   "segment_id": "p8_s18_k0",
+   "box": [
+    118.6,
+    395,
+    145.6,
+    407
+   ],
+   "erase": [
+    [
+     119.5,
+     391.5,
+     128.5,
+     408.5
+    ]
+   ],
+   "reason": "whole header cell; the stroke of 一 left of the OCR line erased too (it crossed out the C of 'Class 1')"
+  },
+  {
+   "segment_id": "p8_s18_k3",
+   "box": [
+    203.5,
+    394,
+    234.5,
+    407.3
+   ],
+   "reason": "whole header cell"
+  },
+  {
+   "segment_id": "p8_s18_k1",
+   "box": [
+    147.0,
+    391.5,
+    173.8,
+    408.5
+   ],
+   "reason": "whole header cell (two short lines: on one line it would be set below the legible size)"
+  },
+  {
+   "segment_id": "p8_s18_k2",
+   "box": [
+    175.4,
+    391.5,
+    202.2,
+    408.5
+   ],
+   "reason": "whole header cell (two short lines: on one line it would be set below the legible size)"
+  },
+  {
+   "segment_id": "p8_s24",
+   "box": [
+    272,
+    466,
+    468,
+    489
+   ],
+   "reason": "set at the size of questions (2) and (3)"
+  }
+ ],
+ "flags": [
+  {
+   "page": 8,
+   "issue": "The slanted sign '45人' held by the boy (team size) is still in Chinese; it should read '45 people' like the other sign, but it is slanted and has no paragraph or line, so I could not reset it cleanly."
+  },
+  {
+   "page": 1,
+   "issue": "Faint white outlines of the big title characters 数学 remain visible behind 'Mathematics' on the cover (an incomplete erase)."
+  }
+ ]
+}

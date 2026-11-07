@@ -1,0 +1,41 @@
+{
+ "corrections": [
+  {"segment_id": "p17_s4", "translation": "Xiaoxiao bought ⟦0⟧ ⟦1⟧ and 1 tank. How much do they cost in total?", "box": [77, 336, 260, 373], "reason": "whole question in one paragraph", "erase": [[299, 340, 312, 357]]},
+  {"segment_id": "p17_s5", "translation": "BLANK", "reason": "fragment now in p17_s4"},
+  {"segment_id": "p17_s6", "erase": [[205, 383, 238, 399]], "translation": "Qisi paid ¥20 for 1 box of crayons. How much change does he get?", "box": [77, 380, 302, 404], "reason": "erase leftover 元，; room of the blanked fragment"},
+  {"segment_id": "p17_s7", "translation": "BLANK", "reason": "fragment already in p17_s6"},
+  {"segment_id": "p17_s2", "translation": "¥0.⟦0⟧0", "reason": "checked edition: ¥0.60"},
+  {"segment_id": "p17_s15", "translation": "¥⟦0⟧.⟦1⟧0", "reason": "checked edition: ¥1.20; erase only the tag, not a band of the shelf above it", "box": [84, 627.5, 136, 642.5], "clip": [83, 627, 137, 643]},
+  {"segment_id": "p17_s14", "clip": [172.5, 579, 200.5, 591.5], "reason": "erase only the glyphs inside the ¥2 tag; the wider erase painted the shelf brown across the tag"},
+  {"segment_id": "p17_s16", "translation": "¥0.⟦0⟧0", "reason": "checked edition: ¥0.80"},
+  {"segment_id": "p17_s16", "box": [170, 629, 206, 646], "reason": "label tag has room"},
+  {"split": "p18_s8", "translations": ["Taoqi wants to buy", "and 2 ¥2 notes. How can he pay?"], "reason": "lines sit either side of the ball picture and s9"},
+  {"segment_id": "p18_s9", "translation": ". He has ⟦0⟧ ¥⟦1⟧ notes", "reason": "middle of the sentence after the ball picture", "box": [195, 338, 310, 355]},
+  {"line": "p18_i72_13", "pieces": [[96, 113, "vs"]], "reason": "比 between two pictures"},
+  {"segment_id": "p18_s10", "translation": "How much more does the football cost?", "box": [136, 388, 330, 402], "reason": "football vs basketball; was shrunk to 0.54"},
+  {"segment_id": "p18_s12", "translation": "¥⟦0⟧.⟦1⟧0", "reason": "checked edition ¥2.50"},
+  {"segment_id": "p18_s15", "translation": "¥⟦0⟧.⟦1⟧0", "reason": "checked edition ¥1.50"},
+  {"restore": [127, 385, 137.5, 405], "page": 18, "reason": "edge of the basketball clipped by the erase of p18_s10"},
+  {"segment_id": "p19_s10", "box": [77, 385, 225, 400], "reason": "was set as a huge heading over a tall OCR box; size to the line like the other green-dot instructions"},
+  {"segment_id": "p19_s14", "translation": "Looking across: ⟦0⟧ in each row, ⟦1⟧ rows.", "reason": "shorter, was shrunk to 0.73"},
+  {"segment_id": "p19_s15", "translation": "Looking down: ⟦0⟧ in each column, ⟦1⟧ columns.", "reason": "shorter, was shrunk to 0.77"},
+  {"split": "p20_s5", "translations": ["___ squares, ___ rows, ___ squares in all.", "___ squares, ___ columns, ___ squares in all."], "reason": "the two lines belong to (1) and (2); dropped ⟦0⟧: crop of the blank line"},
+  {"merge": ["p21_s7", "p21_s8"], "translation": "Answer: ___ people ride the little planes.", "reason": "one sentence split in two"},
+  {"segment_id": "p21_s11", "translation": "⟦0⟧ is read as ⟦1⟧ times 4. 4×2 is read as ⟦3⟧ times ⟦4⟧.", "reason": "⟦2⟧ was a misread join of '4' and '4×2' (two sentences); written out"},
+  {"segment_id": "p21_s3", "translation": "There are ⟦0⟧ people in each boat and ⟦1⟧ boats.", "reason": "full sentence"},
+  {"segment_id": "p21_s20", "translation": "Hey, multiplication is so handy!", "box": [405, 560, 466, 603], "reason": "keep 嘿; bubble has room, was shrunk to 0.68"},
+  {"segment_id": "p22_s5", "box": [63, 240, 139, 258], "reason": "was shrunk to 0.67; free paper left of the answer boxes"},
+  {"split": "p22_s6", "at": [336], "translations": ["Multiplication:", "DROP"], "reason": "label and the printed answer boxes; boxes must come back"},
+  {"segment_id": "p22_s10", "erase": [[391, 464, 401, 479]], "translation": "(⟦0⟧) Write ⟦1⟧ as multiplication:", "reason": "erase leftover 。; natural English"},
+  {"segment_id": "p22_s11", "erase": [[463.5, 486, 473, 503]], "reason": "erase leftover 。"},
+  {"split": "p22_s11", "at": [368], "translations": ["(2) Write 2+2+2+2+2+2=12 as multiplication:", "DROP"], "reason": "label and printed answer boxes"},
+  {"segment_id": "p22_s11_k0", "box": [69, 482, 368, 500], "reason": "one line like (1)"},
+  {"segment_id": "p22_s7", "translation": "⟦0⟧. Look at the pictures and write multiplication number sentences.", "reason": "看图 omitted"},
+  {"segment_id": "p24_s9", "translation": "⟦0⟧ How many bottles", "reason": "the bottle picture and ? follow; one line instead of two (was 'are there in all' without ?)"}
+ ],
+ "flags": [
+  {"page": 18, "issue": "The crayon-box picture stays in the picture under the Qisi question (it was inline in the Chinese sentence); the English is set on the line above it."},
+  {"page": 25, "issue": "p24_s9 '(2) How many bottles' is set at ~0.78 of its siblings: the bottle picture and '?' leave no wider room on that line."},
+  {"page": 22, "issue": "The chalk sums on the two blackboards (4+4+4+4+4+4=24(人), 4×6=24(人)) keep the tiny 人 in the picture; left as part of the drawing."}
+ ]
+}

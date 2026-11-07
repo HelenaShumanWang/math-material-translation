@@ -1,0 +1,195 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s2",
+   "translation": "⟦0⟧ per basket, ⟦1⟧ baskets",
+   "reason": "checked edition's wording; box widened inside the bubble so it breaks after 'basket,'",
+   "box": [79, 286, 139, 316]
+  },
+  {
+   "segment_id": "p25_s4",
+   "translation": "⟦0⟧ per plate, ⟦1⟧ plates",
+   "reason": "checked edition's wording ('on each plate' wrapped badly at a smaller size)"
+  },
+  {
+   "segment_id": "p25_s14",
+   "translation": "One triangle needs ⟦1⟧ sticks. How many sticks do ⟦2⟧ triangles need?",
+   "reason": "dropped ⟦0⟧: OCR crop of bubble outline; natural wording"
+  },
+  {
+   "segment_id": "p26_s9",
+   "translation": "BLANK",
+   "reason": "set again as p26_a1 at the size of the other house labels"
+  },
+  {
+   "segment_id": "p26_s10",
+   "translation": "BLANK",
+   "reason": "set again as p26_a2 at the size of the other house labels"
+  },
+  {
+   "add": "p26_a1",
+   "page": 26,
+   "box": [209, 322.6, 236, 335.6],
+   "translation": "4 6s",
+   "source": "4个6",
+   "size": 8.5,
+   "color": 0,
+   "reason": "house label 4个6, same size as 2 3s"
+  },
+  {
+   "add": "p26_a2",
+   "page": 26,
+   "box": [307, 322.6, 334, 335.6],
+   "translation": "5 7s",
+   "source": "5个7",
+   "size": 8.5,
+   "color": 0,
+   "reason": "house reads 5个7 (OCR lost the 7); same size as 2 3s"
+  },
+  {
+   "segment_id": "p26_s7",
+   "translation": "⟦0⟧. Help the little ants get home.",
+   "reason": "matching task: ants go to their houses"
+  },
+  {
+   "segment_id": "p26_s22",
+   "translation": "(⟦0⟧) How many toothpicks were used altogether to make the little umbrellas?",
+   "reason": "一共 omitted"
+  },
+  {
+   "segment_id": "p26_s23",
+   "translation": "(⟦0⟧) Ask another maths question and try to answer it.",
+   "reason": "British 'maths'"
+  },
+  {
+   "segment_id": "p27_s3",
+   "translation": ", ⟦0⟧ jumps =",
+   "reason": "avoid bad wrap; unit given once at the end"
+  },
+  {
+   "segment_id": "p27_s4",
+   "translation": ", ⟦0⟧ jumps =",
+   "reason": "avoid bad wrap; unit given once at the end"
+  },
+  {
+   "add": "p27_a1",
+   "page": 27,
+   "box": [311, 316, 331, 334],
+   "translation": "lots of",
+   "source": "个",
+   "reason": "个 left in Chinese between answer boxes",
+   "color": 0
+  },
+  {
+   "segment_id": "p29_s3",
+   "translation": "DROP",
+   "reason": "王 is a red paper-cut shape"
+  },
+  {
+   "segment_id": "p29_s4",
+   "translation": "Can you cut",
+   "reason": "reads 'Can you cut [shirt] out?'"
+  },
+  {
+   "segment_id": "p29_s5",
+   "translation": "out?",
+   "reason": "reads 'Can you cut [shirt] out?'"
+  },
+  {
+   "segment_id": "p30_s4",
+   "translation": "DROP",
+   "reason": "中 is a red paper-cut shape"
+  },
+  {
+   "segment_id": "p31_s1",
+   "translation": "Think: how can you move the pieces so that Cao Cao escapes from Huarong Pass? Try it with Figure ⟦1⟧ in Appendix ⟦0⟧.",
+   "reason": "shorter, fits two lines"
+  },
+  {
+   "merge": ["p31_s4", "p31_s5", "p31_s8"],
+   "translation": "The Huarong Pass game comes from a famous Three Kingdoms story. Beaten by Liu Bei and Sun Quan, Cao Cao fled to Huarong Pass and ran into Guan Yu's ambush. To repay Cao Cao's past kindness, Guan Yu let him go.",
+   "reason": "one story split into fragments set at different sizes"
+  },
+  {
+   "segment_id": "p31_s10",
+   "erase": [[334, 319, 349, 333]],
+   "reason": "口 of 出口 left below"
+  },
+  {
+   "segment_id": "p31_s6",
+   "translation": "Soldier",
+   "box": [352, 254, 382, 266],
+   "reason": "兵 left in Chinese; set over the tile edge and the empty cell beside it, as in the checked edition"
+  },
+  {
+   "segment_id": "p32_s1",
+   "translation": "⟦0⟧. All cars can only move forwards or backwards. Think: how can ⟦1⟧ get out through the exit?",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p32_s2",
+   "translation": "BLANK",
+   "reason": "said in p32_s1"
+  },
+  {
+   "split": "p32_s7",
+   "at": [233],
+   "translations": ["Cut the wings out of cardboard.", "and fix it with a staple."],
+   "reason": "two different steps"
+  },
+  {
+   "merge": ["p32_s9", "p32_s11"],
+   "translation": "Open the wings out and press them flat. The dragonfly is ready.",
+   "reason": "one step split over two lines"
+  },
+  {
+   "segment_id": "p27_s8",
+   "translation": "make",
+   "reason": "□ lots of □ make □; 'add up to' wrapped"
+  },
+  {
+   "add": "p27_a2",
+   "page": 27,
+   "box": [428, 320, 441, 334],
+   "translation": ".",
+   "source": "。",
+   "reason": "Chinese full stop left",
+   "color": 0
+  },
+  {
+   "paint": [350, 132, 372, 149],
+   "page": 32,
+   "colour": [255, 255, 255],
+   "reason": "remnant of the car picture, which is now set inline"
+  },
+  {
+   "segment_id": "p32_s10",
+   "box": [238, 481, 402, 524],
+   "reason": "shorter so it stays below the propeller picture",
+   "translation": "Spin the straw one way and the dragonfly flies up."
+  },
+  {
+   "merge": ["p32_s6", "p32_s7_k1"],
+   "translation": "Push one end of the wings into the straw and fix it with a staple.",
+   "reason": "one step over two lines, set at different sizes"
+  }
+ ],
+ "flags": [
+  {
+   "page": 26,
+   "issue": "Slanted cards 6个3 (p25_i100_6) and 3个6 (p25_i100_11) still show Chinese 个; refused as slanted text, need hand setting ('6 3s', '3 6s')."
+  },
+  {
+   "page": 27,
+   "issue": "Slanted cards 3个7 (p26_i104_6) and 7个3 (p26_i104_8) still show Chinese 个; need hand setting ('3 7s', '7 3s')."
+  },
+  {
+   "page": 29,
+   "issue": "Slanted card 4个5 (p28_i112_4) still shows Chinese 个; needs hand setting ('4 lots of 5' to match '5 lots of 4')."
+  },
+  {
+   "page": 32,
+   "issue": "Board label 赵云 is set as 'Zhao' only (no room for 'Zhao Yun')."
+  }
+ ]
+}

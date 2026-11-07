@@ -1,0 +1,757 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p73_s0",
+   "erase": [
+    [
+     64,
+     88,
+     72.5,
+     101
+    ]
+   ],
+   "reason": "leftover stroke of 快 at the banner's left"
+  },
+  {
+   "segment_id": "p73_s2",
+   "translation": ":",
+   "reason": "count list: duck: [] ,"
+  },
+  {
+   "segment_id": "p73_s3",
+   "translation": ",",
+   "reason": "duck is pictured; keep list form"
+  },
+  {
+   "segment_id": "p73_s4",
+   "translation": ":",
+   "reason": "count list"
+  },
+  {
+   "segment_id": "p73_s5",
+   "translation": ":",
+   "box": [
+    327.7,
+    294.8,
+    345.3,
+    313.0
+   ],
+   "reason": "left in Chinese; box spans two rows, keep the peacock row only"
+  },
+  {
+   "segment_id": "p73_s6",
+   "translation": ":",
+   "reason": "left in Chinese"
+  },
+  {
+   "segment_id": "p73_s7",
+   "translation": ", ⟦0⟧:",
+   "reason": "comma, bird picture, colon"
+  },
+  {
+   "segment_id": "p73_s8",
+   "translation": ":",
+   "reason": "left in Chinese"
+  },
+  {
+   "restore": [
+    198,
+    293,
+    221,
+    316
+   ],
+   "page": 73,
+   "reason": "squirrel picture erased"
+  },
+  {
+   "add": "p73_a1",
+   "page": 73,
+   "box": [
+    269,
+    299,
+    289,
+    314
+   ],
+   "translation": ",",
+   "source": "只，",
+   "reason": "measure word after squirrel box"
+  },
+  {
+   "add": "p73_a2",
+   "page": 73,
+   "box": [
+    372,
+    299,
+    392,
+    314
+   ],
+   "translation": ",",
+   "source": "只，",
+   "reason": "measure word after peacock box"
+  },
+  {
+   "add": "p73_a3",
+   "page": 73,
+   "box": [
+    271,
+    326,
+    292,
+    341
+   ],
+   "translation": ",",
+   "source": "只，",
+   "reason": "measure word after bird box"
+  },
+  {
+   "add": "p73_a4",
+   "page": 73,
+   "box": [
+    372,
+    326,
+    391,
+    341
+   ],
+   "translation": ".",
+   "source": "只。",
+   "reason": "measure word after chick box"
+  },
+  {
+   "merge": [
+    "p73_s10",
+    "p73_s14"
+   ],
+   "translation": "6 has 2 lots of 3.",
+   "reason": "one bubble split in two"
+  },
+  {
+   "merge": [
+    "p73_s11",
+    "p73_s15"
+   ],
+   "translation": "6 is 2 times 3.",
+   "reason": "one bubble split in two"
+  },
+  {
+   "segment_id": "p73_s12",
+   "translation": "= ⟦0⟧ ×",
+   "reason": "duck = monkey × [2]"
+  },
+  {
+   "segment_id": "p73_s13",
+   "translation": ".",
+   "reason": "end of duck = monkey × [2]."
+  },
+  {
+   "segment_id": "p73_s17",
+   "translation": "=",
+   "reason": "chick = squirrel × 4"
+  },
+  {
+   "segment_id": "p73_s18",
+   "translation": "×",
+   "reason": "'的' only; dropped ⟦0⟧: the boxed 4 '(4)' stays printed in the picture (box restored)",
+   "box": [
+    390.0,
+    539.2,
+    410.0,
+    554.7
+   ]
+  },
+  {
+   "segment_id": "p73_s19",
+   "translation": ".",
+   "reason": "end of sentence"
+  },
+  {
+   "segment_id": "p73_s20",
+   "translation": "= ⟦0⟧ × ⟦1⟧",
+   "reason": "duck = squirrel × []"
+  },
+  {
+   "segment_id": "p73_s21",
+   "translation": ".",
+   "reason": "end of sentence"
+  },
+  {
+   "segment_id": "p73_s22",
+   "translation": "= ⟦0⟧ ×",
+   "reason": "monkey = peacock × []"
+  },
+  {
+   "segment_id": "p73_s23",
+   "translation": ".",
+   "reason": "end of sentence"
+  },
+  {
+   "restore": [
+    410.5,
+    539.5,
+    432.5,
+    558.5
+   ],
+   "page": 73,
+   "reason": "answer box with printed 4, damaged by the erase"
+  },
+  {
+   "segment_id": "p74_s17",
+   "translation": "Answer: The calf spent",
+   "reason": "sentence continues over the printed blank: '____ times as much as the rabbit.'"
+  },
+  {
+   "segment_id": "p74_s20",
+   "translation": "times as much.",
+   "box": [
+    150.8,
+    376.4,
+    239.0,
+    390.0
+   ],
+   "reason": "second half of the answer after the blank; free paper to the right"
+  },
+  {
+   "segment_id": "p74_s18",
+   "translation": "Answer: The fox spent ¥",
+   "reason": "yuan written as ¥ before the blank"
+  },
+  {
+   "segment_id": "p74_s19",
+   "translation": ".",
+   "reason": "¥ now precedes the blank"
+  },
+  {
+   "segment_id": "p74_s23",
+   "translation": "= ⟦0⟧ ×",
+   "reason": "mice = cats × []: keep the picture comparison",
+   "box": [
+    117.0,
+    503.4,
+    191.3,
+    519.0
+   ]
+  },
+  {
+   "segment_id": "p74_s24",
+   "translation": ".",
+   "reason": "end of mice = cats × []."
+  },
+  {
+   "segment_id": "p74_s25",
+   "translation": "= ⟦0⟧ ×",
+   "reason": "dragonflies = butterflies × []"
+  },
+  {
+   "segment_id": "p74_s26",
+   "translation": ".",
+   "reason": "end of sentence"
+  },
+  {
+   "segment_id": "p74_s29",
+   "translation": "⟦0⟧",
+   "reason": "cats, not rabbits; the picture shows the animal"
+  },
+  {
+   "segment_id": "p74_s30",
+   "translation": "⟦0⟧",
+   "reason": "mice, not rabbits"
+  },
+  {
+   "segment_id": "p74_s31",
+   "translation": "⟦0⟧",
+   "reason": "butterflies, not rabbits"
+  },
+  {
+   "segment_id": "p74_s32",
+   "translation": "⟦0⟧",
+   "reason": "dragonflies, not rabbits"
+  },
+  {
+   "segment_id": "p74_s28",
+   "translation": "=",
+   "box": [
+    118.5,
+    627.9,
+    152.0,
+    648.6
+   ],
+   "reason": "cats = mice × []: keep only 数是 here; the mouse and answer box are restored"
+  },
+  {
+   "segment_id": "p74_s33",
+   "translation": "=",
+   "reason": "dragonflies = butterflies × []; box narrowed so the restored butterfly shows",
+   "box": [
+    303.3,
+    630.4,
+    340.0,
+    645.7
+   ]
+  },
+  {
+   "segment_id": "p74_s34",
+   "translation": ".",
+   "reason": "end of sentence"
+  },
+  {
+   "restore": [
+    99,
+    503,
+    116,
+    520
+   ],
+   "page": 74,
+   "reason": "mouse picture at the start of the row was erased"
+  },
+  {
+   "restore": [
+    281,
+    503,
+    301,
+    520
+   ],
+   "page": 74,
+   "reason": "dragonfly picture at the start of the row was erased"
+  },
+  {
+   "restore": [
+    99,
+    626,
+    117,
+    647
+   ],
+   "page": 74,
+   "reason": "cat picture at the start of the row was erased"
+  },
+  {
+   "restore": [
+    155,
+    626,
+    175,
+    649
+   ],
+   "page": 74,
+   "reason": "mouse picture erased with the line"
+  },
+  {
+   "restore": [
+    192,
+    626.5,
+    214,
+    649.5
+   ],
+   "page": 74,
+   "reason": "answer box erased with the line"
+  },
+  {
+   "restore": [
+    340,
+    626,
+    354,
+    648
+   ],
+   "page": 74,
+   "reason": "butterfly picture erased with the line"
+  },
+  {
+   "add": "p74_a1",
+   "page": 74,
+   "box": [
+    175.5,
+    630.0,
+    191.0,
+    647.0
+   ],
+   "translation": "×",
+   "source": "的",
+   "reason": "cats = mice × []"
+  },
+  {
+   "add": "p74_a2",
+   "page": 74,
+   "box": [
+    215.0,
+    630.0,
+    240.0,
+    647.0
+   ],
+   "translation": ".",
+   "source": "倍。",
+   "reason": "end of sentence"
+  },
+  {
+   "add": "p74_a3",
+   "page": 74,
+   "box": [
+    355.5,
+    630.0,
+    372.0,
+    647.0
+   ],
+   "translation": "×",
+   "source": "的",
+   "reason": "dragonflies = butterflies × []: the '×' for 的 was missing"
+  },
+  {
+   "segment_id": "p75_s2",
+   "translation": "There are ⟦0⟧ times as many of us as you.",
+   "reason": "zebra speaking: 'Our number is 5 times yours' is unnatural"
+  },
+  {
+   "segment_id": "p75_s4",
+   "translation": "= ○ ×",
+   "reason": "red beads = white beads × []; the white bead was erased with the line"
+  },
+  {
+   "segment_id": "p75_s5",
+   "translation": ".",
+   "reason": "end of sentence"
+  },
+  {
+   "segment_id": "p75_s6",
+   "translation": "'s height is",
+   "reason": "boy's height is [] times the dog's"
+  },
+  {
+   "segment_id": "p75_s7",
+   "translation": "times the dog's.",
+   "box": [
+    394.6,
+    295.4,
+    470.0,
+    312.4
+   ],
+   "reason": "second half after the answer box; free paper to the right"
+  },
+  {
+   "segment_id": "p75_s10",
+   "translation": "days =",
+   "reason": "sunny days = rainy days × []"
+  },
+  {
+   "segment_id": "p75_s11",
+   "translation": "×",
+   "reason": "the rainy icon stands before it"
+  },
+  {
+   "segment_id": "p75_s12",
+   "translation": ".",
+   "reason": "end of sentence"
+  },
+  {
+   "segment_id": "p75_s13",
+   "translation": "(⟦0⟧) Ask another maths question and try to answer it.",
+   "reason": "British 'maths'"
+  },
+  {
+   "split": "p75_s20",
+   "translations": [
+    "Car",
+    "The car has"
+   ],
+   "reason": "label of the car and the start of question (2) are two texts; '(2)' is printed separately"
+  },
+  {
+   "paint": [
+    341,
+    283,
+    358,
+    296.5
+   ],
+   "page": 75,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "remnant of the dog icon cut by the erase; the English says 'the dog's'"
+  },
+  {
+   "restore": [
+    347,
+    401,
+    374,
+    420
+   ],
+   "page": 75,
+   "reason": "rain-cloud icon cut by the erase"
+  },
+  {
+   "segment_id": "p76_s5",
+   "translation": "Draw and calculate: dragonflies = butterflies × ?",
+   "reason": "the full question ran past the right margin; same maths as the = × lines of this unit"
+  },
+  {
+   "segment_id": "p76_s12",
+   "translation": "⟦0⟧",
+   "reason": "this row counts birds, not bees; number only"
+  },
+  {
+   "segment_id": "p76_s13",
+   "translation": "⟦0⟧",
+   "reason": "this row counts birds, not bees; number only"
+  },
+  {
+   "segment_id": "p76_s14",
+   "translation": "⟦0⟧",
+   "reason": "number only, the bee is pictured"
+  },
+  {
+   "segment_id": "p76_s15",
+   "translation": "9",
+   "reason": "⟦0⟧ 'q' is a misread 9"
+  },
+  {
+   "segment_id": "p76_s16",
+   "translation": "⟦0⟧",
+   "reason": "number only, like the other labels"
+  },
+  {
+   "segment_id": "p76_s11",
+   "erase": [
+    [
+     352.5,
+     430.0,
+     360.0,
+     439.5
+    ]
+   ],
+   "translation": "9 × ⟦0⟧ is ⟦1⟧ lots of ⟦2⟧ added together.",
+   "reason": "the bold 9 inside the box was kept in the picture and collided with the English; erased and set in the sentence"
+  },
+  {
+   "segment_id": "p76_s11",
+   "box": [
+    345.5,
+    429.2,
+    422.9,
+    455.0
+   ],
+   "reason": "start the bubble text where the erased 9 stood"
+  },
+  {
+   "merge": [
+    "p76_s8",
+    "p76_s9"
+   ],
+   "translation": "Answer: The dragonflies are ____ times as many as the butterflies.",
+   "reason": "one answer sentence; the boxes erased the printed blank, so it is set in the text"
+  },
+  {
+   "segment_id": "p76_s10",
+   "translation": "How many bees? Draw and calculate.",
+   "reason": "keeps the line from wrapping onto the table"
+  },
+  {
+   "split": "p76_s17",
+   "at": [
+    299.5,
+    318.0
+   ],
+   "translations": [
+    "9",
+    "9",
+    "9"
+   ],
+   "reason": "the three '9只' labels over the three bars; the box erased the printed 9s"
+  },
+  {
+   "segment_id": "p76_s18",
+   "translation": "Answer:",
+   "reason": "'There are' did not fit before the blank"
+  },
+  {
+   "segment_id": "p76_s19",
+   "translation": "____ bees.",
+   "reason": "the box also erased the printed answer blank"
+  },
+  {
+   "split": "p77_s0",
+   "translations": [
+    "Practice",
+    "BLANK"
+   ],
+   "reason": "the section heading and the start of exercise 1 are two texts; the '=' is set by p77_a2"
+  },
+  {
+   "segment_id": "p77_s0_k0",
+   "box": [
+    70.0,
+    96.0,
+    140.0,
+    117.0
+   ],
+   "reason": "heading set tiny: use the whole banner"
+  },
+  {
+   "add": "p77_a2",
+   "page": 77,
+   "box": [
+    88.0,
+    126.0,
+    112.0,
+    140.0
+   ],
+   "translation": "=",
+   "source": "的个数是",
+   "size": 15,
+   "reason": "1. smiley = sad face × 2 (the split line set '=' too small)"
+  },
+  {
+   "segment_id": "p77_s2",
+   "translation": "× ⟦0⟧. Draw the",
+   "reason": "smiley = sad face × 2. Draw the smileys; the old text had stray blanks"
+  },
+  {
+   "add": "p77_a1",
+   "page": 77,
+   "box": [
+    316.5,
+    128.0,
+    326.5,
+    140.0
+   ],
+   "translation": ".",
+   "source": "。",
+   "reason": "Chinese full stop at the end of the line"
+  },
+  {
+   "segment_id": "p77_s3",
+   "translation": "There are ⟦0⟧ ⟦1⟧.",
+   "box": [
+    70.9,
+    193.0,
+    163.0,
+    215.4
+   ],
+   "reason": "有□个🙂: 'There are [] smileys'; '（' was the edge of the next box"
+  },
+  {
+   "restore": [
+    162.5,
+    194.0,
+    176.0,
+    215.0
+   ],
+   "page": 77,
+   "reason": "left edge of the first equation box was erased"
+  },
+  {
+   "segment_id": "p77_s6",
+   "translation": "I have ⟦0⟧ cards.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p77_s7",
+   "translation": "I have ⟦0⟧ cards.",
+   "reason": "full stop"
+  },
+  {
+   "split": "p77_s17",
+   "translations": [
+    "Red",
+    "Yellow"
+   ],
+   "reason": "labels of two ropes on two rows"
+  },
+  {
+   "segment_id": "p78_s0",
+   "translation": "Exercise 6",
+   "reason": "dropped ⟦0⟧: OCR crop of the character 六, printed again after 'Exercise 6'"
+  },
+  {
+   "segment_id": "p78_s8",
+   "translation": "Fact:",
+   "reason": "'Multiplication fact:' ran over the answer line"
+  },
+  {
+   "segment_id": "p78_s9",
+   "translation": "Fact:",
+   "reason": "'Multiplication fact:' ran over the answer line"
+  },
+  {
+   "paint": [
+    268.5,
+    444.5,
+    284.5,
+    456.0
+   ],
+   "page": 78,
+   "colour": [
+    252,
+    234,
+    215
+   ],
+   "reason": "turtle icon left in the duck's bubble overprints the English, which says 'turtles'"
+  },
+  {
+   "paint": [
+    374.0,
+    436.5,
+    389.5,
+    449.5
+   ],
+   "page": 78,
+   "colour": [
+    252,
+    234,
+    215
+   ],
+   "reason": "turtle icon left in the rabbit's bubble overprints the English, which says 'turtles'"
+  },
+  {
+   "paint": [
+    346.5,
+    496.0,
+    359.5,
+    516.0
+   ],
+   "page": 78,
+   "colour": [
+    252,
+    234,
+    215
+   ],
+   "reason": "rabbit icon left in the bird's bubble overprints the English, which says 'rabbits'"
+  },
+  {
+   "segment_id": "p78_s25",
+   "translation": "⟦1⟧ times ⟦0⟧ is my age.",
+   "reason": "full stop like the other bubbles"
+  },
+  {
+   "segment_id": "p78_s5",
+   "box": [
+    83.5,
+    224.5,
+    127.5,
+    247.5
+   ],
+   "reason": "label set at 0.47; free paper inside the panel to its left"
+  },
+  {
+   "segment_id": "p79_s17",
+   "translation": "(⟦0⟧) The shoes cost how many times as much as the socks?",
+   "box": [
+    259.0,
+    359.0,
+    462.0,
+    385.5
+   ],
+   "reason": "clearer word order; two lines in the free room between (1) and (3) instead of shrinking to 0.67"
+  },
+  {
+   "segment_id": "p79_s23",
+   "translation": "(⟦0⟧) Ask another maths question and try to answer it.",
+   "reason": "British 'maths'"
+  }
+ ],
+ "flags": [
+  {
+   "page": 75,
+   "issue": "p74_s7..s15: the coin circles around the '¥2' labels in both tables were partly erased with the Chinese (cosmetic)."
+  },
+  {
+   "page": 77,
+   "issue": "p76_s12..s16: the oval outlines around the '9' labels in the first bee table were partly erased (cosmetic)."
+  }
+ ]
+}

@@ -1,0 +1,146 @@
+{
+ "code": "g2_1",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 1,
+   "issue": "Faint white outlines of the big title characters 数学 can still be seen behind 'Mathematics' on the cover, because the erase was incomplete."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 8,
+   "issue": "The slanted sign '45人' held by the boy (team size) is still in Chinese. It should read '45 people' like the other sign, but it is slanted and has no paragraph or line, so it could not be reset cleanly. The checked edition also left it in Chinese."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 10,
+   "issue": "Small speech bubbles (p9_s15 '29 years older than you', p9_s13 header) remain set at about 0.65-0.7 scale."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 13,
+   "issue": "Table 7 name column is narrow: Xiaoxiao (p12_s20_k2) is still set at about 0.57 scale even with the whole cell as its box."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 14,
+   "issue": "Notebook cover label 练习本 (p13_s7) stays Chinese in the picture, as in the checked edition."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 18,
+   "issue": "The crayon-box picture stays in the picture under the Qisi question (it was inline in the Chinese sentence); the English is set on the line above it."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 22,
+   "issue": "The chalk sums on the two blackboards (4+4+4+4+4+4=24(人), 4×6=24(人)) keep the tiny 人 in the picture; left as part of the drawing."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 25,
+   "issue": "p24_s9 '(2) How many bottles' is set at ~0.78 of its siblings: the bottle picture and '?' leave no wider room on that line."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 26,
+   "issue": "Slanted cards 6个3 (p25_i100_6) and 3个6 (p25_i100_11) still show Chinese 个. They were refused as slanted text and need to be set by hand ('6 3s', '3 6s')."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 27,
+   "issue": "Slanted cards 3个7 (p26_i104_6) and 7个3 (p26_i104_8) still show Chinese 个 and need to be set by hand ('3 7s', '7 3s')."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 29,
+   "issue": "Slanted card 4个5 (p28_i112_4) still shows Chinese 个 and needs to be set by hand ('4 lots of 5', to match '5 lots of 4')."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 32,
+   "issue": "Board label 赵云 is set as 'Zhao' only because there is no room for 'Zhao Yun'."
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 34,
+   "issue": "'Count Pinecones' banner (p33_s1) is set at scale 0.54 because the green banner is narrow. No free room inside it."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 47,
+   "issue": "Question (1): the skipping-rope picture after '8 根' was erased with the Chinese, so the rope is now named in words ('8 skipping ropes'); questions (1)-(4) are set at near but not identical sizes (the (2) enumerator stays in the source type). The questions stay small (about 8pt): (3) and (4) cannot be set larger than their style size. Giving the questions bigger boxes cut off (1) and made (2) larger than the rest, so the proofreader's boxes were kept."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 57,
+   "issue": "Curved park name on the arch (动物游乐园, 'Animal Park') has no paragraph and stays in Chinese; curved text cannot be set by an add."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 60,
+   "issue": "row 1 cells of exercise 2 (book/house/chalk) set at 0.68 after the split, slightly smaller than row 2"
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 61,
+   "issue": "p60_s9 'Max height 4 m' on the small barrier sign is set at scale 0.55; no room on the sign for a larger size"
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 63,
+   "issue": "cups. after the item 3 answer box sits about 10 pt right of the box (layout keeps clear of the box ink)"
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 66,
+   "issue": "Right-hand record table: the row labels 'Round' of rows 4-7 (p65_s13_k3, p65_s18, p65_s19, p65_s20_k0) are set larger than 'Round 1-3' (p65_s13 split)."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 67,
+   "issue": "Class table: 'Round 1' and 'Round 4' (p66_s9_k1, p66_s9_k4) are set larger than 'Round 2-3'; a box on those parts did not change the size. The 'Practice' tab and '1. Share and fill in.' are set much smaller than on the other Practice pages."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 73,
+   "issue": "Exercise 2: (2) 'Shared equally among 3 groups...' (p72_s11) is set much larger than (1) 'How many rows can be planted?' (p72_s9); the two sub-questions should be the same size."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 75,
+   "issue": "p74_s7..s15: the coin circles around the '¥2' labels in both tables were partly erased with the Chinese (cosmetic)."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 77,
+   "issue": "p76_s12..s16: the oval outlines around the '9' labels in the first bee table were partly erased (cosmetic)."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 87,
+   "issue": "'Tennis ball ¥9' (p86_s12) and 'Shuttlecock ¥3' stay small (0.67) on their narrow price plates"
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 98,
+   "issue": "Item 3 postboxes: the white label panels lost their outline (left, right and bottom lines) when 7的倍数 / 8的倍数 were erased. This was already there and is also in the checked edition."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 105,
+   "issue": "p104_s21 split: question (2) text starts about 12pt right of question (1). Boxes on p104_s21_k1 (x0 106 or 96) do not move it; the restored (2) enumerator seems to push it."
+  },
+  {
+   "file": "corr_p1_114.json",
+   "page": 115,
+   "issue": "Cao Cao labels (p114_s1, p114_s7) are set over a gradient on the portrait and a faint trace of the erased 曹操 is still visible behind the small rotated text."
+  },
+  {
+   "file": "corr_p1_114.json",
+   "page": 115,
+   "issue": "Exit in the right-hand grid of Figure 2 (p114_s12) is set rotated in its narrow cell while the other two exits are horizontal; a box change made it smaller, so it was left as is."
+  }
+ ]
+}

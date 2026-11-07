@@ -1,0 +1,98 @@
+{
+ "corrections": [
+  {
+   "split": "p114_s6",
+   "translations": [
+    "Zhang Fei",
+    "Guan Yu"
+   ],
+   "reason": "two vertical labels (Zhang Fei, Guan Yu) joined into one paragraph and left in Chinese; each set on its own card"
+  },
+  {
+   "segment_id": "p114_s8",
+   "translation": "soldier",
+   "box": [
+    424.3,
+    504.6,
+    468,
+    518
+   ],
+   "reason": "'soldier' left in Chinese; set on the free paper right beside the card (as in the checked edition)"
+  },
+  {
+   "segment_id": "p114_s10",
+   "translation": "soldier",
+   "box": [
+    424.3,
+    539.7,
+    468,
+    552
+   ],
+   "reason": "'soldier' left in Chinese; set on the free paper right beside the card (as in the checked edition)"
+  },
+  {
+   "add": "p114_a1",
+   "page": 114,
+   "box": [
+    248,
+    349,
+    280,
+    364
+   ],
+   "translation": "Figure 1",
+   "source": "图1",
+   "color": 0,
+   "size": 11,
+   "reason": "caption 图1 had no paragraph and stayed in Chinese; set in black like Figure 2"
+  },
+  {
+   "line": "p114_i450_6",
+   "translation": "BLANK",
+   "force": true,
+   "reason": "口 of 出口, already said by Exit"
+  },
+  {
+   "line": "p114_i450_17",
+   "translation": "BLANK",
+   "force": true,
+   "reason": "口 of 出口, already said by Exit"
+  },
+  {
+   "merge": [
+    "p116_s12",
+    "p116_s13"
+   ],
+   "translation": "Round ___",
+   "reason": "one cell label 第 次 split by OCR"
+  },
+  {
+   "split": "p116_s18",
+   "translations": [
+    "Left:",
+    "pieces."
+   ],
+   "reason": "words before and after the printed blank; the English ran over the blank"
+  },
+  {
+   "segment_id": "p116_s18_k1",
+   "translation": "pieces.",
+   "box": [
+    157.5,
+    542,
+    205,
+    560
+   ],
+   "reason": "pieces. ran onto the end of the printed blank; set just after it"
+  }
+ ],
+ "flags": [
+  {
+   "page": 115,
+   "issue": "Cao Cao labels (p114_s1, p114_s7) are set over a gradient on the portrait and a faint trace of the erased 曹操 is still visible behind the small rotated text."
+  },
+  {
+   "page": 115,
+   "issue": "Exit in the right-hand grid of Figure 2 (p114_s12) is set rotated in its narrow cell while the other two exits are horizontal; a box change made it smaller, so it was left as is."
+  }
+ ]
+}

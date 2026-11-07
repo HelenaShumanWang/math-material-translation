@@ -1,0 +1,569 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s4",
+   "translation": "Bring your old toys, books, crafts and so on to swap with or sell to your classmates.",
+   "reason": "dropped ⟦0⟧: OCR noise 356.4.0"
+  },
+  {
+   "segment_id": "p89_s7",
+   "translation": "We need to find a site and divide it among the classes.",
+   "erase": [
+    [
+     377,
+     403,
+     408,
+     418
+    ]
+   ],
+   "reason": "erase leftover 一下。 and translate whole sentence"
+  },
+  {
+   "split": "p89_s10",
+   "translations": [
+    "Do It",
+    "The lively exchange activity has begun!"
+   ],
+   "reason": "heading and sentence are separate texts"
+  },
+  {
+   "paint": [
+    59,
+    264,
+    127,
+    283
+   ],
+   "page": 89,
+   "colour": "border",
+   "reason": "Chinese on label plate not erased cleanly"
+  },
+  {
+   "segment_id": "p89_s6",
+   "erase": [
+    [
+     219,
+     386,
+     227,
+     400
+    ]
+   ],
+   "reason": "stray stroke left after the bubble text"
+  },
+  {
+   "paint": [
+    60,
+    480,
+    127,
+    499
+   ],
+   "page": 90,
+   "colour": "border",
+   "reason": "Chinese on label plate not erased cleanly"
+  },
+  {
+   "segment_id": "p90_s6",
+   "translation": "Today I sold…, bought… and swapped for…",
+   "reason": "consistent ellipses and punctuation"
+  },
+  {
+   "segment_id": "p90_s9",
+   "translation": "⟦0⟧. If we held an activity like this again, what do you think could be improved?",
+   "reason": "more natural phrasing"
+  },
+  {
+   "segment_id": "p91_s0",
+   "translation": "Maths \"Secrets\" of the Body",
+   "reason": "shorter title so it is not shrunk"
+  },
+  {
+   "segment_id": "p91_s1",
+   "translation": "My mum says the distance around a fist is about the same as the length of a foot.",
+   "reason": "British 'mum'"
+  },
+  {
+   "segment_id": "p91_s3",
+   "translation": "Is it really true? Let's measure.",
+   "reason": "more natural"
+  },
+  {
+   "split": "p91_s11",
+   "translations": [
+    "Hand span",
+    "Step length"
+   ],
+   "reason": "two table row labels"
+  },
+  {
+   "split": "p91_s14",
+   "translations": [
+    "Arm span",
+    "Height"
+   ],
+   "reason": "two table row labels"
+  },
+  {
+   "segment_id": "p91_s9",
+   "box": [
+    395,
+    440,
+    459,
+    456
+   ],
+   "reason": "header set at 0.76; the cell has free room"
+  },
+  {
+   "segment_id": "p92_s1",
+   "translation": "I found that my arm span is about the same as my height.",
+   "reason": "remove stray repeated 'I found'"
+  },
+  {
+   "segment_id": "p92_s2",
+   "translation": "I found…",
+   "erase": [
+    [
+     356,
+     118,
+     367,
+     131
+    ]
+   ],
+   "reason": "ellipsis; erase leftover dot of ……"
+  },
+  {
+   "segment_id": "p92_s3",
+   "translation": "Read and talk",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p92_s4",
+   "translation": "My Body Is a Ruler",
+   "reason": "title case"
+  },
+  {
+   "segment_id": "p92_s8",
+   "translation": "Measure the length and width of the classroom.",
+   "box": [
+    77,
+    350,
+    330,
+    365
+   ],
+   "erase": [
+    [
+     217,
+     357,
+     229,
+     369
+    ]
+   ],
+   "reason": "wrapped small in a tight box beside free paper; erase leftover 。"
+  },
+  {
+   "segment_id": "p92_s11",
+   "translation": "BLANK",
+   "reason": "label set sideways; replaced by an add"
+  },
+  {
+   "add": "p92_a1",
+   "page": 92,
+   "box": [
+    262,
+    438,
+    309,
+    456
+   ],
+   "translation": "Width",
+   "source": "宽",
+   "size": 11,
+   "reason": "row label of the table, set level"
+  },
+  {
+   "segment_id": "p92_s12",
+   "translation": "BLANK",
+   "reason": "label set in a tight box; replaced by an add the same size as Width"
+  },
+  {
+   "add": "p92_a2",
+   "page": 92,
+   "box": [
+    262,
+    412,
+    309,
+    431
+   ],
+   "translation": "Length",
+   "source": "长",
+   "size": 11,
+   "reason": "row label of the table, same size as Width"
+  },
+  {
+   "segment_id": "p93_s2",
+   "erase": [
+    [
+     352,
+     157,
+     365,
+     168
+    ]
+   ],
+   "reason": "erase leftover 一 of 一共"
+  },
+  {
+   "segment_id": "p93_s3",
+   "erase": [
+    [
+     372,
+     194,
+     382,
+     204
+    ]
+   ],
+   "reason": "erase leftover 一 of 一间; shorter so it is not shrunk",
+   "translation": "⟦0⟧ birds in each house."
+  },
+  {
+   "segment_id": "p93_s6",
+   "translation": "BLANK",
+   "reason": "label box misplaced; set by an add over the cell"
+  },
+  {
+   "segment_id": "p93_s7",
+   "translation": "BLANK",
+   "reason": "label box misplaced; set by an add over the cell"
+  },
+  {
+   "add": "p93_a1",
+   "page": 93,
+   "box": [
+    289,
+    347,
+    320,
+    359
+   ],
+   "translation": "houses",
+   "source": "房间",
+   "size": 7,
+   "reason": "table row label (handwritten 房间 left)",
+   "color": 2301728
+  },
+  {
+   "add": "p93_a2",
+   "page": 93,
+   "box": [
+    289,
+    365,
+    320,
+    377
+   ],
+   "translation": "birds",
+   "source": "小鸟",
+   "size": 7,
+   "reason": "table row label (handwritten 小鸟 left)",
+   "color": 2301728
+  },
+  {
+   "merge": [
+    "p93_s9",
+    "p93_s10"
+   ],
+   "translation": "6 × (7) = 42,",
+   "reason": "one multiplication fact split in two"
+  },
+  {
+   "segment_id": "p93_s9",
+   "erase": [
+    [
+     346.8,
+     428,
+     352,
+     434.5
+    ]
+   ],
+   "reason": "erase leftover 。"
+  },
+  {
+   "paint": [
+    155,
+    484,
+    187,
+    490
+   ],
+   "page": 93,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed answer line of the Chinese sits under an English word"
+  },
+  {
+   "paint": [
+    138,
+    559,
+    170,
+    566
+   ],
+   "page": 93,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed answer line of the Chinese sits under an English word"
+  },
+  {
+   "segment_id": "p93_s12",
+   "translation": "Answer: The giraffe should prepare ___ houses.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p93_s15",
+   "translation": "Answer: The giraffe built ___ houses.",
+   "reason": "clearer subject"
+  },
+  {
+   "segment_id": "p93_s16",
+   "translation": "How many houses are empty? How many more birds can live there?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p93_s17",
+   "translation": "How many houses were built in all? How many are already lived in? …",
+   "reason": "keeps the trailing …… and is shorter"
+  },
+  {
+   "segment_id": "p93_s18",
+   "translation": "How do we write it?",
+   "box": [
+    299,
+    609,
+    367,
+    629
+   ],
+   "reason": "set at 0.61; the bubble has room"
+  },
+  {
+   "split": "p94_s4",
+   "translations": [
+    "Number of groups",
+    "Number in each group",
+    "What's the largest number?"
+   ],
+   "reason": "two table row headers and a separate question run together"
+  },
+  {
+   "segment_id": "p94_s2",
+   "translation": "Start with ⟦0⟧ groups and try…",
+   "reason": "shorter, more natural"
+  },
+  {
+   "segment_id": "p94_s7",
+   "translation": "Start with ⟦0⟧ in the box, then try them ⟦1⟧ by ⟦2⟧.",
+   "reason": "从乘1开始: start by putting 1 in the box, then try each number in turn"
+  },
+  {
+   "segment_id": "p94_s17",
+   "translation": "(⟦0⟧) There are ⟦1⟧ pupils now. If they share equally, how many pots does each carry?",
+   "reason": "平均 = share equally; more natural"
+  },
+  {
+   "segment_id": "p94_s4_k1",
+   "box": [
+    140,
+    280,
+    258,
+    297
+   ],
+   "reason": "row header set at 0.66; the cell is free"
+  },
+  {
+   "segment_id": "p94_s4_k2",
+   "box": [
+    100,
+    313,
+    238,
+    331
+   ],
+   "reason": "question set at 0.61; free paper beside it"
+  },
+  {
+   "segment_id": "p94_s4_k0",
+   "box": [
+    140,
+    262,
+    258,
+    279
+   ],
+   "reason": "row header in its cell, same size as the next"
+  },
+  {
+   "segment_id": "p95_s2",
+   "translation": "DROP",
+   "reason": "OCR noise read from the flowers; no text there"
+  },
+  {
+   "split": "p95_s6",
+   "translations": [
+    "Rabbits per house",
+    "Number of houses"
+   ],
+   "reason": "two table row headers"
+  },
+  {
+   "segment_id": "p95_s24",
+   "translation": "⟦0⟧. What is the largest number that can go in each ( )?",
+   "reason": "括号里: say where the number goes"
+  },
+  {
+   "segment_id": "p96_s21",
+   "translation": "times as tall as the pepper.",
+   "box": [
+    284,
+    631,
+    470,
+    649
+   ],
+   "reason": "translation was garbled ('mes ... epper'); box moved off the printed answer line"
+  },
+  {
+   "restore": [
+    246,
+    643,
+    279.5,
+    649.5
+   ],
+   "page": 96,
+   "reason": "bring back the printed answer line the erase removed"
+  },
+  {
+   "merge": [
+    "p96_s4",
+    "p96_s6"
+   ],
+   "translation": "I picked 54 persimmons. Each box holds 6…",
+   "reason": "one sentence split across two paragraphs in the same bubble"
+  },
+  {
+   "segment_id": "p96_s13",
+   "box": [
+    292,
+    391,
+    440,
+    407
+   ],
+   "reason": "set at 0.86 while the cell has free room to the right"
+  },
+  {
+   "segment_id": "p96_s17",
+   "box": [
+    285,
+    483,
+    440,
+    498
+   ],
+   "reason": "set at 0.79 while the cell has free room to the right"
+  },
+  {
+   "segment_id": "p96_s5",
+   "translation": "BLANK",
+   "reason": "set much larger than the sibling bubble; replaced by an add"
+  },
+  {
+   "add": "p96_a1",
+   "page": 96,
+   "box": [
+    301,
+    206,
+    341,
+    231
+   ],
+   "translation": "I am 35 cm tall.",
+   "source": "我身高35厘米",
+   "size": 8,
+   "reason": "bubble text the same size as 'I am 7 cm tall.'"
+  },
+  {
+   "segment_id": "p96_s18",
+   "translation": "BLANK",
+   "reason": "tag drawn wider than the printed tag, over the panel border; replaced by an add"
+  },
+  {
+   "add": "p96_a2",
+   "page": 96,
+   "box": [
+    374,
+    504,
+    436,
+    516
+   ],
+   "translation": "4 per basket",
+   "source": "每筐装4个",
+   "size": 9,
+   "reason": "tag label set inside the printed tag"
+  },
+  {
+   "segment_id": "p91_s11_k0",
+   "translation": "BLANK",
+   "reason": "split row label set smaller than its siblings; replaced by an add"
+  },
+  {
+   "add": "p91_a1",
+   "page": 91,
+   "box": [
+    66,
+    494,
+    170,
+    511
+   ],
+   "translation": "Hand span",
+   "source": "一拃长",
+   "size": 10,
+   "reason": "row label the same size as the other row labels",
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p91_s14_k0",
+   "translation": "BLANK",
+   "reason": "split row label set smaller than its siblings; replaced by an add"
+  },
+  {
+   "add": "p91_a2",
+   "page": 91,
+   "box": [
+    66,
+    603,
+    170,
+    619
+   ],
+   "translation": "Arm span",
+   "source": "双臂平伸的长度",
+   "size": 10,
+   "reason": "row label the same size as the other row labels",
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p91_s11_k1",
+   "translation": "BLANK",
+   "reason": "split row label set indented; replaced by an add in line with the other labels"
+  },
+  {
+   "add": "p91_a3",
+   "page": 91,
+   "box": [
+    66,
+    521,
+    170,
+    538
+   ],
+   "translation": "Step length",
+   "source": "一步长",
+   "size": 10,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row label the same size and indent as the other row labels"
+  }
+ ],
+ "flags": []
+}

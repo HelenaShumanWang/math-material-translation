@@ -1,0 +1,534 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s0",
+   "translation": "Unit 5 Multiplication Facts for ⟦0⟧ to ⟦1⟧",
+   "reason": "dropped ⟦2⟧: OCR noise (crop of 口); standard title as in checked edition"
+  },
+  {
+   "segment_id": "p33_s11",
+   "translation": "Our ancestors passed down these multiplication facts more than 2,000 years ago. They are easy to say, and very useful to remember!",
+   "reason": "spurious 'Unit 3', ending was cut off"
+  },
+  {
+   "segment_id": "p33_s15",
+   "translation": "DROP",
+   "reason": "OCR noise of the rhyme column; restored and set row by row with adds"
+  },
+  {
+   "segment_id": "p33_s20",
+   "translation": "DROP",
+   "reason": "OCR noise over the table rows"
+  },
+  {
+   "segment_id": "p33_s21",
+   "translation": "DROP",
+   "reason": "OCR noise over the table rows"
+  },
+  {
+   "add": "p34_a1",
+   "page": 34,
+   "box": [
+    250,
+    363,
+    279,
+    376
+   ],
+   "translation": "20.",
+   "source": "二十。",
+   "size": 9,
+   "reason": "answer in bubble left in Chinese"
+  },
+  {
+   "segment_id": "p35_s1",
+   "translation": "⟦1⟧ pair: ⟦2⟧ chopsticks, ⟦3⟧ pairs: ⟦4⟧ chopsticks…",
+   "reason": "dropped ⟦0⟧: OCR crop of the digit 1 printed twice; chopsticks not sticks; erase the last dot of the Chinese ellipsis left at the bubble's end",
+   "erase": [
+    [
+     376.5,
+     122.5,
+     381.5,
+     127.5
+    ]
+   ]
+  },
+  {
+   "segment_id": "p35_s2",
+   "erase": [
+    [
+     410,
+     247,
+     441,
+     255
+    ]
+   ],
+   "reason": "leftover ellipsis dots under the English"
+  },
+  {
+   "split": "p35_s6",
+   "translations": [
+    "1 × 2 = 2",
+    "2 × 2 = 4",
+    "2 × 3 = 6",
+    "2 × 4 =",
+    "2 × 5 ="
+   ],
+   "reason": "one rhyme per table row"
+  },
+  {
+   "split": "p35_s12",
+   "translations": [
+    "2 × 6 =",
+    "2 × 7 =",
+    "2 × 8 =",
+    "2 × 9 ="
+   ],
+   "reason": "one rhyme per table row"
+  },
+  {
+   "segment_id": "p38_s23",
+   "translation": "with",
+   "reason": "stray quote mark"
+  },
+  {
+   "restore": [
+    156,
+    414,
+    244,
+    433
+   ],
+   "page": 38,
+   "reason": "the > and < signs were erased"
+  },
+  {
+   "restore": [
+    87,
+    412,
+    108,
+    434
+   ],
+   "page": 38,
+   "reason": "answer circle damaged by erase"
+  },
+  {
+   "add": "p38_a1",
+   "page": 38,
+   "box": [
+    311,
+    424,
+    319,
+    435
+   ],
+   "translation": ".",
+   "source": "。",
+   "size": 10,
+   "reason": "Chinese full stop"
+  },
+  {
+   "segment_id": "p38_s42",
+   "translation": "⟦1⟧ adult tickets, please.",
+   "reason": "dropped ⟦0⟧: OCR noise crop",
+   "box": [
+    268,
+    578,
+    343,
+    593
+   ]
+  },
+  {
+   "split": "p39_s1",
+   "translations": [
+    "1 tricycle: 3 wheels",
+    "2 tricycles: 6 wheels",
+    "3 tricycles: 9 wheels"
+   ],
+   "reason": "one line each, as in the bubble"
+  },
+  {
+   "segment_id": "p39_s2",
+   "translation": "Lay out counters and fill in. How many wheels on ⟦0⟧ tricycle? On ⟦1⟧?",
+   "reason": "shorter so it stays on one line above the table"
+  },
+  {
+   "split": "p39_s6",
+   "translations": [
+    "1 × 3 = 3",
+    "2 × 3 = 6",
+    "3 × 3 = 9",
+    "3 × 4 ="
+   ],
+   "reason": "one rhyme per table row"
+  },
+  {
+   "add": "p39_a1",
+   "page": 39,
+   "box": [
+    333,
+    472.5,
+    377,
+    487.5
+   ],
+   "translation": "3 × 6 =",
+   "source": "三六",
+   "size": 10,
+   "align": "left",
+   "reason": "rhyme row left in Chinese",
+   "color": 0
+  },
+  {
+   "segment_id": "p39_s20",
+   "translation": "A Chinese saying uses \"3 × 7 = 21\". Knowing 3 × 7 = 21, I know 3 × 6 = 18.",
+   "reason": "'Never mind 3 × 7 = 21' is meaningless in English"
+  },
+  {
+   "segment_id": "p40_s34",
+   "translation": "3 × 4 = 12",
+   "box": [
+    286,
+    630.7,
+    345,
+    644
+   ],
+   "erase": [
+    [
+     287,
+     631,
+     294.5,
+     643
+    ]
+   ],
+   "reason": "erase leftover 三; more room in bubble"
+  },
+  {
+   "add": "p33_a1",
+   "page": 33,
+   "box": [
+    255,
+    477,
+    292,
+    489
+   ],
+   "translation": "4 × 5 =",
+   "source": "四五",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row left in Chinese"
+  },
+  {
+   "add": "p33_a2",
+   "page": 33,
+   "box": [
+    255,
+    493.5,
+    292,
+    505.5
+   ],
+   "translation": "5 × 5 =",
+   "source": "五五",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row left in Chinese"
+  },
+  {
+   "add": "p33_a3",
+   "page": 33,
+   "box": [
+    255,
+    509.5,
+    292,
+    521.5
+   ],
+   "translation": "5 × 6 =",
+   "source": "五六",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row left in Chinese"
+  },
+  {
+   "add": "p33_a4",
+   "page": 33,
+   "box": [
+    255,
+    525.5,
+    325,
+    537.5
+   ],
+   "translation": "5 × 7 =",
+   "source": "五七",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row left in Chinese; box reaches past the OCR box of the answer line so the text is not trimmed and shrunk"
+  },
+  {
+   "add": "p33_a5",
+   "page": 33,
+   "box": [
+    255,
+    541.5,
+    325,
+    553.5
+   ],
+   "translation": "5 × 8 =",
+   "source": "五八",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row left in Chinese; box reaches past the OCR box of the answer line so the text is not trimmed and shrunk"
+  },
+  {
+   "add": "p33_a6",
+   "page": 33,
+   "box": [
+    255,
+    557.5,
+    325,
+    569.5
+   ],
+   "translation": "5 × 9 =",
+   "source": "五九",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row left in Chinese; box reaches past the OCR box of the answer line so the text is not trimmed and shrunk"
+  },
+  {
+   "restore": [
+    170,
+    524,
+    254,
+    574
+   ],
+   "page": 33,
+   "reason": "rows 5×7=, 5×8=, 5×9= were erased by the OCR noise paragraph"
+  },
+  {
+   "segment_id": "p39_s10",
+   "translation": "DROP",
+   "reason": "set as an add with a row-sized box"
+  },
+  {
+   "add": "p39_a2",
+   "page": 39,
+   "box": [
+    333,
+    451.5,
+    377,
+    466.5
+   ],
+   "translation": "3 × 5 =",
+   "source": "三五",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row"
+  },
+  {
+   "segment_id": "p39_s6_k3",
+   "box": [
+    333,
+    429.5,
+    377,
+    444.5
+   ],
+   "reason": "row-sized box so the fact stays on one line"
+  },
+  {
+   "segment_id": "p35_s6_k3",
+   "box": [
+    337,
+    415,
+    379,
+    429
+   ],
+   "reason": "row-sized box so the fact stays on one line"
+  },
+  {
+   "segment_id": "p35_s12_k0",
+   "box": [
+    337,
+    458,
+    379,
+    472
+   ],
+   "reason": "row-sized box so the fact stays on one line"
+  },
+  {
+   "segment_id": "p35_s12_k1",
+   "box": [
+    337,
+    480,
+    379,
+    494
+   ],
+   "reason": "row-sized box so the fact stays on one line"
+  },
+  {
+   "segment_id": "p35_s12_k2",
+   "box": [
+    337,
+    501.5,
+    379,
+    515.5
+   ],
+   "reason": "row-sized box so the fact stays on one line"
+  },
+  {
+   "segment_id": "p35_s12_k3",
+   "box": [
+    337,
+    523,
+    379,
+    537
+   ],
+   "reason": "row-sized box so the fact stays on one line"
+  },
+  {
+   "segment_id": "p39_s15",
+   "translation": "DROP",
+   "reason": "set row by row with adds"
+  },
+  {
+   "add": "p39_a3",
+   "page": 39,
+   "box": [
+    333,
+    494.5,
+    377,
+    509.5
+   ],
+   "translation": "3 × 7 =",
+   "source": "三七",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row"
+  },
+  {
+   "add": "p39_a4",
+   "page": 39,
+   "box": [
+    333,
+    516.0,
+    377,
+    531.0
+   ],
+   "translation": "3 × 8 =",
+   "source": "三八",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row"
+  },
+  {
+   "add": "p39_a5",
+   "page": 39,
+   "box": [
+    333,
+    537.5,
+    377,
+    552.5
+   ],
+   "translation": "3 × 9 =",
+   "source": "三九",
+   "size": 10,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row"
+  },
+  {
+   "segment_id": "p34_s8",
+   "translation": "4 × 5?",
+   "reason": "spacing as in the other facts"
+  },
+  {
+   "add": "p36_a1",
+   "page": 36,
+   "box": [
+    93,
+    289.5,
+    116,
+    304
+   ],
+   "translation": "2,",
+   "source": "2，",
+   "align": "left",
+   "color": 0,
+   "reason": "the '2,' of '1, 2, ..., 9' was erased by the paragraph's box",
+   "size": 13
+  },
+  {
+   "restore": [
+    292,
+    524,
+    326,
+    572
+   ],
+   "page": 33,
+   "reason": "answer lines of rows 5×7 to 5×9 put back after the wider add boxes"
+  },
+  {
+   "segment_id": "p35_s6_k4",
+   "translation": "BLANK",
+   "reason": "set as an add instead (the split piece came out smaller than its neighbours)"
+  },
+  {
+   "add": "p35_a1",
+   "page": 35,
+   "box": [
+    337,
+    437,
+    421,
+    451
+   ],
+   "translation": "2 × 5 =",
+   "source": "二五",
+   "size": 12.5,
+   "align": "left",
+   "color": 0,
+   "reason": "rhyme row 2×5 at the size of the other rows; box reaches past the line's OCR box so it is not trimmed"
+  },
+  {
+   "restore": [
+    369,
+    436,
+    421,
+    453
+   ],
+   "page": 35,
+   "reason": "answer line of row 2×5 put back after the wider add box"
+  },
+  {
+   "split": "p40_s4",
+   "translations": [
+    "2 × 8 = 16",
+    "3 × 9 = 27",
+    "4 × 5 = 20",
+    "3 × 6 = 18"
+   ],
+   "reason": "one fact per white plate"
+  },
+  {
+   "segment_id": "p33_s2",
+   "translation": "Five, ten, fifteen...",
+   "erase": [
+    [
+     312.5,
+     173.3,
+     316.8,
+     177.8
+    ]
+   ],
+   "reason": "erase the last dot of the Chinese ellipsis left at the bubble's end"
+  }
+ ],
+ "flags": [
+  {
+   "page": 34,
+   "issue": "'Count Pinecones' banner (p33_s1) is set at scale 0.54 because the green banner is narrow. No free room inside it."
+  }
+ ]
+}
