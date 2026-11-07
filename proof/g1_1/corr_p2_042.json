@@ -1,0 +1,15 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p44_s4",
+   "translation": "How many are behind it?",
+   "reason": "source asks how many penguins are behind the iceberg pictured just before; 'How many behind?' is clipped"
+  },
+  {
+   "segment_id": "p45_s5",
+   "translation": "⟦0⟧. How many rabbits are inside?",
+   "reason": "picture shows rabbits at a mushroom house; name the counted animal; 'in the house' would shrink the line below 0.8"
+  }
+ ],
+ "flags": []
+}

@@ -1,125 +1,1315 @@
-{"corrections": [
-{"segment_id": "p65_s4", "translation": "The deer is at the very front. Who is behind it? What place is the rabbit in? And the tortoise?", "reason": "second icon is the rabbit, not a snail"},
-{"add": "p65_a1", "page": 65, "box": [75, 221.3, 91, 229.2], "translation": "Finish", "source": "终点", "size": 6, "color": 16578805, "reason": "finish flag held by the cockerel, left in Chinese; box kept inside the flag outline"},
-{"add": "p66_a1", "page": 66, "box": [342, 345, 375, 359], "translation": "people.", "source": "个人。", "size": 9.5, "align": "left", "color": 2235677, "reason": "leftover 个人。 after the answer box: In front of me: [] people."},
-{"split": "p66_s16", "translations": ["Station", "DROP", "DROP"], "reason": "three station names on the sign, each in its own column; Taiping Road and Square are set with adds (their OCR lines miss characters)"},
-{"add": "p66_a2", "page": 66, "box": [160.3, 492.9, 174.2, 518.5], "translation": "Taiping\nRoad", "source": "太平路", "size": 9, "color": 2235677, "reason": "sign column 太平路, set up the column like Station"},
-{"add": "p66_a3", "page": 66, "box": [174.4, 492.9, 184.6, 519], "translation": "Square", "source": "广场", "size": 8, "color": 2235677, "reason": "sign column 广场, set up the column; keeps the red stop line and dot above"},
-{"segment_id": "p67_s4", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s5", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s6", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s7", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s8", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s9", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s10", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s11", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s12", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p67_s13", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"add": "p67_a1", "page": 67, "box": [307, 214, 332, 235], "translation": "is ___", "source": "在", "size": 10, "color": 2301728, "reason": "row 1: [A] is ___ [B]"},
-{"add": "p67_a2", "page": 67, "box": [354, 214, 432, 235], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 1: the blank moved before [B]; erase 的___面"},
-{"add": "p67_a3", "page": 67, "box": [307, 238, 332, 259], "translation": "is ___", "source": "在", "size": 10, "color": 2301728, "reason": "row 2: [A] is ___ [B]"},
-{"add": "p67_a4", "page": 67, "box": [354, 238, 432, 259], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 2: the blank moved before [B]; erase 的___面"},
-{"add": "p67_a5", "page": 67, "box": [307, 262, 332, 284], "translation": "is ___", "source": "在", "size": 10, "color": 2301728, "reason": "row 3: [A] is ___ [B]"},
-{"add": "p67_a6", "page": 67, "box": [354, 262, 432, 284], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 3: the blank moved before [B]; erase 的___面"},
-{"add": "p67_a7", "page": 67, "box": [307, 287, 332, 307], "translation": "is ___", "source": "在", "size": 10, "color": 2301728, "reason": "row 4: [A] is ___ [B]"},
-{"add": "p67_a8", "page": 67, "box": [354, 287, 432, 307], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 4: the blank moved before [B]; erase 的___面"},
-{"restore": [285, 212, 307, 309], "page": 67, "reason": "first-column pictures (bird, rabbit, squirrels) were half erased; source column holds no Chinese"},
-{"restore": [332, 261, 355, 285], "page": 67, "reason": "row 3 rabbit picture was erased"},
-{"segment_id": "p67_s16", "translation": "It is above the rabbit.", "reason": "full stop"},
-{"segment_id": "p67_s17", "translation": "Then it is…", "box": [177.2, 381.5, 240, 393.2], "erase": [[214.5, 383, 238.5, 391]], "reason": "leftover dots of ……"},
-{"segment_id": "p67_s18", "translation": "It is not at the top.", "reason": "full stop"},
-{"segment_id": "p67_s23", "translation": "I know…", "box": [373.9, 537.4, 446, 549.1], "erase": [[422, 539, 446.5, 547.5]], "reason": "leftover dot of ……"},
-{"segment_id": "p68_s2", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p68_s3", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p68_s4", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p68_s5", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p68_s6", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p68_s7", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"segment_id": "p68_s8", "translation": "DROP", "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."},
-{"add": "p68_a1", "page": 68, "box": [154, 161, 178, 179], "translation": "is ___", "source": "在", "size": 9, "color": 2301728, "reason": "row 1: [A] is ___ [B]"},
-{"add": "p68_a2", "page": 68, "box": [199, 161, 272, 179], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 1: erase 的___面"},
-{"add": "p68_a3", "page": 68, "box": [149, 184.5, 176, 199.5], "translation": "is ___", "source": "在", "size": 8.5, "color": 2301728, "reason": "row 2: [A] is ___ [B]"},
-{"add": "p68_a4", "page": 68, "box": [199, 185, 272, 203], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 2: erase 的___面"},
-{"add": "p68_a5", "page": 68, "box": [151, 208, 178, 226], "translation": "is ___", "source": "在", "size": 9, "color": 2301728, "reason": "row 3: [A] is ___ [B]"},
-{"add": "p68_a6", "page": 68, "box": [199, 208, 272, 226], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 3: erase 的___面"},
-{"add": "p68_a7", "page": 68, "box": [150.5, 232, 175, 251], "translation": "is ___", "source": "在", "size": 9, "color": 2301728, "reason": "row 4: [A] is ___ [B]"},
-{"add": "p68_a8", "page": 68, "box": [199, 232, 272, 251], "translation": ".", "source": "的___面，", "size": 12, "align": "left", "color": 2301728, "reason": "row 4: erase 的___面"},
-{"restore": [335, 396, 396, 414], "page": 68, "reason": "house base smeared by the erase of line (3); the Chinese ends at x 330"},
-{"restore": [177, 206, 199, 228], "page": 68, "reason": "row 3 cat picture was erased"},
-{"restore": [336, 386, 398, 396.5], "page": 68, "reason": "house wall edge and door-1 sill cut by the erase of line (2); no Chinese there"},
-{"segment_id": "p68_s16", "translation": "The treasure may be in…", "reason": "stray dots"},
-{"segment_id": "p68_s18", "translation": "I know! The treasure is in…", "erase": [[366, 521, 378.5, 529.5]], "reason": "leftover dot of ……"},
-{"segment_id": "p68_s1", "translation": "1. Fill in and talk about it.", "reason": "full stop like its siblings"},
-{"segment_id": "p69_s0", "translation": "Left/Right", "reason": "stray space made it wrap; whole width of the green tag so it stays on one line", "box": [61.5, 84, 108.5, 104.9]},
-{"segment_id": "p69_s2", "translation": "⟦0⟧ The other hand is…", "reason": "capital letter; leftover dots of ……", "box": [342.1, 185.4, 428, 196.7], "erase": [[403, 186, 428.5, 196]]},
-{"segment_id": "p69_s6", "translation": "Arrange and talk about it.", "box": [76.5, 381.8, 250, 396.9], "erase": [[187, 382, 198, 398]], "reason": "natural wording; erase leftover 。"},
-{"line": "p69_i276_13", "pieces": [[254, 316, "From the left,"]], "reason": "row 1 around the eraser picture"},
-{"line": "p69_i276_14", "pieces": [[336, 368, "is the"], [393, 417, "one."]], "reason": "row 1: [eraser] is the ___ one."},
-{"line": "p69_i276_17", "pieces": [[252, 321, "From the right,"]], "reason": "row 2, eraser picture kept"},
-{"line": "p69_i276_18", "pieces": [[336, 368, "is the"], [393, 417, "one."]], "reason": "row 2"},
-{"line": "p69_i276_19", "pieces": [[274, 442, "What is on its left? And on its right?"]], "reason": "row 3 after the ruler picture"},
-{"line": "p69_i276_20", "pieces": [[254, 272, "BLANK"]], "reason": "row 4 starts with the pencil-case picture"},
-{"line": "p69_i276_21", "pieces": [[294, 372, "is on its right,"], [393, 453, "is on its left."]], "reason": "row 4: [case] is on its right, [eraser] is on its left (= it is left of the case, right of the eraser); keeps the eraser picture"},
-{"add": "p69_a1", "page": 69, "box": [311, 518, 325, 532], "translation": ".", "source": "。", "size": 12, "align": "left", "color": 2301728, "reason": "Chinese full stop after the blank"},
-{"segment_id": "p69_s14", "translation": "Try and play. ⟦0⟧ wants to visit the rabbit. How does it get there?", "reason": "the rabbit (whose home it is) was missing"},
-{"segment_id": "p69_s16", "translation": "Or you could first go…", "reason": "unfinished sentence"},
-{"segment_id": "p70_s3", "translation": "DROP", "reason": "item 2 rebuilt with adds between the pictures"},
-{"segment_id": "p70_s5", "translation": "DROP", "reason": "item 2 rebuilt with adds between the pictures"},
-{"segment_id": "p70_s7", "translation": "DROP", "reason": "item 2 rebuilt with adds between the pictures"},
-{"segment_id": "p70_s9", "translation": "DROP", "reason": "item 2 rebuilt with adds between the pictures"},
-{"add": "p70_a1", "page": 70, "box": [69, 172, 89.5, 191], "translation": "Put", "source": "把", "size": 12.5, "color": 2301728, "reason": "item 2 row 1"},
-{"add": "p70_a2", "page": 70, "box": [113, 172, 145, 191], "translation": "below", "source": "放在", "size": 12.5, "color": 2301728, "reason": "Put [exercise book] below [maths book]"},
-{"add": "p70_a3", "page": 70, "box": [167.8, 172, 245, 191], "translation": ", put", "source": "的下面，把", "size": 12.5, "align": "left", "color": 2301728, "reason": "ruler picture follows"},
-{"add": "p70_a4", "page": 70, "box": [275.8, 167, 308.5, 194], "translation": "to the\nleft of", "source": "放在", "size": 9.5, "color": 2301728, "reason": "put [ruler] to the left of [maths book]"},
-{"add": "p70_a5", "page": 70, "box": [333, 172, 411, 191], "translation": ", and put", "source": "的左边，把", "size": 12.5, "align": "left", "color": 2301728, "reason": "pencil picture follows"},
-{"add": "p70_a6", "page": 70, "box": [435, 168, 472, 193], "translation": "to the\nright", "source": "放", "size": 10, "color": 2301728, "reason": "end of row 1"},
-{"add": "p70_a7", "page": 70, "box": [69, 195, 87, 214], "translation": "of", "source": "在", "size": 12.5, "align": "right", "color": 2301728, "reason": "row 2: of [maths book]."},
-{"add": "p70_a8", "page": 70, "box": [110, 195, 164, 214], "translation": ".", "source": "的右边。", "size": 12.5, "align": "left", "color": 2301728, "reason": "row 2 end"},
-{"restore": [89.6, 172, 112.8, 191.5], "page": 70, "reason": "exercise book picture cut by the label and word erases"},
-{"paint": [95.2, 174, 109.5, 179], "page": 70, "colour": [248, 191, 216], "reason": "cover label 练习本 under Notes"},
-{"restore": [144.6, 171.8, 167.8, 191], "page": 70, "reason": "maths book picture cut"},
-{"paint": [151.3, 174.2, 162.5, 179.3], "page": 70, "colour": [194, 232, 249], "reason": "cover label 数学 under Maths"},
-{"restore": [268, 170, 275.6, 188], "page": 70, "reason": "ruler tip cut by the erase"},
-{"restore": [307.5, 171.5, 332.5, 190], "page": 70, "reason": "maths book picture cut"},
-{"paint": [316.2, 173.9, 327, 179], "page": 70, "colour": [194, 232, 249], "reason": "cover label 数学 under Maths"},
-{"restore": [87, 194.3, 109.3, 212.8], "page": 70, "reason": "maths book picture in row 2 cut"},
-{"paint": [93.8, 196.4, 105.5, 201.3], "page": 70, "colour": [194, 232, 249], "reason": "cover label 数学 under Maths"},
-{"segment_id": "p70_s6", "translation": "Maths", "reason": "cover label"},
-{"segment_id": "p70_s8", "translation": "Maths", "reason": "cover label"},
-{"segment_id": "p70_s12", "translation": "What is 2nd to its right?", "reason": "shorter, fits one line like its sibling"},
-{"segment_id": "p70_s13", "translation": "What is 3rd to its left?", "reason": "match sibling"},
-{"segment_id": "p70_s14", "translation": "DROP", "reason": "item 4 rebuilt with adds around the bus picture and the printed ( )"},
-{"segment_id": "p70_s15", "translation": "DROP", "reason": "item 4 rebuilt with adds around the bus picture and the printed ( )"},
-{"add": "p70_a9", "page": 70, "box": [55, 324, 135.5, 342], "translation": "4. From the right,", "source": "从右数，", "size": 9, "align": "left", "color": 2301728, "reason": "item 4 line 1"},
-{"add": "p70_a10", "page": 70, "box": [156, 324, 254, 342], "translation": "is 5th. Altogether", "source": "是第5辆，一", "size": 9, "align": "left", "color": 2301728, "reason": "item 4 after the bus"},
-{"add": "p70_a11", "page": 70, "box": [56, 346, 104, 365], "translation": "there are", "source": "共有", "size": 9, "align": "right", "color": 2301728, "reason": "before the printed ("},
-{"add": "p70_a12", "page": 70, "box": [144.3, 346, 254, 365], "translation": "vehicles. Try drawing a", "source": "辆车。请画图试", "size": 9, "align": "left", "color": 2301728, "reason": "after the printed )"},
-{"add": "p70_a13", "page": 70, "box": [70, 369, 115, 389], "translation": "picture.", "source": "一试。", "size": 9, "align": "left", "color": 2301728, "reason": "item 4 line 3"},
-{"segment_id": "p71_s2", "translation": "DROP", "reason": "the 8 big characters the bubble counts; keep them as printed"},
-{"segment_id": "p71_s5", "translation": "Think: who are we looking for?", "box": [76.8, 304.4, 330, 320.9], "reason": "room to the right; same size as the other bullet headings"},
-{"segment_id": "p71_s15", "translation": "Guess which object is being described.", "box": [76.5, 483.6, 380, 499.5], "reason": "room to the right; same size as the other bullet headings"},
-{"paint": [109, 407.5, 114, 418.5], "page": 71, "colour": [165, 220, 246], "reason": "dark erase smudge at the end of the Row 2 label; plain label colour"},
-{"restore": [114.5, 405, 116.8, 420], "page": 71, "reason": "right border of the Row 2 tag left dark by the erase"},
-{"segment_id": "p71_s6", "translation": "In row ⟦0⟧, find the ⟦1⟧rd student from the right.", "reason": "3st -> 3rd"},
-{"segment_id": "p71_s8", "translation": "Xiaoxiao", "box": [218, 389.5, 236, 398.5], "reason": "whole name tag"},
-{"segment_id": "p71_s10", "translation": "Taoqi", "box": [168, 389.5, 189, 398], "reason": "whole name tag"},
-{"segment_id": "p71_s11", "translation": "Xiaohong", "box": [297, 389.5, 315, 398.5], "reason": "whole name tag"},
-{"segment_id": "p71_s12", "translation": "Xiaolan", "box": [214, 413, 231, 422], "reason": "whole name tag"},
-{"segment_id": "p71_s13", "translation": "Xiaoqiang", "box": [311, 413.5, 331, 422.5], "reason": "whole name tag"},
-{"paint": [154, 414, 171, 421.5], "page": 71, "colour": [250, 250, 250], "reason": "clean name tag for Xiaoqing"},
-{"add": "p71_a1", "page": 71, "box": [153, 413, 171, 422], "translation": "Xiaoqing", "source": "小青", "size": 4, "reason": "name tag never read by OCR"},
-{"segment_id": "p71_s17", "translation": ".", "box": [343, 534, 351, 548], "reason": "duplicate 'below'; sentence ends after the TV picture"},
-{"split": "p71_s18", "translations": [". Which one is it?", "below it are"], "reason": "two bubble lines between pictures"},
-{"restore": [319, 531, 343, 550], "page": 71, "reason": "TV picture in bubble 1 was erased; no Chinese there"},
-{"add": "p71_a2", "page": 71, "box": [379, 565, 387, 576], "translation": ",", "source": "、", "size": 10, "align": "left", "color": 2960173, "reason": "Chinese enumeration comma between the books and the plant"},
-{"segment_id": "p71_s20", "translation": "BLANK", "reason": "bubble reads: [globe] is on its right."},
-{"segment_id": "p71_s22", "translation": "I know! It is…", "reason": "dots"},
-{"segment_id": "p72_s1", "translation": "1. Answer from the picture.", "box": [57, 124.7, 224, 137.8], "reason": "one line, like its siblings"},
-{"segment_id": "p72_s8", "translation": "Xiaoli", "clip": [377, 386, 404, 404], "box": [377, 386, 404, 404], "reason": "only the name is Chinese; keep the printed brackets in place"},
-{"segment_id": "p72_s16", "translation": "DROP", "reason": "OCR noise on the map"}],
-"flags": [
-{"page": 67, "issue": "Bus-stop sign: Station and the two added columns (Taiping Road, Square) run upward (the stacked-column rule), while Park and Zoo, set from vertical OCR lines, run downward; all names are English and legible, but the reading direction is mixed."},
-{"page": 67, "issue": "Arch sign 儿童乐园 (Children's Park) is curved/slanted text (OCR refuses it); kept in Chinese as in the checked edition."},
-{"page": 71, "issue": "Item 4 is set at 9 pt in all five pieces so line 1 matches lines 2-3 (\"4. From the right,\" has only 80 pt before the bus picture); it is smaller than items 3 and 5. Item 2 piece \"below\" is a little smaller than its row."},
-{"page": 72, "issue": "Desk name tags (Xiaoxiao, Xiaohong, Xiaolan, Xiaoqiang, Xiaoqing) are tiny (about 4 pt) because the tags are 15-20 pt wide."},
-{"page": 72, "issue": "Bullet headings 'Think: who are we looking for?' and 'Guess which object is being described.' stay at about 9.5 pt (the wider box does not raise the size); the first bullet heading is about 12 pt."}]}
+{
+ "corrections": [
+  {
+   "segment_id": "p65_s4",
+   "translation": "The deer is at the very front. Who is behind it? What place is the rabbit in? And the tortoise?",
+   "reason": "second icon is the rabbit, not a snail"
+  },
+  {
+   "add": "p65_a1",
+   "page": 65,
+   "box": [
+    75,
+    221.3,
+    91,
+    229.2
+   ],
+   "translation": "Finish",
+   "source": "终点",
+   "size": 6,
+   "color": 16578805,
+   "reason": "finish flag held by the cockerel, left in Chinese; box kept inside the flag outline"
+  },
+  {
+   "add": "p66_a1",
+   "page": 66,
+   "box": [
+    342,
+    345,
+    375,
+    359
+   ],
+   "translation": "people.",
+   "source": "个人。",
+   "size": 9.5,
+   "align": "left",
+   "color": 2235677,
+   "reason": "leftover 个人。 after the answer box: In front of me: [] people."
+  },
+  {
+   "split": "p66_s16",
+   "translations": [
+    "Station",
+    "DROP",
+    "DROP"
+   ],
+   "reason": "three station names on the sign, each in its own column; Taiping Road and Square are set with adds (their OCR lines miss characters)"
+  },
+  {
+   "add": "p66_a2",
+   "page": 66,
+   "box": [
+    160.3,
+    492.9,
+    174.2,
+    518.5
+   ],
+   "translation": "Taiping\nRoad",
+   "source": "太平路",
+   "size": 9,
+   "color": 2235677,
+   "reason": "sign column 太平路, set up the column like Station"
+  },
+  {
+   "add": "p66_a3",
+   "page": 66,
+   "box": [
+    174.4,
+    492.9,
+    184.6,
+    519
+   ],
+   "translation": "Square",
+   "source": "广场",
+   "size": 8,
+   "color": 2235677,
+   "reason": "sign column 广场, set up the column; keeps the red stop line and dot above"
+  },
+  {
+   "segment_id": "p67_s4",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s5",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s6",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s7",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s8",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s9",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s10",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s11",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s12",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p67_s13",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "add": "p67_a1",
+   "page": 67,
+   "box": [
+    307,
+    214,
+    332,
+    235
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 10,
+   "color": 2301728,
+   "reason": "row 1: [A] is ___ [B]"
+  },
+  {
+   "add": "p67_a2",
+   "page": 67,
+   "box": [
+    354,
+    214,
+    432,
+    235
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 1: the blank moved before [B]; erase 的___面"
+  },
+  {
+   "add": "p67_a3",
+   "page": 67,
+   "box": [
+    307,
+    238,
+    332,
+    259
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 10,
+   "color": 2301728,
+   "reason": "row 2: [A] is ___ [B]"
+  },
+  {
+   "add": "p67_a4",
+   "page": 67,
+   "box": [
+    354,
+    238,
+    432,
+    259
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 2: the blank moved before [B]; erase 的___面"
+  },
+  {
+   "add": "p67_a5",
+   "page": 67,
+   "box": [
+    307,
+    262,
+    332,
+    284
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 10,
+   "color": 2301728,
+   "reason": "row 3: [A] is ___ [B]"
+  },
+  {
+   "add": "p67_a6",
+   "page": 67,
+   "box": [
+    354,
+    262,
+    432,
+    284
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 3: the blank moved before [B]; erase 的___面"
+  },
+  {
+   "add": "p67_a7",
+   "page": 67,
+   "box": [
+    307,
+    287,
+    332,
+    307
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 10,
+   "color": 2301728,
+   "reason": "row 4: [A] is ___ [B]"
+  },
+  {
+   "add": "p67_a8",
+   "page": 67,
+   "box": [
+    354,
+    287,
+    432,
+    307
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 4: the blank moved before [B]; erase 的___面"
+  },
+  {
+   "restore": [
+    285,
+    212,
+    307,
+    309
+   ],
+   "page": 67,
+   "reason": "first-column pictures (bird, rabbit, squirrels) were half erased; source column holds no Chinese"
+  },
+  {
+   "restore": [
+    332,
+    261,
+    355,
+    285
+   ],
+   "page": 67,
+   "reason": "row 3 rabbit picture was erased"
+  },
+  {
+   "segment_id": "p67_s16",
+   "translation": "It is above the rabbit.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p67_s17",
+   "translation": "Then it is…",
+   "box": [
+    177.2,
+    381.5,
+    240,
+    393.2
+   ],
+   "erase": [
+    [
+     214.5,
+     383,
+     238.5,
+     391
+    ]
+   ],
+   "reason": "leftover dots of ……"
+  },
+  {
+   "segment_id": "p67_s18",
+   "translation": "It is not at the top.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p67_s23",
+   "translation": "I know…",
+   "box": [
+    373.9,
+    537.4,
+    446,
+    549.1
+   ],
+   "erase": [
+    [
+     422,
+     539,
+     446.5,
+     547.5
+    ]
+   ],
+   "reason": "leftover dot of ……"
+  },
+  {
+   "segment_id": "p68_s2",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p68_s3",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p68_s4",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p68_s5",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p68_s6",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p68_s7",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "segment_id": "p68_s8",
+   "translation": "DROP",
+   "reason": "fill-in row rebuilt with adds: [A] is ___ [B]."
+  },
+  {
+   "add": "p68_a1",
+   "page": 68,
+   "box": [
+    154,
+    161,
+    178,
+    179
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 9,
+   "color": 2301728,
+   "reason": "row 1: [A] is ___ [B]"
+  },
+  {
+   "add": "p68_a2",
+   "page": 68,
+   "box": [
+    199,
+    161,
+    272,
+    179
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 1: erase 的___面"
+  },
+  {
+   "add": "p68_a3",
+   "page": 68,
+   "box": [
+    149,
+    184.5,
+    176,
+    199.5
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 8.5,
+   "color": 2301728,
+   "reason": "row 2: [A] is ___ [B]"
+  },
+  {
+   "add": "p68_a4",
+   "page": 68,
+   "box": [
+    199,
+    185,
+    272,
+    203
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 2: erase 的___面"
+  },
+  {
+   "add": "p68_a5",
+   "page": 68,
+   "box": [
+    151,
+    208,
+    178,
+    226
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 9,
+   "color": 2301728,
+   "reason": "row 3: [A] is ___ [B]"
+  },
+  {
+   "add": "p68_a6",
+   "page": 68,
+   "box": [
+    199,
+    208,
+    272,
+    226
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 3: erase 的___面"
+  },
+  {
+   "add": "p68_a7",
+   "page": 68,
+   "box": [
+    150.5,
+    232,
+    175,
+    251
+   ],
+   "translation": "is ___",
+   "source": "在",
+   "size": 9,
+   "color": 2301728,
+   "reason": "row 4: [A] is ___ [B]"
+  },
+  {
+   "add": "p68_a8",
+   "page": 68,
+   "box": [
+    199,
+    232,
+    272,
+    251
+   ],
+   "translation": ".",
+   "source": "的___面，",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 4: erase 的___面"
+  },
+  {
+   "restore": [
+    335,
+    396,
+    396,
+    414
+   ],
+   "page": 68,
+   "reason": "house base smeared by the erase of line (3); the Chinese ends at x 330"
+  },
+  {
+   "restore": [
+    177,
+    206,
+    199,
+    228
+   ],
+   "page": 68,
+   "reason": "row 3 cat picture was erased"
+  },
+  {
+   "restore": [
+    336,
+    386,
+    398,
+    396.5
+   ],
+   "page": 68,
+   "reason": "house wall edge and door-1 sill cut by the erase of line (2); no Chinese there"
+  },
+  {
+   "segment_id": "p68_s16",
+   "translation": "The treasure may be in…",
+   "reason": "stray dots"
+  },
+  {
+   "segment_id": "p68_s18",
+   "translation": "I know! The treasure is in…",
+   "erase": [
+    [
+     366,
+     521,
+     378.5,
+     529.5
+    ]
+   ],
+   "reason": "leftover dot of ……"
+  },
+  {
+   "segment_id": "p68_s1",
+   "translation": "1. Fill in and talk about it.",
+   "reason": "full stop like its siblings"
+  },
+  {
+   "segment_id": "p69_s0",
+   "translation": "Left/Right",
+   "reason": "stray space made it wrap; whole width of the green tag so it stays on one line",
+   "box": [
+    61.5,
+    84,
+    108.5,
+    104.9
+   ]
+  },
+  {
+   "segment_id": "p69_s2",
+   "translation": "⟦0⟧ The other hand is…",
+   "reason": "capital letter; leftover dots of ……",
+   "box": [
+    342.1,
+    185.4,
+    428,
+    196.7
+   ],
+   "erase": [
+    [
+     403,
+     186,
+     428.5,
+     196
+    ]
+   ]
+  },
+  {
+   "segment_id": "p69_s6",
+   "translation": "Arrange and talk about it.",
+   "box": [
+    76.5,
+    381.8,
+    250,
+    396.9
+   ],
+   "erase": [
+    [
+     187,
+     382,
+     198,
+     398
+    ]
+   ],
+   "reason": "natural wording; erase leftover 。"
+  },
+  {
+   "line": "p69_i276_13",
+   "pieces": [
+    [
+     254,
+     316,
+     "From the left,"
+    ]
+   ],
+   "reason": "row 1 around the eraser picture"
+  },
+  {
+   "line": "p69_i276_14",
+   "pieces": [
+    [
+     336,
+     368,
+     "is the"
+    ],
+    [
+     393,
+     417,
+     "one."
+    ]
+   ],
+   "reason": "row 1: [eraser] is the ___ one."
+  },
+  {
+   "line": "p69_i276_17",
+   "pieces": [
+    [
+     252,
+     321,
+     "From the right,"
+    ]
+   ],
+   "reason": "row 2, eraser picture kept"
+  },
+  {
+   "line": "p69_i276_18",
+   "pieces": [
+    [
+     336,
+     368,
+     "is the"
+    ],
+    [
+     393,
+     417,
+     "one."
+    ]
+   ],
+   "reason": "row 2"
+  },
+  {
+   "line": "p69_i276_19",
+   "pieces": [
+    [
+     274,
+     442,
+     "What is on its left? And on its right?"
+    ]
+   ],
+   "reason": "row 3 after the ruler picture"
+  },
+  {
+   "line": "p69_i276_20",
+   "pieces": [
+    [
+     254,
+     272,
+     "BLANK"
+    ]
+   ],
+   "reason": "row 4 starts with the pencil-case picture"
+  },
+  {
+   "line": "p69_i276_21",
+   "pieces": [
+    [
+     294,
+     372,
+     "is on its right,"
+    ],
+    [
+     393,
+     453,
+     "is on its left."
+    ]
+   ],
+   "reason": "row 4: [case] is on its right, [eraser] is on its left (= it is left of the case, right of the eraser); keeps the eraser picture"
+  },
+  {
+   "add": "p69_a1",
+   "page": 69,
+   "box": [
+    311,
+    518,
+    325,
+    532
+   ],
+   "translation": ".",
+   "source": "。",
+   "size": 12,
+   "align": "left",
+   "color": 2301728,
+   "reason": "Chinese full stop after the blank"
+  },
+  {
+   "segment_id": "p69_s14",
+   "translation": "Try and play. ⟦0⟧ wants to visit the rabbit. How does it get there?",
+   "reason": "the rabbit (whose home it is) was missing"
+  },
+  {
+   "segment_id": "p69_s16",
+   "translation": "Or you could first go…",
+   "reason": "unfinished sentence"
+  },
+  {
+   "segment_id": "p70_s3",
+   "translation": "DROP",
+   "reason": "item 2 rebuilt with adds between the pictures"
+  },
+  {
+   "segment_id": "p70_s5",
+   "translation": "DROP",
+   "reason": "item 2 rebuilt with adds between the pictures"
+  },
+  {
+   "segment_id": "p70_s7",
+   "translation": "DROP",
+   "reason": "item 2 rebuilt with adds between the pictures"
+  },
+  {
+   "segment_id": "p70_s9",
+   "translation": "DROP",
+   "reason": "item 2 rebuilt with adds between the pictures"
+  },
+  {
+   "add": "p70_a1",
+   "page": 70,
+   "box": [
+    69,
+    172,
+    89.5,
+    191
+   ],
+   "translation": "Put",
+   "source": "把",
+   "size": 12.5,
+   "color": 2301728,
+   "reason": "item 2 row 1"
+  },
+  {
+   "add": "p70_a2",
+   "page": 70,
+   "box": [
+    113,
+    172,
+    145,
+    191
+   ],
+   "translation": "below",
+   "source": "放在",
+   "size": 12.5,
+   "color": 2301728,
+   "reason": "Put [exercise book] below [maths book]"
+  },
+  {
+   "add": "p70_a3",
+   "page": 70,
+   "box": [
+    167.8,
+    172,
+    245,
+    191
+   ],
+   "translation": ", put",
+   "source": "的下面，把",
+   "size": 12.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "ruler picture follows"
+  },
+  {
+   "add": "p70_a4",
+   "page": 70,
+   "box": [
+    275.8,
+    167,
+    308.5,
+    194
+   ],
+   "translation": "to the\nleft of",
+   "source": "放在",
+   "size": 9.5,
+   "color": 2301728,
+   "reason": "put [ruler] to the left of [maths book]"
+  },
+  {
+   "add": "p70_a5",
+   "page": 70,
+   "box": [
+    333,
+    172,
+    411,
+    191
+   ],
+   "translation": ", and put",
+   "source": "的左边，把",
+   "size": 12.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "pencil picture follows"
+  },
+  {
+   "add": "p70_a6",
+   "page": 70,
+   "box": [
+    435,
+    168,
+    472,
+    193
+   ],
+   "translation": "to the\nright",
+   "source": "放",
+   "size": 10,
+   "color": 2301728,
+   "reason": "end of row 1"
+  },
+  {
+   "add": "p70_a7",
+   "page": 70,
+   "box": [
+    69,
+    195,
+    87,
+    214
+   ],
+   "translation": "of",
+   "source": "在",
+   "size": 12.5,
+   "align": "right",
+   "color": 2301728,
+   "reason": "row 2: of [maths book]."
+  },
+  {
+   "add": "p70_a8",
+   "page": 70,
+   "box": [
+    110,
+    195,
+    164,
+    214
+   ],
+   "translation": ".",
+   "source": "的右边。",
+   "size": 12.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "row 2 end"
+  },
+  {
+   "restore": [
+    89.6,
+    172,
+    112.8,
+    191.5
+   ],
+   "page": 70,
+   "reason": "exercise book picture cut by the label and word erases"
+  },
+  {
+   "paint": [
+    95.2,
+    174,
+    109.5,
+    179
+   ],
+   "page": 70,
+   "colour": [
+    248,
+    191,
+    216
+   ],
+   "reason": "cover label 练习本 under Notes"
+  },
+  {
+   "restore": [
+    144.6,
+    171.8,
+    167.8,
+    191
+   ],
+   "page": 70,
+   "reason": "maths book picture cut"
+  },
+  {
+   "paint": [
+    151.3,
+    174.2,
+    162.5,
+    179.3
+   ],
+   "page": 70,
+   "colour": [
+    194,
+    232,
+    249
+   ],
+   "reason": "cover label 数学 under Maths"
+  },
+  {
+   "restore": [
+    268,
+    170,
+    275.6,
+    188
+   ],
+   "page": 70,
+   "reason": "ruler tip cut by the erase"
+  },
+  {
+   "restore": [
+    307.5,
+    171.5,
+    332.5,
+    190
+   ],
+   "page": 70,
+   "reason": "maths book picture cut"
+  },
+  {
+   "paint": [
+    316.2,
+    173.9,
+    327,
+    179
+   ],
+   "page": 70,
+   "colour": [
+    194,
+    232,
+    249
+   ],
+   "reason": "cover label 数学 under Maths"
+  },
+  {
+   "restore": [
+    87,
+    194.3,
+    109.3,
+    212.8
+   ],
+   "page": 70,
+   "reason": "maths book picture in row 2 cut"
+  },
+  {
+   "paint": [
+    93.8,
+    196.4,
+    105.5,
+    201.3
+   ],
+   "page": 70,
+   "colour": [
+    194,
+    232,
+    249
+   ],
+   "reason": "cover label 数学 under Maths"
+  },
+  {
+   "segment_id": "p70_s6",
+   "translation": "Maths",
+   "reason": "cover label"
+  },
+  {
+   "segment_id": "p70_s8",
+   "translation": "Maths",
+   "reason": "cover label"
+  },
+  {
+   "segment_id": "p70_s12",
+   "translation": "What is 2nd to its right?",
+   "reason": "shorter, fits one line like its sibling"
+  },
+  {
+   "segment_id": "p70_s13",
+   "translation": "What is 3rd to its left?",
+   "reason": "match sibling"
+  },
+  {
+   "segment_id": "p70_s14",
+   "translation": "DROP",
+   "reason": "item 4 rebuilt with adds around the bus picture and the printed ( )"
+  },
+  {
+   "segment_id": "p70_s15",
+   "translation": "DROP",
+   "reason": "item 4 rebuilt with adds around the bus picture and the printed ( )"
+  },
+  {
+   "add": "p70_a9",
+   "page": 70,
+   "box": [
+    55,
+    324,
+    135.5,
+    342
+   ],
+   "translation": "4. From the right,",
+   "source": "从右数，",
+   "size": 9,
+   "align": "left",
+   "color": 2301728,
+   "reason": "item 4 line 1"
+  },
+  {
+   "add": "p70_a10",
+   "page": 70,
+   "box": [
+    156,
+    324,
+    254,
+    342
+   ],
+   "translation": "is 5th. Altogether",
+   "source": "是第5辆，一",
+   "size": 9,
+   "align": "left",
+   "color": 2301728,
+   "reason": "item 4 after the bus"
+  },
+  {
+   "add": "p70_a11",
+   "page": 70,
+   "box": [
+    56,
+    346,
+    104,
+    365
+   ],
+   "translation": "there are",
+   "source": "共有",
+   "size": 9,
+   "align": "right",
+   "color": 2301728,
+   "reason": "before the printed ("
+  },
+  {
+   "add": "p70_a12",
+   "page": 70,
+   "box": [
+    144.3,
+    346,
+    254,
+    365
+   ],
+   "translation": "vehicles. Try drawing a",
+   "source": "辆车。请画图试",
+   "size": 9,
+   "align": "left",
+   "color": 2301728,
+   "reason": "after the printed )"
+  },
+  {
+   "add": "p70_a13",
+   "page": 70,
+   "box": [
+    70,
+    369,
+    115,
+    389
+   ],
+   "translation": "picture.",
+   "source": "一试。",
+   "size": 9,
+   "align": "left",
+   "color": 2301728,
+   "reason": "item 4 line 3"
+  },
+  {
+   "segment_id": "p71_s2",
+   "translation": "DROP",
+   "reason": "the 8 big characters the bubble counts; keep them as printed"
+  },
+  {
+   "segment_id": "p71_s5",
+   "translation": "Think: who are we looking for?",
+   "box": [
+    76.8,
+    304.4,
+    330,
+    320.9
+   ],
+   "reason": "room to the right; same size as the other bullet headings"
+  },
+  {
+   "segment_id": "p71_s15",
+   "translation": "Guess which object is being described.",
+   "box": [
+    76.5,
+    483.6,
+    380,
+    499.5
+   ],
+   "reason": "room to the right; same size as the other bullet headings"
+  },
+  {
+   "paint": [
+    109,
+    407.5,
+    114,
+    418.5
+   ],
+   "page": 71,
+   "colour": [
+    165,
+    220,
+    246
+   ],
+   "reason": "dark erase smudge at the end of the Row 2 label; plain label colour"
+  },
+  {
+   "restore": [
+    114.5,
+    405,
+    116.8,
+    420
+   ],
+   "page": 71,
+   "reason": "right border of the Row 2 tag left dark by the erase"
+  },
+  {
+   "segment_id": "p71_s6",
+   "translation": "In row ⟦0⟧, find the ⟦1⟧rd student from the right.",
+   "reason": "3st -> 3rd"
+  },
+  {
+   "segment_id": "p71_s8",
+   "translation": "Xiaoxiao",
+   "box": [
+    218,
+    389.5,
+    236,
+    398.5
+   ],
+   "reason": "whole name tag"
+  },
+  {
+   "segment_id": "p71_s10",
+   "translation": "Taoqi",
+   "box": [
+    168,
+    389.5,
+    189,
+    398
+   ],
+   "reason": "whole name tag"
+  },
+  {
+   "segment_id": "p71_s11",
+   "translation": "Xiaohong",
+   "box": [
+    297,
+    389.5,
+    315,
+    398.5
+   ],
+   "reason": "whole name tag"
+  },
+  {
+   "segment_id": "p71_s12",
+   "translation": "Xiaolan",
+   "box": [
+    214,
+    413,
+    231,
+    422
+   ],
+   "reason": "whole name tag"
+  },
+  {
+   "segment_id": "p71_s13",
+   "translation": "Xiaoqiang",
+   "box": [
+    311,
+    413.5,
+    331,
+    422.5
+   ],
+   "reason": "whole name tag"
+  },
+  {
+   "paint": [
+    154,
+    414,
+    171,
+    421.5
+   ],
+   "page": 71,
+   "colour": [
+    250,
+    250,
+    250
+   ],
+   "reason": "clean name tag for Xiaoqing"
+  },
+  {
+   "add": "p71_a1",
+   "page": 71,
+   "box": [
+    153,
+    413,
+    171,
+    422
+   ],
+   "translation": "Xiaoqing",
+   "source": "小青",
+   "size": 4,
+   "reason": "name tag never read by OCR"
+  },
+  {
+   "segment_id": "p71_s17",
+   "translation": ".",
+   "box": [
+    343,
+    534,
+    351,
+    548
+   ],
+   "reason": "duplicate 'below'; sentence ends after the TV picture"
+  },
+  {
+   "split": "p71_s18",
+   "translations": [
+    "below it are",
+    ". Which one is it?"
+   ],
+   "reason": "two bubble lines between pictures"
+  },
+  {
+   "restore": [
+    319,
+    531,
+    343,
+    550
+   ],
+   "page": 71,
+   "reason": "TV picture in bubble 1 was erased; no Chinese there"
+  },
+  {
+   "add": "p71_a2",
+   "page": 71,
+   "box": [
+    379,
+    565,
+    387,
+    576
+   ],
+   "translation": ",",
+   "source": "、",
+   "size": 10,
+   "align": "left",
+   "color": 2960173,
+   "reason": "Chinese enumeration comma between the books and the plant"
+  },
+  {
+   "segment_id": "p71_s20",
+   "translation": "BLANK",
+   "reason": "bubble reads: [globe] is on its right."
+  },
+  {
+   "segment_id": "p71_s22",
+   "translation": "I know! It is…",
+   "reason": "dots"
+  },
+  {
+   "segment_id": "p72_s1",
+   "translation": "1. Answer from the picture.",
+   "box": [
+    57,
+    124.7,
+    224,
+    137.8
+   ],
+   "reason": "one line, like its siblings"
+  },
+  {
+   "segment_id": "p72_s8",
+   "translation": "Xiaoli",
+   "clip": [
+    377,
+    386,
+    404,
+    404
+   ],
+   "box": [
+    377,
+    386,
+    404,
+    404
+   ],
+   "reason": "only the name is Chinese; keep the printed brackets in place"
+  },
+  {
+   "segment_id": "p72_s16",
+   "translation": "DROP",
+   "reason": "OCR noise on the map"
+  }
+ ],
+ "flags": [
+  {
+   "page": 67,
+   "issue": "Bus-stop sign: Station and the two added columns (Taiping Road, Square) run upward (the stacked-column rule), while Park and Zoo, set from vertical OCR lines, run downward; all names are English and legible, but the reading direction is mixed."
+  },
+  {
+   "page": 67,
+   "issue": "Arch sign 儿童乐园 (Children's Park) is curved/slanted text (OCR refuses it); kept in Chinese as in the checked edition."
+  },
+  {
+   "page": 71,
+   "issue": "Item 4 is set at 9 pt in all five pieces so line 1 matches lines 2-3 (\"4. From the right,\" has only 80 pt before the bus picture); it is smaller than items 3 and 5. Item 2 piece \"below\" is a little smaller than its row."
+  },
+  {
+   "page": 72,
+   "issue": "Desk name tags (Xiaoxiao, Xiaohong, Xiaolan, Xiaoqiang, Xiaoqing) are tiny (about 4 pt) because the tags are 15-20 pt wide."
+  },
+  {
+   "page": 72,
+   "issue": "Bullet headings 'Think: who are we looking for?' and 'Guess which object is being described.' stay at about 9.5 pt (the wider box does not raise the size); the first bullet heading is about 12 pt."
+  }
+ ]
+}

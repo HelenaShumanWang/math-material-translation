@@ -1,0 +1,4 @@
+{"corrections": [
+  {"segment_id": "p64_s17", "box": [174, 601, 211, 617], "reason": "\"Drinks\" was set at 0.51 in a tight box; the sign panel at the top of the fridge has room (tried: now 0.75, no overlap)"}
+],
+ "flags": []}

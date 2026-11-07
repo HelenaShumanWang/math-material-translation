@@ -1,0 +1,8 @@
+{"corrections": [
+{"restore": [139.0, 232.0, 377.0, 246.5], "page": 0, "reason": "the erase of 数学 cut a white band into the pale blue arc above SHUXUE; the Chinese ends at y 230, so the arc below it comes back from the scan"},
+{"segment_id": "p3_s1", "box": [224.5, 237.0, 328.0, 254.0], "reason": "set smaller than its sibling contents entries; free paper up to the dot leader"},
+{"segment_id": "p5_s0", "box": [180.0, 80.0, 377.0, 108.0], "reason": "page title shrunk to 0.69; free sky on both sides (tried: sets full size)"},
+{"segment_id": "p5_s5", "translation": "School starts!", "box": [340.0, 528.5, 379.5, 542.5], "reason": "开学了 = school is starting; box kept inside the speech bubble (a wider box ran over the bubble outline)"},
+{"segment_id": "p8_s5", "box": [60.0, 404.0, 175.0, 432.0], "reason": "heading shrunk to 0.47; free paper to the right of the tab (tried: 0.52; a smaller box leaves the Chinese uncovered)"}
+],
+"flags": []}

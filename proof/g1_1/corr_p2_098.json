@@ -1,0 +1,6 @@
+{"corrections": [
+{"segment_id": "p101_s7", "translation": "In all, how many", "reason": "the chick picture and ? follow this text in the bubble, so it must read 'In all, how many [chick]?' instead of 'How many in all [chick]?'"},
+{"segment_id": "p101_s8", "translation": "Behind me, how many", "reason": "the chick picture and ? follow: 'Behind me, how many [chick]?' instead of 'How many behind me [chick]?'"},
+{"segment_id": "p98_s21", "translation": "If I know what is to the left of the lemon, it's easy…", "reason": "'what's left of the lemon' reads as 'what remains of the lemon'; tried and fits the bubble"}
+],
+"flags": []}

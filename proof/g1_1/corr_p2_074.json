@@ -1,0 +1,18 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p76_s3",
+   "translation": "First put two cubes.",
+   "reason": "missing full stop; matches the other bubbles"
+  },
+  {
+   "merge": [
+    "p77_s14",
+    "p77_s18"
+   ],
+   "translation": "1 ten and 9 ones make 19.",
+   "reason": "one sentence split by OCR; second half was set apart and off-centre"
+  }
+ ],
+ "flags": []
+}

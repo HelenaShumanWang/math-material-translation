@@ -1,0 +1,6 @@
+{"corrections": [
+  {"segment_id": "p21_s13", "translation": "juice into", "reason": "中的饮料倒进 ('the drink in ... pour into') was translated only as 'into'; now reads 'then pour [bottle] juice into [bottle]'"},
+  {"segment_id": "p17_s7_k0", "box": [353.8, 574.5, 395, 589.5], "reason": "use the bubble's free width so the two lines are readable (checked edition had larger text)"},
+  {"segment_id": "p17_s7_k1", "box": [353.8, 591.0, 395, 606.0], "reason": "use the bubble's free width; 'the fewest.' was shrunk to 0.56"}
+],
+ "flags": []}

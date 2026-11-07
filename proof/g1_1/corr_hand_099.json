@@ -1,0 +1,4 @@
+{"corrections": [
+ {"segment_id": "p98_s14", "translation": "On its left: (grapes).", "reason": "picture-first line, one per fruit picture (柠檬的左边是葡萄); short enough for the line"},
+ {"split": "p98_s15", "translations": ["On its left: (      ).", "is (      ) the pineapple.", "Below it: (      )."], "reason": "three separate lines, each beside its fruit picture, as in the source; the inline pineapple of line 2 is not kept, so it is named"}
+]}

@@ -1,0 +1,133 @@
+{
+ "corrections": [
+  {
+   "restore": [
+    319.5,
+    343,
+    342.5,
+    363
+   ],
+   "page": 66,
+   "reason": "answer box outline damaged"
+  },
+  {
+   "segment_id": "p66_s13",
+   "translation": "The next stop is…",
+   "reason": "source ends with ……"
+  },
+  {
+   "merge": [
+    "p67_s1",
+    "p67_s2"
+   ],
+   "translation": "Talk about it: who is at the very top? Who is at the very bottom?",
+   "reason": "one question pair split; first half set small and wrapped"
+  },
+  {
+   "segment_id": "p68_s12",
+   "translation": "Who lives above it? What about floor ⟦0⟧?",
+   "reason": "clearer, distinct from 'Who is it above?'"
+  },
+  {
+   "merge": [
+    "p68_s19",
+    "p68_s20"
+   ],
+   "translation": "Xiaohong lives above Xiaoying, and Xiaoying lives above Xiaolan. Who is at the very top? Who is at the very bottom?",
+   "reason": "one exercise text set at two sizes"
+  },
+  {
+   "segment_id": "p68_s19",
+   "box": [
+    78,
+    566,
+    240,
+    654
+   ],
+   "reason": "free paper up to the building, same left edge"
+  },
+  {
+   "segment_id": "p69_i276_17_p0",
+   "box": [
+    249,
+    445,
+    321,
+    458
+   ],
+   "reason": "wraps to two lines"
+  },
+  {
+   "segment_id": "p69_i276_18_p0",
+   "box": [
+    337,
+    445,
+    371,
+    458
+   ],
+   "reason": "'is the' wraps to two lines"
+  },
+  {
+   "segment_id": "p69_i276_19_p0",
+   "box": [
+    272,
+    467,
+    452,
+    481
+   ],
+   "reason": "keep on one line"
+  },
+  {
+   "segment_id": "p70_a12_p0",
+   "box": [
+    55,
+    364,
+    252,
+    381
+   ],
+   "reason": "last line of item 4 set larger than its first lines"
+  },
+  {
+   "segment_id": "p70_s18",
+   "box": [
+    307,
+    422,
+    372,
+    447
+   ],
+   "reason": "set small; free room in the bubble"
+  },
+  {
+   "segment_id": "p71_s3",
+   "translation": "At the front is a blackboard. To its left is a television…",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p71_s18_k0",
+   "translation": "is above",
+   "reason": "'[TV] below it are' read wrongly; [TV] is above [books], [flower] and [globe]"
+  },
+  {
+   "segment_id": "p72_s5",
+   "translation": "(⟦0⟧) Xiaowen is to the left of Xiaoli.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p72_s9",
+   "erase": [
+    [
+     126.5,
+     408,
+     130.5,
+     426
+    ]
+   ],
+   "reason": "stray vertical stroke of the watermark shows through the line like a cursor"
+  }
+ ],
+ "flags": [
+  {
+   "page": 67,
+   "issue": "Arch sign 儿童乐园 ('Children's Park') is curved light-blue lettering on the gate arch; an add over it does not erase the glyphs cleanly, so it stays in Chinese."
+  }
+ ]
+}

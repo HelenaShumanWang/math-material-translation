@@ -1,0 +1,63 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s2",
+   "translation": "is heavier\nthan the tiger.",
+   "box": [
+    122,
+    256,
+    172,
+    275
+   ],
+   "reason": "two even lines inside the bubble; 'than' no longer crosses the outline"
+  },
+  {
+   "segment_id": "p27_s13",
+   "box": [
+    92.5,
+    538,
+    233,
+    563
+   ],
+   "reason": "slightly larger, kept inside the card border"
+  },
+  {
+   "segment_id": "p29_s3",
+   "translation": "Each time,",
+   "box": [
+    207,
+    499,
+    261,
+    516
+   ],
+   "reason": "fit inside the plate left of the answer box"
+  },
+  {
+   "segment_id": "p29_s4",
+   "translation": "more.",
+   "box": [
+    288,
+    499,
+    320,
+    516
+   ],
+   "reason": "clear of the red answer box and inside the plate"
+  },
+  {
+   "segment_id": "p30_s6",
+   "translation": "There were ⟦0⟧\n⟦1⟧ were carried off, leaving…",
+   "reason": "'took away 2' had no subject"
+  },
+  {
+   "segment_id": "p30_s12",
+   "box": [
+    94,
+    522,
+    235,
+    548
+   ],
+   "reason": "slightly larger, kept inside the card border"
+  }
+ ],
+ "flags": []
+}

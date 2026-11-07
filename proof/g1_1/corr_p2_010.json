@@ -1,0 +1,20 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p10_s3",
+   "translation": "There are ⟦0⟧ helicopters.",
+   "reason": "picture shows helicopters (as in checked edition); restore placeholder ⟦0⟧"
+  },
+  {
+   "segment_id": "p15_s5",
+   "translation": "Move the beads and say.",
+   "reason": "shorter so the label stays on one line like its siblings"
+  },
+  {
+   "segment_id": "p15_s7",
+   "translation": "⟦0⟧, then ⟦1⟧ more bead makes ⟦2⟧.",
+   "reason": "keep placeholders"
+  }
+ ],
+ "flags": []
+}

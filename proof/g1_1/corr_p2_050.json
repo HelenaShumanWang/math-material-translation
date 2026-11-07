@@ -1,0 +1,5 @@
+{"corrections": [
+ {"segment_id": "p50_s2", "translation": "(⟦0⟧) Ask a maths question and solve it with a number sentence.", "box": [272, 153, 442, 207], "reason": "set smaller than (1): give it the free paper of the note panel so it wraps at the sibling size"},
+ {"segment_id": "p52_s4", "translation": "⟦0⟧. Cross the river.", "box": [55, 257, 168, 274], "reason": "set at 0.70, smaller than 7.; free paper above and right of the line"},
+ {"segment_id": "p54_s22", "translation": "Which subtraction sentences make ⟦0⟧? Arrange them.", "reason": "match the bubble ('all make 8') and the addition page wording"}
+], "flags": []}
