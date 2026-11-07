@@ -1,0 +1,12 @@
+{"corrections": [
+{"segment_id": "p71_s20", "translation": "Can you use the column method?", "reason": "wrong: 竖式 is 'column method' for a UK primary teacher"},
+{"segment_id": "p72_s15", "translation": "2. Use the column method.", "reason": "wrong: 竖式 is 'column method' in UK primary maths"},
+{"segment_id": "p75_s11", "translation": "3. Use the column method.", "reason": "wrong: 竖式 is 'column method'; also shorter"},
+{"segment_id": "p76_s18", "translation": "4. Use the column method.", "reason": "wrong: 竖式 is 'column method'; also shorter where it had shrunk"},
+{"segment_id": "p78_s20", "translation": "Can you use the column method?", "reason": "wrong: 竖式 is 'column method' in UK primary maths"},
+{"segment_id": "p79_s23", "translation": "3. Use the column method.", "reason": "wrong: 竖式 is 'column method'; also shorter"},
+{"segment_id": "p90_s0", "translation": "5. Use the column method.", "reason": "wrong: 竖式 is 'column method'; also shorter"},
+{"segment_id": "p84_s5", "translation": "2. Forest Doctor.", "reason": "inconsistent: the activity is 'Forest Doctor' elsewhere in this volume"},
+{"segment_id": "p89_s1", "translation": "Number and Algebra", "reason": "inconsistent: page 88 and the standard strand name use 'Number and Algebra'"},
+{"segment_id": "p81_s22", "translation": "Calculate and discuss.", "reason": "inconsistent: 算一算，说一说 is 'Calculate and discuss' elsewhere in the volume"}
+]}

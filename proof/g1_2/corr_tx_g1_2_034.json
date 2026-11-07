@@ -1,0 +1,16 @@
+{"corrections": [
+{"segment_id": "p58_s14", "translation": "Let's learn the column method!", "reason": "wrong: 竖式 is the column method in UK primary maths"},
+{"segment_id": "p58_s21", "translation": "Use the column method.", "reason": "wrong: 竖式 = column method"},
+{"segment_id": "p59_s8", "translation": "3. Use the column method.", "reason": "wrong: 竖式 = column method"},
+{"segment_id": "p61_s8", "translation": "3. Use the column method.", "reason": "wrong: 竖式 = column method"},
+{"segment_id": "p52_s4", "translation": "Count in tens,", "reason": "unnatural: UK teachers say 'count in tens'"},
+{"segment_id": "p41_s8", "translation": "What lovely colours!", "reason": "unnatural: 'So pretty coloured in!' is awkward; short natural exclamation for 涂上颜色真好看 where the text shrank"},
+{"segment_id": "p34_s2", "translation": "Far fewer do the long jump than run.", "reason": "unnatural: 'many fewer' and missing article; also shorter where it shrank"},
+{"segment_id": "p34_s3", "translation": "A few fewer people skip than run.", "reason": "unnatural: 'skip rope' is American; British children 'skip'"},
+{"segment_id": "p47_s13", "translation": "2 fifties", "reason": "too long: 2个50 is naturally '2 fifties'; label had to shrink"},
+{"segment_id": "p38_s13", "translation": "36 picture books", "reason": "too long: picture label shrank; short phrase keeps the meaning"},
+{"segment_id": "p63_s14", "translation": "How many books did Class 2 donate?", "reason": "inconsistent: numbers as digits; class names elsewhere are 'Class 2'"},
+{"segment_id": "p65_s0", "translation": "7. Forest Doctor", "reason": "inconsistent: the same activity title elsewhere has no full stop"},
+{"segment_id": "p47_s1", "translation": "What I Learned", "reason": "case: section heading, siblings use Title Case"},
+{"segment_id": "p38_s5", "translation": "I picked 38 peaches.", "reason": "inconsistent: full sentence in a speech bubble; matching bubble ends with a full stop"}
+]}

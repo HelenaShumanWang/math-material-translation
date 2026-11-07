@@ -1,4 +1,19 @@
-{"corrections": [
-  {"segment_id": "p24_s6", "translation": "Who's tallest? Shortest?", "reason": "consistency: 谁最高？谁最矮？ -> \"Who's tallest? Shortest?\" as on p55 (narrowest box, 38 pt); same question in both places, and here the longer wording had shrunk 13.2 to 10.8 pt"},
-  {"segment_id": "p80_s10", "translation": "There are", "reason": "consistency: 一共有 -> \"There are\" as on p36 and p57; the Chinese has no ellipsis, and the label had shrunk 11.6 to 10.1 pt"}
-]}
+{
+ "corrections": [
+  {
+   "segment_id": "p24_s6",
+   "translation": "Who's tallest? Shortest?",
+   "reason": "consistency: 谁最高？谁最矮 -> \"Who's tallest? Shortest?\" as in the Review; shorter where the label had to shrink"
+  },
+  {
+   "segment_id": "p60_s6",
+   "translation": "Taoqi's room",
+   "reason": "consistency: 淘气的房间 -> \"Taoqi's room\" as in the other label; the ellipsis is not in the Chinese"
+  },
+  {
+   "segment_id": "p92_s12",
+   "translation": "Self-Check",
+   "reason": "consistency: recurring 自我评价 -> \"Self-Check\" (self-assessment, Title Case section label) in both volumes"
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{"corrections": [
+  {"segment_id": "p16_s9", "translation": "We can subtract.", "reason": "too long: shrank 8.6 to 6.6; shorter but keeps 可以 (can), which 'Use subtraction.' dropped; full stop like other speech bubbles"},
+  {"segment_id": "p16_s0", "translation": "Beautiful Fields", "reason": "unnatural: 'Beautiful Farm' without an article reads as Chinglish; 田园 is fields/countryside; same length"},
+  {"segment_id": "p15_s16", "translation": "6. Talk about it.", "reason": "inconsistent: other numbered instructions end with a full stop (5. Deliver the letters.)"},
+  {"segment_id": "p11_s1", "translation": "Let's have a meeting.", "reason": "inconsistent: full-sentence speech bubble; others end with a full stop (We need 4 more chairs.)"},
+  {"segment_id": "p14_s11", "translation": "I picked 7 peaches.", "reason": "inconsistent: full sentence of speech; speech bubbles end with a full stop"},
+  {"segment_id": "p14_s12", "translation": "I picked 16 peaches.", "reason": "inconsistent: full sentence of speech; speech bubbles end with a full stop"},
+  {"segment_id": "p19_s21", "translation": "I kicked 5 times.", "reason": "inconsistent: full sentence of speech; speech bubbles end with a full stop"},
+  {"segment_id": "p19_s22", "translation": "I kicked 7 times.", "reason": "inconsistent: full sentence of speech; speech bubbles end with a full stop"},
+  {"segment_id": "p19_s24", "translation": "I kicked 13 times.", "reason": "inconsistent: full sentence of speech; speech bubbles end with a full stop"}
+]}
