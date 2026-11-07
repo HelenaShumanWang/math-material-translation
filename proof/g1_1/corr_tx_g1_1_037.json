@@ -1,0 +1,15 @@
+{"corrections": [
+ {"segment_id": "p57_s3_k0", "translation": "2. Talk about it and fill in.", "reason": "inconsistent: 说一说，填一填 is 'Talk about it and fill in.' everywhere else in the volume"},
+ {"segment_id": "p39_s1", "translation": "How many in all", "reason": "unnatural: word order; matches 'How many ... in all?' elsewhere"},
+ {"segment_id": "p57_s0", "translation": "Consolidate and Apply", "reason": "too long: shrank; shorter heading with the same meaning (巩固应用)"},
+ {"segment_id": "p53_s1", "translation": "These number sentences all make 3.", "reason": "too long: shrank heavily; 'make 3' as in the lesson's own wording"},
+ {"segment_id": "p54_s2", "translation": "These number sentences all make 8.", "reason": "too long: shrank heavily; matches p53_s1"},
+ {"segment_id": "p53_s2", "translation": "These addition sentences all have a 5.", "reason": "too long: 'addition number sentences' is clumsy; amended to keep the volume's term 'addition sentences'"},
+ {"segment_id": "p54_s1", "translation": "These are all 6 minus a number.", "reason": "too long: shrank heavily; shorter and clearer"},
+ {"segment_id": "p60_s6", "translation": "Taoqi's room…", "reason": "wrong: Chinese double ellipsis; English uses a single ellipsis"},
+ {"segment_id": "p60_s8", "translation": "Xiaoxiao puts the clothes together…", "reason": "wrong: Chinese-style dot run; English uses a single ellipsis"},
+ {"segment_id": "p60_s9", "translation": "I put the toys together…", "reason": "wrong: Chinese double ellipsis; English uses a single ellipsis"},
+ {"segment_id": "p60_s12", "translation": "Put the tops and trousers together…", "reason": "wrong: Chinese-style dot run; English uses a single ellipsis"},
+ {"segment_id": "p62_s8", "translation": "Chinese books and Chinese…", "reason": "wrong: Chinese-style dot run; English uses a single ellipsis"},
+ {"segment_id": "p63_s4", "translation": "I sorted by…", "reason": "wrong: Chinese double ellipsis and stray space; single ellipsis as elsewhere"}
+]}

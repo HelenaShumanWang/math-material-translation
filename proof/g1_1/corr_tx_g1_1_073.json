@@ -1,0 +1,4 @@
+{"corrections": [
+  {"segment_id": "p101_s7", "translation": "How many in all", "reason": "unnatural: Chinglish word order; matches 'How many in all?' on the same page, same length"},
+  {"segment_id": "p101_s8", "translation": "How many behind me", "reason": "unnatural: Chinglish word order; natural question, no longer than before (no question mark, as in the Chinese and the s7 bubble)"}
+]}

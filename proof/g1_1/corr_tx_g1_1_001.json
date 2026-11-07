@@ -1,0 +1,9 @@
+{"corrections": [
+  {"segment_id": "p27_s0", "translation": "Unit 3 Addition and Subtraction (1)", "reason": "inconsistent: stray double space; contents page p3_s9 has a single space"},
+  {"segment_id": "p7_s2", "translation": "Talk about it and learn.", "reason": "unnatural: 'recognise 1' is odd; volume uses 'learn' for 认一认 and 'Talk about it' for 说一说 (p12_s2); shorter than before"},
+  {"segment_id": "p10_s3", "translation": "There are 2 planes.", "reason": "wrong: 飞机 is aeroplanes, not helicopters; also shorter where the text had shrunk"},
+  {"segment_id": "p16_s4", "translation": "4. Fill in.", "reason": "too long: shrank 15.6 to 10.8 pt; same 填数 is '5. Fill in.' on p36"},
+  {"segment_id": "p17_s4", "translation": "And these?", "reason": "too long: 27 pt box, text shrank; 'And these?' renders 呢？ with the same meaning"},
+  {"segment_id": "p23_s7", "translation": "Not necessarily. Let's count and see…", "reason": "inconsistent: pages 1-36 otherwise use the ellipsis character"},
+  {"segment_id": "p23_s8", "translation": "Their paths look the same length…", "reason": "inconsistent: pages 1-36 otherwise use the ellipsis character"}
+]}
