@@ -63,3 +63,20 @@ def final_page_of(source_index: int) -> int | None:
     if source_index == 1:
         return None
     return source_index if source_index == 0 else source_index - 1
+
+
+def reading_order(items: list, box) -> list:
+    """``items`` in reading order: rows from the top (lines whose centres lie within half a line height of each
+    other are one row), left to right within a row. ``box(item)`` gives (x0, y0, x1, y1). Used both for the lines a
+    proof pack lists and for the lines a split sets its texts on, so the two always agree."""
+    rows: list[list] = []
+    for it in sorted(items, key=lambda i: (box(i)[1] + box(i)[3]) / 2):
+        x0, y0, x1, y1 = box(it)
+        c, h = (y0 + y1) / 2, y1 - y0
+        if rows:
+            r0, r1 = box(rows[-1][0])[1], box(rows[-1][0])[3]
+            if abs(c - (r0 + r1) / 2) <= 0.5 * min(h, r1 - r0):
+                rows[-1].append(it)
+                continue
+        rows.append([it])
+    return [it for row in rows for it in sorted(row, key=lambda i: box(i)[0])]

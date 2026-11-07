@@ -16,7 +16,7 @@ from pathlib import Path
 import pymupdf
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from common import final_page_of, out_dir, pdf_name, proof_dir, source_pdf  # noqa: E402
+from common import final_page_of, out_dir, pdf_name, proof_dir, reading_order, source_pdf  # noqa: E402
 
 DELIVERIES = Path(os.environ.get("BNU_DELIVERIES", "/tmp/piptest/deliveries"))
 HAN = re.compile(r"[㐀-鿿]")
@@ -55,8 +55,10 @@ def main() -> None:
             b = [round(s["bbox"][k], 1) for k in ("x0", "y0", "x1", "y1")]
             if s["kind"] == "text":
                 r = s.get("render") or {}
-                lines = [by_id[m]["source_text"] for m in s.get("members") or []
-                         if m in by_id and not re.search(r"_e\d+$|_p\d+m$", m)]
+                lines = [m["source_text"] for m in reading_order(
+                    [by_id[m] for m in s.get("members") or [] if m in by_id and by_id[m].get("image")
+                     and not re.search(r"_e\d+$", m)],
+                    lambda m: tuple(m["bbox"][k] for k in ("x0", "y0", "x1", "y1")))]  # the order a split uses
                 page_segs.append({"id": s["id"], "role": s["style"].get("role"), "source": s.get("source_text"),
                                   "protected": s.get("protected_text"), "translation": s.get("translation_raw"),
                                   "shown": s.get("translated_text"), "box": b,

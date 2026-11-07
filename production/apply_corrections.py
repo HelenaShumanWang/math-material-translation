@@ -34,7 +34,7 @@ import pymupdf
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import image_fixes  # noqa: E402
-from common import out_dir as _out_dir, proof_dir as _proof_dir, source_pdf  # noqa: E402
+from common import out_dir as _out_dir, proof_dir as _proof_dir, reading_order, source_pdf  # noqa: E402
 
 from mathtrans.glossary import default_glossary  # noqa: E402
 from mathtrans.layout import render_document  # noqa: E402
@@ -280,7 +280,7 @@ def merge_fragments(c) -> tuple[bool, str]:
 
 def _reading_lines(para: TextSegment) -> list[TextSegment]:
     lines = [m for m in _members(para) if m.image is not None and not re.search(r"_e\d+$", m.id)]
-    return sorted(lines, key=lambda m: (round(m.bbox.y0 / max(4.0, 0.6 * m.bbox.height)), m.bbox.x0))
+    return reading_order(lines, lambda m: (m.bbox.x0, m.bbox.y0, m.bbox.x1, m.bbox.y1))
 
 
 def split_paragraph(c) -> tuple[bool, str]:
