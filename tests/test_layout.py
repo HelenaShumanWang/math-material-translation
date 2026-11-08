@@ -1034,6 +1034,26 @@ def test_numbered_instruction_is_no_sibling_of_the_picture_labels_beside_it():
     assert [sorted(s.id for s in g) for g in groups if "p91_s10" in [s.id for s in g]] == [["p91_s10", "p91_s11"]]
 
 
+def test_numbered_instructions_are_no_siblings_of_the_cell_labels_on_their_left_edge():
+    from mathtrans.layout import _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def seg(i, x0, y0, x1, size, zh, en, font=None):
+        s = TextSegment(id=f"p82_s{i}", page=82, bbox=BBox(x0=x0, y0=y0, x1=x1, y1=y0 + 13), source_text=zh,
+                        protected_text=zh, translated_text=en, origin="ocr",
+                        style=SegmentStyle(size=size, color=0x231F20, role="label"))
+        s.render = RenderInfo(font_size=font or size, scale=1.0, bbox=s.bbox)
+        return s
+
+    # page 83 of g1_2: H T O under a counting frame at x 60, the numbered instructions below at x 57
+    cells = [seg(1, 60, 352, 84, 10.3, "百位", "H", font=9.6), seg(2, 87, 352, 111, 10.3, "十位", "T", font=9.6),
+             seg(3, 114, 352, 138, 10.3, "个位", "O", font=9.6)]
+    items = [seg(14, 57, 422, 358, 12.1, "1.用小棒或计数器做一做。", "1. Use sticks or a counting frame."),
+             seg(19, 56, 562, 235, 12.1, "2.买1副羽毛球拍多少元？", "2. How much does 1 racket cost?")]
+    groups = _sibling_label_groups(cells + items)
+    assert sorted(sorted(s.id for s in g) for g in groups) == [["p82_s1", "p82_s2", "p82_s3"], ["p82_s14", "p82_s19"]]
+
+
 def test_a_short_answer_label_read_as_a_heading_grows_like_a_label(tmp_path):
     from PIL import Image
     from mathtrans.layout import render_document

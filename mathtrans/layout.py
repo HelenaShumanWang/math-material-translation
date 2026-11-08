@@ -1515,6 +1515,9 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
               and s.render is not None and s.render.font_size > 0
               and s.render.bbox is not None]
     parent = list(range(len(labels)))
+    # a piece of a line that pictures or answer blanks split ("Put" [cup] "below" [box]) is not an entry of a
+    # column, even when the line starts on the left edge of a heading or a list
+    in_row = {a.id for a in labels for b in labels if a is not b and _same_row(a, b)}
 
     def find(i: int) -> int:
         while parent[i] != i:
@@ -1529,6 +1532,7 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
             # a column (a contents page, a list) is made of one-line texts: a two-line bubble that
             # happens to start on the left edge of a lesson heading is not one of its entries
             same_column = (abs(a.bbox.x0 - b.bbox.x0) <= 0.5 * h and _one_line_box(a) and _one_line_box(b)
+                           and a.id not in in_row and b.id not in in_row
                            and (a.bbox.y1 <= b.bbox.y0 + h or b.bbox.y1 <= a.bbox.y0 + h))
             same_list = _list_item(a) and _list_item(b) and abs(a.bbox.x0 - b.bbox.x0) <= LIST_INDENT * h
             dy = abs((a.bbox.y0 + a.bbox.y1) / 2 - (b.bbox.y0 + b.bbox.y1) / 2)
@@ -1546,8 +1550,9 @@ def _sibling_label_groups(segs: Sequence[TextSegment]) -> list[list[TextSegment]
             long_item = not (_short_label(a) or _short_fragment(a)) or not (_short_label(b) or _short_fragment(b))
             if long_item and not (same_column or same_list or same_row):
                 continue  # a numbered item (or a heading-styled entry) is a sibling within its column only
-            if _list_item(a) != _list_item(b) and not (same_column or same_row):
-                continue  # a numbered instruction and the price tags of the picture beside it are not one set
+            if _list_item(a) != _list_item(b) and not same_row:
+                continue  # a numbered instruction and the price tags of the picture beside it (or the cell labels of a
+                # counting frame on its left edge) are not one set; pieces of its own line are
             if _one_line_box(a) != _one_line_box(b) and not (same_row or same_list):
                 continue  # a speech bubble of two lines and the one-word labels of a picture are not one set
             if dy <= LABEL_ROW_PITCH * h and dx <= 8 * h:
