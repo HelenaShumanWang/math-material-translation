@@ -1,0 +1,401 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p65_s13_k3",
+   "translation": "BLANK",
+   "reason": "re-set by p65_a1 at the size of Round 1-3"
+  },
+  {
+   "add": "p65_a1",
+   "page": 65,
+   "box": [
+    269.5,
+    491,
+    301,
+    502
+   ],
+   "translation": "Round",
+   "source": "第 次",
+   "size": 7.0,
+   "align": "left",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p65_s18",
+   "translation": "BLANK",
+   "reason": "re-set by p65_a2 at the size of Round 1-3"
+  },
+  {
+   "add": "p65_a2",
+   "page": 65,
+   "box": [
+    269.5,
+    506,
+    301,
+    517
+   ],
+   "translation": "Round",
+   "source": "第 次",
+   "size": 7.0,
+   "align": "left",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p65_s19",
+   "translation": "BLANK",
+   "reason": "re-set by p65_a3 at the size of Round 1-3"
+  },
+  {
+   "add": "p65_a3",
+   "page": 65,
+   "box": [
+    269.5,
+    521,
+    301,
+    531.5
+   ],
+   "translation": "Round",
+   "source": "第 次",
+   "size": 7.0,
+   "align": "left",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p65_s20_k0",
+   "translation": "BLANK",
+   "reason": "re-set by p65_a4 at the size of Round 1-3"
+  },
+  {
+   "add": "p65_a4",
+   "page": 65,
+   "box": [
+    269.5,
+    535.5,
+    301,
+    546.5
+   ],
+   "translation": "Round",
+   "source": "第 次",
+   "size": 7.0,
+   "align": "left",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s8_k0",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a1",
+   "page": 66,
+   "box": [
+    72,
+    279,
+    120.5,
+    292
+   ],
+   "translation": "Name",
+   "source": "姓名",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s8_k1",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a2",
+   "page": 66,
+   "box": [
+    72,
+    294.5,
+    120.5,
+    308.5
+   ],
+   "translation": "Round 1",
+   "source": "第1次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s8_k2",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a3",
+   "page": 66,
+   "box": [
+    72,
+    311,
+    120.5,
+    324.5
+   ],
+   "translation": "Round 2",
+   "source": "第2次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s8_k4",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a4",
+   "page": 66,
+   "box": [
+    72,
+    327.5,
+    120.5,
+    340.5
+   ],
+   "translation": "Round 3",
+   "source": "第3次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s8_k5",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a5",
+   "page": 66,
+   "box": [
+    72,
+    343.5,
+    120.5,
+    357.5
+   ],
+   "translation": "Round 4",
+   "source": "第4次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s9_k0",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a6",
+   "page": 66,
+   "box": [
+    301.5,
+    279,
+    358.5,
+    292
+   ],
+   "translation": "Class",
+   "source": "班级",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s9_k1",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a7",
+   "page": 66,
+   "box": [
+    301.5,
+    294.5,
+    358.5,
+    308.5
+   ],
+   "translation": "Round 1",
+   "source": "第1次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s9_k2",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a8",
+   "page": 66,
+   "box": [
+    301.5,
+    311,
+    358.5,
+    324.5
+   ],
+   "translation": "Round 2",
+   "source": "第2次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s9_k3",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a9",
+   "page": 66,
+   "box": [
+    301.5,
+    327.5,
+    358.5,
+    340.5
+   ],
+   "translation": "Round 3",
+   "source": "第3次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p66_s9_k4",
+   "translation": "BLANK",
+   "reason": "re-set by an add so all table labels are one size"
+  },
+  {
+   "add": "p66_a10",
+   "page": 66,
+   "box": [
+    301.5,
+    343.5,
+    358.5,
+    357.5
+   ],
+   "translation": "Round 4",
+   "source": "第4次",
+   "size": 9.5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p72_s9",
+   "translation": "BLANK",
+   "reason": "re-set with its (1) by p72_a1 at the size of (2)"
+  },
+  {
+   "add": "p72_a1",
+   "page": 72,
+   "box": [
+    287,
+    261,
+    492,
+    281
+   ],
+   "translation": "(1) How many rows can be planted?",
+   "source": "(1) 可以栽多少行？",
+   "size": 11.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "segment_id": "p72_s11",
+   "translation": "BLANK",
+   "reason": "re-set by p72_a2 at the size of (1)"
+  },
+  {
+   "add": "p72_a2",
+   "page": 72,
+   "box": [
+    287,
+    284.5,
+    492,
+    345
+   ],
+   "translation": "(2) If they are shared equally among 3 groups, how many does each group plant?",
+   "source": "(2) 平均分给3个小组去栽，每组栽多少棵？",
+   "size": 11.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "set at the size of its sibling labels"
+  },
+  {
+   "restore": [
+    300.5,
+    292.9,
+    360,
+    294.5
+   ],
+   "page": 66,
+   "reason": "table rule under the Class column, broken by the erase of the row labels"
+  },
+  {
+   "restore": [
+    300.5,
+    309.3,
+    360,
+    310.9
+   ],
+   "page": 66,
+   "reason": "table rule under the Class column, broken by the erase of the row labels"
+  },
+  {
+   "restore": [
+    300.5,
+    325.7,
+    360,
+    327.3
+   ],
+   "page": 66,
+   "reason": "table rule under the Class column, broken by the erase of the row labels"
+  },
+  {
+   "restore": [
+    300.5,
+    342.0,
+    360,
+    343.6
+   ],
+   "page": 66,
+   "reason": "table rule under the Class column, broken by the erase of the row labels"
+  },
+  {
+   "restore": [
+    300.5,
+    358.4,
+    360,
+    360.0
+   ],
+   "page": 66,
+   "reason": "table rule under the Class column, broken by the erase of the row labels"
+  },
+  {
+   "restore": [
+    355.5,
+    278,
+    360.5,
+    294.5
+   ],
+   "page": 66,
+   "reason": "column rule beside Class, erased with the header label"
+  }
+ ],
+ "left": []
+}

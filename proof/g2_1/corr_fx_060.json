@@ -1,0 +1,90 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p59_s11_k0",
+   "box": [
+    76,
+    423,
+    200,
+    447
+   ],
+   "reason": "set on two lines so row 1 of exercise 2 matches the size of row 2; full stop as in row 2",
+   "translation": "Book: about 26 (  ) long."
+  },
+  {
+   "segment_id": "p59_s11_k1",
+   "box": [
+    208,
+    423,
+    328,
+    447
+   ],
+   "reason": "set on two lines so row 1 of exercise 2 matches the size of row 2; full stop as in row 2",
+   "translation": "House: about 5 (  ) wide."
+  },
+  {
+   "segment_id": "p59_s11_k2",
+   "box": [
+    337,
+    423,
+    445,
+    447
+   ],
+   "reason": "set on two lines so row 1 of exercise 2 matches the size of row 2; full stop as in row 2",
+   "translation": "Chalk: about 7 (  ) long."
+  },
+  {
+   "segment_id": "p59_s14",
+   "box": [
+    337,
+    495,
+    446,
+    528
+   ],
+   "reason": "keep the two-line room the cell had"
+  },
+  {
+   "paint": [
+    112,
+    448,
+    198,
+    466.5
+   ],
+   "page": 60,
+   "colour": [
+    183,
+    228,
+    249
+   ],
+   "reason": "widen the small barrier sign so its English can be read"
+  },
+  {
+   "segment_id": "p60_s9",
+   "translation": "Max height 4 m",
+   "box": [
+    114,
+    449,
+    196,
+    465
+   ],
+   "reason": "set on the widened sign plate instead of at scale 0.55"
+  },
+  {
+   "add": "p62_a1",
+   "page": 62,
+   "box": [
+    307,
+    407,
+    340,
+    423
+   ],
+   "translation": "cups.",
+   "source": "个。",
+   "reason": "unit after the answer box, set close to the box and centred on it like items 1, 2 and 4",
+   "size": 10,
+   "color": 2301728,
+   "align": "left"
+  }
+ ],
+ "left": []
+}

@@ -1,0 +1,1229 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s1",
+   "translation": "Count Pinecones",
+   "box": [
+    61.5,
+    128.0,
+    123.5,
+    153.5
+   ],
+   "reason": "lay the lesson banner out over the whole green plate (scale 0.54 -> 0.71)"
+  },
+  {
+   "segment_id": "p46_s21",
+   "translation": "BLANK",
+   "reason": "set again by p46_a1 at the size of (2)-(4)"
+  },
+  {
+   "segment_id": "p46_s23",
+   "translation": "BLANK",
+   "reason": "set again by p46_a2 (whose box also erases the (2) left in Chinese type)"
+  },
+  {
+   "segment_id": "p46_s24",
+   "translation": "BLANK",
+   "reason": "set again by p46_a3"
+  },
+  {
+   "segment_id": "p46_s25",
+   "translation": "BLANK",
+   "reason": "set again by p46_a4"
+  },
+  {
+   "segment_id": "p46_s26",
+   "translation": "BLANK",
+   "reason": "set again by p46_a5"
+  },
+  {
+   "segment_id": "p46_s27",
+   "translation": "BLANK",
+   "reason": "set again by p46_a6"
+  },
+  {
+   "add": "p46_a2",
+   "page": 46,
+   "box": [
+    71.5,
+    424.0,
+    214.5,
+    440.0
+   ],
+   "translation": "(2) Teacher Zhang bought 7",
+   "source": "（2）张老师买了7本",
+   "size": 10.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(1)-(4) one size"
+  },
+  {
+   "add": "p46_a3",
+   "page": 46,
+   "box": [
+    233.0,
+    424.0,
+    462.0,
+    440.0
+   ],
+   "translation": ". How much was that in total?",
+   "source": "，一共花了多少元？",
+   "size": 10.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(1)-(4) one size"
+  },
+  {
+   "add": "p46_a1",
+   "page": 46,
+   "box": [
+    71.5,
+    400.0,
+    212.0,
+    416.0
+   ],
+   "translation": "(1) Teacher Li bought 8",
+   "source": "（1）李老师买了8根",
+   "size": 10.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(1)-(4) one size"
+  },
+  {
+   "add": "p46_a7",
+   "page": 46,
+   "box": [
+    247.0,
+    400.0,
+    462.0,
+    416.0
+   ],
+   "translation": ". How much was that in total?",
+   "source": "，一共花了多少元？",
+   "size": 10.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(1)-(4) one size"
+  },
+  {
+   "restore": [
+    211.5,
+    399.0,
+    246.5,
+    416.5
+   ],
+   "page": 46,
+   "reason": "the skipping-rope picture in (1), erased with the blanked line; no Chinese in this box"
+  },
+  {
+   "add": "p46_a4",
+   "page": 46,
+   "box": [
+    72.0,
+    447.5,
+    296.0,
+    463.5
+   ],
+   "translation": "(3) Teacher Wang has ¥40 and wants 4",
+   "source": "（3）王老师带了40元，想买4辆",
+   "size": 10.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(1)-(4) one size"
+  },
+  {
+   "add": "p46_a5",
+   "page": 46,
+   "box": [
+    321.0,
+    447.5,
+    462.0,
+    463.5
+   ],
+   "translation": ". Is that enough?",
+   "source": "，够吗？",
+   "size": 10.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(1)-(4) one size"
+  },
+  {
+   "add": "p46_a6",
+   "page": 46,
+   "box": [
+    72.0,
+    471.0,
+    462.0,
+    487.0
+   ],
+   "translation": "(4) Pose another maths question and try to answer it.",
+   "source": "（4）请你再提出一个数学问题，并尝试解答。",
+   "size": 10.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(1)-(4) one size"
+  },
+  {
+   "paint": [
+    213.75,
+    136.5,
+    224.75,
+    137.0
+   ],
+   "page": 56,
+   "colour": [
+    189,
+    192,
+    71
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    210.125,
+    137.0,
+    228.5,
+    137.5
+   ],
+   "page": 56,
+   "colour": [
+    189,
+    191,
+    73
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    208.125,
+    137.5,
+    230.5,
+    138.0
+   ],
+   "page": 56,
+   "colour": [
+    188,
+    190,
+    72
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    207.5,
+    138.0,
+    231.375,
+    138.5
+   ],
+   "page": 56,
+   "colour": [
+    188,
+    191,
+    73
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    205.5,
+    138.5,
+    233.0,
+    139.0
+   ],
+   "page": 56,
+   "colour": [
+    188,
+    192,
+    73
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    204.375,
+    139.0,
+    234.125,
+    139.5
+   ],
+   "page": 56,
+   "colour": [
+    190,
+    195,
+    73
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    203.875,
+    139.5,
+    234.75,
+    140.0
+   ],
+   "page": 56,
+   "colour": [
+    198,
+    203,
+    74
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    202.125,
+    140.0,
+    236.125,
+    140.5
+   ],
+   "page": 56,
+   "colour": [
+    208,
+    208,
+    75
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    201.875,
+    140.5,
+    236.375,
+    141.0
+   ],
+   "page": 56,
+   "colour": [
+    207,
+    212,
+    75
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    201.0,
+    141.0,
+    237.625,
+    141.5
+   ],
+   "page": 56,
+   "colour": [
+    209,
+    212,
+    76
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    199.875,
+    141.5,
+    238.75,
+    142.0
+   ],
+   "page": 56,
+   "colour": [
+    212,
+    216,
+    77
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    199.25,
+    142.0,
+    239.0,
+    142.5
+   ],
+   "page": 56,
+   "colour": [
+    213,
+    220,
+    76
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    199.0,
+    142.5,
+    239.25,
+    143.0
+   ],
+   "page": 56,
+   "colour": [
+    213,
+    220,
+    79
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    198.125,
+    143.0,
+    239.875,
+    143.5
+   ],
+   "page": 56,
+   "colour": [
+    215,
+    221,
+    79
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    197.625,
+    143.5,
+    241.0,
+    144.0
+   ],
+   "page": 56,
+   "colour": [
+    218,
+    224,
+    80
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    197.0,
+    144.0,
+    241.5,
+    144.5
+   ],
+   "page": 56,
+   "colour": [
+    218,
+    223,
+    79
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    196.75,
+    144.5,
+    241.875,
+    145.0
+   ],
+   "page": 56,
+   "colour": [
+    221,
+    225,
+    80
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    195.875,
+    145.0,
+    242.375,
+    145.5
+   ],
+   "page": 56,
+   "colour": [
+    218,
+    224,
+    77
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    195.875,
+    145.5,
+    242.625,
+    146.0
+   ],
+   "page": 56,
+   "colour": [
+    219,
+    225,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    195.625,
+    146.0,
+    243.0,
+    146.5
+   ],
+   "page": 56,
+   "colour": [
+    218,
+    225,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    195.0,
+    146.5,
+    243.5,
+    147.0
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    226,
+    80
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.75,
+    147.0,
+    244.125,
+    147.5
+   ],
+   "page": 56,
+   "colour": [
+    221,
+    227,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.5,
+    147.5,
+    244.375,
+    148.0
+   ],
+   "page": 56,
+   "colour": [
+    218,
+    225,
+    77
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.5,
+    148.0,
+    244.625,
+    148.5
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    226,
+    78
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.25,
+    148.5,
+    245.0,
+    149.0
+   ],
+   "page": 56,
+   "colour": [
+    221,
+    227,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.25,
+    149.0,
+    245.25,
+    149.5
+   ],
+   "page": 56,
+   "colour": [
+    221,
+    227,
+    80
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.25,
+    149.5,
+    245.5,
+    150.0
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    225,
+    80
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.25,
+    150.0,
+    246.125,
+    150.5
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    227,
+    82
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.25,
+    150.5,
+    246.125,
+    151.0
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    226,
+    83
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.5,
+    151.0,
+    246.375,
+    151.5
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    227,
+    84
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.5,
+    151.5,
+    246.625,
+    152.0
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    225,
+    82
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    194.75,
+    152.0,
+    211.25,
+    152.5
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    221,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    219.125,
+    152.0,
+    246.875,
+    152.5
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    226,
+    79
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    195.0,
+    152.5,
+    209.25,
+    153.0
+   ],
+   "page": 56,
+   "colour": [
+    216,
+    217,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    220.875,
+    152.5,
+    247.25,
+    153.0
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    227,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    195.625,
+    153.0,
+    207.75,
+    153.5
+   ],
+   "page": 56,
+   "colour": [
+    217,
+    217,
+    78
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    222.25,
+    153.0,
+    247.25,
+    153.5
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    226,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    195.875,
+    153.5,
+    206.625,
+    154.0
+   ],
+   "page": 56,
+   "colour": [
+    215,
+    214,
+    77
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    223.375,
+    153.5,
+    247.5,
+    154.0
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    226,
+    82
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    196.5,
+    154.0,
+    205.5,
+    154.5
+   ],
+   "page": 56,
+   "colour": [
+    210,
+    206,
+    77
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    224.25,
+    154.0,
+    247.5,
+    154.5
+   ],
+   "page": 56,
+   "colour": [
+    221,
+    226,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    196.75,
+    154.5,
+    204.625,
+    155.0
+   ],
+   "page": 56,
+   "colour": [
+    200,
+    203,
+    75
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    225.375,
+    154.5,
+    247.75,
+    155.0
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    224,
+    83
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    197.625,
+    155.0,
+    203.5,
+    155.5
+   ],
+   "page": 56,
+   "colour": [
+    189,
+    193,
+    73
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    226.75,
+    155.0,
+    247.75,
+    155.5
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    223,
+    84
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    198.5,
+    155.5,
+    202.375,
+    156.0
+   ],
+   "page": 56,
+   "colour": [
+    187,
+    190,
+    70
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    227.375,
+    155.5,
+    248.0,
+    156.0
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    226,
+    86
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    199.0,
+    156.0,
+    202.125,
+    156.5
+   ],
+   "page": 56,
+   "colour": [
+    189,
+    194,
+    69
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    227.625,
+    156.0,
+    248.375,
+    156.5
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    226,
+    84
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    228.75,
+    156.5,
+    248.625,
+    157.0
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    227,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    229.375,
+    157.0,
+    248.625,
+    157.5
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    228,
+    84
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    230.25,
+    157.5,
+    248.875,
+    158.0
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    228,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    230.5,
+    158.0,
+    248.875,
+    158.5
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    228,
+    77
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    231.375,
+    158.5,
+    248.875,
+    159.0
+   ],
+   "page": 56,
+   "colour": [
+    223,
+    228,
+    87
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    231.875,
+    159.0,
+    248.875,
+    159.5
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    226,
+    82
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    232.75,
+    159.5,
+    248.875,
+    160.0
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    227,
+    83
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    233.0,
+    160.0,
+    248.875,
+    160.5
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    226,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    233.375,
+    160.5,
+    249.25,
+    161.0
+   ],
+   "page": 56,
+   "colour": [
+    221,
+    222,
+    81
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    233.875,
+    161.0,
+    248.875,
+    161.5
+   ],
+   "page": 56,
+   "colour": [
+    221,
+    224,
+    78
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    234.5,
+    161.5,
+    248.375,
+    162.0
+   ],
+   "page": 56,
+   "colour": [
+    222,
+    227,
+    78
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    234.75,
+    162.0,
+    248.0,
+    162.5
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    224,
+    83
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    235.25,
+    162.5,
+    247.5,
+    163.0
+   ],
+   "page": 56,
+   "colour": [
+    219,
+    226,
+    87
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    235.625,
+    163.0,
+    246.875,
+    163.5
+   ],
+   "page": 56,
+   "colour": [
+    217,
+    224,
+    83
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    235.875,
+    163.5,
+    246.125,
+    164.0
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    222,
+    79
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    236.125,
+    164.0,
+    245.75,
+    164.5
+   ],
+   "page": 56,
+   "colour": [
+    220,
+    224,
+    78
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    236.375,
+    164.5,
+    244.375,
+    165.0
+   ],
+   "page": 56,
+   "colour": [
+    218,
+    219,
+    77
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    236.75,
+    165.0,
+    243.0,
+    165.5
+   ],
+   "page": 56,
+   "colour": [
+    219,
+    218,
+    82
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "paint": [
+    237.25,
+    165.5,
+    241.0,
+    166.0
+   ],
+   "page": 56,
+   "colour": [
+    219,
+    219,
+    85
+   ],
+   "reason": "clear 动物游乐园 from the arch's yellow plaque"
+  },
+  {
+   "add": "p56_a1",
+   "page": 56,
+   "box": [
+    200.0,
+    139.5,
+    231.0,
+    149.0
+   ],
+   "translation": "Animal",
+   "source": "动物",
+   "size": 6.5,
+   "align": "center",
+   "color": 2236962,
+   "reason": "curved park sign 动物游乐园, first word on the top of the arch"
+  },
+  {
+   "add": "p56_a2",
+   "page": 56,
+   "box": [
+    230.0,
+    151.0,
+    247.0,
+    159.5
+   ],
+   "translation": "Park",
+   "source": "游乐园",
+   "size": 6.5,
+   "align": "center",
+   "color": 2236962,
+   "reason": "curved park sign, second word lower down the arch"
+  }
+ ],
+ "left": [
+  {
+   "page": 57,
+   "issue": "Not in this flag: 'Over 1 m tall? Buy a ticket.' (p56_s1) is set at scale 0.55 in its bubble."
+  },
+  {
+   "page": 47,
+   "issue": "Not in this flag: the '¥5' price under the comic sits high and left of its label, and the 'Comics' cover label overlaps the cover art."
+  }
+ ]
+}

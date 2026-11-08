@@ -1,0 +1,20 @@
+{"corrections": [
+ {"restore": [188, 420, 261, 462.5], "page": 97, "reason": "postbox 7: restore the label panel outline, box top and the grey side outline the erase damaged (the Chinese inside is painted over by the next entry)"},
+ {"paint": [196.1, 447.4, 245.3, 459.7], "page": 97, "colour": [255, 255, 255], "reason": "white interior of the restored label panel, without 7的倍数"},
+ {"restore": [285, 420, 357, 462.5], "page": 97, "reason": "postbox 8: restore the label panel outline and the grey side outline the erase damaged (the Chinese inside is painted over by the next entry)"},
+ {"paint": [291.9, 447.4, 341.2, 459.7], "page": 97, "colour": [255, 255, 255], "reason": "white interior of the restored label panel, without 8的倍数"},
+ {"segment_id": "p97_s15", "translation": "Multiples of 7", "box": [196.6, 447.8, 244.8, 459.4], "reason": "set inside the restored label panel"},
+ {"segment_id": "p97_s16", "translation": "Multiples of 8", "box": [292.4, 447.8, 340.7, 459.4], "reason": "set inside the restored label panel"},
+ {"segment_id": "p104_s21_k0", "translation": "(1) How old is Dad this year?", "box": [79.9, 400, 330, 414], "erase": [[80.4, 398.6, 103.0, 415.5]], "reason": "set the (1) enumerator in English like (3) so all three questions line up at the same size"},
+ {"segment_id": "p104_s21_k1", "translation": "(2) How much older is Grandpa than Dad?", "box": [79.9, 424.5, 330, 438.5], "erase": [[80.3, 421.6, 115.0, 440.3]], "reason": "set the (2) enumerator in English like (3) so all three questions line up at the same size"},
+ {"paint": [78, 422, 106, 441], "page": 104, "colour": "border", "reason": "replaces the earlier restore of the (2) enumerator (same box): (2) is now set in English with its question, like (1) and (3)"},
+ {"restore": [327.5, 140, 341, 178], "page": 114, "reason": "Cao Cao card (Figure 1): undo the smudged erase on the gradient (the Chinese is covered by the plate painted next)"},
+ {"paint": [329.7, 146.0, 338.9, 173.5], "page": 114, "colour": [236, 233, 95], "reason": "yellow name plate like the other cards' plates, over 曹操"},
+ {"segment_id": "p114_s1", "translation": "Cao Cao", "box": [329.7, 146.0, 338.9, 173.5], "reason": "set on the yellow name plate; the erase had left a smudge and a trace of 曹 on the gradient"},
+ {"restore": [382.5, 432, 396.5, 468], "page": 114, "reason": "Cao Cao card (Figure 2): undo the smudged erase on the gradient (the Chinese is covered by the plate painted next)"},
+ {"paint": [384.6, 436.0, 393.8, 463.5], "page": 114, "colour": [236, 233, 95], "reason": "yellow name plate like the other cards' plates, over 曹操"},
+ {"segment_id": "p114_s7", "translation": "Cao Cao", "box": [384.6, 436.0, 393.8, 463.5], "reason": "set on the yellow name plate; the erase had left a smudge and a trace of 曹 on the gradient"},
+ {"segment_id": "p114_s12", "translation": "BLANK", "reason": "vertical 出口 was set rotated; Exit is set horizontally by p114_a2 like the other exits"},
+ {"add": "p114_a2", "page": 114, "box": [259, 573.8, 286, 589.3], "translation": "Exit", "source": "出口", "size": 11.8, "align": "center", "color": 0, "reason": "horizontal Exit, same size and position as the other two exits"}
+],
+"left": []}

@@ -1,0 +1,200 @@
+{
+ "corrections": [
+  {
+   "add": "p21_a1",
+   "page": 21,
+   "box": [
+    174,
+    577,
+    197,
+    588
+   ],
+   "translation": "(people)",
+   "source": "(人)",
+   "size": 5.5,
+   "align": "left",
+   "color": 15134428,
+   "reason": "chalk unit"
+  },
+  {
+   "add": "p21_a2",
+   "page": 21,
+   "box": [
+    339.2,
+    580.2,
+    366.5,
+    590
+   ],
+   "translation": "(people)",
+   "source": "(人)",
+   "size": 5.5,
+   "align": "left",
+   "color": 15134428,
+   "reason": "chalk unit"
+  },
+  {
+   "add": "p21_a3",
+   "page": 21,
+   "box": [
+    297,
+    592,
+    352,
+    603
+   ],
+   "translation": "4×6 = 24 (people)",
+   "source": "4×6=24(人",
+   "size": 5.5,
+   "align": "left",
+   "color": 15134428,
+   "reason": "chalk sum; head covers the right"
+  },
+  {
+   "segment_id": "p24_s9",
+   "box": [
+    281,
+    380,
+    406.5,
+    397
+   ],
+   "reason": "use free room left up to the cell's dashed divider; closer to sibling size"
+  },
+  {
+   "paint": [
+    298.5,
+    292.5,
+    336.5,
+    320.8
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "slanted card 6个3 removed to redraw it level"
+  },
+  {
+   "paint": [
+    301,
+    298.5,
+    334,
+    313.5
+   ],
+   "page": 25,
+   "colour": [
+    35,
+    31,
+    32
+   ],
+   "reason": "card outline"
+  },
+  {
+   "paint": [
+    301.9,
+    299.4,
+    333.1,
+    312.6
+   ],
+   "page": 25,
+   "colour": [
+    214,
+    226,
+    158
+   ],
+   "reason": "card face"
+  },
+  {
+   "add": "p25_a1",
+   "page": 25,
+   "box": [
+    302.5,
+    300,
+    332.5,
+    312
+   ],
+   "translation": "6 3s",
+   "source": "6个3",
+   "size": 12,
+   "align": "center",
+   "color": 3026476,
+   "reason": "as the 2 3s cards on the next page"
+  },
+  {
+   "paint": [
+    311,
+    346,
+    346.5,
+    380
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "slanted card 3个6 removed to redraw it level"
+  },
+  {
+   "paint": [
+    307.6,
+    364.9,
+    311,
+    380
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "left tip of the slanted card, below the purple card"
+  },
+  {
+   "paint": [
+    310,
+    355.5,
+    344,
+    370.5
+   ],
+   "page": 25,
+   "colour": [
+    35,
+    31,
+    32
+   ],
+   "reason": "card outline"
+  },
+  {
+   "paint": [
+    310.9,
+    356.4,
+    343.1,
+    369.6
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    238,
+    10
+   ],
+   "reason": "card face"
+  },
+  {
+   "add": "p25_a2",
+   "page": 25,
+   "box": [
+    311.5,
+    357,
+    342.5,
+    369
+   ],
+   "translation": "3 6s",
+   "source": "3个6",
+   "size": 12,
+   "align": "center",
+   "color": 3026476,
+   "reason": "as the 2 3s cards on the next page"
+  }
+ ],
+ "left": []
+}

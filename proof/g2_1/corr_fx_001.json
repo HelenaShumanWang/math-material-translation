@@ -1,0 +1,1780 @@
+{
+"corrections": [
+{
+"paint": [
+132,
+140,
+374,
+233
+],
+"page": 0,
+"colour": [
+255,
+255,
+255
+],
+"reason": "white paper over the ghost outlines of 数学 behind Mathematics"
+},
+{
+"paint": [
+231.6,
+210.5,
+275.3,
+211.0
+],
+"page": 0,
+"colour": [
+208,
+237,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+221.9,
+211.0,
+285.1,
+211.5
+],
+"page": 0,
+"colour": [
+206,
+237,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+214.6,
+211.5,
+292.4,
+212.0
+],
+"page": 0,
+"colour": [
+205,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+208.6,
+212.0,
+298.4,
+212.5
+],
+"page": 0,
+"colour": [
+203,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+203.3,
+212.5,
+303.7,
+213.0
+],
+"page": 0,
+"colour": [
+202,
+235,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+198.6,
+213.0,
+308.4,
+213.5
+],
+"page": 0,
+"colour": [
+201,
+235,
+251
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+194.3,
+213.5,
+312.7,
+214.0
+],
+"page": 0,
+"colour": [
+201,
+235,
+251
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+190.4,
+214.0,
+316.7,
+214.5
+],
+"page": 0,
+"colour": [
+201,
+235,
+251
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+186.7,
+214.5,
+320.4,
+215.0
+],
+"page": 0,
+"colour": [
+202,
+235,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+183.2,
+215.0,
+323.9,
+215.5
+],
+"page": 0,
+"colour": [
+202,
+235,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+180.0,
+215.5,
+327.2,
+216.0
+],
+"page": 0,
+"colour": [
+203,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+176.9,
+216.0,
+330.3,
+216.5
+],
+"page": 0,
+"colour": [
+203,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+173.9,
+216.5,
+333.2,
+217.0
+],
+"page": 0,
+"colour": [
+203,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+171.1,
+217.0,
+336.1,
+217.5
+],
+"page": 0,
+"colour": [
+204,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+168.4,
+217.5,
+338.8,
+218.0
+],
+"page": 0,
+"colour": [
+204,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+165.8,
+218.0,
+341.4,
+218.5
+],
+"page": 0,
+"colour": [
+204,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+163.3,
+218.5,
+343.9,
+219.0
+],
+"page": 0,
+"colour": [
+205,
+236,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+160.9,
+219.0,
+346.3,
+219.5
+],
+"page": 0,
+"colour": [
+206,
+237,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+158.6,
+219.5,
+348.6,
+220.0
+],
+"page": 0,
+"colour": [
+207,
+237,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+156.3,
+220.0,
+350.9,
+220.5
+],
+"page": 0,
+"colour": [
+209,
+238,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+154.2,
+220.5,
+353.1,
+221.0
+],
+"page": 0,
+"colour": [
+209,
+238,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+152.1,
+221.0,
+355.2,
+221.5
+],
+"page": 0,
+"colour": [
+209,
+238,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+150.0,
+221.5,
+357.3,
+222.0
+],
+"page": 0,
+"colour": [
+209,
+238,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+148.0,
+222.0,
+359.3,
+222.5
+],
+"page": 0,
+"colour": [
+207,
+237,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+146.0,
+222.5,
+361.3,
+223.0
+],
+"page": 0,
+"colour": [
+207,
+237,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+144.1,
+223.0,
+363.2,
+223.5
+],
+"page": 0,
+"colour": [
+208,
+237,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+142.3,
+223.5,
+365.0,
+224.0
+],
+"page": 0,
+"colour": [
+209,
+238,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+140.5,
+224.0,
+366.8,
+224.5
+],
+"page": 0,
+"colour": [
+210,
+238,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+138.7,
+224.5,
+368.6,
+225.0
+],
+"page": 0,
+"colour": [
+212,
+239,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+137.0,
+225.0,
+370.4,
+225.5
+],
+"page": 0,
+"colour": [
+212,
+239,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+135.3,
+225.5,
+372.1,
+226.0
+],
+"page": 0,
+"colour": [
+213,
+239,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+133.6,
+226.0,
+373.7,
+226.5
+],
+"page": 0,
+"colour": [
+214,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+226.5,
+374.0,
+227.0
+],
+"page": 0,
+"colour": [
+214,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+227.0,
+374.0,
+227.5
+],
+"page": 0,
+"colour": [
+215,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+227.5,
+374.0,
+228.0
+],
+"page": 0,
+"colour": [
+215,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+228.0,
+374.0,
+228.5
+],
+"page": 0,
+"colour": [
+215,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+228.5,
+374.0,
+229.0
+],
+"page": 0,
+"colour": [
+215,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+229.0,
+374.0,
+229.5
+],
+"page": 0,
+"colour": [
+215,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+229.5,
+374.0,
+230.0
+],
+"page": 0,
+"colour": [
+215,
+240,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+230.0,
+374.0,
+230.5
+],
+"page": 0,
+"colour": [
+216,
+241,
+252
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+230.5,
+374.0,
+231.0
+],
+"page": 0,
+"colour": [
+218,
+241,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+231.0,
+374.0,
+231.5
+],
+"page": 0,
+"colour": [
+218,
+241,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+231.5,
+374.0,
+232.0
+],
+"page": 0,
+"colour": [
+220,
+242,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+232.0,
+374.0,
+232.5
+],
+"page": 0,
+"colour": [
+221,
+242,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+232.5,
+374.0,
+233.0
+],
+"page": 0,
+"colour": [
+222,
+242,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+233.0,
+374.0,
+233.5
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+233.5,
+374.0,
+234.0
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+234.0,
+374.0,
+234.5
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+234.5,
+374.0,
+235.0
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+235.0,
+374.0,
+235.5
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+235.5,
+374.0,
+236.0
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+236.0,
+374.0,
+236.5
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+236.5,
+374.0,
+237.0
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+237.0,
+374.0,
+237.5
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+237.5,
+374.0,
+238.0
+],
+"page": 0,
+"colour": [
+223,
+243,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+238.0,
+374.0,
+238.5
+],
+"page": 0,
+"colour": [
+225,
+244,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+238.5,
+374.0,
+239.0
+],
+"page": 0,
+"colour": [
+225,
+244,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+239.0,
+374.0,
+239.5
+],
+"page": 0,
+"colour": [
+226,
+244,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+239.5,
+374.0,
+240.0
+],
+"page": 0,
+"colour": [
+227,
+244,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+240.0,
+374.0,
+240.5
+],
+"page": 0,
+"colour": [
+227,
+244,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+240.5,
+374.0,
+241.0
+],
+"page": 0,
+"colour": [
+228,
+245,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+241.0,
+374.0,
+241.5
+],
+"page": 0,
+"colour": [
+229,
+245,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+241.5,
+374.0,
+242.0
+],
+"page": 0,
+"colour": [
+229,
+245,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+242.0,
+374.0,
+242.5
+],
+"page": 0,
+"colour": [
+230,
+246,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+242.5,
+374.0,
+243.0
+],
+"page": 0,
+"colour": [
+231,
+246,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+243.0,
+374.0,
+243.5
+],
+"page": 0,
+"colour": [
+231,
+246,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+243.5,
+374.0,
+244.0
+],
+"page": 0,
+"colour": [
+232,
+246,
+253
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+244.0,
+374.0,
+244.5
+],
+"page": 0,
+"colour": [
+233,
+247,
+254
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+132.1,
+244.5,
+374.0,
+245.0
+],
+"page": 0,
+"colour": [
+233,
+247,
+254
+],
+"reason": "rebuild the light-blue arc row by row where the title erase left a white block"
+},
+{
+"paint": [
+194.54,
+143.46,
+195.72,
+143.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+193.82,
+143.96,
+196.06,
+144.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+193.09,
+144.46,
+196.41,
+144.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+192.37,
+144.96,
+196.75,
+145.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+191.64,
+145.46,
+197.1,
+145.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+190.92,
+145.96,
+197.44,
+146.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+190.2,
+146.46,
+197.79,
+146.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+189.47,
+146.96,
+198.13,
+147.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+188.75,
+147.46,
+198.48,
+147.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+188.02,
+147.96,
+198.82,
+148.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+187.3,
+148.46,
+199.17,
+148.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+186.57,
+148.96,
+199.51,
+149.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+185.85,
+149.46,
+199.86,
+149.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+185.12,
+149.96,
+200.21,
+150.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+184.4,
+150.46,
+200.55,
+150.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+183.68,
+150.96,
+200.9,
+151.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+182.95,
+151.46,
+201.24,
+151.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+182.23,
+151.96,
+201.59,
+152.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+181.5,
+152.46,
+201.19,
+152.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+180.78,
+152.96,
+200.46,
+153.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+180.05,
+153.46,
+199.74,
+153.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+179.33,
+153.96,
+199.02,
+154.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+178.61,
+154.46,
+198.29,
+154.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+177.88,
+154.96,
+197.57,
+155.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+177.16,
+155.46,
+196.84,
+155.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+176.43,
+155.96,
+196.12,
+156.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+175.71,
+156.46,
+195.39,
+156.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+175.41,
+156.96,
+194.67,
+157.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+175.76,
+157.46,
+193.94,
+157.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+176.1,
+157.96,
+193.22,
+158.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+176.45,
+158.46,
+192.5,
+158.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+176.79,
+158.96,
+191.77,
+159.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+177.14,
+159.46,
+191.05,
+159.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+177.48,
+159.96,
+190.32,
+160.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+177.83,
+160.46,
+189.6,
+160.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+178.17,
+160.96,
+188.87,
+161.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+178.52,
+161.46,
+188.15,
+161.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+178.86,
+161.96,
+187.43,
+162.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+179.21,
+162.46,
+186.7,
+162.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+179.55,
+162.96,
+185.98,
+163.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+179.9,
+163.46,
+185.25,
+163.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+180.24,
+163.96,
+184.53,
+164.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+180.59,
+164.46,
+183.8,
+164.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+180.93,
+164.96,
+183.08,
+165.46
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"paint": [
+181.28,
+165.46,
+182.35,
+165.96
+],
+"page": 7,
+"colour": [
+185,
+228,
+250
+],
+"reason": "blank the slanted 45人 plate row by row inside its border"
+},
+{
+"add": "p7_a90",
+"page": 7,
+"box": [189.5, 146.8, 198.5, 152.3],
+"translation": "45",
+"source": "45人",
+"size": 5.2,
+"align": "center",
+"color": 2301728,
+"reason": "45 people on the slanted sign: 45 in the wider upper part of the plate, people below"
+},
+{
+"add": "p7_a91",
+"page": 7,
+"box": [179.6, 153.0, 192.4, 158.6],
+"translation": "people",
+"source": "45人",
+"size": 4.1,
+"align": "center",
+"color": 2301728,
+"reason": "45 people on the slanted sign: 45 in the wider upper part of the plate, people below"
+},
+{
+"segment_id": "p9_s15",
+"translation": "29 years older\nthan you",
+"box": [101.5, 564.3, 181.5, 583.8],
+"reason": "two lines filling the whole bubble so it is set at the size of the neighbouring bubble"
+},
+{
+"segment_id": "p9_s13",
+"translation": "Taoqi is 8 this year.\nHow old is the aunt?",
+"box": [
+98,
+538,
+272,
+560
+],
+"reason": "two lines inside the left panel; the one-line header ran over the dashed divider"
+},
+{
+"segment_id": "p9_s14",
+"translation": "How many books are there now?",
+"box": [
+287,
+540,
+442,
+560
+],
+"reason": "same size as the left panel header"
+}
+],
+"left": []
+}
