@@ -1,0 +1,305 @@
+{
+ "corrections": [
+  {
+   "add": "p57_a1",
+   "page": 57,
+   "box": [
+    234,
+    261,
+    250,
+    270
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "counting-frame tens label left in Chinese"
+  },
+  {
+   "add": "p57_a2",
+   "page": 57,
+   "box": [
+    253,
+    261,
+    269,
+    270
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "counting-frame ones label left in Chinese"
+  },
+  {
+   "add": "p57_a3",
+   "page": 57,
+   "box": [
+    309,
+    261,
+    325,
+    270
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "counting-frame tens label left in Chinese"
+  },
+  {
+   "add": "p57_a4",
+   "page": 57,
+   "box": [
+    328,
+    261,
+    344,
+    270
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "counting-frame ones label left in Chinese"
+  },
+  {
+   "segment_id": "p57_s16",
+   "translation": "Talk with a partner: is each step correct?",
+   "reason": "dropped ⟦0⟧: OCR noise 228.24.0 printed as a mark in the bubble"
+  },
+  {
+   "segment_id": "p57_s2",
+   "translation": "The tens digit is ⟦0⟧. What now?",
+   "reason": "shorter, was shrunk to 0.64"
+  },
+  {
+   "segment_id": "p57_s7",
+   "translation": "Think: what should we watch out for in column subtraction?",
+   "reason": "terminology (column method), shorter"
+  },
+  {
+   "merge": [
+    "p57_s9",
+    "p57_s11"
+   ],
+   "translation": "Xiaoxiao calculated like this. Do you understand it? Tell a partner.",
+   "reason": "one sentence split by OCR, set at two sizes"
+  },
+  {
+   "segment_id": "p57_s21",
+   "box": [
+    225,
+    617,
+    290,
+    641
+   ],
+   "reason": "use the rest of the bubble; was 0.76"
+  },
+  {
+   "segment_id": "p58_s0",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "terminology: 竖式 = column method"
+  },
+  {
+   "segment_id": "p59_s8",
+   "translation": "I worked it out again. It's ¥⟦0⟧.",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p59_s14",
+   "translation": "I'll try ⟦0⟧ minus ⟦1⟧.",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p59_s15",
+   "translation": "I'll use addition to check…",
+   "reason": "source ends with ellipsis"
+  },
+  {
+   "segment_id": "p59_s12",
+   "box": [
+    76,
+    428.5,
+    112,
+    442
+   ],
+   "reason": "Answer: was set much smaller than the second Answer:"
+  },
+  {
+   "segment_id": "p60_s13",
+   "translation": "forgot to…",
+   "reason": "bubble continues the sum ', 忘记……' (forgot to carry); not 'I forgot'"
+  },
+  {
+   "segment_id": "p60_s12",
+   "translation": "when borrowing twice in a row…",
+   "reason": "source ends with ellipsis"
+  },
+  {
+   "merge": [
+    "p61_s12",
+    "p61_s13"
+   ],
+   "translation": "(1) How many more shells does a sheep use than a deer?",
+   "reason": "one question split by OCR; '(1) How many' + 'ore shells' was broken"
+  },
+  {
+   "split": "p61_s18",
+   "translations": [
+    "Long jump",
+    "Taoqi",
+    "235 cm",
+    "Qisi",
+    "189 cm",
+    "Maths Fan 216 cm"
+   ],
+   "reason": "table cells printed as one run of prose"
+  },
+  {
+   "split": "p61_s19",
+   "translations": [
+    "High jump",
+    "Xiao-\nliang",
+    "105 cm",
+    "Xiao-\ngang",
+    "95 cm",
+    "Xiao-\nqiang",
+    "101 cm"
+   ],
+   "reason": "table cells printed as one run of prose; names broken over two lines to fit narrow cells"
+  },
+  {
+   "segment_id": "p62_s5",
+   "translation": "⟦0⟧. Sunshine Shoe Shop's sales. Ask questions about the chart and answer them.",
+   "reason": "shorter so it does not wrap into the chart"
+  },
+  {
+   "segment_id": "p62_s21",
+   "translation": "⟦0⟧. Calculate and check.",
+   "reason": "punctuation, consistent with other instructions"
+  },
+  {
+   "segment_id": "p62_s25",
+   "translation": "⟦0⟧. Put these number sentences in order of their answers, smallest first.",
+   "reason": "shorter, avoids wrapping"
+  },
+  {
+   "segment_id": "p62_s33",
+   "translation": "(2) How many centimetres of wire are left?",
+   "box": [
+    260.5,
+    653,
+    463.5,
+    668.1
+   ],
+   "reason": "enumerator (2) missing; align with (1)"
+  },
+  {
+   "segment_id": "p63_s5",
+   "translation": "Big sale",
+   "reason": "shorter banner text, was shrunk to 0.60"
+  },
+  {
+   "segment_id": "p63_s13",
+   "translation": "⟦0⟧ How many boxes for both months?",
+   "box": [
+    243.5,
+    329.5,
+    462,
+    348
+   ],
+   "reason": "was set huge; match the size of (1)"
+  },
+  {
+   "merge": [
+    "p63_s14",
+    "p63_s15"
+   ],
+   "translation": "Ticket office",
+   "reason": "one sign 售票处 split into two"
+  },
+  {
+   "split": "p63_s17",
+   "translations": [
+    "Day",
+    "Mon Tue Wed Thu Fri"
+   ],
+   "reason": "header cell and day cells"
+  },
+  {
+   "split": "p63_s17_k1",
+   "at": [
+    290.9,
+    319.7,
+    348.5,
+    378.0
+   ],
+   "translations": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri"
+   ],
+   "reason": "one day per cell"
+  },
+  {
+   "segment_id": "p63_s20",
+   "translation": "Tickets",
+   "reason": "'Tickets sold (tickets)' redundant and ran out of the cell"
+  },
+  {
+   "segment_id": "p63_s22",
+   "translation": "Which two days sold the most tickets in total? And the fewest?",
+   "reason": "shorter, was 0.77 and smaller than its siblings"
+  },
+  {
+   "restore": [
+    73,
+    532,
+    93,
+    546
+   ],
+   "page": 63,
+   "reason": "(2) enumerator was erased, leaving only '('"
+  },
+  {
+   "segment_id": "p63_s24",
+   "translation": "⟦0⟧. What number hits the target? Give two answers.",
+   "reason": "shorter, avoids wrap"
+  },
+  {
+   "merge": [
+    "p64_s12",
+    "p64_s14"
+   ],
+   "translation": "Password hint: Pick any three different digits from 0 to 9. Make the largest and the smallest numbers from them and subtract. Keep going like this, as shown below, and you will find the password for the second gate.",
+   "reason": "one paragraph split by OCR, set at two sizes"
+  },
+  {
+   "segment_id": "p64_s10",
+   "box": [
+    68.9,
+    348.5,
+    131,
+    365.5
+   ],
+   "reason": "same tag size as First gate"
+  },
+  {
+   "segment_id": "p64_s20",
+   "box": [
+    220,
+    575,
+    296,
+    597
+   ],
+   "reason": "use the rest of the bubble; was 0.77"
+  },
+  {
+   "segment_id": "p64_s21",
+   "translation": "In the world of maths there are many, many amazing numbers like these.",
+   "reason": "natural wording"
+  }
+ ],
+ "flags": [
+  {
+   "page": 61,
+   "issue": "Card-box labels 'Three Kingdoms' / 'Water Margin' (p60_s22, p60_s23) are set very small (0.53) on the box fronts; no free room on the boxes."
+  },
+  {
+   "page": 62,
+   "issue": "High-jump name cells are very narrow; names set as 'Xiao-/liang' etc. over two lines at about 0.5 scale."
+  }
+ ]
+}

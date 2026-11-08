@@ -1,0 +1,788 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p34_s9",
+   "translation": "BLANK",
+   "reason": "duplicate read of 有 inside the mouse's bubble (already in p34_s7)"
+  },
+  {
+   "segment_id": "p34_s7",
+   "translation": "I have climbed ⟦0⟧ cm. Another\n___ cm and I'll be home.",
+   "reason": "mouse bubble: blank on line 2 under the printed pink line"
+  },
+  {
+   "merge": [
+    "p34_s6",
+    "p34_s8"
+   ],
+   "translation": "The white cat is about ___ cm above the ground.",
+   "reason": "fragments of one sentence/label merged"
+  },
+  {
+   "segment_id": "p34_s10",
+   "translation": "Rain soon!",
+   "reason": "dropped ⟦0⟧: OCR noise; natural exclamation"
+  },
+  {
+   "segment_id": "p34_s11",
+   "translation": "⟦0⟧ cm",
+   "box": [
+    78,
+    417.8,
+    118,
+    431.2
+   ],
+   "reason": "label moved left of the cat; leftover 米 erased"
+  },
+  {
+   "segment_id": "p34_s14",
+   "translation": "About (   ) beans.",
+   "reason": "consistent short label (jelly beans)"
+  },
+  {
+   "segment_id": "p34_s15",
+   "translation": "About (   ) beans.",
+   "reason": "was printed twice"
+  },
+  {
+   "segment_id": "p34_s11",
+   "erase": [
+    [
+     131,
+     418,
+     140,
+     431
+    ]
+   ],
+   "reason": "label moved left of the cat; leftover 米 erased"
+  },
+  {
+   "split": "p35_s2",
+   "translations": [
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "add": "p35_a1",
+   "page": 35,
+   "box": [
+    109,
+    232,
+    122,
+    241
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "Chinese '千' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a2",
+   "page": 35,
+   "box": [
+    126,
+    232,
+    138,
+    241
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "Chinese '百' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a3",
+   "page": 35,
+   "box": [
+    142,
+    232,
+    154,
+    241
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "Chinese '十' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a4",
+   "page": 35,
+   "box": [
+    158,
+    232,
+    170,
+    241
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "Chinese '个' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "split": "p35_s3",
+   "at": [
+    205,
+    221,
+    237
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p35_s4",
+   "at": [
+    285,
+    301,
+    317
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p35_s5",
+   "at": [
+    365.5,
+    381,
+    397.5
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p35_s12",
+   "at": [
+    282
+   ],
+   "translations": [
+    "100",
+    "100"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "segment_id": "p35_s15",
+   "translation": "⟦0⟧",
+   "reason": "bag label: number only fits"
+  },
+  {
+   "segment_id": "p35_s16",
+   "translation": "⟦0⟧",
+   "reason": "bag label: number only fits"
+  },
+  {
+   "segment_id": "p35_s20",
+   "translation": "⟦0⟧",
+   "reason": "bag label left in Chinese; number only"
+  },
+  {
+   "segment_id": "p35_s19",
+   "translation": "Still need (     )",
+   "box": [
+    207.8,
+    400,
+    290,
+    415
+   ],
+   "reason": "')' had been erased; blank written out"
+  },
+  {
+   "merge": [
+    "p35_s17",
+    "p35_s21"
+   ],
+   "translation": "On the thousands rod,\nput (   )",
+   "reason": "fragments of one sentence/label merged"
+  },
+  {
+   "segment_id": "p35_s17",
+   "box": [
+    360,
+    384,
+    462,
+    421
+   ],
+   "reason": "room for two lines in the cell"
+  },
+  {
+   "split": "p35_s18",
+   "translations": [
+    "Th",
+    "H"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "add": "p35_a5",
+   "page": 35,
+   "box": [
+    422,
+    371,
+    433,
+    379
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "Chinese '十' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a6",
+   "page": 35,
+   "box": [
+    438,
+    371,
+    449,
+    379
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "Chinese '个' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "segment_id": "p35_s24",
+   "translation": "H",
+   "reason": "白 is a misread of 百: H"
+  },
+  {
+   "segment_id": "p35_s25",
+   "translation": "H",
+   "reason": "白 is a misread of 百: H"
+  },
+  {
+   "split": "p35_s26",
+   "translations": [
+    "Th",
+    "H"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p35_s28",
+   "translations": [
+    "Th",
+    "H"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "add": "p35_a7",
+   "page": 35,
+   "box": [
+    84,
+    539,
+    95,
+    549
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "Chinese '千' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a8",
+   "page": 35,
+   "box": [
+    116,
+    539,
+    127,
+    549
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "Chinese '十' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a9",
+   "page": 35,
+   "box": [
+    133,
+    539,
+    144,
+    549
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "Chinese '个' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a10",
+   "page": 35,
+   "box": [
+    189,
+    539,
+    200,
+    549
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "Chinese '千' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a11",
+   "page": 35,
+   "box": [
+    221,
+    539,
+    232,
+    549
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "Chinese '十' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a12",
+   "page": 35,
+   "box": [
+    238,
+    539,
+    249,
+    549
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "Chinese '个' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a13",
+   "page": 35,
+   "box": [
+    320,
+    539,
+    331,
+    549
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "Chinese '十' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "add": "p35_a14",
+   "page": 35,
+   "box": [
+    417,
+    539,
+    428,
+    549
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "Chinese '十' left in the picture; English set in place",
+   "color": 0,
+   "size": 7
+  },
+  {
+   "segment_id": "p35_s13",
+   "erase": [
+    [
+     128,
+     389,
+     156,
+     405
+    ]
+   ],
+   "translation": "Still need (     )",
+   "box": [
+    62,
+    388.6,
+    157,
+    405.9
+   ],
+   "reason": "English needs its own ')' ; leftover ')个' erased"
+  },
+  {
+   "add": "p35_a15",
+   "page": 35,
+   "box": [
+    113,
+    252,
+    300,
+    268
+   ],
+   "translation": "write a suitable digit.",
+   "source": "里填上合适的数字。",
+   "size": 12,
+   "align": "left",
+   "color": 0,
+   "reason": "Chinese '里填上合适的数字。' left in the picture; English set in place"
+  },
+  {
+   "segment_id": "p36_s10",
+   "translation": "⟦0⟧. Maths game.",
+   "reason": "British spelling"
+  },
+  {
+   "split": "p36_s12",
+   "translations": [
+    "Play in pairs. Each fills in their own number.",
+    "Spin the spinner. When it stops, each player",
+    "writes the digit in",
+    "(any one box).",
+    "BLANK",
+    "Spin three times, and each makes a three-",
+    "digit number.",
+    "Compare them: the greater number wins."
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "restore": [
+    335.5,
+    503.5,
+    367,
+    517.5
+   ],
+   "page": 36,
+   "reason": "picture part damaged by an erase restored (no Chinese)"
+  },
+  {
+   "split": "p37_s13",
+   "at": [
+    195,
+    345
+   ],
+   "translations": [
+    "1 dm = (     ) cm",
+    "1 cm = (     ) mm",
+    "1 m = (     ) dm"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p38_s11",
+   "translations": [
+    "3 cm =",
+    "BLANK"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p38_s12",
+   "translations": [
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "segment_id": "p38_s13",
+   "box": [
+    66,
+    396,
+    136,
+    413
+   ],
+   "reason": "room left of the circle"
+  },
+  {
+   "add": "p38_a1",
+   "page": 38,
+   "box": [
+    420,
+    374,
+    440,
+    390
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 11,
+   "color": 0,
+   "align": "left",
+   "reason": "Chinese '米' left in the picture; English set in place"
+  },
+  {
+   "add": "p38_a2",
+   "page": 38,
+   "box": [
+    289,
+    374,
+    325,
+    390
+   ],
+   "translation": "mm",
+   "source": "毫米",
+   "size": 11,
+   "color": 0,
+   "align": "left",
+   "reason": "Chinese '毫米' left in the picture; English set in place"
+  },
+  {
+   "add": "p38_a3",
+   "page": 38,
+   "box": [
+    330,
+    374,
+    396,
+    390
+   ],
+   "translation": "90 dm =",
+   "source": "90分米=",
+   "size": 11,
+   "color": 0,
+   "align": "right",
+   "reason": "Chinese '90分米=' left in the picture; English set in place"
+  },
+  {
+   "add": "p38_a4",
+   "page": 38,
+   "box": [
+    162,
+    397,
+    198,
+    413
+   ],
+   "translation": "dm",
+   "source": "分米",
+   "size": 11,
+   "color": 0,
+   "align": "left",
+   "reason": "Chinese '分米' left in the picture; English set in place"
+  },
+  {
+   "add": "p38_a5",
+   "page": 38,
+   "box": [
+    203,
+    397,
+    262,
+    413
+   ],
+   "translation": "5 dm =",
+   "source": "5分米=",
+   "size": 11,
+   "color": 0,
+   "align": "right",
+   "reason": "Chinese '5分米=' left in the picture; English set in place"
+  },
+  {
+   "add": "p38_a6",
+   "page": 38,
+   "box": [
+    289,
+    397,
+    325,
+    413
+   ],
+   "translation": "cm",
+   "source": "厘米",
+   "size": 11,
+   "color": 0,
+   "align": "left",
+   "reason": "Chinese '厘米' left in the picture; English set in place"
+  },
+  {
+   "add": "p38_a7",
+   "page": 38,
+   "box": [
+    330,
+    397,
+    396,
+    413
+   ],
+   "translation": "70 mm =",
+   "source": "70毫米=",
+   "size": 11,
+   "color": 0,
+   "align": "right",
+   "reason": "Chinese '70毫米=' left in the picture; English set in place"
+  },
+  {
+   "restore": [
+    262,
+    395,
+    284.5,
+    414
+   ],
+   "page": 38,
+   "reason": "picture part damaged by an erase restored (no Chinese)"
+  },
+  {
+   "segment_id": "p38_s8",
+   "translation": "⟦0⟧. Fill in.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p39_s5",
+   "translation": "How long is ⟦0⟧ m? Think and do.",
+   "reason": "consistent with 10 m heading"
+  },
+  {
+   "segment_id": "p39_s8",
+   "translation": "How long is ⟦0⟧ m? Think, then discuss with a partner.",
+   "reason": "shorter so it fits one line"
+  },
+  {
+   "segment_id": "p39_s9",
+   "translation": "⟦0⟧ running tracks\nof ⟦1⟧ m make ⟦2⟧ m.",
+   "reason": "keep '100 m' together"
+  },
+  {
+   "segment_id": "p39_s3",
+   "translation": "Walk and see: about how many steps make ⟦0⟧ m?",
+   "reason": "keep '10 m' together"
+  },
+  {
+   "segment_id": "p40_s2",
+   "erase": [
+    [
+     163,
+     197,
+     184,
+     215
+    ]
+   ],
+   "box": [
+    66,
+    197,
+    186,
+    230
+   ],
+   "translation": "The tree is about\n⟦0⟧ (      ).",
+   "reason": "')。' in the picture sat on line 1 while the blank wrapped; English carries its own blank"
+  },
+  {
+   "segment_id": "p40_s9",
+   "erase": [
+    [
+     301,
+     291,
+     317,
+     308
+    ]
+   ],
+   "box": [
+    196,
+    291,
+    320,
+    323
+   ],
+   "translation": "The bridge is about\n⟦0⟧ (      ).",
+   "reason": "same as tree cell"
+  },
+  {
+   "segment_id": "p40_s11",
+   "box": [
+    336,
+    291,
+    460,
+    323
+   ],
+   "translation": "The bed is about\n⟦0⟧ (      ).",
+   "reason": "')。' had been erased; English carries its own blank"
+  },
+  {
+   "segment_id": "p40_s3",
+   "box": [
+    196,
+    197,
+    325,
+    213
+   ],
+   "translation": "In 1 hour the train travels",
+   "reason": "shorter so it is not tiny"
+  },
+  {
+   "split": "p40_s14",
+   "at": [
+    331
+   ],
+   "translations": [
+    "2000 m = (     ) km",
+    "9 dm = (     ) cm"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p40_s15",
+   "at": [
+    192,
+    331
+   ],
+   "translations": [
+    "500 cm = (     ) m",
+    "30 mm = (     ) cm",
+    "7 cm = (     ) mm"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "split": "p40_s17",
+   "translations": [
+    "BLANK",
+    "Clever Dog's"
+   ],
+   "reason": "paragraph joins texts in different places (cells/labels)"
+  },
+  {
+   "merge": [
+    "p40_s17_k1",
+    "p40_s19"
+   ],
+   "translation": "Clever Dog's home",
+   "reason": "fragments of one sentence/label merged"
+  },
+  {
+   "add": "p40_a1",
+   "page": 40,
+   "box": [
+    74,
+    446,
+    250,
+    460
+   ],
+   "translation": "Clever Dog delivers letters.",
+   "source": "机灵狗送信。",
+   "size": 11,
+   "color": 0,
+   "align": "left",
+   "reason": "Chinese '机灵狗送信。' left in the picture; English set in place"
+  }
+ ],
+ "flags": [
+  {
+   "page": 35,
+   "issue": "p34_s11 '30 cm' label: a grey smudge (inpainting residue of the erased 厘米 over the watermark and cat's tail) remains between the label and the cat"
+  },
+  {
+   "page": 37,
+   "issue": "p36_s1, p36_s13, p36_s14 are set at about 0.75 of their sibling questions; no free room to enlarge without rewording away meaning"
+  }
+ ]
+}

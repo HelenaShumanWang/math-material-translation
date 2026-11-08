@@ -1,0 +1,1217 @@
+{
+ "corrections": [
+  {
+   "line": "p17_i68_10",
+   "translation": "brooms;",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "segment_id": "p17_s13",
+   "translation": "dustpans, with",
+   "reason": "was 'remainder': row reads dustpans, with [] left over"
+  },
+  {
+   "segment_id": "p17_s13",
+   "box": [
+    327,
+    325,
+    397,
+    342
+   ],
+   "reason": "room up to the answer box"
+  },
+  {
+   "add": "p17_a1",
+   "page": 17,
+   "box": [
+    418,
+    325,
+    456,
+    343
+   ],
+   "translation": "left.",
+   "source": "个。",
+   "reason": "end of the sentence after the answer box",
+   "size": 11
+  },
+  {
+   "segment_id": "p17_s15",
+   "translation": "⟦0⟧ dustpans",
+   "reason": "counted noun lost"
+  },
+  {
+   "merge": [
+    "p17_s16",
+    "p17_s18"
+   ],
+   "translation": "(1) At least how many sleds do 19 snow leopards need?",
+   "reason": "one question split in two"
+  },
+  {
+   "segment_id": "p17_s20",
+   "translation": "In this string of beads, what colour is the ⟦0⟧th bead from the left?",
+   "reason": "shorter so it can be set larger"
+  },
+  {
+   "segment_id": "p18_s5",
+   "translation": "North of the playground is...",
+   "reason": "unfinished phrase"
+  },
+  {
+   "segment_id": "p18_s27",
+   "translation": "Some put south at the top, others...",
+   "reason": "'some' twice, ellipsis lost"
+  },
+  {
+   "segment_id": "p18_s20",
+   "box": [
+    389,
+    493,
+    416,
+    503
+   ],
+   "reason": "Playground left in Chinese; a little more room"
+  },
+  {
+   "segment_id": "p18_s30",
+   "box": [
+    143,
+    626,
+    186,
+    639
+   ],
+   "reason": "shrunk 0.55; the rectangle has room"
+  },
+  {
+   "segment_id": "p19_s1",
+   "translation": "⟦0⟧. Find east, south, west and north in the classroom.",
+   "reason": "missing 'and'"
+  },
+  {
+   "segment_id": "p19_s2",
+   "translation": "East: ___, south: ___, west: ___, north: ___.",
+   "reason": "shorter, shrunk 0.68"
+  },
+  {
+   "segment_id": "p19_s3",
+   "translation": "⟦0⟧. I say, you do.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p19_s22",
+   "translation": "The compass was invented by our ancestors more than two thousand years ago. It is very good at showing directions: wherever it is placed on Earth, one end always points south and the other north. With it, people never lose their way.",
+   "reason": "more natural"
+  },
+  {
+   "merge": [
+    "p20_s12",
+    "p20_s13",
+    "p20_s14"
+   ],
+   "translation": "Look and fill in.\nThe gymnasium is ___ of the school; the shopping centre is ___ of it.\nThe hospital is ___ of the school; the post office is ___ of it.",
+   "reason": "one exercise split into overlapping fragments"
+  },
+  {
+   "segment_id": "p20_s11",
+   "translation": "Shopping centre",
+   "reason": "UK term, matches text"
+  },
+  {
+   "segment_id": "p20_s4",
+   "translation": "N",
+   "reason": "compass, as other pages"
+  },
+  {
+   "segment_id": "p20_s5",
+   "translation": "E",
+   "reason": "compass"
+  },
+  {
+   "segment_id": "p20_s18",
+   "translation": "N",
+   "reason": "direction board cell"
+  },
+  {
+   "segment_id": "p20_s19",
+   "translation": "NE",
+   "reason": "cell too small, shrunk 0.52"
+  },
+  {
+   "segment_id": "p20_s20",
+   "translation": "E",
+   "reason": "direction board cell"
+  },
+  {
+   "merge": [
+    "p21_s4",
+    "p21_s5"
+   ],
+   "translation": "(1) The school is ___ of the threshing floor.\n(2) The village is ___ of the threshing floor.",
+   "reason": "two questions with a stray fragment; enumerators lost"
+  },
+  {
+   "segment_id": "p21_s4",
+   "box": [
+    84,
+    168,
+    330,
+    206
+   ],
+   "reason": "room for the enumerators inside the box"
+  },
+  {
+   "merge": [
+    "p21_s10",
+    "p21_s11"
+   ],
+   "translation": "(4) The farm is ___ of the threshing floor.",
+   "reason": "one question split; set smaller than siblings"
+  },
+  {
+   "segment_id": "p21_s6",
+   "translation": "Farm",
+   "reason": "shorter, shrunk 0.68; matches question 4"
+  },
+  {
+   "segment_id": "p21_s14",
+   "translation": "⟦0⟧. Look at the map and fill in.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p21_s14",
+   "box": [
+    56,
+    263,
+    280,
+    279
+   ],
+   "reason": "wraps; free paper to the right"
+  },
+  {
+   "segment_id": "p21_s2",
+   "translation": "N",
+   "reason": "compass"
+  },
+  {
+   "segment_id": "p21_s3",
+   "translation": "E",
+   "reason": "compass, shrunk"
+  },
+  {
+   "segment_id": "p21_s15",
+   "translation": "N",
+   "reason": "compass"
+  },
+  {
+   "segment_id": "p21_s18",
+   "translation": "E",
+   "reason": "compass"
+  },
+  {
+   "segment_id": "p21_s44",
+   "translation": "N",
+   "reason": "compass"
+  },
+  {
+   "segment_id": "p21_s46",
+   "translation": "E",
+   "reason": "compass"
+  },
+  {
+   "segment_id": "p21_s17",
+   "box": [
+    236,
+    307,
+    270,
+    321
+   ],
+   "reason": "Heilongjiang left in Chinese; province has room"
+  },
+  {
+   "split": "p21_s16",
+   "translations": [
+    "Jilin",
+    "Liaoning"
+   ],
+   "reason": "two provinces"
+  },
+  {
+   "segment_id": "p21_s22",
+   "translation": "BLANK",
+   "reason": "古 of Inner Mongolia"
+  },
+  {
+   "segment_id": "p21_s26",
+   "translation": "Inner Mongolia",
+   "reason": "whole name"
+  },
+  {
+   "split": "p21_s32",
+   "translations": [
+    "Henan",
+    "Hubei",
+    "Hunan  Jiangxi"
+   ],
+   "reason": "each province at its place; stray 'An'"
+  },
+  {
+   "split": "p21_s33",
+   "translations": [
+    "Anhui",
+    "Jiangsu"
+   ],
+   "reason": "two provinces"
+  },
+  {
+   "segment_id": "p21_s34",
+   "translation": "BLANK",
+   "reason": "江 of Jiangsu, set by p21_s33"
+  },
+  {
+   "segment_id": "p21_s35",
+   "translation": "BLANK",
+   "reason": "藏 of Tibet, set by p21_s30"
+  },
+  {
+   "segment_id": "p21_s37",
+   "translation": "Chongqing",
+   "reason": "was 'Qing'"
+  },
+  {
+   "split": "p21_s38",
+   "translations": [
+    "Shanghai",
+    "Zhejiang"
+   ],
+   "reason": "two places"
+  },
+  {
+   "split": "p21_s40",
+   "translations": [
+    "Guizhou",
+    "Guangxi"
+   ],
+   "reason": "two provinces; 'Gua' cut"
+  },
+  {
+   "split": "p21_s41",
+   "translations": [
+    "BLANK",
+    "Macao",
+    "Hong Kong",
+    "Hainan"
+   ],
+   "reason": "each at its place"
+  },
+  {
+   "segment_id": "p21_s41_k1",
+   "box": [
+    205,
+    445,
+    221,
+    452
+   ],
+   "reason": "room beside the label"
+  },
+  {
+   "segment_id": "p21_s41_k2",
+   "box": [
+    221,
+    440,
+    251,
+    447
+   ],
+   "reason": "room beside the label"
+  },
+  {
+   "segment_id": "p21_s41_k3",
+   "box": [
+    193,
+    453,
+    216,
+    461
+   ],
+   "reason": "room beside the label"
+  },
+  {
+   "segment_id": "p21_s23",
+   "translation": "BLANK",
+   "reason": "的 already in the sentence p21_s19; overlaps"
+  },
+  {
+   "segment_id": "p22_s5",
+   "translation": "BLANK",
+   "reason": "labels reset per cell by adds"
+  },
+  {
+   "split": "p22_s4",
+   "at": [
+    182.4,
+    198.7
+   ],
+   "translations": [
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "add": "p22_a1",
+   "page": 22,
+   "box": [
+    151.8,
+    236.5,
+    164.0,
+    246.5
+   ],
+   "translation": "Th",
+   "source": "千",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a2",
+   "page": 22,
+   "box": [
+    230.5,
+    236.5,
+    242.7,
+    246.5
+   ],
+   "translation": "Th",
+   "source": "千",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a3",
+   "page": 22,
+   "box": [
+    246.7,
+    236.5,
+    258.9,
+    246.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a4",
+   "page": 22,
+   "box": [
+    262.9,
+    236.5,
+    275.1,
+    246.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a5",
+   "page": 22,
+   "box": [
+    279.1,
+    236.5,
+    291.3,
+    246.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a6",
+   "page": 22,
+   "box": [
+    310.6,
+    236.5,
+    322.8,
+    246.5
+   ],
+   "translation": "Th",
+   "source": "千",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a7",
+   "page": 22,
+   "box": [
+    359.2,
+    236.5,
+    371.4,
+    246.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a8",
+   "page": 22,
+   "box": [
+    386.0,
+    236.5,
+    398.2,
+    246.5
+   ],
+   "translation": "Th",
+   "source": "千",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a9",
+   "page": 22,
+   "box": [
+    418.4,
+    236.5,
+    430.6,
+    246.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a10",
+   "page": 22,
+   "box": [
+    434.6,
+    236.5,
+    446.8,
+    246.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a11",
+   "page": 22,
+   "box": [
+    133.0,
+    335,
+    145.2,
+    345.5
+   ],
+   "translation": "Th",
+   "source": "千",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a12",
+   "page": 22,
+   "box": [
+    165.4,
+    335,
+    177.6,
+    345.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a13",
+   "page": 22,
+   "box": [
+    181.6,
+    335,
+    193.8,
+    345.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "add": "p22_a14",
+   "page": 22,
+   "box": [
+    214.6,
+    335,
+    226.8,
+    345.5
+   ],
+   "translation": "Th",
+   "source": "千",
+   "size": 7,
+   "reason": "counting-frame cell label",
+   "color": 0
+  },
+  {
+   "segment_id": "p22_s9",
+   "translation": "Ten makes ⟦0⟧ in the next place. Nine hundred and ninety-nine plus ⟦1⟧ is one thousand.",
+   "reason": "clearer; UK 'and'"
+  },
+  {
+   "segment_id": "p22_s17",
+   "translation": "⟦0⟧ hundreds make a thousand.",
+   "reason": "shorter, natural wording"
+  },
+  {
+   "segment_id": "p22_s17",
+   "box": [
+    311,
+    553,
+    422,
+    570
+   ],
+   "reason": "shrunk 0.56; bubble has room"
+  },
+  {
+   "segment_id": "p22_s18",
+   "translation": "Can you count from eight hundred and eighty-seven to one thousand?",
+   "reason": "UK number words"
+  },
+  {
+   "segment_id": "p22_s19",
+   "translation": "I count one by one: eight hundred and eighty-seven, eight hundred and eighty-eight, eight hundred and eighty-nine...",
+   "reason": "UK number words"
+  },
+  {
+   "segment_id": "p22_s20",
+   "translation": "First I count in tens up to nine hundred and ninety-seven, then one by one...",
+   "reason": "UK number words"
+  },
+  {
+   "segment_id": "p23_s3",
+   "translation": "⟦0⟧ squares",
+   "reason": "counted noun lost"
+  },
+  {
+   "segment_id": "p23_s9",
+   "translation": "⟦0⟧. Count one by one from two hundred and ninety-eight to three hundred and two, and show each number on a counting frame.",
+   "reason": "UK number words; clearer"
+  },
+  {
+   "segment_id": "p23_s10",
+   "translation": "⟦0⟧. Talk about it: how many ⟦1⟧ are there?",
+   "reason": "日 is OCR of the cube picture; picture placed where the noun belongs"
+  },
+  {
+   "segment_id": "p24_s0",
+   "translation": "⟦0⟧. Estimate and circle. About how many ⟦1⟧ are there?",
+   "reason": "○ was OCR of the picture"
+  },
+  {
+   "segment_id": "p21_s21",
+   "translation": "Beijing",
+   "reason": "蒙 belongs to Inner Mongolia; Beijing is the key label"
+  },
+  {
+   "segment_id": "p21_s21",
+   "box": [
+    205,
+    348,
+    230,
+    358
+   ],
+   "reason": "room"
+  },
+  {
+   "segment_id": "p21_s16_k1",
+   "box": [
+    233,
+    342,
+    252,
+    350
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s40_k0",
+   "box": [
+    176,
+    419,
+    196,
+    427
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s40_k1",
+   "box": [
+    184,
+    432,
+    204,
+    441
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s26",
+   "box": [
+    172,
+    349,
+    206,
+    357
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s33_k0",
+   "box": [
+    218,
+    389,
+    234,
+    397
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s33_k1",
+   "box": [
+    227,
+    382,
+    247,
+    390
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s38_k0",
+   "box": [
+    236,
+    392,
+    256,
+    400
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s38_k1",
+   "box": [
+    233,
+    402,
+    250,
+    410
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s37",
+   "box": [
+    176,
+    398,
+    200,
+    412
+   ],
+   "reason": "room in the province"
+  },
+  {
+   "segment_id": "p21_s37",
+   "erase": [
+    [
+     185,
+     395,
+     194,
+     404
+    ]
+   ],
+   "reason": "重 of Chongqing"
+  },
+  {
+   "add": "p21_a1",
+   "page": 21,
+   "box": [
+    208,
+    360,
+    222,
+    372
+   ],
+   "translation": "Hebei",
+   "source": "河北",
+   "reason": "province label",
+   "size": 5
+  },
+  {
+   "add": "p21_a2",
+   "page": 21,
+   "box": [
+    228,
+    412,
+    242,
+    429
+   ],
+   "translation": "Fujian",
+   "source": "福建",
+   "reason": "province label",
+   "size": 5
+  },
+  {
+   "line": "p21_i84_42",
+   "translation": "BLANK",
+   "force": true,
+   "reason": "肃 of Gansu, which is set"
+  },
+  {
+   "line": "p21_i84_49",
+   "translation": "BLANK",
+   "force": true,
+   "reason": "徽 of Anhui, which is set"
+  },
+  {
+   "split": "p21_s29",
+   "translations": [
+    "Tianjin",
+    "BLANK"
+   ],
+   "reason": "Shandong set by an add with room"
+  },
+  {
+   "segment_id": "p21_s29_k0",
+   "box": [
+    226,
+    354,
+    238,
+    361
+   ],
+   "reason": "room for Tianjin"
+  },
+  {
+   "add": "p21_a4",
+   "page": 21,
+   "box": [
+    219,
+    366,
+    242,
+    374
+   ],
+   "translation": "Shandong",
+   "source": "山东",
+   "size": 5,
+   "reason": "province label; paragraph too small"
+  },
+  {
+   "segment_id": "p21_s27",
+   "translation": "BLANK",
+   "reason": "Shaanxi set by an add with room"
+  },
+  {
+   "segment_id": "p21_s27",
+   "erase": [
+    [
+     185,
+     380,
+     194,
+     389
+    ]
+   ],
+   "reason": "西 of Shaanxi"
+  },
+  {
+   "add": "p21_a5",
+   "page": 21,
+   "box": [
+    183,
+    370,
+    200,
+    378
+   ],
+   "translation": "Shaanxi",
+   "source": "陕西",
+   "size": 4.5,
+   "reason": "province label"
+  },
+  {
+   "paint": [
+    242.5,
+    420.5,
+    248.5,
+    438.5
+   ],
+   "page": 21,
+   "colour": [
+    150,
+    180,
+    200
+   ],
+   "reason": "台湾 on the island, island colour"
+  },
+  {
+   "add": "p21_a3",
+   "page": 21,
+   "box": [
+    250,
+    426,
+    270,
+    435
+   ],
+   "translation": "Taiwan",
+   "source": "台湾",
+   "size": 5,
+   "reason": "Taiwan is asked about; label beside the island"
+  },
+  {
+   "add": "p21_a6",
+   "page": 21,
+   "box": [
+    205,
+    431,
+    229,
+    439
+   ],
+   "translation": "Guangdong",
+   "source": "广东",
+   "size": 5,
+   "reason": "province label; paragraph piece too small"
+  },
+  {
+   "segment_id": "p21_s25",
+   "erase": [
+    [
+     177,
+     361,
+     188,
+     373
+    ]
+   ],
+   "reason": "leftover of 宁 beside Ningxia"
+  },
+  {
+   "paint": [
+    187,
+    383,
+    225,
+    388.5
+   ],
+   "page": 20,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source; the English sets its own blanks"
+  },
+  {
+   "paint": [
+    351,
+    383,
+    389,
+    388.5
+   ],
+   "page": 20,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source; the English sets its own blanks"
+  },
+  {
+   "paint": [
+    171,
+    407,
+    210,
+    412.5
+   ],
+   "page": 20,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source; the English sets its own blanks"
+  },
+  {
+   "paint": [
+    335,
+    407,
+    374,
+    412.5
+   ],
+   "page": 20,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source; the English sets its own blanks"
+  },
+  {
+   "segment_id": "p22_s6",
+   "translation": "BLANK",
+   "reason": "two cells in one paragraph of two lines; set per cell by adds"
+  },
+  {
+   "segment_id": "p22_s10",
+   "translation": "BLANK",
+   "reason": "misread 白; set by an add"
+  },
+  {
+   "add": "p22_a15",
+   "page": 22,
+   "box": [
+    326.8,
+    236.5,
+    339.0,
+    246.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7,
+   "color": 0,
+   "reason": "counting-frame cell label"
+  },
+  {
+   "add": "p22_a16",
+   "page": 22,
+   "box": [
+    343.0,
+    236.5,
+    355.2,
+    246.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "size": 7,
+   "color": 0,
+   "reason": "counting-frame cell label"
+  },
+  {
+   "add": "p22_a17",
+   "page": 22,
+   "box": [
+    149.2,
+    335,
+    161.4,
+    345.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7,
+   "color": 0,
+   "reason": "counting-frame cell label"
+  },
+  {
+   "add": "p24_a1",
+   "page": 24,
+   "box": [
+    122,
+    110,
+    170,
+    125
+   ],
+   "translation": "100",
+   "source": "100个",
+   "size": 12,
+   "color": 0,
+   "reason": "100个 in the dashed box: the number of beans circled"
+  },
+  {
+   "segment_id": "p24_s11",
+   "translation": "How much money altogether?",
+   "reason": "it is money in the pictures"
+  },
+  {
+   "split": "p24_s9",
+   "at": [
+    276
+   ],
+   "translations": [
+    "(1) Colour one hundred and thirty-eight squares.",
+    "(2) Colour three hundred and six squares."
+   ],
+   "reason": "each question over its own grid; UK number words"
+  },
+  {
+   "segment_id": "p22_s11",
+   "translation": "BLANK",
+   "reason": "set per cell by adds, same size as the other frames"
+  },
+  {
+   "add": "p22_a18",
+   "page": 22,
+   "box": [
+    230.8,
+    335,
+    243.0,
+    345.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7,
+   "color": 0,
+   "reason": "counting-frame cell label"
+  },
+  {
+   "add": "p22_a19",
+   "page": 22,
+   "box": [
+    247.0,
+    335,
+    259.2,
+    345.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "size": 7,
+   "color": 0,
+   "reason": "counting-frame cell label"
+  },
+  {
+   "add": "p22_a20",
+   "page": 22,
+   "box": [
+    263.2,
+    335,
+    275.4,
+    345.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "size": 7,
+   "color": 0,
+   "reason": "counting-frame cell label"
+  },
+  {
+   "segment_id": "p22_s12",
+   "translation": "How many ⟦0⟧? Use Appendix ⟦1⟧.",
+   "reason": "shorter: it wrapped onto the picture border"
+  },
+  {
+   "paint": [
+    217,
+    180.5,
+    254.5,
+    183.5
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source, now under unrelated English words"
+  },
+  {
+   "paint": [
+    217,
+    200.5,
+    254.5,
+    203.5
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source, now under unrelated English words"
+  },
+  {
+   "paint": [
+    217,
+    221,
+    254.5,
+    224
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source, now under unrelated English words"
+  },
+  {
+   "paint": [
+    233,
+    241,
+    271,
+    244
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source, now under unrelated English words"
+  },
+  {
+   "paint": [
+    351,
+    356,
+    389,
+    359
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source, now under unrelated English words"
+  },
+  {
+   "paint": [
+    351,
+    400.5,
+    389,
+    403.5
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source, now under unrelated English words"
+  },
+  {
+   "paint": [
+    351,
+    444.5,
+    389,
+    447
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "printed pink answer line of the source, now under unrelated English words"
+  }
+ ],
+ "flags": [
+  {
+   "page": 22,
+   "issue": "Map inset label 南海诸岛 (South China Sea Islands) stays in Chinese: its strip is about 25 pt wide and the English cannot be set legibly."
+  },
+  {
+   "page": 22,
+   "issue": "Map province labels are set very small (4-6 pt) because the provinces are tiny; Taiwan's characters were painted over in the island's colour and the English label set beside the island."
+  }
+ ]
+}

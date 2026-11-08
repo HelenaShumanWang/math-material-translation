@@ -1,0 +1,389 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p97_s0",
+   "translation": "⟦0⟧. Tick (✓) the best answer.",
+   "reason": "tick instruction lost"
+  },
+  {
+   "segment_id": "p97_s0",
+   "box": [
+    57,
+    80,
+    250,
+    95
+   ],
+   "reason": "room to the right"
+  },
+  {
+   "segment_id": "p97_s0",
+   "erase": [
+    [
+     202,
+     85,
+     216,
+     99
+    ]
+   ],
+   "reason": "leftover full stop"
+  },
+  {
+   "segment_id": "p97_s3",
+   "translation": "Tying shoelaces takes about",
+   "reason": "duplicated text"
+  },
+  {
+   "segment_id": "p97_s4",
+   "box": [
+    143,
+    139,
+    176,
+    154
+   ],
+   "reason": "too small"
+  },
+  {
+   "merge": [
+    "p97_s24",
+    "p97_s30"
+   ],
+   "translation": "(1) The post office is (      ) of the orchard, and the bookshop is (      ) of Xiaoxiao's home.",
+   "reason": "one sentence split"
+  },
+  {
+   "merge": [
+    "p97_s34",
+    "p97_s36",
+    "p97_s39",
+    "p97_s40"
+   ],
+   "translation": "(2) Xiaoxiao's home is (      ) of the orchard, the zoo is (      ) of the orchard, and Qinglong Mountain is (      ) of the orchard.",
+   "reason": "one sentence split"
+  },
+  {
+   "segment_id": "p97_s27",
+   "translation": "Zoo",
+   "reason": "consistent capitals"
+  },
+  {
+   "segment_id": "p97_s32",
+   "translation": "Orchard",
+   "reason": "consistent capitals"
+  },
+  {
+   "segment_id": "p97_s33",
+   "translation": "Bookshop",
+   "reason": "British, capitals",
+   "box": [
+    427,
+    466,
+    478,
+    482
+   ]
+  },
+  {
+   "segment_id": "p97_s37",
+   "translation": "Post Office",
+   "reason": "consistent capitals"
+  },
+  {
+   "split": "p97_s42",
+   "translations": [
+    "7 km = (      ) m",
+    "2 dm = (",
+    "60 mm = (      ) cm      5 cm = (      ) mm"
+   ],
+   "reason": "grid cells"
+  },
+  {
+   "split": "p97_s43",
+   "translations": [
+    "4000 m = (      ) km",
+    "30 cm = (      ) dm"
+   ],
+   "reason": "grid cells"
+  },
+  {
+   "split": "p97_s42_k2",
+   "at": [
+    272
+   ],
+   "translations": [
+    "60 mm = (      ) cm",
+    "5 cm = (      ) mm"
+   ],
+   "reason": "two cells"
+  },
+  {
+   "segment_id": "p97_s24",
+   "erase": [
+    [
+     242,
+     405,
+     253,
+     425
+    ]
+   ],
+   "reason": "leftover bracket"
+  },
+  {
+   "split": "p98_s7",
+   "at": [
+    155,
+    258
+   ],
+   "translations": [
+    "About 30 (     ) tall.",
+    "About 60 (     ) an hour.",
+    "About 8 (     ) high."
+   ],
+   "reason": "three picture cells joined in one line (building, van, table); subject shown by each picture; dropped OCR noise 1 and 392.8.0"
+  },
+  {
+   "segment_id": "p98_s8",
+   "translation": "About ⟦0⟧ (     ) thick.",
+   "reason": "placeholder restored; same pattern as the other cells"
+  },
+  {
+   "segment_id": "p98_s9",
+   "translation": "⟦0⟧. Think and discuss.",
+   "reason": "text of other paragraphs mixed in"
+  },
+  {
+   "split": "p98_s13",
+   "translations": [
+    "Draw a rectangle.",
+    "Draw a square."
+   ],
+   "reason": "labels of two different grids"
+  },
+  {
+   "segment_id": "p98_s16",
+   "translation": "acute\nangle",
+   "box": [
+    196,
+    517,
+    230,
+    541
+   ],
+   "reason": "too small"
+  },
+  {
+   "segment_id": "p98_s17",
+   "translation": "right\nangle",
+   "box": [
+    196,
+    569,
+    230,
+    593
+   ],
+   "reason": "too small"
+  },
+  {
+   "segment_id": "p98_s18",
+   "translation": "obtuse\nangle",
+   "box": [
+    194,
+    622,
+    232,
+    646
+   ],
+   "reason": "too small"
+  },
+  {
+   "add": "p98_a1",
+   "page": 98,
+   "box": [
+    156,
+    91,
+    182,
+    106
+   ],
+   "translation": "mm",
+   "source": "毫米",
+   "reason": "slanted unit label on triangle"
+  },
+  {
+   "restore": [
+    175,
+    104,
+    187,
+    113
+   ],
+   "page": 98,
+   "reason": "triangle side damaged by erase"
+  },
+  {
+   "add": "p98_a2",
+   "page": 98,
+   "box": [
+    228,
+    108,
+    246,
+    121
+   ],
+   "translation": "mm",
+   "source": "毫",
+   "size": 9,
+   "align": "left",
+   "reason": "slanted unit label on triangle"
+  },
+  {
+   "add": "p98_a3",
+   "page": 98,
+   "box": [
+    233,
+    120,
+    250,
+    132
+   ],
+   "translation": "BLANK",
+   "source": "米",
+   "reason": "rest of the slanted label"
+  },
+  {
+   "restore": [
+    214,
+    100,
+    227,
+    113
+   ],
+   "page": 98,
+   "reason": "bracket damaged by erase"
+  },
+  {
+   "restore": [
+    216,
+    123,
+    232,
+    136
+   ],
+   "page": 98,
+   "reason": "triangle side damaged by erase"
+  },
+  {
+   "restore": [
+    216,
+    117,
+    226,
+    123
+   ],
+   "page": 98,
+   "reason": "triangle side damaged by erase"
+  },
+  {
+   "restore": [
+    229,
+    132,
+    239,
+    137
+   ],
+   "page": 98,
+   "reason": "triangle corner damaged by erase"
+  },
+  {
+   "segment_id": "p98_s10",
+   "box": [
+    75,
+    318,
+    229,
+    354
+   ],
+   "reason": "wraps to three lines and touches stick 1; free room to the right"
+  },
+  {
+   "split": "p99_s2",
+   "translations": [
+    "Pens",
+    "DROP"
+   ],
+   "reason": "header cell and tally marks joined"
+  },
+  {
+   "segment_id": "p99_s3",
+   "translation": "Pencils",
+   "reason": "header capitals like Pens"
+  },
+  {
+   "segment_id": "p99_s4",
+   "translation": "Erasers",
+   "reason": "header capitals"
+  },
+  {
+   "segment_id": "p99_s5",
+   "translation": "Rulers",
+   "reason": "header capitals"
+  },
+  {
+   "segment_id": "p99_s6",
+   "translation": "DROP",
+   "reason": "tally marks read as text"
+  },
+  {
+   "split": "p99_s9",
+   "translations": [
+    "Car",
+    "Slow",
+    "Medium",
+    "Fast"
+   ],
+   "reason": "row labels of a table"
+  },
+  {
+   "segment_id": "p99_s10",
+   "translation": "DROP",
+   "reason": "OCR of handwritten crosses"
+  },
+  {
+   "split": "p99_s14",
+   "translations": [
+    "Taoqi: rabbit, chicken, bird, tiger and bear;",
+    "Xiaoxiao: dog, cat, bear and tiger;",
+    "Qisi: dog, tiger, bear and elephant;",
+    "Miaoxiang: none;",
+    "Lele: cat and bear."
+   ],
+   "reason": "one line per child as printed"
+  },
+  {
+   "segment_id": "p99_s15",
+   "translation": "Which animal do the ⟦0⟧ children like most? How do you know? Write down your ideas.",
+   "reason": "doubled 'down'"
+  },
+  {
+   "segment_id": "p99_s9_k2",
+   "box": [
+    114,
+    353,
+    154,
+    372
+   ],
+   "reason": "Medium did not fit; use the whole row-label cell"
+  },
+  {
+   "segment_id": "p101_s1",
+   "translation": "What maths problems have you found in daily life and at school? Write them down. Can you solve them?",
+   "reason": "British 'maths'"
+  },
+  {
+   "segment_id": "p102_s4",
+   "translation": "Fish Pond",
+   "reason": "鱼塘 is a fish pond"
+  },
+  {
+   "segment_id": "p102_s7",
+   "translation": "DROP",
+   "reason": "OCR noise inside the clinic picture"
+  }
+ ],
+ "flags": [
+  {
+   "page": 98,
+   "issue": "Exercise 12: '(20) min' is set larger than the two '( ) min' labels and touches the second clock; size cannot be set by text."
+  },
+  {
+   "page": 100,
+   "issue": "Speed table: 'Medium' row label is set smaller (0.54) than 'Car', 'Slow' and 'Fast' because the handwritten label cell is narrow."
+  }
+ ]
+}

@@ -1,0 +1,825 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s14",
+   "translation": "（      ）people like ⟦0⟧, （      ）people like monkeys,\n（      ）people like ⟦1⟧, （      ）people like pandas.\nWe can choose （      ） as the mascot.",
+   "reason": "monkey and panda pictures lost; whole sentence"
+  },
+  {
+   "segment_id": "p89_s15",
+   "translation": "BLANK",
+   "reason": "duplicate fragment of s14"
+  },
+  {
+   "segment_id": "p89_s9",
+   "translation": "BLANK",
+   "reason": "vertical prose of row labels; set per row with adds"
+  },
+  {
+   "add": "p89_a1",
+   "page": 89,
+   "box": [
+    84,
+    500,
+    125,
+    512
+   ],
+   "translation": "Rabbit",
+   "source": "兔",
+   "size": 7,
+   "align": "left",
+   "reason": "row label",
+   "color": 3355443
+  },
+  {
+   "add": "p89_a2",
+   "page": 89,
+   "box": [
+    84,
+    517,
+    125,
+    529
+   ],
+   "translation": "Monkey",
+   "source": "猴",
+   "size": 7,
+   "align": "left",
+   "reason": "row label",
+   "color": 3355443
+  },
+  {
+   "add": "p89_a3",
+   "page": 89,
+   "box": [
+    84,
+    533,
+    125,
+    546
+   ],
+   "translation": "Fish",
+   "source": "鱼",
+   "size": 7,
+   "align": "left",
+   "reason": "row label",
+   "color": 3355443
+  },
+  {
+   "add": "p89_a4",
+   "page": 89,
+   "box": [
+    84,
+    549,
+    125,
+    563
+   ],
+   "translation": "Panda",
+   "source": "熊猫",
+   "size": 7,
+   "align": "left",
+   "reason": "row label",
+   "color": 3355443
+  },
+  {
+   "segment_id": "p89_s11",
+   "translation": "DROP",
+   "reason": "marks were OCR'd as text"
+  },
+  {
+   "segment_id": "p89_s10",
+   "translation": "BLANK",
+   "reason": "label set by an add of the same size as its siblings"
+  },
+  {
+   "add": "p89_a5",
+   "page": 89,
+   "box": [
+    296,
+    498,
+    321,
+    510
+   ],
+   "translation": "Rabbit",
+   "source": "兔",
+   "size": 6.5,
+   "align": "left",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "add": "p89_a6",
+   "page": 89,
+   "box": [
+    296,
+    515,
+    321,
+    527
+   ],
+   "translation": "Monkey",
+   "source": "猴",
+   "size": 6.5,
+   "align": "left",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "segment_id": "p89_s12",
+   "translation": "BLANK",
+   "reason": "label set by an add of the same size as its siblings"
+  },
+  {
+   "add": "p89_a7",
+   "page": 89,
+   "box": [
+    296,
+    533,
+    321,
+    545
+   ],
+   "translation": "Fish",
+   "source": "鱼",
+   "size": 6.5,
+   "align": "left",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "add": "p89_a8",
+   "page": 89,
+   "box": [
+    296,
+    550,
+    321,
+    563
+   ],
+   "translation": "Panda",
+   "source": "熊猫",
+   "size": 6.5,
+   "align": "left",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "paint": [
+    287,
+    614,
+    295,
+    625
+   ],
+   "page": 89,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "remnant of the erased monkey picture under the English"
+  },
+  {
+   "segment_id": "p90_s1",
+   "translation": "(⟦0⟧) Tell your partner how you will do the survey.",
+   "reason": "shorter so it is set at the size of its sibling"
+  },
+  {
+   "segment_id": "p90_s2",
+   "translation": "(⟦0⟧) Below is Miaoxiang's survey record.",
+   "box": [
+    207,
+    146,
+    505,
+    167
+   ],
+   "reason": "taller box so it matches sibling size"
+  },
+  {
+   "segment_id": "p90_s4",
+   "translation": "BLANK",
+   "reason": "row labels set one per cell by adds of one size"
+  },
+  {
+   "add": "p90_a1",
+   "page": 90,
+   "box": [
+    290,
+    174,
+    321,
+    190
+   ],
+   "translation": "Comedy",
+   "source": "相声",
+   "size": 6,
+   "align": "center",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "add": "p90_a2",
+   "page": 90,
+   "box": [
+    290,
+    195,
+    321,
+    211
+   ],
+   "translation": "Magic",
+   "source": "魔术",
+   "size": 6,
+   "align": "center",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "add": "p90_a3",
+   "page": 90,
+   "box": [
+    290,
+    215,
+    321,
+    231
+   ],
+   "translation": "Acrobatics",
+   "source": "杂技",
+   "size": 6,
+   "align": "center",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "add": "p90_a4",
+   "page": 90,
+   "box": [
+    290,
+    236,
+    321,
+    252
+   ],
+   "translation": "Dance",
+   "source": "歌舞",
+   "size": 6,
+   "align": "center",
+   "color": 3355443,
+   "reason": "row label of the record card"
+  },
+  {
+   "segment_id": "p90_s5",
+   "translation": "DROP",
+   "reason": "OCR of tally marks"
+  },
+  {
+   "segment_id": "p90_s6",
+   "translation": "DROP",
+   "reason": "OCR of tally marks"
+  },
+  {
+   "segment_id": "p90_s8",
+   "translation": "（      ） is liked by the most people, and （      ） by the fewest.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p90_s10",
+   "translation": "BLANK",
+   "reason": "answer row set per cell by adds"
+  },
+  {
+   "add": "p90_a5",
+   "page": 90,
+   "box": [
+    267,
+    359,
+    315,
+    377
+   ],
+   "translation": "(        )",
+   "source": "(  )个",
+   "size": 11,
+   "align": "center",
+   "color": 0,
+   "reason": "answer blank of the cell, 个 dropped"
+  },
+  {
+   "add": "p90_a6",
+   "page": 90,
+   "box": [
+    318,
+    359,
+    364,
+    377
+   ],
+   "translation": "(        )",
+   "source": "(  )个",
+   "size": 11,
+   "align": "center",
+   "color": 0,
+   "reason": "answer blank of the cell, 个 dropped"
+  },
+  {
+   "add": "p90_a7",
+   "page": 90,
+   "box": [
+    367,
+    359,
+    414,
+    377
+   ],
+   "translation": "(        )",
+   "source": "(  )个",
+   "size": 11,
+   "align": "center",
+   "color": 0,
+   "reason": "answer blank of the cell, 个 dropped"
+  },
+  {
+   "add": "p90_a8",
+   "page": 90,
+   "box": [
+    417,
+    359,
+    464,
+    377
+   ],
+   "translation": "(        )",
+   "source": "(  )个",
+   "size": 11,
+   "align": "center",
+   "color": 0,
+   "reason": "answer blank of the cell, 个 dropped"
+  },
+  {
+   "merge": [
+    "p90_s11",
+    "p90_s12",
+    "p90_s14",
+    "p90_s15"
+   ],
+   "translation": "(2) Fill in.\nSquares: (      ) more than triangles, (      ) more than circles.\nCircles: (      ) fewer than squares, (      ) fewer than triangles.",
+   "reason": "one exercise split into fragments with lost shape pictures"
+  },
+  {
+   "segment_id": "p90_s11",
+   "box": [
+    76,
+    391,
+    470,
+    460
+   ],
+   "erase": [
+    [
+     339,
+     440,
+     373,
+     460
+    ]
+   ],
+   "reason": "room for the merged exercise; erase leftover 个。"
+  },
+  {
+   "segment_id": "p90_s16",
+   "translation": "(3) Most: (      ). Fewest: (      ). The same number: (      ) and (      ).",
+   "reason": "shorter, natural",
+   "box": [
+    75,
+    466,
+    505,
+    485
+   ]
+  },
+  {
+   "segment_id": "p90_s23",
+   "translation": "Both",
+   "reason": "fits the header cell at sibling size"
+  },
+  {
+   "segment_id": "p90_s24",
+   "translation": "⟦0⟧ people",
+   "reason": "keep placeholder",
+   "box": [
+    264,
+    567,
+    320,
+    587
+   ]
+  },
+  {
+   "segment_id": "p90_s26",
+   "translation": "⟦0⟧ people",
+   "box": [
+    385,
+    567,
+    440,
+    587
+   ],
+   "reason": "room in its cell so it stays on one line"
+  },
+  {
+   "paint": [
+    96,
+    419,
+    110,
+    433
+   ],
+   "page": 90,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "yellow square picture left under the merged English (now a word)"
+  },
+  {
+   "segment_id": "p90_s25",
+   "box": [
+    326,
+    567,
+    380,
+    587
+   ],
+   "reason": "room in its cell so it stays on one line like its siblings"
+  },
+  {
+   "segment_id": "p91_s1",
+   "translation": "Class 2 (⟦0⟧) will buy apples, oranges, bananas and pears for a party.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p91_s2",
+   "erase": [
+    [
+     337,
+     175,
+     348,
+     188
+    ]
+   ],
+   "reason": "leftover Chinese full stop in the bubble"
+  },
+  {
+   "segment_id": "p91_s4",
+   "translation": "What shall we do?",
+   "reason": "natural question",
+   "box": [
+    318,
+    205,
+    384,
+    223
+   ]
+  },
+  {
+   "segment_id": "p91_s5",
+   "translation": "How should we buy the fruit? Which should we buy more of, and which less?",
+   "reason": "shorter, fits one line"
+  },
+  {
+   "merge": [
+    "p91_s7",
+    "p91_s8"
+   ],
+   "translation": "Buy more of the fruits that more people like, and less of those that fewer people like.",
+   "reason": "one sentence split in two sizes"
+  },
+  {
+   "merge": [
+    "p91_s9",
+    "p91_s10"
+   ],
+   "translation": "Survey everyone's favourite fruit. How can we record the data?",
+   "reason": "one line of text split in two"
+  },
+  {
+   "segment_id": "p91_s13",
+   "translation": "DROP",
+   "reason": "正 tally marks drawn by a pupil (taught shape), not text"
+  },
+  {
+   "split": "p91_s15",
+   "translations": [
+    "Record everyone's choices in your favourite way. Then fill in.",
+    "(      ) people like apples, (      ) people like oranges,",
+    "(      ) people like bananas, (      ) people like pears.",
+    "Suggest how to buy the fruit."
+   ],
+   "reason": "lines belong to two bulleted items; keep each line in place"
+  },
+  {
+   "line": "p91_i364_4",
+   "translation": "Party",
+   "force": true,
+   "reason": "banner on the blackboard"
+  },
+  {
+   "segment_id": "p92_s2",
+   "translation": "(⟦0⟧) Talk about it: how should we decide where to go?",
+   "reason": "natural phrasing"
+  },
+  {
+   "split": "p92_s5",
+   "translations": [
+    "Zoo",
+    "Museum",
+    "Funfair",
+    "Park"
+   ],
+   "reason": "row labels of the tally table, one per cell"
+  },
+  {
+   "segment_id": "p92_s6",
+   "translation": "DROP",
+   "reason": "tally marks misread as 丰"
+  },
+  {
+   "segment_id": "p92_s7",
+   "translation": "DROP",
+   "reason": "tally marks misread"
+  },
+  {
+   "split": "p92_s9",
+   "translations": [
+    "Recording method",
+    "How many want to go"
+   ],
+   "reason": "two header cells"
+  },
+  {
+   "split": "p92_s10",
+   "translations": [
+    "Zoo",
+    "Museum",
+    "Funfair",
+    "Park"
+   ],
+   "reason": "row labels of the table, one per cell"
+  },
+  {
+   "segment_id": "p92_s14",
+   "translation": "(⟦0⟧) Record the number of each ball in the table, in your own way.",
+   "reason": "shorter so it is set at sibling size"
+  },
+  {
+   "segment_id": "p92_s15",
+   "translation": "⟦0⟧ There are (      ) basketballs, (      ) footballs and (      ) volleyballs.",
+   "box": [
+    76,
+    659,
+    505,
+    676
+   ],
+   "reason": "room on the line so it does not wrap"
+  },
+  {
+   "split": "p93_s1",
+   "translations": [
+    "Review and Discuss",
+    "Numbers and Algebra"
+   ],
+   "reason": "banner and section heading are two texts"
+  },
+  {
+   "segment_id": "p93_s3",
+   "translation": "⟦0⟧. Give examples of the \"new\" numbers you learned about in Year 2.",
+   "reason": "natural phrasing"
+  },
+  {
+   "merge": [
+    "p93_s8",
+    "p93_s9"
+   ],
+   "translation": "3. Put the lengths of the Yangtze River, the Yellow River and the Grand Canal in order, and say how you compared them.",
+   "reason": "one exercise split over two lines; 起来，并 was left in Chinese"
+  },
+  {
+   "segment_id": "p93_s8",
+   "erase": [
+    [
+     80,
+     314,
+     150,
+     337
+    ]
+   ],
+   "reason": "leftover Chinese 起来，并 of the second line"
+  },
+  {
+   "merge": [
+    "p93_s16",
+    "p93_s17"
+   ],
+   "translation": "Share ideas",
+   "reason": "tag 相互启发 split in two, first half left in Chinese"
+  },
+  {
+   "segment_id": "p93_s14",
+   "translation": "⟦0⟧. Sort out the problems you often get wrong. What should you watch out for in division, addition and subtraction? How can you make fewer mistakes?",
+   "box": [
+    69,
+    451,
+    462,
+    492
+   ],
+   "reason": "set at the size of the other numbered items"
+  },
+  {
+   "merge": [
+    "p94_s1",
+    "p94_s2"
+   ],
+   "translation": "On your own",
+   "reason": "tag 独立思考 split in two, first half left in Chinese"
+  },
+  {
+   "merge": [
+    "p94_s7",
+    "p94_s8"
+   ],
+   "translation": "Trace one of each shape you have learned from the picture. Say what features squares and rectangles have, and how you found them.",
+   "reason": "one exercise split into two sizes"
+  },
+  {
+   "segment_id": "p94_s9",
+   "translation": "Share ideas",
+   "reason": "same tag wording as the other pages"
+  },
+  {
+   "segment_id": "p94_s17",
+   "translation": "BLANK",
+   "reason": "欢 is the end of 喜欢, already in 'like best'"
+  },
+  {
+   "split": "p94_s18",
+   "translations": [
+    "Recording method",
+    "How many like it"
+   ],
+   "reason": "two row labels of the table"
+  },
+  {
+   "merge": [
+    "p94_s21",
+    "p94_s22"
+   ],
+   "translation": "Share ideas",
+   "reason": "tag 相互启发 split in two, second half left in Chinese"
+  },
+  {
+   "segment_id": "p94_s25",
+   "translation": "I draw ticks",
+   "reason": "boy's bubble 我用画“✓”的方法; mistranslated"
+  },
+  {
+   "segment_id": "p94_s21",
+   "erase": [
+    [
+     84,
+     571,
+     111,
+     588
+    ]
+   ],
+   "reason": "启发 of the merged tag left in the picture"
+  },
+  {
+   "merge": [
+    "p94_s23",
+    "p94_s24"
+   ],
+   "translation": "I draw “正”.",
+   "reason": "one bubble sentence 我用画“正”的方法 split in two"
+  },
+  {
+   "segment_id": "p94_s10",
+   "erase": [
+    [
+     212,
+     351,
+     232,
+     363
+    ]
+   ],
+   "reason": "leftover ellipsis dots"
+  },
+  {
+   "segment_id": "p94_s11",
+   "erase": [
+    [
+     355,
+     351,
+     375,
+     363
+    ]
+   ],
+   "reason": "leftover ellipsis dots"
+  },
+  {
+   "split": "p95_s0",
+   "translations": [
+    "Exercises",
+    "Numbers and Algebra"
+   ],
+   "reason": "banner and section heading are two texts"
+  },
+  {
+   "segment_id": "p95_s1",
+   "translation": "⟦0⟧. ⟦1⟧ sticks make ⟦2⟧ pentagon. How many pentagons can ⟦3⟧ sticks make, and how many sticks are left? Think about how you built them, and say what each number in the column method means.",
+   "reason": "terminology: column method"
+  },
+  {
+   "segment_id": "p95_s3",
+   "translation": "⟦0⟧. Put all ⟦1⟧ eggs in egg\ntrays. At least\negg trays are needed.",
+   "reason": "answer box picture stands after 'At least' as in the source"
+  },
+  {
+   "segment_id": "p95_s4",
+   "translation": "Each tray holds at most ⟦0⟧ eggs.",
+   "reason": "each tray was lost"
+  },
+  {
+   "segment_id": "p95_s6",
+   "translation": "⟦0⟧. Write the underlined numbers in digits and show them on the abacus.",
+   "reason": "横线上的数 = underlined numbers"
+  },
+  {
+   "merge": [
+    "p95_s7",
+    "p95_s8"
+   ],
+   "translation": "(1) The Oriental Pearl TV Tower in Shanghai is four hundred and sixty-eight metres tall. In digits: (          ) m.",
+   "reason": "one exercise split; fragments in two sizes"
+  },
+  {
+   "segment_id": "p95_s9",
+   "translation": "(⟦0⟧) The Beijing–Kowloon Railway is about two thousand five hundred and fifty-three kilometres long. In digits: (          ) km.",
+   "box": [
+    76,
+    529,
+    466,
+    571
+   ],
+   "erase": [
+    [
+     456,
+     527,
+     469,
+     546
+    ]
+   ],
+   "reason": "missing closing bracket and unit; erase the stray bracket"
+  },
+  {
+   "merge": [
+    "p95_s10",
+    "p95_s11"
+   ],
+   "translation": "(3) The Great Wall runs from Shanhaiguan in the east to Jiayuguan in the west. It is about six thousand seven hundred kilometres long. In digits: (          ) km.",
+   "reason": "one exercise split"
+  },
+  {
+   "segment_id": "p95_s7",
+   "erase": [
+    [
+     103,
+     503,
+     118,
+     524
+    ]
+   ],
+   "reason": "stray bracket of the source line"
+  },
+  {
+   "segment_id": "p95_s0_k0",
+   "box": [
+    84,
+    87,
+    134,
+    106
+   ],
+   "reason": "room in the banner"
+  },
+  {
+   "split": "p96_s11",
+   "at": [
+    222
+   ],
+   "translations": [
+    "9. Use the column method to calculate, then check.",
+    "DROP"
+   ],
+   "reason": "9. and 10. are two exercises; 10. stays as printed"
+  },
+  {
+   "restore": [
+    300,
+    504,
+    333,
+    536
+   ],
+   "page": 96,
+   "reason": "Dad's head and the end of the label were erased"
+  }
+ ],
+ "flags": [
+  {
+   "page": 91,
+   "issue": "Record-card row labels (Comedy, Magic, Acrobatics, Dance) had to be set at 6 pt to fit the narrow hand-drawn cells."
+  },
+  {
+   "page": 97,
+   "issue": "Chinese full stops 。 and ideographic commas remain at the ends of the printed pattern rows 6 (1)-(3) (part of the picture, no paragraph)."
+  }
+ ]
+}

@@ -1,0 +1,603 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p81_s6",
+   "translation": "15 s",
+   "reason": "misread number: the picture says 15秒"
+  },
+  {
+   "add": "p81_a1",
+   "page": 81,
+   "box": [
+    236,
+    215,
+    262,
+    229
+   ],
+   "translation": "1 min",
+   "source": "1分",
+   "reason": "hand lettering 1分 over the brace left in Chinese"
+  },
+  {
+   "segment_id": "p81_s12",
+   "translation": "One turn is ⟦0⟧ min, and ⟦1⟧ min more is ⟦2⟧ min.",
+   "reason": "走一圈 = the minute hand goes once round"
+  },
+  {
+   "segment_id": "p81_s10",
+   "box": [
+    201.5,
+    305.3,
+    286.0,
+    323.4
+   ],
+   "reason": "box covered the answer box"
+  },
+  {
+   "restore": [
+    286,
+    304,
+    305,
+    325
+   ],
+   "page": 81,
+   "reason": "answer box erased"
+  },
+  {
+   "merge": [
+    "p81_s15",
+    "p81_s17"
+   ],
+   "translation": "1 hour is 60 min……",
+   "reason": "one bubble sentence split in two sizes"
+  },
+  {
+   "segment_id": "p81_s18",
+   "translation": "1 h",
+   "reason": "label at the 1-hour mark is 1时"
+  },
+  {
+   "segment_id": "p81_s20",
+   "translation": "⟦0⟧. Choose and tick (✓).",
+   "box": [
+    58.1,
+    444.5,
+    215,
+    462
+   ],
+   "reason": "the ✓ and full stop were lost; sentence incomplete"
+  },
+  {
+   "segment_id": "p81_s23",
+   "translation": "Running ⟦0⟧ m takes about",
+   "reason": "duplicate text of the neighbouring label"
+  },
+  {
+   "segment_id": "p81_s25",
+   "box": [
+    264,
+    503.4,
+    297,
+    519.3
+   ],
+   "reason": "3 min wraps; free paper to the left"
+  },
+  {
+   "segment_id": "p81_s26",
+   "box": [
+    395,
+    503.4,
+    429,
+    519.0
+   ],
+   "reason": "1 min wraps; free paper to the left"
+  },
+  {
+   "split": "p81_s31",
+   "at": [
+    212
+   ],
+   "translations": [
+    "characters.",
+    "In 1 min I walk about"
+   ],
+   "reason": "two different sentences in one paragraph"
+  },
+  {
+   "segment_id": "p81_s20",
+   "erase": [
+    [
+     201,
+     447,
+     213,
+     461
+    ]
+   ],
+   "reason": "leftover Chinese full stop"
+  },
+  {
+   "segment_id": "p81_s25",
+   "translation": "⟦0⟧ min",
+   "reason": "keep 3 min on one line"
+  },
+  {
+   "segment_id": "p81_s26",
+   "translation": "⟦0⟧ min",
+   "reason": "keep 1 min on one line"
+  },
+  {
+   "split": "p82_s0",
+   "translations": [
+    "3. Think and fill in.",
+    "1 h = ___ min",
+    "___ min ___ s",
+    "h ___ min"
+   ],
+   "reason": "heading and three separate exercise lines run together"
+  },
+  {
+   "split": "p82_s1",
+   "translations": [
+    "1 min = ___ s",
+    "1 min 20 s = ___ s",
+    "1 h 15 min = ___ min"
+   ],
+   "reason": "three separate exercise lines run together"
+  },
+  {
+   "segment_id": "p82_s5",
+   "translation": "⟦0⟧ lesson is",
+   "reason": "wrapped badly; keep on one line",
+   "box": [
+    75.4,
+    214,
+    155,
+    228
+   ]
+  },
+  {
+   "segment_id": "p82_s6",
+   "translation": "min, break",
+   "reason": "dropped ⟦0⟧: inline crop of the answer box, which is restored in place; elliptical list reads naturally",
+   "box": [
+    175,
+    211.2,
+    266.7,
+    229.9
+   ]
+  },
+  {
+   "segment_id": "p82_s7",
+   "translation": "min, plus",
+   "reason": "consistent unit abbreviation"
+  },
+  {
+   "segment_id": "p82_s8",
+   "translation": "min makes ⟦0⟧ hour.",
+   "reason": "consistent unit; grammar"
+  },
+  {
+   "segment_id": "p82_s9",
+   "translation": "(⟦0⟧) The red light stays on for ⟦1⟧ min, then turns green. ⟦2⟧ min is",
+   "reason": "shorter so it fits one line"
+  },
+  {
+   "segment_id": "p82_s11",
+   "translation": "⟦0⟧. Did they read the times correctly? Talk with a partner.",
+   "reason": "beginning of the sentence and the number were missing"
+  },
+  {
+   "segment_id": "p82_s14",
+   "translation": "⟦1⟧:⟦2⟧",
+   "reason": "dropped ⟦0⟧: OCR noise; same format as the other bubbles",
+   "erase": [
+    [
+     257,
+     359,
+     266,
+     374
+    ]
+   ]
+  },
+  {
+   "segment_id": "p82_s19",
+   "translation": "h ___ min",
+   "reason": "first blank is printed in the picture; matches siblings"
+  },
+  {
+   "segment_id": "p82_s23",
+   "box": [
+    61,
+    588.5,
+    114,
+    604.3
+   ],
+   "reason": "name set too small; use the whole cell"
+  },
+  {
+   "segment_id": "p82_s24",
+   "box": [
+    116,
+    588.2,
+    168,
+    604.1
+   ],
+   "reason": "use the whole cell, same size as other names"
+  },
+  {
+   "segment_id": "p82_s25",
+   "box": [
+    170,
+    588.5,
+    223,
+    604.1
+   ],
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p82_s26",
+   "box": [
+    225,
+    588.2,
+    278,
+    604.1
+   ],
+   "reason": "name set too small; use the whole cell"
+  },
+  {
+   "segment_id": "p82_s15",
+   "erase": [
+    [
+     343,
+     361,
+     352.5,
+     376
+    ]
+   ],
+   "box": [
+    344,
+    362,
+    406,
+    375.3
+   ],
+   "reason": "leftover 4 of 4时 read as 45 minutes; idiomatic shorter reading",
+   "translation": "5 to 4"
+  },
+  {
+   "restore": [
+    154.5,
+    209,
+    176,
+    232
+   ],
+   "page": 82,
+   "reason": "put the first answer box back in its place"
+  },
+  {
+   "segment_id": "p83_s1",
+   "translation": "Fill in and talk about it.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p83_s5",
+   "translation": "How long is it from when Taoqi gets up to when he starts breakfast? Look and talk about it.",
+   "reason": "more natural phrasing"
+  },
+  {
+   "segment_id": "p83_s10",
+   "translation": "Start breakfast",
+   "reason": "the label marks the start of breakfast"
+  },
+  {
+   "merge": [
+    "p84_s13",
+    "p84_s14"
+   ],
+   "translation": "(1) ___ h ___ min passed.",
+   "reason": "one sentence split; the (1) and the blanks were lost"
+  },
+  {
+   "segment_id": "p84_s13",
+   "box": [
+    271,
+    333,
+    392,
+    350
+   ],
+   "reason": "cover the erased (1) so the enumerator is set"
+  },
+  {
+   "segment_id": "p84_s30",
+   "translation": "Going home:",
+   "reason": "shorter so it does not run into the printed blank"
+  },
+  {
+   "split": "p84_s32",
+   "translations": [
+    "Played for",
+    "min."
+   ],
+   "reason": "the blank between is printed in the picture; set each part in its own place"
+  },
+  {
+   "segment_id": "p85_s0",
+   "translation": "Maths Is Fun",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p85_s1",
+   "box": [
+    62,
+    121.9,
+    138,
+    140.3
+   ],
+   "reason": "title set at 0.63; use the whole plate"
+  },
+  {
+   "paint": [
+    60,
+    373,
+    129,
+    389
+   ],
+   "page": 85,
+   "colour": "border",
+   "reason": "white-outlined lettering on the plate cannot be erased cleanly"
+  },
+  {
+   "segment_id": "p85_s8",
+   "translation": "Task",
+   "reason": "short label on the plate"
+  },
+  {
+   "segment_id": "p85_s4",
+   "translation": "Does Taoqi take the same time to get to school every day?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p85_s7",
+   "translation": "How long does it take him to get to school?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p85_s14",
+   "translation": "⟦0⟧. How do we record how long it takes to get to school each day?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p85_s15",
+   "erase": [
+    [
+     241,
+     622,
+     252,
+     634
+    ]
+   ],
+   "reason": "leftover dots of the Chinese ellipsis"
+  },
+  {
+   "segment_id": "p86_s0",
+   "translation": "⟦0⟧. What else should you pay attention to while doing the task?",
+   "reason": "shorter, same meaning; set at 0.75"
+  },
+  {
+   "segment_id": "p86_s4",
+   "translation": "The table on the right shows when Taoqi left home and reached school each day for a week. Help him fill in the time taken.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p86_s5",
+   "translation": "Leave home",
+   "reason": "short header that fits the cell"
+  },
+  {
+   "split": "p86_s6",
+   "at": [
+    374
+   ],
+   "translations": [
+    "Reach school",
+    "Time taken"
+   ],
+   "reason": "two header cells printed as one run"
+  },
+  {
+   "split": "p86_s7",
+   "translations": [
+    "Mon",
+    "Tue",
+    "Wed",
+    "Thu",
+    "Fri"
+   ],
+   "reason": "five row labels printed as one run"
+  },
+  {
+   "segment_id": "p86_s19",
+   "translation": "⟦0⟧. Did Taoqi take the same time to get to school every day this week?",
+   "reason": "more natural; past tense for the record"
+  },
+  {
+   "merge": [
+    "p86_s20",
+    "p86_s21"
+   ],
+   "translation": "2. What was the longest time Taoqi took to get to school? The shortest? About how long does it usually take?",
+   "reason": "one question split over two lines; second part was set big and out of place"
+  },
+  {
+   "segment_id": "p86_s22",
+   "translation": "⟦0⟧. Use the record table in Appendix ⟦1⟧ to record how long it takes you to get to school each day for a week.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p86_s23",
+   "translation": "⟦0⟧. After a week, look at your group's record tables and talk about how long each of you takes to get to school.",
+   "reason": "more natural"
+  },
+  {
+   "paint": [
+    60,
+    496,
+    126,
+    513
+   ],
+   "page": 86,
+   "colour": "border",
+   "reason": "white-outlined lettering on the plate cannot be erased cleanly"
+  },
+  {
+   "split": "p86_s25",
+   "translations": [
+    "In this activity, this is how I did:",
+    "When I meet a problem, I can think about what to do first and what to do next.",
+    "BLANK",
+    "I learned how to measure time and keep a record."
+   ],
+   "reason": "heading and table rows printed as one run; second row ran over the cell border"
+  },
+  {
+   "segment_id": "p86_s26",
+   "translation": "I can answer questions using the table.",
+   "reason": "complete meaning"
+  },
+  {
+   "paint": [
+    62,
+    85,
+    75,
+    101
+   ],
+   "page": 87,
+   "colour": [
+    0,
+    156,
+    92
+   ],
+   "reason": "white opening quote of the title left on the green plate"
+  },
+  {
+   "segment_id": "p87_s0",
+   "translation": "The Magic of “Repeating”",
+   "box": [
+    62,
+    85.3,
+    180,
+    103.5
+   ],
+   "reason": "opening quote was lost; natural title"
+  },
+  {
+   "segment_id": "p87_s2",
+   "translation": "⟦0⟧ Showing patterns",
+   "reason": "natural heading; ⟦0⟧ is the green bullet"
+  },
+  {
+   "segment_id": "p87_s4",
+   "translation": "I see the children are lined up in a pattern: one girl, one boy, one…",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p87_s7",
+   "erase": [
+    [
+     101,
+     642,
+     114,
+     657
+    ]
+   ],
+   "reason": "leftover tick from the picture under the English"
+  },
+  {
+   "segment_id": "p88_s4",
+   "translation": "If we hang more lanterns like these, the next one should be…",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p88_s6",
+   "erase": [
+    [
+     204,
+     276,
+     246,
+     291
+    ]
+   ],
+   "reason": "leftover Chinese 是…… under the English"
+  },
+  {
+   "segment_id": "p88_s13",
+   "translation": "DROP",
+   "reason": "bilingual weekday headers of the calendar picture (English already printed); OCR garbage"
+  },
+  {
+   "segment_id": "p88_s17",
+   "translation": "Spring",
+   "box": [
+    66,
+    566,
+    99,
+    580
+   ],
+   "reason": "left in Chinese; free paper left of the photo"
+  },
+  {
+   "segment_id": "p88_s18",
+   "translation": "Summer",
+   "box": [
+    242,
+    564,
+    272,
+    582
+   ],
+   "reason": "left in Chinese; free paper right of the photo"
+  },
+  {
+   "segment_id": "p88_s19",
+   "translation": "Winter",
+   "box": [
+    66,
+    625,
+    98,
+    640
+   ],
+   "reason": "set too small; free paper left of the photo"
+  },
+  {
+   "segment_id": "p88_s20",
+   "translation": "Autumn",
+   "box": [
+    242,
+    623.9,
+    272,
+    638
+   ],
+   "reason": "British English"
+  },
+  {
+   "segment_id": "p88_s19",
+   "erase": [
+    [
+     88,
+     636,
+     100,
+     646
+    ]
+   ],
+   "reason": "leftover stroke of 冬 below the label"
+  }
+ ],
+ "flags": [
+  {
+   "page": 82,
+   "issue": "Bottom row of exercise 2: 'characters.' is set small (about 0.65) because the gap between the answer box and the next sentence is narrow."
+  },
+  {
+   "page": 89,
+   "issue": "The calendar's weekday headers stay as printed: they are bilingual (SUN 日 ... SAT 六) and already carry English; p88_s13 was dropped."
+  }
+ ]
+}

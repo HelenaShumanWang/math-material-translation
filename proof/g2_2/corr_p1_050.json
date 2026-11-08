@@ -1,0 +1,580 @@
+{
+ "corrections": [
+  {
+   "merge": [
+    "p49_s8",
+    "p49_s9"
+   ],
+   "translation": "(1) What maths information can you see in the picture? Talk about it with your partner.",
+   "reason": "one question split in two lines"
+  },
+  {
+   "segment_id": "p49_s12",
+   "translation": "⟦0⟧ How many ⟦1⟧ trees did the farm plant in the two years? And how many",
+   "reason": "fragment before the broadleaf tree picture; ⟦1⟧ is the pine picture"
+  },
+  {
+   "segment_id": "p49_s13",
+   "translation": "trees?",
+   "reason": "fragment after the broadleaf picture"
+  },
+  {
+   "segment_id": "p49_s14",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "spurious 'And'; placeholder restored; column method"
+  },
+  {
+   "segment_id": "p50_s0",
+   "box": [
+    60,
+    85,
+    162,
+    105
+   ],
+   "reason": "title shrunk to 0.57; rest of green banner is free"
+  },
+  {
+   "segment_id": "p50_s5",
+   "translation": "Ten years ago, Qingshan County Wildlife Park had only ⟦0⟧ kinds of animals. Since the animals' habitat was improved, ⟦1⟧ more kinds of animals have come to live here.",
+   "reason": "duplicated 'Ten Years Ago' prefix removed"
+  },
+  {
+   "segment_id": "p50_s7",
+   "translation": "Better environment, more and more kinds of animals…",
+   "reason": "越来越 = more and more"
+  },
+  {
+   "segment_id": "p50_s7",
+   "box": [
+    186,
+    335,
+    383,
+    355
+   ],
+   "reason": "bubble has free room to the right; text shrunk to 0.65"
+  },
+  {
+   "segment_id": "p50_s9",
+   "translation": "If a place adds up to ten or more, carry ⟦0⟧ to the next place.",
+   "reason": "满十 = ten or more"
+  },
+  {
+   "segment_id": "p50_s17",
+   "translation": "H",
+   "box": [
+    190,
+    514,
+    203,
+    524
+   ],
+   "reason": "百 hundreds cell label, was left in Chinese"
+  },
+  {
+   "add": "p50_a1",
+   "page": 50,
+   "box": [
+    204,
+    514,
+    216,
+    524
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of first counting frame"
+  },
+  {
+   "add": "p50_a2",
+   "page": 50,
+   "box": [
+    217,
+    514,
+    229,
+    524
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of first counting frame"
+  },
+  {
+   "add": "p50_a3",
+   "page": 50,
+   "box": [
+    246,
+    514,
+    258,
+    524
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "hundreds cell of second counting frame"
+  },
+  {
+   "add": "p50_a4",
+   "page": 50,
+   "box": [
+    259,
+    514,
+    272,
+    524
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of second counting frame"
+  },
+  {
+   "split": "p50_s20",
+   "at": [
+    314.4,
+    328.1
+   ],
+   "translations": [
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one line over three cells of third counting frame"
+  },
+  {
+   "line": "p50_i200_26",
+   "translation": "Answer:",
+   "force": true,
+   "reason": "答： label left in Chinese; only text in box"
+  },
+  {
+   "segment_id": "p50_s21",
+   "translation": "Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p50_s22",
+   "translation": "Think: what must you be careful about when adding with the column method?",
+   "reason": "column method terminology"
+  },
+  {
+   "segment_id": "p51_s4",
+   "translation": "(⟦0⟧) How much is ⟦1⟧ desk and chair set?",
+   "reason": "shorter so it fits at sibling size; 'in all' redundant"
+  },
+  {
+   "segment_id": "p51_s11",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "split": "p52_s2",
+   "translations": [
+    "Type",
+    "Stories",
+    "Comics",
+    "Science"
+   ],
+   "reason": "table column cells joined into one paragraph"
+  },
+  {
+   "segment_id": "p52_s4",
+   "translation": "How many more storybooks than comics are there?",
+   "reason": "consistent with table label"
+  },
+  {
+   "add": "p52_a1",
+   "page": 52,
+   "box": [
+    270.5,
+    339.5,
+    291.5,
+    349.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p52_a2",
+   "page": 52,
+   "box": [
+    293.5,
+    339.5,
+    314.5,
+    349.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of counting frame left in Chinese"
+  },
+  {
+   "segment_id": "p52_s12",
+   "translation": "How many fewer science books than comics are there?",
+   "reason": "consistent with table label"
+  },
+  {
+   "add": "p52_a3",
+   "page": 52,
+   "box": [
+    206,
+    516.5,
+    223.5,
+    527
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell left in Chinese"
+  },
+  {
+   "segment_id": "p52_s19",
+   "translation": "H",
+   "box": [
+    256.5,
+    516.5,
+    273.5,
+    527
+   ],
+   "reason": "百 cell label left in Chinese; one-letter label fills its cell"
+  },
+  {
+   "add": "p52_a4",
+   "page": 52,
+   "box": [
+    276,
+    516.5,
+    293.5,
+    527
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell left in Chinese"
+  },
+  {
+   "add": "p52_a5",
+   "page": 52,
+   "box": [
+    296,
+    516.5,
+    313.5,
+    527
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell left in Chinese"
+  },
+  {
+   "merge": [
+    "p52_s21",
+    "p52_s22"
+   ],
+   "translation": "Make up a problem that 239 − 57 can solve, and work it out.",
+   "reason": "one sentence split in two; 育 OCR noise"
+  },
+  {
+   "segment_id": "p53_s4",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p53_s15",
+   "translation": "Shop",
+   "reason": "UK English"
+  },
+  {
+   "segment_id": "p53_s19",
+   "translation": "(⟦0⟧) Which way is shorter for the monkey to go from home to the shop? How many metres shorter?",
+   "reason": "UK English shop, matches label"
+  },
+  {
+   "segment_id": "p54_s4",
+   "translation": "⟦0⟧. Write >, < or = in each ⟦1⟧.",
+   "reason": "natural instruction; ⟦1⟧ is the circle picture; box takes over the blanked rest of the line",
+   "box": [
+    55.3,
+    230,
+    300,
+    248
+   ]
+  },
+  {
+   "segment_id": "p54_s5",
+   "translation": "BLANK",
+   "erase": [
+    [
+     210,
+     229,
+     217.5,
+     238
+    ],
+    [
+     306,
+     239,
+     316,
+     249
+    ]
+   ],
+   "reason": "rest of the instruction is now in p54_s4; erase stray quote mark and full stop left in picture"
+  },
+  {
+   "segment_id": "p54_s14",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p54_s19",
+   "translation": "⟦0⟧. Stamp collecting.",
+   "reason": "集邮 = stamp collecting"
+  },
+  {
+   "segment_id": "p54_s29",
+   "translation": "(⟦0⟧) How many metres up and down altogether?",
+   "box": [
+    224.5,
+    585,
+    505,
+    604
+   ],
+   "reason": "shorter so it is set at sibling size"
+  },
+  {
+   "segment_id": "p54_s30",
+   "translation": "⟦0⟧ How many metres longer is the mountain path than the flat road?",
+   "box": [
+    224.5,
+    605,
+    505,
+    637
+   ],
+   "reason": "room for two lines at sibling size"
+  },
+  {
+   "segment_id": "p54_s31",
+   "translation": "⟦0⟧ How many metres shorter is the way down than the way up?",
+   "box": [
+    224.5,
+    638,
+    505,
+    672
+   ],
+   "reason": "room for two lines at sibling size; shorter wording"
+  },
+  {
+   "merge": [
+    "p55_s1",
+    "p55_s2"
+   ],
+   "translation": "(1) The bear must follow the path with the answers 100, 200, 300, …, 1000 to reach the dog's home.",
+   "reason": "one sentence split across two paragraphs; the '…, 1000' tail was printed apart"
+  },
+  {
+   "segment_id": "p55_s3",
+   "translation": "(⟦0⟧) The dog must follow the path with the answers ⟦1⟧, ⟦2⟧, ⟦3⟧, …, ⟦4⟧ to reach the mouse's home.",
+   "reason": "parallel wording with (1); 路 = path"
+  },
+  {
+   "add": "p56_a1",
+   "page": 56,
+   "box": [
+    200.2,
+    349.5,
+    217.4,
+    359.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a2",
+   "page": 56,
+   "box": [
+    219.4,
+    349.5,
+    236.6,
+    359.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a3",
+   "page": 56,
+   "box": [
+    268.6,
+    349.5,
+    285.2,
+    359.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a4",
+   "page": 56,
+   "box": [
+    287.2,
+    349.5,
+    304.4,
+    359.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a5",
+   "page": 56,
+   "box": [
+    336.4,
+    349.5,
+    353.2,
+    359.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a6",
+   "page": 56,
+   "box": [
+    355.2,
+    349.5,
+    372.2,
+    359.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a7",
+   "page": 56,
+   "box": [
+    189.4,
+    542.5,
+    206,
+    552.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "hundreds cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a8",
+   "page": 56,
+   "box": [
+    208,
+    542.5,
+    224.2,
+    552.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a9",
+   "page": 56,
+   "box": [
+    226.2,
+    542.5,
+    242.6,
+    552.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a10",
+   "page": 56,
+   "box": [
+    273,
+    542.5,
+    289.4,
+    552.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a11",
+   "page": 56,
+   "box": [
+    291.4,
+    542.5,
+    307.6,
+    552.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a12",
+   "page": 56,
+   "box": [
+    338.4,
+    542.5,
+    354.8,
+    552.5
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens cell of counting frame left in Chinese"
+  },
+  {
+   "add": "p56_a13",
+   "page": 56,
+   "box": [
+    356.8,
+    542.5,
+    373.2,
+    552.5
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones cell of counting frame left in Chinese"
+  },
+  {
+   "segment_id": "p56_s12",
+   "box": [
+    317.2,
+    349.5,
+    334.4,
+    359.5
+   ],
+   "reason": "H set over the whole hundreds cell; leftover stroke of 百 visible"
+  },
+  {
+   "segment_id": "p56_s23",
+   "box": [
+    320,
+    542.5,
+    336.4,
+    552.5
+   ],
+   "erase": [
+    [
+     319.5,
+     542,
+     337,
+     553
+    ]
+   ],
+   "reason": "H shrunk with a leftover stroke of 百; whole cell is free, erase the rest"
+  }
+ ],
+ "flags": [
+  {
+   "page": 54,
+   "issue": "Slanted distance labels on the map (144米, 128米, 213米, 230米) keep the Chinese unit 米: they lie on the road, and erasing them (line or add) cut gaps in the road outline. They need 'm' set slanted along the road by hand."
+  },
+  {
+   "page": 55,
+   "issue": "Question 5 sub-questions (1)-(3) (p54_s29-s31) are still set at about 9.7 pt while the other numbered instructions are 11.6 pt, even with shorter wording and two-line boxes."
+  },
+  {
+   "page": 50,
+   "issue": "In question (4) the fragment 'trees?' after the broadleaf picture (p49_s13) is set much larger than the rest of the sentence (p49_s12)."
+  }
+ ]
+}

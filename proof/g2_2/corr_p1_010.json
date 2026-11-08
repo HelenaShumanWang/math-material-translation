@@ -1,0 +1,339 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p9_s7",
+   "translation": "2 × 6 = 12, build ⟦1⟧",
+   "reason": "dropped ⟦0⟧: OCR crop of the circled 二; rhyme 二六十二 is 2 × 6 = 12, not 6 × 6 = 36",
+   "box": [
+    340,
+    328,
+    466,
+    350
+   ]
+  },
+  {
+   "segment_id": "p9_s4",
+   "translation": "Answer:",
+   "reason": "答： = Answer:"
+  },
+  {
+   "segment_id": "p10_s5",
+   "translation": "(⟦0⟧) Using the sharing, tell a partner what each step\nof the column method means.",
+   "box": [
+    74.6,
+    271,
+    499,
+    300
+   ],
+   "reason": "smaller than siblings; break on two lines over free paper above; 竖式 = column method"
+  },
+  {
+   "segment_id": "p10_s6",
+   "translation": "⟦0⟧. How many of each vehicle can ⟦1⟧ wheels make? How many are left?",
+   "reason": "smaller than siblings: shorter wording, same meaning",
+   "box": [
+    56.4,
+    306.7,
+    499,
+    324
+   ]
+  },
+  {
+   "segment_id": "p10_s9",
+   "translation": "(⟦0⟧) Work out each division using the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p10_s16",
+   "translation": "What is the largest number that fits?",
+   "reason": "full question, consistent with p13"
+  },
+  {
+   "segment_id": "p10_s25",
+   "translation": "⟦0⟧. Think of a problem you can solve with \"10 ÷ 4 = 2 …… 2\" and tell your partner about it.",
+   "reason": "⟦1⟧ misread (stray dot '2.····2'); written out as printed"
+  },
+  {
+   "segment_id": "p11_s3",
+   "translation": "If shared equally, how many",
+   "reason": "fragment before the strawberry picture"
+  },
+  {
+   "segment_id": "p11_s4",
+   "translation": "⟦0⟧ on each plate, and how many are left?",
+   "reason": "⟦0⟧ is the strawberry picture; complete the question"
+  },
+  {
+   "segment_id": "p11_s9",
+   "translation": "⟦0⟧ ⟦1⟧ go on ⟦2⟧ plate.",
+   "reason": "⟦1⟧ is the strawberry picture; 'put on 1 plates' was ungrammatical"
+  },
+  {
+   "segment_id": "p11_s2",
+   "box": [
+    416,
+    111,
+    465,
+    141
+   ],
+   "reason": "more room in the bubble"
+  },
+  {
+   "segment_id": "p12_s5",
+   "translation": "⟦0⟧ If each vase holds ⟦1⟧, how many vases can you fill, and how many are left?",
+   "reason": "shorter so it does not wrap",
+   "box": [
+    76.5,
+    236.4,
+    499,
+    254
+   ]
+  },
+  {
+   "segment_id": "p12_s14",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p12_s22",
+   "translation": "⟦0⟧ lots of ⟦1⟧",
+   "reason": "3个1 = 3 lots of 1, as 3 lots of 5 beside it"
+  },
+  {
+   "segment_id": "p12_s26",
+   "translation": "⟦0⟧ lots of ⟦1⟧!",
+   "reason": "keep the exclamation"
+  },
+  {
+   "split": "p13_s8",
+   "translations": [
+    "1 boat: 4",
+    "3 boats: 12",
+    "5 boats: 20"
+   ],
+   "reason": "three separate lines of a list"
+  },
+  {
+   "split": "p13_s9",
+   "translations": [
+    "2 boats: 8",
+    "4 boats: 16",
+    "2 left"
+   ],
+   "reason": "three separate lines of a list"
+  },
+  {
+   "segment_id": "p13_s7",
+   "translation": "What is the smallest number of boats needed? Try it and discuss.",
+   "reason": "shorter; was shrunk to 0.77"
+  },
+  {
+   "segment_id": "p13_s14",
+   "translation": "⟦0⟧ people go in ⟦1⟧ boat, so we can write a division number sentence…",
+   "reason": "natural English"
+  },
+  {
+   "segment_id": "p14_s10",
+   "translation": "Answer:",
+   "reason": "答： = Answer:"
+  },
+  {
+   "merge": [
+    "p14_s13",
+    "p14_s12"
+   ],
+   "translation": "There are 46 in our class.",
+   "reason": "one sentence 我们班有46人 split by OCR"
+  },
+  {
+   "merge": [
+    "p14_s15",
+    "p14_s16"
+   ],
+   "translation": "1. (1) What maths information is in the picture? Talk with your partner.",
+   "reason": "one question split across two lines, set at different sizes"
+  },
+  {
+   "segment_id": "p15_s1",
+   "translation": "How many outfits can be made at most?",
+   "reason": "stray 'How many' at the end"
+  },
+  {
+   "split": "p15_s2",
+   "translations": [
+    "How many stars can be folded at most?",
+    "1 star takes 9 cm",
+    "of ribbon."
+   ],
+   "reason": "title and bubble are different texts; star picture"
+  },
+  {
+   "segment_id": "p15_s8",
+   "translation": "Welcome to the Parents' Meeting",
+   "reason": "natural English"
+  },
+  {
+   "segment_id": "p15_s9",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p15_s19",
+   "translation": "(⟦0⟧) If all go by minibus, what is the smallest number of minibuses needed?",
+   "reason": "picture: minibus and car",
+   "box": [
+    74.3,
+    599.8,
+    499,
+    617.4
+   ]
+  },
+  {
+   "segment_id": "p15_s20",
+   "translation": "If all go by car, what is the smallest number of cars needed?",
+   "reason": "picture: car",
+   "box": [
+    95.8,
+    625,
+    499,
+    640.1
+   ]
+  },
+  {
+   "segment_id": "p15_s21",
+   "translation": "If minibuses and cars can be mixed, give one plan for the trip.",
+   "reason": "picture: minibus and car"
+  },
+  {
+   "segment_id": "p16_s1",
+   "translation": "⟦0⟧. Circle and fill in. Use the sharing to explain each step of the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p16_s2",
+   "translation": "⟦1⟧ children share ⟦0⟧ cards\nequally. Each gets\ncards, and",
+   "reason": "words must flow around the two answer boxes"
+  },
+  {
+   "segment_id": "p16_s5",
+   "translation": "are left.",
+   "reason": "end of the sentence after the second box",
+   "box": [
+    155.3,
+    201,
+    240,
+    219
+   ]
+  },
+  {
+   "segment_id": "p16_s3",
+   "translation": "⟦0⟧ Fu cards, ⟦1⟧ cards to ⟦2⟧ bag.\nThey fill",
+   "reason": "words flow around the answer box"
+  },
+  {
+   "segment_id": "p16_s4",
+   "translation": "bags, and",
+   "reason": "'with    left' was garbled"
+  },
+  {
+   "segment_id": "p16_s7",
+   "translation": "DROP",
+   "reason": "福 decoration on the cards"
+  },
+  {
+   "segment_id": "p16_s8",
+   "translation": "DROP",
+   "reason": "福 decoration"
+  },
+  {
+   "segment_id": "p16_s9",
+   "translation": "DROP",
+   "reason": "福 decoration"
+  },
+  {
+   "segment_id": "p16_s10",
+   "translation": "DROP",
+   "reason": "福 decoration"
+  },
+  {
+   "segment_id": "p16_s11",
+   "translation": "DROP",
+   "reason": "福 decoration"
+  },
+  {
+   "segment_id": "p16_s12",
+   "translation": "DROP",
+   "reason": "福 decoration"
+  },
+  {
+   "segment_id": "p16_s13",
+   "translation": "DROP",
+   "reason": "福 decoration"
+  },
+  {
+   "segment_id": "p16_s14",
+   "translation": "DROP",
+   "reason": "福 decoration"
+  },
+  {
+   "segment_id": "p16_s16",
+   "translation": "DROP",
+   "reason": "OCR noise of the printed equation strip"
+  },
+  {
+   "segment_id": "p16_s23",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p10_s4",
+   "box": [
+    64,
+    159,
+    127,
+    193
+   ],
+   "reason": "set at 0.77; more room in the bubble"
+  },
+  {
+   "segment_id": "p12_s4",
+   "box": [
+    76.5,
+    214.6,
+    499,
+    231.9
+   ],
+   "reason": "set at 0.76; free paper to the right"
+  },
+  {
+   "segment_id": "p13_s9_k1",
+   "box": [
+    222,
+    456,
+    282,
+    470
+   ],
+   "reason": "line wrapped; free room in the card"
+  },
+  {
+   "restore": [
+    60,
+    296,
+    462,
+    318
+   ],
+   "page": 16,
+   "reason": "equation strips damaged by erased OCR noise"
+  }
+ ],
+ "flags": [
+  {
+   "page": 13,
+   "issue": "'22 flowers' in the small blue pill under the roses is set at 0.53; the pill has no room for a larger size"
+  },
+  {
+   "page": 12,
+   "issue": "heading 'Sharing Strawberries' set at 0.54 on the small green plate; '55 strawberries in all.' bubble is tight against the monkey"
+  }
+ ]
+}

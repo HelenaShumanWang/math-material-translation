@@ -1,0 +1,1 @@
+{"corrections": [{"split": "p106_s7", "translations": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "reason": "five weekday labels were set as one run that drifted across the row lines; each now sits in its own table row"}], "flags": []}

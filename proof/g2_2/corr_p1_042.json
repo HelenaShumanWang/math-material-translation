@@ -1,0 +1,636 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p41_s2",
+   "box": [
+    63,
+    168,
+    140,
+    185
+   ],
+   "translation": "Buying Toys",
+   "reason": "title shrunk to 0.63; free banner/panel room to the right"
+  },
+  {
+   "segment_id": "p41_s11",
+   "translation": "Share and calculate. Using the sharing, explain what each step of the column method means.",
+   "reason": "terminology: column method"
+  },
+  {
+   "split": "p41_s14",
+   "translations": [
+    "Guangming",
+    "Yucai",
+    "Qianjin",
+    "Shengli",
+    "Huangcun"
+   ],
+   "reason": "five table cells joined into one run; school names per row"
+  },
+  {
+   "merge": [
+    "p41_s17",
+    "p41_s19",
+    "p41_s22"
+   ],
+   "translation": "After school, we all cleaned the classroom together. I wiped the desks with a cloth 3 (    ) long, and Taoqi swept the floor with a broom 60 (    ) long. Soon the classroom was spotless. Lele pressed the switch 130 (    ) above the floor, locked the door 2 (    ) high, and everyone went home happily.",
+   "reason": "one passage split into fragments; fragments overlapped and left 2( and 130 labels"
+  },
+  {
+   "segment_id": "p41_s23",
+   "translation": "Which school has the most pupils?",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p42_s4",
+   "translation": "I can now solve division problems by drawing pictures.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p42_s6",
+   "translation": "Why is column division different from column addition and subtraction?",
+   "reason": "terminology: column method"
+  },
+  {
+   "segment_id": "p42_s8",
+   "translation": "How big is ⟦0⟧ hundred million? Does the hundred-millions place come after ten thousands?",
+   "reason": "natural wording"
+  },
+  {
+   "split": "p43_s1",
+   "translations": [
+    "1. 35 people entered the 100 m race on sports day, at most 8 people per group.",
+    "At least"
+   ],
+   "reason": "translation of s1 contained s2's words; split line 2 so it sits before the answer box"
+  },
+  {
+   "segment_id": "p43_s2",
+   "translation": "groups are needed. Explain each step of the column method.",
+   "reason": "fragment after the answer box; terminology",
+   "box": [
+    180.3,
+    141,
+    468,
+    154
+   ]
+  },
+  {
+   "segment_id": "p43_s7",
+   "box": [
+    72,
+    322,
+    460,
+    335.6
+   ],
+   "translation": "One breakfast costs ¥4. How many breakfasts can you buy with ¥⟦0⟧ at most?",
+   "reason": "start of the question (one breakfast costs 4 yuan) was missing"
+  },
+  {
+   "segment_id": "p43_s18",
+   "translation": "Cultural Centre",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p44_s4",
+   "translation": "⟦0⟧ truck = ⟦1⟧",
+   "reason": "wrong text with another label's words"
+  },
+  {
+   "segment_id": "p44_s5",
+   "translation": "⟦0⟧ basket = ⟦1⟧",
+   "reason": "singular, match sibling labels"
+  },
+  {
+   "segment_id": "p44_s6",
+   "translation": "⟦0⟧ bunch = ⟦1⟧",
+   "reason": "placeholders restored"
+  },
+  {
+   "segment_id": "p44_s9",
+   "translation": "(      ) sweets in total.",
+   "reason": "complete sentence, UK word"
+  },
+  {
+   "add": "p44_a1",
+   "page": 44,
+   "box": [
+    395,
+    324,
+    422,
+    334
+   ],
+   "translation": "100",
+   "source": "100块",
+   "reason": "second bag label left in Chinese"
+  },
+  {
+   "split": "p44_s13",
+   "translations": [
+    "H",
+    "T"
+   ],
+   "reason": "two counting-frame cells; 十 is tens not ones"
+  },
+  {
+   "add": "p44_a2",
+   "page": 44,
+   "box": [
+    331,
+    474,
+    343,
+    482.5
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "thousands label left in Chinese"
+  },
+  {
+   "segment_id": "p44_s15",
+   "translation": "Need (       ) more",
+   "reason": "the ten-rod picture follows the text",
+   "box": [
+    93.5,
+    493,
+    189.4,
+    509
+   ]
+  },
+  {
+   "segment_id": "p44_s16",
+   "box": [
+    262,
+    493,
+    416,
+    509
+   ],
+   "translation": "Hundreds rod: move (      )",
+   "reason": "bead picture follows; more room"
+  },
+  {
+   "split": "p44_s19",
+   "translations": [
+    "had the most eggs: ____.",
+    "had the fewest eggs: ____."
+   ],
+   "reason": "two separate questions (1) and (2)"
+  },
+  {
+   "split": "p44_s24",
+   "at": [
+    105.5,
+    130.5,
+    162.5,
+    187.5
+   ],
+   "translations": [
+    "Eggs",
+    "DROP",
+    "DROP",
+    "DROP",
+    "DROP"
+   ],
+   "reason": "one table row over five cells; numbers were run together"
+  },
+  {
+   "segment_id": "p45_s3",
+   "translation": "⟦0⟧. Fill in.",
+   "reason": "punctuation"
+  },
+  {
+   "split": "p45_s2",
+   "at": [
+    330,
+    395
+   ],
+   "translations": [
+    "about 50",
+    "about 150",
+    "about 1500"
+   ],
+   "reason": "three table cells"
+  },
+  {
+   "split": "p45_s4",
+   "translations": [
+    "4 dm =",
+    "6 km =",
+    "50 mm ="
+   ],
+   "reason": "three separate equations"
+  },
+  {
+   "segment_id": "p45_s5",
+   "translation": "cm",
+   "reason": "blank is printed"
+  },
+  {
+   "split": "p45_s7",
+   "translations": [
+    "km",
+    "mm",
+    "dm"
+   ],
+   "reason": "unit labels of three rows"
+  },
+  {
+   "split": "p45_s9",
+   "translations": [
+    "8 cm =",
+    "70 cm ="
+   ],
+   "reason": "two equations"
+  },
+  {
+   "split": "p45_s12",
+   "translations": [
+    "My estimate",
+    "cm",
+    "mm",
+    "dm"
+   ],
+   "reason": "header and three cells"
+  },
+  {
+   "split": "p45_s13",
+   "translations": [
+    "My measurement",
+    "___ cm ___ mm",
+    "mm",
+    "dm ___ cm"
+   ],
+   "reason": "header and three cells; blanks under the text were erased"
+  },
+  {
+   "split": "p45_s14",
+   "translations": [
+    "Length of my pencil",
+    "Thickness of my book",
+    "Height of my stool",
+    "Length of my favourite object"
+   ],
+   "reason": "four row labels"
+  },
+  {
+   "split": "p46_s14",
+   "at": [
+    226,
+    242,
+    258,
+    276.5,
+    295,
+    311,
+    327
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O",
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "eight counting-frame cells"
+  },
+  {
+   "add": "p46_a1",
+   "page": 46,
+   "box": [
+    243,
+    541,
+    254,
+    550
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "frame label left in Chinese"
+  },
+  {
+   "add": "p46_a2",
+   "page": 46,
+   "box": [
+    275,
+    541,
+    286,
+    550
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "frame label left in Chinese"
+  },
+  {
+   "add": "p46_a3",
+   "page": 46,
+   "box": [
+    291,
+    541,
+    302,
+    550
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "frame label left in Chinese"
+  },
+  {
+   "segment_id": "p46_s24",
+   "translation": "Ask another maths question and try to answer it.",
+   "reason": "British maths"
+  },
+  {
+   "segment_id": "p47_s22",
+   "box": [
+    75.1,
+    346.4,
+    465,
+    364.5
+   ],
+   "translation": "(⟦0⟧) How many more metres on Tuesday than on Monday? On Wednesday than on Tuesday?",
+   "reason": "shrunk 0.64; free paper to the right; clearer"
+  },
+  {
+   "segment_id": "p47_s23",
+   "translation": "(⟦0⟧) Ask another maths question and try to answer it.",
+   "reason": "British maths"
+  },
+  {
+   "segment_id": "p47_s25",
+   "translation": "The difference of two numbers is ⟦0⟧.",
+   "reason": "parallel to the sum bubble"
+  },
+  {
+   "segment_id": "p47_s29",
+   "translation": "⟦0⟧. What numbers hit the target? Fill in two possibilities.",
+   "reason": "shorter, keeps one line clear of the target"
+  },
+  {
+   "split": "p48_s1",
+   "translations": [
+    "Prizes",
+    "Grade 2 battery collection",
+    "200 batteries:",
+    "10 torches",
+    "240 batteries:",
+    "1 football"
+   ],
+   "reason": "six separate lines of a notice board run together"
+  },
+  {
+   "segment_id": "p48_s3",
+   "box": [
+    312,
+    136,
+    376,
+    150
+   ],
+   "translation": "Class",
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p48_s4",
+   "box": [
+    381,
+    136,
+    450,
+    150
+   ],
+   "translation": "Batteries",
+   "reason": "shrunk 0.53; shorter header"
+  },
+  {
+   "segment_id": "p48_s6",
+   "box": [
+    312,
+    152,
+    376,
+    166
+   ],
+   "translation": "Class ⟦0⟧",
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p48_s7",
+   "box": [
+    312,
+    168,
+    376,
+    182
+   ],
+   "translation": "Class ⟦0⟧",
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p48_s8",
+   "box": [
+    312,
+    184,
+    376,
+    198
+   ],
+   "translation": "Class ⟦0⟧",
+   "reason": "enumerator repeated"
+  },
+  {
+   "segment_id": "p48_s9",
+   "translation": "Talk about the maths information in the picture and try to ask a maths question.",
+   "reason": "British maths"
+  },
+  {
+   "segment_id": "p48_s22",
+   "box": [
+    389,
+    543,
+    455,
+    558
+   ],
+   "translation": "Make 10, carry ⟦0⟧.",
+   "reason": "left in Chinese; bubble has more room"
+  },
+  {
+   "add": "p48_a1",
+   "page": 48,
+   "box": [
+    252,
+    467.5,
+    262,
+    478
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "frame label"
+  },
+  {
+   "add": "p48_a2",
+   "page": 48,
+   "box": [
+    268,
+    469,
+    279,
+    478
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "frame label"
+  },
+  {
+   "add": "p48_a3",
+   "page": 48,
+   "box": [
+    240,
+    637.5,
+    251,
+    648
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "frame label"
+  },
+  {
+   "add": "p48_a4",
+   "page": 48,
+   "box": [
+    256,
+    639,
+    267,
+    648
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "frame label"
+  },
+  {
+   "add": "p48_a5",
+   "page": 48,
+   "box": [
+    292,
+    639,
+    303,
+    648
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "frame label"
+  },
+  {
+   "add": "p48_a6",
+   "page": 48,
+   "box": [
+    308,
+    637.5,
+    319,
+    648
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "frame label"
+  },
+  {
+   "add": "p48_a7",
+   "page": 48,
+   "box": [
+    324,
+    639,
+    336,
+    648
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "frame label"
+  },
+  {
+   "segment_id": "p41_s17",
+   "erase": [
+    [
+     286,
+     553,
+     301,
+     567
+    ]
+   ],
+   "reason": "leftover 2( of the passage"
+  },
+  {
+   "add": "p44_a3",
+   "page": 44,
+   "box": [
+    356,
+    323,
+    386,
+    334
+   ],
+   "translation": "100",
+   "source": "100块",
+   "reason": "bag label left in Chinese"
+  },
+  {
+   "segment_id": "p44_s10",
+   "box": [
+    56.1,
+    378,
+    186,
+    392.5
+   ],
+   "translation": "⟦0⟧. Think and fill in.",
+   "reason": "same size as sibling instructions"
+  },
+  {
+   "segment_id": "p44_s3",
+   "translation": "⟦0⟧. Count and fill in.",
+   "reason": "punctuation"
+  },
+  {
+   "restore": [
+    191,
+    488,
+    200,
+    512
+   ],
+   "page": 44,
+   "reason": "ten-rod picture erased"
+  },
+  {
+   "add": "p48_a8",
+   "page": 48,
+   "box": [
+    236,
+    469,
+    247,
+    478
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "frame label"
+  },
+  {
+   "add": "p48_a9",
+   "page": 48,
+   "box": [
+    224,
+    639,
+    235,
+    648
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "frame label"
+  },
+  {
+   "segment_id": "p43_s1_k1",
+   "box": [
+    75,
+    141,
+    158,
+    154
+   ],
+   "translation": "At least",
+   "reason": "fragment before answer box"
+  }
+ ],
+ "flags": [
+  {
+   "page": 42,
+   "issue": "School Sizes table: the 'N people' labels are set at about 0.6 scale because the number cells are narrow; readable but small."
+  }
+ ]
+}

@@ -1,0 +1,535 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p0_s3",
+   "translation": "Mathematics",
+   "box": [
+    118,
+    172,
+    398,
+    245
+   ],
+   "reason": "centre the title over the erased 数学 like the checked edition; was shrunk to 0.6"
+  },
+  {
+   "segment_id": "p2_s0",
+   "translation": "Dear children,",
+   "reason": "dropped ⟦0⟧: OCR crop of a stray mark; 小朋友 = children"
+  },
+  {
+   "segment_id": "p2_s3",
+   "translation": "What are you looking forward to in maths this term?",
+   "reason": "UK: term"
+  },
+  {
+   "segment_id": "p2_s5",
+   "translation": "After every maths lesson I like to think about maths questions. This term I hope there will be more interesting ones.",
+   "reason": "UK: term"
+  },
+  {
+   "segment_id": "p2_s18",
+   "translation": "Every term I learn new ways to solve maths problems, and I'm sure this term will bring more.",
+   "reason": "UK: term"
+  },
+  {
+   "segment_id": "p3_s1",
+   "translation": "Unit 1\nDivision",
+   "box": [
+    189,
+    239,
+    270,
+    275
+   ],
+   "reason": "English ran into the leader dots; break like the checked edition"
+  },
+  {
+   "segment_id": "p3_s5",
+   "translation": "Unit 2 Direction\nand Position",
+   "box": [
+    189,
+    334,
+    322,
+    364
+   ],
+   "reason": "English ran into the leader dots"
+  },
+  {
+   "segment_id": "p3_s11",
+   "translation": "Unit 4\nMeasurement",
+   "box": [
+    189,
+    525,
+    302,
+    558
+   ],
+   "reason": "English ran into the leader dots"
+  },
+  {
+   "restore": [
+    388,
+    434,
+    417,
+    443
+   ],
+   "page": 3,
+   "reason": "leader dots of Unit 3 were erased"
+  },
+  {
+   "segment_id": "p3_s4",
+   "translation": "Threshing ground",
+   "box": [
+    106,
+    344,
+    143,
+    362
+   ],
+   "reason": "dropped ⟦0⟧: OCR crop of the 场 glyph shown as 系; was shrunk to 0.54"
+  },
+  {
+   "add": "p3_a1",
+   "page": 3,
+   "box": [
+    63,
+    452,
+    80,
+    462
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "counting-frame column label left in Chinese",
+   "size": 6
+  },
+  {
+   "add": "p2_a1",
+   "page": 2,
+   "box": [
+    429.2,
+    476.4,
+    439.2,
+    482.3
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "counting-frame column label left in Chinese"
+  },
+  {
+   "add": "p2_a2",
+   "page": 2,
+   "box": [
+    440.6,
+    476.4,
+    450.6,
+    482.3
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "counting-frame column label left in Chinese"
+  },
+  {
+   "add": "p2_a3",
+   "page": 2,
+   "box": [
+    452.2,
+    476.4,
+    462.0,
+    482.3
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "counting-frame column label left in Chinese"
+  },
+  {
+   "add": "p2_a4",
+   "page": 2,
+   "box": [
+    475.8,
+    476.4,
+    485.6,
+    482.3
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "counting-frame column label left in Chinese"
+  },
+  {
+   "add": "p2_a5",
+   "page": 2,
+   "box": [
+    487.4,
+    476.4,
+    497.0,
+    482.3
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "counting-frame column label left in Chinese"
+  },
+  {
+   "add": "p2_a6",
+   "page": 2,
+   "box": [
+    499.0,
+    476.4,
+    508.6,
+    482.3
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "counting-frame column label left in Chinese"
+  },
+  {
+   "split": "p3_s9",
+   "translations": [
+    "H",
+    "T"
+   ],
+   "reason": "two counting-frame cells set as one run"
+  },
+  {
+   "segment_id": "p4_s0",
+   "translation": "Unit 5\nAddition and Subtraction",
+   "box": [
+    76,
+    144,
+    185,
+    174
+   ],
+   "reason": "English ran into the leader dots; break like the checked edition"
+  },
+  {
+   "segment_id": "p4_s2",
+   "translation": "Unit 6\nRecognising Shapes",
+   "box": [
+    76,
+    239,
+    200,
+    268
+   ],
+   "reason": "English ran into the leader dots"
+  },
+  {
+   "segment_id": "p4_s3",
+   "translation": "Unit 7 Hours,\nMinutes and Seconds",
+   "box": [
+    76,
+    334,
+    215,
+    364
+   ],
+   "reason": "English ran into the leader dots"
+  },
+  {
+   "segment_id": "p4_s6",
+   "translation": "Unit 8 Surveys and\nRecords",
+   "box": [
+    78,
+    526,
+    215,
+    553
+   ],
+   "reason": "English ran into the leader dots"
+  },
+  {
+   "segment_id": "p4_s7",
+   "translation": "Final\nReview",
+   "box": [
+    76,
+    618,
+    140,
+    646
+   ],
+   "reason": "English ran into the leader dots"
+  },
+  {
+   "split": "p5_s6",
+   "translations": [
+    "1 plate: 6",
+    "2 plates: 12",
+    "3 plates: 18"
+   ],
+   "reason": "three lines of working (1 plate: 6 ...) were run together"
+  },
+  {
+   "split": "p5_s13",
+   "translations": [
+    "T",
+    "O",
+    "BLANK"
+   ],
+   "reason": "column labels 十位/个位 (Tens/Ones) as in the other two sums; 位位 is the rest of the labels"
+  },
+  {
+   "segment_id": "p5_s12",
+   "translation": "We can write these steps as a column division. Look and talk about it.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p6_s7",
+   "translation": "⟦0⟧. Circle, fill in, and say what each step of the column division means.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p6_s8",
+   "translation": "(⟦0⟧) ⟦2⟧ children share ⟦1⟧ crayons equally. Each gets",
+   "reason": "shorter so 'gets' does not wrap away from its answer box"
+  },
+  {
+   "segment_id": "p6_s11",
+   "translation": "⟦0⟧ balloons, tied in bunches of ⟦1⟧, make",
+   "reason": "shorter, same size as (1)"
+  },
+  {
+   "segment_id": "p7_s2",
+   "translation": "How many squares can ⟦0⟧ sticks make, and how many sticks are left over?",
+   "reason": "shorter so it fits one line",
+   "box": [
+    76,
+    188,
+    452,
+    204
+   ]
+  },
+  {
+   "segment_id": "p7_s8",
+   "translation": "\"⟦0⟧ (squares)\" means ⟦1⟧ squares were made; \"1 (stick)\" means…",
+   "erase": [
+    [
+     378,
+     356,
+     391,
+     368
+    ]
+   ],
+   "reason": "'1 根' means the leftover stick, not 'remainder'; erase the '“1' left in the bubble"
+  },
+  {
+   "split": "p7_s12",
+   "translations": [
+    "Number of\nsticks",
+    "Squares made"
+   ],
+   "reason": "two header cells"
+  },
+  {
+   "split": "p8_s2",
+   "translations": [
+    "16 sticks. Every 5 sticks make one",
+    ", making"
+   ],
+   "reason": "two lines; line 2 must not cover the pentagon picture"
+  },
+  {
+   "segment_id": "p8_s3",
+   "translation": "⟦0⟧ apples ⟦1⟧. Every ⟦2⟧ make one",
+   "reason": "apples counted; sentence"
+  },
+  {
+   "segment_id": "p8_s4",
+   "translation": "making",
+   "erase": [
+    [
+     396,
+     188,
+     413,
+     201
+    ]
+   ],
+   "reason": "erase measure word 个 after the answer box (as in the left cell)"
+  },
+  {
+   "segment_id": "p8_s6",
+   "translation": "with",
+   "reason": "还剩 □ 根 = with □ left over"
+  },
+  {
+   "segment_id": "p8_s5",
+   "translation": "left over.",
+   "reason": "根。 after the box: say 'left over'",
+   "box": [
+    122,
+    210,
+    180,
+    228
+   ]
+  },
+  {
+   "segment_id": "p8_s9",
+   "translation": "⟦0⟧. Build",
+   "reason": "keeps enumerator"
+  },
+  {
+   "segment_id": "p8_s10",
+   "translation": "⟦0⟧ try it with sticks and fill in.",
+   "box": [
+    138,
+    337,
+    309,
+    351
+   ],
+   "reason": "答 and 今 are OCR misreads of the stick-tree picture; was set huge"
+  },
+  {
+   "split": "p8_s11",
+   "at": [
+    129.6
+   ],
+   "translations": [
+    "Number of\nsticks",
+    "Shapes made"
+   ],
+   "reason": "two header cells"
+  },
+  {
+   "split": "p8_s13",
+   "at": [
+    318.4
+   ],
+   "translations": [
+    "Number of\nsticks",
+    "Shapes made"
+   ],
+   "reason": "two header cells"
+  },
+  {
+   "segment_id": "p8_s12",
+   "translation": "Number sentence",
+   "reason": "人 is OCR noise"
+  },
+  {
+   "segment_id": "p8_s14",
+   "translation": "Number sentence",
+   "reason": "'made' belonged to the next cell"
+  },
+  {
+   "segment_id": "p8_s18",
+   "translation": "⟦0⟧squares) …… 5 (sticks)",
+   "reason": "replaced ⟦1⟧: misread of ')……5('"
+  },
+  {
+   "segment_id": "p8_s19",
+   "translation": "⟦0⟧ (sticks) …… 1 (stick)",
+   "reason": "replaced ⟦1⟧: misread of '……1'"
+  },
+  {
+   "segment_id": "p8_s7",
+   "translation": "with",
+   "reason": "same as left cell"
+  },
+  {
+   "add": "p8_a1",
+   "page": 8,
+   "box": [
+    323,
+    211,
+    378,
+    228
+   ],
+   "translation": "left over.",
+   "source": "个。",
+   "align": "left",
+   "reason": "还剩 □ 个。: the sentence needs its end after the answer box"
+  },
+  {
+   "segment_id": "p5_s14",
+   "translation": "T",
+   "box": [
+    244,
+    419,
+    258,
+    432
+   ],
+   "reason": "T was set sideways"
+  },
+  {
+   "segment_id": "p5_s16",
+   "translation": "T",
+   "box": [
+    353,
+    419,
+    369,
+    432
+   ],
+   "reason": "T was set sideways"
+  },
+  {
+   "segment_id": "p8_s11_k1",
+   "erase": [
+    [
+     172,
+     371.5,
+     190,
+     394
+    ]
+   ],
+   "reason": "leftover of the stick-tree picture after the split"
+  },
+  {
+   "segment_id": "p8_s13_k1",
+   "erase": [
+    [
+     358,
+     371.5,
+     374,
+     394
+    ]
+   ],
+   "reason": "leftover of the stick-tree picture after the split"
+  },
+  {
+   "segment_id": "p5_s15",
+   "translation": "O",
+   "box": [
+    263,
+    418,
+    280,
+    432
+   ],
+   "reason": "O was set sideways"
+  },
+  {
+   "segment_id": "p5_s17",
+   "translation": "O",
+   "box": [
+    372,
+    418,
+    390,
+    432
+   ],
+   "reason": "O was set sideways"
+  },
+  {
+   "segment_id": "p5_s13_k0",
+   "box": [
+    128,
+    419,
+    142,
+    432
+   ],
+   "reason": "align T over the tens digit like the other two sums"
+  },
+  {
+   "segment_id": "p5_s13_k1",
+   "box": [
+    149,
+    419,
+    164,
+    432
+   ],
+   "reason": "align O over the ones digit"
+  }
+ ],
+ "flags": [
+  {
+   "page": 7,
+   "issue": "烟花 on the firework box (p6_s6) stays in Chinese: the label is 19 x 11 pt and 'Fireworks' only fits at scale 0.43."
+  },
+  {
+   "page": 9,
+   "issue": "Forest Doctor, left tree (p8_s18): the flat erase plate shows as a green rectangle over the tree crown and the English wraps to two lines; needs a cleaner plate or smaller text."
+  },
+  {
+   "page": 3,
+   "issue": "p2_s15 (3./4. on the Number Magic poster) remains smaller than the other numbered lines: the poster column is too narrow and surrounded by handwriting; a two-line version shrank further, so it is left as it is."
+  }
+ ]
+}

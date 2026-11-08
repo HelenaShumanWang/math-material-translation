@@ -1,0 +1,377 @@
+{
+ "corrections": [
+  {
+   "add": "p65_a1",
+   "page": 65,
+   "box": [
+    76,
+    299,
+    132,
+    318
+   ],
+   "translation": "Draw.",
+   "source": "画一画。",
+   "reason": "heading left in Chinese",
+   "size": 11,
+   "color": 2301728,
+   "align": "left"
+  },
+  {
+   "segment_id": "p66_s1",
+   "translation": "Cut out the two angles in Figure ⟦1⟧ of Appendix ⟦0⟧. Compare them and mark the larger one with “✓”.",
+   "erase": [
+    [
+     400,
+     133,
+     450,
+     152
+    ]
+   ],
+   "reason": "tick mark stranded at right; set inline and erase"
+  },
+  {
+   "segment_id": "p67_s9",
+   "translation": "⟦0⟧. Calculate and check.",
+   "reason": "consistent with other pages"
+  },
+  {
+   "line": "p68_i272_5",
+   "translation": "set square.",
+   "force": true,
+   "reason": "only text in the box, no pictures"
+  },
+  {
+   "merge": [
+    "p68_s4",
+    "p68_i272_5_t"
+   ],
+   "translation": "I'll compare them with a set square.",
+   "reason": "one sentence in the bubble"
+  },
+  {
+   "segment_id": "p68_s2",
+   "translation": "These are all right angles.",
+   "box": [
+    350,
+    137,
+    436,
+    161
+   ],
+   "reason": "missing 'all'; more room in bubble"
+  },
+  {
+   "segment_id": "p68_s7",
+   "translation": "Smaller than a right angle: an acute angle.",
+   "box": [
+    199,
+    469,
+    278,
+    500
+   ],
+   "reason": "shrunk 0.68; shorter and room in bubble"
+  },
+  {
+   "segment_id": "p68_s8",
+   "translation": "Larger than a right angle: an obtuse angle.",
+   "box": [
+    341,
+    470,
+    420,
+    500
+   ],
+   "reason": "shrunk; shorter"
+  },
+  {
+   "segment_id": "p69_s3",
+   "translation": "Acute",
+   "reason": "label ran over the answer line",
+   "box": [
+    70,
+    254,
+    111,
+    268
+   ]
+  },
+  {
+   "segment_id": "p69_s4",
+   "translation": "Right",
+   "reason": "label ran over the answer line",
+   "box": [
+    176,
+    254,
+    219,
+    268
+   ]
+  },
+  {
+   "segment_id": "p69_s5",
+   "translation": "Obtuse",
+   "reason": "label ran over the answer line",
+   "box": [
+    290,
+    254,
+    327,
+    268
+   ]
+  },
+  {
+   "segment_id": "p69_s7",
+   "translation": "⟦0⟧. Calculate and check.",
+   "reason": "consistent"
+  },
+  {
+   "segment_id": "p69_s13",
+   "translation": "Fold again",
+   "reason": "shorter, fits under its picture"
+  },
+  {
+   "segment_id": "p70_s3",
+   "translation": "DROP",
+   "reason": "tiny cover text, OCR noise"
+  },
+  {
+   "segment_id": "p70_s8",
+   "translation": "Opposite sides are equal.",
+   "reason": "shrunk 0.66; room in bubble"
+  },
+  {
+   "segment_id": "p70_s12",
+   "translation": "Opposite sides are",
+   "reason": "sentence reads with the printed blank",
+   "box": [
+    76,
+    393,
+    170,
+    406
+   ]
+  },
+  {
+   "segment_id": "p70_s11",
+   "translation": "and all four angles are ____ angles.",
+   "reason": "proper blank",
+   "box": [
+    226,
+    392,
+    470,
+    406
+   ]
+  },
+  {
+   "split": "p70_s16",
+   "translations": [
+    "The four sides are",
+    "and all four angles are ____ angles."
+   ],
+   "reason": "English ran over the printed blank"
+  },
+  {
+   "segment_id": "p71_s17",
+   "translation": "BLANK",
+   "reason": "measure word 个 erased; circle restored"
+  },
+  {
+   "segment_id": "p71_s18",
+   "translation": "BLANK",
+   "reason": "measure word 个 erased; circle restored"
+  },
+  {
+   "restore": [
+    84,
+    654,
+    108,
+    678
+   ],
+   "page": 71,
+   "reason": "answer circle"
+  },
+  {
+   "restore": [
+    180,
+    654,
+    203,
+    678
+   ],
+   "page": 71,
+   "reason": "answer circle"
+  },
+  {
+   "paint": [
+    203,
+    655,
+    224,
+    675
+   ],
+   "page": 71,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "measure word 个 ghost"
+  },
+  {
+   "paint": [
+    108,
+    655,
+    129,
+    675
+   ],
+   "page": 71,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "measure word 个 ghost"
+  },
+  {
+   "paint": [
+    287,
+    655,
+    307,
+    675
+   ],
+   "page": 71,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "measure word 个"
+  },
+  {
+   "paint": [
+    333,
+    655,
+    352,
+    675
+   ],
+   "page": 71,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "measure word 个"
+  },
+  {
+   "paint": [
+    379,
+    655,
+    399,
+    675
+   ],
+   "page": 71,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "measure word 个"
+  },
+  {
+   "paint": [
+    439,
+    655,
+    458,
+    675
+   ],
+   "page": 71,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "measure word 个"
+  },
+  {
+   "split": "p71_s15",
+   "at": [
+    262
+   ],
+   "translations": [
+    "(1) How many rectangles?",
+    "(2) How many squares?"
+   ],
+   "reason": "two questions over two pictures"
+  },
+  {
+   "segment_id": "p71_s10",
+   "translation": "⟦0⟧. Calculate and check.",
+   "reason": "unchanged"
+  },
+  {
+   "merge": [
+    "p72_s6",
+    "p72_s8"
+   ],
+   "translation": "Compare their sides...",
+   "reason": "one sentence in bubble"
+  },
+  {
+   "segment_id": "p72_s7",
+   "translation": "When pulled, the angles...",
+   "box": [
+    290,
+    480,
+    393,
+    499
+   ],
+   "reason": "shrunk 0.64; room in bubble"
+  },
+  {
+   "segment_id": "p72_s2",
+   "translation": "These are all parallelograms.",
+   "reason": "add full stop"
+  },
+  {
+   "segment_id": "p72_s3",
+   "translation": "Do it and discuss: what has changed in this shape, and what has not?",
+   "box": [
+    75,
+    370,
+    450,
+    386
+   ],
+   "reason": "set oversized, ran off the page"
+  },
+  {
+   "segment_id": "p70_s16_k0",
+   "translation": "The four sides are",
+   "box": [
+    79,
+    557,
+    189,
+    571
+   ],
+   "reason": "fit before the printed blank"
+  },
+  {
+   "segment_id": "p70_s16_k1",
+   "translation": "and all four angles are ____ angles.",
+   "box": [
+    238,
+    556,
+    470,
+    572
+   ],
+   "reason": "room on free paper to the right"
+  },
+  {
+   "paint": [
+    376,
+    331,
+    395,
+    346
+   ],
+   "page": 72,
+   "colour": [
+    252,
+    233,
+    213
+   ],
+   "reason": "red 形 and 。 left in bubble after the English"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,1440 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s1",
+   "translation": "Add ⟦0⟧ more bead. What number is it now?",
+   "box": [
+    76,
+    119,
+    345,
+    136
+   ],
+   "reason": "wrapped in a tight box; free paper to the right"
+  },
+  {
+   "segment_id": "p25_s2",
+   "translation": "Nine thousand nine hundred and ninety-nine plus ⟦0⟧ more is ten thousand.",
+   "reason": "British number words; avoid double 'and'"
+  },
+  {
+   "segment_id": "p25_s3",
+   "translation": "What number is this?",
+   "box": [
+    104,
+    161,
+    165,
+    180
+   ],
+   "reason": "set at 0.67; use the whole bubble"
+  },
+  {
+   "split": "p25_s5",
+   "at": [
+    206,
+    222.5,
+    238.6
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "'TThTh H T O' wrong and not in its cells; one label per cell"
+  },
+  {
+   "split": "p25_s7",
+   "at": [
+    321,
+    337.7,
+    354.2
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "segment_id": "p25_s11",
+   "translation": "⟦0⟧ thousands make ten thousand.",
+   "box": [
+    280,
+    418,
+    392,
+    436
+   ],
+   "reason": "set at 0.64; use the bubble"
+  },
+  {
+   "segment_id": "p25_s12",
+   "translation": "Can you count from nine thousand eight hundred and eighty-seven to ten thousand?",
+   "reason": "British number words"
+  },
+  {
+   "segment_id": "p25_s13",
+   "translation": "9887, 9888, 9889,",
+   "reason": "commas inside numbers clash with list commas"
+  },
+  {
+   "segment_id": "p25_s16",
+   "translation": "The world's highest mountain is Mount Qomolangma, about eight thousand eight hundred and forty-four metres above sea level.",
+   "reason": "British number words"
+  },
+  {
+   "segment_id": "p25_s17",
+   "translation": "About one thousand four hundred kinds of birds have been found in China.",
+   "reason": "natural phrasing"
+  },
+  {
+   "split": "p26_s5",
+   "translations": [
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p26_s7",
+   "translations": [
+    "Th",
+    "H"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "add": "p26_a1",
+   "page": 26,
+   "box": [
+    344.5,
+    254,
+    364,
+    265
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "counting-frame label left in Chinese"
+  },
+  {
+   "add": "p26_a2",
+   "page": 26,
+   "box": [
+    367.5,
+    254,
+    388,
+    265
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "counting-frame label left in Chinese"
+  },
+  {
+   "segment_id": "p26_s8",
+   "translation": "⟦0⟧. Talk about it. How many ⟦1⟧ are there?",
+   "box": [
+    56,
+    285,
+    400,
+    306
+   ],
+   "reason": "invented □ removed, cube picture placed where the word belongs; more room to set at sibling size"
+  },
+  {
+   "segment_id": "p26_s10",
+   "translation": "One thousand and ten, one thousand nine hundred and ninety",
+   "box": [
+    135,
+    458,
+    250,
+    490
+   ],
+   "reason": "numbers to be written as digits must be given in words"
+  },
+  {
+   "segment_id": "p26_s11",
+   "translation": "Five thousand, six thousand, seven thousand",
+   "box": [
+    336,
+    464,
+    444,
+    484
+   ],
+   "reason": "set at 0.68; use the bubble"
+  },
+  {
+   "segment_id": "p26_s13",
+   "translation": "One thousand two hundred and one",
+   "box": [
+    132,
+    616,
+    220,
+    634
+   ],
+   "reason": "number is said in words in the source"
+  },
+  {
+   "merge": [
+    "p25_s9",
+    "p25_s10"
+   ],
+   "translation": "1000, 2000, 3000…\n9000,",
+   "reason": "one bubble text in two pieces set at different sizes; plain numbers (no thousands commas beside list commas)"
+  },
+  {
+   "segment_id": "p25_s9",
+   "erase": [
+    [
+     248,
+     409,
+     256,
+     418
+    ]
+   ],
+   "reason": "leftover dot of the source ellipsis"
+  },
+  {
+   "segment_id": "p27_s3",
+   "translation": "( )",
+   "box": [
+    150,
+    165,
+    207,
+    185
+   ],
+   "erase": [
+    [
+     153,
+     167,
+     164,
+     184
+    ]
+   ],
+   "reason": "the '(' of this cell was left in the picture and the English read ') place'; English chart headers name the place only"
+  },
+  {
+   "segment_id": "p27_s4",
+   "translation": "( )",
+   "box": [
+    211,
+    165,
+    268,
+    185
+   ],
+   "reason": "use the whole cell; English chart headers name the place only"
+  },
+  {
+   "segment_id": "p27_s5",
+   "translation": "( )",
+   "box": [
+    271,
+    165,
+    328,
+    185
+   ],
+   "reason": "use the whole cell; English chart headers name the place only"
+  },
+  {
+   "segment_id": "p27_s6",
+   "translation": "Tens",
+   "box": [
+    332,
+    165,
+    381,
+    185
+   ],
+   "reason": "place-value header"
+  },
+  {
+   "segment_id": "p27_s7",
+   "translation": "Ones",
+   "box": [
+    384,
+    165,
+    424,
+    185
+   ],
+   "reason": "place-value header"
+  },
+  {
+   "split": "p27_s17",
+   "translations": [
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "labels set tiny; each cell set by an add"
+  },
+  {
+   "split": "p27_s15",
+   "at": [
+    227.4,
+    247
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p27_s16",
+   "at": [
+    374.6,
+    394.4
+   ],
+   "translations": [
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "add": "p27_a1",
+   "page": 27,
+   "box": [
+    71,
+    350,
+    87,
+    361
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "add": "p27_a2",
+   "page": 27,
+   "box": [
+    129,
+    350,
+    145,
+    361
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "add": "p27_a3",
+   "page": 27,
+   "box": [
+    268.5,
+    350,
+    285,
+    361
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "add": "p27_a4",
+   "page": 27,
+   "box": [
+    337,
+    350,
+    353,
+    361
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "segment_id": "p27_s12",
+   "translation": "Two thousand nine hundred and thirty-two.",
+   "reason": "British number words"
+  },
+  {
+   "segment_id": "p27_s13",
+   "translation": "Nine thousand and forty.",
+   "reason": "British number words"
+  },
+  {
+   "segment_id": "p27_s14",
+   "translation": "One thousand and one.",
+   "reason": "British number words"
+  },
+  {
+   "segment_id": "p27_s18",
+   "translation": "Look and write.",
+   "box": [
+    86.0,
+    388.0,
+    192.0,
+    405.0
+   ],
+   "reason": "heading set far too large over two lines; box on the heading line only"
+  },
+  {
+   "split": "p27_s19",
+   "translations": [
+    "three hundred and twenty-seven",
+    "eight thousand and fifty-two"
+   ],
+   "reason": "three separate numbers above three tables"
+  },
+  {
+   "segment_id": "p27_s19_k1",
+   "translation": "eight thousand and fifty-two",
+   "box": [
+    242,
+    409,
+    340,
+    426
+   ],
+   "reason": "over its own table"
+  },
+  {
+   "add": "p27_a5",
+   "page": 27,
+   "box": [
+    349,
+    409,
+    446,
+    426
+   ],
+   "translation": "one thousand five hundred and three",
+   "source": "一千五百零三",
+   "reason": "third number over its own table"
+  },
+  {
+   "split": "p27_s21",
+   "at": [
+    157.6,
+    175.8,
+    194.4,
+    213
+   ],
+   "translations": [
+    "TTh",
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p27_s22",
+   "at": [
+    261,
+    279.5,
+    297.8,
+    316
+   ],
+   "translations": [
+    "TTh",
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p27_s23",
+   "at": [
+    368.8,
+    387,
+    405.6,
+    424
+   ],
+   "translations": [
+    "TTh",
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "segment_id": "p27_s1",
+   "translation": "Fill in and learn the place names.",
+   "reason": "clearer; box widened over free paper",
+   "box": [
+    76,
+    122,
+    320,
+    138
+   ]
+  },
+  {
+   "segment_id": "p27_s25",
+   "translation": "Get to know the abacus. Move the beads.",
+   "reason": "natural phrasing"
+  },
+  {
+   "add": "p28_a1",
+   "page": 28,
+   "box": [
+    331,
+    263,
+    349,
+    273
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "add": "p28_a2",
+   "page": 28,
+   "box": [
+    374,
+    263,
+    392,
+    273
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "add": "p28_a3",
+   "page": 28,
+   "box": [
+    395.5,
+    263,
+    410,
+    273
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "add": "p28_a4",
+   "page": 28,
+   "box": [
+    65,
+    478,
+    85,
+    490
+   ],
+   "translation": "Th",
+   "source": "千",
+   "reason": "abacus label left in Chinese"
+  },
+  {
+   "split": "p28_s9",
+   "at": [
+    109
+   ],
+   "translations": [
+    "H",
+    "T"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p28_s11",
+   "translations": [
+    "Th",
+    "BLANK"
+   ],
+   "reason": "second line spans two cells; set by two adds"
+  },
+  {
+   "add": "p28_a5",
+   "page": 28,
+   "box": [
+    190,
+    478,
+    210,
+    490
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "one label per cell"
+  },
+  {
+   "add": "p28_a6",
+   "page": 28,
+   "box": [
+    212.5,
+    478,
+    232.5,
+    490
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p28_s13",
+   "at": [
+    290.4,
+    312.8,
+    335.8
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p28_s14",
+   "at": [
+    392.8,
+    415.5,
+    438.2
+   ],
+   "translations": [
+    "Th",
+    "H",
+    "T",
+    "O"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "segment_id": "p28_s15",
+   "translation": "⟦0⟧. Read. Write each number of years in digits in the brackets and show it on the abacus.",
+   "reason": "the task is writing the numbers in digits"
+  },
+  {
+   "split": "p28_s17",
+   "translations": [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f"
+   ],
+   "reason": "lines of three different cards; joined per card below"
+  },
+  {
+   "split": "p28_s18",
+   "translations": [
+    "a",
+    "b",
+    "c",
+    "d"
+   ],
+   "reason": "lines of three different cards; joined per card below"
+  },
+  {
+   "merge": [
+    "p28_s16",
+    "p28_s18_k0",
+    "p28_s18_k3"
+   ],
+   "translation": "Gunpowder weapons: about one thousand one hundred years ago.",
+   "reason": "card 1 text was split over three paragraphs; shortened (dynasty names dropped) so it fits above the answer brackets"
+  },
+  {
+   "merge": [
+    "p28_s17_k0",
+    "p28_s17_k3",
+    "p28_s18_k1",
+    "p28_s20"
+   ],
+   "translation": "The compass: about two thousand five hundred years ago.",
+   "reason": "card 2 text; shortened (dynasty names dropped) so it fits above the answer brackets"
+  },
+  {
+   "merge": [
+    "p28_s17_k1",
+    "p28_s17_k4",
+    "p28_s18_k2",
+    "p28_s21"
+   ],
+   "translation": "Bi Sheng's movable type: about nine hundred and seventy years ago.",
+   "reason": "card 3 text; shortened (dynasty names dropped) so it fits above the answer brackets"
+  },
+  {
+   "merge": [
+    "p28_s17_k2",
+    "p28_s17_k5",
+    "p28_s19"
+   ],
+   "translation": "Cai Lun's improved paper: about one thousand nine hundred years ago.",
+   "reason": "card 4 text; shortened (dynasty names dropped) so it fits above the answer brackets"
+  },
+  {
+   "segment_id": "p28_s16",
+   "box": [
+    64,
+    584,
+    152,
+    646
+   ],
+   "reason": "keep the card text above the answer brackets"
+  },
+  {
+   "segment_id": "p28_s17_k0",
+   "box": [
+    166,
+    584,
+    253,
+    646
+   ],
+   "reason": "keep the card text above the answer brackets"
+  },
+  {
+   "segment_id": "p28_s17_k1",
+   "box": [
+    267,
+    584,
+    355,
+    646
+   ],
+   "reason": "keep the card text above the answer brackets"
+  },
+  {
+   "segment_id": "p28_s17_k2",
+   "box": [
+    366,
+    584,
+    462,
+    646
+   ],
+   "reason": "keep the card text above the answer brackets"
+  },
+  {
+   "segment_id": "p28_s10",
+   "translation": "BLANK",
+   "reason": "set as a tiny lower-case o with 个 strokes left; replaced by an add over the whole cell"
+  },
+  {
+   "add": "p28_a7",
+   "page": 28,
+   "box": [
+    132.5,
+    478,
+    152.5,
+    490
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones label over its cell"
+  },
+  {
+   "segment_id": "p28_s12",
+   "translation": "BLANK",
+   "reason": "set as a tiny o; replaced by an add over the whole cell"
+  },
+  {
+   "add": "p28_a8",
+   "page": 28,
+   "box": [
+    235,
+    478,
+    255,
+    490
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "ones label over its cell"
+  },
+  {
+   "segment_id": "p28_s5",
+   "translation": "BLANK",
+   "reason": "H set tiny; replaced by an add over the cell"
+  },
+  {
+   "add": "p28_a9",
+   "page": 28,
+   "box": [
+    352,
+    263,
+    371,
+    273
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "hundreds label over its cell"
+  },
+  {
+   "segment_id": "p29_s1",
+   "translation": "How many sweets are there?",
+   "reason": "British 'sweets'"
+  },
+  {
+   "segment_id": "p29_s4",
+   "translation": "BLANK",
+   "clip": [
+    155,
+    155,
+    170,
+    173.5
+   ],
+   "reason": "bag tags set as a run of prose over the bags; erase only a tag-sized part, each tag is set by an add"
+  },
+  {
+   "add": "p29_a1",
+   "page": 29,
+   "box": [
+    155,
+    155.5,
+    170,
+    163
+   ],
+   "translation": "10",
+   "source": "10块",
+   "reason": "bag tag"
+  },
+  {
+   "add": "p29_a2",
+   "page": 29,
+   "box": [
+    177.5,
+    155.5,
+    192.5,
+    163
+   ],
+   "translation": "10",
+   "source": "10块",
+   "reason": "bag tag"
+  },
+  {
+   "add": "p29_a3",
+   "page": 29,
+   "box": [
+    200.5,
+    155.5,
+    215.5,
+    163
+   ],
+   "translation": "10",
+   "source": "10块",
+   "reason": "bag tag"
+  },
+  {
+   "add": "p29_a4",
+   "page": 29,
+   "box": [
+    223.5,
+    155.5,
+    238.5,
+    163
+   ],
+   "translation": "10",
+   "source": "10块",
+   "reason": "bag tag"
+  },
+  {
+   "add": "p29_a5",
+   "page": 29,
+   "box": [
+    165,
+    165.5,
+    180.5,
+    173
+   ],
+   "translation": "10",
+   "source": "10块",
+   "reason": "bag tag"
+  },
+  {
+   "add": "p29_a6",
+   "page": 29,
+   "box": [
+    186.5,
+    165.5,
+    203,
+    173
+   ],
+   "translation": "10",
+   "source": "10块",
+   "reason": "bag tag"
+  },
+  {
+   "add": "p29_a7",
+   "page": 29,
+   "box": [
+    207.5,
+    165.5,
+    223.5,
+    173
+   ],
+   "translation": "10",
+   "source": "10块",
+   "reason": "bag tag"
+  },
+  {
+   "segment_id": "p29_s5",
+   "translation": "⟦0⟧",
+   "reason": "bag label: 1000 sweets"
+  },
+  {
+   "segment_id": "p29_s6",
+   "translation": "⟦0⟧",
+   "reason": "bag tag; '10 blocks' wrong and did not fit"
+  },
+  {
+   "segment_id": "p29_s7",
+   "translation": "⟦0⟧",
+   "reason": "bag tag; '10 blocks' wrong and did not fit"
+  },
+  {
+   "segment_id": "p29_s8",
+   "translation": "⟦0⟧",
+   "reason": "bag tag; '10 blocks' wrong and did not fit"
+  },
+  {
+   "restore": [
+    171.5,
+    205,
+    177.5,
+    222
+   ],
+   "page": 29,
+   "reason": "closing bracket of the answer blank was erased"
+  },
+  {
+   "segment_id": "p29_s9",
+   "translation": "Maths game: Who comes first?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p29_s11",
+   "translation": "I scored ⟦0⟧ points.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p29_s12",
+   "translation": "I scored",
+   "reason": "consistent with the other bubble"
+  },
+  {
+   "segment_id": "p30_s1",
+   "translation": "Huangshan",
+   "box": [
+    117,
+    115,
+    157.5,
+    131
+   ],
+   "reason": "name left in Chinese; more room on the label corner"
+  },
+  {
+   "segment_id": "p30_s2",
+   "translation": "Xiangshan",
+   "box": [
+    221,
+    115,
+    260,
+    131
+   ],
+   "reason": "name left in Chinese; more room on the label corner"
+  },
+  {
+   "segment_id": "p30_s3",
+   "translation": "Taishan",
+   "box": [
+    272,
+    115,
+    307,
+    131
+   ],
+   "reason": "set at 0.60"
+  },
+  {
+   "segment_id": "p30_s4",
+   "translation": "Huashan",
+   "box": [
+    382,
+    115,
+    417,
+    131
+   ],
+   "reason": "set at 0.49"
+  },
+  {
+   "split": "p30_s5",
+   "translations": [
+    "About 1865 m above sea level",
+    "BLANK"
+   ],
+   "reason": "photo caption and question joined; the question is set by an add at heading size"
+  },
+  {
+   "split": "p30_s9",
+   "translations": [
+    "TTh",
+    "Th"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p30_s10",
+   "at": [
+    274.8
+   ],
+   "translations": [
+    "H",
+    "T"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "add": "p30_a1",
+   "page": 30,
+   "box": [
+    299.5,
+    237,
+    321,
+    249
+   ],
+   "translation": "O",
+   "source": "个",
+   "reason": "header left in Chinese"
+  },
+  {
+   "split": "p30_s11",
+   "translations": [
+    "Huangshan",
+    "Xiangshan"
+   ],
+   "reason": "row labels of different rows"
+  },
+  {
+   "segment_id": "p30_s11_k0",
+   "box": [
+    326,
+    253,
+    380,
+    264
+   ],
+   "reason": "room on free paper"
+  },
+  {
+   "segment_id": "p30_s11_k1",
+   "box": [
+    326,
+    267,
+    380,
+    278
+   ],
+   "reason": "room on free paper"
+  },
+  {
+   "add": "p30_a2",
+   "page": 30,
+   "box": [
+    326,
+    282.5,
+    380,
+    294
+   ],
+   "translation": "Taishan",
+   "source": "泰山",
+   "reason": "row label left in Chinese"
+  },
+  {
+   "split": "p30_s13",
+   "translations": [
+    "Huashan",
+    "x",
+    "y"
+   ],
+   "reason": "row label joined with the bubble"
+  },
+  {
+   "segment_id": "p30_s13_k0",
+   "box": [
+    326,
+    298,
+    372,
+    309.5
+   ],
+   "reason": "row label"
+  },
+  {
+   "merge": [
+    "p30_s13_k1",
+    "p30_s13_k2"
+   ],
+   "translation": "A four-digit number is greater than a three-digit number…",
+   "reason": "bubble text"
+  },
+  {
+   "segment_id": "p30_s12",
+   "translation": "Xiangshan is lower than ⟦0⟧ m. The others are all…",
+   "reason": "fragment ends with the ellipsis of the bubble; leftover dots of the ellipsis erased",
+   "erase": [
+    [
+     183,
+     298,
+     194,
+     309
+    ]
+   ]
+  },
+  {
+   "split": "p30_s15",
+   "at": [
+    227.4,
+    250.8,
+    274.8
+   ],
+   "translations": [
+    "TTh",
+    "Th",
+    "H",
+    "T"
+   ],
+   "reason": "one label per cell; '7' was OCR noise"
+  },
+  {
+   "split": "p30_s17",
+   "translations": [
+    "Huangshan",
+    "Taishan",
+    "Huashan"
+   ],
+   "reason": "row labels of different rows"
+  },
+  {
+   "segment_id": "p30_s17_k0",
+   "box": [
+    326,
+    387.5,
+    385,
+    398.5
+   ],
+   "reason": "room on free paper"
+  },
+  {
+   "segment_id": "p30_s17_k1",
+   "box": [
+    326,
+    403,
+    385,
+    414
+   ],
+   "reason": "room on free paper"
+  },
+  {
+   "segment_id": "p30_s17_k2",
+   "box": [
+    326,
+    418.5,
+    385,
+    429.5
+   ],
+   "reason": "room on free paper"
+  },
+  {
+   "split": "p30_s22",
+   "at": [
+    325.3,
+    348.8,
+    372.3
+   ],
+   "translations": [
+    "TTh",
+    "Th",
+    "H",
+    "T"
+   ],
+   "reason": "one label per cell"
+  },
+  {
+   "split": "p30_s24",
+   "translations": [
+    "Huangshan",
+    "Taishan"
+   ],
+   "reason": "row labels of different rows"
+  },
+  {
+   "segment_id": "p30_s24_k0",
+   "box": [
+    432,
+    537.5,
+    478,
+    549
+   ],
+   "reason": "room on free paper"
+  },
+  {
+   "segment_id": "p30_s24_k1",
+   "box": [
+    432,
+    551,
+    478,
+    562.5
+   ],
+   "reason": "room on free paper"
+  },
+  {
+   "segment_id": "p30_s26",
+   "translation": "Say how you compared them.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p30_s13_k1",
+   "box": [
+    338,
+    309,
+    405,
+    343
+   ],
+   "reason": "bubble text set at 0.56; use the whole bubble"
+  },
+  {
+   "add": "p30_a3",
+   "page": 30,
+   "box": [
+    77,
+    213,
+    250,
+    229
+   ],
+   "translation": "Which is the lowest?",
+   "source": "谁最矮？",
+   "size": 12,
+   "align": "left",
+   "reason": "question set at the size of the other questions"
+  },
+  {
+   "segment_id": "p30_s25",
+   "translation": "BLANK",
+   "reason": "set tiny and centred; replaced by an add at question size"
+  },
+  {
+   "add": "p30_a4",
+   "page": 30,
+   "box": [
+    77,
+    598,
+    340,
+    616
+   ],
+   "translation": "Fill in from smallest to largest.",
+   "source": "按照从小到大的顺序填一填，",
+   "size": 12,
+   "align": "left",
+   "reason": "instruction at the size of the other questions"
+  },
+  {
+   "segment_id": "p31_s13",
+   "translation": "( ) harvested the most corn and ( ) harvested the least. Say how you worked it out.",
+   "erase": [
+    [
+     100,
+     438,
+     107.5,
+     454
+    ],
+    [
+     100,
+     463,
+     107.5,
+     480
+    ]
+   ],
+   "box": [
+    100,
+    437,
+    262,
+    500
+   ],
+   "reason": "the source brackets were left in the picture beside the English blanks (double brackets)"
+  },
+  {
+   "merge": [
+    "p31_s20",
+    "p31_s21"
+   ],
+   "translation": "with > or <. Say how you compared them.",
+   "reason": "one sentence after the circle; 'fill in' was repeated and the pieces were set at different sizes"
+  },
+  {
+   "segment_id": "p31_s7",
+   "translation": "BLANK",
+   "reason": "set much smaller than the other bullet questions; replaced by an add at their size"
+  },
+  {
+   "add": "p31_a1",
+   "page": 31,
+   "box": [
+    77,
+    276,
+    420,
+    293
+   ],
+   "translation": "Mark the approximate position of 3200 on the number line.",
+   "source": "在数线上标出3200的大致位置。",
+   "size": 11.5,
+   "align": "left",
+   "reason": "bullet question at the size of the others"
+  },
+  {
+   "segment_id": "p32_s3",
+   "translation": "⟦0⟧. There is a prize draw before the circus show. Which is the winning number?",
+   "reason": "shorter so it is set at the size of the other numbered instructions; the end of the sentence is the next line"
+  },
+  {
+   "segment_id": "p32_s4",
+   "translation": "Tick it.",
+   "box": [
+    74,
+    259,
+    150,
+    274
+   ],
+   "erase": [
+    [
+     134,
+     266,
+     141,
+     275
+    ]
+   ],
+   "reason": "画✓ = tick it; leftover full stop erased"
+  },
+  {
+   "segment_id": "p32_s5",
+   "translation": "The winning number is greater than ⟦0⟧, less than ⟦1⟧ and close to ⟦2⟧.",
+   "reason": "punctuation"
+  },
+  {
+   "merge": [
+    "p32_s7",
+    "p32_s8"
+   ],
+   "translation": "(1) Work in pairs: one person thinks of a number and the other guesses it.",
+   "reason": "one sentence; the first piece also repeated (2)"
+  },
+  {
+   "segment_id": "p32_s7",
+   "box": [
+    75,
+    362,
+    460,
+    381
+   ],
+   "reason": "free paper to the right; set at the size of the other instructions"
+  },
+  {
+   "merge": [
+    "p32_s9",
+    "p32_s10"
+   ],
+   "translation": "(2) The guesser asks questions and may only be told \"yes\" or \"no\".",
+   "reason": "one sentence split in two pieces of different sizes; 'he other' typo"
+  },
+  {
+   "segment_id": "p32_s9",
+   "box": [
+    75,
+    384,
+    495,
+    405
+   ],
+   "reason": "room for the joined sentence"
+  },
+  {
+   "segment_id": "p32_s12",
+   "translation": "No, no…",
+   "reason": "the source ends with an ellipsis; leftover dot erased",
+   "erase": [
+    [
+     323,
+     431,
+     335,
+     443
+    ]
+   ]
+  },
+  {
+   "segment_id": "p32_s13",
+   "translation": "Yes, I can. It's ⟦0⟧.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p32_s16",
+   "translation": "Greater than ⟦0⟧?",
+   "box": [
+    70,
+    560,
+    153,
+    575
+   ],
+   "reason": "set at 0.69; use the bubble"
+  },
+  {
+   "segment_id": "p32_s18",
+   "translation": "Greater than ⟦0⟧?",
+   "box": [
+    335,
+    560,
+    420,
+    575
+   ],
+   "reason": "set at 0.73; use the bubble"
+  },
+  {
+   "segment_id": "p32_s0",
+   "translation": "BLANK",
+   "reason": "set smaller than the other numbered instructions; replaced by an add at their size"
+  },
+  {
+   "add": "p32_a1",
+   "page": 32,
+   "box": [
+    56,
+    80,
+    140,
+    96
+   ],
+   "translation": "3. Fill in.",
+   "source": "3.填一填。",
+   "size": 11.5,
+   "align": "left",
+   "reason": "numbered instruction at the size of 4. and 5."
+  },
+  {
+   "add": "p27_a6",
+   "page": 27,
+   "box": [
+    90,
+    350,
+    107,
+    361
+   ],
+   "translation": "H",
+   "source": "百",
+   "reason": "hundreds label over its cell"
+  },
+  {
+   "add": "p27_a7",
+   "page": 27,
+   "box": [
+    109.5,
+    350,
+    126,
+    361
+   ],
+   "translation": "T",
+   "source": "十",
+   "reason": "tens label over its cell"
+  }
+ ],
+ "flags": [
+  {
+   "page": 30,
+   "issue": "p29_s15: the oracle-bone numerals (2656) and counting-rod numerals (6728) of the source are pictures; the English sets them as approximate text (=∩X∩, ⊥TT=TT), which does not look like the original glyphs and drops the paragraph's placeholders. Needs the glyph pictures kept inline (e.g. pieces or adds leaving those crops in place)."
+  },
+  {
+   "page": 31,
+   "issue": "Mountain-name labels on the photos (Huangshan, Xiangshan) are set very small (about 0.55) on their small corner plates; nothing larger fits without covering the photos."
+  },
+  {
+   "page": 29,
+   "issue": "Card captions shortened (dynasty names dropped) so the English fits above the answer brackets; the four captions now read as short notes rather than full sentences."
+  }
+ ]
+}

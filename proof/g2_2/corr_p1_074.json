@@ -1,0 +1,220 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p73_s8",
+   "translation": "⟦0⟧. Finish drawing the parallelograms.",
+   "reason": "missing full stop; two parallelograms are shown"
+  },
+  {
+   "segment_id": "p73_s12",
+   "translation": "trapezium",
+   "reason": "UK term"
+  },
+  {
+   "segment_id": "p74_s5",
+   "erase": [
+    [
+     170,
+     377,
+     178,
+     387
+    ]
+   ],
+   "reason": "leftover dot of the ellipsis after the bubble text"
+  },
+  {
+   "segment_id": "p74_s6",
+   "translation": "I used triangles…",
+   "reason": "source ends with an ellipsis"
+  },
+  {
+   "merge": [
+    "p75_s4",
+    "p75_s5"
+   ],
+   "translation": "Use 4 rectangles to make a new shape.",
+   "reason": "one sentence split by OCR; second fragment printed huge"
+  },
+  {
+   "segment_id": "p75_s7",
+   "translation": "⟦0⟧. Calculate and check.",
+   "reason": "same wording as the other pages (计算并验算)"
+  },
+  {
+   "segment_id": "p76_s4",
+   "translation": "And more…",
+   "box": [
+    335,
+    328,
+    392,
+    345
+   ],
+   "reason": "was set at 0.62; shorter text, whole bubble"
+  },
+  {
+   "segment_id": "p77_s3",
+   "translation": "⟦0⟧. Think, then tick (✓) the correct answer.",
+   "box": [
+    57.8,
+    180.9,
+    330,
+    196.4
+   ],
+   "erase": [
+    [
+     268,
+     179,
+     328,
+     199
+    ]
+   ],
+   "reason": "the quoted tick and Chinese full stop were left in the picture; sentence now complete"
+  },
+  {
+   "split": "p77_s8",
+   "translations": [
+    "2 cm",
+    "4 cm"
+   ],
+   "reason": "two separate length labels, wrapped badly as one"
+  },
+  {
+   "split": "p77_s9",
+   "translations": [
+    "6 cm",
+    "7 cm"
+   ],
+   "reason": "two separate length labels"
+  },
+  {
+   "segment_id": "p78_s1",
+   "translation": "Olympic Opening",
+   "reason": "natural title"
+  },
+  {
+   "segment_id": "p78_s8",
+   "translation": "BLANK",
+   "reason": "'full turn' is already in p78_s7; 'circle.' was a dangling duplicate"
+  },
+  {
+   "paint": [
+    345,
+    322,
+    358,
+    333
+   ],
+   "page": 78,
+   "colour": [
+    252,
+    234,
+    214
+   ],
+   "reason": "dark leftover blob of an erased glyph over 'has' in the boy's bubble"
+  },
+  {
+   "split": "p79_s12",
+   "at": [
+    146,
+    213,
+    285,
+    359
+   ],
+   "translations": [
+    "4:12",
+    "9:20",
+    "6:08",
+    "1:30",
+    "8:55"
+   ],
+   "reason": "five separate time labels under five clocks were run together"
+  },
+  {
+   "split": "p79_s29",
+   "translations": [
+    "I set, you say",
+    "What time is it?"
+   ],
+   "reason": "banner label and speech bubble are different texts"
+  },
+  {
+   "segment_id": "p79_s29_k1",
+   "box": [
+    98,
+    575,
+    152,
+    596
+   ],
+   "reason": "use the whole bubble (was 0.52)"
+  },
+  {
+   "segment_id": "p80_s0",
+   "translation": "How long is 1 minute?",
+   "erase": [
+    [
+     62,
+     86,
+     75.5,
+     104
+    ]
+   ],
+   "box": [
+    63,
+    84.2,
+    158,
+    103.2
+   ],
+   "reason": "the '1' of the title was left in the picture; natural title"
+  },
+  {
+   "add": "p80_a1",
+   "page": 80,
+   "box": [
+    81,
+    267,
+    156,
+    281
+   ],
+   "translation": "Tick… tock…",
+   "source": "嗒……嗒……",
+   "reason": "clock sound in bubble left in Chinese"
+  },
+  {
+   "segment_id": "p80_s6",
+   "translation": "⟦0⟧ minute = __ seconds",
+   "box": [
+    209,
+    330,
+    313,
+    350
+   ],
+   "reason": "was 0.55 and wrapped; whole banner, one line"
+  },
+  {
+   "segment_id": "p80_s8",
+   "translation": "About ___ claps in ⟦0⟧ minute.",
+   "box": [
+    62,
+    496,
+    188,
+    528
+   ],
+   "reason": "text of the next cell was mixed in; box inside its own cell"
+  },
+  {
+   "segment_id": "p80_s9",
+   "translation": "Write your name about ___ times in ⟦0⟧ minute.",
+   "reason": "complete sentence for this cell"
+  },
+  {
+   "segment_id": "p80_s2",
+   "translation": "The second hand is the longest and fastest. ⟦0⟧ small division is ⟦1⟧ second.",
+   "reason": "clearer as two sentences"
+  }
+ ],
+ "flags": [
+  {
+   "page": 78,
+   "issue": "after the split of p77_s8 the '4 cm' label is set noticeably smaller than '2 cm'/'6 cm'/'7 cm'"
+  }
+ ]
+}
