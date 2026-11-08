@@ -1,0 +1,7 @@
+{"corrections":[
+{"segment_id":"p90_s6","box":[57,205,360,230],"reason":"set smaller than the other numbered instructions; free paper to the right of the line"},
+{"segment_id":"p90_s24","box":[72,645,458,665],"reason":"shrunk to 0.87; free room inside the same panel"},
+{"segment_id":"p91_s15","translation":"(⟦0⟧) How many are left?","reason":"shorter wording so it is set at the same size as the sibling question"},
+{"segment_id":"p92_s5","box":[100,271,181,287],"reason":"'I came second.' was set much smaller than the sibling speech bubbles; the bubble has room"}
+],
+"flags":[]}

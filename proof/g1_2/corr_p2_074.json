@@ -1,0 +1,74 @@
+{
+"corrections": [
+{
+"segment_id": "p77_s15",
+"box": [
+71,
+563,
+458,
+604
+],
+"reason": "the 'than 100.' fragment is already gone from the page; the sentence was squeezed to 0.72 in one line's height, so give it the freed second line to wrap at the sibling size"
+},
+{
+"segment_id": "p77_s16",
+"translation": "BLANK",
+"reason": "'than 100.' belongs to (1), which now wraps in full; the fragment was printed twice"
+},
+{
+"segment_id": "p76_s8",
+"translation": "⟦0⟧. Find pairs with the same answer.",
+"reason": "找朋友: pair the cards with equal answers; 'Find friends' unclear"
+},
+{
+"segment_id": "p76_s8",
+"box": [
+56,
+323,
+330,
+340
+],
+"reason": "longer instruction; free paper to the right above the picture"
+},
+{
+"segment_id": "p78_s21",
+"translation": "Borrow ⟦0⟧ as ten.",
+"reason": "借1当十: the borrowed 1 counts as ten"
+},
+{
+"segment_id": "p78_s21",
+"box": [
+341,
+403,
+404,
+420
+],
+"reason": "set at 0.68 in a tight box; keep the wider box inside the bubble outline"
+},
+{
+"segment_id": "p80_s0",
+"box": [
+57,
+78,
+165,
+99
+],
+"reason": "set smaller than sibling instructions; free paper left of the first tree"
+},
+{
+"segment_id": "p80_s17",
+"translation": "⟦0⟧. Find each animal's car.",
+"reason": "乘车: each animal rides the car showing its answer; 'Car ride.' unclear"
+}
+],
+"flags": [
+{
+"page": 81,
+"issue": "Hand-lettered cover title 童话故事 on the Fairy Tales book stays in Chinese; setting English over it overlaps the calligraphy (the spine already reads 'Fairy Tales')."
+},
+{
+"page": 79,
+"issue": "'How many magazines are left?' wraps to two lines next to the answer boxes; a wider box still wraps at the sibling size."
+}
+]
+}

@@ -1,0 +1,19 @@
+{"corrections": [
+{"segment_id": "p68_s0", "translation": "⟦0⟧. Here is how Taoqi and Xiaoxiao sorted. How did you sort?", "reason": "shorter so it stays on one line and no longer runs into the picture below (tried: fits)"},
+{"segment_id": "p71_s0", "box": [50, 77.4, 472, 106.6], "reason": "unit title overflowed to the left of its box; widened symmetrically so it is centred on the page (tried)"},
+{"segment_id": "p66_s6", "translation": "The Naughty Puppy", "reason": "section title: no full stop, matches '7. Forest Doctor'; 小狗 is a puppy"},
+{"segment_id": "p66_s9", "translation": "Magic Number Sentences", "reason": "section title: no full stop; more natural wording"},
+{"paint": [183, 150.8, 211.8, 160.6], "page": 71, "colour": [255, 255, 255], "reason": "label plate '28 books': the erase left a stroke of 本 across the English label; plate filled white again"},
+{"paint": [289, 150.8, 315.5, 160.6], "page": 71, "colour": [255, 255, 255], "reason": "label plate '4 books': the erase left a stroke of 本 across the English label; plate filled white again"},
+{"paint": [183, 197.8, 210.3, 208], "page": 71, "colour": [255, 255, 255], "reason": "label plate '9 books': the erase left a stroke of 本 across the English label; plate filled white again"},
+{"paint": [288.5, 197.8, 315.5, 208], "page": 71, "colour": [255, 255, 255], "reason": "label plate '8 books': the erase left a stroke of 本 across the English label; plate filled white again"},
+{"restore": [182, 161.8, 213, 172], "page": 71, "reason": "the erase of the '28 本' label left a white smear on the books below it; source pixels put back"},
+{"paint": [168.5, 414.5, 178, 426.5], "page": 65, "colour": "border", "reason": "a 。 of the Chinese bubble text was left after 'Liangliang' in Lili's bubble"},
+{"segment_id": "p69_s3", "translation": "BLANK", "reason": "the two rules are set again as two left-aligned lines, one beside each bullet (p69_a1, p69_a2)"},
+{"add": "p69_a1", "page": 69, "box": [88.5, 196.0, 349.5, 212.0], "translation": "Write one of 1, 2, 3 in each blank.", "source": "每个空格中只能填1，2，3中的一个。", "size": 11.5, "align": "left", "color": 2301728, "reason": "first game rule, left-aligned beside its bullet"},
+{"add": "p69_a2", "page": 69, "box": [88.5, 219.0, 349.5, 235.8], "translation": "Numbers must not repeat in any row or column.", "source": "每一横行、每一竖行的数字不能重复。", "size": 11.5, "align": "left", "color": 2301728, "reason": "second game rule, left-aligned beside its bullet"},
+{"restore": [221.0, 96.0, 229.0, 113.0], "page": 72, "reason": "the erase of the '13 本' label smeared the book spines to its right; source pixels put back"}
+],
+"flags": [
+{"page": 72, "issue": "Book-cover titles (童话世界, 丛林世界, 海底世界) are left in Chinese on the tiny cover pictures; no room for English."}
+]}

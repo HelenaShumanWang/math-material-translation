@@ -1,0 +1,8 @@
+{"corrections": [
+{"segment_id": "p18_s30_k0", "translation": "tables", "reason": "the bubble reads: There are □ tables / and □ chairs; 'tables and' had to shrink to 0.7 (or cross the bubble outline), so 'and' goes at the start of the second line"},
+{"add": "p18_a1", "page": 18, "box": [140.0, 634.0, 165.0, 646.5], "translation": "and", "source": "", "color": 2301728, "align": "right", "reason": "'and' joining the two counts, set in the free bubble space left of the second box (tried and checked: box outline intact)"},
+{"split": "p19_s19", "at": [297, 317, 338], "translations": ["DROP", "and", "DROP", "in all"], "reason": "the English covered the shrimp and crab pictograms of (3); keep the pictures and set 'and' / 'in all' in place of 和 / 共有 (tried and checked)"},
+{"segment_id": "p19_s20", "translation": "⟦0⟧. Ask two maths questions and try to answer them.", "reason": "British spelling: maths"},
+{"segment_id": "p20_s20", "translation": "I look for ⟦0⟧ minus …", "erase": [[303, 293, 314, 302]], "reason": "leftover source dots (……) visible at the right of the bubble; erased and the ellipsis set in the English; number kept as its placeholder"}
+],
+"flags": []}

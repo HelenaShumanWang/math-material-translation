@@ -1,0 +1,45 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p9_s2",
+   "translation": "There are ⟦0⟧ ducklings.",
+   "reason": "full sentence for 有12只小鸭"
+  },
+  {
+   "segment_id": "p13_a2_p0",
+   "translation": "Answer: There are ___ more red parachutes than yellow ones.",
+   "reason": "name the counted parachutes"
+  },
+  {
+   "segment_id": "p13_a3_p0",
+   "translation": "How many fewer blue parachutes than red ones?",
+   "reason": "name the counted parachutes"
+  },
+  {
+   "segment_id": "p14_s4",
+   "translation": "Answer: ___ fewer eggs were laid today than yesterday.",
+   "reason": "grammar: verb missing"
+  },
+  {
+   "segment_id": "p9_s2",
+   "box": [
+    153,
+    131,
+    224,
+    148
+   ],
+   "reason": "bubble has free room; text shrunk"
+  },
+  {
+   "segment_id": "p13_a3_p0",
+   "box": [
+    75,
+    400,
+    372,
+    418
+   ],
+   "reason": "keep the question on one line; free room to the right"
+  }
+ ],
+ "flags": []
+}

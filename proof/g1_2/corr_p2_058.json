@@ -1,0 +1,10 @@
+{"corrections":[
+{"segment_id":"p57_s4","translation":"(⟦0⟧) How many insects were eaten in all?","box":[274,134,460,163],"reason":"set at the size of the other numbered instructions, on two lines in the free room of the dotted box"},
+{"segment_id":"p57_s5","translation":"(⟦0⟧) How many fewer insects did the small woodpecker eat than the big one?","box":[274,163,460,214],"reason":"name the insects; set at sibling size over the free room of the dotted box; bottom kept clear of the dotted border"},
+{"segment_id":"p58_s14","translation":"Let's learn the column method!","box":[362,447,452,465],"reason":"was set at 0.62; use the height of the bubble for two lines"},
+{"segment_id":"p61_s6","translation":"This bag has ⟦0⟧ balloons.","box":[102,208,200,222],"reason":"was set at 0.71; use the bubble width but keep the full stop inside the outline"},
+{"segment_id":"p63_s1","translation":"⟦0⟧. Look at the picture, ask two maths questions and solve them.","reason":"British spelling: maths"},
+{"segment_id":"p63_s2","translation":"I'm ⟦0⟧ years older than the deer.","box":[133,148,241,162],"reason":"was set at 0.75; use the bubble but keep the text inside the outline"},
+{"segment_id":"p63_s13","translation":"Class 2 donated ⟦0⟧ fewer books than our class.","reason":"consistent with 'Class 2' in the next bubble"}
+],
+"flags":[]}

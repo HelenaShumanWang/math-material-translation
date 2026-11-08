@@ -1,0 +1,6 @@
+{"corrections": [
+{"segment_id": "p3_s3", "translation": "Unit 3 Numbers in\nLife", "box": [222.8, 472.3, 346.7, 499.0], "reason": "was shrunk to 0.88; break onto two lines over free paper below so it matches the other unit titles"},
+{"segment_id": "p4_s3", "translation": "Maths Is Fun", "box": [82.5, 418.4, 178.0, 437.7], "reason": "was shrunk to 0.92; extend over free paper up to the dot leader so it matches its sibling titles"},
+{"segment_id": "p5_s2", "translation": "There are ⟦0⟧ pencils.", "box": [318.0, 139.5, 397.0, 155.5], "reason": "set at 0.74 in a tight box; use the rest of the kangaroo's bubble"}
+],
+"flags": []}

@@ -1,0 +1,6 @@
+{"corrections":[
+{"segment_id":"p25_s4","translation":"How many peanuts do Taoqi and Xiaoxiao each have? Count one by one.","box":[77,280,462,295],"reason":"was shrunk to 0.82 and wrapped; shorter wording on one line using free paper to the right"},
+{"merge":["p30_s9","p30_s10"],"translation":"(   ) tens and (   ) ones make (   ).","reason":"one sentence split around the printed middle bracket; set as one line like its twin on the left"},
+{"segment_id":"p30_s9","erase":[[340,313,398,330]],"box":[270,313,476,330],"reason":"printed bracket and 个 left between the merged pieces overlapped the English; box keeps the closing bracket inside the dashed frame"},
+{"segment_id":"p32_s13","box":[97,423,157,447],"reason":"text wrapped to three lines and ran over the top edge of the sign; use the board above the bear's head so Welcome! does not cover its ears"}
+],"flags":[]}

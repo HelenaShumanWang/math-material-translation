@@ -1,0 +1,7 @@
+{"corrections": [
+ {"segment_id": "p71_s10", "box": [101.5, 249, 123.5, 263], "reason": "the 'and' between the two book pictures gets the whole measured gap (100.5-124.2) so the question can be set at the size of the other bullet questions"},
+ {"segment_id": "p71_s9", "translation": "— how many books in total? Use sticks, then calculate.", "box": [156, 249, 480, 263], "reason": "摆一摆，算一算: shorter; box over the free paper to the right so the line is set at full size"},
+ {"segment_id": "p71_s28", "box": [105, 581, 127, 597], "reason": "the 'and' gets the whole measured gap between the pictures (104.2-127.8)"},
+ {"segment_id": "p71_s18", "box": [138, 417, 156, 430], "reason": "the 'and' of the answer line gets the measured gap between the pictures"},
+ {"segment_id": "p71_s33", "box": [131, 656, 153, 670], "reason": "the 'and' of the answer line gets the measured gap between the pictures (130.2-153.5)"}
+]}

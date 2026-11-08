@@ -1,0 +1,120 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p41_s1",
+   "translation": "Fold the paper square in Figure ⟦0⟧ of the appendix into two equal parts. How do you fold it?",
+   "reason": "shorter so it is not shrunk to 0.80"
+  },
+  {
+   "segment_id": "p42_s2",
+   "translation": "⟦0⟧. What does this look like? Cut out Figure ⟦1⟧ in the appendix and make it.",
+   "reason": "shorter so it stays on one line above the crown"
+  },
+  {
+   "segment_id": "p44_s2",
+   "translation": "⟦0⟧. These pictures tell the story \"Waiting by a Tree for a Hare\". Make them.",
+   "reason": "shorter; keeps the tree of 守株待兔"
+  },
+  {
+   "segment_id": "p44_s13",
+   "box": [
+    142,
+    572,
+    186,
+    590
+   ],
+   "reason": "Flower is set much larger than Tree and over the underline"
+  },
+  {
+   "segment_id": "p45_s7",
+   "translation": "The kaleidoscope pattern uses triangles and squares...",
+   "reason": "shorter; was shrunk to 0.81"
+  },
+  {
+   "segment_id": "p45_s8",
+   "translation": "Design a pattern with a partner. Say which shapes you used.",
+   "reason": "shorter; was shrunk to 0.81"
+  },
+  {
+   "segment_id": "p47_s4",
+   "translation": "How many fewer plates does the cat have than the elephant? Draw a picture to explain.",
+   "reason": "shorter; was shrunk to 0.77"
+  },
+  {
+   "segment_id": "p47_s12",
+   "box": [
+    176,
+    500,
+    244,
+    517
+   ],
+   "reason": "set at 0.74; free room in the bubble"
+  },
+  {
+   "segment_id": "p48_s2",
+   "translation": "When I got stuck, laying out sticks helped.",
+   "reason": "shorter; was shrunk to 0.81"
+  },
+  {
+   "segment_id": "p48_s3",
+   "translation": "I only knew one way to compare numbers. Group discussion taught me another.",
+   "reason": "shorter; was shrunk to 0.83"
+  },
+  {
+   "segment_id": "p48_s6",
+   "translation": "Why does the tangram have no rectangles?",
+   "reason": "shorter; was shrunk to 0.78"
+  },
+  {
+   "segment_id": "p48_s8",
+   "translation": "Numbers in life never end. Can we learn them all?",
+   "reason": "shorter; was shrunk to 0.81"
+  },
+  {
+   "segment_id": "p48_s6",
+   "box": [
+    106,
+    405,
+    196,
+    437
+   ],
+   "reason": "set at 0.78; fit the text inside the bubble outline"
+  },
+  {
+   "segment_id": "p48_s8",
+   "box": [
+    99,
+    550,
+    202,
+    578
+   ],
+   "reason": "use the full bubble width so the text is not crammed into three lines"
+  },
+  {
+   "segment_id": "p42_s2",
+   "box": [
+    55.8,
+    340.2,
+    482,
+    356.3
+   ],
+   "reason": "use the free margin so the line does not wrap onto the crown"
+  },
+  {
+   "segment_id": "p44_s2",
+   "box": [
+    56.1,
+    316.9,
+    482,
+    332.5
+   ],
+   "reason": "use the free margin so the line does not wrap onto the pictures"
+  }
+ ],
+ "flags": [
+  {
+   "page": 48,
+   "issue": "Label p47_s8 'Talk About It' is set at 0.70 in its pill; a shorter label ('Discuss') or a wider box did not take effect (label kept consistent across the volume via labels.json)."
+  }
+ ]
+}

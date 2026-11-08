@@ -1,0 +1,42 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p83_s22",
+   "translation": "⟦0⟧. Who reaches the other side first?",
+   "reason": "more natural for 谁先到对岸"
+  },
+  {
+   "segment_id": "p83_s35",
+   "translation": "Athletes, line up!",
+   "reason": "运动员集合 is a call to gather"
+  },
+  {
+   "segment_id": "p84_s12",
+   "translation": "⟦0⟧. Going home.",
+   "box": [
+    55,
+    475,
+    170,
+    488
+   ],
+   "reason": "set at the size of the other numbered instructions"
+  },
+  {
+   "segment_id": "p85_s16",
+   "translation": "⟦0⟧. Collecting stamps.",
+   "box": [
+    55,
+    502,
+    200,
+    515
+   ],
+   "reason": "set at the size of the other numbered instructions"
+  }
+ ],
+ "flags": [
+  {
+   "page": 83,
+   "issue": "Numbered instructions p82_s14 ('1. Use sticks...') and p82_s19 ('2. How much does 1 badminton racket cost?') are set noticeably smaller (about 8pt) than the other body text of the page ('Move the beads...'); the checked edition set them at normal size. The size comes from sibling matching in layout, not from the text."
+  }
+ ]
+}

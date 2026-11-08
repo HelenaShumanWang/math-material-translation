@@ -1,0 +1,76 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p50_s12",
+   "translation": "(⟦0⟧) How many kicks did Xiaowen and Xiaoli make in all?",
+   "reason": "natural verb with kicks"
+  },
+  {
+   "segment_id": "p50_s14",
+   "translation": "(⟦0⟧) How many fewer kicks did Xiaowen make than Xiaoli?",
+   "reason": "natural verb with kicks"
+  },
+  {
+   "segment_id": "p50_s19",
+   "translation": "(⟦0⟧) How many more kicks does Xiaojun need to match Xiaoli?",
+   "reason": "shorter, same meaning"
+  },
+  {
+   "segment_id": "p51_s16",
+   "translation": "⟦0⟧ cypresses planted",
+   "reason": "sign, not a speaker; shorter so it fits"
+  },
+  {
+   "segment_id": "p51_s22",
+   "translation": "We also planted locust trees…",
+   "box": [
+    322,
+    603,
+    452,
+    621
+   ],
+   "reason": "set at 0.7 in a roomy bubble; 'also planted' (又种了) so it does not read as 'more locust trees than pines'"
+  },
+  {
+   "segment_id": "p52_s17",
+   "translation": "Learn the names.",
+   "reason": "认一认 introduces the names of the parts"
+  },
+  {
+   "segment_id": "p53_s2",
+   "box": [
+    353,
+    122,
+    421,
+    138.5
+   ],
+   "reason": "kept clear of the bubble outline at its top-left"
+  },
+  {
+   "segment_id": "p53_s4",
+   "box": [
+    234,
+    138,
+    295,
+    156
+   ],
+   "reason": "set at 0.61; rest of the label plate is free"
+  },
+  {
+   "segment_id": "p49_s31",
+   "box": [
+    215,
+    482.5,
+    252,
+    497
+   ],
+   "reason": "same size as the sibling labels; free paper right of the printed ?"
+  }
+ ],
+ "flags": [
+  {
+   "page": 50,
+   "issue": "Ex. 5: 'cherries' (p49_s31) after the printed '?' is larger with the widened box but still somewhat smaller than the sibling labels; the box cannot grow further (six-times limit)."
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+{"corrections": [
+{"segment_id": "p38_s20", "translation": "⟦0⟧. What numbers can 4 beads show on a counting frame? Draw and write.", "reason": "the counting frame (计数器) was left out; fits on one line"},
+{"segment_id": "p35_s5", "box": [331, 449, 401, 466], "reason": "set at 0.61; the bubble has room, now 0.68 and inside the bubble"}
+],
+"flags": []}
