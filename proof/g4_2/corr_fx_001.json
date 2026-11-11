@@ -1,0 +1,490 @@
+{
+ "corrections": [
+  {
+   "restore": [
+    134,
+    247,
+    366,
+    260
+   ],
+   "page": 0,
+   "reason": "notch in the light-blue arc left by the erase of the title; below the glyphs"
+  },
+  {
+   "restore": [
+    134,
+    236,
+    154,
+    247
+   ],
+   "page": 0,
+   "reason": "arc notch, left of 数"
+  },
+  {
+   "restore": [
+    239,
+    236,
+    293,
+    247
+   ],
+   "page": 0,
+   "reason": "arc notch, between 数 and 学"
+  },
+  {
+   "restore": [
+    355,
+    236,
+    366,
+    247
+   ],
+   "page": 0,
+   "reason": "arc notch, right of 学"
+  },
+  {
+   "paint": [
+    154,
+    236,
+    239,
+    238.5
+   ],
+   "page": 0,
+   "colour": [
+    209,
+    238,
+    252
+   ],
+   "reason": "arc gradient under 数"
+  },
+  {
+   "paint": [
+    154,
+    238.5,
+    239,
+    240.5
+   ],
+   "page": 0,
+   "colour": [
+    212,
+    239,
+    252
+   ],
+   "reason": "arc gradient under 数"
+  },
+  {
+   "paint": [
+    154,
+    240.5,
+    239,
+    242.5
+   ],
+   "page": 0,
+   "colour": [
+    214,
+    240,
+    252
+   ],
+   "reason": "arc gradient under 数"
+  },
+  {
+   "paint": [
+    154,
+    242.5,
+    239,
+    244.5
+   ],
+   "page": 0,
+   "colour": [
+    216,
+    241,
+    252
+   ],
+   "reason": "arc gradient under 数"
+  },
+  {
+   "paint": [
+    154,
+    244.5,
+    239,
+    247
+   ],
+   "page": 0,
+   "colour": [
+    218,
+    241,
+    253
+   ],
+   "reason": "arc gradient under 数"
+  },
+  {
+   "paint": [
+    293,
+    236,
+    355,
+    238.5
+   ],
+   "page": 0,
+   "colour": [
+    209,
+    238,
+    252
+   ],
+   "reason": "arc gradient under 学"
+  },
+  {
+   "paint": [
+    293,
+    238.5,
+    355,
+    240.5
+   ],
+   "page": 0,
+   "colour": [
+    212,
+    239,
+    252
+   ],
+   "reason": "arc gradient under 学"
+  },
+  {
+   "paint": [
+    293,
+    240.5,
+    355,
+    242.5
+   ],
+   "page": 0,
+   "colour": [
+    214,
+    240,
+    252
+   ],
+   "reason": "arc gradient under 学"
+  },
+  {
+   "paint": [
+    293,
+    242.5,
+    355,
+    244.5
+   ],
+   "page": 0,
+   "colour": [
+    216,
+    241,
+    252
+   ],
+   "reason": "arc gradient under 学"
+  },
+  {
+   "paint": [
+    293,
+    244.5,
+    355,
+    247
+   ],
+   "page": 0,
+   "colour": [
+    218,
+    241,
+    253
+   ],
+   "reason": "arc gradient under 学"
+  },
+  {
+   "paint": [
+    220.6,
+    225,
+    285.9,
+    226
+   ],
+   "page": 0,
+   "colour": [
+    198,
+    234,
+    251
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    209.4,
+    226,
+    297.1,
+    227
+   ],
+   "page": 0,
+   "colour": [
+    199,
+    234,
+    251
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    200.6,
+    227,
+    305.9,
+    228
+   ],
+   "page": 0,
+   "colour": [
+    200,
+    234,
+    251
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    193.0,
+    228,
+    313.5,
+    229
+   ],
+   "page": 0,
+   "colour": [
+    201,
+    235,
+    251
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    186.3,
+    229,
+    320.2,
+    230
+   ],
+   "page": 0,
+   "colour": [
+    203,
+    235,
+    252
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    180.2,
+    230,
+    326.3,
+    231
+   ],
+   "page": 0,
+   "colour": [
+    204,
+    236,
+    252
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    174.6,
+    231,
+    331.9,
+    232
+   ],
+   "page": 0,
+   "colour": [
+    205,
+    236,
+    252
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    169.3,
+    232,
+    337.2,
+    233
+   ],
+   "page": 0,
+   "colour": [
+    206,
+    237,
+    252
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    164.4,
+    233,
+    342.1,
+    234
+   ],
+   "page": 0,
+   "colour": [
+    206,
+    237,
+    252
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    159.7,
+    234,
+    346.8,
+    235
+   ],
+   "page": 0,
+   "colour": [
+    206,
+    237,
+    252
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    155.2,
+    235,
+    351.3,
+    236
+   ],
+   "page": 0,
+   "colour": [
+    207,
+    237,
+    252
+   ],
+   "reason": "top of the light-blue arc erased with the title; gradient row"
+  },
+  {
+   "paint": [
+    135,
+    165,
+    375,
+    224.8
+   ],
+   "page": 0,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "faint grey ghosts of 数学 left by the erase on the white background"
+  },
+  {
+   "paint": [
+    66,
+    150,
+    200.5,
+    152
+   ],
+   "page": 4,
+   "colour": [
+    231,
+    246,
+    253
+   ],
+   "reason": "light patch left where 四 and the contents line were erased; background gradient row"
+  },
+  {
+   "paint": [
+    66,
+    152,
+    200.5,
+    159
+   ],
+   "page": 4,
+   "colour": [
+    232,
+    246,
+    253
+   ],
+   "reason": "light patch left where 四 and the contents line were erased; background gradient row"
+  },
+  {
+   "paint": [
+    66,
+    159,
+    200.5,
+    166
+   ],
+   "page": 4,
+   "colour": [
+    234,
+    247,
+    254
+   ],
+   "reason": "light patch left where 四 and the contents line were erased; background gradient row"
+  },
+  {
+   "paint": [
+    66,
+    166,
+    200.5,
+    170
+   ],
+   "page": 4,
+   "colour": [
+    235,
+    247,
+    254
+   ],
+   "reason": "light patch left where 四 and the contents line were erased; background gradient row"
+  },
+  {
+   "paint": [
+    66,
+    170,
+    200.5,
+    171
+   ],
+   "page": 4,
+   "colour": [
+    237,
+    247,
+    254
+   ],
+   "reason": "light patch left where 四 and the contents line were erased; background gradient row"
+  },
+  {
+   "paint": [
+    66,
+    171,
+    200.5,
+    178
+   ],
+   "page": 4,
+   "colour": [
+    238,
+    248,
+    254
+   ],
+   "reason": "light patch left where 四 and the contents line were erased; background gradient row"
+  },
+  {
+   "segment_id": "p5_a3_p0",
+   "box": [
+    308,
+    290,
+    330,
+    301
+   ],
+   "reason": "the label came out about 7 pt right of where 1厘米 was; this box sets it at the tail of its pointer arrow, level with 1 dm"
+  },
+  {
+   "paint": [
+    301.5,
+    298.5,
+    308.5,
+    302.2
+   ],
+   "page": 5,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "tail of a stroke of 米 (分米) brought back by the brace restore (stray dot); widened so the whole dot goes, pointer arrow untouched"
+  }
+ ],
+ "left": []
+}

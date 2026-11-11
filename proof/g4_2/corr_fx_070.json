@@ -1,0 +1,487 @@
+{
+ "corrections": [
+  {
+   "paint": [
+    356.5,
+    181.5,
+    363.5,
+    191
+   ],
+   "page": 69,
+   "colour": [
+    203,
+    210,
+    218
+   ],
+   "reason": "kettle label 2000毫升: 毫升 painted over in the kettle colour and set as mL"
+  },
+  {
+   "paint": [
+    361,
+    184.5,
+    368.5,
+    193
+   ],
+   "page": 69,
+   "colour": [
+    203,
+    210,
+    218
+   ],
+   "reason": "kettle label 2000毫升: 毫升 painted over in the kettle colour and set as mL"
+  },
+  {
+   "add": "p69_a90",
+   "page": 69,
+   "box": [
+    358,
+    184,
+    366.5,
+    190.5
+   ],
+   "translation": "mL",
+   "source": "毫升",
+   "size": 6,
+   "align": "center",
+   "color": 2301728,
+   "reason": "kettle label 2000毫升: 毫升 painted over in the kettle colour and set as mL"
+  },
+  {
+   "segment_id": "p71_s25",
+   "translation": "Solution:",
+   "box": [
+    242,
+    483,
+    275.5,
+    497
+   ],
+   "reason": "keep the pupil's handwritten working with the red -2; only 解： is replaced"
+  },
+  {
+   "segment_id": "p71_s25",
+   "clip": [
+    257,
+    482,
+    275.5,
+    497.5
+   ]
+  },
+  {
+   "paint": [
+    282,
+    223,
+    294,
+    229.6
+   ],
+   "page": 78,
+   "colour": [
+    131,
+    197,
+    93
+   ],
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "paint": [
+    294,
+    224,
+    306,
+    230.3
+   ],
+   "page": 78,
+   "colour": [
+    131,
+    197,
+    93
+   ],
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "paint": [
+    320,
+    223,
+    332,
+    229.6
+   ],
+   "page": 78,
+   "colour": [
+    131,
+    197,
+    93
+   ],
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "paint": [
+    332,
+    224,
+    344,
+    230.3
+   ],
+   "page": 78,
+   "colour": [
+    131,
+    197,
+    93
+   ],
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "paint": [
+    359,
+    223,
+    371,
+    229.6
+   ],
+   "page": 78,
+   "colour": [
+    131,
+    197,
+    93
+   ],
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "paint": [
+    371,
+    224,
+    383,
+    230.3
+   ],
+   "page": 78,
+   "colour": [
+    131,
+    197,
+    93
+   ],
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "restore": [
+    279,
+    218.5,
+    308,
+    222.6
+   ],
+   "page": 78,
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "restore": [
+    317.5,
+    218.5,
+    346.5,
+    222.6
+   ],
+   "page": 78,
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "restore": [
+    356,
+    218.5,
+    385.5,
+    222.6
+   ],
+   "page": 78,
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "restore": [
+    357.3,
+    230.9,
+    384.3,
+    233.5
+   ],
+   "page": 78,
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "restore": [
+    318.6,
+    230.9,
+    345.6,
+    233.5
+   ],
+   "page": 78,
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "restore": [
+    280,
+    230.9,
+    307,
+    233.5
+   ],
+   "page": 78,
+   "reason": "comic cover title band repainted / orange strip and picture edge restored after the old erase smudged them"
+  },
+  {
+   "add": "p78_a71",
+   "page": 78,
+   "box": [
+    283,
+    224.2,
+    305.5,
+    229.6
+   ],
+   "translation": "Comics",
+   "source": "连环画",
+   "size": 5.5,
+   "align": "center",
+   "reason": "cover title"
+  },
+  {
+   "add": "p78_a72",
+   "page": 78,
+   "box": [
+    321.5,
+    224.2,
+    344,
+    229.6
+   ],
+   "translation": "Comics",
+   "source": "连环画",
+   "size": 5.5,
+   "align": "center",
+   "reason": "cover title"
+  },
+  {
+   "segment_id": "p78_s10_k1",
+   "translation": "BLANK",
+   "reason": "cover title set by p78_a73 on a repainted band"
+  },
+  {
+   "add": "p78_a73",
+   "page": 78,
+   "box": [
+    360,
+    224.2,
+    382.5,
+    229.6
+   ],
+   "translation": "Comics",
+   "source": "连环画",
+   "size": 5.5,
+   "align": "center",
+   "reason": "cover title"
+  },
+  {
+   "segment_id": "p78_s30",
+   "translation": "Did You Know?",
+   "box": [
+    99.5,
+    574.5,
+    158.5,
+    589
+   ],
+   "reason": "one line across the ribbon instead of two shrunk lines"
+  },
+  {
+   "add": "p78_a80",
+   "page": 78,
+   "box": [
+    173.5,
+    369.3,
+    184.5,
+    375.6
+   ],
+   "translation": "No.",
+   "source": "编号",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a81",
+   "page": 78,
+   "box": [
+    206.5,
+    369.3,
+    223.5,
+    375.6
+   ],
+   "translation": "Item",
+   "source": "品名",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a86",
+   "page": 78,
+   "box": [
+    198.5,
+    369.3,
+    204.5,
+    375.6
+   ],
+   "translation": "BLANK",
+   "source": "货",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a87",
+   "page": 78,
+   "box": [
+    226.5,
+    369.3,
+    233,
+    375.6
+   ],
+   "translation": "BLANK",
+   "source": "称",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a82",
+   "page": 78,
+   "box": [
+    245,
+    369.3,
+    261,
+    375.6
+   ],
+   "translation": "Spec.",
+   "source": "规格",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a83",
+   "page": 78,
+   "box": [
+    265.5,
+    369.3,
+    275.5,
+    375.6
+   ],
+   "translation": "Unit",
+   "source": "单位",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a84",
+   "page": 78,
+   "box": [
+    279.5,
+    369.3,
+    293,
+    375.6
+   ],
+   "translation": "Qty",
+   "source": "数量",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a85",
+   "page": 78,
+   "box": [
+    297,
+    369.3,
+    311.5,
+    375.6
+   ],
+   "translation": "Price",
+   "source": "单价",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a88",
+   "page": 78,
+   "box": [
+    195.5,
+    407.2,
+    252.5,
+    411.8
+   ],
+   "translation": "Total in figures",
+   "source": "小写金额",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a89",
+   "page": 78,
+   "box": [
+    174.5,
+    418.6,
+    217.5,
+    424.4
+   ],
+   "translation": "Total in words (RMB)",
+   "source": "合计金额(人民币大写)",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a90",
+   "page": 78,
+   "box": [
+    172.5,
+    430.8,
+    211,
+    435.8
+   ],
+   "translation": "Issued by (seal)",
+   "source": "开票单位(盖章)",
+   "size": 4.5,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  },
+  {
+   "add": "p78_a91",
+   "page": 78,
+   "box": [
+    169.8,
+    359.8,
+    185.2,
+    364.2
+   ],
+   "translation": "Buyer",
+   "source": "客户名称",
+   "size": 4.2,
+   "align": "center",
+   "color": 10506300,
+   "reason": "invoice form label left in Chinese"
+  }
+ ],
+ "left": [
+  {
+   "page": 79,
+   "issue": "Invoice: the tiny vertical margin text on the left edge, the date labels 年 月 日 (faint, under the watermark) and the torn 金额 header stay in Chinese; none is needed to answer the question. The new header/label erases leave small white gaps in the grey watermark strokes and 'Total in words (RMB)' cuts the left side of the faded red stamp ring slightly."
+  },
+  {
+   "page": 79,
+   "issue": "'Did You Know?' is now one line across the ribbon but still about 0.53 of heading size: the ribbon is small. 'Comics' on the covers is about 4 pt (cover band is only ~5 pt tall)."
+  },
+  {
+   "page": 70,
+   "issue": "Kettle label: 2000 stays slanted as printed while 'mL' is set horizontally on a flat patch in the kettle colour; the patch is faintly visible."
+  }
+ ]
+}

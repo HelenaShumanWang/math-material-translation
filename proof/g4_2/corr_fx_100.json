@@ -1,0 +1,83 @@
+{
+ "corrections": [
+  {
+   "add": "p99_a1",
+   "page": 99,
+   "box": [
+    273.8,
+    544.3,
+    326.5,
+    553.0
+   ],
+   "translation": "10 times as large",
+   "source": "扩大到原来的10倍",
+   "size": 5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "handwritten note on the column-method card, kept in Chinese before (middle one faded); set as a small English note above its arrow"
+  },
+  {
+   "add": "p99_a2",
+   "page": 99,
+   "box": [
+    273.8,
+    557.3,
+    326.5,
+    565.6
+   ],
+   "translation": "10 times as large",
+   "source": "扩大到原来的10倍",
+   "size": 5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "handwritten note on the column-method card, kept in Chinese before (middle one faded); set as a small English note above its arrow"
+  },
+  {
+   "add": "p99_a3",
+   "page": 99,
+   "box": [
+    273.8,
+    567.8,
+    322.0,
+    578.0
+   ],
+   "translation": "1/100 as large",
+   "source": "缩小到原来的1/100",
+   "size": 5,
+   "align": "center",
+   "color": 2301728,
+   "reason": "handwritten note on the column-method card, kept in Chinese before (middle one faded); set as a small English note above its arrow"
+  },
+  {
+   "restore": [
+    264.5,
+    551.5,
+    274.5,
+    557.5
+   ],
+   "page": 99,
+   "reason": "arrowhead thinned by the erase of the note next to it; source pixels have no Chinese"
+  },
+  {
+   "restore": [
+    264.5,
+    564,
+    274.5,
+    570
+   ],
+   "page": 99,
+   "reason": "arrowhead thinned by the erase of the note next to it; source pixels have no Chinese"
+  },
+  {
+   "restore": [
+    316,
+    577.8,
+    327,
+    583.5
+   ],
+   "page": 99,
+   "reason": "arrowhead thinned by the erase of the note next to it; source pixels have no Chinese"
+  }
+ ],
+ "left": []
+}

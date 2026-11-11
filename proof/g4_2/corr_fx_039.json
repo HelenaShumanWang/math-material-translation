@@ -1,0 +1,498 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p38_s23",
+   "translation": "BLANK",
+   "reason": "reset as body question at the size of p38_s14"
+  },
+  {
+   "add": "p38_a90",
+   "page": 38,
+   "box": [
+    79,
+    393,
+    495,
+    407
+   ],
+   "translation": "When the decimal point moves left, how does the decimal change? Discuss and fill in.",
+   "source": "小数点向左移动，小数的大小发生了什么变化？说一说，填一填。",
+   "size": 9.6,
+   "align": "left",
+   "color": 2301728,
+   "reason": "question set at the size of the matching green-dot questions"
+  },
+  {
+   "segment_id": "p38_s12",
+   "translation": "Such a crowd!",
+   "reason": "shorter, same meaning, closer to the other bubble sizes"
+  },
+  {
+   "segment_id": "p41_s31",
+   "translation": "BLANK",
+   "reason": "reset on one line at question size"
+  },
+  {
+   "add": "p41_a90",
+   "page": 41,
+   "box": [
+    78,
+    555,
+    505,
+    572
+   ],
+   "translation": "How are decimal places in the product and the multipliers related? Calculate and think.",
+   "source": "积的小数位数与乘数的小数位数有什么关系？算一算，想一想。",
+   "size": 9.6,
+   "align": "left",
+   "color": 2301728,
+   "reason": "question set at the size of the matching green-dot questions"
+  },
+  {
+   "segment_id": "p41_s36",
+   "translation": "BLANK",
+   "reason": "reset two lines at a readable size"
+  },
+  {
+   "segment_id": "p41_s37",
+   "translation": "BLANK",
+   "reason": "reset two lines at a readable size"
+  },
+  {
+   "segment_id": "p41_s38",
+   "translation": "BLANK",
+   "reason": "reset two lines at a readable size"
+  },
+  {
+   "add": "p41_a91",
+   "page": 41,
+   "box": [
+    64.5,
+    605.5,
+    165.5,
+    624
+   ],
+   "translation": "Decimal places in the first multiplier",
+   "source": "第一个乘数的小数位数",
+   "size": 7.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "row label set in its cell at a readable size"
+  },
+  {
+   "add": "p41_a92",
+   "page": 41,
+   "box": [
+    64.5,
+    627,
+    165.5,
+    646
+   ],
+   "translation": "Decimal places in the second multiplier",
+   "source": "第二个乘数的小数位数",
+   "size": 7.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "row label set in its cell at a readable size"
+  },
+  {
+   "add": "p41_a93",
+   "page": 41,
+   "box": [
+    64.5,
+    649,
+    165.5,
+    667.5
+   ],
+   "translation": "Decimal places in the product",
+   "source": "积的小数位数",
+   "size": 7.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "row label set in its cell at a readable size"
+  },
+  {
+   "segment_id": "p41_s32",
+   "translation": "Number sentence",
+   "box": [
+    65,
+    585,
+    165,
+    602.5
+   ],
+   "reason": "keep header in its own cell"
+  },
+  {
+   "segment_id": "p41_s20",
+   "translation": "BLANK",
+   "reason": "reset on one line at the size of the other questions"
+  },
+  {
+   "add": "p41_a94",
+   "page": 41,
+   "box": [
+    78,
+    437,
+    505,
+    453
+   ],
+   "translation": "Using the calculation above, think: how are the multipliers and the product related?",
+   "source": "结合上面的计算过程，想一想乘数和积之间有什么关系。",
+   "size": 9.6,
+   "align": "left",
+   "color": 2301728,
+   "reason": "question set at the size of the matching green-dot questions"
+  },
+  {
+   "segment_id": "p50_i200_24_t",
+   "translation": "BLANK",
+   "reason": "label reset by p50_a90 at the size of '4 m'"
+  },
+  {
+   "add": "p50_a90",
+   "page": 50,
+   "box": [
+    165,
+    483.5,
+    197,
+    493.5
+   ],
+   "translation": "2.7 m",
+   "source": "2.7米",
+   "size": 9.6,
+   "align": "left",
+   "color": 3025962,
+   "reason": "'2.7 m' at the size of '4 m', under the ground like '4 m'"
+  },
+  {
+   "paint": [
+    161,
+    485.1,
+    180,
+    489.1
+   ],
+   "page": 50,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "grey ghost of the erased digit 2 under the label (visible y 482-486)"
+  },
+  {
+   "paint": [
+    180.8,
+    470.1,
+    199.0,
+    471.1
+   ],
+   "page": 50,
+   "colour": [
+    140,
+    140,
+    62
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    178.6,
+    471.1,
+    199.0,
+    472.1
+   ],
+   "page": 50,
+   "colour": [
+    146,
+    145,
+    62
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    176.5,
+    472.1,
+    199.0,
+    473.1
+   ],
+   "page": 50,
+   "colour": [
+    152,
+    151,
+    75
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    174.3,
+    473.1,
+    199.0,
+    474.1
+   ],
+   "page": 50,
+   "colour": [
+    160,
+    158,
+    80
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    172.2,
+    474.1,
+    199.0,
+    475.1
+   ],
+   "page": 50,
+   "colour": [
+    167,
+    163,
+    85
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    170.0,
+    475.1,
+    199.0,
+    476.1
+   ],
+   "page": 50,
+   "colour": [
+    165,
+    162,
+    86
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    167.9,
+    476.1,
+    199.0,
+    477.1
+   ],
+   "page": 50,
+   "colour": [
+    169,
+    166,
+    90
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    165.7,
+    477.1,
+    199.0,
+    478.1
+   ],
+   "page": 50,
+   "colour": [
+    172,
+    169,
+    98
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    163.5,
+    478.1,
+    199.0,
+    479.1
+   ],
+   "page": 50,
+   "colour": [
+    175,
+    171,
+    103
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    161.5,
+    479.1,
+    199.0,
+    480.1
+   ],
+   "page": 50,
+   "colour": [
+    180,
+    177,
+    111
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    161.5,
+    480.1,
+    199.0,
+    481.1
+   ],
+   "page": 50,
+   "colour": [
+    184,
+    181,
+    120
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    161.5,
+    481.1,
+    199.0,
+    482.1
+   ],
+   "page": 50,
+   "colour": [
+    190,
+    188,
+    132
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    161.5,
+    482.1,
+    199.0,
+    483.1
+   ],
+   "page": 50,
+   "colour": [
+    212,
+    211,
+    170
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    161.5,
+    483.1,
+    199.0,
+    484.1
+   ],
+   "page": 50,
+   "colour": [
+    228,
+    228,
+    205
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "paint": [
+    161.5,
+    484.1,
+    199.0,
+    485.1
+   ],
+   "page": 50,
+   "colour": [
+    243,
+    243,
+    235
+   ],
+   "reason": "ground colour of this row over the smudge left by erasing 米 (pixel fixes land ~3pt above their box here)"
+  },
+  {
+   "restore": [
+    151.0,
+    477.1,
+    159.0,
+    484.6
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    159.0,
+    474.6,
+    164.0,
+    481.6
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    164.0,
+    472.6,
+    170.0,
+    479.1
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    170.0,
+    470.6,
+    175.0,
+    476.1
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    175.0,
+    468.6,
+    179.0,
+    474.1
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    179.0,
+    466.1,
+    181.0,
+    471.1
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    180.5,
+    464.1,
+    186.0,
+    469.9
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    185.5,
+    463.1,
+    200.0,
+    470.4
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  },
+  {
+   "restore": [
+    191.0,
+    463.1,
+    200.0,
+    475.1
+   ],
+   "page": 50,
+   "reason": "dimension line / wall edge erased with 米; no Chinese in the box"
+  }
+ ],
+ "left": []
+}

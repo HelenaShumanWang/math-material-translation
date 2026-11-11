@@ -1,0 +1,166 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p9_s5",
+   "box": [
+    139.5,
+    262,
+    154.2,
+    287
+   ],
+   "reason": "same size as its sibling rod labels"
+  },
+  {
+   "segment_id": "p9_s6",
+   "box": [
+    159.9,
+    247,
+    173.8,
+    287
+   ],
+   "reason": "same size as its sibling rod labels"
+  },
+  {
+   "segment_id": "p9_s7",
+   "box": [
+    178.9,
+    240,
+    194.7,
+    287
+   ],
+   "reason": "use the free height above the rod"
+  },
+  {
+   "segment_id": "p9_s17",
+   "translation": "BLANK",
+   "reason": "set as an add over the whole header cell"
+  },
+  {
+   "add": "p9_a40",
+   "page": 9,
+   "box": [
+    179.5,
+    458.2,
+    216,
+    474
+   ],
+   "translation": "Decimal\npoint",
+   "source": "小数点",
+   "size": 6.2,
+   "align": "center",
+   "reason": "header cell in two lines, larger than the one-line 0.53"
+  },
+  {
+   "segment_id": "p12_s1_k3",
+   "translation": "BLANK",
+   "reason": "names set as adds of one size"
+  },
+  {
+   "segment_id": "p12_s1_k4",
+   "translation": "BLANK",
+   "reason": "names set as adds of one size"
+  },
+  {
+   "segment_id": "p12_s2_k3",
+   "translation": "BLANK",
+   "reason": "names set as adds of one size"
+  },
+  {
+   "segment_id": "p12_s2_k4",
+   "translation": "BLANK",
+   "reason": "names set as adds of one size"
+  },
+  {
+   "segment_id": "p12_s2_k5",
+   "translation": "BLANK",
+   "reason": "names set as adds of one size"
+  },
+  {
+   "add": "p12_a41",
+   "page": 12,
+   "box": [
+    257.5,
+    155.5,
+    296,
+    172.5
+   ],
+   "translation": "Wang\nHong",
+   "source": "王红",
+   "size": 7.8,
+   "align": "center",
+   "reason": "same size as the other names, two lines like the other two-word names"
+  },
+  {
+   "add": "p12_a42",
+   "page": 12,
+   "box": [
+    257.5,
+    174.5,
+    296,
+    191.5
+   ],
+   "translation": "Li Na",
+   "source": "李娜",
+   "size": 7.8,
+   "align": "center",
+   "reason": "same size as the other names"
+  },
+  {
+   "add": "p12_a43",
+   "page": 12,
+   "box": [
+    363.5,
+    155.5,
+    402.5,
+    172.5
+   ],
+   "translation": "Zheng\nQiang",
+   "source": "郑强",
+   "size": 7.8,
+   "align": "center",
+   "reason": "same size as the other names, two lines like the other two-word names"
+  },
+  {
+   "add": "p12_a44",
+   "page": 12,
+   "box": [
+    363.5,
+    174.5,
+    402.5,
+    191.5
+   ],
+   "translation": "Li Ming",
+   "source": "李明",
+   "size": 7.8,
+   "align": "center",
+   "reason": "same size as the other names"
+  },
+  {
+   "add": "p12_a45",
+   "page": 12,
+   "box": [
+    363.5,
+    193.5,
+    402.5,
+    210.0
+   ],
+   "translation": "Zhang\nHua",
+   "source": "张华",
+   "size": 7.8,
+   "align": "center",
+   "reason": "same size as the other names, two lines like the other two-word names"
+  },
+  {
+   "segment_id": "p17_s16",
+   "translation": "Buy",
+   "box": [
+    326.5,
+    444,
+    347.5,
+    461
+   ],
+   "reason": "use the free paper left of the word so 'Buy' matches 'and'"
+  }
+ ],
+ "left": []
+}
