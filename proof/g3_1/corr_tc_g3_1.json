@@ -1,0 +1,289 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p44_s0",
+   "translation": "My Progress",
+   "reason": "consistency: recurring Review section 我的成长足迹 -> \"My Progress\" as in Grade 1 and Grade 2 Volume 2; shortest"
+  },
+  {
+   "segment_id": "p44_s4",
+   "translation": "My Questions",
+   "reason": "consistency: recurring Review section 我提出的问题 -> \"My Questions\" as in the other volumes; shorter"
+  },
+  {
+   "segment_id": "p78_s17",
+   "translation": "Self-Check",
+   "reason": "consistency: recurring section 自我评价 -> \"Self-Check\" (Title Case section label) as in the other volumes"
+  },
+  {
+   "segment_id": "p95_s1_k0",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share) as in Grade 1 and Grade 2 Volume 1"
+  },
+  {
+   "segment_id": "p102_s0",
+   "translation": "What Did You Learn This Term?",
+   "reason": "consistency: end-of-term page heading 本学期你学到了什么 -> \"What Did You Learn This Term?\" in every volume (Title Case as a heading)"
+  },
+  {
+   "segment_id": "p95_s2",
+   "translation": "On your own",
+   "reason": "consistency: Final Review tag 独立思考 -> \"On your own\" in sentence case as in the other volumes"
+  },
+  {
+   "segment_id": "p96_s0",
+   "translation": "Share ideas",
+   "reason": "consistency: Final Review tag 相互启发 -> \"Share ideas\" in sentence case as in the other volumes"
+  },
+  {
+   "segment_id": "p96_s22",
+   "translation": "Share ideas",
+   "reason": "consistency: Final Review tag 相互启发 -> \"Share ideas\" in sentence case as in the other volumes"
+  },
+  {
+   "segment_id": "p96_s16_k1",
+   "translation": "On your own",
+   "reason": "consistency: Final Review tag 独立(思考) -> \"On your own\" in sentence case as in the other volumes"
+  },
+  {
+   "segment_id": "p23_s9",
+   "translation": "2. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
+  },
+  {
+   "segment_id": "p84_s23",
+   "translation": "3. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
+  },
+  {
+   "segment_id": "p90_s20",
+   "translation": "3. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
+  },
+  {
+   "segment_id": "p10_s12",
+   "translation": "4. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
+  },
+  {
+   "segment_id": "p60_s23",
+   "translation": "4. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
+  },
+  {
+   "segment_id": "p45_s29",
+   "translation": "5. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
+  },
+  {
+   "segment_id": "p40_s35",
+   "translation": "Diary",
+   "reason": "consistency: label 日记本 -> \"Diary\" (sentence case) as on the other pages"
+  },
+  {
+   "segment_id": "p72_s2",
+   "translation": "4. Talk about it.",
+   "reason": "consistency: 说一说 -> \"Talk About It\" (\"Discuss\" is 议一议); \"4. Talk about it.\" as in Grade 1"
+  },
+  {
+   "segment_id": "p97_s2",
+   "translation": "1. Discuss and calculate.",
+   "reason": "consistency: 说一说，算一算 -> \"Discuss and calculate.\" as on the other pages; shorter"
+  },
+  {
+   "segment_id": "p65_s13",
+   "translation": "Is there another way?",
+   "reason": "consistency: 还有别的方法吗 -> \"Is there another way?\" as in Grade 1; shorter, more natural"
+  },
+  {
+   "segment_id": "p97_s13",
+   "translation": "2. Circle and calculate.",
+   "reason": "consistency: 圈一圈，算一算 -> \"Circle and calculate.\" as in Grade 1"
+  },
+  {
+   "segment_id": "p21_s15",
+   "translation": "2. Use the column method.",
+   "reason": "consistency: 用竖式计算 -> \"Use the column method.\" as in Grade 2 Volume 2; shorter where the label shrank"
+  },
+  {
+   "segment_id": "p31_s14",
+   "translation": "2. Use the column method.",
+   "reason": "consistency: 用竖式计算 -> \"Use the column method.\" as in Grade 2 Volume 2; shorter where the label shrank"
+  },
+  {
+   "segment_id": "p91_s13",
+   "translation": "Arrange and talk about it.",
+   "reason": "consistency: 摆一摆，说一说 -> \"Arrange and talk about it.\" as in Grade 1; shorter"
+  },
+  {
+   "segment_id": "p77_s6",
+   "translation": "Task",
+   "reason": "consistency: Maths Is Fun section 活动任务 -> \"Task\" as in Grade 2; shorter where the label shrank"
+  },
+  {
+   "segment_id": "p36_s32",
+   "translation": "Roses ¥5 each",
+   "reason": "consistency: price sign 玫瑰每枝5元 -> \"Roses ¥5 each\" (plural, sign style) in both volumes; shorter"
+  },
+  {
+   "segment_id": "p36_s36",
+   "translation": "Carnations ¥4 each",
+   "reason": "consistency: price sign 康乃馨每枝4元 -> \"Carnations ¥4 each\" (plural, sign style) in both volumes; shorter"
+  },
+  {
+   "segment_id": "p99_s6",
+   "translation": "Yoghurt",
+   "reason": "consistency: 酸奶 -> \"Yoghurt\" (British spelling) as elsewhere in Grade 3"
+  },
+  {
+   "segment_id": "p20_a3_p0",
+   "translation": "Class 3 (3)",
+   "reason": "consistency: class name 三（3）班 -> \"Class 3 (3)\" as on page 65; \"3(3)\" alone is unclear"
+  },
+  {
+   "segment_id": "p47_s23",
+   "translation": "Wed",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p47_s24",
+   "translation": "Thu",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p47_s25",
+   "translation": "Fri",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p47_s22_k0",
+   "translation": "Mon",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p47_s22_k1",
+   "translation": "Tue",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p72_s6",
+   "translation": "Sun",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p72_s7",
+   "translation": "Mon",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p72_s8",
+   "translation": "Tue",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p72_s11",
+   "translation": "Wed",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p72_s13",
+   "translation": "Thu",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p72_s14",
+   "translation": "Fri",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p72_s15",
+   "translation": "Sat",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p81_s4",
+   "translation": "Sun",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p81_s6",
+   "translation": "Thu",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p81_s7",
+   "translation": "Fri",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p81_s8",
+   "translation": "Sat",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p81_s5_k0",
+   "translation": "Mon",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p81_s5_k1",
+   "translation": "Tue",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p81_s5_k2",
+   "translation": "Wed",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p82_a1_p0",
+   "translation": "Sun",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p82_a2_p0",
+   "translation": "Mon",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p82_a3_p0",
+   "translation": "Tue",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p82_a4_p0",
+   "translation": "Wed",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p82_a5_p0",
+   "translation": "Thu",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p82_a6_p0",
+   "translation": "Fri",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p82_a7_p0",
+   "translation": "Sat",
+   "reason": "consistency: weekday 星期X -> \"Mon\"..\"Sun\" in calendar and table cells, as in the distance tables (pages 30-31) and Grade 2 Volume 2; full names had to shrink"
+  },
+  {
+   "segment_id": "p45_s0",
+   "translation": "Consolidate and Apply",
+   "reason": "consistency: recurring section 巩固应用 -> \"Consolidate and Apply\" as in the other volumes; shorter where the label shrank"
+  },
+  {
+   "segment_id": "p14_s1",
+   "translation": "1. Discuss and calculate.",
+   "reason": "consistency: 说一说，算一算 -> \"Discuss and calculate.\" as in the other volumes; shorter where the label shrank"
+  },
+  {
+   "segment_id": "p31_s1",
+   "translation": "1. Discuss and calculate.",
+   "reason": "consistency: 说一说，算一算 -> \"Discuss and calculate.\" as in the other volumes; shorter where the label shrank"
+  }
+ ]
+}

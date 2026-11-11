@@ -1,0 +1,14 @@
+{"corrections": [
+{"segment_id": "p20_s0", "translation": "Unit 3 Addition and Subtraction", "reason": "inconsistent: other unit headings read 'Unit 1 ...', 'Unit 2 ...', 'Unit 4 ...'"},
+{"segment_id": "p2_s26", "translation": "Bookshop", "reason": "too long: British 'bookshop', and shorter in a label that shrank"},
+{"segment_id": "p21_s2", "translation": "Spend ¥1000, get a big gift", "reason": "too long: label shrank 9.3 to 5.6; shorter wording keeps 大 (big) and the meaning"},
+{"segment_id": "p10_s12", "translation": "4. Forest doctor.", "reason": "inconsistent: the same activity is '2. Forest doctor.' on p.24; numbered activity titles use sentence case"},
+{"segment_id": "p31_s1", "translation": "1. Discuss and calculate.", "reason": "inconsistent: same instruction 说一说，算一算 as p.15; shorter where the label shrank"},
+{"segment_id": "p14_s1", "translation": "1. Discuss and calculate.", "reason": "unnatural: 'Say and calculate' is Chinglish; matches Exercise 2"},
+{"segment_id": "p31_s14", "translation": "2. Calculate using the column method.", "reason": "inconsistent: 用竖式计算 is '2. Calculate using the column method.' on p.22"},
+{"segment_id": "p14_s15", "translation": "Pencil box", "reason": "case: picture labels take sentence case"},
+{"segment_id": "p14_s22", "translation": "Pencil case", "reason": "case: picture labels take sentence case"},
+{"segment_id": "p13_s3", "translation": "42 people in all", "reason": "case: short picture label, not a sentence, so no full stop (cf. '850 cabbages in all')"},
+{"segment_id": "p11_s12", "translation": "= 6 (boats)", "reason": "inconsistent: units in brackets take a space elsewhere, e.g. '(yuan)', '(km)'"},
+{"segment_id": "p9_s14", "translation": "Buy 1 chocolate bun for ¥5", "reason": "inconsistent: sibling price tags have no full stop"}
+]}

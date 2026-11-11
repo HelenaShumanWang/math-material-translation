@@ -1,0 +1,384 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p76_s10",
+   "translation": "Saturday Timetable",
+   "reason": "wrong: stray possessive with no name; zh is just Saturday timetable"
+  },
+  {
+   "segment_id": "p81_s3",
+   "translation": "Sept",
+   "reason": "wrong: 9月份 is September (cf. p82); short form fits the 41 pt box"
+  },
+  {
+   "segment_id": "p94_s20",
+   "translation": "Jan",
+   "reason": "unnatural: 1月 is January; Month 1 is Chinglish"
+  },
+  {
+   "segment_id": "p94_s21",
+   "translation": "Feb",
+   "reason": "unnatural: 2月 is February; Month 2 is Chinglish"
+  },
+  {
+   "segment_id": "p81_s1",
+   "translation": "Shared Days Off",
+   "reason": "unnatural: common rest days is not natural English; also shorter"
+  },
+  {
+   "segment_id": "p81_s22",
+   "translation": "Parents' shared days off",
+   "reason": "unnatural: natural wording, matches section title"
+  },
+  {
+   "segment_id": "p81_s23",
+   "translation": "Father and son's shared days off",
+   "reason": "unnatural: natural wording, matches section title"
+  },
+  {
+   "segment_id": "p81_s24",
+   "translation": "Mother and son's shared days off",
+   "reason": "unnatural: natural wording, matches section title"
+  },
+  {
+   "segment_id": "p81_s25",
+   "translation": "Whole family's shared days off",
+   "reason": "too long: natural wording and shorter for a shrunk box"
+  },
+  {
+   "segment_id": "p88_s30",
+   "translation": "¥10.5",
+   "reason": "wrong: the Chinese card reads 10.5元"
+  },
+  {
+   "segment_id": "p100_s7",
+   "translation": "Xiaoxiao spent (      ) minutes doing her homework.",
+   "reason": "wrong: name cut off (aoxiao)"
+  },
+  {
+   "segment_id": "p90_s40",
+   "translation": "Price of item 1",
+   "reason": "unnatural: first food is unnatural; shorter"
+  },
+  {
+   "segment_id": "p90_s41",
+   "translation": "Price of item 2",
+   "reason": "unnatural: second food is unnatural; shorter"
+  },
+  {
+   "segment_id": "p91_s9",
+   "translation": "Lean mince: ¥7.9",
+   "reason": "too long: shrank to 5.9 pt; lean mince is the natural UK term"
+  },
+  {
+   "segment_id": "p89_s1",
+   "translation": "Postage: ¥1.6 and ¥12.8",
+   "reason": "too long: shrank; respectively is stiff, meaning kept"
+  },
+  {
+   "segment_id": "p84_s23",
+   "translation": "3. Forest Doctor.",
+   "reason": "inconsistent: game name capitalised on p90 in this range"
+  },
+  {
+   "segment_id": "p98_s49",
+   "translation": "9. Forest Doctor.",
+   "reason": "inconsistent: game name capitalised on p90 in this range"
+  },
+  {
+   "segment_id": "p85_s13",
+   "translation": "Look and say.",
+   "reason": "inconsistent: 看一看，说一说 is Look and say. on p73/p75"
+  },
+  {
+   "segment_id": "p83_s33",
+   "translation": "Think and fill in.",
+   "reason": "inconsistent: matches p36 and other instructions on this page"
+  },
+  {
+   "segment_id": "p97_s1",
+   "translation": "Number and Algebra",
+   "reason": "inconsistent: standard strand name, as on p96"
+  },
+  {
+   "segment_id": "p84_s3",
+   "translation": "Biscuits",
+   "reason": "case: picture labels are sentence case (cf. Biscuits, Bread p90)"
+  },
+  {
+   "segment_id": "p84_s4",
+   "translation": "Bread",
+   "reason": "case: picture labels are sentence case (cf. Biscuits, Bread p90)"
+  },
+  {
+   "segment_id": "p84_s8",
+   "translation": "Sausage",
+   "reason": "case: picture labels are sentence case (cf. Biscuits, Bread p90)"
+  },
+  {
+   "segment_id": "p84_s10",
+   "translation": "Noodles",
+   "reason": "case: picture labels are sentence case (cf. Biscuits, Bread p90)"
+  },
+  {
+   "segment_id": "p84_s11",
+   "translation": "Water",
+   "reason": "case: picture labels are sentence case (cf. Biscuits, Bread p90)"
+  },
+  {
+   "segment_id": "p84_s12",
+   "translation": "Juice",
+   "reason": "case: picture labels are sentence case (cf. Biscuits, Bread p90)"
+  },
+  {
+   "segment_id": "p80_s11",
+   "translation": "School → Youth Palace → Zoo: there are",
+   "reason": "inconsistent: matches the map label Zoo"
+  },
+  {
+   "segment_id": "p102_s0",
+   "translation": "What Have You Learned This Term?",
+   "reason": "case: section heading takes Title Case"
+  },
+  {
+   "segment_id": "p104_s1",
+   "translation": "January 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s2",
+   "translation": "February 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s3",
+   "translation": "March 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s7",
+   "translation": "April 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s8",
+   "translation": "May 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s9",
+   "translation": "June 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s14",
+   "translation": "July 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s15",
+   "translation": "August 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s16",
+   "translation": "September 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s21",
+   "translation": "October 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s22",
+   "translation": "November 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p104_s23",
+   "translation": "December 2013",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s0",
+   "translation": "January 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s1",
+   "translation": "February 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s2",
+   "translation": "March 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s6",
+   "translation": "April 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s7",
+   "translation": "May 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s8",
+   "translation": "June 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s13",
+   "translation": "July 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s15",
+   "translation": "August 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s16",
+   "translation": "September 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s20",
+   "translation": "October 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s21",
+   "translation": "November 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p105_s22",
+   "translation": "December 2014",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s0",
+   "translation": "January 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s1",
+   "translation": "February 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s2",
+   "translation": "March 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s6",
+   "translation": "April 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s7",
+   "translation": "May 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s8",
+   "translation": "June 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s12",
+   "translation": "July 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s14",
+   "translation": "August 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s15",
+   "translation": "September 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s19",
+   "translation": "October 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s20",
+   "translation": "November 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p106_s21",
+   "translation": "December 2015",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s0",
+   "translation": "January 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s1",
+   "translation": "February 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s2",
+   "translation": "March 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s6",
+   "translation": "April 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s7",
+   "translation": "May 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s8",
+   "translation": "June 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s12",
+   "translation": "July 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s14",
+   "translation": "August 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s15",
+   "translation": "September 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s19",
+   "translation": "October 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s20",
+   "translation": "November 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  },
+  {
+   "segment_id": "p107_s21",
+   "translation": "December 2016",
+   "reason": "unnatural: calendar month heading uses the month name"
+  }
+ ]
+}

@@ -1,0 +1,16 @@
+{"corrections": [
+{"segment_id": "p44_s7", "translation": "You can see at most", "reason": "wrong: English belonged to another sentence; 最多也只能看到 = 'you can see at most'"},
+{"segment_id": "p48_s0", "translation": "Unit 5 Perimeter", "reason": "inconsistent: other unit headings read 'Unit N ...'"},
+{"segment_id": "p55_s0", "translation": "Unit 6 Multiplication", "reason": "inconsistent: other unit headings read 'Unit N ...'"},
+{"segment_id": "p45_s0", "translation": "Consolidate and Apply", "reason": "too long: label shrank 13.5->10.9; shorter heading, same meaning"},
+{"segment_id": "p60_s23", "translation": "4. Forest doctor.", "reason": "inconsistent: volume uses 'N. Forest doctor.' without article"},
+{"segment_id": "p45_s29", "translation": "5. Forest doctor.", "reason": "inconsistent: numbered prompts in sentence case, most read 'Forest doctor.'"},
+{"segment_id": "p69_s17", "translation": "14. Calculate. What do you notice?", "reason": "inconsistent: 你发现了什么 is 'What do you notice?' elsewhere"},
+{"segment_id": "p37_s10", "translation": "8 per trip", "reason": "case: short picture label, no full stop (cf. '10 per bundle')"},
+{"segment_id": "p42_s25", "translation": "Willows: ¥8 each", "reason": "inconsistent: matches plural tags 'Pines: ...', 'Cypresses: ...'"},
+{"segment_id": "p52_s5", "translation": "Test field", "reason": "case: picture labels use sentence case"},
+{"segment_id": "p61_s0", "translation": "Visiting Grandma", "reason": "unnatural: lesson titles use gerunds ('Buying Water', 'Planting Trees')"},
+{"segment_id": "p64_s15", "translation": "Fox's", "reason": "wrong: 狐狸家 is the fox's home; matches 'Grandma's', 'Taoqi's'"},
+{"segment_id": "p64_s18", "translation": "Squirrel's", "reason": "wrong: 松鼠家 is the squirrel's home; matches 'Grandma's', 'Taoqi's'"},
+{"segment_id": "p69_s3", "translation": "D2031 Beijing West–Zhengzhou East", "reason": "wrong: stray space after en dash"}
+]}
