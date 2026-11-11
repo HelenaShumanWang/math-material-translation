@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 14 errors, 640 warnings (2820.3 s); proofread: 1616 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 14 errors, 643 warnings (2820.3 s); proofread: 1526 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数 (zh → en, 99 page(s), 1365 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×293, layout_fit ×31, glossary ×7, image_text ×6, completeness ×1, placeholders ×1
 - Round 3: llm_review ×211, layout_fit ×41, glossary ×17, image_text ×6, formatting ×3, untranslated ×1
 
-## Final issues (654)
+## Final issues (657)
 
 ### `layout_fit` — 14 errors, 4 warnings
 
@@ -135,7 +135,7 @@
 | warning | 94 | p93_s7 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 个△ |  |
 | warning | 94 | p93_s8 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 有 |  |
 
-### `formatting` — 0 errors, 29 warnings
+### `formatting` — 0 errors, 30 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -163,11 +163,12 @@
 | warning | 64 | p63_s6 | Reviewed by the proofreader: Keep the symbol(s) ○ of the source in the translation, at the matching position | （1256.7.0）○256.7.1比多5个 | (1) 5 more 256.7.0 than 256.7.1. |
 | warning | 65 | p64_s29 | Reviewed by the proofreader: Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 6.在260.38.0里填上或 | 6. Fill in each ○ with >, < or =. |
 | warning | 66 | p65_s8 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | 我有20元买1个还差多少元？ | I have ¥20. To buy 1 |
+| warning | 69 | p68_s7 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 在这次活动中，我的表现是： | How did I do in this activity? |
 | warning | 71 | p70_s4 | Reviewed by the proofreader: Keep the symbol(s) ★ of the source in the translation, at the matching position | 数字迷宫按照从51到100的顺序走走看，遇到284.69.0★要填一个数才能通过 | Number maze: go from 51 to 100 in order. At each 284.69.0… |
 | warning | 76 | p75_s32 | Reviewed by the proofreader: Start the translation with the list marker "(3）" exactly as in the source | (3）班 | Class 1 (3) |
 | warning | 82 | p81_s16 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 小亮比小东少跳多少 | How many fewer skips did Xiaoliang do than Xiaodong? |
 | warning | 84 | p83_s35 | The source does not end with a exclamation mark; do not end the translation with one | 运动员集合 | Athletes, line up! |
-| warning | 95 | p94_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What did you learn this term? |
+| warning | 95 | p94_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What Did You Learn This Term? |
 
 ### `glossary` — 0 errors, 169 warnings
 
@@ -177,14 +178,14 @@
 | warning | 10 | p9_s10 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 算一算，摆一摆。 | Work it out with sticks. |
 | warning | 20 | p19_s20 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 8.提出两个数学问题，并试着算一算。 | 8. Ask two maths questions and try to answer them. |
 | warning | 21 | p20_s21 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 减8的算式有 | Subtracting 8: |
-| warning | 30 | p29_s10_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 30 | p29_s10_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 30 | p29_s13_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 30 | p29_s13_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 30 | p29_s14_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 30 | p29_s14_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 30 | p29_s15_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 30 | p29_s15_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 30 | p29_s10_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 30 | p29_s10_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 30 | p29_s13_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 30 | p29_s13_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 30 | p29_s14_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 30 | p29_s14_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 30 | p29_s15_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 30 | p29_s15_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 30 | p29_s16_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 百位十位个位 | H |
 | warning | 30 | p29_s16_k0 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 百位十位个位 | H |
 | warning | 30 | p29_s16_k0 | Reviewed by the proofreader: Glossary: translate "百位" as "hundreds" | 百位十位个位 | H |
@@ -194,24 +195,24 @@
 | warning | 30 | p29_s16_k2 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 百位十位个位 | O |
 | warning | 30 | p29_s16_k2 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 百位十位个位 | O |
 | warning | 30 | p29_s16_k2 | Reviewed by the proofreader: Glossary: translate "百位" as "hundreds" | 百位十位个位 | O |
-| warning | 30 | p29_s9_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 30 | p29_s9_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 31 | p30_s12_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 31 | p30_s12_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 31 | p30_s13_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 31 | p30_s13_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 31 | p30_s14_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 31 | p30_s14_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 31 | p30_s15_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 31 | p30_s15_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 31 | p30_s17_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 31 | p30_s17_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 31 | p30_s4_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 31 | p30_s4_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 32 | p31_s11_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 32 | p31_s11_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 32 | p31_s12_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 32 | p31_s12_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 30 | p29_s9_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 30 | p29_s9_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 31 | p30_s12_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 31 | p30_s12_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 31 | p30_s13_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 31 | p30_s13_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 31 | p30_s14_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 31 | p30_s14_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 31 | p30_s15_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 31 | p30_s15_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 31 | p30_s17_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 31 | p30_s17_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 31 | p30_s4_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 31 | p30_s4_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 32 | p31_s11_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 32 | p31_s11_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 32 | p31_s12_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 32 | p31_s12_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 32 | p31_s13_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 百位十位个位 | H |
 | warning | 32 | p31_s13_k0 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 百位十位个位 | H |
 | warning | 32 | p31_s13_k0 | Reviewed by the proofreader: Glossary: translate "百位" as "hundreds" | 百位十位个位 | H |
@@ -221,20 +222,20 @@
 | warning | 32 | p31_s13_k2 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 百位十位个位 | O |
 | warning | 32 | p31_s13_k2 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 百位十位个位 | O |
 | warning | 32 | p31_s13_k2 | Reviewed by the proofreader: Glossary: translate "百位" as "hundreds" | 百位十位个位 | O |
-| warning | 32 | p31_s14_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 32 | p31_s14_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 32 | p31_s8_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 32 | p31_s8_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 32 | p31_s9_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 32 | p31_s9_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 33 | p32_s2_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 33 | p32_s2_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 33 | p32_s3_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 33 | p32_s3_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 33 | p32_s4_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 33 | p32_s4_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 33 | p32_s5_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 33 | p32_s5_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 32 | p31_s14_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 32 | p31_s14_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 32 | p31_s8_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 32 | p31_s8_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 32 | p31_s9_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 32 | p31_s9_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 33 | p32_s2_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 33 | p32_s2_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 33 | p32_s3_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 33 | p32_s3_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 33 | p32_s4_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 33 | p32_s4_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 33 | p32_s5_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 33 | p32_s5_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 33 | p32_s6_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 百位十位个位 | H |
 | warning | 33 | p32_s6_k0 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 百位十位个位 | H |
 | warning | 33 | p32_s6_k0 | Reviewed by the proofreader: Glossary: translate "百位" as "hundreds" | 百位十位个位 | H |
@@ -244,25 +245,25 @@
 | warning | 33 | p32_s6_k2 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 百位十位个位 | O |
 | warning | 33 | p32_s6_k2 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 百位十位个位 | O |
 | warning | 33 | p32_s6_k2 | Reviewed by the proofreader: Glossary: translate "百位" as "hundreds" | 百位十位个位 | O |
-| warning | 33 | p32_s7_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 33 | p32_s7_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 33 | p32_s7_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 33 | p32_s7_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 37 | p36_s4 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | （3）把个位和十位上的数相同的涂上黄色。 | (3) Colour yellow the numbers whose two digits are the same. |
 | warning | 37 | p36_s4 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | （3）把个位和十位上的数相同的涂上黄色。 | (3) Colour yellow the numbers whose two digits are the same. |
 | warning | 38 | p37_s10 | Reviewed by the proofreader: Glossary: translate "填一填" as "Fill in" | 4.按规律填一填。 | 4. Complete the pattern. |
-| warning | 38 | p37_s3_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 38 | p37_s3_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 38 | p37_s6_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 38 | p37_s6_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 39 | p38_s21_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 39 | p38_s21_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 39 | p38_s22_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 39 | p38_s22_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 39 | p38_s23_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 39 | p38_s23_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 39 | p38_s24_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 39 | p38_s24_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 39 | p38_s25_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 39 | p38_s25_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 38 | p37_s3_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 38 | p37_s3_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 38 | p37_s6_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 38 | p37_s6_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 39 | p38_s21_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 39 | p38_s21_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 39 | p38_s22_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 39 | p38_s22_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 39 | p38_s23_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 39 | p38_s23_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 39 | p38_s24_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 39 | p38_s24_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 39 | p38_s25_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 39 | p38_s25_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 48 | p47_s6 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 算一算，和同伴说说你的计算过程。 | Work it out and tell your partner how you did it. |
 | warning | 51 | p50_s1_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | T |
 | warning | 51 | p50_s1_k0 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | T |
@@ -285,18 +286,18 @@
 | warning | 51 | p50_s4_k2 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 百位十位个位 | O |
 | warning | 51 | p50_s4_k2 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 百位十位个位 | O |
 | warning | 51 | p50_s4_k2 | Reviewed by the proofreader: Glossary: translate "百位" as "hundreds" | 百位十位个位 | O |
-| warning | 53 | p52_s15_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 53 | p52_s15_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 53 | p52_s9_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位介位 | Ones |
-| warning | 55 | p54_s11_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 55 | p54_s11_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 55 | p54_s18_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 55 | p54_s18_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 53 | p52_s15_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 53 | p52_s15_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 53 | p52_s9_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位介位 | ones |
+| warning | 55 | p54_s11_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 55 | p54_s11_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 55 | p54_s18_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 55 | p54_s18_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 56 | p55_s4 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 2.用计数器拨一拨，算一算。 | 2. Work these out on a counting frame. |
-| warning | 57 | p56_s13_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 57 | p56_s13_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 57 | p56_s7_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 57 | p56_s7_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 57 | p56_s13_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 57 | p56_s13_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 57 | p56_s7_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 57 | p56_s7_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 59 | p58_s14 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 学习竖式计算啦！ | Let's learn the column method! |
 | warning | 59 | p58_s21 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 用竖式计算。 | Use the column method. |
 | warning | 60 | p59_s8 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 3.用竖式计算。 | 3. Use the column method. |
@@ -306,12 +307,12 @@
 | warning | 62 | p61_s8 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 3.用竖式计算。 | 3. Use the column method. |
 | warning | 72 | p71_s20 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 你能用竖式算一算吗？ | Can you use the column method? |
 | warning | 72 | p71_s20 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 你能用竖式算一算吗？ | Can you use the column method? |
-| warning | 72 | p71_s24_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 72 | p71_s24_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 72 | p71_s25_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 72 | p71_s25_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
-| warning | 72 | p71_s26_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 72 | p71_s26_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 72 | p71_s24_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 72 | p71_s24_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 72 | p71_s25_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 72 | p71_s25_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
+| warning | 72 | p71_s26_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 72 | p71_s26_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 73 | p72_s15 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 2.用坚式算一算 | 2. Use the column method. |
 | warning | 76 | p75_s11 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 3.用竖式计算。 | 3. Use the column method. |
 | warning | 77 | p76_s18 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 4.用竖式计算。 | 4. Use the column method. |
@@ -338,8 +339,8 @@
 | warning | 84 | p83_s35 | Reviewed by the proofreader: Glossary: translate "集合" as "set" | 运动员集合 | Athletes, line up! |
 | warning | 85 | p84_s1 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 1.用小棒或计数器做一做，再用竖式算一算。 | 1. Use sticks or a counting frame, then use the column meth… |
 | warning | 85 | p84_s1 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 1.用小棒或计数器做一做，再用竖式算一算。 | 1. Use sticks or a counting frame, then use the column meth… |
-| warning | 88 | p87_s22_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | Tens |
-| warning | 88 | p87_s22_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | Ones |
+| warning | 88 | p87_s22_k0 | Reviewed by the proofreader: Glossary: translate "个位" as "ones" | 十位个位 | tens |
+| warning | 88 | p87_s22_k1 | Reviewed by the proofreader: Glossary: translate "十位" as "tens" | 十位个位 | ones |
 | warning | 88 | p87_s6 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 4.用竖式计算，并利用小棒或计数器说说你是怎么计算的。 | 4. Use the column method, then explain how with sticks or a… |
 | warning | 91 | p90_s0 | Reviewed by the proofreader: Glossary: translate "竖式" as "vertical form" | 5.用竖式计算。 | 5. Use the column method. |
 
@@ -358,11 +359,12 @@
 | warning | 52 | p51_s15_k2_k1 | The translation looks too short: 2 characters for 9 translatable source characters (ratio 0.22, about 2.60 expected); check that nothing was omitted | 42棵81棵15棵 | 81 |
 | warning | 52 | p51_s15_k2_k2 | The translation looks too short: 2 characters for 9 translatable source characters (ratio 0.22, about 2.60 expected); check that nothing was omitted | 42棵81棵15棵 | 15 |
 
-### `llm_review` — 0 errors, 15 warnings
+### `llm_review` — 0 errors, 16 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
 | warning | 1 | p0_s4 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): The source '学' is the second half of 数学; it should not be rendered as a separate 'Mathematics' but combined with the previous heading into one title. |  |  |
+| warning | 6 | p5_s21 | Reviewer (format): Place-value column labels should use 'T O', consistently cased. Suggested translation: "T O" | 十位个位 | tens ones |
 | warning | 14 | p13_s1 | Reviewer (grammar): Word order 'How many more X than Y?' is awkward; better 'How many more are there of X than of Y?' or 'How many more X are there than Y?' Suggested translation: "How many more 56.1.l are there than 56.1.0?" | 56.1.l比56.1.0多几个？ | How many more 56.1.l than 56.1.0? |
 | warning | 18 | p17_s6 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): The measure word '只' is dropped; when the context names the animal, write the plural noun. Suggested translation: "ducks." | 只小鸭。 | ducks. |
 | warning | 20 | p19_i80_17 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): A single figure label '有' ('has/there are'); 'Has' is acceptable but 'There are' may fit a figure label better. Context is limited. | 有 | Has |
@@ -428,7 +430,7 @@
 | warning | 83 | p82_s8 | Reviewed by the proofreader: Number "332" from the source is missing in the translation; keep every number exactly as written in the source | 百332.8.0十个位位位 | H T O |
 | warning | 83 | p82_s8 | Reviewed by the proofreader: Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 百332.8.0十个位位位 | H T O |
 
-### `placeholders` — 0 errors, 286 warnings
+### `placeholders` — 0 errors, 287 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -437,7 +439,7 @@
 | warning | 6 | p5_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9", ⟦1⟧ = "6", ⟦2⟧ = "15") | 9再添上6就是15了， | 9 and 6 more makes 15. |
 | warning | 6 | p5_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 我买9支铅笔 | I'll buy 9 pencils. |
 | warning | 7 | p6_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.用小棒或计数器做一做，算一算。 | 1. Use sticks or a counting frame, then calculate. |
-| warning | 7 | p6_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.说一说，算一算。 | 5. Talk about it, then calculate. |
+| warning | 7 | p6_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.说一说，算一算。 | 5. Discuss and calculate. |
 | warning | 7 | p6_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 只剩9个松果 | Only 9 pine cones left. |
 | warning | 7 | p6_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "17") | 我有17个松果 | I have 17 pine cones. |
 | warning | 7 | p6_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.圈一圈，算一算。 | 2. Circle and calculate. |
@@ -519,7 +521,7 @@
 | warning | 37 | p36_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.小熊写门牌号。 | 2. Little Bear writes the house numbers. |
 | warning | 37 | p36_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.看一看，填一填 | 3. Look and fill in. |
 | warning | 37 | p36_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.想一想，填一填 | 4. Think and fill in. |
-| warning | 38 | p37_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.填一填 | 1. Fill in the blanks. |
+| warning | 38 | p37_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.填一填 | 1. Fill in. |
 | warning | 38 | p37_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.按规律填一填。 | 4. Complete the pattern. |
 | warning | 38 | p37_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "80") | 我吃了80条 | I ate 80 bugs. |
 | warning | 38 | p37_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "64") | 我吃了64条 | I ate 64 bugs. |
@@ -624,11 +626,11 @@
 | warning | 71 | p70_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦3⟧ = "2··") | 第一横行第三个格只能填2和4，但第三竖行有4了，所以只能填2·· | The third cell in the first row can only be 2 or 4, but the… |
 | warning | 71 | p70_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "56") | 处填上56就可以通过第一关！ | write 56 to pass the first level! |
 | warning | 72 | p71_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "288.0.0", ⟦1⟧ = "288.0.1") | 六加与减（三）288.0.0288.0.1 | Unit 6 Addition and Subtraction (3) |
-| warning | 72 | p71_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 满十进1 | Make ten, carry 1. |
+| warning | 72 | p71_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 满十进1 | Make 10, carry 1. |
 | warning | 73 | p72_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.用坚式算一算 | 2. Use the column method. |
 | warning | 74 | p73_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 我比妹妹多摘了8个 | I picked 8 more than my sister. |
 | warning | 74 | p73_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 7.这一排共有 | 7. This row has |
-| warning | 74 | p73_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.森林医生。 | 5. Forest Doctor. |
+| warning | 74 | p73_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.森林医生。 | 5. Forest Doctor |
 | warning | 75 | p74_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 个位满十，向十位进1，十位满十·· | When the ones reach ten, carry 1 to the tens; when the tens… |
 | warning | 75 | p74_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "38", ⟦1⟧ = "40") | 把38看作40 | Think of 38 as 40. |
 | warning | 75 | p74_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦3⟧ = "20 40+20=60") | 把38看作40，17看作20 40+20=60，装得下。 | Think of 38 as 40 and 17 as 20. 40+20=60, so they fit. |
@@ -645,6 +647,7 @@
 | warning | 77 | p76_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.圈一圈，算一算 | 1. Circle and calculate. |
 | warning | 77 | p76_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.把茶杯全部放进纸箱里，能装得下吗？ | 5. Will all the teacups fit into the carton? |
 | warning | 77 | p76_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "i39+41=") | （根）i39+41= | 39+41= |
+| warning | 77 | p76_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.找朋友。 | 3. Find the pairs. |
 | warning | 78 | p77_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8.数学游戏 | 8. Maths game |
 | warning | 78 | p77_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）每人每次拿两张卡片，将卡片上的数相加，结果要小 | (1) On each turn, take two cards and add the numbers. The s… |
 | warning | 78 | p77_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）填表并比较两人每次的得数，把大的得数“圈”起来。 | (2) Fill in the table; each round, circle the larger of the… |
@@ -666,7 +669,7 @@
 | warning | 84 | p83_s38 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "50") | 最多坐50名乘客 | Up to 50 passengers |
 | warning | 84 | p83_s41 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "34") | 我们队有34名运动员 | Our team has 34 athletes. |
 | warning | 85 | p84_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.用小棒或计数器做一做，再用竖式算一算。 | 1. Use sticks or a counting frame, then use the column meth… |
-| warning | 85 | p84_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.森林医生。 | 2. Forest Doctor. |
+| warning | 85 | p84_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.森林医生。 | 2. Forest Doctor |
 | warning | 86 | p85_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25") | 我已经吃了25个 | I've already eaten 25. |
 | warning | 86 | p85_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "100") | 我有100张 | I have 100. |
 | warning | 86 | p85_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "16") | 我比欢欢少16张 | I have 16 fewer than Huanhuan. |
@@ -697,7 +700,7 @@
 | warning | 90 | p89_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "30") | 1~30的数 | 1 to 30 |
 | warning | 90 | p89_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "31", ⟦1⟧ = "60") | 31~60的数 | 31 to 60 |
 | warning | 90 | p89_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "61", ⟦1⟧ = "100") | 61~100的数 | 61 to 100 |
-| warning | 90 | p89_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.填一填 | 1. Fill in the blanks. |
+| warning | 90 | p89_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.填一填 | 1. Fill in. |
 | warning | 90 | p89_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.看一看，填一填 | 2. Look and fill in. |
 | warning | 91 | p90_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "27", ⟦1⟧ = "15") | 河里有一群鸭，小鸭有27只，大鸭比小鸭少15只，大鸭有多少只？ | A group of ducks is on the river. There are 27 ducklings, a… |
 | warning | 91 | p90_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8.算一算，说一说 | 8. Calculate and discuss. |
