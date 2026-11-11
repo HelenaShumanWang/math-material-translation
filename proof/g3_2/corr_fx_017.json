@@ -1,0 +1,163 @@
+{
+ "corrections": [
+  {
+   "paint": [
+    349.0,
+    222.85,
+    361.0,
+    231.75
+   ],
+   "page": 16,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "ghost of 个 left in the label box (painted up to the inner edge of the border)"
+  },
+  {
+   "paint": [
+    379.9,
+    222.85,
+    409.7,
+    231.75
+   ],
+   "page": 16,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "ghost of 个 and grey smear left in the label box (painted up to the inner edge of the border)"
+  },
+  {
+   "segment_id": "p16_s4",
+   "translation": "⟦0⟧",
+   "box": [
+    378.6,
+    221.7,
+    410.9,
+    232.7
+   ],
+   "reason": "same placement as its sibling label, off the top edge"
+  },
+  {
+   "segment_id": "p22_s8",
+   "translation": "1 min",
+   "box": [
+    95.25,
+    254.5,
+    112.65,
+    266.4
+   ],
+   "reason": "centred in its cell, clear of both lines"
+  },
+  {
+   "segment_id": "p22_s9",
+   "translation": "1 min",
+   "box": [
+    122.65,
+    254.5,
+    140.05,
+    266.4
+   ],
+   "reason": "centred in its cell, clear of both lines"
+  },
+  {
+   "segment_id": "p22_s10",
+   "translation": "1 min",
+   "box": [
+    150.15,
+    254.5,
+    167.55,
+    266.4
+   ],
+   "reason": "centred in its cell, clear of both lines"
+  },
+  {
+   "segment_id": "p22_s11",
+   "translation": "1 min",
+   "box": [
+    177.4,
+    254.5,
+    194.8,
+    266.4
+   ],
+   "reason": "centred in its cell, clear of both lines"
+  },
+  {
+   "segment_id": "p22_s12",
+   "translation": "1 min",
+   "box": [
+    204.5,
+    254.5,
+    221.9,
+    266.4
+   ],
+   "reason": "centred in its cell, clear of both lines"
+  },
+  {
+   "restore": [
+    113.4,
+    252.5,
+    116.2,
+    268.0
+   ],
+   "page": 22,
+   "reason": "right line of the first cell erased"
+  },
+  {
+   "restore": [
+    146.0,
+    238.3,
+    188.0,
+    241.8
+   ],
+   "page": 22,
+   "reason": "top bracket under 850 words erased"
+  },
+  {
+   "add": "p22_a3",
+   "page": 22,
+   "box": [
+    69,
+    472,
+    108,
+    488
+   ],
+   "translation": "Answer:",
+   "source": "答：",
+   "size": 9.5,
+   "align": "left",
+   "color": 2105376,
+   "reason": "room for full size, same as the other Answer:"
+  },
+  {
+   "segment_id": "p22_s32",
+   "translation": "BLANK",
+   "reason": "heading-sized Answer: much bigger than the one above"
+  },
+  {
+   "add": "p22_a4",
+   "page": 22,
+   "box": [
+    69,
+    653,
+    108,
+    669
+   ],
+   "translation": "Answer:",
+   "source": "答：",
+   "size": 9.5,
+   "align": "left",
+   "color": 2105376,
+   "reason": "same size as the Answer: above"
+  }
+ ],
+ "left": [
+  {
+   "page": 22,
+   "issue": "Book-cover titles 百科 / 百科全书 on the tilted encyclopaedia covers (p21_s2-s4) stay in Chinese as part of the picture: too small and slanted to set English; the question text already names the Encyclopaedia."
+  }
+ ]
+}

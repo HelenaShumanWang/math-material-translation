@@ -136,6 +136,11 @@
    "file": "corr_p1_098.json",
    "page": 103,
    "issue": "table cell '140 cm or over' and banner 'Review and Discuss' are set small (scale ~0.55) in their narrow cells"
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 32,
+   "issue": "The correction for p31_s9 was refused: its new box is more than six times the old one. Re-check that paragraph and give it a box within the limit (or a shorter wording) so the intended fix applies."
   }
  ]
 }

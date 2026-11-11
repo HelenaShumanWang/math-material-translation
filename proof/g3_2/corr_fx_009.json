@@ -1,0 +1,190 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p15_s10",
+   "translation": "BLANK",
+   "reason": "set as add, centred like its siblings"
+  },
+  {
+   "segment_id": "p8_s8_k0",
+   "translation": "BLANK",
+   "reason": "set as add: the four cell lines at one size"
+  },
+  {
+   "segment_id": "p8_s8_k1",
+   "translation": "BLANK",
+   "reason": "set as add: the four cell lines at one size"
+  },
+  {
+   "segment_id": "p8_s8_k2",
+   "translation": "BLANK",
+   "reason": "set as add: the four cell lines at one size"
+  },
+  {
+   "segment_id": "p8_s9",
+   "translation": "BLANK",
+   "reason": "set as add: the four cell lines at one size"
+  },
+  {
+   "add": "p8_a1",
+   "page": 8,
+   "box": [
+    70,
+    422,
+    276,
+    437
+   ],
+   "translation": "75 red stars in all, put in ___ equal rows,",
+   "source": "一共75颗★，分成___行，平",
+   "size": 9,
+   "align": "left",
+   "reason": "Q3 cell lines at one size; star/dot pictures named in words"
+  },
+  {
+   "add": "p8_a2",
+   "page": 8,
+   "box": [
+    70,
+    442,
+    276,
+    457
+   ],
+   "translation": "with ___ stars in each row.",
+   "source": "均每行___颗★。",
+   "size": 9,
+   "align": "left",
+   "reason": "Q3 cell lines at one size; star/dot pictures named in words"
+  },
+  {
+   "add": "p8_a3",
+   "page": 8,
+   "box": [
+    289,
+    422,
+    458,
+    437
+   ],
+   "translation": "96 orange dots in all, ___ in each row,",
+   "source": "一共96个●，每行有___个，",
+   "size": 9,
+   "align": "left",
+   "reason": "Q3 cell lines at one size; star/dot pictures named in words"
+  },
+  {
+   "add": "p8_a4",
+   "page": 8,
+   "box": [
+    289,
+    442,
+    458,
+    457
+   ],
+   "translation": "making ___ rows.",
+   "source": "分成___行。",
+   "size": 9,
+   "align": "left",
+   "reason": "Q3 cell lines at one size; star/dot pictures named in words"
+  },
+  {
+   "segment_id": "p10_s14",
+   "translation": "BLANK",
+   "reason": "set as add"
+  },
+  {
+   "segment_id": "p10_s15",
+   "translation": "BLANK",
+   "reason": "set as add"
+  },
+  {
+   "add": "p10_a1",
+   "page": 10,
+   "box": [
+    272,
+    471,
+    355,
+    501
+   ],
+   "translation": "A giraffe is 584 cm tall.",
+   "source": "一只长颈鹿的身高是584厘米。",
+   "size": 9,
+   "align": "left",
+   "reason": "giraffe and frog sentences set at one size"
+  },
+  {
+   "add": "p10_a2",
+   "page": 10,
+   "box": [
+    363,
+    471,
+    447,
+    501
+   ],
+   "translation": "A frog is only 4 cm tall.",
+   "source": "一只小青蛙的身高只有4厘米。",
+   "size": 9,
+   "align": "left",
+   "reason": "giraffe and frog sentences set at one size"
+  },
+  {
+   "segment_id": "p15_s9_k0",
+   "translation": "BLANK",
+   "reason": "set as add with the same size as its siblings"
+  },
+  {
+   "segment_id": "p15_s9_k1",
+   "translation": "BLANK",
+   "reason": "set as add with the same size as its siblings"
+  },
+  {
+   "add": "p15_a1",
+   "page": 15,
+   "box": [
+    59,
+    289,
+    121,
+    303.5
+   ],
+   "translation": "Dividend",
+   "source": "被除数",
+   "size": 14,
+   "align": "center",
+   "reason": "table row labels at one size, centred"
+  },
+  {
+   "add": "p15_a2",
+   "page": 15,
+   "box": [
+    59,
+    306.5,
+    121,
+    321.5
+   ],
+   "translation": "Divisor",
+   "source": "除数",
+   "size": 14,
+   "align": "center",
+   "reason": "table row labels at one size, centred"
+  },
+  {
+   "add": "p15_a3",
+   "page": 15,
+   "box": [
+    59,
+    324.5,
+    121,
+    339.5
+   ],
+   "translation": "Quotient",
+   "source": "商",
+   "size": 14,
+   "align": "center",
+   "reason": "table row labels at one size, centred"
+  }
+ ],
+ "left": [
+  {
+   "page": 11,
+   "issue": "Book picture (giraffe/frog): faint lighter patches remain where the Chinese was erased on the grey page gradient; painting the areas flat looked worse (solid grey blocks, cut the spine line), so the patches are left."
+  }
+ ]
+}

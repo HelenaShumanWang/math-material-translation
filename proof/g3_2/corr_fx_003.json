@@ -1,0 +1,160 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p2_s11_k0",
+   "translation": "BLANK",
+   "reason": "price labels set one per vegetable as adds p2_a1-p2_a3"
+  },
+  {
+   "add": "p2_a1",
+   "page": 2,
+   "box": [
+    257,
+    437.5,
+    318,
+    458
+   ],
+   "translation": "Cabbage\n¥3.00 per kg",
+   "source": "白菜每千克3.00元",
+   "size": 8,
+   "align": "center",
+   "color": 593675,
+   "reason": "price labels set one per vegetable under its picture"
+  },
+  {
+   "add": "p2_a2",
+   "page": 2,
+   "box": [
+    318.5,
+    437.5,
+    379.5,
+    458
+   ],
+   "translation": "Aubergines\n¥4.00 per kg",
+   "source": "茄子每千克4.00元",
+   "size": 8,
+   "align": "center",
+   "color": 593675,
+   "reason": "price labels set one per vegetable under its picture"
+  },
+  {
+   "add": "p2_a3",
+   "page": 2,
+   "box": [
+    380,
+    437.5,
+    442,
+    458
+   ],
+   "translation": "Peppers\n¥6.00 per kg",
+   "source": "青椒每千克6.00元",
+   "size": 8,
+   "align": "center",
+   "color": 593675,
+   "reason": "price labels set one per vegetable under its picture"
+  },
+  {
+   "paint": [
+    222,
+    233,
+    310,
+    262
+   ],
+   "page": 3,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "faint erase residue of the Chinese titles left of the dot leaders"
+  },
+  {
+   "paint": [
+    220,
+    428,
+    310,
+    458
+   ],
+   "page": 3,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "faint erase residue of the Chinese titles left of the dot leaders"
+  },
+  {
+   "paint": [
+    222,
+    526,
+    325,
+    552
+   ],
+   "page": 3,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "faint erase residue of the Chinese titles left of the dot leaders"
+  },
+  {
+   "paint": [
+    220,
+    622,
+    368,
+    656
+   ],
+   "page": 3,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "faint erase residue of the Chinese titles left of the dot leaders"
+  },
+  {
+   "segment_id": "p3_s2",
+   "translation": "BLANK",
+   "reason": "set again as add p3_a1 at the size of the other unit titles"
+  },
+  {
+   "add": "p3_a1",
+   "page": 3,
+   "box": [
+    222.8,
+    329,
+    345,
+    355
+   ],
+   "translation": "Unit 2\nMoving Shapes",
+   "source": "二 图形的运动",
+   "size": 17,
+   "align": "left",
+   "color": 2301728,
+   "reason": "ran into the dot leaders at 0.62; two lines like the other units"
+  },
+  {
+   "segment_id": "p6_s6",
+   "translation": "BLANK",
+   "reason": "set again as add p6_a2, left-aligned at the size and spacing of (1) and (2)"
+  },
+  {
+   "add": "p6_a2",
+   "page": 6,
+   "box": [
+    220.2,
+    221,
+    465.2,
+    259
+   ],
+   "translation": "(3) If these blocks are shared equally among 4 small classes, how many blocks does each class get, and how many are left?",
+   "source": "（3）如果把这些积木平均分给4个小班，每班分到多少块，还剩多少块？",
+   "align": "left",
+   "size": 10,
+   "color": 2301728,
+   "reason": "matched to (1) and (2)"
+  }
+ ],
+ "left": []
+}

@@ -1,0 +1,121 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p60_s18",
+   "translation": "Did You Know?",
+   "box": [
+    104,
+    585,
+    163,
+    601
+   ],
+   "reason": "one line inside the ribbon, clear of the scroll end"
+  },
+  {
+   "segment_id": "p68_s13",
+   "erase": [
+    [
+     343,
+     499.5,
+     356,
+     512.5
+    ]
+   ],
+   "reason": "leftover stroke of 球 through the header cell"
+  },
+  {
+   "segment_id": "p68_s12",
+   "translation": "BLANK",
+   "reason": "set as an add at a fixed size: it overflowed at 0.54"
+  },
+  {
+   "segment_id": "p68_s15",
+   "translation": "BLANK",
+   "reason": "set as an add at a fixed size: it overflowed at 0.54"
+  },
+  {
+   "add": "p68_a1",
+   "page": 68,
+   "box": [
+    209.6,
+    501.5,
+    244.6,
+    512.5
+   ],
+   "translation": "Computer",
+   "source": "电脑",
+   "size": 6.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "'Computer' header set at a fixed size; the segment overflowed its cell at 0.54"
+  },
+  {
+   "add": "p68_a2",
+   "page": 68,
+   "box": [
+    399.8,
+    501.5,
+    434.8,
+    512.5
+   ],
+   "translation": "Computer",
+   "source": "电脑",
+   "size": 6.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "'Computer' header set at a fixed size; the segment overflowed its cell at 0.54"
+  },
+  {
+   "paint": [
+    294,
+    356,
+    305,
+    372
+   ],
+   "page": 69,
+   "colour": [
+    252,
+    234,
+    214
+   ],
+   "reason": "dark residue under the circled 1 in the bubble"
+  },
+  {
+   "merge": [
+    "p69_s3",
+    "p69_s4"
+   ],
+   "translation": "Coach is on the left of the top row. Miaoxiang is not in the top row or the bottom row.",
+   "box": [
+    245.0,
+    213.5,
+    442.0,
+    255.7
+   ],
+   "reason": "one clue split by the OCR left 'row.' dangling on its own line"
+  },
+  {
+   "segment_id": "p69_s5",
+   "translation": "Qisi is not placed next to Coach.",
+   "box": [
+    245.0,
+    257.0,
+    442.0,
+    271.0
+   ],
+   "reason": "line up with the other clues"
+  },
+  {
+   "segment_id": "p69_s2",
+   "translation": "Taoqi and Lele are both placed on the left side of the cabinet, and Taoqi is above Lele.",
+   "box": [
+    245.0,
+    183.5,
+    446.0,
+    211.2
+   ],
+   "reason": "same size as the other clues"
+  }
+ ],
+ "left": []
+}

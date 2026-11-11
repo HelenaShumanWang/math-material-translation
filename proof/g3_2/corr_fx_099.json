@@ -1,0 +1,103 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p98_s8",
+   "translation": "BLANK",
+   "reason": "set as an add at the size of items (1)-(6)"
+  },
+  {
+   "add": "p98_a1",
+   "page": 98,
+   "box": [73.5, 195.0, 420.0, 211.0],
+   "translation": "(5) The area of a maths book cover is about 5 (      ).",
+   "source": "（5）数学书封面的面积约是5（）。",
+   "size": 9.48,
+   "align": "left",
+   "reason": "item (5) at the size of items (1)-(6) (9.48) and their indent"
+  },
+  {
+   "segment_id": "p101_s18",
+   "translation": "BLANK",
+   "reason": "bubble set as one add so (1) and (2) share a size"
+  },
+  {
+   "paint": [272, 597, 456, 660],
+   "page": 101,
+   "colour": [255, 255, 255],
+   "reason": "clear faint erase ghosts in the white bubble before setting the English"
+  },
+  {
+   "segment_id": "p101_s19",
+   "translation": "BLANK",
+   "reason": "bubble set as one add so (1) and (2) share a size"
+  },
+  {
+   "add": "p101_a2",
+   "page": 101,
+   "box": [272.0, 602.0, 456.0, 660.0],
+   "translation": "(1) Taoqi is on Xiaoxiao's (      );\n      Xiaoxiao is on Taoqi's (      ).\n(2) The book is (      ) the pencil\n      case.",
+   "source": "（1）淘气在笑笑的（）面；笑笑在淘气的（）面。（2）书在文具盒的（）面。",
+   "size": 10.8,
+   "align": "left",
+   "reason": "(1) and (2) at one size, using the bubble's full height; hanging indents kept with no-break spaces"
+  },
+  {
+   "segment_id": "p102_s1",
+   "translation": "BLANK",
+   "reason": "set as an add with hanging indent"
+  },
+  {
+   "add": "p102_a1",
+   "page": 102,
+   "box": [73.5, 81.9, 294.0, 142.0],
+   "translation": "(1) The farm is (      ) of the village hall.\n(2) The machinery station is (      ) of\n     the village hall.\n(3) The fish pond is (      ) of the village hall.",
+   "source": "（1）养殖场在村委会的（）面；（2）农机站在村委会的（）面；（3）鱼塘在村委会的（）面；",
+   "size": 10.0,
+   "align": "left",
+   "reason": "hanging indent for the wrapped item (2)"
+  },
+  {
+   "segment_id": "p102_s20_k0",
+   "box": [294.0, 494.5, 351.0, 511.0],
+   "translation": "≥ 140 cm",
+   "reason": "use the whole table cell; short form so the narrow cell is not set at 0.58"
+  },
+  {
+   "segment_id": "p102_s20_k1",
+   "box": [294.0, 512.5, 351.0, 529.0],
+   "translation": "< 140 cm",
+   "reason": "use the whole table cell; short form matching '≥ 140 cm' so both cells share one readable size"
+  },
+  {
+   "segment_id": "p101_s1_k1",
+   "translation": "BLANK",
+   "reason": "set as a centred label add so the ribbon can widen"
+  },
+  {
+   "add": "p101_a3",
+   "page": 101,
+   "box": [74.6, 232.7, 133.2, 245.2],
+   "translation": "Review and Discuss",
+   "source": "回顾与交流",
+   "size": 10.2,
+   "align": "center",
+   "reason": "banner at the size of 'Consolidate and Apply'"
+  },
+  {
+   "segment_id": "p102_s11_k1",
+   "translation": "BLANK",
+   "reason": "set as a centred label add so the ribbon can widen"
+  },
+  {
+   "add": "p102_a2",
+   "page": 102,
+   "box": [76.5, 240.7, 135.8, 253.1],
+   "translation": "Review and Discuss",
+   "source": "回顾与交流",
+   "size": 10.2,
+   "align": "center",
+   "reason": "banner at the size of other banners"
+  }
+ ],
+ "left": []
+}

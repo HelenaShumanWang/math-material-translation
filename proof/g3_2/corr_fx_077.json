@@ -1,0 +1,50 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p76_s1",
+   "translation": "or",
+   "box": [96.5, 103.5, 113.5, 117.5],
+   "reason": "only 17 pt between the fractions: \"or\" fits at full size without touching them (\"and\" in a wider box ran into both fraction bars)"
+  },
+  {
+   "segment_id": "p87_s26",
+   "translation": "and",
+   "box": [181.5, 615.5, 201.5, 629],
+   "reason": "use the whole gap between the fractions"
+  },
+  {
+   "segment_id": "p87_s25",
+   "translation": "⟦0⟧. Draw pictures of",
+   "box": [57.5, 614.8, 170.5, 628.4],
+   "reason": "same size as the rest of the item"
+  },
+  {
+   "segment_id": "p87_s27",
+   "translation": ", then explain how to calculate",
+   "reason": "fits on one line before the fractions"
+  },
+  {
+   "add": "p87_a90",
+   "page": 87,
+   "box": [125, 652, 137, 666],
+   "translation": ".",
+   "source": "。",
+   "size": 11,
+   "align": "left",
+   "reason": "Chinese full stop after the last fraction",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p87_s5_k1",
+   "translation": "Review & Discuss",
+   "box": [71, 251, 143.5, 269],
+   "reason": "'Review & Discuss' fits on one line inside the ribbon, bigger than the two-line 'Review and Discuss'"
+  }
+ ],
+ "left": [
+  {
+   "page": 79,
+   "issue": "p78_s0 heading 'Eating Watermelon' stays on two lines at 0.64 inside the small banner: the banner is too narrow for one line, and the two lines fill it and read clearly."
+  }
+ ]
+}

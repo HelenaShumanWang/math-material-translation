@@ -1,0 +1,7 @@
+{"corrections": [
+  {"segment_id": "p97_s0_k1", "box": [71, 84.5, 144, 98.5], "reason": "ribbon text: use the whole ribbon (as on page 90) so 'Review and Discuss' is set at the same size and centred in the ribbon"}
+],
+"left": [
+  {"page": 90, "issue": "'Review and Discuss' in the split ribbon stays at 0.66: it already fills the whole ribbon (box 71-144) and sits cleanly inside it; a split part's ribbon is not widened by the renderer and a flat paint would square off the ribbon's rounded, shaded end. Readable as is."},
+  {"page": 95, "issue": "'Shenyang North' in the narrow 'To' cells stays at about 0.67. Giving the three paragraphs the whole cell as their box changes the size of the other table cells too ('Train type', 'Departs', 'Time taken' get smaller) and the first one runs into the cell line, so the change was not kept. Small but clean and readable."}
+]}
