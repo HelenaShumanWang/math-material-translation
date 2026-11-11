@@ -78,7 +78,9 @@ HARD RULES for each corrected translation:
   do not ask for them back.
 - Only correct real problems; leave good translations alone. Do not touch ids that are not in the JSON.
 
-FIVE STRUCTURAL FIXES are also allowed, each as its own entry in "corrections":
+SIX STRUCTURAL FIXES are also allowed, each as its own entry in "corrections":
+- ALIGN: a paragraph set centred where it should start at the left (a question beside its bullet or enumerator):
+  {"segment_id": "p26_s1", "align": "left", "reason": "..."} ("left" | "center" | "right"; may go with "box").
 - BOX: when a translation is set too small (scale under 0.7) or wraps badly because its box is tight while free room lies
   right next to it (the rest of a banner, ribbon, bubble or cell; blank paper), give it a new box in PDF points:
   {"segment_id": "p40_s24", "box": [100, 456, 180, 479], "reason": "..."}. The new box must overlap the old one, stay

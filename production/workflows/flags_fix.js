@@ -36,7 +36,8 @@ const TOOLS = (code) => `TOOLS (run them with Bash; page numbers 1-based as in t
 
 CORRECTIONS (JSON entries; boxes in PDF points; "page" = page index):
 - {"segment_id": "pN_sK", "translation": "...", "reason": "..."}  ("DROP" keeps the Chinese in the picture, "BLANK" erases it and
-  sets nothing); add "box": [x0, y0, x1, y1] to lay the paragraph out in another box (free paper of the same sign/cell/bubble).
+  sets nothing); add "box": [x0, y0, x1, y1] to lay the paragraph out in another box (free paper of the same sign/cell/bubble),
+  "align": "left" | "center" | "right" to set its alignment.
 - {"segment_id": "pN_sK", "erase": [[x0, y0, x1, y1], ...]}: also erase these small areas next to the paragraph (a leftover 。 or 个).
 - {"segment_id": "pN_sK", "clip": [x0, y0, x1, y1]}: only the part of the paragraph's OCR lines inside the box is erased.
 - {"merge": ["pN_sA", "pN_sB"], "translation": "...", "reason": "..."}: one sentence the OCR split.
