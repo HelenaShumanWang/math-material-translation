@@ -1,0 +1,5 @@
+{"corrections": [
+{"segment_id": "p31_s4", "translation": "Shuttle-\ncocks", "box": [268, 126, 312, 158], "reason": "was shrunk to 0.56; two lines at the size of 'Table tennis balls'"},
+{"segment_id": "p33_s3", "translation": "20 poplars\nper bundle", "box": [88, 152, 166, 178], "reason": "was shrunk to 0.69; two lines fill the bubble at normal size"}
+],
+"left": [{"page": 33, "issue": "米 on the two rice-bag logos stays: it is a printed brand mark the problem does not need; painting the diamond and setting 'Rice' damaged the logo (rectangle over the diamond), and the second bag's 米 has no OCR line."}]}

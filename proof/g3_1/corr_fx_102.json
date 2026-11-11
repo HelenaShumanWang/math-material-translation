@@ -1,0 +1,184 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p106_s3",
+   "box": [
+    73.5,
+    93.0,
+    174.5,
+    105.0
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s4",
+   "box": [
+    213.5,
+    93.0,
+    314.5,
+    105.0
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s5",
+   "box": [
+    354.0,
+    93.0,
+    455.0,
+    105.0
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s9",
+   "box": [
+    73.5,
+    251.8,
+    174.5,
+    263.8
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s10",
+   "box": [
+    213.5,
+    251.8,
+    314.5,
+    263.8
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s11",
+   "box": [
+    354.0,
+    251.8,
+    455.0,
+    263.8
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s17",
+   "translation": "BLANK",
+   "reason": "row re-set by p106_a90 at the size of its siblings"
+  },
+  {
+   "add": "p106_a90",
+   "page": 106,
+   "box": [
+    73.5,
+    410.2,
+    174.5,
+    422.2
+   ],
+   "translation": "Su Mo Tu We Th Fr Sa",
+   "source": "日一二三四五六",
+   "size": 9.3,
+   "align": "center",
+   "color": 2037504,
+   "reason": "7/2015 weekday row at the same size as the other eleven"
+  },
+  {
+   "segment_id": "p106_s18",
+   "box": [
+    213.5,
+    410.2,
+    314.5,
+    422.2
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s16",
+   "box": [
+    354.0,
+    410.2,
+    455.0,
+    422.2
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s22",
+   "box": [
+    73.5,
+    568.4,
+    174.5,
+    580.4
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s23",
+   "box": [
+    213.5,
+    568.4,
+    314.5,
+    580.4
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p106_s24",
+   "box": [
+    354.0,
+    568.4,
+    455.0,
+    580.4
+   ],
+   "reason": "weekday rows set in identical boxes over the date columns so all twelve match in size"
+  },
+  {
+   "segment_id": "p101_s8",
+   "translation": "3 cm",
+   "box": [
+    145.7,
+    534.0,
+    158.7,
+    571.5
+   ],
+   "erase": [
+    [
+     145.0,
+     560.5,
+     159.2,
+     571.5
+    ]
+   ],
+   "reason": "numeral 3 erased and set with cm so the label reads in one direction, like the 4 cm on the right"
+  },
+  {
+   "segment_id": "p101_s10",
+   "translation": "4 cm",
+   "box": [
+    243.8,
+    603.8,
+    257.2,
+    643.0
+   ],
+   "erase": [
+    [
+     244.6,
+     630.4,
+     257.0,
+     643.0
+    ]
+   ],
+   "reason": "numeral 4 erased and set with cm so the label reads in one direction, like the 4 cm on the right"
+  },
+  {
+   "segment_id": "p106_s20",
+   "box": [
+    213.2,
+    549.9,
+    312.5,
+    566.0
+   ],
+   "reason": "11/2015 heading was set centred; left-aligned in the same box shape as 10/2015 and 12/2015"
+  }
+ ],
+ "left": []
+}

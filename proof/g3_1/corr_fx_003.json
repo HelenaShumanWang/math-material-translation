@@ -1,0 +1,177 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p2_s19_k0",
+   "translation": "BLANK",
+   "reason": "label re-set inside the map card by p2_a1"
+  },
+  {
+   "add": "p2_a1",
+   "page": 2,
+   "box": [
+    179.5,
+    518,
+    204.3,
+    535
+   ],
+   "translation": "Science\nMuseum",
+   "source": "科技馆",
+   "size": 5.8,
+   "align": "left",
+   "color": 2301728,
+   "reason": "Science Museum set outside the card border; set inside the card in the empty cell beside its point (as School is), the widest free paper there"
+  },
+  {
+   "segment_id": "p3_s4_k0",
+   "clip": [
+    82.4,
+    453.8,
+    98.1,
+    460.1
+   ],
+   "translation": "BLANK",
+   "reason": "erase of 红色 wiped the crate outline: erase only inside the crate front; label set by p3_a1"
+  },
+  {
+   "segment_id": "p3_s4_k1",
+   "clip": [
+    106.6,
+    455.9,
+    121.8,
+    462.5
+   ],
+   "translation": "BLANK",
+   "reason": "erase of 黄色 wiped the crate outline: erase only inside the crate front; label set by p3_a2"
+  },
+  {
+   "segment_id": "p3_s5",
+   "clip": [
+    130,
+    457.9,
+    144.5,
+    464.2
+   ],
+   "translation": "BLANK",
+   "reason": "erase of 蓝色 wiped the crate outline: erase only inside the crate front; label set by p3_a3"
+  },
+  {
+   "paint": [
+    82.4,
+    453.8,
+    98.1,
+    460.1
+   ],
+   "page": 3,
+   "colour": [
+    188,
+    166,
+    108
+   ],
+   "reason": "flat crate-front colour over what is left of 红色, inside the crate outline"
+  },
+  {
+   "paint": [
+    106.6,
+    455.9,
+    121.8,
+    462.5
+   ],
+   "page": 3,
+   "colour": [
+    188,
+    166,
+    108
+   ],
+   "reason": "flat crate-front colour over what is left of 黄色, inside the crate outline"
+  },
+  {
+   "paint": [
+    130,
+    457.9,
+    144.5,
+    464.2
+   ],
+   "page": 3,
+   "colour": [
+    188,
+    166,
+    108
+   ],
+   "reason": "flat crate-front colour over what is left of 蓝色, inside the crate outline"
+  },
+  {
+   "add": "p3_a1",
+   "page": 3,
+   "box": [
+    82.4,
+    453.8,
+    98.1,
+    460.1
+   ],
+   "translation": "Red",
+   "source": "红色",
+   "size": 4.5,
+   "align": "center",
+   "color": 1052688,
+   "reason": "crate label, all three the same size"
+  },
+  {
+   "add": "p3_a2",
+   "page": 3,
+   "box": [
+    106.6,
+    455.9,
+    121.8,
+    462.5
+   ],
+   "translation": "Yellow",
+   "source": "黄色",
+   "size": 4.5,
+   "align": "center",
+   "color": 1052688,
+   "reason": "crate label, all three the same size"
+  },
+  {
+   "add": "p3_a3",
+   "page": 3,
+   "box": [
+    130,
+    457.9,
+    144.5,
+    464.2
+   ],
+   "translation": "Blue",
+   "source": "蓝色",
+   "size": 4.5,
+   "align": "center",
+   "color": 1052688,
+   "reason": "crate label, all three the same size"
+  },
+  {
+   "restore": [
+    298,
+    153,
+    326,
+    178
+   ],
+   "page": 8,
+   "reason": "teacher's arm outline and the left of the price tag were wiped white by erasing the hidden tag's 元"
+  },
+  {
+   "paint": [
+    311.9,
+    158.2,
+    322.4,
+    168.3
+   ],
+   "page": 8,
+   "colour": [
+    183,
+    224,
+    246
+   ],
+   "reason": "元 of the price tag half hidden behind the teacher (number not visible): flat tag colour, nothing to set; arm outline left of it kept"
+  }
+ ],
+ "left": []
+}

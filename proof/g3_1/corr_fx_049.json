@@ -1,0 +1,11155 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p48_s11",
+   "translation": "1 cm",
+   "vertical": true,
+   "box": [
+    453.3,
+    564.1,
+    465.4,
+    602
+   ],
+   "erase": [
+    [
+     453.3,
+     588.5,
+     466,
+     602
+    ]
+   ],
+   "reason": "vertical label read 'cm' then a rotated '1'; whole '1 cm' set along the strip"
+  },
+  {
+   "add": "p49_a3",
+   "page": 49,
+   "box": [
+    425,
+    318.5,
+    434,
+    328.5
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 8,
+   "align": "left",
+   "reason": "米 of the slanted upper-right 75米 on the pentagon replaced by m next to the 75"
+  },
+  {
+   "restore": [
+    420.8,
+    329.8,
+    425,
+    334.5
+   ],
+   "page": 49,
+   "reason": "pentagon edge cut where the 米 touching it was erased"
+  },
+  {
+   "add": "p49_a4",
+   "page": 49,
+   "box": [
+    375,
+    309,
+    387,
+    321
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 8,
+   "align": "left",
+   "reason": "米 of the slanted upper-left 75米 on the pentagon"
+  },
+  {
+   "restore": [
+    385,
+    319.5,
+    392,
+    328
+   ],
+   "page": 49,
+   "reason": "pentagon left roof edge cut where the 米 was erased"
+  },
+  {
+   "restore": [
+    241.2,
+    322.0,
+    245.0,
+    325.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    240.7,
+    325.0,
+    244.4,
+    328.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    240.2,
+    328.0,
+    243.9,
+    331.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    239.6,
+    331.0,
+    243.4,
+    334.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    239.1,
+    334.0,
+    242.8,
+    337.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    238.5,
+    337.0,
+    242.3,
+    340.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    238.0,
+    340.0,
+    241.7,
+    343.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    237.4,
+    343.0,
+    241.2,
+    346.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    236.9,
+    346.0,
+    240.6,
+    349.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    236.3,
+    349.0,
+    240.1,
+    352.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    235.8,
+    352.0,
+    239.5,
+    355.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    235.2,
+    355.0,
+    239.0,
+    358.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    234.7,
+    358.0,
+    238.4,
+    361.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    234.1,
+    361.0,
+    237.9,
+    364.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    233.6,
+    364.0,
+    237.3,
+    367.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    233.0,
+    367.0,
+    236.8,
+    370.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    232.5,
+    370.0,
+    236.2,
+    373.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    232.0,
+    373.0,
+    235.7,
+    376.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    231.4,
+    376.0,
+    235.2,
+    379.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    230.9,
+    379.0,
+    234.6,
+    382.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    230.3,
+    382.0,
+    234.1,
+    385.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    229.8,
+    385.0,
+    233.5,
+    388.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    229.2,
+    388.0,
+    233.0,
+    391.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    228.8,
+    391.0,
+    232.4,
+    393.5
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    296.4,
+    322.0,
+    300.1,
+    325.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    296.9,
+    325.0,
+    300.6,
+    328.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    297.4,
+    328.0,
+    301.2,
+    331.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    298.0,
+    331.0,
+    301.7,
+    334.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    298.5,
+    334.0,
+    302.2,
+    337.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    299.0,
+    337.0,
+    302.8,
+    340.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    299.6,
+    340.0,
+    303.3,
+    343.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    300.1,
+    343.0,
+    303.8,
+    346.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    300.6,
+    346.0,
+    304.3,
+    349.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    301.1,
+    349.0,
+    304.9,
+    352.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    301.7,
+    352.0,
+    305.4,
+    355.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    302.2,
+    355.0,
+    305.9,
+    358.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    302.7,
+    358.0,
+    306.5,
+    361.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    303.3,
+    361.0,
+    307.0,
+    364.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    303.8,
+    364.0,
+    307.5,
+    367.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    304.3,
+    367.0,
+    308.1,
+    370.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    304.9,
+    370.0,
+    308.6,
+    373.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    305.4,
+    373.0,
+    309.1,
+    376.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    305.9,
+    376.0,
+    309.6,
+    379.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    306.4,
+    379.0,
+    309.9,
+    380.5
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    229.5,
+    390.4,
+    233.5,
+    394.3
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    233.5,
+    389.7,
+    237.5,
+    393.6
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    237.5,
+    389.0,
+    241.5,
+    392.9
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    241.5,
+    388.3,
+    245.5,
+    392.2
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    245.5,
+    387.6,
+    249.5,
+    391.5
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    249.5,
+    386.9,
+    253.5,
+    390.8
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    253.5,
+    386.2,
+    257.5,
+    390.1
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    257.5,
+    385.5,
+    261.5,
+    389.4
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    261.5,
+    384.8,
+    265.5,
+    388.7
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    265.5,
+    384.1,
+    269.5,
+    388.0
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    269.5,
+    383.4,
+    273.5,
+    387.3
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    273.5,
+    382.7,
+    277.5,
+    386.6
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    277.5,
+    382.0,
+    281.5,
+    385.9
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    281.5,
+    381.3,
+    285.5,
+    385.2
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    285.5,
+    380.7,
+    289.5,
+    384.5
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    289.5,
+    380.0,
+    293.5,
+    383.9
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    293.5,
+    379.3,
+    297.5,
+    383.2
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    297.5,
+    378.6,
+    301.5,
+    382.5
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    301.5,
+    377.9,
+    305.5,
+    381.8
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    305.5,
+    377.2,
+    309.5,
+    381.1
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "restore": [
+    309.5,
+    377.1,
+    310,
+    380.4
+   ],
+   "page": 49,
+   "reason": "trapezoid edge cut where its side labels were erased"
+  },
+  {
+   "segment_id": "p49_s21",
+   "translation": "1 cm",
+   "vertical": true,
+   "box": [
+    432.6,
+    559.8,
+    443.6,
+    590
+   ],
+   "erase": [
+    [
+     432,
+     583.5,
+     444.5,
+     590
+    ]
+   ],
+   "reason": "vertical label read 'cm' then rotated '1'; whole '1 cm' set along the strip"
+  },
+  {
+   "segment_id": "p49_s11",
+   "vertical": true,
+   "translation": "90 m",
+   "reason": "90 m broke into '90' / 'm'; set up the side like 110 m"
+  },
+  {
+   "add": "p50_a11",
+   "page": 50,
+   "box": [
+    315,
+    90.5,
+    327.5,
+    101.5
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "left",
+   "reason": "米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a12",
+   "page": 50,
+   "box": [
+    400,
+    108.5,
+    412.5,
+    120.5
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "left",
+   "reason": "米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a13",
+   "page": 50,
+   "box": [
+    269.5,
+    172.5,
+    281.5,
+    184.5
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "left",
+   "reason": "米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a14",
+   "page": 50,
+   "box": [
+    428.5,
+    158.5,
+    440.5,
+    170.5
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "left",
+   "reason": "米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a15",
+   "page": 50,
+   "box": [
+    93.5,
+    251.5,
+    108,
+    264.5
+   ],
+   "translation": "dm",
+   "source": "分",
+   "size": 9,
+   "align": "left",
+   "reason": "分 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a16",
+   "page": 50,
+   "box": [
+    103.5,
+    243.5,
+    119,
+    256
+   ],
+   "translation": "BLANK",
+   "source": "米",
+   "size": 9,
+   "align": "left",
+   "reason": "米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a17",
+   "page": 50,
+   "box": [
+    292.5,
+    251.5,
+    304,
+    263.5
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "left",
+   "reason": "米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a18",
+   "page": 50,
+   "box": [
+    373.5,
+    230.5,
+    396.5,
+    245.5
+   ],
+   "translation": "cm",
+   "source": "厘米",
+   "size": 9,
+   "align": "left",
+   "reason": "厘米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a19",
+   "page": 50,
+   "box": [
+    418.5,
+    231.5,
+    441,
+    251.5
+   ],
+   "translation": "cm",
+   "source": "厘米",
+   "size": 9,
+   "align": "left",
+   "reason": "厘米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a20",
+   "page": 50,
+   "box": [
+    356.5,
+    267.5,
+    375,
+    290.5
+   ],
+   "translation": "cm",
+   "source": "厘米",
+   "size": 9,
+   "align": "left",
+   "reason": "厘米 of a slanted label replaced in place"
+  },
+  {
+   "add": "p50_a21",
+   "page": 50,
+   "box": [
+    435.5,
+    260.5,
+    453,
+    282.5
+   ],
+   "translation": "cm",
+   "source": "厘米",
+   "size": 9,
+   "align": "right",
+   "reason": "厘米 of a slanted label replaced in place"
+  },
+  {
+   "restore": [
+    222.29,
+    248.27,
+    226.62,
+    251.15
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    224.22,
+    247.79,
+    228.55,
+    250.67
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    226.15,
+    247.31,
+    230.49,
+    250.19
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    228.09,
+    246.83,
+    232.42,
+    249.71
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    230.02,
+    246.35,
+    234.35,
+    249.23
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    231.95,
+    245.87,
+    236.28,
+    248.75
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    233.88,
+    245.39,
+    238.22,
+    248.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    235.82,
+    244.91,
+    240.15,
+    247.79
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    237.75,
+    244.43,
+    242.08,
+    247.31
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    239.68,
+    243.95,
+    244.01,
+    246.83
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    241.61,
+    243.47,
+    245.94,
+    246.35
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    243.54,
+    242.98,
+    247.88,
+    245.87
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    245.48,
+    242.5,
+    249.81,
+    245.38
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    247.41,
+    242.02,
+    251.74,
+    244.9
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    249.34,
+    241.54,
+    253.67,
+    244.42
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    251.27,
+    241.06,
+    255.6,
+    243.94
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    253.2,
+    240.58,
+    257.54,
+    243.46
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    255.14,
+    240.1,
+    259.47,
+    242.98
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    257.07,
+    239.62,
+    261.4,
+    242.5
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    259.0,
+    239.14,
+    263.33,
+    242.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    260.93,
+    238.66,
+    265.27,
+    241.54
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    262.87,
+    238.18,
+    267.2,
+    241.06
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    264.8,
+    237.7,
+    269.13,
+    240.58
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    266.73,
+    237.7,
+    270.5,
+    241.47
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    268.1,
+    239.07,
+    271.87,
+    242.84
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    269.47,
+    240.44,
+    273.24,
+    244.22
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    270.84,
+    241.82,
+    274.61,
+    245.59
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    272.21,
+    243.19,
+    275.98,
+    246.96
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    273.58,
+    244.56,
+    277.35,
+    248.33
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    274.95,
+    245.93,
+    278.72,
+    249.7
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    276.32,
+    247.3,
+    280.1,
+    251.08
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    277.7,
+    248.68,
+    281.47,
+    252.45
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    279.07,
+    250.05,
+    282.84,
+    253.82
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    280.44,
+    251.42,
+    284.21,
+    255.19
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    281.81,
+    252.79,
+    285.58,
+    256.57
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    283.18,
+    254.17,
+    286.95,
+    257.94
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    284.55,
+    255.54,
+    288.32,
+    259.31
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    285.92,
+    256.91,
+    289.69,
+    260.68
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    287.29,
+    258.28,
+    291.06,
+    262.05
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    288.66,
+    259.65,
+    292.43,
+    263.43
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    290.03,
+    261.03,
+    293.8,
+    264.8
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    291.4,
+    262.4,
+    295.17,
+    266.17
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    292.77,
+    263.77,
+    296.54,
+    267.54
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    294.14,
+    265.14,
+    297.92,
+    268.91
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    295.52,
+    266.52,
+    299.29,
+    270.29
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    296.89,
+    267.89,
+    300.66,
+    271.66
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    298.26,
+    269.26,
+    302.03,
+    273.03
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    299.63,
+    270.63,
+    303.4,
+    274.4
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    301.0,
+    272.0,
+    304.77,
+    275.78
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    302.37,
+    273.38,
+    306.14,
+    277.15
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    303.74,
+    274.75,
+    307.51,
+    278.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    303.14,
+    276.12,
+    307.51,
+    278.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    301.16,
+    276.37,
+    305.54,
+    279.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    299.19,
+    276.62,
+    303.56,
+    279.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    297.21,
+    276.87,
+    301.59,
+    279.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    295.24,
+    277.12,
+    299.61,
+    279.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    293.26,
+    277.37,
+    297.64,
+    280.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    291.29,
+    277.62,
+    295.66,
+    280.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    289.32,
+    277.87,
+    293.69,
+    280.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    287.34,
+    278.12,
+    291.72,
+    280.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    285.37,
+    278.37,
+    289.74,
+    281.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    283.39,
+    278.62,
+    287.77,
+    281.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    281.42,
+    278.87,
+    285.79,
+    281.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    279.45,
+    279.12,
+    283.82,
+    281.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    277.47,
+    279.37,
+    281.85,
+    282.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    275.5,
+    279.62,
+    279.87,
+    282.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    273.52,
+    279.87,
+    277.9,
+    282.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    271.55,
+    280.12,
+    275.92,
+    282.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    269.57,
+    280.37,
+    273.95,
+    283.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    267.6,
+    280.62,
+    271.97,
+    283.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    265.63,
+    280.87,
+    270.0,
+    283.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    263.65,
+    281.12,
+    268.03,
+    283.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    261.68,
+    281.37,
+    266.05,
+    284.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    259.7,
+    281.62,
+    264.08,
+    284.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    257.73,
+    281.87,
+    262.1,
+    284.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    255.75,
+    282.12,
+    260.13,
+    284.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    253.78,
+    282.37,
+    258.15,
+    285.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    251.81,
+    282.62,
+    256.18,
+    285.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    249.83,
+    282.87,
+    254.21,
+    285.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    247.86,
+    283.12,
+    252.23,
+    285.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    245.88,
+    283.37,
+    250.26,
+    286.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    243.91,
+    283.62,
+    248.28,
+    286.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    241.94,
+    283.87,
+    246.31,
+    286.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    239.96,
+    284.12,
+    244.34,
+    286.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    237.99,
+    284.37,
+    242.36,
+    287.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    236.01,
+    284.62,
+    240.39,
+    287.27
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    234.04,
+    284.87,
+    238.41,
+    287.52
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    232.06,
+    285.12,
+    236.44,
+    287.77
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    230.09,
+    285.37,
+    234.46,
+    288.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    229.68,
+    283.68,
+    232.49,
+    288.02
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    229.27,
+    281.74,
+    232.08,
+    286.08
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    228.86,
+    279.8,
+    231.67,
+    284.14
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    228.45,
+    277.86,
+    231.26,
+    282.2
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    228.04,
+    275.92,
+    230.85,
+    280.26
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    227.63,
+    273.98,
+    230.44,
+    278.32
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    227.22,
+    272.04,
+    230.03,
+    276.38
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    226.81,
+    270.1,
+    229.62,
+    274.44
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    226.4,
+    268.16,
+    229.21,
+    272.5
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    225.98,
+    266.21,
+    228.8,
+    270.56
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    225.57,
+    264.27,
+    228.38,
+    268.61
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    225.16,
+    262.33,
+    227.97,
+    266.67
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    224.75,
+    260.39,
+    227.56,
+    264.73
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    224.34,
+    258.45,
+    227.15,
+    262.79
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    223.93,
+    256.51,
+    226.74,
+    260.85
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    223.52,
+    254.57,
+    226.33,
+    258.91
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    223.11,
+    252.63,
+    225.92,
+    256.97
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    222.7,
+    250.69,
+    225.51,
+    255.03
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    222.29,
+    248.75,
+    225.1,
+    253.09
+   ],
+   "page": 50,
+   "reason": "quadrilateral edge cut where its labels were erased"
+  },
+  {
+   "restore": [
+    310.91,
+    109.63,
+    313.81,
+    112.11
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    312.11,
+    108.86,
+    315.01,
+    111.33
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    313.31,
+    108.08,
+    316.21,
+    110.56
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    314.51,
+    107.3,
+    317.41,
+    109.78
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    315.71,
+    106.52,
+    318.61,
+    109.0
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    316.91,
+    105.75,
+    319.81,
+    108.22
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    318.11,
+    104.97,
+    321.02,
+    107.45
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    319.32,
+    104.19,
+    322.22,
+    106.67
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    320.52,
+    103.41,
+    323.42,
+    105.89
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    321.72,
+    102.64,
+    324.62,
+    105.11
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    322.92,
+    101.86,
+    325.82,
+    104.34
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    324.12,
+    101.08,
+    327.02,
+    103.56
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    325.32,
+    100.31,
+    328.22,
+    102.78
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    326.52,
+    99.53,
+    329.43,
+    102.01
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    327.73,
+    98.75,
+    330.63,
+    101.23
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    312.37,
+    111.9,
+    315.27,
+    114.38
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    313.57,
+    111.12,
+    316.48,
+    113.6
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    314.78,
+    110.35,
+    317.68,
+    112.82
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    315.98,
+    109.57,
+    318.88,
+    112.05
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    317.18,
+    108.79,
+    320.08,
+    111.27
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    318.38,
+    108.01,
+    321.28,
+    110.49
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    319.58,
+    107.24,
+    322.48,
+    109.71
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    320.78,
+    106.46,
+    323.68,
+    108.94
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    321.98,
+    105.68,
+    324.89,
+    108.16
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    323.19,
+    104.9,
+    326.09,
+    107.38
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    324.39,
+    104.13,
+    327.29,
+    106.6
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    325.59,
+    103.35,
+    328.49,
+    105.83
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    326.79,
+    102.57,
+    329.69,
+    105.05
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    327.99,
+    101.79,
+    330.89,
+    104.27
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    329.19,
+    101.02,
+    332.09,
+    103.49
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    388.61,
+    111.6,
+    391.54,
+    114.13
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    389.84,
+    112.43,
+    392.77,
+    114.97
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    391.07,
+    113.27,
+    394.0,
+    115.8
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    392.3,
+    114.1,
+    395.23,
+    116.64
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    393.53,
+    114.94,
+    396.46,
+    117.47
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    394.76,
+    115.77,
+    397.69,
+    118.31
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    395.99,
+    116.61,
+    398.92,
+    119.14
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    397.22,
+    117.44,
+    400.15,
+    119.98
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    398.45,
+    118.28,
+    401.37,
+    120.81
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    399.67,
+    119.11,
+    402.6,
+    121.65
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    400.9,
+    119.95,
+    403.83,
+    122.48
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    402.13,
+    120.78,
+    405.06,
+    123.32
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    403.36,
+    121.62,
+    406.29,
+    124.15
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    404.59,
+    122.45,
+    407.52,
+    124.99
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    405.82,
+    123.29,
+    408.75,
+    125.82
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    407.05,
+    124.12,
+    409.98,
+    126.66
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    408.28,
+    124.96,
+    411.21,
+    127.49
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    409.51,
+    125.79,
+    412.44,
+    128.33
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    410.74,
+    126.63,
+    413.66,
+    129.16
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    411.96,
+    127.46,
+    414.89,
+    130.0
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    387.09,
+    113.76,
+    390.02,
+    116.29
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    388.32,
+    114.59,
+    391.26,
+    117.12
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    389.56,
+    115.42,
+    392.49,
+    117.94
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    390.79,
+    116.24,
+    393.73,
+    118.77
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    392.03,
+    117.07,
+    394.96,
+    119.6
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    393.26,
+    117.9,
+    396.2,
+    120.43
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    394.5,
+    118.73,
+    397.43,
+    121.25
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    395.73,
+    119.55,
+    398.67,
+    122.08
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    396.97,
+    120.38,
+    399.9,
+    122.91
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    398.2,
+    121.21,
+    401.13,
+    123.74
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    399.43,
+    122.04,
+    402.37,
+    124.56
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    400.67,
+    122.86,
+    403.6,
+    125.39
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    401.9,
+    123.69,
+    404.84,
+    126.22
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    403.14,
+    124.52,
+    406.07,
+    127.04
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    404.37,
+    125.34,
+    407.31,
+    127.87
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    405.61,
+    126.17,
+    408.54,
+    128.7
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    406.84,
+    127.0,
+    409.78,
+    129.53
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    408.08,
+    127.83,
+    411.01,
+    130.35
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    409.31,
+    128.65,
+    412.24,
+    131.18
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    410.54,
+    129.48,
+    413.48,
+    132.01
+   ],
+   "page": 50,
+   "reason": "zoo route line cut where the 米 beside it was erased"
+  },
+  {
+   "restore": [
+    83.0,
+    272.0,
+    86.32,
+    274.7
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    84.32,
+    271.3,
+    87.63,
+    274.0
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    85.63,
+    270.61,
+    88.95,
+    273.3
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    86.95,
+    269.91,
+    90.26,
+    272.61
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    88.26,
+    269.21,
+    91.58,
+    271.91
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    89.58,
+    268.51,
+    92.89,
+    271.21
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    90.89,
+    267.81,
+    94.21,
+    270.51
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    92.21,
+    267.11,
+    95.53,
+    269.81
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    93.53,
+    266.42,
+    96.84,
+    269.11
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    94.84,
+    265.72,
+    98.16,
+    268.42
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    96.16,
+    265.02,
+    99.47,
+    267.72
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    97.47,
+    264.32,
+    100.79,
+    267.02
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    98.79,
+    263.62,
+    102.1,
+    266.32
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    100.1,
+    262.92,
+    103.42,
+    265.62
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    101.42,
+    262.23,
+    104.74,
+    264.92
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    102.74,
+    261.53,
+    106.05,
+    264.23
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    104.05,
+    260.83,
+    107.37,
+    263.53
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    105.37,
+    260.13,
+    108.68,
+    262.83
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    106.68,
+    259.43,
+    110.0,
+    262.13
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    108.0,
+    258.74,
+    111.32,
+    261.43
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    109.32,
+    258.04,
+    112.63,
+    260.74
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    110.63,
+    257.34,
+    113.95,
+    260.04
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    111.95,
+    256.64,
+    115.26,
+    259.34
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    113.26,
+    255.94,
+    116.58,
+    258.64
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    114.58,
+    255.24,
+    117.89,
+    257.94
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    115.89,
+    254.55,
+    119.21,
+    257.24
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    117.21,
+    253.85,
+    120.53,
+    256.55
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    118.53,
+    253.15,
+    121.84,
+    255.85
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    119.84,
+    252.45,
+    123.16,
+    255.15
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    121.16,
+    251.75,
+    124.47,
+    254.45
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    122.47,
+    251.05,
+    125.79,
+    253.75
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    123.79,
+    250.36,
+    127.1,
+    253.05
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    125.1,
+    249.66,
+    128.42,
+    252.36
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    126.42,
+    248.96,
+    129.74,
+    251.66
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    127.74,
+    248.26,
+    131.05,
+    250.96
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    129.05,
+    247.56,
+    132.37,
+    250.26
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    130.37,
+    246.86,
+    133.68,
+    249.56
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    131.68,
+    246.17,
+    135.0,
+    248.86
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    133.0,
+    245.47,
+    136.31,
+    248.17
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    134.31,
+    244.77,
+    137.63,
+    247.47
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    364.25,
+    257.4,
+    367.52,
+    260.12
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    365.52,
+    256.67,
+    368.8,
+    259.4
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    366.8,
+    255.94,
+    370.07,
+    258.67
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    368.07,
+    255.22,
+    371.35,
+    257.94
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    369.35,
+    254.5,
+    372.62,
+    257.22
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    370.62,
+    253.77,
+    373.9,
+    256.5
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    371.9,
+    253.04,
+    375.17,
+    255.77
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    373.17,
+    252.32,
+    376.44,
+    255.04
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    374.44,
+    251.6,
+    377.72,
+    254.32
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    375.72,
+    250.87,
+    378.99,
+    253.6
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    376.99,
+    250.14,
+    380.27,
+    252.87
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    378.27,
+    249.42,
+    381.54,
+    252.14
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    379.54,
+    248.7,
+    382.82,
+    251.42
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    380.82,
+    247.97,
+    384.09,
+    250.7
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    382.09,
+    247.24,
+    385.36,
+    249.97
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    383.36,
+    246.52,
+    386.64,
+    249.24
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    384.64,
+    245.8,
+    387.91,
+    248.52
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    385.91,
+    245.07,
+    389.19,
+    247.8
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    387.19,
+    244.34,
+    390.46,
+    247.07
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    388.46,
+    243.62,
+    391.74,
+    246.34
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    389.74,
+    242.9,
+    393.01,
+    245.62
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    391.01,
+    242.17,
+    394.29,
+    244.9
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    392.29,
+    241.44,
+    395.56,
+    244.17
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    393.56,
+    240.72,
+    396.83,
+    243.44
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    394.83,
+    240.0,
+    398.11,
+    242.72
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    396.11,
+    239.27,
+    399.38,
+    242.0
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    397.38,
+    238.54,
+    400.66,
+    241.27
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    398.66,
+    237.82,
+    401.93,
+    240.54
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    399.93,
+    237.1,
+    403.21,
+    239.82
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    401.21,
+    236.37,
+    404.48,
+    239.1
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    402.48,
+    236.37,
+    405.76,
+    239.1
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    403.76,
+    237.1,
+    407.04,
+    239.83
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    405.04,
+    237.83,
+    408.32,
+    240.56
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    406.32,
+    238.56,
+    409.61,
+    241.28
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    407.61,
+    239.28,
+    410.89,
+    242.01
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    408.89,
+    240.01,
+    412.17,
+    242.74
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    410.17,
+    240.74,
+    413.45,
+    243.47
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    411.45,
+    241.47,
+    414.73,
+    244.2
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    412.73,
+    242.2,
+    416.01,
+    244.92
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    414.01,
+    242.92,
+    417.29,
+    245.65
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    415.29,
+    243.65,
+    418.57,
+    246.38
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    416.57,
+    244.38,
+    419.86,
+    247.11
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    417.86,
+    245.11,
+    421.14,
+    247.84
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    419.14,
+    245.84,
+    422.42,
+    248.57
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    420.42,
+    246.57,
+    423.7,
+    249.3
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    421.7,
+    247.3,
+    424.98,
+    250.02
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    422.98,
+    248.02,
+    426.26,
+    250.75
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    424.26,
+    248.75,
+    427.54,
+    251.48
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    425.54,
+    249.48,
+    428.83,
+    252.21
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    426.83,
+    250.21,
+    430.11,
+    252.94
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    428.11,
+    250.94,
+    431.39,
+    253.67
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    429.39,
+    251.67,
+    432.67,
+    254.39
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    430.67,
+    252.39,
+    433.95,
+    255.12
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    431.95,
+    253.12,
+    435.23,
+    255.85
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    433.23,
+    253.85,
+    436.51,
+    256.58
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    434.51,
+    254.58,
+    437.79,
+    257.31
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    435.79,
+    255.31,
+    439.08,
+    258.04
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    437.08,
+    256.04,
+    440.36,
+    258.76
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    438.36,
+    256.76,
+    441.64,
+    259.49
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    439.64,
+    257.49,
+    442.92,
+    260.22
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    364.25,
+    258.12,
+    366.95,
+    261.41
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    364.95,
+    259.41,
+    367.64,
+    262.7
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    365.64,
+    260.7,
+    368.34,
+    263.98
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    366.34,
+    261.98,
+    369.03,
+    265.27
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    367.03,
+    263.27,
+    369.73,
+    266.56
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    367.73,
+    264.56,
+    370.43,
+    267.85
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    368.43,
+    265.85,
+    371.12,
+    269.14
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    369.12,
+    267.14,
+    371.82,
+    270.43
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    369.82,
+    268.43,
+    372.51,
+    271.71
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    370.51,
+    269.71,
+    373.21,
+    273.0
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    371.21,
+    271.0,
+    373.9,
+    274.29
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    371.9,
+    272.29,
+    374.6,
+    275.58
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    372.6,
+    273.58,
+    375.3,
+    276.87
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    373.3,
+    274.87,
+    375.99,
+    278.16
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    373.99,
+    276.16,
+    376.69,
+    279.44
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    374.69,
+    277.44,
+    377.38,
+    280.73
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    375.38,
+    278.73,
+    378.08,
+    282.02
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    440.21,
+    258.22,
+    442.92,
+    261.53
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    439.49,
+    259.53,
+    442.21,
+    262.84
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    438.78,
+    260.84,
+    441.49,
+    264.14
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    438.06,
+    262.14,
+    440.78,
+    265.45
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    437.35,
+    263.45,
+    440.06,
+    266.76
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    436.64,
+    264.76,
+    439.35,
+    268.07
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    435.92,
+    266.07,
+    438.64,
+    269.38
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    435.21,
+    267.38,
+    437.92,
+    270.69
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    434.49,
+    268.69,
+    437.21,
+    271.99
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    433.78,
+    269.99,
+    436.49,
+    273.3
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    433.06,
+    271.3,
+    435.78,
+    274.61
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    432.35,
+    272.61,
+    435.06,
+    275.92
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    431.64,
+    273.92,
+    434.35,
+    277.23
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    430.92,
+    275.23,
+    433.64,
+    278.54
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    430.21,
+    276.54,
+    432.92,
+    279.84
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    429.49,
+    277.84,
+    432.21,
+    281.15
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "restore": [
+    428.78,
+    279.15,
+    431.49,
+    282.46
+   ],
+   "page": 50,
+   "reason": "figure edge cut where the unit beside it was erased"
+  },
+  {
+   "split": "p50_s13",
+   "translations": [
+    "exercise book cover",
+    "desk top",
+    "sole of your shoe"
+   ],
+   "reason": "rows of the table under the header 'Perimeter of'; the terse 'Book perimeter' etc. lost what is measured"
+  },
+  {
+   "add": "p50_a22",
+   "page": 50,
+   "box": [
+    110.5,
+    408.5,
+    206,
+    421.5
+   ],
+   "translation": "Perimeter of:",
+   "source": "",
+   "size": 10,
+   "align": "left",
+   "reason": "empty header cell names what the rows measure (作业本封面的周长 etc.)"
+  },
+  {
+   "segment_id": "p50_s13_k0",
+   "box": [
+    110,
+    424.5,
+    207,
+    440.5
+   ],
+   "reason": "same box height in each row so the three rows are set at one size"
+  },
+  {
+   "segment_id": "p50_s13_k1",
+   "box": [
+    110,
+    443.5,
+    207,
+    459.5
+   ],
+   "reason": "same box height in each row so the three rows are set at one size"
+  },
+  {
+   "segment_id": "p50_s13_k2",
+   "box": [
+    110,
+    462.5,
+    207,
+    478.5
+   ],
+   "reason": "same box height in each row so the three rows are set at one size"
+  },
+  {
+   "add": "p49_a30",
+   "page": 49,
+   "box": [
+    428.5,
+    94,
+    438.5,
+    105
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "center",
+   "reason": "米 of the slanted 200米 on the park path replaced by m"
+  },
+  {
+   "restore": [
+    424.5,
+    91.5,
+    441,
+    107.5
+   ],
+   "page": 49,
+   "reason": "keep the path under the m as drawn (the add's erase is redone by the paints)"
+  },
+  {
+   "paint": [
+    424.915,
+    92.981,
+    425.754,
+    93.253
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.6,
+    92.981,
+    428.872,
+    93.253
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    92.981,
+    431.99,
+    93.253
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    424.915,
+    93.265,
+    425.471,
+    93.537
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    93.265,
+    432.274,
+    93.537
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    424.915,
+    93.548,
+    425.187,
+    93.82
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.002,
+    93.548,
+    432.274,
+    93.82
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.569,
+    93.548,
+    432.841,
+    93.82
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.167,
+    93.832,
+    430.006,
+    94.104
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.285,
+    93.832,
+    432.841,
+    94.104
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    93.832,
+    433.124,
+    94.104
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.884,
+    94.115,
+    430.29,
+    94.387
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.285,
+    94.115,
+    433.124,
+    94.387
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.6,
+    94.399,
+    430.573,
+    94.671
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.002,
+    94.399,
+    432.557,
+    94.671
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.569,
+    94.399,
+    433.408,
+    94.671
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    94.399,
+    436.242,
+    94.671
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.6,
+    94.682,
+    430.857,
+    94.954
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    94.682,
+    432.841,
+    94.954
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    94.682,
+    433.691,
+    94.954
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    94.682,
+    436.526,
+    94.954
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.884,
+    94.965,
+    431.14,
+    95.238
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    94.965,
+    433.124,
+    95.238
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    94.965,
+    433.975,
+    95.238
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    94.965,
+    436.809,
+    95.238
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.167,
+    95.249,
+    433.408,
+    95.521
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.419,
+    95.249,
+    433.975,
+    95.521
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.836,
+    95.249,
+    437.093,
+    95.521
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    95.532,
+    433.691,
+    95.804
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.702,
+    95.532,
+    433.975,
+    95.804
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.553,
+    95.532,
+    437.376,
+    95.804
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    95.816,
+    433.691,
+    96.088
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.986,
+    95.816,
+    434.542,
+    96.088
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.553,
+    95.816,
+    437.376,
+    96.088
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    96.099,
+    433.408,
+    96.371
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.986,
+    96.099,
+    434.258,
+    96.371
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.269,
+    96.099,
+    434.825,
+    96.371
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.836,
+    96.099,
+    437.376,
+    96.371
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    96.383,
+    433.124,
+    96.655
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.702,
+    96.383,
+    434.258,
+    96.655
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.269,
+    96.383,
+    435.108,
+    96.655
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    96.383,
+    437.093,
+    96.655
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    96.666,
+    432.841,
+    96.938
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.419,
+    96.666,
+    434.542,
+    96.938
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.553,
+    96.666,
+    435.392,
+    96.938
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    96.666,
+    436.809,
+    96.938
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.868,
+    96.95,
+    432.841,
+    97.222
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    96.95,
+    434.825,
+    97.222
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.836,
+    96.95,
+    435.675,
+    97.222
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    96.95,
+    435.959,
+    97.222
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    97.233,
+    435.108,
+    97.505
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    97.233,
+    435.675,
+    97.505
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.104,
+    97.233,
+    437.376,
+    97.505
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.482,
+    97.517,
+    426.321,
+    97.789
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.884,
+    97.517,
+    435.392,
+    97.789
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    97.517,
+    436.242,
+    97.789
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.821,
+    97.517,
+    437.66,
+    97.789
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.199,
+    97.8,
+    435.108,
+    98.072
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    97.8,
+    435.675,
+    98.072
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    97.8,
+    436.526,
+    98.072
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.537,
+    97.8,
+    437.943,
+    98.072
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    424.915,
+    98.084,
+    425.187,
+    98.356
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.199,
+    98.084,
+    435.959,
+    98.356
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.97,
+    98.084,
+    436.809,
+    98.356
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.821,
+    98.084,
+    437.943,
+    98.356
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    424.915,
+    98.367,
+    425.471,
+    98.639
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.482,
+    98.367,
+    436.242,
+    98.639
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.254,
+    98.367,
+    437.093,
+    98.639
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.104,
+    98.367,
+    438.227,
+    98.639
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    424.915,
+    98.65,
+    425.754,
+    98.923
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.766,
+    98.65,
+    436.526,
+    98.923
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.537,
+    98.65,
+    437.376,
+    98.923
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.387,
+    98.65,
+    438.227,
+    98.923
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.482,
+    98.934,
+    426.038,
+    99.206
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.049,
+    98.934,
+    436.809,
+    99.206
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.821,
+    98.934,
+    437.66,
+    99.206
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.671,
+    98.934,
+    437.943,
+    99.206
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.482,
+    99.217,
+    426.321,
+    99.489
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.332,
+    99.217,
+    437.093,
+    99.489
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.104,
+    99.217,
+    437.66,
+    99.489
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.049,
+    99.501,
+    426.321,
+    99.773
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.466,
+    99.501,
+    437.376,
+    99.773
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.387,
+    99.501,
+    437.943,
+    99.773
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.766,
+    99.784,
+    426.038,
+    100.056
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.049,
+    99.784,
+    426.605,
+    100.056
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    99.784,
+    436.809,
+    100.056
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.671,
+    99.784,
+    438.227,
+    100.056
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    425.766,
+    100.068,
+    426.321,
+    100.34
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.332,
+    100.068,
+    426.888,
+    100.34
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    100.068,
+    435.675,
+    100.34
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.671,
+    100.068,
+    438.227,
+    100.34
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.332,
+    100.351,
+    426.605,
+    100.623
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.616,
+    100.351,
+    427.171,
+    100.623
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    100.351,
+    433.691,
+    100.623
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.986,
+    100.351,
+    436.809,
+    100.623
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.954,
+    100.351,
+    438.227,
+    100.623
+   ],
+   "page": 49,
+   "colour": [
+    66,
+    101,
+    105
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.899,
+    100.635,
+    427.455,
+    100.907
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.466,
+    100.635,
+    427.738,
+    100.907
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.167,
+    100.635,
+    433.691,
+    100.907
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.269,
+    100.635,
+    437.093,
+    100.907
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.183,
+    100.918,
+    427.738,
+    101.19
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.884,
+    100.918,
+    433.691,
+    101.19
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.553,
+    100.918,
+    437.376,
+    101.19
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.466,
+    101.202,
+    427.738,
+    101.474
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.6,
+    101.202,
+    431.423,
+    101.474
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    101.202,
+    433.691,
+    101.474
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.836,
+    101.202,
+    437.376,
+    101.474
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.75,
+    101.485,
+    428.022,
+    101.757
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.317,
+    101.485,
+    431.14,
+    101.757
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    101.485,
+    433.691,
+    101.757
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    101.485,
+    437.376,
+    101.757
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    426.332,
+    101.769,
+    426.605,
+    102.041
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.75,
+    101.769,
+    428.589,
+    102.041
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.6,
+    101.769,
+    430.857,
+    102.041
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    101.769,
+    433.691,
+    102.041
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    101.769,
+    437.376,
+    102.041
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.183,
+    102.052,
+    427.455,
+    102.324
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.033,
+    102.052,
+    428.872,
+    102.324
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.884,
+    102.052,
+    430.573,
+    102.324
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    102.052,
+    433.691,
+    102.324
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    102.052,
+    437.376,
+    102.324
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.183,
+    102.335,
+    427.455,
+    102.608
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.033,
+    102.335,
+    428.305,
+    102.608
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.317,
+    102.335,
+    429.156,
+    102.608
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.167,
+    102.335,
+    430.29,
+    102.608
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    102.335,
+    433.691,
+    102.608
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    102.335,
+    437.376,
+    102.608
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.317,
+    102.619,
+    428.589,
+    102.891
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.6,
+    102.619,
+    429.439,
+    102.891
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    102.619,
+    430.006,
+    102.891
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    102.619,
+    433.691,
+    102.891
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.97,
+    102.619,
+    437.093,
+    102.891
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.884,
+    102.902,
+    429.439,
+    103.174
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    102.902,
+    429.723,
+    103.174
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    102.902,
+    433.691,
+    103.174
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.254,
+    102.902,
+    436.809,
+    103.174
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.75,
+    103.186,
+    428.022,
+    103.458
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    428.317,
+    103.186,
+    428.589,
+    103.458
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.167,
+    103.186,
+    429.723,
+    103.458
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    103.186,
+    433.691,
+    103.458
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.167,
+    103.469,
+    429.723,
+    103.741
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    103.469,
+    430.857,
+    103.741
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    103.469,
+    433.975,
+    103.741
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    103.753,
+    430.29,
+    104.025
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    103.753,
+    433.975,
+    104.025
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    427.466,
+    104.036,
+    427.738,
+    104.308
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    104.036,
+    429.723,
+    104.308
+   ],
+   "page": 49,
+   "colour": [
+    193,
+    158,
+    150
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    104.036,
+    430.573,
+    104.308
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    104.036,
+    433.975,
+    104.308
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    104.32,
+    430.857,
+    104.592
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    104.32,
+    434.258,
+    104.592
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    104.603,
+    430.857,
+    104.875
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    104.603,
+    434.258,
+    104.875
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    104.887,
+    431.14,
+    105.159
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    104.887,
+    434.542,
+    105.159
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.868,
+    105.17,
+    431.423,
+    105.442
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    105.17,
+    434.542,
+    105.442
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.151,
+    105.454,
+    431.707,
+    105.726
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.002,
+    105.454,
+    434.258,
+    105.726
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    105.737,
+    431.99,
+    106.009
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.419,
+    105.737,
+    433.975,
+    106.009
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    106.02,
+    432.274,
+    106.293
+   ],
+   "page": 49,
+   "colour": [
+    56,
+    85,
+    91
+   ],
+   "reason": "200米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "add": "p49_a31",
+   "page": 49,
+   "box": [
+    432,
+    122,
+    441.5,
+    133
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "center",
+   "reason": "米 of the slanted 190米 on the park path replaced by m"
+  },
+  {
+   "restore": [
+    428.5,
+    119.5,
+    444,
+    135.5
+   ],
+   "page": 49,
+   "reason": "keep the path under the m as drawn (the add's erase is redone by the paints)"
+  },
+  {
+   "paint": [
+    433.419,
+    121.894,
+    433.975,
+    122.166
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.986,
+    121.894,
+    434.258,
+    122.166
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.97,
+    121.894,
+    437.093,
+    122.166
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    122.178,
+    433.691,
+    122.45
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.702,
+    122.178,
+    434.542,
+    122.45
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    122.178,
+    437.376,
+    122.45
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    122.461,
+    433.691,
+    122.733
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.702,
+    122.461,
+    434.825,
+    122.733
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    122.461,
+    437.66,
+    122.733
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.569,
+    122.745,
+    432.841,
+    123.017
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    122.745,
+    433.408,
+    123.017
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.419,
+    122.745,
+    437.66,
+    123.017
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.569,
+    123.028,
+    433.408,
+    123.3
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.419,
+    123.028,
+    437.376,
+    123.3
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.285,
+    123.312,
+    432.557,
+    123.584
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.569,
+    123.312,
+    433.124,
+    123.584
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    123.312,
+    434.825,
+    123.584
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    123.312,
+    437.376,
+    123.584
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.285,
+    123.595,
+    433.124,
+    123.867
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    123.595,
+    434.825,
+    123.867
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    123.595,
+    437.093,
+    123.867
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    440.222,
+    123.595,
+    440.778,
+    123.867
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.285,
+    123.879,
+    432.841,
+    124.151
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    123.879,
+    434.825,
+    124.151
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    123.879,
+    437.093,
+    124.151
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.939,
+    123.879,
+    441.061,
+    124.151
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    124.162,
+    431.423,
+    124.434
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.569,
+    124.162,
+    432.841,
+    124.434
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    124.162,
+    436.809,
+    124.434
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.655,
+    124.162,
+    441.345,
+    124.434
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    124.445,
+    431.707,
+    124.718
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.002,
+    124.445,
+    432.274,
+    124.718
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    124.445,
+    436.809,
+    124.718
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.372,
+    124.445,
+    441.345,
+    124.718
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    124.729,
+    431.707,
+    125.001
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    124.729,
+    432.274,
+    125.001
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    124.729,
+    436.526,
+    125.001
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.805,
+    124.729,
+    441.345,
+    125.001
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    125.012,
+    431.707,
+    125.285
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    125.012,
+    432.274,
+    125.285
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.285,
+    125.012,
+    432.841,
+    125.285
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    125.012,
+    436.526,
+    125.285
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.238,
+    125.012,
+    441.345,
+    125.285
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    125.296,
+    431.423,
+    125.568
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    125.296,
+    431.99,
+    125.568
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.002,
+    125.296,
+    436.242,
+    125.568
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.671,
+    125.296,
+    441.345,
+    125.568
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    125.579,
+    431.423,
+    125.851
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    125.579,
+    431.99,
+    125.851
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.002,
+    125.579,
+    436.242,
+    125.851
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.821,
+    125.579,
+    441.345,
+    125.851
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    125.863,
+    431.14,
+    126.135
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.151,
+    125.863,
+    431.707,
+    126.135
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    125.863,
+    441.061,
+    126.135
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    441.072,
+    125.863,
+    441.345,
+    126.135
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    126.146,
+    431.14,
+    126.418
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.151,
+    126.146,
+    431.707,
+    126.418
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    126.146,
+    441.061,
+    126.418
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    441.072,
+    126.146,
+    441.345,
+    126.418
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    126.43,
+    430.857,
+    126.702
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.868,
+    126.43,
+    431.423,
+    126.702
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    126.43,
+    440.778,
+    126.702
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    441.072,
+    126.43,
+    441.345,
+    126.702
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.868,
+    126.713,
+    431.14,
+    126.985
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    126.713,
+    440.494,
+    126.985
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    440.789,
+    126.713,
+    441.061,
+    126.985
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    126.997,
+    430.857,
+    127.269
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    126.997,
+    439.927,
+    127.269
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    440.506,
+    126.997,
+    441.061,
+    127.269
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    127.28,
+    430.006,
+    127.552
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    127.28,
+    430.857,
+    127.552
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.285,
+    127.28,
+    438.793,
+    127.552
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    440.506,
+    127.28,
+    441.061,
+    127.552
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    127.564,
+    430.857,
+    127.836
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.868,
+    127.564,
+    432.557,
+    127.836
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.852,
+    127.564,
+    437.943,
+    127.836
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    440.222,
+    127.564,
+    440.778,
+    127.836
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    127.847,
+    430.857,
+    128.119
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.868,
+    127.847,
+    432.841,
+    128.119
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    433.136,
+    127.847,
+    438.51,
+    128.119
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    440.222,
+    127.847,
+    440.778,
+    128.119
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    128.13,
+    430.573,
+    128.403
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    128.13,
+    438.793,
+    128.403
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.939,
+    128.13,
+    440.494,
+    128.403
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    128.414,
+    430.006,
+    128.686
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    128.414,
+    430.573,
+    128.686
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.584,
+    128.414,
+    439.36,
+    128.686
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.939,
+    128.414,
+    440.211,
+    128.686
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    128.697,
+    430.29,
+    128.97
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    128.697,
+    439.644,
+    128.97
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.655,
+    128.697,
+    440.211,
+    128.97
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    128.981,
+    429.723,
+    129.253
+   ],
+   "page": 49,
+   "colour": [
+    200,
+    165,
+    160
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.734,
+    128.981,
+    430.29,
+    129.253
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    128.981,
+    439.36,
+    129.253
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.372,
+    128.981,
+    440.211,
+    129.253
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    129.264,
+    430.006,
+    129.536
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.017,
+    129.264,
+    439.36,
+    129.536
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.372,
+    129.264,
+    439.927,
+    129.536
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.939,
+    129.264,
+    440.494,
+    129.536
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    129.548,
+    429.723,
+    129.82
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    430.301,
+    129.548,
+    439.077,
+    129.82
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.088,
+    129.548,
+    439.927,
+    129.82
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.939,
+    129.548,
+    440.778,
+    129.82
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    429.451,
+    129.831,
+    429.723,
+    130.103
+   ],
+   "page": 49,
+   "colour": [
+    45,
+    70,
+    73
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    129.831,
+    433.975,
+    130.103
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.269,
+    129.831,
+    436.809,
+    130.103
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.387,
+    129.831,
+    439.077,
+    130.103
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.088,
+    129.831,
+    439.644,
+    130.103
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.655,
+    129.831,
+    440.778,
+    130.103
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    432.002,
+    130.115,
+    433.975,
+    130.387
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.553,
+    130.115,
+    436.809,
+    130.387
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.954,
+    130.115,
+    438.793,
+    130.387
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.805,
+    130.115,
+    439.644,
+    130.387
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.655,
+    130.115,
+    440.778,
+    130.387
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    130.398,
+    433.691,
+    130.67
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.836,
+    130.398,
+    437.093,
+    130.67
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.521,
+    130.398,
+    438.793,
+    130.67
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.805,
+    130.398,
+    439.36,
+    130.67
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.372,
+    130.398,
+    440.494,
+    130.67
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    130.682,
+    433.691,
+    130.954
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    434.836,
+    130.682,
+    437.093,
+    130.954
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.521,
+    130.682,
+    439.077,
+    130.954
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.372,
+    130.682,
+    440.211,
+    130.954
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    130.965,
+    433.408,
+    131.237
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    130.965,
+    437.376,
+    131.237
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.954,
+    130.965,
+    438.227,
+    131.237
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.521,
+    130.965,
+    439.077,
+    131.237
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    439.655,
+    130.965,
+    439.927,
+    131.237
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    131.249,
+    433.408,
+    131.521
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.12,
+    131.249,
+    437.376,
+    131.521
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.521,
+    131.249,
+    438.793,
+    131.521
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.151,
+    131.532,
+    433.124,
+    131.804
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    131.532,
+    437.376,
+    131.804
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.238,
+    131.532,
+    438.51,
+    131.804
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.151,
+    131.815,
+    433.124,
+    132.088
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.403,
+    131.815,
+    437.376,
+    132.088
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    438.238,
+    131.815,
+    438.51,
+    132.088
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.435,
+    132.099,
+    432.841,
+    132.371
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    132.099,
+    437.66,
+    132.371
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.954,
+    132.099,
+    438.51,
+    132.371
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    431.718,
+    132.382,
+    432.557,
+    132.655
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    132.382,
+    437.66,
+    132.655
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.671,
+    132.382,
+    438.227,
+    132.655
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.687,
+    132.666,
+    437.376,
+    132.938
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.387,
+    132.666,
+    438.227,
+    132.938
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.97,
+    132.949,
+    437.376,
+    133.221
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.387,
+    132.949,
+    437.943,
+    133.221
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.97,
+    133.233,
+    437.093,
+    133.505
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.104,
+    133.233,
+    437.66,
+    133.505
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.97,
+    133.516,
+    437.093,
+    133.788
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    437.104,
+    133.516,
+    437.66,
+    133.788
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    435.97,
+    133.8,
+    436.809,
+    134.072
+   ],
+   "page": 49,
+   "colour": [
+    192,
+    204,
+    204
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    436.821,
+    133.8,
+    437.376,
+    134.072
+   ],
+   "page": 49,
+   "colour": [
+    69,
+    98,
+    106
+   ],
+   "reason": "190米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "add": "p49_a32",
+   "page": 49,
+   "box": [
+    289.5,
+    111,
+    298,
+    122
+   ],
+   "translation": "m",
+   "source": "米",
+   "size": 9,
+   "align": "center",
+   "reason": "米 of the slanted 240米 on the park path replaced by m"
+  },
+  {
+   "restore": [
+    287.0,
+    108.5,
+    300.5,
+    124.5
+   ],
+   "page": 49,
+   "reason": "keep the path under the m as drawn (the add's erase is redone by the paints)"
+  },
+  {
+   "paint": [
+    289.987,
+    110.839,
+    290.543,
+    111.111
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.688,
+    110.839,
+    291.96,
+    111.111
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    292.255,
+    110.839,
+    293.661,
+    111.111
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.42,
+    111.123,
+    290.826,
+    111.395
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.405,
+    111.123,
+    291.677,
+    111.395
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.971,
+    111.123,
+    293.944,
+    111.395
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.137,
+    111.406,
+    291.11,
+    111.678
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.405,
+    111.406,
+    291.96,
+    111.678
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.971,
+    111.406,
+    294.228,
+    111.678
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.853,
+    111.69,
+    291.11,
+    111.962
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.121,
+    111.69,
+    291.677,
+    111.962
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.688,
+    111.69,
+    293.944,
+    111.962
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    111.973,
+    290.826,
+    112.245
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.838,
+    111.973,
+    291.393,
+    112.245
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.405,
+    111.973,
+    293.944,
+    112.245
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    112.257,
+    290.543,
+    112.529
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.554,
+    112.257,
+    291.393,
+    112.529
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.405,
+    112.257,
+    293.661,
+    112.529
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    112.54,
+    290.543,
+    112.812
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.554,
+    112.54,
+    291.11,
+    112.812
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.688,
+    112.54,
+    293.661,
+    112.812
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.153,
+    112.824,
+    287.708,
+    113.096
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.853,
+    112.824,
+    290.259,
+    113.096
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.271,
+    112.824,
+    291.11,
+    113.096
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.688,
+    112.824,
+    293.377,
+    113.096
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    296.79,
+    112.824,
+    297.346,
+    113.096
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.869,
+    113.107,
+    287.992,
+    113.379
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.137,
+    113.107,
+    290.259,
+    113.379
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.271,
+    113.107,
+    290.826,
+    113.379
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.838,
+    113.107,
+    293.377,
+    113.379
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    296.507,
+    113.107,
+    297.346,
+    113.379
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.586,
+    113.39,
+    288.275,
+    113.663
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.42,
+    113.39,
+    289.976,
+    113.663
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.987,
+    113.39,
+    290.826,
+    113.663
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.838,
+    113.39,
+    293.094,
+    113.663
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    296.223,
+    113.39,
+    297.346,
+    113.663
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.302,
+    113.674,
+    288.842,
+    113.946
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.704,
+    113.674,
+    289.976,
+    113.946
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.987,
+    113.674,
+    290.543,
+    113.946
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.554,
+    113.674,
+    293.094,
+    113.946
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.656,
+    113.674,
+    297.346,
+    113.946
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.019,
+    113.957,
+    289.126,
+    114.229
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.987,
+    113.957,
+    290.259,
+    114.229
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.271,
+    113.957,
+    292.811,
+    114.229
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.373,
+    113.957,
+    297.346,
+    114.229
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.019,
+    114.241,
+    289.409,
+    114.513
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.704,
+    114.241,
+    290.259,
+    114.513
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.271,
+    114.241,
+    292.811,
+    114.513
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    293.956,
+    114.241,
+    294.511,
+    114.513
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.806,
+    114.241,
+    297.346,
+    114.513
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.302,
+    114.524,
+    289.409,
+    114.796
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.42,
+    114.524,
+    289.976,
+    114.796
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.987,
+    114.524,
+    292.527,
+    114.796
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    293.105,
+    114.524,
+    297.346,
+    114.796
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.586,
+    114.808,
+    289.126,
+    115.08
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.137,
+    114.808,
+    289.976,
+    115.08
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.987,
+    114.808,
+    297.346,
+    115.08
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.869,
+    115.091,
+    289.126,
+    115.363
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.137,
+    115.091,
+    289.692,
+    115.363
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.704,
+    115.091,
+    297.346,
+    115.363
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.436,
+    115.375,
+    288.842,
+    115.647
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.853,
+    115.375,
+    289.692,
+    115.647
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.704,
+    115.375,
+    296.779,
+    115.647
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    115.658,
+    288.842,
+    115.93
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.853,
+    115.658,
+    289.409,
+    115.93
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.42,
+    115.658,
+    296.212,
+    115.93
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.286,
+    115.942,
+    288.559,
+    116.214
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    115.942,
+    289.409,
+    116.214
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.42,
+    115.942,
+    295.362,
+    116.214
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.72,
+    116.225,
+    287.992,
+    116.497
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    116.225,
+    288.842,
+    116.497
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.137,
+    116.225,
+    294.511,
+    116.497
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.153,
+    116.509,
+    288.275,
+    116.781
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    116.509,
+    288.842,
+    116.781
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.853,
+    116.509,
+    289.126,
+    116.781
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    289.42,
+    116.509,
+    294.228,
+    116.781
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.586,
+    116.792,
+    287.992,
+    117.064
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    116.792,
+    288.842,
+    117.064
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.853,
+    116.792,
+    294.511,
+    117.064
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.302,
+    117.075,
+    287.992,
+    117.348
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    117.075,
+    288.559,
+    117.348
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    117.075,
+    294.795,
+    117.348
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.019,
+    117.359,
+    287.708,
+    117.631
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.72,
+    117.359,
+    288.559,
+    117.631
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.57,
+    117.359,
+    295.362,
+    117.631
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.019,
+    117.642,
+    287.708,
+    117.915
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.72,
+    117.642,
+    288.275,
+    117.915
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.286,
+    117.642,
+    295.929,
+    117.915
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    285.735,
+    117.926,
+    287.425,
+    118.198
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.436,
+    117.926,
+    288.275,
+    118.198
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.286,
+    117.926,
+    296.496,
+    118.198
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.019,
+    118.209,
+    287.425,
+    118.481
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.436,
+    118.209,
+    287.992,
+    118.481
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    118.209,
+    296.779,
+    118.481
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.302,
+    118.493,
+    287.141,
+    118.765
+   ],
+   "page": 49,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.153,
+    118.493,
+    287.708,
+    118.765
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    118.493,
+    297.346,
+    118.765
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.153,
+    118.776,
+    287.425,
+    119.048
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.286,
+    118.776,
+    290.259,
+    119.048
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.838,
+    118.776,
+    293.094,
+    119.048
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    293.672,
+    118.776,
+    297.346,
+    119.048
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.153,
+    119.06,
+    287.425,
+    119.332
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.286,
+    119.06,
+    290.259,
+    119.332
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    290.838,
+    119.06,
+    293.377,
+    119.332
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.239,
+    119.06,
+    294.511,
+    119.332
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.806,
+    119.06,
+    297.346,
+    119.332
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.869,
+    119.343,
+    287.141,
+    119.615
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    119.343,
+    289.976,
+    119.615
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.121,
+    119.343,
+    293.377,
+    119.615
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.806,
+    119.343,
+    296.496,
+    119.615
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.869,
+    119.627,
+    287.141,
+    119.899
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    119.627,
+    289.976,
+    119.899
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.121,
+    119.627,
+    293.377,
+    119.899
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.806,
+    119.627,
+    296.212,
+    119.899
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.586,
+    119.91,
+    287.141,
+    120.182
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.72,
+    119.91,
+    289.692,
+    120.182
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.405,
+    119.91,
+    293.661,
+    120.182
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.239,
+    119.91,
+    295.645,
+    120.182
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.302,
+    120.194,
+    286.858,
+    120.466
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.72,
+    120.194,
+    289.409,
+    120.466
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.405,
+    120.194,
+    293.661,
+    120.466
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.806,
+    120.194,
+    295.362,
+    120.466
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.656,
+    120.194,
+    296.496,
+    120.466
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.019,
+    120.477,
+    286.858,
+    120.749
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.436,
+    120.477,
+    289.409,
+    120.749
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.688,
+    120.477,
+    293.661,
+    120.749
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.239,
+    120.477,
+    294.795,
+    120.749
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.373,
+    120.477,
+    297.062,
+    120.749
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    286.019,
+    120.76,
+    286.574,
+    121.033
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    287.72,
+    120.76,
+    289.126,
+    121.033
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.688,
+    120.76,
+    293.661,
+    121.033
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    293.956,
+    120.76,
+    295.078,
+    121.033
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.373,
+    120.76,
+    297.346,
+    121.033
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    285.735,
+    121.044,
+    286.291,
+    121.316
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.003,
+    121.044,
+    288.842,
+    121.316
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.971,
+    121.044,
+    295.078,
+    121.316
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.373,
+    121.044,
+    297.346,
+    121.316
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    285.735,
+    121.327,
+    286.291,
+    121.6
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    288.286,
+    121.327,
+    288.559,
+    121.6
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.971,
+    121.327,
+    294.795,
+    121.6
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.373,
+    121.327,
+    296.212,
+    121.6
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    296.79,
+    121.327,
+    297.346,
+    121.6
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    285.735,
+    121.611,
+    286.007,
+    121.883
+   ],
+   "page": 49,
+   "colour": [
+    58,
+    95,
+    101
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    291.971,
+    121.611,
+    294.511,
+    121.883
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.09,
+    121.611,
+    295.362,
+    121.883
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    295.656,
+    121.611,
+    295.929,
+    121.883
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    292.255,
+    121.894,
+    294.511,
+    122.166
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.806,
+    121.894,
+    295.645,
+    122.166
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    292.255,
+    122.178,
+    295.362,
+    122.45
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    292.255,
+    122.461,
+    294.228,
+    122.733
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  },
+  {
+   "paint": [
+    294.806,
+    122.461,
+    295.078,
+    122.733
+   ],
+   "page": 49,
+   "colour": [
+    191,
+    199,
+    203
+   ],
+   "reason": "240米: 米 painted out, path and outline redrawn"
+  }
+ ],
+ "left": []
+}

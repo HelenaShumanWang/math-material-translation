@@ -1,0 +1,34 @@
+{
+ "corrections": [
+  {"segment_id": "p40_s9", "translation": "(⟦0⟧) How much more do the shoes cost than the gloves?", "box": [288.6, 297.6, 464.6, 334], "reason": "two-line box over both source lines"},
+  {"segment_id": "p40_s21", "translation": "⟦0⟧. Teacher Wang has ¥⟦1⟧ to buy stationery for the class.", "box": [64.3, 443.5, 318, 467], "reason": "two lines so the panel's questions share one size"},
+  {"segment_id": "p40_s23", "translation": "(⟦0⟧) If she buys only ballpoint pens, how many can she buy?", "box": [77.7, 468, 318, 492], "reason": "even sizes in exercise 4"},
+  {"segment_id": "p40_s24", "translation": "(⟦0⟧) If she buys a box of markers, how many set squares can she buy with the money left?", "box": [77.4, 493, 318, 522], "reason": "even sizes in exercise 4"},
+  {"segment_id": "p40_s26", "translation": "BLANK", "reason": "set again left-aligned by p40_a90 (the segment came out centred and larger than (1)/(2))"},
+  {"add": "p40_a90", "page": 40, "box": [102.9, 529, 316, 566], "translation": "Teacher Wang bought some identical items with ¥100 and had ¥12 left. What might she have bought?", "source": "王老师用100元买了一些相同的文具，还剩12元。她可能买的是什么？", "size": 9.3, "align": "left", "color": 2301728, "reason": "left-aligned at the size of (1) and (2)"},
+  {"segment_id": "p45_s7_k0", "translation": "64 baskets", "box": [394.5, 150, 428, 177], "reason": "two lines over the whole gap between the dashed line and the brace (was 0.56)"},
+  {"paint": [432.6, 162, 436.2, 174], "page": 45, "colour": "border", "reason": "the brace-tip restore [425,158,435,178] brought back the left edge of the source ? as a stray mark before '? baskets'"},
+  {"segment_id": "p47_s6", "translation": "Xiaoxiao's home", "box": [64, 158, 122.5, 182], "reason": "OCR noise dropped; label set left of the house, where 笑笑家 stood"},
+  {"restore": [122.5, 154, 166, 192], "page": 47, "reason": "house, dot and route start erased/garbled by the label erase"},
+  {"restore": [166, 165.5, 182, 170.2], "page": 47, "reason": "route line under 405 m"},
+  {"restore": [182, 167.3, 198, 172], "page": 47, "reason": "route line under 405 m"},
+  {"restore": [198, 169.2, 216, 173.7], "page": 47, "reason": "route line under 405 m"},
+  {"restore": [216, 171, 234, 175.3], "page": 47, "reason": "route line under 405 m"},
+  {"restore": [234, 172.5, 248, 176.5], "page": 47, "reason": "route line under 405 m"},
+  {"restore": [234, 100, 237, 102.6], "page": 47, "reason": "route line gap next to 305 m (top)"},
+  {"restore": [237, 99.2, 240, 101.4], "page": 47, "reason": "route line gap next to 305 m (top)"},
+  {"restore": [240, 97.9, 243, 100.2], "page": 47, "reason": "route line gap next to 305 m (top)"},
+  {"restore": [332, 106.8, 336, 109.4], "page": 47, "reason": "route line gap next to 445 m"},
+  {"restore": [336, 108.0, 338.8, 110.3], "page": 47, "reason": "route line gap next to 445 m"},
+  {"restore": [338.8, 108.9, 340.8, 111], "page": 47, "reason": "route line gap next to 445 m"},
+  {"restore": [340.8, 109.6, 344, 112.2], "page": 47, "reason": "route line gap next to 445 m"},
+  {"restore": [344, 110.5, 347, 113], "page": 47, "reason": "route line gap next to 445 m"},
+  {"restore": [177.6, 130.5, 179.5, 133.5], "page": 47, "reason": "route line gap next to 205 m"},
+  {"restore": [176.8, 133.5, 179, 135.2], "page": 47, "reason": "route line gap next to 205 m"},
+  {"restore": [175.3, 135.1, 178.6, 137.8], "page": 47, "reason": "route line gap next to 205 m"}
+ ],
+ "left": [
+  {"page": 46, "issue": "'64 baskets' still sits in the 33 pt gap between the dashed line and the brace at about 0.6 (about 7 pt, two lines); 'baskets' fills the gap's width, so it cannot be set larger there. Box widened to the whole gap; the stray mark before '? baskets' (left by the brace-tip restore) is painted out."},
+  {"page": 41, "issue": "Not flagged, seen while fixing: the price-tag names under exercise 4 are uneven (set square / ballpoint pen / pencil case at about 0.6, diary / markers at full size); the tags have one 13 pt line each, so the long names cannot be set larger without a second line the tags do not have."}
+ ]
+}

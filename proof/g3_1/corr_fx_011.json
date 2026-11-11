@@ -1,0 +1,18 @@
+{"corrections": [
+ {"paint": [104.2, 116.5, 105.2, 122.4], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [105.2, 117.0, 106.2, 123.0], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [106.2, 117.5, 107.2, 123.5], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [107.2, 118.0, 108.2, 124.0], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [108.2, 118.5, 109.2, 124.5], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [109.2, 119.0, 110.2, 125.1], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [110.2, 119.5, 111.2, 125.7], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [111.2, 120.0, 112.2, 126.0], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [112.2, 120.5, 113.2, 126.3], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [113.2, 121.0, 114.2, 126.6], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"paint": [114.2, 121.4, 115.3, 126.9], "page": 10, "colour": [255, 255, 255], "reason": "erase the 酸奶 carton label strip by strip between the green stripe and the carton's lower outline"},
+ {"add": "p10_a90", "page": 10, "box": [105.6, 119.6, 113.8, 122.9], "translation": "Yoghurt", "source": "酸奶", "size": 3.0, "align": "center", "color": 2301728, "reason": "carton label left in Chinese; the label is erased strip by strip (white paints) so the green stripe, waves and the carton outline stay, and the English is set inside the cleaned band"},
+ {"add": "p11_a90", "page": 11, "box": [262.5, 503.0, 310.0, 519.5], "translation": "(boats)", "source": "（条）", "size": 12, "align": "left", "color": 2301728, "reason": "unit after the last answer box was dropped; matches '= 6(boats)' above"},
+ {"merge": ["p13_s10", "p13_s13"], "translation": "(1) Uncle Li has ¥100. He buys 1 bag of rice. How many bags of noodles can he buy with the money left?\n(2) Taoqi bought 4 cups of noodles and 1 bottle of juice for ¥19 in all. How much is a bottle of juice?\n(3) Ask another maths question and try to solve it.", "reason": "(1)-(3) are one list: set in one paragraph so (3) is the same size as (1)/(2)"},
+ {"segment_id": "p13_s10", "box": [262.0, 366.5, 446.5, 465.7], "translation": "(1) Uncle Li has ¥100. He buys 1 bag of rice. How many bags of noodles can he buy with the money left?\n(2) Taoqi bought 4 cups of noodles and 1 bottle of juice for ¥19 in all. How much is a bottle of juice?\n(3) Ask another maths question and try to solve it.", "reason": "merged paragraph uses the whole panel"}
+],
+"left": []}

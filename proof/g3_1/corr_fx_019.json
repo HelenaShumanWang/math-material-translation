@@ -1,0 +1,6 @@
+{"corrections": [
+ {"segment_id": "p22_s0", "translation": "Moving Cabbages", "box": [71, 66, 149, 89.5], "reason": "title was set at 0.59 in a narrow box; laid out over the whole green plate it wraps to two lines at a title size"}
+],
+"left": [
+ {"page": 19, "issue": "toothpaste box print 牙膏 (p18_s3) kept in Chinese: the label on the drawn box is about 17x8 pt, English would be unreadable; it is packaging print and the question text already says 'toothpaste box'"}
+]}
