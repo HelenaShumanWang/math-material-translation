@@ -1,0 +1,14 @@
+{"corrections": [
+  {"segment_id": "p76_i304_20_t", "translation": "I'll set them, you compare.", "reason": "unnatural: 我出题你来比 is an offer; 'I set them' reads as past tense."},
+  {"segment_id": "p81_s1", "translation": "6. Look and fill in.", "reason": "too long: 看图填一填 is 'Look and fill in.' elsewhere in this volume; label shrank from 12.1 to 8.5."},
+  {"segment_id": "p81_s13", "translation": "10. What fraction of each shape is coloured?", "reason": "inconsistent: same Chinese as Exercise 5 Q1, which says 'shape'."},
+  {"segment_id": "p87_s5_k1", "translation": "Review and Discuss", "reason": "inconsistent: 回顾与交流 is 'Review and Discuss' on every other review page."},
+  {"segment_id": "p89_s4", "translation": "Planting trees", "reason": "case: a picture label takes sentence case."},
+  {"segment_id": "p89_s3_k1", "translation": "Bought 200 balls in all", "reason": "unnatural: in the Little Shop picture 进了 means the shop bought the balls; 'Got' is vague. Keeps 共 'in all'."},
+  {"segment_id": "p92_s19", "translation": "Cost (¥)", "reason": "unnatural: in British English boats are hired, not rented; 'Cost (¥)' is a natural table heading for 租金/元 and no longer."},
+  {"segment_id": "p97_s0_k0", "translation": "Shapes and Measurement", "reason": "inconsistent: sibling Final Review headings use 'Shapes' (Understanding Shapes, Motion of Shapes)."},
+  {"segment_id": "p101_s1_k0", "translation": "Shapes and Position", "reason": "inconsistent: sibling Final Review headings use 'Shapes' (Understanding Shapes, Motion of Shapes)."},
+  {"segment_id": "p100_s4", "translation": "A pinwheel's movement is a rotation.", "reason": "too long: same meaning in fewer words; label shrank from 8.8 to 6.9."},
+  {"segment_id": "p97_s11", "translation": "with it takes too long.", "reason": "too long: shorter natural ending keeping the sense of 麻烦; label shrank from 8.6 to 5.2."},
+  {"segment_id": "p104_s0", "translation": "What Have You Learned This Term?", "reason": "case: page heading takes Title Case."}
+]}

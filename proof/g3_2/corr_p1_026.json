@@ -1,1 +1,305 @@
-{"corrections": [{"add": "p25_a1", "page": 25, "box": [158, 342, 178, 354], "translation": "1", "source": "一", "reason": "grade label left in Chinese"}, {"add": "p25_a2", "page": 25, "box": [207, 342, 227, 354], "translation": "2", "source": "二", "reason": "grade label left in Chinese"}, {"segment_id": "p25_s12", "translation": "3", "reason": "grade numbers as digits, consistent row"}, {"segment_id": "p25_s13", "translation": "4", "reason": "grade numbers as digits"}, {"segment_id": "p25_s14", "translation": "5", "reason": "grade numbers as digits"}, {"segment_id": "p25_s15", "translation": "6", "reason": "grade numbers as digits"}, {"segment_id": "p25_s20", "translation": "Bag", "reason": "left in Chinese; shorter label as in checked edition"}, {"segment_id": "p26_s4", "translation": "Both halves of each figure are the same.", "reason": "shrunk 0.75; shorter, same meaning"}, {"segment_id": "p26_s12", "translation": "They match when folded in half.", "box": [211, 576, 293, 597], "reason": "shrunk 0.64; use the rest of the bubble, inside its outline"}, {"segment_id": "p25_s16", "translation": "(⟦0⟧) Each grade takes ⟦1⟧ buses to the Natural History Museum. How many pupils are on each bus on average?", "reason": "keep the museum (part 2 refers to it); two lines in the free space", "box": [71, 381, 462, 404]}, {"segment_id": "p27_s2", "translation": "⟦0⟧. Which figures below are line-symmetric? Tick (✓) them.", "reason": "the tick mark was lost; sentence incomplete", "erase": [[296, 195, 316, 209]]}, {"segment_id": "p27_s6", "translation": "DROP", "reason": "the characters 江山美如画 are the shapes to check for symmetry"}, {"segment_id": "p28_s2", "translation": "Fold in half", "reason": "对折 = fold in half (checked edition)"}, {"segment_id": "p28_s3", "translation": "Cut out a pattern", "reason": "shorter, fits under picture"}, {"line": "p29_i116_7", "translation": "Try it. Tick (✓) the answer.", "force": true, "reason": "only text in the box"}, {"merge": ["p29_s3", "p29_i116_7_t"], "translation": "3. Taoqi cut two holes in a folded sheet of paper. Which one will it be when unfolded? Think, try it, and tick (✓) the answer.", "reason": "one instruction split over two lines"}, {"segment_id": "p30_s0", "box": [64, 67, 167, 89], "reason": "shrunk 0.55; use the whole title plate"}, {"merge": ["p30_s3", "p30_s4"], "translation": "The flags, window and box are all…", "reason": "one sentence split, printed at two sizes"}, {"segment_id": "p31_s11", "translation": "⟦0⟧. How does each object move? Draw \"△\" for translation and \"○\" for rotation.", "erase": [[398, 400, 442, 418]], "reason": "the rest of the line (“○”。) was left in Chinese"}, {"segment_id": "p31_s9", "box": [196, 355, 246, 368], "reason": "label Figure ② in one piece (the picture's ② left a gap), like Figure ③", "translation": "Figure ②", "erase": [[223, 353, 238, 369]]}, {"line": "p31_i124_13", "translation": "Figure ③", "force": true, "reason": "label 图 of figure ③"}, {"segment_id": "p32_s7", "translation": "Figure ③", "reason": "circled number lost; label was tiny, use the free cells", "box": [258, 271, 305, 285]}, {"segment_id": "p29_s3", "erase": [[180, 376, 196, 390]], "reason": "leftover 。 of the merged line"}, {"segment_id": "p32_s1", "translation": "(⟦0⟧) Translate Figure ① left ⟦1⟧ squares;", "reason": "capitalise Figure, consistent with labels"}, {"segment_id": "p32_s2", "translation": "(⟦0⟧) Translate Figure ② right ⟦1⟧ squares;", "reason": "capitalise Figure"}, {"segment_id": "p32_s3", "translation": "(⟦0⟧) Translate Figure ③ up ⟦1⟧ square.", "reason": "capitalise Figure"}, {"segment_id": "p31_s6", "translation": "How can the pencil and the set square be translated to their places in Figure ③? Explain.", "reason": "平移 = translate; capital Figure"}, {"paint": [249, 571, 284, 589.5], "page": 25, "colour": [255, 255, 255], "reason": "leftover stroke marks in the price tag"}, {"paint": [288, 571, 315.5, 589.5], "page": 25, "colour": [255, 255, 255], "reason": "leftover stroke marks in the price tag"}, {"paint": [319.5, 571, 346.5, 589.5], "page": 25, "colour": [255, 255, 255], "reason": "leftover strokes cross 'Pen' (checked edition was clean)"}, {"paint": [350.5, 571, 384.5, 589.5], "page": 25, "colour": [255, 255, 255], "reason": "leftover strokes cross 'Ballpoint'"}, {"segment_id": "p30_s1", "box": [83, 264, 468, 279], "reason": "wrapped line ran over the girl's head; one line, slightly shorter", "translation": "How does each one move? Can you sort them into two groups by how they move?"}, {"segment_id": "p32_s4", "box": [328, 173, 375, 188], "reason": "label tiny; use the free cells"}, {"segment_id": "p32_s5", "box": [153, 212, 200, 226], "reason": "label tiny; use the free cells"}], "flags": [{"page": 32, "issue": "Figure ①/③ labels and the 'Practice 1' line are set at about 0.71-0.73 (narrow grid cells / long line); readable."}, {"page": 26, "issue": "Price tags repainted white inside to remove leftover strokes; tiny grey specks at the very bottom edge of the tags may remain."}]}
+{
+ "corrections": [
+  {
+   "add": "p25_a1",
+   "page": 25,
+   "box": [
+    158,
+    342,
+    178,
+    354
+   ],
+   "translation": "1",
+   "source": "一",
+   "reason": "grade label left in Chinese"
+  },
+  {
+   "add": "p25_a2",
+   "page": 25,
+   "box": [
+    207,
+    342,
+    227,
+    354
+   ],
+   "translation": "2",
+   "source": "二",
+   "reason": "grade label left in Chinese"
+  },
+  {
+   "segment_id": "p25_s12",
+   "translation": "3",
+   "reason": "grade numbers as digits, consistent row"
+  },
+  {
+   "segment_id": "p25_s13",
+   "translation": "4",
+   "reason": "grade numbers as digits"
+  },
+  {
+   "segment_id": "p25_s14",
+   "translation": "5",
+   "reason": "grade numbers as digits"
+  },
+  {
+   "segment_id": "p25_s15",
+   "translation": "6",
+   "reason": "grade numbers as digits"
+  },
+  {
+   "segment_id": "p25_s20",
+   "translation": "Bag",
+   "reason": "left in Chinese; shorter label as in checked edition"
+  },
+  {
+   "segment_id": "p26_s4",
+   "translation": "Both halves of each figure are the same.",
+   "reason": "shrunk 0.75; shorter, same meaning"
+  },
+  {
+   "segment_id": "p26_s12",
+   "translation": "They match when folded in half.",
+   "box": [
+    211,
+    576,
+    293,
+    597
+   ],
+   "reason": "shrunk 0.64; use the rest of the bubble, inside its outline"
+  },
+  {
+   "segment_id": "p25_s16",
+   "translation": "(⟦0⟧) Each grade takes ⟦1⟧ buses to the Natural History Museum. How many pupils are on each bus on average?",
+   "reason": "keep the museum (part 2 refers to it); two lines in the free space",
+   "box": [
+    71,
+    381,
+    462,
+    404
+   ]
+  },
+  {
+   "segment_id": "p27_s2",
+   "translation": "⟦0⟧. Which figures below are line-symmetric? Tick (✓) them.",
+   "reason": "the tick mark was lost; sentence incomplete",
+   "erase": [
+    [
+     296,
+     195,
+     316,
+     209
+    ]
+   ]
+  },
+  {
+   "segment_id": "p27_s6",
+   "translation": "DROP",
+   "reason": "the characters 江山美如画 are the shapes to check for symmetry"
+  },
+  {
+   "segment_id": "p28_s2",
+   "translation": "Fold in half",
+   "reason": "对折 = fold in half (checked edition)"
+  },
+  {
+   "segment_id": "p28_s3",
+   "translation": "Cut out a pattern",
+   "reason": "shorter, fits under picture"
+  },
+  {
+   "line": "p29_i116_7",
+   "translation": "Try it. Tick (✓) the answer.",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "merge": [
+    "p29_s3",
+    "p29_i116_7_t"
+   ],
+   "translation": "3. Taoqi cut two holes in a folded sheet of paper. Which one will it be when unfolded? Think, try it, and tick (✓) the answer.",
+   "reason": "one instruction split over two lines"
+  },
+  {
+   "segment_id": "p30_s0",
+   "box": [
+    64,
+    67,
+    167,
+    89
+   ],
+   "reason": "shrunk 0.55; use the whole title plate"
+  },
+  {
+   "merge": [
+    "p30_s3",
+    "p30_s4"
+   ],
+   "translation": "The flags, window and box are all…",
+   "reason": "one sentence split, printed at two sizes"
+  },
+  {
+   "segment_id": "p31_s11",
+   "translation": "⟦0⟧. How does each object move? Draw \"△\" for translation and \"○\" for rotation.",
+   "erase": [
+    [
+     398,
+     400,
+     442,
+     418
+    ]
+   ],
+   "reason": "the rest of the line (“○”。) was left in Chinese"
+  },
+  {
+   "line": "p31_i124_13",
+   "translation": "Figure ③",
+   "force": true,
+   "reason": "label 图 of figure ③"
+  },
+  {
+   "segment_id": "p32_s7",
+   "translation": "Figure ③",
+   "reason": "circled number lost; label was tiny, use the free cells",
+   "box": [
+    258,
+    271,
+    305,
+    285
+   ]
+  },
+  {
+   "segment_id": "p29_s3",
+   "erase": [
+    [
+     180,
+     376,
+     196,
+     390
+    ]
+   ],
+   "reason": "leftover 。 of the merged line"
+  },
+  {
+   "segment_id": "p32_s1",
+   "translation": "(⟦0⟧) Translate Figure ① left ⟦1⟧ squares;",
+   "reason": "capitalise Figure, consistent with labels"
+  },
+  {
+   "segment_id": "p32_s2",
+   "translation": "(⟦0⟧) Translate Figure ② right ⟦1⟧ squares;",
+   "reason": "capitalise Figure"
+  },
+  {
+   "segment_id": "p32_s3",
+   "translation": "(⟦0⟧) Translate Figure ③ up ⟦1⟧ square.",
+   "reason": "capitalise Figure"
+  },
+  {
+   "segment_id": "p31_s6",
+   "translation": "How can the pencil and the set square be translated to their places in Figure ③? Explain.",
+   "reason": "平移 = translate; capital Figure"
+  },
+  {
+   "paint": [
+    249,
+    571,
+    284,
+    589.5
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "leftover stroke marks in the price tag"
+  },
+  {
+   "paint": [
+    288,
+    571,
+    315.5,
+    589.5
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "leftover stroke marks in the price tag"
+  },
+  {
+   "paint": [
+    319.5,
+    571,
+    346.5,
+    589.5
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "leftover strokes cross 'Pen' (checked edition was clean)"
+  },
+  {
+   "paint": [
+    350.5,
+    571,
+    384.5,
+    589.5
+   ],
+   "page": 25,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "leftover strokes cross 'Ballpoint'"
+  },
+  {
+   "segment_id": "p30_s1",
+   "box": [
+    83,
+    264,
+    468,
+    279
+   ],
+   "reason": "wrapped line ran over the girl's head; one line, slightly shorter",
+   "translation": "How does each one move? Can you sort them into two groups by how they move?"
+  },
+  {
+   "segment_id": "p32_s4",
+   "box": [
+    328,
+    173,
+    375,
+    188
+   ],
+   "reason": "label tiny; use the free cells"
+  },
+  {
+   "segment_id": "p32_s5",
+   "box": [
+    153,
+    212,
+    200,
+    226
+   ],
+   "reason": "label tiny; use the free cells"
+  }
+ ],
+ "flags": [
+  {
+   "page": 32,
+   "issue": "Figure ①/③ labels and the 'Practice 1' line are set at about 0.71-0.73 (narrow grid cells / long line); readable."
+  },
+  {
+   "page": 26,
+   "issue": "Price tags repainted white inside to remove leftover strokes; tiny grey specks at the very bottom edge of the tags may remain."
+  }
+ ]
+}

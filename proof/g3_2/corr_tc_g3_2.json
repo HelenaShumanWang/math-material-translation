@@ -1,0 +1,189 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p42_s23",
+   "translation": "N",
+   "reason": "consistency: compass label 北 -> \"N\" as on every other compass in the series; the full word does not fit the box"
+  },
+  {
+   "segment_id": "p42_s24",
+   "translation": "E",
+   "reason": "consistency: compass label 东 -> \"E\" as on every other compass in the series; the full word does not fit the box"
+  },
+  {
+   "segment_id": "p101_s6",
+   "translation": "E",
+   "reason": "consistency: compass label 东 -> \"E\" as on every other compass in the series; the full word does not fit the box"
+  },
+  {
+   "segment_id": "p102_s3",
+   "translation": "N",
+   "reason": "consistency: compass label 北 -> \"N\" as on every other compass in the series; the full word does not fit the box"
+  },
+  {
+   "segment_id": "p102_s5",
+   "translation": "E",
+   "reason": "consistency: compass label 东 -> \"E\" as on every other compass in the series; the full word does not fit the box"
+  },
+  {
+   "segment_id": "p93_s14",
+   "translation": "2. Fill in.",
+   "reason": "consistency: 填一填 -> \"Fill in.\" (instruction, full stop) as in every other volume; shorter"
+  },
+  {
+   "segment_id": "p87_s5_k1",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p89_s0_k1",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p93_s0_k1",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p95_s1",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p97_s0_k1",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p100_s1",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p101_a3_p0",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p102_a2_p0",
+   "translation": "Review and Share",
+   "reason": "consistency: recurring Final Review section 回顾与交流 -> \"Review and Share\" (交流 = share; \"Discuss\" is reserved for 议一议); shorter, fits the narrowest box"
+  },
+  {
+   "segment_id": "p30_s5",
+   "translation": "Let's learn.",
+   "reason": "consistency: section prompt 认一认 -> \"Let's learn.\" as in Grade 1 Volume 1; one wording for the same prompt"
+  },
+  {
+   "segment_id": "p70_s16",
+   "translation": "Let's learn.",
+   "reason": "consistency: section prompt 认一认 -> \"Let's learn.\" as in Grade 1 Volume 1; one wording for the same prompt"
+  },
+  {
+   "segment_id": "p2_s17",
+   "translation": "Your friends, the editors",
+   "reason": "consistency: foreword signature 编者大朋友 -> \"Your friends, the editors\" as in the other volumes"
+  },
+  {
+   "segment_id": "p44_s0",
+   "translation": "My Progress",
+   "reason": "consistency: recurring Review section 我的成长足迹 -> \"My Progress\" as in Grade 1 and Grade 2 Volume 2; shortest"
+  },
+  {
+   "segment_id": "p45_s0",
+   "translation": "Consolidate and Apply",
+   "reason": "consistency: recurring Review section 巩固应用 -> \"Consolidate and Apply\" as in the other volumes; \"Practice\" is reserved for 练一练"
+  },
+  {
+   "segment_id": "p65_s10",
+   "translation": "Self-Check",
+   "reason": "consistency: recurring section 自我评价 -> \"Self-Check\" (Title Case section label) as in the other volumes"
+  },
+  {
+   "segment_id": "p104_s0",
+   "translation": "What Did You Learn This Term?",
+   "reason": "consistency: end-of-term page title 本学期你学到了什么 -> \"What Did You Learn This Term?\" (Title Case) in every volume"
+  },
+  {
+   "segment_id": "p105_s0",
+   "translation": "Question Bank",
+   "reason": "consistency: end page 问题银行 -> \"Question Bank\" as in the other volumes"
+  },
+  {
+   "segment_id": "p43_s9",
+   "translation": "Circle and calculate.",
+   "reason": "consistency: 圈一圈，算一算 -> \"Circle and calculate.\" as in Grade 1"
+  },
+  {
+   "segment_id": "p45_s1",
+   "translation": "1. Circle and calculate.",
+   "reason": "consistency: 圈一圈，算一算 -> \"Circle and calculate.\" as in Grade 1"
+  },
+  {
+   "segment_id": "p64_s5",
+   "translation": "Task",
+   "reason": "consistency: Maths Is Fun section 活动任务 -> \"Task\" as in Grade 2; shorter"
+  },
+  {
+   "segment_id": "p102_s7",
+   "translation": "Pond",
+   "reason": "consistency: map label 鱼塘 -> \"Pond\" as on the practice map and contents page; shorter"
+  },
+  {
+   "segment_id": "p45_s4",
+   "translation": "2. Talk about it and calculate.",
+   "reason": "consistency: 说一说，算一算 -> \"Talk about it and calculate.\" as in Grade 1 (说一说 = Talk About It; \"Discuss\" is 议一议)"
+  },
+  {
+   "segment_id": "p87_s13",
+   "translation": "Place value chart",
+   "reason": "consistency: 数位顺序表 -> \"Place value chart\" (UK usage, sentence-case label) in both volumes"
+  },
+  {
+   "segment_id": "p45_s9",
+   "translation": "3. Think and fill in.",
+   "reason": "consistency: 想一想，填一填 -> \"Think and fill in.\" as everywhere else"
+  },
+  {
+   "segment_id": "p17_s26",
+   "translation": "Think and fill in.",
+   "reason": "consistency: 想一想，填一填 -> \"Think and fill in.\" (an instruction, with full stop) as everywhere else"
+  },
+  {
+   "segment_id": "p90_s16",
+   "translation": "1. Do it and calculate.",
+   "reason": "consistency: 做一做，算一算 -> \"Do it and calculate.\" as in Grade 3 Volume 1 (做一做 = Do It)"
+  },
+  {
+   "segment_id": "p66_s11",
+   "translation": "Seats",
+   "reason": "consistency: table header 可坐人数 -> \"Seats\" as on page 92; shorter where the header shrank"
+  },
+  {
+   "segment_id": "p92_s19",
+   "translation": "Rent (¥)",
+   "reason": "consistency: table header 租金/元 -> \"Rent (¥)\" as on page 66 (租金 = rent)"
+  },
+  {
+   "segment_id": "p31_s13",
+   "translation": "2. Colour in.",
+   "reason": "consistency: 涂一涂 -> \"Colour in.\" as in Grade 1 Volume 2; \"Colour.\" alone is unnatural"
+  },
+  {
+   "segment_id": "p42_s0",
+   "translation": "7. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) everywhere"
+  },
+  {
+   "segment_id": "p46_s6",
+   "translation": "7. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) everywhere"
+  },
+  {
+   "segment_id": "p101_s7",
+   "translation": "Post office",
+   "reason": "consistency: map label 邮局 -> \"Post office\" in sentence case as elsewhere"
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{"corrections": [
+  {"segment_id": "p73_s0", "translation": "Sharing (2)", "reason": "inconsistent: 分一分（一） on p71 is 'Sharing (1)'; part two must match"},
+  {"segment_id": "p48_s1", "translation": "How Heavy?", "reason": "case: lesson title in Title Case, like 'How Heavy Is 1 Tonne?'"},
+  {"segment_id": "p66_s1", "translation": "Bus Rental.", "reason": "case: sub-lesson heading in Title Case, matching 'Buying Souvenirs.'"},
+  {"segment_id": "p48_s16", "translation": "1 kg = 1000 g", "reason": "wrong: missing space after equals sign (cf. '1 t = 1000 kg')"},
+  {"segment_id": "p60_s2", "translation": "2. Fill in.", "reason": "too long: label shrank; 填一填 is 'Fill in.' on pp. 50, 52"},
+  {"segment_id": "p61_s11", "translation": "5. Fill in.", "reason": "too long: label shrank; 填一填 is 'Fill in.' elsewhere"},
+  {"segment_id": "p56_s4", "translation": "3×2=6 (cm²)", "reason": "too long: label shrank; cm² used on the same page (Area/cm²)"},
+  {"segment_id": "p74_s3", "translation": "There are 5 rows of ducklings. Circle", "reason": "inconsistent: 小鸭子 is 'ducklings' in the line above; room available"},
+  {"segment_id": "p65_s11", "translation": "How I did in this activity:", "reason": "unnatural: Chinglish self-assessment prompt; natural form is also shorter where it shrank"}
+]}

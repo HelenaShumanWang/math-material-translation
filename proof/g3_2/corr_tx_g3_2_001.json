@@ -1,0 +1,12 @@
+{"corrections": [
+  {"segment_id": "p16_s25", "translation": "5. Forest Doctor", "reason": "inconsistent: activity title; '4. Forest Doctor' on p13 and p16 has no full stop"},
+  {"segment_id": "p17_s0", "translation": "6. Unlocking Game", "reason": "case: named activity title in Title Case without full stop, like '7. Watering Flowers'"},
+  {"segment_id": "p34_s25", "translation": "5. Buying Tracksuits", "reason": "case: named activity title in Title Case without full stop, like '7. Watering Flowers'"},
+  {"segment_id": "p11_s10", "translation": "Write it like this:", "reason": "inconsistent: 可以这样写 is 'Write it like this:' on p14; shorter where the label shrank"},
+  {"segment_id": "p11_s18", "translation": "Write it like this:", "reason": "inconsistent: 可以这样写 is 'Write it like this:' on p14; shorter where the label shrank"},
+  {"segment_id": "p6_s8", "translation": "3. Fill in.", "reason": "too long: shrank from 12.6 to 10; 填一填 is '6. Fill in.' on p16"},
+  {"segment_id": "p6_s12", "translation": "5. Fill in.", "reason": "too long: shrank from 13.7 to 10; 填一填 is '6. Fill in.' on p16"},
+  {"segment_id": "p12_s2", "translation": "Look at the picture and explain why 0÷2=0.", "reason": "unnatural: 看图 here is a picture of fish, not a shape; 'figure' is used for shapes in this volume"},
+  {"segment_id": "p21_s7", "translation": "(2) How many per team on average?", "reason": "too long: shrank from 11.2 to 7.2; 'per team' already makes clear it counts people"},
+  {"segment_id": "p21_s16", "translation": "4. Join up using the rule.", "reason": "too long: shrank from 11.2 to 7.8; amended from 'Match as instructed' because the task chains answers (join up), not pairs"}
+]}
