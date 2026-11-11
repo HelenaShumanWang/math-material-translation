@@ -10,7 +10,8 @@ Correction kinds (boxes in PDF points; "page" = the 0-based page index of segmen
   {"segment_id": id, "translation": "..."}      English for a paragraph ("DROP": the Chinese stays in the picture;
                                                  "BLANK": erased, nothing set); may carry "box" (lay it out there),
                                                  "erase" ([[x0, y0, x1, y1], ...] small areas next to it to erase too)
-                                                 and "clip" (only the part of its lines inside the box is erased)
+                                                 "clip" (only the part of its lines inside the box is erased)
+                                                 and "vertical" (true: set rotated along a narrow upright strip)
   {"merge": [id, id, ...], "translation": "..."} one sentence the OCR split; the first id keeps the paragraph
   {"split": id, "translations": [...]}           one paragraph per OCR line; with "at": [x, ...] one line cut into cells
   {"line": id, "translation": "...", "force": true}  an OCR line left in the picture, set in its place (paragraph id_t)
@@ -227,6 +228,9 @@ def segment_text(c) -> tuple[bool, str]:
     if seg is None or seg.kind != SegmentKind.TEXT:
         return False, "unknown or not a translated paragraph"
     notes = []
+    if c.get("vertical") is not None:  # set along a narrow upright strip (a name tag on a tile), rotated
+        seg.style.is_vertical = bool(c["vertical"])
+        notes.append("vertical" if seg.style.is_vertical else "horizontal")
     if c.get("box") is not None:
         ok, why = set_box(seg, c["box"])
         if not ok:
