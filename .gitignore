@@ -16,3 +16,6 @@ examples/output/
 
 # Claude Code workflow worktrees (harness-managed)
 .claude/worktrees/
+
+# scratch copies agents make next to the production tools
+production/.*.py
