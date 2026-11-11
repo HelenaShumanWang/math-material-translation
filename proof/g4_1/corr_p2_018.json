@@ -1,0 +1,60 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p17_s7",
+   "translation": "⟦0⟧. The total output of some fruits in China in ⟦1⟧ was as follows:",
+   "reason": "tense; keep placeholder"
+  },
+  {
+   "segment_id": "p19_s14",
+   "translation": "Read as: straight line ⟦0⟧ (or ⟦1⟧)",
+   "reason": "restore placeholders"
+  },
+  {
+   "segment_id": "p20_s6",
+   "translation": "⟦0⟧. Is each pair of line segments the same length? Look and measure.",
+   "reason": "shorter so it stays inside the margin at full size"
+  },
+  {
+   "segment_id": "p20_s1",
+   "translation": "⟦0⟧. Find and talk about things in everyday life that look like line segments.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p21_s8",
+   "translation": "When two straight lines intersect at a right angle, they are perpendicular.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p22_s3",
+   "translation": "⟦0⟧. Draw a line perpendicular to each line below.",
+   "reason": "there are two lines in the picture"
+  },
+  {
+   "segment_id": "p23_s7",
+   "translation": "I use squared paper.",
+   "reason": "shorter, was shrunk to 0.72"
+  },
+  {
+   "segment_id": "p24_s2",
+   "translation": "⟦0⟧. From each figure below, find two pairs of parallel line segments and trace them in different colours.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p24_s4",
+   "translation": "Is the frame vertical?",
+   "reason": "the bubble asks about the door frame; 'door frame' would shrink to 0.59"
+  },
+  {
+   "segment_id": "p24_s7",
+   "translation": "You can also make a pair of parallel lines this way. Try it.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p18_s13",
+   "translation": "Main line length: ⟦0⟧ km, about ⟦1⟧ km.",
+   "reason": "restore placeholders like its siblings"
+  }
+ ],
+ "flags": []
+}

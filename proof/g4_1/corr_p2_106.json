@@ -1,0 +1,40 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p106_s4",
+   "translation": "⟦0⟧. Draw each angle below in a suitable way and say what kind of angle it is.",
+   "reason": "shorter so it is set at sibling size"
+  },
+  {
+   "segment_id": "p108_s17",
+   "translation": "(⟦0⟧) Which colour hat is most likely?",
+   "reason": "shorter, same size as (3)"
+  },
+  {
+   "segment_id": "p108_s18",
+   "translation": "(⟦0⟧) Which colour hat is least likely?",
+   "reason": "shorter, same size as (3)"
+  },
+  {
+   "segment_id": "p108_s19",
+   "translation": "(⟦0⟧) Which two colours are equally likely?",
+   "reason": "consistent with (1) and (2), fits on one line"
+  },
+  {
+   "segment_id": "p108_s9",
+   "box": [
+    231,
+    356,
+    295,
+    372
+   ],
+   "reason": "text ran past the right end of the pink label; narrower box keeps it inside"
+  },
+  {
+   "segment_id": "p106_s9",
+   "translation": "⟦0⟧. The children are doing tai chi in PE. Which children's poses are different from most of the others? Give their positions as number pairs.",
+   "reason": "shorter: it ran into the picture at sibling size"
+  }
+ ],
+ "flags": []
+}

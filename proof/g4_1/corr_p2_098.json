@@ -1,0 +1,89 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p100_s14",
+   "translation": "The chance of drawing a white ball from Box ⟦0⟧ is the greatest, because...",
+   "reason": "greatest chance"
+  },
+  {
+   "segment_id": "p102_s4",
+   "translation": "⟦0⟧. Use examples to say how we use natural numbers, integers and negative numbers in life.",
+   "box": [71, 198, 455, 210],
+   "reason": "shorter so it fits one line at the size of items 1 and 3"
+  },
+  {
+   "segment_id": "p102_s5",
+   "translation": "⟦0⟧. Look over your common mistakes. What must you watch for in multiplying and dividing integers?",
+   "box": [71, 219, 455, 232],
+   "reason": "shorter so it fits one line at the size of items 1-2"
+  },
+  {
+   "segment_id": "p102_s18",
+   "translation": "What maths questions can you ask? Which relationships between quantities did you use to solve them? Talk with your partner.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p102_s19",
+   "translation": "What other relationships between quantities have we learned? Let's talk about them.",
+   "reason": "natural wording"
+  },
+  {
+   "merge": ["p103_s0_k1", "p103_s0_k2"],
+   "translation": "On your own",
+   "reason": "one label split, first half tiny"
+  },
+  {
+   "merge": ["p103_s18_k1", "p103_s18_k2"],
+   "translation": "On your own",
+   "reason": "one label split, first half tiny"
+  },
+  {
+   "segment_id": "p103_s14",
+   "translation": "Two lines are parallel if the number of squares between them is always the same.",
+   "reason": "meaning"
+  },
+  {
+   "segment_id": "p103_s6",
+   "translation": "⟦0⟧. What kinds of angles have you learned? How do you measure the size of an angle?",
+   "reason": "natural"
+  },
+  {
+   "merge": ["p104_s3", "p104_s9"],
+   "translation": "China's total population is 1370536875. Of these, the 31 mainland provinces, autonomous regions and municipalities and the armed forces counted in the census total 1339724852 people; Hong Kong SAR has 7097600 people; Macao SAR has 552300 people; and Taiwan has 23162123 people.",
+   "reason": "one sentence split over two paragraphs"
+  },
+  {
+   "segment_id": "p102_s16",
+   "translation": "⟦0⟧. Tell a partner about the order of operations and the laws of arithmetic.",
+   "box": [71, 349, 420, 363],
+   "reason": "wrapped in a narrow box; free paper to the right; standard term"
+  },
+  {
+   "segment_id": "p104_s14_k1",
+   "translation": "By gender: (",
+   "box": [91.3, 424.5, 163.8, 436.5],
+   "reason": "body size like the sibling sub-questions"
+  },
+  {
+   "segment_id": "p104_s11",
+   "translation": "BLANK",
+   "reason": "heading role sets it far larger than (1)/(3); set again below as body-size text"
+  },
+  {
+   "add": "p104_a90",
+   "page": 104,
+   "box": [73, 354, 480, 372],
+   "translation": "(2) 552300 has (      ) hundred thousands, (      ) ten thousands, (      ) thousands and (      ) hundreds.",
+   "source": "(2) 552300里有（ ）个十万，（ ）个万，（ ）个千和（ ）个百。",
+   "size": 8.6,
+   "align": "left",
+   "reason": "same body size as sub-questions (1)/(3), one line"
+  }
+ ],
+ "flags": [
+  {
+   "page": 102,
+   "issue": "Cinema sign 光明影院 on the building is slanted hand lettering; forced line translation 'Guangming Cinema' could not be set (left in source). Kept as picture."
+  }
+ ]
+}

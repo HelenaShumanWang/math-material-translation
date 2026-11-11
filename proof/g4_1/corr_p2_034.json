@@ -1,0 +1,65 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s22",
+   "box": [
+    52,
+    547.4,
+    97,
+    561.5
+   ],
+   "reason": "Answer: ran into the answer line; free paper to the left"
+  },
+  {
+   "segment_id": "p34_s11",
+   "translation": "⟦0⟧. In July ⟦1⟧, Beijing started the ⟦3⟧ telephone booking service: patients can book an appointment at a chosen hospital by dialling ⟦4⟧. In August ⟦5⟧, Aunt Guo worked ⟦7⟧ days in total and answered an average of ⟦8⟧ calls a day.",
+   "reason": "month names instead of 'the 7th month'; dropped ⟦2⟧ ⟦6⟧ (month numbers now written as month names)"
+  },
+  {
+   "segment_id": "p34_s12",
+   "translation": "(⟦0⟧) How many calls did Aunt Guo answer in August ⟦1⟧? Estimate, then calculate.",
+   "reason": "'the 8th month' -> August; ⟦2⟧ (8) written as the month name"
+  },
+  {
+   "segment_id": "p37_s1",
+   "translation": "⟦0⟧. Estimate how many seedlings Grandpa Wang grew. Share your method with a partner.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p37_s2",
+   "translation": "⟦0⟧. Estimate how many soybeans there are. How did you do it? Share with your group or class.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p37_s4",
+   "translation": "⟦0⟧. The table below shows the daily sales (in yuan) of Dongfang Newsstand from 1 to ⟦1⟧ October. Can you estimate the total sales for these ten days?",
+   "reason": "'the 10th month' unnatural; 上旬 = days 1-10 of October"
+  },
+  {
+   "segment_id": "p38_s4",
+   "translation": "In ⟦0⟧, Americans invented the world's first electronic computer, which could calculate more than ⟦1⟧ times per second.",
+   "reason": "missing full stop (keeps 'In')"
+  },
+  {
+   "segment_id": "p38_s14",
+   "translation": "I can do this one in my head. No calculator needed!",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p39_s8",
+   "translation": "⟦0⟧. What can go in the brackets? Estimate, then check with a calculator to find it.",
+   "reason": "omitted 找到合适的答案"
+  },
+  {
+   "segment_id": "p39_s9_k0",
+   "translation": "Number sentence",
+   "reason": "算式 = number sentence"
+  },
+  {
+   "segment_id": "p39_s16",
+   "translation": "A TV on standby uses about ⟦0⟧ kilowatt-hours of electricity a year. That doesn't seem like much! Get your calculator ready. Let's start!",
+   "reason": "comma splice"
+  }
+ ],
+ "flags": []
+}

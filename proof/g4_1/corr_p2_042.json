@@ -1,0 +1,187 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p42_s21",
+   "translation": "⟦0⟧. The table shows the daily sales of the Little Doctor stationery shop from ⟦2⟧ to ⟦3⟧ September. (Unit: yuan)",
+   "reason": "dropped ⟦1⟧ (month number 9, already said by 'September'); '(month 9)' was unnatural"
+  },
+  {
+   "segment_id": "p42_s24",
+   "translation": "(⟦0⟧) At this rate, estimate the shop's total sales for the whole of September.",
+   "reason": "dropped ⟦1⟧ (month number 9 = September)"
+  },
+  {
+   "segment_id": "p42_s2",
+   "translation": "Estimate first, then calculate. Explain your working to a partner.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p43_s7",
+   "translation": "(⟦0⟧) Use the three digits in each column to make three-digit numbers and write number sentences like those above. Is the pattern the same?",
+   "reason": "placeholder restored, more natural"
+  },
+  {
+   "segment_id": "p44_s4_k0",
+   "box": [
+    278,
+    153,
+    322,
+    167
+   ],
+   "reason": "Wuhan label at 0.61; free hillside to the right"
+  },
+  {
+   "segment_id": "p44_a1_p0",
+   "box": [
+    237,
+    123,
+    266,
+    140
+   ],
+   "reason": "Zhengzhou at 0.66"
+  },
+  {
+   "segment_id": "p45_s3",
+   "box": [
+    231,
+    152,
+    426,
+    195
+   ],
+   "reason": "scale 0.6; free card paper to the right, short of the card's edge; a little shorter so it stays above the place-value line",
+   "translation": "I know many large numbers, like China's population: ⟦0⟧. To read, write, compare or rewrite one, first split it into classes: hundred millions, ten thousands, ones."
+  },
+  {
+   "segment_id": "p45_s20",
+   "translation": "BLANK",
+   "reason": "set by p45_a20 inside the ellipse: grown as a label it ran over the ellipse's outline"
+  },
+  {
+   "segment_id": "p45_s17_k2",
+   "box": [
+    106,
+    423,
+    134,
+    438
+   ],
+   "reason": "Obtuse at 0.64; use the whole cell, up to its rule"
+  },
+  {
+   "segment_id": "p46_s3",
+   "translation": "I can use a calculator to explore patterns in maths...",
+   "reason": "maths"
+  },
+  {
+   "segment_id": "p46_s10",
+   "translation": "When we use multiplication to solve real-life problems, which problems can be solved by estimating?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p45_s19",
+   "translation": "Parallel",
+   "box": [
+    256,
+    424,
+    291,
+    437
+   ],
+   "reason": "kept inside its ellipse; the old box erased the outline"
+  },
+  {
+   "restore": [
+    248,
+    418,
+    256,
+    437.5
+   ],
+   "page": 45,
+   "reason": "left outline of the Parallel ellipse"
+  },
+  {
+   "restore": [
+    248,
+    433.5,
+    261,
+    444
+   ],
+   "page": 45,
+   "reason": "lower outline of the Parallel ellipse"
+  },
+  {
+   "restore": [
+    288,
+    420,
+    302,
+    438
+   ],
+   "page": 45,
+   "reason": "right outline of the Parallel ellipse"
+  },
+  {
+   "add": "p45_a20",
+   "page": 45,
+   "box": [
+    330.5,
+    423.5,
+    369.5,
+    435
+   ],
+   "translation": "Intersecting",
+   "source": "相交",
+   "size": 6.6,
+   "align": "center",
+   "reason": "label of the lines (intersecting), kept inside its ellipse",
+   "color": 0
+  },
+  {
+   "restore": [
+    322,
+    416,
+    330.5,
+    440
+   ],
+   "page": 45,
+   "reason": "left outline of the Intersecting ellipse"
+  },
+  {
+   "restore": [
+    369.5,
+    416,
+    378,
+    442
+   ],
+   "page": 45,
+   "reason": "right outline of the Intersecting ellipse"
+  },
+  {
+   "restore": [
+    330.5,
+    437.5,
+    369.5,
+    444
+   ],
+   "page": 45,
+   "reason": "bottom outline of the Intersecting ellipse"
+  },
+  {
+   "restore": [
+    261,
+    437.5,
+    302,
+    444
+   ],
+   "page": 45,
+   "reason": "bottom outline of the Parallel ellipse"
+  }
+ ],
+ "flags": [
+  {
+   "page": 49,
+   "issue": "Exercise 3: the underlines under the numbers in the camp paragraph (p48_s1) are lost in the English, so the instruction was reworded to 'the numbers below'"
+  },
+  {
+   "page": 45,
+   "issue": "Zhengzhou (p44_a1_p0) is still set small (0.75): the bubble on its left and the railway on its right leave no room; the flat teal erase patches behind Zhengzhou and Wuhan (p44_s4_k0) show as rectangles over the hill edges"
+  }
+ ]
+}

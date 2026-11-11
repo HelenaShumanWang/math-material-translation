@@ -1,0 +1,34 @@
+{
+ "corrections": [
+  {"restore": [156.5, 243.8, 170.9, 251.5], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [238.1, 243.8, 251.5, 251.5], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [249.6, 247.7, 254.4, 261.1], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [237.1, 266.9, 252.5, 270.7], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [260.2, 265.9, 265, 286.1], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [261.1, 262.1, 270.7, 267.8], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [261.1, 283.7, 273.6, 289], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [313.9, 265.9, 320.6, 286.1], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [307.2, 262.1, 320.6, 267.8], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [305.3, 283.7, 320.6, 289], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"segment_id": "p2_s5", "box": [162, 251.7, 247.5, 264.5], "reason": "text overflowed the bubble and covered its left outline"},
+  {"restore": [151, 247, 159.5, 268], "page": 2, "reason": "restore the left outline of the speech bubble"},
+  {"restore": [250.5, 243.5, 256.5, 250], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"restore": [249.5, 261.5, 256.5, 268], "page": 2, "reason": "restore the speech-bubble outline cut by the earlier erase (no Chinese inside this strip)"},
+  {"segment_id": "p4_s12", "translation": "Maths Is Fun", "reason": "British spelling"},
+  {"segment_id": "p4_s13", "translation": "Unit 8\nProbability", "box": [75.7, 514, 166.4, 546], "reason": "match two-line unit headings"},
+  {"segment_id": "p4_s3", "box": [393, 154.5, 414, 162.5], "reason": "label crossed the line"},
+  {"segment_id": "p5_s7", "box": [353, 280, 409, 306], "reason": "use bubble room"},
+  {"segment_id": "p5_s19", "box": [300, 429, 378, 450], "reason": "use cloud room"},
+  {"segment_id": "p7_s9", "box": [119.5, 345, 167.5, 360], "reason": "one line"},
+  {"segment_id": "p7_s12", "box": [335.5, 345, 382.8, 360], "reason": "one line"},
+  {"segment_id": "p7_s27", "box": [60, 479, 101, 503], "reason": "size like siblings"},
+  {"segment_id": "p7_s29", "translation": "Below is the place-value chart. Read it and discuss: what do you notice?", "reason": "fit one line"},
+  {"segment_id": "p7_s5", "translation": "Count and think: how are two neighbouring counting units related?", "reason": "fit at full size"},
+  {"segment_id": "p5_s9", "erase": [[374.5, 354, 381, 363]], "reason": "leftover Chinese full stop after the cloud text"},
+  {"restore": [379.6, 355, 385, 366], "page": 5, "reason": "restore the cloud outline clipped by the erase of the full stop"}
+ ],
+ "flags": [
+  {"page": 9, "issue": "p8_s13 \"900 million\" is set smaller than the other number-line labels; widening its box did not enlarge it"},
+  {"page": 8, "issue": "place-value chart labels (p7_a3_p0..p7_a26_p0, p7_a40_p0) are set very small (about 5 pt) in narrow cells"}
+ ]
+}

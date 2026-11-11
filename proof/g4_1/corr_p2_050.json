@@ -1,0 +1,93 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p51_s0",
+   "translation": "Try It",
+   "reason": "translation field held a wrong text ('a ruler.')"
+  },
+  {
+   "merge": [
+    "p51_s10",
+    "p51_s12"
+   ],
+   "translation": "If there are brackets, you should…",
+   "reason": "one bubble, one sentence split in two"
+  },
+  {
+   "segment_id": "p53_s1",
+   "translation": "Look at each set of number sentences below. Write another set like them and say what you notice.",
+   "reason": "more natural wording"
+  },
+  {
+   "segment_id": "p53_s28",
+   "translation": "These two number sentences show the commutative laws of addition and multiplication.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p52_s20",
+   "translation": "⟦0⟧ pupils",
+   "reason": "match 'pupils' in item 7"
+  },
+  {
+   "segment_id": "p52_s21",
+   "translation": "⟦0⟧ pupils",
+   "reason": "match 'pupils' in item 7"
+  },
+  {
+   "segment_id": "p52_s22",
+   "translation": "⟦0⟧ pupils",
+   "reason": "match 'pupils' in item 7"
+  },
+  {
+   "segment_id": "p52_s23",
+   "translation": "⟦0⟧ pupils",
+   "reason": "match 'pupils' in item 7"
+  },
+  {
+   "segment_id": "p55_s29",
+   "box": [
+    280,
+    471,
+    372,
+    492
+   ],
+   "reason": "set at 0.65 in a tight box; free room in the same bubble"
+  },
+  {
+   "segment_id": "p56_s28",
+   "translation": "Mum took ¥⟦0⟧. She spent ¥⟦1⟧ on fish and ¥⟦2⟧ on vegetables. How much does she have left?",
+   "reason": "British 'Mum'; complete question"
+  },
+  {
+   "paint": [
+    252,
+    576,
+    258,
+    582
+   ],
+   "page": 56,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "Chinese full stop after the equation"
+  },
+  {
+   "segment_id": "p54_s6",
+   "box": [
+    88,
+    283,
+    148,
+    299
+   ],
+   "reason": "set at 0.72 on two lines next to its 1.0 sibling; wider box inside the same bubble"
+  }
+ ],
+ "flags": [
+  {
+   "page": 52,
+   "issue": "Instruction 1 (p51_s14) is set noticeably larger than instructions 2 and 3 on the same page; rewording does not change its size."
+  }
+ ]
+}

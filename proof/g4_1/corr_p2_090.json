@@ -1,0 +1,55 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s30",
+   "translation": "The charity shop made a profit of ¥16900 in March, and in April...",
+   "reason": "name matched to the table title (charity shop) and months as in the table (March, April)"
+  },
+  {
+   "segment_id": "p89_s32",
+   "translation": "Recognise and say.",
+   "reason": "认一认 is 'recognise', not 'look'"
+  },
+  {
+   "segment_id": "p90_s24",
+   "translation": "China was the first country in the world to recognise and use negative numbers. Over two thousand years ago, the Nine Chapters on the Mathematical Art already recorded positive and negative numbers.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p91_s2",
+   "translation": "Let's experiment!",
+   "reason": "做个实验试一试: keep the experiment; short enough for the small bubble"
+  },
+  {
+   "segment_id": "p91_s9",
+   "translation": "⟦0⟧. What experiment could solve this problem?",
+   "reason": "line wrapped into the photo; shorter"
+  },
+  {
+   "segment_id": "p93_s15",
+   "translation": "I can use the data I got to solve problems.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p94_s11",
+   "translation": "Bank card number ⟦0⟧",
+   "reason": "银行卡号 is the bank card number; no abbreviations"
+  },
+  {
+   "segment_id": "p94_s22",
+   "translation": "Order code",
+   "reason": "shrunk to 0.53; shorter"
+  },
+  {
+   "segment_id": "p96_s1",
+   "translation": "Mole holes",
+   "reason": "鼹鼠 is a mole, as the picture shows"
+  },
+  {
+   "segment_id": "p96_s6",
+   "translation": "⟦0⟧. Count the different routes in order, without repeating or missing any.",
+   "reason": "shrunk to 0.86; shorter, same meaning"
+  }
+ ],
+ "flags": []
+}

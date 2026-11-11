@@ -1,0 +1,124 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p74_s0",
+   "translation": "⟦0⟧. Estimate how many digits each quotient has, tell your partner why, then calculate.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p74_s7",
+   "translation": "⟦0⟧. A dairy farm has ⟦1⟧ cows. One day in August (month ⟦2⟧) they gave about ⟦3⟧ kg of milk. Do you agree with Taoqi?",
+   "reason": "natural month wording"
+  },
+  {
+   "segment_id": "p74_s14",
+   "translation": "Which digits in the box give a one-digit quotient? Which give a two-digit one?",
+   "reason": "shorter, fits one line"
+  },
+  {
+   "segment_id": "p75_s10",
+   "translation": "All Grade 3 pupils take small buses. How many are needed? Estimate, then use the column method.",
+   "box": [
+    78.2,
+    226.6,
+    505.0,
+    240.1
+   ],
+   "reason": "shorter and wider into free paper so it stays on one line above the box"
+  },
+  {
+   "segment_id": "p77_s17",
+   "translation": "⟦0⟧. The magazine I Am a Little Host was launched in August ⟦1⟧ (month ⟦2⟧). The table shows how many emails its editors received from readers in the first ⟦3⟧ months.",
+   "reason": "natural date wording"
+  },
+  {
+   "segment_id": "p77_s16",
+   "box": [
+    70.3,
+    463.2,
+    470.0,
+    478.2
+   ],
+   "reason": "free paper to the right; was shrunk to 0.73"
+  },
+  {
+   "segment_id": "p77_s16",
+   "translation": "⟦0⟧ The museum is ⟦1⟧ m tall. How many times as tall as the museum is the tree?",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p77_s19",
+   "box": [
+    70.3,
+    588.8,
+    470.0,
+    604.6
+   ],
+   "reason": "free paper to the right; was shrunk to 0.71"
+  },
+  {
+   "segment_id": "p77_s19",
+   "translation": "(⟦0⟧) Estimate: about how many emails a day were received on average in month ⟦1⟧?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p77_s20",
+   "translation": "⟦0⟧ Calculate: how many emails a day were received on average in month ⟦1⟧?",
+   "reason": "parallel with (1)"
+  },
+  {
+   "segment_id": "p78_s23",
+   "box": [
+    110.0,
+    588.0,
+    190.0,
+    606.0
+   ],
+   "reason": "free room in the bubble; was shrunk to 0.63"
+  },
+  {
+   "segment_id": "p78_s23",
+   "translation": "School starts\non 1 September",
+   "reason": "break at a natural place inside the bubble"
+  },
+  {
+   "split": "p79_s19",
+   "translations": [
+    "Time/min",
+    "Characters"
+   ],
+   "reason": "two table cells read as one paragraph"
+  },
+  {
+   "segment_id": "p80_s1",
+   "translation": "Look at the two groups of number sentences below. Can you write another group like them? Say what you notice.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p76_s11",
+   "box": [
+    179.5,
+    454.1,
+    420.0,
+    467.2
+   ],
+   "reason": "free paper to the right; start right of the circle so it is not cut; was shrunk to 0.62"
+  },
+  {
+   "restore": [
+    157.5,
+    448.5,
+    175.0,
+    466.0
+   ],
+   "page": 76,
+   "reason": "the erase of the Chinese line cut the right half of the answer circle"
+  }
+ ],
+ "flags": [
+  {
+   "page": 76,
+   "issue": "Flag labels Grade 3/4/5 with pupil numbers (p75_s1, p75_s2, p75_s5) are set at about 0.6-0.73 scale; the flags are too narrow for larger English."
+  }
+ ]
+}

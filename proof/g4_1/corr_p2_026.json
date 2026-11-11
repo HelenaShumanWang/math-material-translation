@@ -1,0 +1,50 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p26_s2",
+   "translation": "⟦0⟧. Look at each clock face. Name the angle made by the hour and minute hands.",
+   "reason": "shorter so it fits one line at full size"
+  },
+  {
+   "segment_id": "p27_s1",
+   "translation": "I like this one.",
+   "reason": "missing full stop"
+  },
+  {
+   "segment_id": "p31_s10",
+   "translation": "Gongti North Road",
+   "reason": "standard English name, shorter for the tiny map label"
+  },
+  {
+   "segment_id": "p31_s22",
+   "translation": "(⟦0⟧) Fold the rectangle to make angles of ⟦1⟧ and ⟦2⟧.",
+   "reason": "shorter so 135° does not wrap alone"
+  },
+  {
+   "segment_id": "p32_s12",
+   "translation": "⟦0⟧. (⟦1⟧) Draw the shortest route from the lab to the classroom block.",
+   "reason": "match the map label 'Classroom block'"
+  },
+  {
+   "segment_id": "p32_s9",
+   "translation": "⟦0⟧. Trace and find.",
+   "reason": "full stop like item 7"
+  },
+  {
+   "segment_id": "p31_s10",
+   "box": [
+    335,
+    207,
+    393,
+    217
+   ],
+   "reason": "one line along the road"
+  }
+ ],
+ "flags": [
+  {
+   "page": 32,
+   "issue": "Map street labels (Xindong Road, Sanlitun Road, Sanlitun Middle Street, Workers' Stadium, East 3rd Ring Road) are set very small (scale 0.56-0.67) in narrow vertical road boxes; barely legible but no free room without covering the map."
+  }
+ ]
+}

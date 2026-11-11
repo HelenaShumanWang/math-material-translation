@@ -1,0 +1,67 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p58_s9",
+   "translation": "⟦0⟧. Look closely at the number sentences below, then calculate.",
+   "reason": "natural wording; consistent with page 57"
+  },
+  {
+   "segment_id": "p59_s15",
+   "erase": [
+    [
+     255,
+     345,
+     265,
+     354
+    ]
+   ],
+   "reason": "Chinese full stop left at end of the answer line"
+  },
+  {
+   "segment_id": "p60_s17",
+   "translation": "⟦0⟧. The school is buying outfits for ⟦1⟧ choir members.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p61_s0",
+   "translation": "⟦0⟧. Look closely at the number sentences below, then calculate.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p62_s18",
+   "translation": "This flower bed is ⟦0⟧ m long and ⟦1⟧ m wide.",
+   "reason": "more natural, shorter"
+  },
+  {
+   "segment_id": "p63_s9",
+   "translation": "How far do they go in 2 hours? And in ⟦0⟧ hours and ⟦1⟧ hours?",
+   "reason": "restore placeholders ⟦0⟧ ⟦1⟧; cyclists are 'they'; shorter"
+  },
+  {
+   "segment_id": "p63_s10",
+   "translation": "They go ⟦1⟧ km in ⟦0⟧ hour.",
+   "reason": "speaker refers to the cyclists"
+  },
+  {
+   "segment_id": "p64_s29",
+   "box": [
+    410.2,
+    522.5,
+    440.0,
+    533.5
+   ],
+   "reason": "Home set much larger than the matching label in the left drawing"
+  },
+  {
+   "segment_id": "p60_s17",
+   "box": [
+    59.2,
+    413.0,
+    330.0,
+    427.7
+   ],
+   "reason": "free paper to the right before the shirt picture; avoids shrinking"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,50 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p72_s7",
+   "translation": "Think of \"⟦0⟧\" as \"⟦1⟧\" to estimate.",
+   "reason": "shorter so it is not shrunk to 0.65; straight quotes as in the other bubbles"
+  },
+  {
+   "segment_id": "p72_s16",
+   "translation": "Think of \"⟦0⟧\" as \"⟦1⟧\" to estimate.",
+   "reason": "shorter so it is not shrunk to 0.70; straight quotes as in the other bubbles"
+  },
+  {
+   "segment_id": "p72_s20",
+   "translation": "It might be ⟦0⟧ patterns.",
+   "reason": "name the counted noun (triangle patterns)"
+  },
+  {
+   "segment_id": "p72_s20",
+   "box": [
+    214,
+    563,
+    312,
+    579
+   ],
+   "reason": "use free room in the bubble"
+  },
+  {
+   "segment_id": "p65_s19_k0",
+   "box": [
+    136,
+    359,
+    206,
+    382
+   ],
+   "reason": "set on two lines in the free space above the road"
+  },
+  {
+   "restore": [
+    206,
+    388,
+    234,
+    394
+   ],
+   "page": 65,
+   "reason": "road line under Mall was thinned when the Chinese 商场 was erased"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,45 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p11_s1",
+   "translation": "Below are the areas of China's ⟦0⟧ largest provinces and autonomous regions (unit: km²).",
+   "reason": "shorter so the intro fits on one line at a readable size; 5 listed are the five largest"
+  },
+  {
+   "segment_id": "p12_s24",
+   "translation": "Join the dots below in order, from the smallest number to the largest.",
+   "box": [
+    74,
+    533,
+    505,
+    546
+   ],
+   "reason": "more natural wording; use the free paper to the right so it stays on one line"
+  },
+  {
+   "segment_id": "p13_s0",
+   "translation": "Approximate Numbers",
+   "reason": "lesson title: plural"
+  },
+  {
+   "segment_id": "p13_s8",
+   "translation": "Rounding ⟦0⟧ to the nearest ten thousand gives ⟦1⟧0000.",
+   "reason": "standard UK rounding phrase"
+  },
+  {
+   "segment_id": "p13_s16",
+   "translation": "⟦0⟧ is closer to ⟦1⟧0000. In fact, it was rounded to the nearest hundred thousand.",
+   "reason": "standard UK rounding phrase"
+  }
+ ],
+ "flags": [
+  {
+   "page": 16,
+   "issue": "Bead labels '5 ten thousands' (p16_s7) and '5 hundred thousands' (p16_s9) are set at about 0.55 in their small plates, much smaller than '5 hundreds'; no free room inside the plates."
+  },
+  {
+   "page": 11,
+   "issue": "Several tiny Chinese map labels (Heilongjiang, Shanghai, Guizhou, Guangxi, Guangdong, Hong Kong, Macao, Zhejiang, Shaanxi etc.) remain in Chinese on the map; no room for English."
+  }
+ ]
+}

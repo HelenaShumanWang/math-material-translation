@@ -1,0 +1,106 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p81_s22",
+   "box": [
+    118,
+    460,
+    166,
+    477
+   ],
+   "reason": "set larger in the free space of the bubble, inside its outline"
+  },
+  {
+   "segment_id": "p82_s5",
+   "translation": "The squirrel is faster than the monkey, because they took the same time and the squirrel went farther.",
+   "reason": "natural link 'because' and full stop"
+  },
+  {
+   "segment_id": "p83_s16",
+   "translation": "We can compare the price of ⟦0⟧ kg of soybeans…",
+   "reason": "source ends in an ellipsis; keep placeholder"
+  },
+  {
+   "segment_id": "p84_s16",
+   "translation": "Rice",
+   "reason": "米 on the sack means rice, not metres"
+  },
+  {
+   "segment_id": "p84_s27",
+   "translation": "(⟦0⟧) About where is he ⟦1⟧ min after setting off? (Mark it with △ above.)",
+   "reason": "shorter so it is set at sibling size; restore placeholders"
+  },
+  {
+   "segment_id": "p84_s28",
+   "translation": "(⟦0⟧) Uncle Wang sets off at ⟦1⟧:⟦2⟧. At what time is he halfway?",
+   "reason": "shorter, fits on one line; restore placeholders"
+  },
+  {
+   "segment_id": "p85_s13",
+   "translation": "⟦0⟧. The table below shows one day's children's book sales at Little Doctor Bookshop.",
+   "reason": "full stop; restore placeholder"
+  },
+  {
+   "segment_id": "p85_s14_k1_k0",
+   "translation": "Price (¥)",
+   "reason": "shorter header that fits the narrow cell at a readable size (was 0.51)",
+   "box": [
+    168,
+    373.3,
+    213,
+    386.4
+   ]
+  },
+  {
+   "segment_id": "p85_s14_k1_k1",
+   "translation": "Sales (¥)",
+   "reason": "match the sibling header"
+  },
+  {
+   "segment_id": "p87_s8",
+   "translation": "Find a way to show the highest and lowest temperatures in Beijing.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p88_s4",
+   "translation": "⟦0⟧. The map shows the lowest temperatures of some cities on one day. Answer the questions.",
+   "reason": "shorter so it is not set at 0.7"
+  },
+  {
+   "segment_id": "p88_s12",
+   "translation": "(⟦0⟧) Order the ⟦1⟧ cities' temperatures from highest to lowest. How did you compare them?",
+   "reason": "shorter, set at sibling size"
+  },
+  {
+   "segment_id": "p88_s17_k1",
+   "box": [
+    356,
+    521,
+    398,
+    537
+   ],
+   "reason": "use the header cell inside its lines; was 0.59"
+  },
+  {
+   "segment_id": "p88_s20",
+   "box": [
+    255,
+    522,
+    298,
+    536.5
+   ],
+   "reason": "use the header cell inside its lines; was 0.72"
+  },
+  {
+   "segment_id": "p88_s23",
+   "translation": "(⟦0⟧) Which city has the highest temperature, and which the lowest? What are they?",
+   "reason": "shorter so it fits one line at sibling size"
+  }
+ ],
+ "flags": [
+  {
+   "page": 88,
+   "issue": "South China Sea Islands inset caption (南海诸岛) on the map is kept in Chinese: about 5 pt high, no room for legible English"
+  }
+ ]
+}
