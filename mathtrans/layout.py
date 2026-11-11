@@ -1398,9 +1398,13 @@ def _short_fragment(seg: TextSegment) -> bool:
 
 def _list_item(seg: TextSegment) -> bool:
     """A numbered question or exercise line ((1) …, 2. …, ①) set on a scanned page: the items
-    of one list stand one under the other and read as one text, whatever their length."""
-    return (seg.style.role in ("body", "label") and bool(is_list_item(seg.source_text or ""))
-            and "\n" not in (seg.translated_text or ""))
+    of one list stand one under the other and read as one text, whatever their length. An item
+    printed in a larger type is often read as a heading ("6.数一数，说一说" at 16.5 pt among items
+    at 12-14 pt); it is still an item of the list when it starts with a digit enumerator."""
+    text = seg.source_text or ""
+    numbered = seg.style.role in ("body", "label") or (
+        seg.style.role == "heading" and re.match(r"\s*(\d{1,2}\s*[.．、]|[（(]\d{1,2}[)）])", text) is not None)
+    return numbered and bool(is_list_item(text)) and "\n" not in (seg.translated_text or "")
 
 
 

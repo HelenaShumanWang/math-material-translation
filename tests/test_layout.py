@@ -1054,6 +1054,27 @@ def test_numbered_instructions_are_no_siblings_of_the_cell_labels_on_their_left_
     assert sorted(sorted(s.id for s in g) for g in groups) == [["p82_s1", "p82_s2", "p82_s3"], ["p82_s14", "p82_s19"]]
 
 
+def test_a_numbered_item_read_as_a_heading_is_still_an_item_of_the_list():
+    from mathtrans.layout import _list_item, _sibling_label_groups
+    from mathtrans.models import BBox, RenderInfo, SegmentStyle, TextSegment
+
+    def seg(i, y0, size, zh, en, role):
+        s = TextSegment(id=f"p24_s{i}", page=24, bbox=BBox(x0=56, y0=y0, x1=190, y1=y0 + 16), source_text=zh,
+                        protected_text=zh, translated_text=en, origin="ocr",
+                        style=SegmentStyle(size=size, color=0x231F20, role=role))
+        s.render = RenderInfo(font_size=size, scale=1.0, bbox=s.bbox)
+        return s
+
+    # page 25 of g2_2: item 6 printed larger and read as a heading
+    items = [seg(8, 282, 13.9, "5.涂一涂。", "5. Colour in.", "label"),
+             seg(10, 391, 16.5, "6.数一数，说一说", "6. Count and talk.", "heading"),
+             seg(14, 527, 13.0, "7.小组游戏。", "7. Group game.", "body")]
+    assert all(_list_item(s) for s in items)
+    assert [sorted(s.id for s in g) for g in _sibling_label_groups(items)] == [["p24_s10", "p24_s14", "p24_s8"]]
+    # a real heading is not
+    assert not _list_item(seg(1, 90, 18.0, "数一数", "Count", "heading"))
+
+
 def test_a_short_answer_label_read_as_a_heading_grows_like_a_label(tmp_path):
     from PIL import Image
     from mathtrans.layout import render_document
