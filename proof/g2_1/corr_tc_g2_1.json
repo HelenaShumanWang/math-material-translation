@@ -1,34 +1,154 @@
 {
  "corrections": [
   {
+   "segment_id": "p100_s2_k0",
+   "translation": "Number and Algebra",
+   "reason": "consistency: curriculum strand 数与代数 -> \"Number and Algebra\" as in every other volume"
+  },
+  {
+   "segment_id": "p102_s1",
+   "translation": "Number and Algebra",
+   "reason": "consistency: curriculum strand 数与代数 -> \"Number and Algebra\" as in every other volume"
+  },
+  {
+   "segment_id": "p85_s13",
+   "translation": "Look and say.",
+   "reason": "consistency: 看一看，说一说 -> \"Look and say.\" as in the other volumes; shorter"
+  },
+  {
    "segment_id": "p83_s4",
    "translation": "Talk about it and fill in.",
-   "reason": "consistency: 说一说，填一填 -> \"Talk about it and fill in.\" as in Grade 1 Volume 1"
+   "reason": "consistency: 说一说，填一填 -> \"Talk about it and fill in.\" as in Grade 1"
   },
   {
    "segment_id": "p85_s3",
    "translation": "Talk about it and fill in.",
-   "reason": "consistency: 说一说，填一填 -> \"Talk about it and fill in.\" as in Grade 1 Volume 1"
+   "reason": "consistency: 说一说，填一填 -> \"Talk about it and fill in.\" as in Grade 1"
   },
   {
    "segment_id": "p15_s5",
    "translation": "Let's learn.",
-   "reason": "consistency: 认一认 -> \"Let's learn.\" as in Grade 1; \"Recognise\" alone is not natural and \"the notes\" is not in the Chinese"
+   "reason": "consistency: section prompt 认一认 -> \"Let's learn.\" as in Grade 1; \"Recognise\" alone is unnatural and the added words are not in the Chinese"
   },
   {
    "segment_id": "p21_s9",
    "translation": "Let's learn.",
-   "reason": "consistency: 认一认 -> \"Let's learn.\" as in Grade 1; \"Recognise\" alone is not natural and \"the notes\" is not in the Chinese"
+   "reason": "consistency: section prompt 认一认 -> \"Let's learn.\" as in Grade 1; \"Recognise\" alone is unnatural and the added words are not in the Chinese"
   },
   {
-   "segment_id": "p19_s13",
-   "translation": "Talk about it and calculate.",
-   "reason": "consistency: 说一说，算一算 -> \"Talk about it and calculate.\" as in Grade 1 Volume 1 (说一说 is Talk About It)"
+   "segment_id": "p28_s12",
+   "translation": "Think and fill in.",
+   "reason": "consistency: 想一想，填一填 -> \"Think and fill in.\" (an instruction, with full stop) as everywhere else"
   },
   {
-   "segment_id": "p37_s4",
-   "translation": "Talk about it and calculate.",
-   "reason": "consistency: 说一说，算一算 -> \"Talk about it and calculate.\" as in Grade 1 Volume 1 (说一说 is Talk About It)"
+   "segment_id": "p14_s15",
+   "translation": "2. Fill in.",
+   "reason": "consistency: 2.填一填 -> \"2. Fill in.\" (an instruction, with full stop) as everywhere else"
+  },
+  {
+   "segment_id": "p27_s10",
+   "translation": "3. Look and fill in.",
+   "reason": "consistency: 看一看，填一填 -> \"Look and fill in.\" (an instruction, with full stop) as everywhere else"
+  },
+  {
+   "segment_id": "p47_s1",
+   "translation": "What I Learned",
+   "reason": "consistency: recurring Review section 我学到了什么 -> \"What I Learned\" as in the other volumes; shorter"
+  },
+  {
+   "segment_id": "p48_s0",
+   "translation": "My Progress",
+   "reason": "consistency: recurring Review section 我的成长足迹 -> \"My Progress\" as in Grade 1 and Grade 2 Volume 2; shortest"
+  },
+  {
+   "segment_id": "p108_s0",
+   "translation": "What Did You Learn This Term?",
+   "reason": "consistency: end-of-term page heading 本学期你学到了什么 -> \"What Did You Learn This Term?\" in every volume (Title Case as a heading)"
+  },
+  {
+   "segment_id": "p100_s2_k1",
+   "translation": "On your",
+   "reason": "consistency: Final Review tag 独立思考 -> \"On your own\" as in the other volumes (\"Think alone\" is unnatural); first line of two"
+  },
+  {
+   "segment_id": "p100_s2_k2",
+   "translation": "own",
+   "reason": "consistency: Final Review tag 独立思考 -> \"On your own\" as in the other volumes; second line of two"
+  },
+  {
+   "segment_id": "p101_s4_k1",
+   "translation": "On your",
+   "reason": "consistency: Final Review tag 独立思考 -> \"On your own\" as in the other volumes (\"Think alone\" is unnatural); first line of two"
+  },
+  {
+   "segment_id": "p101_s4_k2",
+   "translation": "own",
+   "reason": "consistency: Final Review tag 独立思考 -> \"On your own\" as in the other volumes; second line of two"
+  },
+  {
+   "segment_id": "p101_a1_p0",
+   "translation": "ideas",
+   "reason": "consistency: Final Review tag 相互启发 -> \"Share ideas\" in sentence case; second line as in Grade 1"
+  },
+  {
+   "segment_id": "p101_a2_p0",
+   "translation": "ideas",
+   "reason": "consistency: Final Review tag 相互启发 -> \"Share ideas\" in sentence case; second line as in Grade 1"
+  },
+  {
+   "segment_id": "p14_s41",
+   "translation": "¥1.50",
+   "reason": "consistency: 1元5角 -> \"¥1.50\": money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p14_s42",
+   "translation": "¥0.75",
+   "reason": "consistency: 7角5分 -> \"¥0.75\": money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p14_s43",
+   "translation": "¥1",
+   "reason": "consistency: 1元 price tag -> \"¥1\": money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p13_s4",
+   "translation": "¥0.80",
+   "reason": "consistency: 8角 -> \"¥0.80\" as on page 17: money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p47_s12",
+   "translation": "¥0.80",
+   "reason": "consistency: 8角 -> \"¥0.80\" as on page 17: money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p13_s3",
+   "translation": "¥0.10",
+   "reason": "consistency: 1角 price tag -> \"¥0.10\": money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p13_s5",
+   "translation": "¥0.50",
+   "reason": "consistency: 5角 price tag -> \"¥0.50\": money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p13_s8",
+   "translation": "¥0.20",
+   "reason": "consistency: 2角 price tag -> \"¥0.20\": money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p47_s14",
+   "translation": "¥0.50",
+   "reason": "consistency: 5角 price tag -> \"¥0.50\": money as ¥ (¥1.50, ¥0.80) as on the other price tags in the series"
+  },
+  {
+   "segment_id": "p99_s17",
+   "translation": "Think and calculate.",
+   "reason": "consistency: 想一想，算一算 -> \"Think and calculate.\" (an instruction, with full stop) as on the other pages"
+  },
+  {
+   "segment_id": "p13_s12",
+   "translation": "Recognise and fill in.",
+   "reason": "consistency: 认一认，填一填 -> \"Recognise and fill in.\" (an instruction, with full stop)"
   },
   {
    "segment_id": "p40_s2",
@@ -38,177 +158,62 @@
   {
    "segment_id": "p82_s3",
    "translation": "3. Find the pairs.",
-   "reason": "consistency: 找朋友 -> \"Find the pairs.\" as in Grade 1 Volume 1"
+   "reason": "consistency: 找朋友 -> \"Find the pairs.\" as in Grade 1; \"with the same answer\" is not in the Chinese and the label shrank"
   },
   {
-   "segment_id": "p47_s1",
-   "translation": "What I Learned",
-   "reason": "consistency: recurring 我学到了什么 -> \"What I Learned\" as in Grade 1; shorter"
-  },
-  {
-   "segment_id": "p48_s0",
-   "translation": "My Progress",
-   "reason": "consistency: recurring 我的成长足迹 -> \"My Progress\" as in Grade 1; shorter"
-  },
-  {
-   "segment_id": "p85_s13",
-   "translation": "Look and say.",
-   "reason": "consistency: 看一看，说一说 -> \"Look and say.\" as in Grade 1; shorter"
-  },
-  {
-   "segment_id": "p44_s1",
-   "translation": "1. Answer from the picture.",
-   "reason": "consistency: 看图回答问题 -> \"Answer from the picture.\" as in Grade 1 Volume 1; shorter"
-  },
-  {
-   "segment_id": "p100_s2_k0",
-   "translation": "Number and Algebra",
-   "reason": "consistency: curriculum strand 数与代数 -> \"Number and Algebra\" as in Grade 1"
-  },
-  {
-   "segment_id": "p102_s1",
-   "translation": "Number and Algebra",
-   "reason": "consistency: curriculum strand 数与代数 -> \"Number and Algebra\" as in Grade 1"
-  },
-  {
-   "segment_id": "p100_s2_k1",
-   "translation": "On your",
-   "reason": "consistency: icon label 独立思考 -> \"On your own\" as in Grade 1 (\"Think alone\" is unnatural); first line of two"
-  },
-  {
-   "segment_id": "p101_s4_k1",
-   "translation": "On your",
-   "reason": "consistency: icon label 独立思考 -> \"On your own\" as in Grade 1 (\"Think alone\" is unnatural); first line of two"
-  },
-  {
-   "segment_id": "p100_s2_k2",
-   "translation": "own",
-   "reason": "consistency: icon label 独立思考 -> \"On your own\" as in Grade 1 (\"Think alone\" is unnatural); second line of two"
-  },
-  {
-   "segment_id": "p101_s4_k2",
-   "translation": "own",
-   "reason": "consistency: icon label 独立思考 -> \"On your own\" as in Grade 1 (\"Think alone\" is unnatural); second line of two"
-  },
-  {
-   "segment_id": "p108_s0",
-   "translation": "What did you learn this term?",
-   "reason": "consistency: 本学期你学到了什么 -> \"What did you learn this term?\" as in Grade 1"
+   "segment_id": "p19_s1",
+   "translation": "How Many Sweets?",
+   "reason": "consistency: 有多少块糖 -> \"sweets\" (British) as in Grade 2 Volume 2; Title Case as a title"
   },
   {
    "segment_id": "p86_s13",
    "translation": "3. Ask and answer.",
-   "reason": "consistency: 对口令 -> \"Ask and answer.\" as on page 34 (the times-table call-and-response game)"
+   "reason": "consistency: 对口令 (times-table call and response) -> \"Ask and answer.\" as on page 34"
   },
   {
    "segment_id": "p91_s6",
    "translation": "Pupil 1",
-   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage)"
+   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage); shorter"
   },
   {
    "segment_id": "p91_s7",
    "translation": "Pupil 2",
-   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage)"
+   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage); shorter"
   },
   {
    "segment_id": "p91_s8",
    "translation": "Pupil 3",
-   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage)"
+   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage); shorter"
   },
   {
    "segment_id": "p91_s9",
    "translation": "Pupil 4",
-   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage)"
+   "reason": "consistency: speaker tag 生N -> \"Pupil N\" as on page 65 (UK primary usage); shorter"
   },
   {
-   "segment_id": "p13_s3",
-   "translation": "¥0.10",
-   "reason": "consistency: 1角 -> \"¥0.10\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
+   "segment_id": "p92_s9",
+   "translation": "Pacing",
+   "reason": "consistency: 步测 (measuring by pacing) -> \"Pacing\" as in Grade 3; \"Steps\" misses the measuring sense"
   },
   {
-   "segment_id": "p13_s4",
-   "translation": "¥0.80",
-   "reason": "consistency: 8角 -> \"¥0.80\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
+   "segment_id": "p105_s22",
+   "translation": "Roses ¥5 each",
+   "reason": "consistency: price sign 玫瑰每枝5元 -> \"Roses ¥5 each\" (plural, sign style) in both volumes; shorter"
   },
   {
-   "segment_id": "p13_s5",
-   "translation": "¥0.50",
-   "reason": "consistency: 5角 -> \"¥0.50\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
+   "segment_id": "p105_s23",
+   "translation": "Carnations ¥4 each",
+   "reason": "consistency: price sign 康乃馨每枝4元 -> \"Carnations ¥4 each\" (plural, sign style) in both volumes; shorter"
   },
   {
-   "segment_id": "p13_s8",
-   "translation": "¥0.20",
-   "reason": "consistency: 2角 -> \"¥0.20\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
+   "segment_id": "p16_s29",
+   "translation": "5. Read and retell.",
+   "reason": "consistency: 读一读，讲一讲 -> \"N. Read and retell.\" (read the passage, then tell it in your own words; \"Read and tell.\" is unidiomatic)"
   },
   {
-   "segment_id": "p47_s12",
-   "translation": "¥0.80",
-   "reason": "consistency: 8角 -> \"¥0.80\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
-  },
-  {
-   "segment_id": "p47_s14",
-   "translation": "¥0.50",
-   "reason": "consistency: 5角 -> \"¥0.50\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
-  },
-  {
-   "segment_id": "p14_s41",
-   "translation": "¥1.50",
-   "reason": "consistency: 1元5角 -> \"¥1.50\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
-  },
-  {
-   "segment_id": "p14_s42",
-   "translation": "¥0.75",
-   "reason": "consistency: 7角5分 -> \"¥0.75\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
-  },
-  {
-   "segment_id": "p14_s43",
-   "translation": "¥1",
-   "reason": "consistency: 1元 -> \"¥1\": money as ¥ (¥0.80 etc.), as on the other price tags (8角 is ¥0.80 on page 17, 1元5角 ¥1.50 on pages 18 and 47)"
-  },
-  {
-   "segment_id": "p49_s8",
-   "translation": "25 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s9",
-   "translation": "28 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s10",
-   "translation": "36 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s11",
-   "translation": "17 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s12",
-   "translation": "25 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s13",
-   "translation": "86 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s14",
-   "translation": "24 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s15",
-   "translation": "30 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
-  },
-  {
-   "segment_id": "p49_s16",
-   "translation": "78 skips",
-   "reason": "consistency: rope skipping 下 -> \"N skips\" as in Grade 1 Volume 2 and the \"Family skipping contest\" heading"
+   "segment_id": "p19_s3",
+   "translation": "How many sweets in all?",
+   "reason": "consistency: 糖 -> \"sweets\" (British) to match the title \"How Many Sweets?\" on the same page"
   }
  ]
 }
