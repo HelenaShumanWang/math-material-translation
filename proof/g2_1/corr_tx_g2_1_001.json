@@ -1,0 +1,14 @@
+{"corrections": [
+{"segment_id": "p33_s0", "translation": "Unit 5 Multiplication Facts for 2–5", "reason": "inconsistent: match the Contents entry (p3) and Unit 8 '6–9'"},
+{"segment_id": "p19_s1", "translation": "How Many Candies?", "reason": "inconsistent: question lesson titles end in '?' (How Many Stickers?, How Many Days?, How Many Wheels?)"},
+{"segment_id": "p23_s0", "translation": "How Many Dots?", "reason": "inconsistent: question lesson titles end in '?' (How Many Stickers?, How Many Days?, How Many Wheels?)"},
+{"segment_id": "p29_s1", "translation": "Fold and Make", "reason": "case: lesson title in Title Case, like 'Play and Make'"},
+{"segment_id": "p26_s24", "translation": "4. Draw and explain.", "reason": "inconsistent: same 画一画，说一说 as p27 '1. Draw and explain.'; shorter"},
+{"segment_id": "p34_s2", "translation": "(1) How many cups in all?", "reason": "inconsistent: volume renders 一共 as 'in all' (next item: 'How many buttons in all?'); shrunk label"},
+{"segment_id": "p24_s9", "translation": "(2) How many bottles?", "reason": "wrong: question mark missing; parallel to '(1) How many people?'"},
+{"segment_id": "p33_s2", "translation": "5, 10, 15…", "reason": "too long: numbers as digits; shorter, label had shrunk"},
+{"segment_id": "p12_s12", "translation": "Team / Batteries", "reason": "unnatural: split corner header cell (小队 / 数量); 'Team Batteries' reads as one noun phrase"},
+{"segment_id": "p7_s0", "translation": "Autumn Trip", "reason": "too long: 38 pt box, title shrank 17 to 10.1 pt; same meaning for 秋游"},
+{"segment_id": "p31_s15", "translation": "Which shape of top spins most steadily?", "reason": "too long: removes 'spinning top ... spins' repetition; shrank to 7.8 pt; nearby text says 'the top'"},
+{"segment_id": "p35_s1", "translation": "1 pair: 2, 2 pairs: 4…", "reason": "too long: shrank 8.4 to 5.6 pt; chopsticks are clear from picture and question"}
+]}

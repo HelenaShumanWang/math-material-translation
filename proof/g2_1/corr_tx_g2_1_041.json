@@ -1,0 +1,12 @@
+{"corrections": [
+ {"segment_id": "p52_s1", "translation": "How Long Is the Classroom?", "reason": "case: lesson title, Title Case like 'Who Scores Higher?', 'How Many Wheels?'"},
+ {"segment_id": "p54_s0", "translation": "How Long Is the Desk?", "reason": "case: lesson title, Title Case"},
+ {"segment_id": "p56_s0", "translation": "How Long Is 1 Metre?", "reason": "case: lesson title, Title Case"},
+ {"segment_id": "p58_s2", "translation": "Measured", "reason": "inconsistent: same 估计/测量 column pair as p55, which uses Estimate/Measured"},
+ {"segment_id": "p66_s4", "translation": "(1) Say how you can share.", "reason": "unnatural: 'Tell how' is stilted; 'Say how' matches the volume's 说一说 wording"},
+ {"segment_id": "p66_s5", "translation": "(1) Say how you can share.", "reason": "unnatural: 'Tell how' is stilted; 'Say how' matches the volume's 说一说 wording"},
+ {"segment_id": "p67_s4", "translation": "4 in each share makes 3 shares.", "reason": "too long: '4 bananas in 1 share' is awkward and shrank (10.5 to 8.0); same meaning, shorter"},
+ {"segment_id": "p68_s2", "translation": "Share equally into 2 piles", "reason": "inconsistent: numbers as digits; shorter on a shrunk line"},
+ {"segment_id": "p70_s18", "translation": "Who makes up the most?", "reason": "too long: shrank badly (10.5 to 6.8); 'the most' is right for comparing a group, stories are clear from the task"},
+ {"segment_id": "p72_s7", "translation": "Each row:", "reason": "wrong: 每行栽 is followed by p72_s10 '4 trees.', so the old text repeated '4 trees'; box shrank (11.9 to 7.3)"}
+]}
