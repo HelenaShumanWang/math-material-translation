@@ -1,534 +1,84 @@
 {
  "corrections": [
   {
-   "segment_id": "p5_s20",
-   "translation": "Tens Ones",
-   "reason": "consistency: place-value column labels 十位/个位 -> \"Tens\"/\"Ones\" in sentence case, as elsewhere"
-  },
-  {
-   "segment_id": "p5_s21",
-   "translation": "Tens Ones",
-   "reason": "consistency: place-value column labels 十位/个位 -> \"Tens\"/\"Ones\" in sentence case, as elsewhere"
-  },
-  {
-   "segment_id": "p29_s9_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s9_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s10_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s10_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s13_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s13_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s14_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s14_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s15_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p29_s15_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s4_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s4_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s12_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s12_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s13_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s13_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s14_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s14_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s15_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s15_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s17_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p30_s17_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s8_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s8_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s9_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s9_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s11_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s11_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s12_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s12_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s14_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p31_s14_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s2_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s2_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s3_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s3_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s4_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s4_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s5_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s5_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s7_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p32_s7_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p37_s6_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p37_s6_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p37_s3_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p37_s3_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s21_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s21_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s22_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s22_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s23_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s23_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s24_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s24_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s25_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p38_s25_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p52_s9_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位介位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p52_s9_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位介位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p52_s15_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p52_s15_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p54_s11_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p54_s11_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p54_s18_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p54_s18_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p56_s7_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p56_s7_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p56_s13_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p56_s13_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p58_s9",
-   "translation": "Tens Ones",
-   "reason": "consistency: place-value column labels 十位/个位 -> \"Tens\"/\"Ones\" in sentence case, as elsewhere"
-  },
-  {
-   "segment_id": "p60_s8",
-   "translation": "Tens Ones",
-   "reason": "consistency: place-value column labels 十位/个位 -> \"Tens\"/\"Ones\" in sentence case, as elsewhere"
-  },
-  {
-   "segment_id": "p71_s24_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p71_s24_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p71_s25_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p71_s25_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p71_s26_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p71_s26_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p78_a1_p0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p78_a2_p0",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p78_a3_p0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p78_a4_p0",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p78_a5_p0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p78_a6_p0",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p81_s13",
-   "translation": "Tens Ones",
-   "reason": "consistency: place-value column labels 十位/个位 -> \"Tens\"/\"Ones\" in sentence case, as elsewhere"
-  },
-  {
-   "segment_id": "p81_s14",
-   "translation": "Tens Ones",
-   "reason": "consistency: place-value column labels 十位/个位 -> \"Tens\"/\"Ones\" in sentence case, as elsewhere"
-  },
-  {
-   "segment_id": "p87_s22_k0",
-   "translation": "Tens",
-   "reason": "consistency: place-value column label 十位个位 -> \"Tens\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p87_s22_k1",
-   "translation": "Ones",
-   "reason": "consistency: place-value column label 十位个位 -> \"Ones\" in sentence case, as in Grade 1 Volume 1"
-  },
-  {
-   "segment_id": "p5_s18",
-   "translation": "Do it and talk about it.",
-   "reason": "consistency: 做一做，说一说 -> \"Do it and talk about it.\" as in Grade 1 Volume 1 (做一做 is Do It, not Try It)"
-  },
-  {
    "segment_id": "p52_s17",
    "translation": "Let's learn.",
-   "reason": "consistency: 认一认 -> \"Let's learn.\" as on the other pages"
+   "reason": "consistency: section prompt 认一认 -> \"Let's learn.\" as in Grade 1; \"Recognise\" alone is unnatural and the added words are not in the Chinese"
   },
   {
-   "segment_id": "p54_s3",
-   "translation": "What maths questions can you ask?",
-   "reason": "consistency: 你能提出哪些数学问题 -> \"What maths questions can you ask?\" (questions, as in Grade 1 Volume 1 and \"Ask ... maths questions\" elsewhere)"
+   "segment_id": "p37_s1",
+   "translation": "1. Fill in.",
+   "reason": "consistency: 填一填 -> \"Fill in.\" as in the other exercises; shorter where the label shrank"
   },
   {
-   "segment_id": "p62_a3_p0",
-   "translation": "What maths questions can you ask?",
-   "reason": "consistency: 你能提出哪些数学问题 -> \"What maths questions can you ask?\" (questions, as in Grade 1 Volume 1)"
+   "segment_id": "p89_s2",
+   "translation": "1. Fill in.",
+   "reason": "consistency: 填一填 -> \"Fill in.\" as in the other exercises; shorter where the label shrank"
   },
   {
-   "segment_id": "p69_s2",
-   "translation": "Game rules:",
-   "reason": "consistency: 游戏规则 -> \"Game rules:\" as in Grade 1 Volume 1; shorter"
+   "segment_id": "p84_s5",
+   "translation": "2. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
   },
   {
-   "segment_id": "p87_s2",
-   "translation": "On your own",
-   "reason": "consistency: 独立思考 -> \"On your own\" as in Grade 1 Volume 1; \"Think alone\" is unnatural"
+   "segment_id": "p73_s5",
+   "translation": "5. Forest Doctor",
+   "reason": "consistency: game title 森林医生 -> \"Forest Doctor\" (Title Case, no full stop) as in Grade 1 Volume 2"
   },
   {
-   "segment_id": "p88_s1",
-   "translation": "On your own",
-   "reason": "consistency: 独立思考 -> \"On your own\" as in Grade 1 Volume 1; \"Think alone\" is unnatural"
+   "segment_id": "p39_s3",
+   "translation": "Square",
+   "reason": "consistency: shape label -> \"Square\" in sentence case as the other shape labels on this page"
   },
   {
-   "segment_id": "p56_s15",
-   "translation": "Calculate and discuss.",
-   "reason": "consistency: 算一算，说一说 -> \"Calculate and discuss.\" as on the other pages"
+   "segment_id": "p39_s4",
+   "translation": "Rectangle",
+   "reason": "consistency: shape label -> \"Rectangle\" in sentence case as the other shape labels on this page"
   },
   {
-   "segment_id": "p48_s0",
-   "translation": "My Progress",
-   "reason": "consistency: recurring 我的成长足迹 -> \"My Progress\" as in Grade 1 Volume 1; shorter"
+   "segment_id": "p39_s5",
+   "translation": "Triangle",
+   "reason": "consistency: shape label -> \"Triangle\" in sentence case as the other shape labels on this page"
   },
   {
-   "segment_id": "p49_s0",
-   "translation": "Consolidate and Apply",
-   "reason": "consistency: recurring 巩固应用 -> \"Consolidate and Apply\" as in Grade 1 Volume 1; \"Review\" is reserved for 整理与复习"
+   "segment_id": "p39_i160_8_t",
+   "translation": "Circle",
+   "reason": "consistency: shape label -> \"Circle\" in sentence case as the other shape labels on this page"
   },
   {
-   "segment_id": "p7_s11",
-   "translation": "Look and say.",
-   "reason": "consistency: 看一看，说一说 -> \"Look and say.\" as in Grade 1 Volume 1; shorter"
-  },
-  {
-   "segment_id": "p16_s5",
-   "translation": "I'll record.",
-   "reason": "consistency: 我来记 -> \"I'll record.\" as in Grade 1 Volume 1; shorter where the label had to shrink"
-  },
-  {
-   "segment_id": "p68_s6",
-   "translation": "Self-Check",
-   "reason": "consistency: recurring 自我评价 -> \"Self-Check\" in Title Case as a section label, same in both volumes"
-  },
-  {
-   "segment_id": "p68_s7",
-   "translation": "How I did in this activity:",
-   "reason": "consistency: 在这次活动中，我的表现是 -> \"How I did in this activity:\" as in Grade 1 Volume 1 (a lead-in to the rating, not a question)"
+   "segment_id": "p76_s8",
+   "translation": "3. Find the pairs.",
+   "reason": "consistency: 找朋友 -> \"Find the pairs.\" as in Grade 1; \"with the same answer\" is not in the Chinese and the label shrank"
   },
   {
    "segment_id": "p19_s21",
    "translation": "I did 5 kicks.",
-   "reason": "consistency: 我踢了5下 -> \"I did 5 kicks.\" as on page 51; shorter where the label had to shrink"
+   "reason": "consistency: 我踢了N下 -> \"I did N kicks.\" as on page 51; shorter where the label shrank"
   },
   {
    "segment_id": "p19_s22",
    "translation": "I did 7 kicks.",
-   "reason": "consistency: 我踢了7下 -> \"I did 7 kicks.\" as on page 51; shorter where the label had to shrink"
+   "reason": "consistency: 我踢了N下 -> \"I did N kicks.\" as on page 51; shorter where the label shrank"
   },
   {
    "segment_id": "p19_s24",
    "translation": "I did 13 kicks.",
-   "reason": "consistency: 我踢了N下 -> \"I did N kicks.\" as for the other two speech bubbles on this page and on page 51"
+   "reason": "consistency: 我踢了N下 -> \"I did N kicks.\" as on page 51; shorter where the label shrank"
   },
   {
-   "segment_id": "p39_s1",
-   "translation": "Recognising Shapes",
-   "reason": "consistency: 认识图形 -> \"Recognising Shapes\" as the Grade 1 Volume 1 unit title; fits the same box width"
+   "segment_id": "p71_s23",
+   "translation": "Make 10, carry 1.",
+   "reason": "consistency: 满十进1 -> \"Make 10, carry 1.\" (numbers as digits) as in Grade 2"
+  },
+  {
+   "segment_id": "p94_s0",
+   "translation": "What Did You Learn This Term?",
+   "reason": "consistency: end-of-term page heading 本学期你学到了什么 -> \"What Did You Learn This Term?\" in every volume (Title Case as a heading)"
+  },
+  {
+   "segment_id": "p6_s19",
+   "translation": "5. Discuss and calculate.",
+   "reason": "consistency: 说一说，算一算 -> \"Discuss and calculate.\" as in the other volumes; shorter where the label shrank"
   }
  ]
 }
