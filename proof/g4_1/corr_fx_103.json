@@ -1,0 +1,9293 @@
+{
+"corrections": [
+{
+"segment_id": "p102_s25",
+"translation": "BLANK",
+"reason": "mind map rebuilt: label set by p102_a1"
+},
+{
+"segment_id": "p102_s26",
+"translation": "BLANK",
+"reason": "mind map rebuilt: label set by p102_a2"
+},
+{
+"segment_id": "p102_s27",
+"translation": "BLANK",
+"reason": "mind map rebuilt: label set by p102_a3"
+},
+{
+"segment_id": "p102_s28",
+"translation": "BLANK",
+"reason": "mind map rebuilt: label set by p102_a4"
+},
+{
+"segment_id": "p102_s30",
+"translation": "BLANK",
+"reason": "mind map rebuilt: label set by p102_a5"
+},
+{
+"segment_id": "p102_s31",
+"translation": "BLANK",
+"reason": "mind map rebuilt: label set by p102_a6"
+},
+{
+"segment_id": "p102_s33",
+"translation": "BLANK",
+"reason": "mind map rebuilt: label set by p102_a7"
+},
+{
+"restore": [
+118,
+587,
+302,
+662
+],
+"page": 102,
+"reason": "bring back the mind map's connecting lines (erased with the labels)"
+},
+{
+"paint": [
+154,
+603.5,
+185,
+624
+],
+"page": 102,
+"colour": [
+255,
+255,
+255
+],
+"reason": "整数 node: Chinese and oval cleared for the English label"
+},
+{
+"paint": [
+211.5,
+588.5,
+245,
+607
+],
+"page": 102,
+"colour": [
+255,
+255,
+255
+],
+"reason": "正整数 node cleared"
+},
+{
+"paint": [
+216,
+607,
+230.5,
+623.5
+],
+"page": 102,
+"colour": [
+255,
+255,
+255
+],
+"reason": "零 node cleared"
+},
+{
+"paint": [
+265,
+596.5,
+300,
+619
+],
+"page": 102,
+"colour": [
+255,
+255,
+255
+],
+"reason": "自然数 node cleared"
+},
+{
+"paint": [
+210,
+622,
+244.5,
+644
+],
+"page": 102,
+"colour": [
+255,
+255,
+255
+],
+"reason": "负整数 node cleared"
+},
+{
+"paint": [
+152,
+639.5,
+200,
+661.5
+],
+"page": 102,
+"colour": [
+255,
+255,
+255
+],
+"reason": "分数/小数 node cleared"
+},
+{
+"paint": [
+117,
+623,
+138.5,
+644
+],
+"page": 102,
+"colour": [
+255,
+255,
+255
+],
+"reason": "数 node cleared"
+},
+{
+"add": "p102_a1",
+"page": 102,
+"box": [
+154,
+608,
+185,
+620
+],
+"translation": "Integers",
+"source": "整数",
+"size": 7,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p102_a2",
+"page": 102,
+"box": [
+213,
+590,
+244,
+606
+],
+"translation": "Positive\nintegers",
+"source": "正整数",
+"size": 7,
+"align": "left",
+"color": 2301728
+},
+{
+"add": "p102_a3",
+"page": 102,
+"box": [
+217,
+609,
+229.5,
+621
+],
+"translation": "0",
+"source": "零",
+"size": 7,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p102_a4",
+"page": 102,
+"box": [
+266,
+599,
+298,
+617
+],
+"translation": "Natural\nnumbers",
+"source": "自然数",
+"size": 7,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p102_a5",
+"page": 102,
+"box": [
+104,
+627.5,
+138.5,
+640
+],
+"translation": "Numbers",
+"source": "数",
+"size": 7,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p102_a6",
+"page": 102,
+"box": [
+213,
+624,
+244,
+642
+],
+"translation": "Negative\nintegers",
+"source": "负整数",
+"size": 7,
+"align": "left",
+"color": 2301728
+},
+{
+"add": "p102_a7",
+"page": 102,
+"box": [
+153,
+641,
+199,
+660
+],
+"translation": "Fractions/\ndecimals",
+"source": "分数/小数",
+"size": 7,
+"align": "center",
+"color": 2301728
+},
+{
+"segment_id": "p107_s27",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s26",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s25",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s24",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s23",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s22",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s21",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s20",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s19",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s18",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s16",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s15",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"segment_id": "p107_s13",
+"translation": "BLANK",
+"reason": "map label re-set at one size by an add"
+},
+{
+"add": "p107_a1",
+"page": 107,
+"box": [
+272.8,
+479.5,
+334.2,
+489.7
+],
+"translation": "Children's Park",
+"source": "儿童乐园",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p107_a2",
+"page": 107,
+"box": [
+183.2,
+496,
+222.0,
+506.2
+],
+"translation": "TV Tower",
+"source": "电视塔",
+"size": 8,
+"align": "left",
+"color": 2301728
+},
+{
+"add": "p107_a3",
+"page": 107,
+"box": [
+211.1,
+506.5,
+234.9,
+516.7
+],
+"translation": "Bus 2",
+"source": "2路",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p107_a4",
+"page": 107,
+"box": [
+287.7,
+515.5,
+360.3,
+525.7
+],
+"translation": "Grandma's House",
+"source": "外婆家",
+"size": 8,
+"align": "left",
+"color": 2301728
+},
+{
+"add": "p107_a5",
+"page": 107,
+"box": [
+280.1,
+533,
+303.9,
+543.2
+],
+"translation": "Bus 4",
+"source": "4路",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p107_a6",
+"page": 107,
+"box": [
+155.1,
+557,
+178.9,
+567.2
+],
+"translation": "Bus 2",
+"source": "2路",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p107_a7",
+"page": 107,
+"box": [
+256.6,
+555.5,
+280.4,
+565.7
+],
+"translation": "Bus 3",
+"source": "3路",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p107_a8",
+"page": 107,
+"box": [
+322.7,
+569.5,
+375.6,
+579.7
+],
+"translation": "Ocean World",
+"source": "海洋世界",
+"size": 8,
+"align": "left",
+"color": 2301728
+},
+{
+"add": "p107_a9",
+"page": 107,
+"box": [
+240.2,
+577,
+299.3,
+587.2
+],
+"translation": "Radio Building",
+"source": "广播大厦",
+"size": 8,
+"align": "left",
+"color": 2301728
+},
+{
+"add": "p107_a10",
+"page": 107,
+"box": [
+141.2,
+598.5,
+191.0,
+618.3
+],
+"translation": "Department\nStore",
+"source": "百货大厦",
+"size": 8,
+"align": "left",
+"color": 2301728
+},
+{
+"add": "p107_a11",
+"page": 107,
+"box": [
+188.1,
+610.5,
+221.9,
+620.7
+],
+"translation": "Bus 3",
+"source": "3路",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p107_a12",
+"page": 107,
+"box": [
+188.1,
+626,
+221.9,
+636.2
+],
+"translation": "Bus 1",
+"source": "1路",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"add": "p107_a13",
+"page": 107,
+"box": [
+271.1,
+601,
+294.9,
+611.2
+],
+"translation": "Bus 1",
+"source": "1路",
+"size": 8,
+"align": "center",
+"color": 2301728
+},
+{
+"restore": [
+140.6,
+598.1,
+141.1,
+618.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+140.6,
+597.1,
+154.1,
+598.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+140.6,
+594.1,
+177.6,
+596.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+140.6,
+596.1,
+178.1,
+597.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+140.6,
+619.1,
+185.6,
+620
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+140.6,
+618.6,
+187.6,
+619.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+563.7,
+153.6,
+564.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+560.2,
+154.1,
+561.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+565.7,
+154.6,
+566.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+567.2,
+154.6,
+568.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+556.7,
+155.1,
+560.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+561.2,
+155.1,
+563.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+564.7,
+155.1,
+565.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+566.2,
+155.1,
+567.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+572.2,
+155.1,
+573.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+555.7,
+155.6,
+556.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+571.2,
+156.1,
+572.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+552.7,
+158.1,
+553.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+552.2,
+158.6,
+552.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+553.7,
+181.2,
+555.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+568.7,
+181.2,
+571.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+143.1,
+573.2,
+181.2,
+573.5
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+154.1,
+563.7,
+154.6,
+564.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+154.6,
+560.2,
+155.1,
+561.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+154.6,
+597.1,
+178.1,
+597.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+154.6,
+597.6,
+179.1,
+598.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+155.6,
+567.2,
+157.1,
+567.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+155.6,
+567.7,
+170.6,
+568.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+155.6,
+568.2,
+181.2,
+568.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+156.1,
+555.7,
+157.1,
+556.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+156.1,
+556.2,
+181.2,
+556.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+156.1,
+572.2,
+181.2,
+573.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+157.1,
+571.2,
+181.2,
+572.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+158.1,
+567.2,
+165.6,
+567.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+158.1,
+555.7,
+181.2,
+556.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+158.6,
+553.2,
+181.2,
+553.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+159.1,
+552.2,
+181.2,
+553.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+167.1,
+567.2,
+170.6,
+567.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+172.1,
+567.2,
+173.6,
+568.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+175.6,
+567.2,
+181.2,
+568.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+178.6,
+594.1,
+179.1,
+595.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+494.9,
+179.6,
+495.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+498.4,
+179.6,
+498.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+505.4,
+179.6,
+506.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+510.4,
+179.6,
+510.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+506.9,
+180.1,
+507.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+492.9,
+180.6,
+493.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+496.4,
+180.6,
+496.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+498.9,
+180.6,
+499.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+556.7,
+181.2,
+567.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+504.4,
+181.6,
+505.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.1,
+507.4,
+181.6,
+508.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.6,
+503.9,
+180.1,
+504.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.6,
+495.4,
+180.6,
+496.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.6,
+499.4,
+180.6,
+499.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.6,
+508.4,
+181.1,
+508.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.6,
+499.9,
+181.6,
+500.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+179.6,
+502.9,
+183.1,
+503.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+180.6,
+493.9,
+181.1,
+494.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+180.6,
+497.4,
+181.1,
+498.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+180.6,
+500.4,
+181.6,
+501.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+180.6,
+501.9,
+181.6,
+502.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+180.6,
+503.9,
+181.6,
+504.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+180.6,
+506.9,
+181.6,
+507.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.1,
+501.4,
+181.6,
+501.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.1,
+505.4,
+181.6,
+505.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.6,
+596.1,
+182.1,
+596.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.6,
+510.4,
+182.6,
+510.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.6,
+498.9,
+183.1,
+499.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.6,
+596.6,
+183.6,
+597.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.6,
+491.4,
+218,
+491.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+181.6,
+492.9,
+218,
+494.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.1,
+495.9,
+183.1,
+498.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.1,
+499.4,
+183.1,
+502.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.1,
+508.9,
+184.1,
+509.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.1,
+495.4,
+193.6,
+495.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.1,
+490.9,
+218,
+491.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.1,
+491.9,
+218,
+492.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.1,
+494.9,
+218,
+495.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.6,
+503.9,
+183.1,
+506.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.6,
+507.9,
+183.1,
+508.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.6,
+508.4,
+183.6,
+508.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+182.6,
+509.4,
+183.6,
+510.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+183.6,
+506.4,
+211.1,
+506.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+618.9,
+185.5,
+620.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+638.4,
+185.5,
+638.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+622.4,
+186.0,
+622.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+639.9,
+186.5,
+640.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+638.9,
+187.0,
+639.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+618.4,
+187.5,
+618.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+630.4,
+191.5,
+631.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+637.4,
+191.5,
+637.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+629.9,
+192.0,
+630.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+631.4,
+192.0,
+631.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+636.4,
+192.0,
+637.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+631.9,
+192.5,
+636.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+625.9,
+193.0,
+629.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+639.4,
+202.5,
+639.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+620.9,
+203.5,
+621.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+623.9,
+224.0,
+624.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+621.4,
+225.0,
+622.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+622.9,
+225.0,
+623.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184,
+625.4,
+225.0,
+625.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184.6,
+509.9,
+185.1,
+510.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184.6,
+594.1,
+186.1,
+594.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184.6,
+507.4,
+193.1,
+507.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+184.6,
+506.9,
+194.1,
+507.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.0,
+637.9,
+185.5,
+638.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.0,
+624.4,
+225.0,
+625.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.1,
+594.6,
+186.1,
+596.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.1,
+596.1,
+186.6,
+596.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.1,
+597.6,
+186.6,
+598.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.1,
+597.1,
+187.1,
+597.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.1,
+596.6,
+188.1,
+597.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.1,
+507.9,
+192.6,
+508.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+185.6,
+508.9,
+192.6,
+509.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.0,
+619.9,
+193.0,
+620.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.1,
+509.4,
+192.6,
+509.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.5,
+618.9,
+187.5,
+619.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.5,
+619.4,
+191.0,
+619.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.5,
+637.9,
+198.0,
+638.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.5,
+638.4,
+198.5,
+638.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.6,
+619.1,
+187.6,
+619.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+186.6,
+619.6,
+191.1,
+620
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+187.0,
+639.9,
+202.5,
+640.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+187.0,
+622.4,
+225.0,
+622.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+187.0,
+640.4,
+225.0,
+640.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+187.1,
+509.9,
+191.6,
+510.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+187.6,
+596.1,
+189.1,
+596.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+187.6,
+510.4,
+192.6,
+510.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+188.0,
+618.9,
+190.5,
+619.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+188.0,
+638.9,
+198.5,
+639.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+188.1,
+618.6,
+190.6,
+619.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+188.1,
+510.9,
+193.1,
+511.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+188.5,
+618.4,
+190.5,
+618.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+188.6,
+595.6,
+190.1,
+596.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+189.1,
+595.1,
+190.6,
+595.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+189.6,
+597.1,
+193.6,
+597.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+189.6,
+597.6,
+196.6,
+598.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+190.6,
+594.6,
+192.1,
+595.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+190.6,
+596.6,
+193.6,
+597.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+608.9,
+191.5,
+609.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+611.4,
+191.5,
+611.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+614.9,
+191.5,
+615.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+606.9,
+192.0,
+607.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+614.4,
+192.5,
+614.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+610.4,
+193.0,
+611.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+613.9,
+193.0,
+614.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+615.9,
+193.0,
+617.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+604.9,
+225.0,
+605.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+606.4,
+225.0,
+606.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.0,
+609.4,
+225.0,
+610.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+602.6,
+191.6,
+603.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+607.1,
+191.6,
+607.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+609.1,
+191.6,
+609.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+615.1,
+191.6,
+616.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+601.6,
+192.1,
+602.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+605.6,
+192.1,
+606.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+611.1,
+192.1,
+611.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+614.1,
+192.6,
+615.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+610.1,
+193.1,
+611.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+613.6,
+193.1,
+614.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+616.1,
+193.1,
+618.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+598.1,
+193.6,
+598.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+603.6,
+198.5,
+605.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+606.6,
+198.5,
+607.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.1,
+609.6,
+198.5,
+610.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.5,
+605.9,
+192.0,
+606.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.5,
+613.4,
+193.0,
+613.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.5,
+605.4,
+225.0,
+605.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+191.6,
+594.1,
+192.1,
+594.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.0,
+612.9,
+193.0,
+613.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.0,
+617.9,
+193.0,
+618.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.0,
+608.4,
+225.0,
+609.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.1,
+598.6,
+192.6,
+599.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.1,
+600.1,
+192.6,
+601.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.1,
+612.6,
+193.1,
+613.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.1,
+595.6,
+198.5,
+596.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.1,
+608.6,
+198.5,
+609.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.5,
+605.9,
+225.0,
+606.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.5,
+607.9,
+225.0,
+608.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.6,
+602.6,
+193.6,
+603.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.6,
+595.1,
+198.5,
+595.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.6,
+605.6,
+198.5,
+606.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+192.6,
+608.1,
+198.5,
+608.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+193.0,
+606.9,
+225.0,
+607.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+193.1,
+602.1,
+193.6,
+602.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+193.1,
+594.1,
+198.5,
+595.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+193.1,
+607.1,
+198.5,
+608.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.0,
+641.4,
+197.0,
+642.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.0,
+636.4,
+199.0,
+636.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.0,
+640.9,
+203.5,
+641.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.0,
+642.4,
+225.0,
+645.5
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.1,
+596.6,
+198.5,
+597.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.1,
+603.1,
+198.5,
+603.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.5,
+636.9,
+199.0,
+637.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.6,
+602.6,
+198.5,
+603.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+194.6,
+495.4,
+201.6,
+495.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195.0,
+637.4,
+199.0,
+637.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+511.6,
+200.0,
+512.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+512.6,
+203.0,
+513.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+512.1,
+205.0,
+512.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+514.6,
+205.5,
+515.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+515.1,
+206.5,
+516.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+513.6,
+207.0,
+514.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+516.1,
+208.0,
+517.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+506.6,
+211.0,
+507.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+517.1,
+211.5,
+518.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+518.6,
+214.0,
+519.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+519.6,
+215.0,
+520.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+523.1,
+220.0,
+524.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+521.6,
+223.5,
+522.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+521.1,
+228.0,
+521.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+520.1,
+230.0,
+520.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+520.6,
+240.0,
+521.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+522.6,
+240.0,
+523.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195,
+524.1,
+240.0,
+526.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+195.6,
+506.9,
+211.1,
+507.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.0,
+511.1,
+200.0,
+511.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.0,
+507.1,
+211.0,
+507.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.1,
+598.1,
+196.6,
+598.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.1,
+602.1,
+198.5,
+602.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.5,
+510.6,
+201.5,
+511.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.5,
+507.6,
+211.0,
+508.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.6,
+598.6,
+198.5,
+599.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.6,
+601.6,
+198.5,
+602.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.6,
+507.4,
+211.1,
+507.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+196.6,
+510.9,
+211.1,
+511.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.0,
+508.1,
+198.0,
+509.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.0,
+509.1,
+211.0,
+509.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.1,
+508.4,
+198.1,
+508.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.1,
+600.1,
+198.5,
+601.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.1,
+510.4,
+201.6,
+510.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.1,
+507.9,
+211.1,
+508.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.1,
+508.9,
+211.1,
+509.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.5,
+641.4,
+225.0,
+642.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.6,
+597.6,
+198.5,
+598.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.6,
+599.1,
+198.5,
+600.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+197.6,
+509.9,
+211.1,
+510.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+198.0,
+510.1,
+201.5,
+510.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+198.0,
+509.6,
+211.0,
+510.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+198.5,
+508.1,
+211.0,
+509.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+198.6,
+508.4,
+211.1,
+508.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+200.5,
+638.9,
+203.5,
+639.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+201.0,
+638.4,
+203.5,
+638.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+201.0,
+511.1,
+211.0,
+512.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+202.0,
+636.4,
+202.5,
+636.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+202.5,
+510.1,
+211.0,
+511.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+202.6,
+510.4,
+211.1,
+510.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+202.6,
+495.4,
+218,
+495.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+203.0,
+637.9,
+203.5,
+638.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+203.0,
+639.9,
+225.0,
+640.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+204.0,
+512.6,
+205.0,
+513.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+204.0,
+513.1,
+211.0,
+513.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+204.5,
+640.9,
+225.0,
+641.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+205.0,
+620.9,
+207.0,
+621.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+205.0,
+636.4,
+207.0,
+637.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+205.0,
+638.9,
+207.0,
+639.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+206.0,
+512.1,
+211.0,
+513.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+206.5,
+514.6,
+211.0,
+515.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+207.0,
+515.1,
+211.0,
+516.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+207.5,
+513.6,
+211.0,
+514.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+208.5,
+636.4,
+209.0,
+636.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+208.5,
+637.9,
+209.5,
+638.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+208.5,
+516.1,
+210.0,
+516.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+208.5,
+516.6,
+211.0,
+517.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+208.5,
+620.9,
+225.0,
+621.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+208.5,
+639.4,
+225.0,
+639.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+209.0,
+637.4,
+211.5,
+637.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+209.5,
+636.4,
+210.0,
+636.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+209.5,
+636.9,
+211.5,
+637.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+209.5,
+638.9,
+225.0,
+639.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+210.5,
+636.4,
+225.0,
+636.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+210.5,
+637.9,
+225.0,
+638.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+212.5,
+637.4,
+225.0,
+637.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+213.0,
+636.9,
+225.0,
+637.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+215.0,
+518.6,
+220.0,
+519.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+215.5,
+519.1,
+220.5,
+519.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+215.5,
+519.6,
+225.0,
+520.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+630.4,
+219.5,
+630.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+632.4,
+219.5,
+632.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+518.1,
+220.0,
+518.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+517.1,
+220.5,
+518.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+631.4,
+220.5,
+631.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+627.4,
+221.5,
+628.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+610.4,
+225.0,
+620.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+625.9,
+225.0,
+627.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+628.9,
+225.0,
+630.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+630.9,
+225.0,
+631.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+631.9,
+225.0,
+632.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+217.0,
+632.9,
+225.0,
+636.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+220.0,
+630.4,
+225.0,
+630.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+220.0,
+632.4,
+225.0,
+632.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+221.0,
+631.4,
+225.0,
+631.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+221.5,
+519.1,
+225.0,
+519.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+222.0,
+523.1,
+223.0,
+523.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+222.0,
+628.4,
+225.0,
+628.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+222.0,
+503.1,
+240.0,
+506.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+222.0,
+523.6,
+240.0,
+524.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+222.5,
+627.4,
+225.0,
+628.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+223.0,
+517.1,
+223.5,
+517.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+223.0,
+518.6,
+225.0,
+519.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+223.5,
+523.1,
+240.0,
+523.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+224.0,
+518.1,
+225.0,
+518.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+224.0,
+521.6,
+227.5,
+522.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+226.5,
+517.1,
+228.0,
+518.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+226.5,
+519.1,
+228.0,
+519.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+226.5,
+519.6,
+228.5,
+520.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+228.5,
+521.1,
+240.0,
+522.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+229.5,
+519.6,
+240.0,
+520.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+230.0,
+517.6,
+230.5,
+518.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+230.0,
+518.6,
+232.0,
+519.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+230.0,
+517.1,
+233.5,
+517.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+230.0,
+519.1,
+240.0,
+519.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.0,
+520.1,
+240.0,
+520.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.5,
+517.6,
+233.5,
+518.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.5,
+518.1,
+240.0,
+518.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+572.9,
+233.8,
+573.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+574.4,
+233.8,
+575.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+577.4,
+234.8,
+578.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+576.9,
+235.8,
+577.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+579.4,
+235.8,
+579.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+584.4,
+235.8,
+584.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+585.9,
+237.8,
+586.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+586.4,
+238.3,
+587.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+584.9,
+238.8,
+585.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+587.4,
+238.8,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+578.4,
+239.8,
+579.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+585.4,
+239.8,
+585.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+590.4,
+242.3,
+590.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+589.4,
+243.3,
+589.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+589.9,
+244.3,
+590.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+590.9,
+244.8,
+591.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+592.4,
+246.3,
+592.5
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+587.9,
+300,
+589.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+231.8,
+591.4,
+300,
+592.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+232.3,
+573.4,
+233.8,
+574.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+232.3,
+583.9,
+234.3,
+584.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+232.5,
+518.6,
+240.0,
+519.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+232.8,
+583.4,
+234.3,
+583.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+232.8,
+579.9,
+234.8,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+233.3,
+581.4,
+233.8,
+581.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+233.3,
+580.4,
+234.3,
+580.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+233.3,
+581.9,
+234.3,
+582.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+233.3,
+582.4,
+235.3,
+582.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+233.3,
+582.9,
+236.3,
+583.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+234.3,
+580.9,
+239.8,
+581.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+234.5,
+517.1,
+240.0,
+518.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+234.8,
+574.9,
+235.3,
+575.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+234.8,
+576.4,
+235.8,
+576.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+234.8,
+574.4,
+236.3,
+574.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+234.8,
+581.4,
+239.8,
+581.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.0,
+513.1,
+235.5,
+513.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.0,
+514.6,
+236.0,
+515.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.0,
+510.1,
+239.0,
+510.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.0,
+506.1,
+240.0,
+510.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.0,
+510.6,
+240.0,
+513.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.0,
+515.6,
+240.0,
+516.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.0,
+516.6,
+240.0,
+517.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.3,
+572.9,
+237.3,
+573.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.3,
+580.4,
+239.8,
+580.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.3,
+581.9,
+239.8,
+582.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.3,
+583.4,
+239.8,
+583.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.5,
+514.1,
+236.5,
+514.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.5,
+516.1,
+240.0,
+516.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.8,
+577.9,
+236.8,
+578.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.8,
+579.9,
+239.8,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+235.8,
+583.9,
+239.8,
+584.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.0,
+513.6,
+237.0,
+514.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.0,
+513.1,
+240.0,
+513.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.3,
+577.4,
+237.8,
+577.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.3,
+576.9,
+239.8,
+577.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.3,
+579.4,
+239.8,
+579.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.3,
+582.4,
+239.8,
+582.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.5,
+515.1,
+240.0,
+515.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.8,
+573.4,
+238.3,
+573.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+236.8,
+584.4,
+239.8,
+584.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+237.0,
+514.6,
+240.0,
+515.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+237.3,
+575.4,
+237.8,
+575.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+237.3,
+575.9,
+239.3,
+576.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+237.3,
+582.9,
+239.8,
+583.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+237.3,
+576.4,
+243.3,
+576.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+237.8,
+577.9,
+239.8,
+578.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+238.0,
+513.6,
+240.0,
+514.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+238.3,
+575.4,
+239.3,
+575.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+238.3,
+577.4,
+239.8,
+577.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+238.3,
+585.9,
+239.8,
+586.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+238.8,
+574.4,
+239.8,
+575.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+239.3,
+573.9,
+300,
+574.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+239.8,
+572.9,
+241.3,
+573.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+240.3,
+587.4,
+251.3,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+240.3,
+575.4,
+300,
+576.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+240.8,
+574.4,
+300,
+575.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+241.8,
+572.9,
+300,
+573.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+242.8,
+590.4,
+244.3,
+590.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+244.3,
+589.4,
+300,
+589.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+244.8,
+576.4,
+251.8,
+576.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+244.8,
+589.9,
+300,
+590.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+245.8,
+590.9,
+300,
+591.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+246.8,
+592.4,
+300,
+592.5
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+559.8,
+247.9,
+560.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+562.3,
+247.9,
+562.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+558.8,
+249.4,
+559.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+561.3,
+249.4,
+561.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+557.3,
+253.4,
+558.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+556.3,
+254.4,
+556.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+555.8,
+254.9,
+556.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+553.3,
+255.9,
+553.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+555.3,
+256.4,
+555.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+556.8,
+256.4,
+557.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+558.3,
+256.4,
+558.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+559.3,
+256.4,
+559.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+561.8,
+256.4,
+562.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+562.8,
+256.4,
+565.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+551.8,
+257.9,
+552.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+549.3,
+260.4,
+550.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+554.3,
+267.4,
+555.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+550.3,
+283.5,
+551.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+552.3,
+283.5,
+553.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+553.8,
+283.5,
+554.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+247.4,
+565.8,
+283.5,
+570.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+248.4,
+560.8,
+249.4,
+561.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+248.9,
+559.8,
+250.4,
+560.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+248.9,
+560.3,
+256.4,
+560.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+248.9,
+562.3,
+256.4,
+562.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+249.9,
+558.8,
+256.4,
+559.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+249.9,
+561.3,
+256.4,
+561.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+250.4,
+560.8,
+256.4,
+561.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+251.4,
+559.8,
+256.4,
+560.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+252.3,
+576.4,
+300,
+576.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+252.8,
+587.4,
+253.8,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+253.9,
+557.3,
+256.4,
+558.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+255.3,
+587.4,
+258.8,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+255.9,
+555.8,
+256.4,
+556.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+256.9,
+553.3,
+283.5,
+553.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+258.4,
+551.8,
+283.5,
+552.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+259.8,
+587.4,
+261.8,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+261.4,
+549.3,
+283.5,
+550.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+262.8,
+587.4,
+272.8,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.3,
+600.7,
+270.8,
+611.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.3,
+611.2,
+274.8,
+612.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.3,
+613.2,
+280.8,
+613.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.3,
+612.2,
+281.8,
+613.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.3,
+614.2,
+285.3,
+614.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.3,
+597.2,
+298.2,
+600.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.3,
+615.7,
+298.2,
+618.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+267.9,
+554.3,
+272.4,
+554.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+522.4,
+268.6,
+522.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+525.4,
+268.6,
+525.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+522.9,
+269.1,
+523.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+524.4,
+269.1,
+525.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+523.4,
+270.1,
+524.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+519.9,
+274.1,
+520.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+518.4,
+274.6,
+519.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+516.9,
+275.1,
+518.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+516.4,
+285.1,
+516.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+515.4,
+287.6,
+516.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+511.9,
+293.6,
+514.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+514.4,
+297.6,
+514.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.1,
+514.9,
+311.6,
+515.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.3,
+615.2,
+268.8,
+615.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.3,
+613.7,
+280.3,
+614.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.3,
+614.7,
+282.8,
+615.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.6,
+527.9,
+272.6,
+528.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.6,
+528.4,
+273.1,
+528.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.6,
+520.4,
+274.1,
+520.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.6,
+519.4,
+274.6,
+519.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+268.9,
+554.8,
+269.9,
+555.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.1,
+529.9,
+270.6,
+531.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.1,
+527.4,
+272.6,
+527.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.1,
+520.9,
+274.1,
+521.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.3,
+615.2,
+270.3,
+615.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.6,
+521.9,
+270.6,
+522.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.6,
+525.9,
+271.1,
+526.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.6,
+526.9,
+271.6,
+527.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+269.6,
+521.4,
+273.6,
+521.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+271.4,
+554.8,
+272.4,
+555.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+271.6,
+521.9,
+273.1,
+523.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+271.6,
+528.9,
+273.1,
+529.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+271.6,
+531.4,
+273.1,
+533.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+271.6,
+529.4,
+273.6,
+531.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+271.6,
+523.4,
+275.1,
+523.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+271.8,
+615.2,
+272.3,
+615.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+272.6,
+524.4,
+274.6,
+524.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+272.6,
+523.9,
+275.1,
+524.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+272.8,
+615.2,
+273.8,
+615.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+273.1,
+524.9,
+274.1,
+525.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+273.6,
+526.4,
+279.1,
+526.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+273.8,
+587.4,
+274.3,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+273.9,
+554.3,
+283.5,
+554.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.1,
+522.9,
+275.1,
+523.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.4,
+554.8,
+283.5,
+555.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+522.4,
+275.1,
+522.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+526.9,
+279.1,
+527.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+531.4,
+279.6,
+531.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+532.9,
+280.1,
+533.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+527.9,
+282.6,
+528.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+530.4,
+283.1,
+531.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+529.9,
+284.6,
+530.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+531.9,
+294.6,
+532.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.6,
+532.4,
+296.6,
+532.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+274.8,
+615.2,
+276.3,
+615.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+275.1,
+525.9,
+279.1,
+526.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+275.1,
+528.4,
+283.1,
+529.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+275.1,
+529.4,
+284.6,
+529.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+275.6,
+520.4,
+277.1,
+521.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+275.8,
+587.4,
+282.3,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+521.4,
+276.6,
+521.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+519.9,
+277.1,
+520.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+535.1,
+277.6,
+535.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+526.6,
+279.1,
+527.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+525.4,
+279.6,
+525.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+531.1,
+279.6,
+532.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+532.6,
+280.1,
+534.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+535.6,
+280.1,
+536.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+536.6,
+280.1,
+543.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+527.6,
+282.6,
+528.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+528.6,
+283.1,
+529.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+530.6,
+283.1,
+531.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+529.1,
+283.6,
+529.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+529.6,
+284.6,
+530.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+532.1,
+294.6,
+532.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+544.1,
+304.6,
+545.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+546.6,
+305.6,
+547.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+543.6,
+307.6,
+544.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+545.1,
+307.6,
+546.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.1,
+547.1,
+307.6,
+549.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.6,
+518.4,
+279.6,
+518.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.6,
+524.9,
+279.6,
+525.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+276.6,
+536.1,
+280.1,
+536.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+277.1,
+534.6,
+277.6,
+535.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+277.1,
+516.9,
+279.1,
+517.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+277.1,
+517.9,
+279.6,
+518.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+277.1,
+524.4,
+279.6,
+524.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+277.1,
+534.1,
+280.1,
+534.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+277.3,
+615.2,
+298.2,
+615.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+277.6,
+523.4,
+279.6,
+524.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+278.1,
+521.9,
+279.6,
+522.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+278.3,
+611.7,
+282.3,
+612.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+278.3,
+611.2,
+282.8,
+611.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+278.6,
+521.4,
+279.6,
+521.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+278.6,
+522.9,
+279.6,
+523.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+278.6,
+534.6,
+280.1,
+535.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+279.1,
+518.9,
+279.6,
+521.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.1,
+531.6,
+294.6,
+532.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.1,
+531.1,
+307.6,
+531.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.1,
+531.4,
+311.6,
+531.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.3,
+492.3,
+281.3,
+492.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.3,
+490.8,
+282.3,
+491.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.3,
+491.3,
+283.3,
+491.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.3,
+492.8,
+284.8,
+493.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.3,
+489.8,
+285.8,
+490.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.3,
+493.3,
+301.3,
+493.5
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.3,
+474.8,
+326.9,
+479.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.4,
+555.3,
+283.5,
+565.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+280.8,
+491.8,
+300.8,
+492.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+521.9,
+281.6,
+522.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+522.4,
+282.1,
+524.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+526.4,
+282.6,
+526.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+526.6,
+282.6,
+527.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+526.9,
+282.6,
+527.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+525.9,
+283.1,
+526.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+527.1,
+283.1,
+527.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+527.4,
+283.1,
+527.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+525.4,
+283.6,
+525.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+524.4,
+284.1,
+524.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+518.9,
+284.6,
+519.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+516.9,
+285.1,
+517.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+524.9,
+285.1,
+525.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.1,
+517.9,
+285.6,
+518.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.3,
+490.3,
+285.8,
+490.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.6,
+519.9,
+284.6,
+520.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+281.8,
+613.2,
+282.3,
+614.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+282.6,
+520.4,
+284.6,
+520.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+282.8,
+490.8,
+283.3,
+491.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+282.8,
+492.3,
+284.8,
+492.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.1,
+523.4,
+284.1,
+524.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.3,
+587.4,
+300,
+587.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.6,
+521.4,
+284.6,
+521.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.6,
+520.9,
+285.1,
+521.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.6,
+530.4,
+302.1,
+530.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.6,
+530.6,
+302.1,
+531.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.6,
+530.9,
+302.1,
+531.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.8,
+613.2,
+286.3,
+613.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+283.8,
+613.7,
+286.8,
+614.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+284.1,
+521.9,
+284.6,
+522.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+284.1,
+522.9,
+285.1,
+523.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+284.3,
+614.7,
+285.3,
+615.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+284.3,
+612.7,
+286.3,
+613.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+284.3,
+490.8,
+290.8,
+491.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+284.3,
+491.3,
+300.8,
+491.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+285.1,
+529.6,
+296.6,
+530.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+285.1,
+529.9,
+300.6,
+530.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+285.1,
+530.1,
+307.6,
+530.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+285.3,
+492.3,
+292.3,
+492.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+285.8,
+612.2,
+286.8,
+612.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.1,
+524.9,
+286.6,
+525.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.1,
+516.4,
+287.6,
+516.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.3,
+614.2,
+287.8,
+615.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.6,
+521.9,
+287.1,
+522.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.6,
+521.4,
+287.6,
+521.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.6,
+529.4,
+295.6,
+529.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.8,
+490.3,
+299.3,
+490.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+286.8,
+489.8,
+301.8,
+490.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+287.1,
+520.9,
+287.6,
+521.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+287.6,
+528.9,
+291.1,
+529.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+287.6,
+527.6,
+293.1,
+528.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+287.6,
+529.1,
+295.6,
+529.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+287.8,
+492.8,
+301.3,
+493.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.1,
+527.9,
+289.1,
+528.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.1,
+528.1,
+289.1,
+528.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.1,
+528.4,
+289.1,
+528.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.1,
+528.6,
+289.1,
+529.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.3,
+614.2,
+288.8,
+614.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.3,
+612.7,
+289.8,
+613.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.3,
+611.2,
+290.3,
+611.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.3,
+613.2,
+290.3,
+613.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.3,
+613.7,
+290.8,
+614.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.3,
+614.7,
+298.2,
+615.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+288.6,
+527.4,
+292.1,
+527.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+289.6,
+528.4,
+291.1,
+528.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+289.6,
+528.6,
+291.1,
+529.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+289.6,
+527.9,
+296.1,
+528.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+289.6,
+528.1,
+297.6,
+528.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+289.8,
+614.2,
+298.2,
+614.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+290.6,
+526.9,
+291.1,
+527.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+290.6,
+527.1,
+291.1,
+527.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+291.3,
+490.8,
+291.8,
+491.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+291.8,
+611.7,
+293.3,
+612.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+291.8,
+612.7,
+294.8,
+613.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+291.8,
+611.2,
+298.2,
+611.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+292.3,
+612.2,
+293.3,
+612.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+292.8,
+613.7,
+298.2,
+614.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+292.8,
+490.8,
+299.3,
+491.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+293.3,
+492.3,
+299.8,
+492.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+293.6,
+527.6,
+294.1,
+528.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+293.6,
+528.9,
+295.6,
+529.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+293.6,
+525.9,
+296.1,
+526.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+293.6,
+528.4,
+297.6,
+528.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+293.6,
+528.6,
+297.6,
+529.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+293.8,
+612.2,
+296.3,
+612.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.1,
+526.4,
+295.6,
+526.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.1,
+526.6,
+295.6,
+527.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.1,
+526.9,
+295.6,
+527.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.3,
+611.7,
+298.2,
+612.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.6,
+527.1,
+295.6,
+527.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.6,
+527.4,
+296.1,
+527.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.6,
+527.6,
+296.1,
+528.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.6,
+511.9,
+297.1,
+512.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.6,
+512.9,
+298.1,
+513.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+294.6,
+512.4,
+298.6,
+512.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+295.1,
+531.9,
+301.6,
+532.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+295.1,
+532.1,
+301.6,
+532.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+295.1,
+531.6,
+307.6,
+532.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+295.3,
+612.7,
+296.3,
+613.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+295.3,
+610.7,
+297.3,
+611.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+295.3,
+600.7,
+298.2,
+610.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+295.3,
+613.2,
+298.2,
+613.7
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+296.1,
+529.1,
+296.6,
+529.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+296.1,
+529.4,
+296.6,
+529.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+296.1,
+528.9,
+298.1,
+529.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+296.6,
+527.9,
+297.6,
+528.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+296.6,
+527.4,
+299.6,
+527.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+296.6,
+527.6,
+307.6,
+528.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+297.1,
+527.1,
+299.6,
+527.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+297.1,
+529.1,
+299.6,
+529.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+297.1,
+529.4,
+300.6,
+529.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+297.1,
+529.6,
+300.6,
+530.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+297.3,
+612.2,
+298.2,
+613.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+297.6,
+526.9,
+298.6,
+527.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+297.8,
+610.7,
+298.2,
+611.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+298.1,
+532.4,
+301.6,
+532.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+298.6,
+528.1,
+307.6,
+528.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+298.6,
+514.4,
+311.6,
+514.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+298.6,
+527.9,
+311.6,
+528.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+299.1,
+528.6,
+299.6,
+529.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+299.1,
+528.9,
+299.6,
+529.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+299.1,
+528.4,
+311.6,
+528.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+299.3,
+576.9,
+300,
+587.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+299.6,
+513.4,
+311.6,
+514.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+300.1,
+512.9,
+307.6,
+513.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+300.1,
+528.6,
+307.6,
+529.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+300.1,
+528.9,
+311.6,
+529.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+300.3,
+490.3,
+301.3,
+490.8
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+301.1,
+529.6,
+307.6,
+530.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+301.1,
+527.4,
+311.6,
+527.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+301.1,
+529.4,
+311.6,
+530.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+301.6,
+527.1,
+307.6,
+527.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+525.9,
+302.6,
+526.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+526.4,
+303.6,
+526.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+526.6,
+303.6,
+527.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+526.9,
+304.1,
+527.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+583.9,
+307.1,
+584.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+532.1,
+307.6,
+532.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+572.4,
+307.6,
+573.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+575.9,
+307.6,
+576.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+573.9,
+308.1,
+574.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+576.9,
+308.1,
+577.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+569.4,
+308.6,
+570.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+574.4,
+308.6,
+575.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+577.4,
+308.6,
+579.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+581.4,
+308.6,
+582.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+570.9,
+309.1,
+571.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+582.9,
+309.1,
+583.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+571.9,
+310.1,
+572.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+580.4,
+310.6,
+580.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+531.9,
+311.6,
+532.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+579.9,
+314.1,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+568.4,
+315.6,
+569.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+567.4,
+316.6,
+567.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+564.9,
+317.6,
+566.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+567.9,
+317.6,
+568.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+566.4,
+357.5,
+567.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+580.9,
+357.5,
+581.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+582.4,
+357.5,
+582.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+583.4,
+357.5,
+583.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.1,
+584.9,
+357.5,
+585.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.6,
+530.6,
+307.6,
+531.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+302.6,
+530.4,
+311.6,
+531.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+534.6,
+304.6,
+535.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+540.1,
+304.6,
+541.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+542.1,
+306.1,
+542.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+533.6,
+307.6,
+534.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+535.1,
+307.6,
+537.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+538.1,
+307.6,
+540.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+541.1,
+307.6,
+542.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.1,
+542.6,
+307.6,
+543.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.3,
+489.8,
+326.9,
+490.3
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.6,
+532.6,
+307.6,
+533.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.6,
+537.1,
+307.6,
+538.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+304.6,
+532.9,
+311.6,
+533.2
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+305.1,
+534.6,
+307.6,
+535.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+305.1,
+540.1,
+307.6,
+541.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+305.3,
+490.3,
+326.9,
+493.5
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+305.6,
+526.6,
+307.6,
+527.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+305.6,
+544.1,
+307.6,
+545.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+305.6,
+526.4,
+311.6,
+527.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+306.6,
+546.6,
+307.6,
+547.1
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+306.6,
+525.9,
+311.6,
+526.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+307.1,
+542.1,
+307.6,
+542.6
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+308.1,
+583.9,
+357.5,
+584.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+309.1,
+581.4,
+357.5,
+582.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+309.6,
+572.4,
+310.1,
+572.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+309.6,
+576.9,
+310.6,
+577.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.1,
+575.9,
+311.1,
+576.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.1,
+569.4,
+311.6,
+569.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.1,
+582.9,
+357.5,
+583.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.6,
+570.9,
+311.1,
+571.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.6,
+576.4,
+311.1,
+576.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.6,
+578.9,
+311.1,
+579.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.6,
+569.9,
+311.6,
+570.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+310.6,
+574.4,
+311.6,
+574.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+311.1,
+570.4,
+311.6,
+570.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+311.1,
+580.4,
+357.5,
+580.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+311.6,
+579.4,
+313.1,
+579.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+312.1,
+578.4,
+313.1,
+579.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+313.1,
+571.9,
+313.6,
+572.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+313.1,
+574.4,
+313.6,
+574.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+313.6,
+569.4,
+315.1,
+570.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+314.1,
+578.4,
+314.6,
+578.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+314.1,
+571.9,
+315.1,
+572.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+315.1,
+573.4,
+315.6,
+574.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+315.1,
+575.9,
+315.6,
+576.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+315.6,
+569.9,
+316.6,
+570.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+315.6,
+579.9,
+325.1,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+316.1,
+569.4,
+319.6,
+569.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+316.1,
+579.4,
+319.6,
+579.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+316.6,
+568.4,
+317.6,
+568.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+316.6,
+578.9,
+319.6,
+579.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+316.6,
+568.9,
+357.5,
+569.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.1,
+573.4,
+319.1,
+573.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.1,
+575.9,
+319.1,
+576.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.1,
+573.9,
+319.6,
+574.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.1,
+578.4,
+319.6,
+578.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.1,
+571.9,
+321.6,
+572.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.6,
+567.4,
+318.6,
+567.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.6,
+572.4,
+319.1,
+573.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+317.6,
+569.9,
+319.6,
+570.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.1,
+576.9,
+319.6,
+577.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.1,
+570.4,
+320.1,
+571.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.1,
+571.4,
+321.1,
+571.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.6,
+577.4,
+319.1,
+577.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.6,
+565.9,
+319.6,
+566.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.6,
+577.9,
+319.6,
+578.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.6,
+574.4,
+320.1,
+574.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+318.6,
+567.9,
+357.5,
+568.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+319.1,
+565.4,
+319.6,
+565.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+319.1,
+575.4,
+319.6,
+575.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+319.1,
+574.9,
+320.1,
+575.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+319.1,
+567.4,
+357.5,
+567.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+320.1,
+565.9,
+320.6,
+566.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+321.6,
+574.9,
+322.6,
+576.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+321.6,
+577.4,
+322.6,
+579.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+322.1,
+569.4,
+322.6,
+570.9
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+322.1,
+572.9,
+322.6,
+574.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+322.6,
+565.9,
+323.1,
+566.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+323.6,
+565.4,
+357.5,
+566.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+324.1,
+564.9,
+357.5,
+565.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+326.6,
+579.9,
+332.1,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+333.6,
+579.9,
+341.6,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+344.1,
+579.9,
+348.1,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"restore": [
+349.6,
+579.9,
+357.5,
+580.4
+],
+"page": 107,
+"reason": "route/grid pixels erased with the map labels, from the source (cells without lettering)"
+},
+{
+"paint": [
+232.8,
+515.2,
+234.2,
+516.4
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Bus 2 route where it ran under 路, redrawn in its pink"
+},
+{
+"paint": [
+233.8,
+514.2,
+235.2,
+515.4
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Bus 2 route under 路, redrawn"
+},
+{
+"paint": [
+315.4,
+570.6,
+316.6,
+571.95
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+314.69,
+571.85,
+315.89,
+573.2
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+313.97,
+573.1,
+315.17,
+574.45
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+313.26,
+574.35,
+314.46,
+575.7
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+312.54,
+575.6,
+313.74,
+576.95
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+311.83,
+576.85,
+313.03,
+578.2
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+311.11,
+578.1,
+312.31,
+579.45
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+310.4,
+579.35,
+311.6,
+580.7
+],
+"page": 107,
+"colour": [
+236,
+36,
+146
+],
+"reason": "Ocean World route where it ran under 海, redrawn in its pink"
+},
+{
+"paint": [
+284.1,
+525.9,
+286.1,
+530.2
+],
+"page": 107,
+"colour": [
+35,
+31,
+32
+],
+"reason": "dot at (8, 7), erased with 外婆家, redrawn"
+},
+{
+"paint": [
+283.4,
+526.5,
+286.8,
+529.6
+],
+"page": 107,
+"colour": [
+35,
+31,
+32
+],
+"reason": "dot at (8, 7), erased with 外婆家, redrawn"
+},
+{
+"paint": [
+283.1,
+527.1,
+287.1,
+529
+],
+"page": 107,
+"colour": [
+35,
+31,
+32
+],
+"reason": "dot at (8, 7), erased with 外婆家, redrawn"
+},
+{
+"paint": [
+197.4,
+635.4,
+199.2,
+637.6
+],
+"page": 107,
+"colour": [
+255,
+255,
+255
+],
+"reason": "leftover speck of 路"
+},
+{
+"paint": [
+155.4,
+597.4,
+156.9,
+599.0
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "Bus 2 route where it ran under 百 (left of Department Store), redrawn"
+},
+{
+"paint": [
+156.2,
+598.6,
+157.8,
+600.0
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "Bus 2 route under 百, redrawn"
+},
+{
+"paint": [
+157.2,
+599.6,
+159.2,
+600.8
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "Bus 2 route under 百, redrawn"
+},
+{
+"paint": [
+158.4,
+600.4,
+160.0,
+601.6
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "Bus 2 route under 百, redrawn"
+},
+{
+"paint": [
+159.2,
+601.2,
+160.4,
+619.4
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "Bus 2 route under 百货大厦 down to Miaoxiang's House, redrawn"
+},
+{
+"paint": [
+204.0,
+639.9,
+204.65,
+641.0
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+204.5,
+639.69,
+205.15,
+640.79
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+205.0,
+639.47,
+205.65,
+640.57
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+205.5,
+639.26,
+206.15,
+640.36
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+206.0,
+639.05,
+206.65,
+640.15
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+206.5,
+638.83,
+207.15,
+639.93
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+207.0,
+638.62,
+207.65,
+639.72
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+207.5,
+638.41,
+208.15,
+639.51
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+208.0,
+638.19,
+208.65,
+639.29
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+208.5,
+637.98,
+209.15,
+639.08
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+209.0,
+637.77,
+209.65,
+638.87
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+209.5,
+637.55,
+210.15,
+638.65
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+210.0,
+637.34,
+210.65,
+638.44
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+210.5,
+637.13,
+211.15,
+638.23
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+211.0,
+636.91,
+211.65,
+638.01
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+211.5,
+636.7,
+212.15,
+637.8
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+212.0,
+636.49,
+212.65,
+637.59
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+212.5,
+636.23,
+213.15,
+637.33
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+213.0,
+635.94,
+213.65,
+637.04
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+213.5,
+635.65,
+214.15,
+636.75
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+214.0,
+635.35,
+214.65,
+636.45
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+214.5,
+635.06,
+215.15,
+636.16
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+215.0,
+634.77,
+215.65,
+635.87
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+215.5,
+634.48,
+216.15,
+635.58
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+216.0,
+634.19,
+216.65,
+635.29
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+216.5,
+633.9,
+217.15,
+635.0
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+217.0,
+633.61,
+217.65,
+634.71
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+217.5,
+633.32,
+218.15,
+634.42
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"paint": [
+218.0,
+633.03,
+218.65,
+634.13
+],
+"page": 107,
+"colour": [
+226,
+61,
+138
+],
+"reason": "lower Bus 1 route under the old 1路, redrawn smooth"
+},
+{
+"segment_id": "p108_s9",
+"translation": "Must be a girl",
+"box": [
+229,
+355,
+299,
+371
+],
+"reason": "use the whole pink pill so the label matches the size of the pills below",
+"align": "center"
+},
+{
+"segment_id": "p108_s10",
+"translation": "Names of\nall school\nteachers",
+"reason": "shorter lines so the box label matches its sibling box labels in size"
+},
+{
+"segment_id": "p108_s14",
+"translation": "Must be a teacher",
+"box": [
+232,
+461,
+333,
+477
+],
+"reason": "use the whole blue pill so the label matches the size of the pills above"
+}
+],
+"left": [
+{
+"page": 103,
+"issue": "Mind map (numbers): the hand-drawn ovals are not restored: the English names do not fit legibly inside them, so the connecting lines were brought back from the source and the ovals cleared; the labels now sit at the line ends as a clean line-and-label map (all 7pt)."
+}
+]
+}

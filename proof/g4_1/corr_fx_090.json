@@ -1,0 +1,37 @@
+{
+ "corrections": [
+  {"segment_id": "p89_s0", "translation": "Positive and Negative Numbers", "box": [64, 67, 250, 88], "reason": "wider box: set at 0.59 instead of 0.54"},
+  {"segment_id": "p90_s13", "translation": "(⟦0⟧) If walking ⟦1⟧ m east from home is written as ⟦2⟧ m, then walking ⟦3⟧ m west from home can be written as ____ m.", "reason": "blank and unit set with the sentence, like (2)"},
+  {"line": "p90_i360_23", "pieces": [[232, 300, "BLANK", 341, 358]], "reason": "printed blank and 米 replaced by the blank in the sentence"},
+  {"segment_id": "p90_s14", "translation": "BLANK", "reason": "re-set as an add at the size of (1) and 3."},
+  {"add": "p90_a50", "page": 90, "box": [75.1, 363.1, 466.0, 403.7], "translation": "(2) If Xiaoxiao is now at the supermarket, she walked ____ m to the ____ of her home. This can be written as ____ m.", "source": "（2）如果笑笑现在在超市，说明她从家向___行了___米，可以表示为___米。", "size": 8.642, "align": "left", "color": 2301728, "reason": "same size as (1) and 3."},
+  {"add": "p101_a40", "page": 101, "box": [388, 336, 405.3, 342.4], "translation": "Park", "source": "公园", "size": 5, "align": "center", "color": 2301728, "reason": "prize-wheel sector text (rotated Chinese) erased and set in English"},
+  {"add": "p101_a41", "page": 101, "box": [377.5, 342.4, 396, 349.5], "translation": "ticket", "source": "门票", "size": 5, "align": "center", "color": 2301728, "reason": "prize-wheel sector text (rotated Chinese) erased and set in English"},
+  {"add": "p101_a44", "page": 101, "box": [379.5, 339, 388, 342.4], "translation": "BLANK", "source": "门票", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a50", "page": 101, "box": [376, 343, 377.6, 345.5], "translation": "BLANK", "source": "票", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a45", "page": 101, "box": [411, 345.5, 420.8, 350], "translation": "BLANK", "source": "谢", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a42", "page": 101, "box": [404.5, 350, 420.8, 363], "translation": "Thank you", "source": "谢谢", "size": 5, "align": "center", "color": 2301728, "reason": "prize-wheel sector text (rotated Chinese) erased and set in English"},
+  {"add": "p101_a43", "page": 101, "box": [396, 369.6, 420.5, 378], "translation": "Try again", "source": "欢迎再来", "size": 4.5, "align": "center", "color": 2301728, "reason": "prize-wheel sector text (rotated Chinese) erased and set in English"},
+  {"add": "p101_a46", "page": 101, "box": [391.7, 378, 404, 388.3], "translation": "BLANK", "source": "欢迎", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a47", "page": 101, "box": [404, 377.8, 416, 383], "translation": "BLANK", "source": "迎再", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a52", "page": 101, "box": [396, 383, 410, 386.8], "translation": "BLANK", "source": "欢迎", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a48", "page": 101, "box": [372.3, 358, 389, 376.5], "translation": "Table tennis ticket", "source": "乒乓球比赛门票", "size": 4.5, "align": "center", "color": 2301728, "reason": "prize-wheel sector text (rotated Chinese) erased and set in English"},
+  {"add": "p101_a49", "page": 101, "box": [376, 379.5, 389.5, 385], "translation": "BLANK", "source": "票", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a54", "page": 101, "box": [389, 368, 393, 375.5], "translation": "BLANK", "source": "球", "reason": "leftover strokes of the rotated sector text"},
+  {"add": "p101_a55", "page": 101, "box": [375.5, 376.5, 389, 379.5], "translation": "BLANK", "source": "门", "reason": "leftover strokes; keeps the rim outline the larger box covered"},
+  {"paint": [390.0, 370.4, 393.1, 373.5], "page": 101, "colour": [195, 177, 152], "reason": "dark leftover of 球 beside the sector line"},
+  {"paint": [390.0, 373.5, 392.4, 376.5], "page": 101, "colour": [195, 177, 152], "reason": "dark leftover of 球 beside the sector line"},
+  {"paint": [408.0, 380.6, 412.0, 385], "page": 101, "colour": [251, 195, 134], "reason": "dark leftover of 来"},
+  {"paint": [403.8, 384.8, 406.6, 387.2], "page": 101, "colour": [250, 192, 130], "reason": "dark leftover of 再"},
+  {"paint": [420.6, 355.0, 422.4, 359.8], "page": 101, "colour": [198, 177, 152], "reason": "dark leftover of 谢 beside the hand"},
+  {"paint": [376.1, 343.7, 377.4, 346.4], "page": 101, "colour": [252, 199, 128], "reason": "dark leftover of 门"},
+  {"restore": [390.8, 377.0, 392.9, 381.3], "page": 101, "reason": "sector line the Try again erase cut"},
+  {"restore": [370.0, 374.3, 373.6, 378.6], "page": 101, "reason": "wheel rim outline the sector-text erase removed"},
+  {"restore": [373.6, 377.0, 377.4, 381.6], "page": 101, "reason": "wheel rim outline the sector-text erase removed"},
+  {"restore": [377.4, 381.6, 379.9, 384.2], "page": 101, "reason": "wheel rim outline the sector-text erase removed"}
+ ],
+ "left": [
+  {"page": 90, "issue": "Heading p89_s0 'Positive and Negative Numbers': the green sign is drawn at a fixed width (a box out to x=330 still gives the same sign), so the wider box only raises the scale from 0.54 to 0.59 (two lines); it cannot be larger without redrawing the sign."},
+  {"page": 102, "issue": "Cinema sign 光明影院 ('Guangming Cinema') stays in Chinese: it is hand-lettered character by character along a slanted green band over the watermark; erasing it left red smears and patchy green, and horizontal English would not sit on the band, so it was not changed (the bubble already says 'film tickets')."}
+ ]
+}

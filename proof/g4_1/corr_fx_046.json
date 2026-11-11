@@ -1,0 +1,652 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p45_s7",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s8",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s9",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s10",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s11",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s13",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a2",
+   "page": 45,
+   "box": [
+    268.5,
+    266,
+    279.5,
+    282
+   ],
+   "translation": "B",
+   "source": "十亿",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a3",
+   "page": 45,
+   "box": [
+    281.5,
+    266,
+    292.5,
+    282
+   ],
+   "translation": "H\nM",
+   "source": "亿",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a4",
+   "page": 45,
+   "box": [
+    294.5,
+    266,
+    305.5,
+    282
+   ],
+   "translation": "T\nM",
+   "source": "千万",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a5",
+   "page": 45,
+   "box": [
+    308,
+    266,
+    318.5,
+    282
+   ],
+   "translation": "M",
+   "source": "百万",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a6",
+   "page": 45,
+   "box": [
+    320.8,
+    266,
+    331.5,
+    282
+   ],
+   "translation": "H\nTh",
+   "source": "十万",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a7",
+   "page": 45,
+   "box": [
+    333.8,
+    266,
+    344.5,
+    282
+   ],
+   "translation": "T\nTh",
+   "source": "万",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s12_k0",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a8",
+   "page": 45,
+   "box": [
+    346.8,
+    266,
+    357.5,
+    282
+   ],
+   "translation": "Th",
+   "source": "千",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s12_k1",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a9",
+   "page": 45,
+   "box": [
+    360,
+    266,
+    370,
+    282
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s12_k2",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a10",
+   "page": 45,
+   "box": [
+    372.5,
+    266,
+    382.8,
+    282
+   ],
+   "translation": "T",
+   "source": "十",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p45_s12_k3",
+   "translation": "BLANK",
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "add": "p45_a11",
+   "page": 45,
+   "box": [
+    385.2,
+    266,
+    394.3,
+    282
+   ],
+   "translation": "O",
+   "source": "个",
+   "size": 5.8,
+   "align": "center",
+   "color": 2301728,
+   "reason": "place-value chart header: one size for every column label; labels of two or more letters stacked so they fit the narrow cells"
+  },
+  {
+   "segment_id": "p48_s0",
+   "translation": "3. Can you read the numbers below? Write the numbers given in words in figures.",
+   "reason": "the English cannot underline; names the numbers the Chinese underlines (numerals to read, word numbers to write)"
+  },
+  {
+   "add": "p48_a6",
+   "page": 48,
+   "box": [
+    152,
+    417.8,
+    220,
+    424.2
+   ],
+   "translation": "BLANK",
+   "source": "中",
+   "reason": "erase 中 on the band; name set beside the road"
+  },
+  {
+   "add": "p48_a10",
+   "page": 48,
+   "box": [
+    152,
+    426.2,
+    222,
+    434.5
+   ],
+   "translation": "Zhongshan Road",
+   "source": "中山路",
+   "size": 7,
+   "align": "center",
+   "color": 2301728,
+   "reason": "name beside its road at the size of the other road names"
+  },
+  {
+   "add": "p48_a7",
+   "page": 48,
+   "box": [
+    170,
+    461.2,
+    222,
+    467.2
+   ],
+   "translation": "BLANK",
+   "source": "南京路",
+   "reason": "band interior only"
+  },
+  {
+   "restore": [
+    170,
+    459.2,
+    222,
+    461.2
+   ],
+   "page": 48,
+   "reason": "upper outline of the Nanjing Road band erased"
+  },
+  {
+   "add": "p48_a11",
+   "page": 48,
+   "box": [
+    152,
+    469.5,
+    222,
+    478
+   ],
+   "translation": "Nanjing Road",
+   "source": "南京路",
+   "size": 7,
+   "align": "center",
+   "color": 2301728,
+   "reason": "name beside its road"
+  },
+  {
+   "add": "p48_a3",
+   "page": 48,
+   "box": [
+    324.5,
+    376.0,
+    384,
+    385.0
+   ],
+   "translation": "Huanghe Road",
+   "source": "黄河路",
+   "size": 7,
+   "align": "left",
+   "reason": "centred over the road's upper end"
+  },
+  {
+   "add": "p48_a4",
+   "page": 48,
+   "box": [
+    417,
+    376.0,
+    474,
+    385.0
+   ],
+   "translation": "Changjiang Road",
+   "source": "长江路",
+   "size": 7,
+   "align": "left",
+   "reason": "centred over the road's upper end"
+  },
+  {
+   "segment_id": "p48_s9",
+   "box": [
+    59.8,
+    361.4,
+    508,
+    375.9
+   ],
+   "reason": "one line at full size, clear of the road names set above the map"
+  },
+  {
+   "restore": [
+    198.5,
+    116.5,
+    241,
+    143
+   ],
+   "page": 50,
+   "reason": "calculator price plate: outline and slanted edges erased by a rectangle; Chinese painted over below"
+  },
+  {
+   "paint": [
+    202.0,
+    120.38,
+    208,
+    135.25
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored calculator price label"
+  },
+  {
+   "paint": [
+    208,
+    120.91,
+    214,
+    135.85
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored calculator price label"
+  },
+  {
+   "paint": [
+    214,
+    121.43,
+    220,
+    136.45
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored calculator price label"
+  },
+  {
+   "paint": [
+    220,
+    121.96,
+    226,
+    137.05
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored calculator price label"
+  },
+  {
+   "paint": [
+    226,
+    122.49,
+    232,
+    137.65
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored calculator price label"
+  },
+  {
+   "paint": [
+    232,
+    122.94,
+    237.1,
+    138.25
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored calculator price label"
+  },
+  {
+   "segment_id": "p50_s2",
+   "translation": "Calculators:\n¥⟦0⟧ each",
+   "box": [
+    202.8,
+    122.3,
+    236.6,
+    136.0
+   ],
+   "reason": "set inside the plate"
+  },
+  {
+   "restore": [
+    158.5,
+    238.5,
+    200.5,
+    266
+   ],
+   "page": 50,
+   "reason": "racket price plate: outline erased by a rectangle; Chinese painted over below"
+  },
+  {
+   "paint": [
+    162.5,
+    242.66,
+    165.5,
+    258.23
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    165.5,
+    243.09,
+    168.5,
+    258.68
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    168.5,
+    243.52,
+    171.5,
+    259.12
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    171.5,
+    243.94,
+    174.5,
+    259.57
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    174.5,
+    244.37,
+    177.5,
+    260.03
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    177.5,
+    244.8,
+    180.5,
+    260.48
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    180.5,
+    245.23,
+    183.5,
+    260.93
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    183.5,
+    245.66,
+    186.5,
+    261.38
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    186.5,
+    246.09,
+    189.5,
+    261.82
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    189.5,
+    246.52,
+    192.5,
+    262.28
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    192.5,
+    246.95,
+    195.5,
+    262.73
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "paint": [
+    195.5,
+    247.05,
+    196.2,
+    263.18
+   ],
+   "page": 50,
+   "colour": [
+    253,
+    245,
+    154
+   ],
+   "reason": "plate interior over the restored racket price label"
+  },
+  {
+   "merge": [
+    "p50_s8",
+    "p50_s7"
+   ],
+   "translation": "Rackets:\n¥35 a pair",
+   "reason": "one label set as one paragraph (was two runs in two colours); short so it fits the plate"
+  },
+  {
+   "segment_id": "p50_s8",
+   "box": [
+    163.4,
+    245.9,
+    196,
+    258.6
+   ],
+   "reason": "inside the slanted plate, clear of its outline"
+  }
+ ],
+ "left": [
+  {
+   "page": 51,
+   "issue": "Shelf price labels are still not all one size. Pencil cases and Footballs (p50_s3, p50_s9) are set at about 7.5 pt and overflow their plates. Calculators, Ballpoint pens, Pens and Rackets are about 5.5 pt, the most their slanted plates hold. The Ballpoint pens and Pens plates (p50_s4, p50_s5) still have rectangular erasures over their outlines; fixing them needs the same restore-and-paint work done here for Calculators and Rackets. The 'Buying Stationery' sign (p50_s1) reads well at its current size and was left as it is."
+  }
+ ]
+}

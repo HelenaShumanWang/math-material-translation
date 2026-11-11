@@ -1,0 +1,18 @@
+{
+ "corrections": [
+  {"segment_id": "p27_s9", "erase": [[244.0, 275.2, 249.6, 281.3], [247.4, 281.3, 250.2, 283.9], [250, 266.8, 251, 282.5], [251, 266.8, 252, 282.5], [252, 266.8, 253, 281.9], [253, 266.8, 254, 281.1], [254, 266.8, 255, 280.4], [255, 266.8, 256, 279.7], [256, 266.8, 257, 279.0], [257, 266.8, 258, 278.2], [258, 266.8, 259, 277.5], [259, 266.8, 260, 276.8], [260, 266.8, 261, 276.0], [261, 266.8, 262, 275.3], [262, 266.8, 263, 274.6], [263, 266.8, 264, 273.9], [264, 266.8, 265, 273.1], [264, 266.8, 266.2, 271.8], [262.5, 269.5, 265.3, 272.8]], "reason": "slanted 1厘米 on the upper arm"},
+  {"add": "p27_a1", "page": 27, "box": [237, 262, 261.5, 274], "translation": "1 cm", "source": "1厘米", "size": 9.5, "align": "center", "color": 3091758, "reason": "slanted label on the upper arm, set level above it"},
+  {"paint": [437.9, 148.2, 441.9, 155.4], "page": 31, "colour": [250, 186, 92], "reason": "dark stroke of 三 left on the ring road under the English"},
+  {"add": "p31_a1", "page": 31, "box": [438, 124, 442, 200], "translation": "East 3rd Ring Road", "source": "东三环", "color": 2301728, "reason": "same add, dark text: over the repainted road it was set in a pale orange"},
+  {"segment_id": "p31_s11", "box": [295, 221.8, 329.5, 229.6], "reason": "keeps the label set (it fell back to Chinese once the page carries a pixel fix)"},
+  {"segment_id": "p27_s9", "box": [250, 290.3, 274.5, 301.9], "reason": "keep 1 cm clear of the restored ruler corner"},
+  {"restore": [275, 288.5, 295, 298], "page": 27, "reason": "lower end of the ruler, cut off by the erase of the bottom 1厘米"},
+  {"paint": [279.5, 154, 307.5, 166.5], "page": 44, "colour": [42, 166, 170], "reason": "Wuhan backing wide enough for the word (the n spilled off the patch)"}
+ ],
+ "left": [
+  {
+   "page": 45,
+   "issue": "Zhengzhou and Wuhan stay at about 6 pt on their flat backings: the erased patches left of the railway (Zhengzhou, between the bubble and the line) and right of it (Wuhan) hold only that; a larger size would spill the words over mountain outlines and the patch edges, and restoring the patches brings 郑州/武汉 back."
+  }
+ ]
+}

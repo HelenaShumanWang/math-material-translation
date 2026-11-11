@@ -1,0 +1,262 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p6_s9",
+   "translation": "The \"5\" in the ones place means 5 ( ), the \"5\" in the hundreds place means ( ) ( ), and the \"5\" in the ten-thousands place means ( ) ( ).",
+   "box": [
+    240,
+    482,
+    456,
+    545
+   ],
+   "reason": "keep the English clear of the two paper clips at the top of the note"
+  },
+  {
+   "segment_id": "p7_s30",
+   "translation": "BLANK",
+   "reason": "row label reset by add p7_a50 at the size of the other headers"
+  },
+  {
+   "add": "p7_a50",
+   "page": 7,
+   "box": [
+    79.5,
+    556,
+    105,
+    566.5
+   ],
+   "translation": "Period",
+   "source": "数级",
+   "size": 6.5,
+   "align": "left",
+   "color": 0,
+   "reason": "row label at the size of the column headers"
+  },
+  {
+   "add": "p7_a2",
+   "page": 7,
+   "box": [
+    135,
+    553,
+    199,
+    567.3
+   ],
+   "translation": "Hundred millions",
+   "source": "亿级",
+   "size": 6.5,
+   "color": 0,
+   "reason": "one line at the size of the other headers; the row is labelled Period"
+  },
+  {
+   "segment_id": "p7_s32",
+   "translation": "BLANK",
+   "reason": "reset by add p7_a51"
+  },
+  {
+   "add": "p7_a51",
+   "page": 7,
+   "box": [
+    201.6,
+    553,
+    266,
+    567.3
+   ],
+   "translation": "Ten thousands",
+   "source": "万级",
+   "size": 6.5,
+   "color": 0,
+   "reason": "period header, one line, same size as the others"
+  },
+  {
+   "segment_id": "p7_s33",
+   "translation": "BLANK",
+   "reason": "reset by add p7_a52"
+  },
+  {
+   "add": "p7_a52",
+   "page": 7,
+   "box": [
+    268,
+    553,
+    345,
+    567.3
+   ],
+   "translation": "Ones",
+   "source": "个级",
+   "size": 6.5,
+   "color": 0,
+   "reason": "period header, one line, same size as the others"
+  },
+  {
+   "segment_id": "p7_s19",
+   "box": [
+    196,
+    424,
+    232.5,
+    437
+   ],
+   "reason": "room left of the bracket so the label is set at the size of the 10 times above"
+  },
+  {
+   "segment_id": "p7_s36",
+   "translation": "BLANK",
+   "reason": "row label reset by add p7_a53 at the size of the other headers"
+  },
+  {
+   "add": "p7_a53",
+   "page": 7,
+   "box": [
+    79.5,
+    586,
+    105,
+    601
+   ],
+   "translation": "Place",
+   "source": "数位",
+   "size": 6.5,
+   "align": "left",
+   "color": 0,
+   "reason": "row label at the size of the other headers"
+  },
+  {
+   "add": "p7_a40",
+   "page": 7,
+   "box": [
+    79.5,
+    628,
+    105,
+    658
+   ],
+   "translation": "Counting\nunit",
+   "source": "计数单位",
+   "size": 6.5,
+   "align": "left",
+   "color": 0,
+   "reason": "row header 计数单位, wider box so it is set at the size of the other headers"
+  },
+  {
+   "segment_id": "p9_s24",
+   "translation": "BLANK",
+   "reason": "reset by add p9_a40 so the three number words share one size"
+  },
+  {
+   "segment_id": "p9_s23_k0",
+   "translation": "BLANK",
+   "reason": "reset by add p9_a41 so the three number words share one size"
+  },
+  {
+   "segment_id": "p9_s23_k1",
+   "translation": "BLANK",
+   "reason": "reset by add p9_a42 so the three number words share one size"
+  },
+  {
+   "add": "p9_a40",
+   "page": 9,
+   "box": [
+    36,
+    531,
+    229,
+    543
+   ],
+   "translation": "five hundred and fifty-two thousand, three hundred",
+   "source": "五十五万二千三百",
+   "size": 7,
+   "align": "right",
+   "color": 2301728,
+   "reason": "Macao number words, same size as the other two"
+  },
+  {
+   "add": "p9_a41",
+   "page": 9,
+   "box": [
+    36,
+    544,
+    229,
+    561
+   ],
+   "translation": "twenty-three million, one hundred and sixty-two thousand, one hundred and twenty-three",
+   "source": "二千三百一十六万二千一百二十三",
+   "size": 7,
+   "align": "right",
+   "color": 2301728,
+   "reason": "Taiwan number words, same size as the other two"
+  },
+  {
+   "add": "p9_a42",
+   "page": 9,
+   "box": [
+    36,
+    563,
+    229,
+    580
+   ],
+   "translation": "one hundred and four million, three hundred and three thousand, one hundred and thirty-two",
+   "source": "一亿零四百三十万三千一百三十二",
+   "size": 7,
+   "align": "right",
+   "color": 2301728,
+   "reason": "Guangdong number words, same size as the other two"
+  },
+  {
+   "segment_id": "p9_s19_k0",
+   "translation": "BLANK",
+   "reason": "reset by add p9_a43 so the three period headers share one size"
+  },
+  {
+   "add": "p9_a43",
+   "page": 9,
+   "box": [
+    264,
+    481,
+    328,
+    499
+   ],
+   "translation": "Hundred millions",
+   "source": "亿级",
+   "size": 7,
+   "color": 2301728,
+   "reason": "period header, one line, same size as the other two"
+  },
+  {
+   "segment_id": "p9_s20_k0",
+   "translation": "BLANK",
+   "reason": "reset by add p9_a44 so the three period headers share one size"
+  },
+  {
+   "add": "p9_a44",
+   "page": 9,
+   "box": [
+    330,
+    481,
+    394,
+    499
+   ],
+   "translation": "Ten thousands",
+   "source": "万级",
+   "size": 7,
+   "color": 2301728,
+   "reason": "period header, one line, same size as the other two"
+  },
+  {
+   "segment_id": "p9_s21_k0",
+   "translation": "BLANK",
+   "reason": "reset by add p9_a45 so the three period headers share one size"
+  },
+  {
+   "add": "p9_a45",
+   "page": 9,
+   "box": [
+    396,
+    481,
+    461,
+    499
+   ],
+   "translation": "Ones",
+   "source": "个级",
+   "size": 7,
+   "color": 2301728,
+   "reason": "period header, one line, same size as the other two"
+  }
+ ],
+ "left": []
+}

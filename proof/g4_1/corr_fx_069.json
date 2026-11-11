@@ -1,0 +1,95 @@
+{
+ "corrections": [
+  {
+   "restore": [378.5, 153.5, 383, 162.5],
+   "page": 68,
+   "reason": "closing quote after the 馬 icon"
+  },
+  {
+   "restore": [378.5, 171.5, 383, 180.5],
+   "page": 68,
+   "reason": "closing quote after the 相 icon"
+  },
+  {
+   "segment_id": "p68_s5_k0",
+   "box": [384.3, 153, 449.5, 168],
+   "reason": "after the restored closing quote; shorter so it stays on one line",
+   "translation": "goes in an L"
+  },
+  {
+   "segment_id": "p68_s5_k1",
+   "box": [386, 170, 449.5, 189],
+   "reason": "after the restored closing quote; same verb as the first rule",
+   "translation": "goes 2 points diagonally"
+  },
+  {
+   "paint": [353, 644.5, 359, 651.5],
+   "page": 87,
+   "colour": "border",
+   "reason": "last dot of the …… left in the bubble"
+  },
+  {
+   "add": "p88_a1",
+   "page": 88,
+   "box": [112.6, 311, 151, 320.6],
+   "translation": "Tianjin −2℃",
+   "source": "天津 −2℃",
+   "size": 6.5,
+   "align": "left",
+   "reason": "map label: box tight to the Chinese glyphs so the map around Tianjin stays"
+  },
+  {
+   "restore": [100, 297, 170, 311],
+   "page": 88,
+   "reason": "map back above the Tianjin label"
+  },
+  {
+   "restore": [100, 320.6, 170, 330],
+   "page": 88,
+   "reason": "map back below the Tianjin label"
+  },
+  {
+   "restore": [100, 311, 112.6, 320.6],
+   "page": 88,
+   "reason": "map back left of the Tianjin label (the Tianjin patch)"
+  },
+  {
+   "restore": [151, 311, 170, 320.6],
+   "page": 88,
+   "reason": "map back right of the Tianjin label"
+  },
+  {
+   "segment_id": "p88_s6",
+   "translation": "Changchun −8℃",
+   "box": [150.4, 277, 206, 290],
+   "reason": "minus sign like the other labels; box starts where the Chinese did"
+  },
+  {
+   "restore": [136, 272, 149.4, 291],
+   "page": 88,
+   "reason": "flat patch left of the Changchun label: map back up to where 长's stroke begins"
+  },
+  {
+   "segment_id": "p88_s11",
+   "translation": "Shanghai 5℃",
+   "reason": "placeholder characters showed as a stray bar before the label; box starts where 上海 did, clear of the city",
+   "box": [145, 364.3, 190, 374.5]
+  },
+  {
+   "restore": [134, 362, 144.8, 377],
+   "page": 88,
+   "reason": "Shanghai's patch and coast back (erased with the label's margin)"
+  },
+  {
+   "restore": [150.4, 272, 215, 278.3],
+   "page": 88,
+   "reason": "map back above the Changchun label (flat strip left by the erase margin)"
+  },
+  {
+   "restore": [150.4, 287.9, 215, 292],
+   "page": 88,
+   "reason": "map back below the Changchun label"
+  }
+ ],
+ "left": []
+}
