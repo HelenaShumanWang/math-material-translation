@@ -1,0 +1,12 @@
+{"corrections": [
+{"segment_id": "p2_s15_k0", "translation": "3. 0 can make numbers huge.", "reason": "unnatural: 0可以使数无限大 means 0 can make a number as big as you like; 'makes numbers endless' is unclear"},
+{"segment_id": "p3_s4", "translation": "Threshing floor", "reason": "inconsistent: same label 打谷场 is 'Threshing floor' on p21"},
+{"segment_id": "p22_s1", "translation": "Count (1)", "reason": "inconsistent: companion lesson 数一数（二） is 'Count (2)'; matches 'Build (1)'"},
+{"segment_id": "p7_s9", "translation": "Remainder", "reason": "case: picture labels in sentence case, like 'Remainder 2' on p17"},
+{"segment_id": "p15_s3", "translation": "1 outfit takes 3 m of floral cloth.", "reason": "too long: text shrank; '3 m' unit style and 'floral cloth' is more natural"},
+{"segment_id": "p17_s0", "translation": "4. Going home.", "reason": "wrong: 回家 is just 'going home'; 'fly' is not in the Chinese"},
+{"segment_id": "p17_s19", "translation": "Max 3", "reason": "inconsistent: 限乘 signs elsewhere read 'Max 4 people' / 'Max 7 passengers'"},
+{"segment_id": "p20_s8", "translation": "Post office", "reason": "case: picture labels in sentence case, like 'Shopping centre' on the same map"},
+{"segment_id": "p25_s3", "translation": "What number?", "reason": "inconsistent: same label 这是多少？ is 'What number?' on p22; this one also shrank"},
+{"segment_id": "p27_s1", "translation": "Fill in and learn the place values.", "reason": "unnatural: task is about the place-value chart; 'place names' sounds like geography"}
+]}

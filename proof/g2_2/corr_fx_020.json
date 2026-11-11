@@ -1,0 +1,23 @@
+{"corrections": [
+ {"segment_id": "p19_s2", "translation": "BLANK", "reason": "set at heading size; re-set by an add at the size of the numbered instructions"},
+ {"add": "p19_a1", "page": 19, "box": [74.3, 151.5, 399.1, 176.5], "translation": "East: ___, south: ___, west: ___, north: ___.", "source": "东面有___，南面有___，西面有___，北面有___。", "size": 10.7, "align": "left", "color": 2301728, "reason": "same size as the numbered instructions around it (box taller than 2.2x size so it is not size-matched to the N/E compass labels)"},
+ {"segment_id": "p22_s17", "translation": "BLANK", "reason": "re-set by an add inside the bubble's free area"},
+ {"add": "p22_a21", "page": 22, "box": [318, 553, 408, 571.5], "translation": "10 hundreds make a thousand.", "source": "10个一百是一千", "size": 7.5, "align": "center", "color": 2301728, "reason": "two centred lines inside the bubble at the size of the other bubbles (the full-bubble box set it against the outline)"},
+ {"segment_id": "p30_s1", "translation": "BLANK", "reason": "name re-set by an add on a widened tag"},
+ {"paint": [109.9, 115.3, 153.8, 130.6], "page": 30, "colour": [246, 203, 186], "reason": "pink name tag widened so the English name fits at label size (kept inside the photo)"},
+ {"add": "p30_a5", "page": 30, "box": [109.9, 116.3, 153.8, 129.6], "translation": "Huangshan", "source": "黄山", "size": 7.3, "align": "center", "color": 2235162, "reason": "mountain name at the size of the photo captions"},
+ {"segment_id": "p30_s2", "translation": "BLANK", "reason": "name re-set by an add on a widened tag"},
+ {"paint": [214.2, 115.3, 257.9, 130.6], "page": 30, "colour": [248, 214, 198], "reason": "pink name tag widened so the English name fits at label size (kept inside the photo)"},
+ {"add": "p30_a6", "page": 30, "box": [214.2, 116.3, 257.9, 129.6], "translation": "Xiangshan", "source": "香山", "size": 7.3, "align": "center", "color": 2235162, "reason": "mountain name at the size of the photo captions"},
+ {"segment_id": "p30_s3", "translation": "BLANK", "reason": "name re-set by an add on a widened tag"},
+ {"paint": [264.4, 115.3, 308.4, 130.6], "page": 30, "colour": [246, 202, 185], "reason": "pink name tag widened to match the others (kept inside the photo)"},
+ {"add": "p30_a7", "page": 30, "box": [264.4, 116.3, 308.4, 129.6], "translation": "Taishan", "source": "泰山", "size": 7.3, "align": "center", "color": 2235162, "reason": "mountain name at the size of the photo captions"},
+ {"segment_id": "p30_s4", "translation": "BLANK", "reason": "name re-set by an add on a widened tag"},
+ {"paint": [368.5, 115.3, 412.5, 130.6], "page": 30, "colour": [246, 206, 190], "reason": "pink name tag widened to match the others (kept inside the photo)"},
+ {"add": "p30_a8", "page": 30, "box": [368.5, 116.3, 412.5, 129.6], "translation": "Huashan", "source": "华山", "size": 7.3, "align": "center", "color": 2235162, "reason": "mountain name at the size of the photo captions"},
+ {"restore": [109, 111.5, 154.6, 115.0], "page": 30, "reason": "white page above the photo: the tag's erase ran 1 pt above the photo top"},
+ {"restore": [213.4, 111.5, 258.6, 115.0], "page": 30, "reason": "white page above the photo: the tag's erase ran 1 pt above the photo top"},
+ {"restore": [263.6, 111.5, 309.2, 115.0], "page": 30, "reason": "white page above the photo: the tag's erase ran 1 pt above the photo top"},
+ {"restore": [367.7, 111.5, 413.3, 115.0], "page": 30, "reason": "white page above the photo: the tag's erase ran 1 pt above the photo top"}
+],
+"left": []}

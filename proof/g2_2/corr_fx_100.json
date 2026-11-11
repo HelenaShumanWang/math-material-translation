@@ -1,0 +1,81 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p99_s9_k0",
+   "translation": "BLANK",
+   "reason": "set as add so all four row labels share one size"
+  },
+  {
+   "segment_id": "p99_s9_k1",
+   "translation": "BLANK",
+   "reason": "same"
+  },
+  {
+   "segment_id": "p99_s9_k2",
+   "translation": "BLANK",
+   "reason": "same"
+  },
+  {
+   "segment_id": "p99_s9_k3",
+   "translation": "BLANK",
+   "reason": "same"
+  },
+  {
+   "add": "p99_a1",
+   "page": 99,
+   "box": [
+    116,
+    301,
+    152,
+    321
+   ],
+   "translation": "Car",
+   "source": "汽车",
+   "size": 9,
+   "align": "center"
+  },
+  {
+   "add": "p99_a2",
+   "page": 99,
+   "box": [
+    116,
+    327,
+    152,
+    348
+   ],
+   "translation": "Slow",
+   "source": "慢速",
+   "size": 9,
+   "align": "center"
+  },
+  {
+   "add": "p99_a3",
+   "page": 99,
+   "box": [
+    116,
+    353,
+    152,
+    374
+   ],
+   "translation": "Medium",
+   "source": "中速",
+   "size": 9,
+   "align": "center"
+  },
+  {
+   "add": "p99_a4",
+   "page": 99,
+   "box": [
+    116,
+    379,
+    152,
+    400
+   ],
+   "translation": "Fast",
+   "source": "快速",
+   "size": 9,
+   "align": "center"
+  }
+ ],
+ "left": []
+}

@@ -1,0 +1,14 @@
+{"corrections": [
+ {"segment_id": "p31_s20", "translation": "BLANK", "reason": "set at 15.3 pt beside '2. Fill' at 12 pt; replaced by an add at the size of '2. Fill'"},
+ {"add": "p31_a2", "page": 31, "box": [111.7, 619.1, 424.6, 635.5], "translation": "with > or <. Say how you compared them.", "source": "里填上“>”或“<”，说一说你是怎么比的。", "size": 12.0, "align": "left", "color": 2301728, "reason": "same size as '2. Fill' before the circle"},
+ {"segment_id": "p41_s15", "translation": "1025", "reason": "'1025 people' had to shrink to 0.63 in the narrow cell; the table is 'School Sizes', so the number alone reads clearly at full size"},
+ {"segment_id": "p41_s16", "translation": "1200", "reason": "as p41_s15: full size in the narrow cell"},
+ {"segment_id": "p41_s18", "translation": "2406", "reason": "as p41_s15: full size in the narrow cell"},
+ {"segment_id": "p41_s20", "translation": "982", "reason": "as p41_s15: full size in the narrow cell"},
+ {"segment_id": "p41_s21", "translation": "124", "reason": "as p41_s15: full size in the narrow cell"},
+ {"segment_id": "p44_s1", "translation": "We can see about three thousand stars with the naked eye. (      )", "erase": [[82, 221.3, 112.5, 224.8], [203, 205, 217, 223.5]], "reason": "source underline under 三千 sat under 'with' and the source ) stood apart; the bracket is set with the English and the underline redrawn under 'three thousand'"},
+ {"segment_id": "p44_s2", "translation": "The Pacific, the world's largest ocean, has an average depth of four thousand and twenty-eight metres. (      )", "box": [311, 192.2, 468, 244], "erase": [[393, 222, 437.5, 225], [309.5, 238.8, 353.5, 242], [421.5, 225.5, 429.5, 241]], "reason": "source underlines and the closing ) stayed at the Chinese positions; the bracket is now set with the English and the underline redrawn under the number"},
+ {"paint": [187.0, 204.0, 268.4, 204.8], "page": 44, "colour": [35, 31, 32], "reason": "underline under 'three thousand' (the source underline sat under 'with')"},
+ {"paint": [312.7, 232.0, 484.3, 232.8], "page": 44, "colour": [35, 31, 32], "reason": "underline under 'four thousand and twenty-eight' (the source underlines sat under other words)"}
+],
+"left": []}

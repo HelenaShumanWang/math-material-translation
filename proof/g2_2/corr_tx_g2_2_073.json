@@ -1,0 +1,11 @@
+{"corrections": [
+ {"segment_id": "p94_s0", "translation": "Shapes and Geometry", "reason": "inconsistent: same strand 图形与几何 is 'Shapes and Geometry' on p97"},
+ {"segment_id": "p93_s1_k1", "translation": "Number and Algebra", "reason": "unnatural: UK strand name is 'Number and Algebra'; shorter where it shrank"},
+ {"segment_id": "p95_s0_k1", "translation": "Number and Algebra", "reason": "unnatural: UK strand name is 'Number and Algebra'; shorter where it shrank"},
+ {"segment_id": "p81_s4", "translation": "___ min ___ s", "reason": "wrong: OCR artefact numbers stand for answer blanks"},
+ {"segment_id": "p87_s2", "translation": "Showing patterns", "reason": "wrong: OCR artefact '348.3.l' copied into the English"},
+ {"segment_id": "p84_s13", "translation": "___ h ___ min passed.", "reason": "wrong: duplicated '(1)' from the previous item; the Chinese has no number"},
+ {"segment_id": "p80_s0", "translation": "How Long Is 1 Minute?", "reason": "case: lesson title, Title Case like 'How Long Is 1 km?'"},
+ {"segment_id": "p84_s30", "translation": "Going home took", "reason": "unnatural: 放学路上用了 __ 分 reads 'Going home took __ min.', parallel to 'Played for __ min.'"},
+ {"segment_id": "p90_s21", "translation": "Veg only", "reason": "too long: label shrank from 17.2 to 8.8; 'Veg only' is natural UK English"}
+]}

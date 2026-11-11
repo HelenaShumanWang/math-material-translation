@@ -1,0 +1,364 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p49_s8",
+   "translation": "BLANK",
+   "reason": "re-set by p49_a1 at the size of the other sub-questions"
+  },
+  {
+   "add": "p49_a1",
+   "page": 49,
+   "box": [
+    282.3,
+    297,
+    467,
+    335
+   ],
+   "translation": "(1) What maths information can you see in the picture? Talk about it with your partner.",
+   "source": "（1）图中有哪些数学信息？和同伴说一说。",
+   "size": 9.41,
+   "align": "left",
+   "color": 2301728,
+   "reason": "same size as (3) and the other instructions"
+  },
+  {
+   "segment_id": "p49_s10",
+   "translation": "BLANK",
+   "reason": "re-set by p49_a2 at the size of the other sub-questions"
+  },
+  {
+   "add": "p49_a2",
+   "page": 49,
+   "box": [
+    282.3,
+    345,
+    467,
+    372
+   ],
+   "translation": "(2) Estimate: did the forest farm plant at least 800 trees this year?",
+   "source": "（2）估一估，林场今年植树总数够800棵吗？",
+   "size": 9.41,
+   "align": "left",
+   "color": 2301728,
+   "reason": "same size as (3) and the other instructions"
+  },
+  {
+   "add": "p49_a8",
+   "page": 49,
+   "box": [281, 334.5, 470, 347.5],
+   "translation": "BLANK",
+   "source": "",
+   "size": 9.41,
+   "align": "left",
+   "color": 2301728,
+   "reason": "cut-off strip of the watermark left between (1) and (2)"
+  },
+  {
+   "segment_id": "p49_s12",
+   "translation": "DROP",
+   "reason": "re-set by p49_a3/p49_a4 around the tree pictures at the size of (3)"
+  },
+  {
+   "segment_id": "p49_s13",
+   "translation": "DROP",
+   "reason": "re-set by p49_a5"
+  },
+  {
+   "add": "p49_a3",
+   "page": 49,
+   "box": [
+    73.7,
+    425,
+    208.5,
+    443
+   ],
+   "translation": "(4) In the 2 years, how many",
+   "source": "(4)林场两年一共植",
+   "size": 9.41,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(4) re-set around the tree pictures at the size of (3)"
+  },
+  {
+   "add": "p49_a4",
+   "page": 49,
+   "box": [
+    226,
+    425,
+    309.5,
+    443
+   ],
+   "translation": "trees in all? And",
+   "source": "多少棵？植",
+   "size": 9.41,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(4) re-set around the tree pictures at the size of (3)"
+  },
+  {
+   "add": "p49_a5",
+   "page": 49,
+   "box": [
+    336.5,
+    425,
+    380,
+    443
+   ],
+   "translation": "trees?",
+   "source": "呢？",
+   "size": 9.41,
+   "align": "left",
+   "color": 2301728,
+   "reason": "(4) re-set around the tree pictures at the size of (3)"
+  },
+  {
+   "line": "p49_i196_11",
+   "pieces": [
+    [
+     192.6,
+     202,
+     "BLANK",
+     310.9,
+     319.3
+    ],
+    [
+     221.4,
+     230.6,
+     "BLANK",
+     312.3,
+     322.4
+    ]
+   ],
+   "reason": "sign table: headers re-set in their cells, 棵 erased so the grid and tree icons stay"
+  },
+  {
+   "line": "p49_i196_12",
+   "pieces": [
+    [
+     192.1,
+     201.7,
+     "BLANK",
+     324.1,
+     334.0
+    ],
+    [
+     220.0,
+     229.8,
+     "BLANK",
+     327.9,
+     337.0
+    ]
+   ],
+   "reason": "sign table: headers re-set in their cells, 棵 erased so the grid and tree icons stay"
+  },
+  {
+   "line": "p49_i196_9",
+   "pieces": [
+    [
+     180.5,
+     199.5,
+     "BLANK",
+     297.6,
+     305.8
+    ],
+    [
+     208,
+     227.5,
+     "BLANK",
+     300.2,
+     309.8
+    ]
+   ],
+   "reason": "sign table: headers re-set in their cells, 棵 erased so the grid and tree icons stay"
+  },
+  {
+   "add": "p49_a6",
+   "page": 49,
+   "box": [
+    178.3,
+    298.6,
+    202.6,
+    305.4
+   ],
+   "translation": "Last year",
+   "source": "去年",
+   "size": 6,
+   "align": "center",
+   "color": 2301728,
+   "reason": "sign table header in its own cell, grid and tree icons kept"
+  },
+  {
+   "add": "p49_a7",
+   "page": 49,
+   "box": [
+    204.6,
+    301.8,
+    232.6,
+    309.4
+   ],
+   "translation": "This year",
+   "source": "今年",
+   "size": 6,
+   "align": "center",
+   "color": 2301728,
+   "reason": "sign table header in its own cell, grid and tree icons kept"
+  },
+  {
+   "restore": [
+    177.8,
+    306.0,
+    191.5,
+    307.9
+   ],
+   "page": 49,
+   "reason": "header-row border under Last year erased with the bottom stroke of 去"
+  },
+  {
+   "segment_id": "p54_s4",
+   "translation": "BLANK",
+   "reason": "re-set by p54_a1 at the size of 1., 3. and 4. (the line's own fit set it larger)"
+  },
+  {
+   "add": "p54_a1",
+   "page": 54,
+   "box": [
+    56.9,
+    230,
+    300,
+    248
+   ],
+   "translation": "2. Write >, < or = in each ○.",
+   "source": "2.在○里填上“>”“<”或“=”。",
+   "size": 11.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "same size as 1., 3. and 4.; the circle picture carried specks of the Chinese beside it and was clipped, a text circle stands in"
+  },
+  {
+   "segment_id": "p56_s10",
+   "translation": "BLANK",
+   "reason": "H re-set by p56_a16 like the T and O cells"
+  },
+  {
+   "segment_id": "p56_s11",
+   "translation": "BLANK",
+   "reason": "H re-set by p56_a17 like the T and O cells"
+  },
+  {
+   "segment_id": "p56_s12",
+   "translation": "BLANK",
+   "reason": "H sat at the left of its cell; re-set by p56_a18"
+  },
+  {
+   "segment_id": "p56_s22",
+   "translation": "BLANK",
+   "reason": "H smaller than the others; re-set by p56_a19"
+  },
+  {
+   "segment_id": "p56_s23",
+   "translation": "BLANK",
+   "reason": "H off-centre and larger; re-set by p56_a20"
+  },
+  {
+   "add": "p56_a16",
+   "page": 56,
+   "box": [
+    181.2,
+    349.5,
+    198.4,
+    359.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7.5,
+   "align": "center",
+   "reason": "hundreds cell, same size and placement as T and O",
+   "color": 2301728
+  },
+  {
+   "add": "p56_a17",
+   "page": 56,
+   "box": [
+    249.0,
+    349.5,
+    266.4,
+    359.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7.5,
+   "align": "center",
+   "reason": "hundreds cell, same size and placement as T and O",
+   "color": 2301728
+  },
+  {
+   "add": "p56_a18",
+   "page": 56,
+   "box": [
+    317.4,
+    349.5,
+    334.4,
+    359.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7.5,
+   "align": "center",
+   "reason": "hundreds cell, same size and placement as T and O",
+   "color": 2301728
+  },
+  {
+   "add": "p56_a19",
+   "page": 56,
+   "box": [
+    254.8,
+    542.5,
+    271.0,
+    552.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7.5,
+   "align": "center",
+   "reason": "hundreds cell, same size and placement as T and O",
+   "color": 2301728
+  },
+  {
+   "add": "p56_a20",
+   "page": 56,
+   "box": [
+    319.8,
+    542.5,
+    336.0,
+    552.5
+   ],
+   "translation": "H",
+   "source": "百",
+   "size": 7.5,
+   "align": "center",
+   "reason": "hundreds cell, same size and placement as T and O",
+   "color": 2301728
+  },
+  {
+   "restore": [
+    179.8,
+    346.0,
+    181.4,
+    362.0
+   ],
+   "page": 56,
+   "reason": "left border of the upper-left hundreds cell erased earlier"
+  },
+  {
+   "restore": [
+    336.1,
+    539.5,
+    337.7,
+    555.5
+   ],
+   "page": 56,
+   "reason": "H/T cell border of the lower-right frame erased by an earlier erase box"
+  }
+ ],
+ "left": []
+}

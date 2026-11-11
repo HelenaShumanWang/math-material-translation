@@ -1,0 +1,71 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p5_s6_k0",
+   "translation": "1 plate: 6",
+   "box": [
+    69.0,
+    278.4,
+    155.0,
+    300.5
+   ],
+   "reason": "same size for the three lines of the bubble"
+  },
+  {
+   "segment_id": "p5_s6_k1",
+   "translation": "2 plates: 12",
+   "box": [
+    69.0,
+    303.6,
+    155.0,
+    325.7
+   ],
+   "reason": "same size for the three lines of the bubble"
+  },
+  {
+   "segment_id": "p5_s6_k2",
+   "translation": "3 plates: 18",
+   "box": [
+    69.0,
+    328.5,
+    155.0,
+    350.6
+   ],
+   "reason": "same size for the three lines of the bubble"
+  },
+  {
+   "segment_id": "p8_s9",
+   "translation": "2. Build this",
+   "reason": "the tree picture stays in place after this text: '2. Build this [tree] with sticks.'"
+  },
+  {
+   "segment_id": "p8_s10",
+   "translation": "with sticks. Try it and fill in.",
+   "clip": [
+    152.8,
+    330.0,
+    310.0,
+    356.0
+   ],
+   "box": [
+    155.0,
+    337.5,
+    330.0,
+    351.0
+   ],
+   "reason": "keep the tree picture in the scan, erase only the Chinese after it (with its comma)"
+  },
+  {
+   "segment_id": "p12_s3",
+   "translation": "22",
+   "box": [
+    192.5,
+    192.2,
+    212.0,
+    206.4
+   ],
+   "reason": "'22 flowers' only fits the small pill at about half size; the number alone sits at a readable size, centred, with the flowers pictured right above and the questions saying flowers"
+  }
+ ],
+ "left": []
+}

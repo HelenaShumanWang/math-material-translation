@@ -1,0 +1,21 @@
+{"corrections": [
+{"segment_id": "p39_s12", "translation": "1 km = 1000 m", "reason": "wrong: missing space after the equals sign"},
+{"segment_id": "p40_s7", "translation": "about 800 (", "reason": "inconsistent: space before bracket, as in 'about 120 (' on the same page"},
+{"segment_id": "p41_s12", "translation": "Number of pupils", "reason": "unnatural: 'School Sizes' is Chinglish for 学校人数; the page's question says 'pupils'; sentence case like 'Number of votes'"},
+{"segment_id": "p41_s4", "translation": "N", "reason": "inconsistent: compass label is 'N' throughout the volume; 12 pt box"},
+{"segment_id": "p41_s6", "translation": "E", "reason": "inconsistent: compass label is 'E' throughout the volume; 10 pt box"},
+{"segment_id": "p43_s11", "translation": "N", "reason": "inconsistent: compass label is 'N' throughout the volume; text shrank in 11 pt box"},
+{"segment_id": "p43_s12", "translation": "E", "reason": "inconsistent: compass label is 'E' throughout the volume; 10 pt box"},
+{"segment_id": "p45_s11", "translation": "12. Estimate, measure and talk.", "reason": "inconsistent: 说一说 is 'talk' elsewhere in this volume ('Think and talk.', 'Fill in and talk.')"},
+{"segment_id": "p47_s12", "translation": "Mon", "reason": "too long: 32 pt box, text shrank; weekday tables use 'Mon'"},
+{"segment_id": "p47_s13", "translation": "Tue", "reason": "too long: 31 pt box, text shrank; weekday tables use 'Tue'"},
+{"segment_id": "p47_s14", "translation": "Wed", "reason": "too long: 31 pt box, text shrank; weekday tables use 'Wed'"},
+{"segment_id": "p47_s15", "translation": "Thu", "reason": "too long: 29 pt box, text shrank; weekday tables use 'Thu'"},
+{"segment_id": "p47_s16", "translation": "Fri", "reason": "too long: 30 pt box, text shrank; weekday tables use 'Fri'"},
+{"segment_id": "p48_s6", "translation": "Class 1", "reason": "unnatural: no brackets in English; page text says 'Class 1 and Class 2'"},
+{"segment_id": "p48_s7", "translation": "Class 2", "reason": "unnatural: no brackets in English; page text says 'Class 1 and Class 2'"},
+{"segment_id": "p48_s8", "translation": "Class 3", "reason": "unnatural: no brackets in English; matches 'Class 1' and 'Class 2'"},
+{"segment_id": "p52_s3", "translation": "Books", "reason": "inconsistent: 数量/unit headers name the thing counted ('Batteries', 'Eggs'); 'Number' alone is vague"},
+{"segment_id": "p71_s16", "translation": "What do you notice?", "reason": "unnatural: 你发现了什么 is 'What do you notice?' elsewhere in this volume (p8) and in UK primary maths"},
+{"segment_id": "p65_s3", "translation": "These are all angles.", "reason": "inconsistent: full sentence; matches 'These are all right angles.' on p69"}
+]}

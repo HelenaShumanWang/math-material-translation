@@ -1,0 +1,26 @@
+{
+ "corrections": [
+  {"paint": [296.2, 539.5, 298.1, 558.1], "page": 61, "colour": [255, 255, 255], "reason": "move the high-jump table's column divider right so the names fit"},
+  {"paint": [296.2, 559.3, 298.1, 577.8], "page": 61, "colour": [255, 255, 255], "reason": "move divider"},
+  {"paint": [296.2, 579.1, 298.1, 597.3], "page": 61, "colour": [255, 255, 255], "reason": "move divider"},
+  {"paint": [310.6, 539.0, 311.4, 598.0], "page": 61, "colour": [112, 206, 240], "reason": "new column divider of the high-jump table, further right so the names fit on one line"},
+  {"segment_id": "p61_s19_k1", "translation": "Xiaoliang", "box": [264.5, 541.4, 310.0, 557.0], "reason": "name on one line in the widened cell"},
+  {"segment_id": "p61_s19_k3", "translation": "Xiaogang", "box": [264.5, 561.3, 310.0, 575.7], "reason": "name on one line in the widened cell"},
+  {"segment_id": "p61_s19_k5", "translation": "Xiaoqiang", "box": [264.5, 581.1, 310.0, 595.3], "reason": "name on one line in the widened cell"},
+  {"segment_id": "p61_s19_k2", "translation": "105 cm", "box": [312.8, 541.1, 353.3, 556.7], "reason": "value cell after the divider moved"},
+  {"segment_id": "p61_s19_k4", "translation": "95 cm", "box": [312.8, 561.3, 353.3, 576.0], "reason": "value cell after the divider moved"},
+  {"segment_id": "p61_s19_k6", "translation": "101 cm", "box": [312.8, 581.1, 353.3, 595.6], "reason": "value cell after the divider moved"},
+  {"segment_id": "p64_s12", "translation": "BLANK", "reason": "Gate 2 hint re-set line by line below, at the Gate 1 hint's size and line spacing (the merged paragraph kept a 1.2 line height)"},
+  {"paint": [200.0, 440.5, 214.0, 456.5], "page": 64, "colour": [198, 231, 248], "reason": "door knob left as a grey patch behind 'shown' after the Gate 2 hint line was erased; flat door colour"},
+  {"add": "p64_a1", "page": 64, "box": [88.7, 395.3, 296.0, 410.5], "translation": "Code hint: Pick any three different digits", "source": "密码提示：从0~9中任选三个不同的", "size": 9.03, "align": "left", "color": 2235676, "reason": "Gate 2 hint set line by line at the Gate 1 hint's size and line spacing; boxes touch so no strips of watermark or knob show between them"},
+  {"add": "p64_a2", "page": 64, "box": [88.7, 410.5, 296.0, 425.75], "translation": "from 0 to 9. Make the largest and the", "source": "数，组成最大的数和最小的数后", "size": 9.03, "align": "left", "color": 2235676, "reason": "Gate 2 hint set line by line at the Gate 1 hint's size and line spacing"},
+  {"add": "p64_a3", "page": 64, "box": [88.7, 425.75, 296.0, 441.0], "translation": "smallest numbers with them and subtract.", "source": "再相减，像下面这样做下去，", "size": 9.03, "align": "left", "color": 2235676, "reason": "Gate 2 hint set line by line at the Gate 1 hint's size and line spacing"},
+  {"add": "p64_a4", "page": 64, "box": [88.7, 441.0, 296.0, 456.2], "translation": "Keep going like this, as shown below, and", "source": "你会发现第二道门的密码。", "size": 9.03, "align": "left", "color": 2235676, "reason": "Gate 2 hint set line by line at the Gate 1 hint's size and line spacing"},
+  {"add": "p64_a5", "page": 64, "box": [88.7, 456.2, 296.0, 471.4], "translation": "you will find the code for the second gate.", "source": "", "size": 9.03, "align": "left", "color": 2235676, "reason": "Gate 2 hint set line by line at the Gate 1 hint's size and line spacing"},
+  {"segment_id": "p78_s7_k1", "translation": "The clock face has __ large divisions and __ small divisions.", "box": [75.4, 416.0, 505.0, 434.5], "reason": "lines of the exercise moved up a little to make room for the last sentence on two lines"},
+  {"segment_id": "p78_s7_k2", "translation": "1 large division for the hour hand is __ hour.", "box": [75.4, 438.5, 505.0, 457.0], "reason": "moved up a little; same left edge as the other lines"},
+  {"segment_id": "p78_s7_k3", "translation": "1 small division for the minute hand is __ minute; 1 large one is __ minutes.", "box": [75.4, 461.0, 505.0, 479.5], "reason": "moved up a little; same left edge as the other lines"},
+  {"segment_id": "p78_s7_k4", "translation": "When the hour hand moves 1 large division, the minute hand makes exactly __ full turn.", "box": [75.4, 483.5, 505.0, 514.0], "reason": "restore 'exactly' (正好); two lines at the size of the other lines instead of one shrunk line"}
+ ],
+ "left": []
+}

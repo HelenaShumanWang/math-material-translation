@@ -1,0 +1,11 @@
+{"corrections": [
+ {"segment_id": "p82_s5", "translation": "(1) 1 lesson is", "box": [75.4, 213.5, 155, 228.5], "reason": "row 4(1) set at one size"},
+ {"segment_id": "p82_s6", "translation": "min, break is", "box": [175, 215.3, 266.7, 227.6], "reason": "row 4(1) set at one size: box height matches the first part"},
+ {"segment_id": "p82_s7", "translation": "min, plus", "box": [286.3, 214, 370, 227.5], "reason": "row 4(1) set at one size"},
+ {"segment_id": "p82_s8", "translation": "min makes 1 hour.", "box": [386.1, 214, 500, 227.5], "reason": "row 4(1) set at one size"},
+ {"segment_id": "p82_s9", "box": [75.7, 238.4, 314, 256.3], "reason": "keep 'turns' off the answer box after the row 4(1) relayout"},
+ {"segment_id": "p84_s13", "box": [271, 335.2, 411, 349.2], "reason": "room in the cell so it is set at the size of its sibling (1) ___ min passed. (11pt)"}
+],
+"left": [
+ {"page": 99, "issue": "p98_s7_k1 'About 60 ( ) an hour.' is at 0.74 of its OCR size, but all four picture-cell labels in the row (p98_s7_k0/k1/k2, p98_s8) are already set at one size (7.8pt), so the row is consistent. The cell is about 100pt wide and the line already fills about 95pt; a larger size needs a shorter sentence that would drop 'About' or the answer space. Left as it is."}
+]}

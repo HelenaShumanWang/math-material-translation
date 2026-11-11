@@ -1,0 +1,16 @@
+{
+ "corrections": [
+  {"segment_id": "p79_s29_k1", "box": [101, 577, 150, 596], "reason": "bubble interior, clear of its outline: the small cloud only holds the two lines at about 0.66; larger boxes (0.73 and up) push 'time'/'it?' over the bubble outline"},
+  {"segment_id": "p80_s6", "translation": "⟦0⟧ min = _____ s", "box": [214, 331, 311, 349], "reason": "unit symbols as in the source equation (分/秒) and as used on the next page; fits the plate at full size with room to write (was 0.58)"},
+  {"segment_id": "p81_s25", "translation": "BLANK", "reason": "set as p81_a90: the tick box beside it was read as text '00' from x 291.7 and squeezed the label to 0.58"},
+  {"segment_id": "p81_s26", "translation": "BLANK", "reason": "set as p81_a91: the tick box beside it was read as text '00' from x 423.2 and squeezed the label to 0.60"},
+  {"add": "p81_a90", "page": 81, "box": [265.0, 503, 316, 519.5], "translation": "3 min", "source": "3分", "size": 10.0, "align": "left", "color": 2301728, "reason": "tick option; 10 pt fits between the hair and the tick box (the box runs into the tick box, which is restored); at 10 pt the six option labels of the exercise set at one size"},
+  {"add": "p81_a91", "page": 81, "box": [394.5, 503, 447, 519.5], "translation": "1 min", "source": "1分", "size": 10.0, "align": "left", "color": 2301728, "reason": "tick option; same size as 3 min"},
+  {"restore": [295.5, 500.5, 314.5, 521.5], "page": 81, "reason": "tick box under the p81_a90 box (no Chinese: 3分 ends at x 293.4)"},
+  {"restore": [426.5, 500.5, 446, 521.5], "page": 81, "reason": "tick box under the p81_a91 box (no Chinese: 1分 ends at x 425.2)"},
+  {"restore": [264.5, 515.2, 267.6, 520.5], "page": 81, "reason": "tip of the girl's ponytail, clipped by the p81_a90 box (no Chinese: 3分 starts at x 268)"}
+ ],
+ "left": [
+  {"page": 80, "issue": "p79_s29_k1 'What time is it?' is set at about 0.66 so that it stays inside its small cloud bubble; anything larger (the old 0.73 included) runs over the bubble outline, and 'What time?' gives no larger size either."}
+ ]
+}
