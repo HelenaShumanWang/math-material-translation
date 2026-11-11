@@ -1,0 +1,15 @@
+{"corrections": [
+{"segment_id": "p91_s0", "translation": "Growing Garlic Sprouts (2)", "reason": "inconsistent: part (1) is \"Growing Garlic Sprouts (1)\"; 栽 = growing"},
+{"segment_id": "p87_s23", "translation": "Graph of favourite TV programmes", "reason": "inconsistent: 统计图 titles are \"Graph of ...\" in sentence case"},
+{"segment_id": "p98_s2", "translation": "Graph of shuttlecock kicks", "reason": "inconsistent: 统计图 titles are \"Graph of ...\" in sentence case; shorter"},
+{"segment_id": "p98_s9", "translation": "(1) Explain how you drew the bar graph.", "reason": "inconsistent: 条形统计图 is \"bar graph\" in this volume"},
+{"segment_id": "p95_s19", "translation": "(2) Draw a graph from the table.", "reason": "inconsistent: 统计图 is \"graph\" in this volume"},
+{"segment_id": "p97_s44", "translation": "(2) Draw a graph from the table.", "reason": "inconsistent: 统计图 is \"graph\" in this volume"},
+{"segment_id": "p86_s16", "translation": "This makes a", "reason": "unnatural: \"Drawn, it is a\" is awkward; shorter where the label shrank"},
+{"segment_id": "p90_s3_k0", "translation": "Average monthly rainfall, March to August", "reason": "unnatural: months are named in English, not numbered"},
+{"segment_id": "p105_s20", "translation": "Age/years", "reason": "inconsistent: other 年龄/岁 axis labels are \"Age/years\""},
+{"segment_id": "p105_s14", "translation": "Age/years Weight/kg", "reason": "inconsistent: 年龄/岁 is \"Age/years\" elsewhere"},
+{"segment_id": "p99_s5", "translation": "3. Calculate, then explain how you did it.", "reason": "too long: shorter and more natural; label shrank to 7.9"},
+{"segment_id": "p91_s14", "translation": "Join the points in order…", "reason": "unnatural: you join the points, not each point"},
+{"segment_id": "p92_s12", "translation": "2. Environmental survey.", "reason": "unnatural: adjective form is natural"}
+]}

@@ -1,0 +1,22 @@
+{"corrections": [
+{"segment_id": "p9_s0", "translation": "Meaning of Decimals (3)", "reason": "inconsistent: Parts 1 and 2 are titled 'Meaning of Decimals (1)/(2)'"},
+{"segment_id": "p9_s16_k0", "translation": "Whole-number part", "reason": "inconsistent: UK primary term, as on p13 'whole-number part'"},
+{"segment_id": "p9_s5", "translation": "Tth", "reason": "inconsistent: neighbouring column labels abbreviated; pp13/15 use Tth/Hth"},
+{"segment_id": "p9_s6", "translation": "Hth", "reason": "too long: shrank to 6.3 in a 14 pt box; Hth matches pp13/15"},
+{"segment_id": "p9_s7", "translation": "Thth", "reason": "too long: shrank to 6.0 in a 16 pt box; matches Tth/Hth"},
+{"segment_id": "p7_s2", "translation": "Over 2 m long", "reason": "too long: shrank to 5.4; 'just' is not in the Chinese (2米多)"},
+{"segment_id": "p11_s21", "translation": "What do you notice?", "reason": "unnatural: 发现 is 'notice' on p11, natural classroom wording"},
+{"segment_id": "p25_s4", "translation": "right-angled triangle", "reason": "wrong: UK term is right-angled triangle (p27, p105)"},
+{"segment_id": "p26_s9", "translation": "right-angled triangle", "reason": "wrong: UK term is right-angled triangle (p27, p105)"},
+{"segment_id": "p34_s5", "translation": "right-angled triangle", "reason": "wrong: UK term is right-angled triangle (p27, p105)"},
+{"segment_id": "p34_s10_k0", "translation": "Two right-angled triangles: Figure", "reason": "wrong: UK term is right-angled triangle"},
+{"segment_id": "p34_s10_k2", "translation": "A right-angled and an acute triangle: Figure", "reason": "wrong: UK term is right-angled triangle; box is 290 pt wide"},
+{"segment_id": "p33_s4", "translation": "Trapezium", "reason": "wrong: UK term is trapezium (p33, p105)"},
+{"segment_id": "p34_s7", "translation": "trapezium", "reason": "wrong: UK term is trapezium (p33, p105)"},
+{"segment_id": "p30_s2", "translation": "(Unit: cm)", "reason": "inconsistent: p23 writes '(Unit: m)'"},
+{"segment_id": "p31_s6", "translation": "(Unit: cm)", "reason": "inconsistent: p23 writes '(Unit: m)'"},
+{"segment_id": "p33_s2", "translation": "2. Draw as required on the dot grid.", "reason": "inconsistent: 点子图 is 'dot grid' on p27"},
+{"segment_id": "p26_s13", "translation": "Rectangular paper", "reason": "case: same page has 'Square paper'; labels in sentence case"},
+{"segment_id": "p26_s14", "translation": "Rectangular paper", "reason": "case: same page has 'Square paper'; labels in sentence case"},
+{"segment_id": "p27_s14", "translation": "This is how we did it.", "reason": "unnatural: the group reports a method already used"}
+]}

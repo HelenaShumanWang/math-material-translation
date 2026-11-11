@@ -1,0 +1,18 @@
+{"corrections": [
+  {"segment_id": "p39_s21", "translation": "1. Fill in.", "reason": "inconsistent: 填一填 is 'Fill in.' elsewhere in the volume (pp. 55, 67, 78); also fits the shrunk box"},
+  {"segment_id": "p40_s8", "translation": "5. Forest Doctor.", "reason": "inconsistent: game title 森林医生 is 'Forest Doctor' on pp. 19 and 75"},
+  {"segment_id": "p51_s5", "translation": "Triangles", "reason": "case: picture label in sentence case starts with a capital"},
+  {"segment_id": "p53_s6", "translation": "3. Think and fill in.", "reason": "inconsistent: 想一想，填一填 is 'Think and fill in.' on p. 7"},
+  {"segment_id": "p53_s0", "translation": "Consolidate and Apply", "reason": "too long: heading shrank from 13.2 to 10.7; shorter form, same meaning"},
+  {"segment_id": "p56_s10_k1", "translation": "and draw it on grid paper.", "reason": "wrong: 画出来 (draw it) was dropped, so the task was misstated"},
+  {"segment_id": "p57_s4", "translation": "3. Think and draw on the grid paper.", "reason": "inconsistent: numbered instructions end with a full stop elsewhere"},
+  {"segment_id": "p57_s10", "translation": "4. Think and fill in.", "reason": "inconsistent: matches '2. Think and fill in.' on p. 7"},
+  {"segment_id": "p62_s1", "translation": "1. Build it following Taoqi's instructions.", "reason": "inconsistent: same instruction on p. 60 has no 'Please'; the label had shrunk"},
+  {"segment_id": "p67_s5", "translation": "I'm 20 cm taller than my sister.", "reason": "unnatural: 'Little Sister' as a name is Chinglish; shorter than before in a shrunk box and matches the 'Sister' labels"},
+  {"segment_id": "p67_s8", "translation": "Sister", "reason": "inconsistent: other diagram labels for 妹妹 on this page say 'Sister'"},
+  {"segment_id": "p67_s17", "translation": "Yao Ming's height ÷ 2 = Sister's height", "reason": "inconsistent: matches 'Sister's height × 2 = Yao Ming's height' and fixes spacing around ="},
+  {"segment_id": "p69_s4", "translation": "Pack of 4", "reason": "wrong: 4盒装 is a pack holding 4 boxes"},
+  {"segment_id": "p69_s5", "translation": "ml", "reason": "wrong: UK primary maths writes millilitres as 'ml'"},
+  {"segment_id": "p69_a90_p0", "translation": "ml", "reason": "wrong: UK primary maths writes millilitres as 'ml'"},
+  {"segment_id": "p71_s27", "translation": "8+2=10, so x=8 is correct.", "reason": "inconsistent: 对了 is 'is correct' on pp. 74 and 76"}
+]}
