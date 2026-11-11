@@ -1,0 +1,96 @@
+{
+ "corrections": [
+  {
+   "merge": [
+    "p81_s6",
+    "p81_s7"
+   ],
+   "translation": "8. A birthday cake is cut into 8 equal pieces. What fraction of the cake did the two children eat altogether? What fraction is left?",
+   "reason": "one question split by OCR; parts printed at different sizes"
+  },
+  {
+   "segment_id": "p81_s10",
+   "translation": "⟦0⟧. On the first day, Qisi read",
+   "reason": "shorter so it does not run into the fraction 2/7"
+  },
+  {
+   "segment_id": "p81_s11",
+   "translation": "of a book. On the second day he read the same amount.",
+   "reason": "reads on from p81_s10 and the fraction"
+  },
+  {
+   "merge": [
+    "p83_s9",
+    "p83_s11"
+   ],
+   "translation": "I put the same sizes together…",
+   "reason": "one sentence split over two lines, printed at different sizes"
+  },
+  {
+   "segment_id": "p83_s10",
+   "translation": "One girl wears size ⟦0⟧…",
+   "erase": [
+    [
+     424,
+     381,
+     445,
+     391
+    ]
+   ],
+   "reason": "the source ellipsis was left as stray dots in the bubble; ellipsis now in the English"
+  },
+  {
+   "segment_id": "p83_s19",
+   "translation": "Most girls wear size …, so we should stock more of those.",
+   "reason": "closer to source, natural"
+  },
+  {
+   "segment_id": "p84_s6",
+   "translation": "(⟦0⟧ stands for ⟦1⟧ vote)",
+   "reason": "the red x picture was printed and repeated as × inside the brackets"
+  },
+  {
+   "segment_id": "p86_s26",
+   "translation": "(⟦0⟧) In groups, survey how long pupils in your class sleep, make a chart and compare it with Class 3(⟦1⟧). How are the two classes' sleep times different?",
+   "reason": "last question was incomplete"
+  },
+  {
+   "merge": [
+    "p87_s10",
+    "p87_s11"
+   ],
+   "translation": "This book costs ¥12.8 and its cover is 0.23 m long…",
+   "reason": "¥12.8 was printed twice; one sentence of the bubble"
+  },
+  {
+   "segment_id": "p88_s11_k1",
+   "translation": "Trees planted this year:",
+   "reason": "'this year' was missing"
+  },
+  {
+   "segment_id": "p88_s15",
+   "translation": "⟦0⟧. Fill in and compare.",
+   "erase": [
+    [
+     172.0,
+     409.5,
+     180.0,
+     419.0
+    ]
+   ],
+   "reason": "the bottom of 比 and 。 were left under 'compare'"
+  },
+  {
+   "paint": [
+    156.5,
+    356.0,
+    162.6,
+    367.5
+   ],
+   "page": 88,
+   "colour": "border",
+   "reason": "a stroke of 类 was left after 'three' in the bird card"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,67 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s10",
+   "translation": "7. The table shows the number of pupils in each grade at Xinhua Primary School.",
+   "reason": "match the table header 'Pupils'"
+  },
+  {
+   "segment_id": "p26_s5",
+   "translation": "How do you know both halves are the same?",
+   "reason": "consistent with the partner's 'both halves'"
+  },
+  {
+   "segment_id": "p28_s8",
+   "translation": "Fold a sheet of paper in half and cut out two circles. Which one do you get when you unfold it? Think, then try it.",
+   "reason": "more natural question"
+  },
+  {
+   "segment_id": "p29_s3",
+   "translation": "3. Taoqi cut two holes in a folded sheet of paper. Which one will you get when you unfold it? Think, try it, and tick (✓) the answer.",
+   "reason": "more natural question"
+  },
+  {
+   "segment_id": "p30_s3",
+   "translation": "The flags, sliding window and box are all…",
+   "reason": "推拉窗 is a sliding window"
+  },
+  {
+   "segment_id": "p30_s8",
+   "translation": "Try making a movement that shows translation or rotation.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p31_s6",
+   "translation": "Say how the pencil and the set square can be translated to their places in Figure ③.",
+   "reason": "more natural, shorter (was shrunk)"
+  },
+  {
+   "segment_id": "p31_s11",
+   "translation": "⟦0⟧. How does each object move? Draw \"△\" for translation and \"○\" for rotation.",
+   "box": [
+    56.7,
+    402.0,
+    470.0,
+    416.7
+   ],
+   "reason": "set too small; free paper to the right"
+  },
+  {
+   "segment_id": "p31_s14",
+   "translation": "Colour the figures that fit exactly onto Figure A by translation alone.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p25_s17",
+   "translation": "(2) The museum allows at most 200 visitors per group. How should the groups be arranged?",
+   "box": [
+    70.6,
+    405.4,
+    462.0,
+    427.5
+   ],
+   "reason": "set too small; free paper to the right, like (1)"
+  }
+ ],
+ "flags": []
+}

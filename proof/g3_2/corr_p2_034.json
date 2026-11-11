@@ -1,0 +1,8 @@
+{"corrections": [
+{"segment_id": "p34_s26", "translation": "(⟦0⟧) The gymnastics team needs ⟦1⟧ large and ⟦2⟧ small tracksuits. How much will each size cost in total?", "reason": "各需要多少元 asks the total cost for each size; 'How much does each size cost?' reads as the unit price already shown; shorter than before so it is set larger"},
+{"split": "p34_s23", "translations": ["Trays", "Eggs"], "reason": "two table cells; each label in its own row"},
+{"segment_id": "p38_s20", "translation": "⟦0⟧. How many trees are there in the “Young Pioneers Forest” now?", "box": [59.2, 541.4, 440.0, 554.7], "reason": "set at sibling size over free paper to the right"},
+{"segment_id": "p39_s3", "translation": "There are ⟦0⟧ rows of seats, and each row can seat ⟦1⟧ people.", "reason": "missing full stop"},
+{"segment_id": "p40_s25", "translation": "There are many ways to multiply. Look at the calculations below. Can you understand them?", "reason": "shorter, natural; was shrunk to 0.79"},
+{"segment_id": "p40_s24", "box": [99.0, 460.0, 162.0, 477.0], "reason": "keep the title on the yellow banner and clear of the scroll roll at its right end (167 put the '?' on the roll)"}
+], "flags": []}

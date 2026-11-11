@@ -1,0 +1,50 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p11_s17",
+   "box": [
+    276.0,
+    524.5,
+    366.0,
+    539.6
+   ],
+   "reason": "set at 0.66; use the rest of the bubble"
+  },
+  {
+   "segment_id": "p11_s19",
+   "translation": "What do we do next?",
+   "reason": "shorter, natural; was shrunk to 0.77"
+  },
+  {
+   "segment_id": "p13_s4",
+   "translation": "What do we do next?",
+   "reason": "shorter, natural; was shrunk to 0.77"
+  },
+  {
+   "segment_id": "p12_s11",
+   "translation": "⟦0⟧ chairs in all. ⟦1⟧ were moved this morning.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p12_s12",
+   "translation": "It will take ⟦0⟧ trips this afternoon.",
+   "reason": "shorter, natural; was shrunk to 0.72"
+  },
+  {
+   "segment_id": "p16_s1",
+   "translation": "⟦0⟧. (⟦1⟧) How many apples does each person get on average?\nCircle, then write a number sentence.",
+   "reason": "line ran into the picture of the children; break the line"
+  },
+  {
+   "segment_id": "p15_s12",
+   "box": [
+    100.0,
+    378.0,
+    185.0,
+    393.0
+   ],
+   "reason": "text ran over the right edge of the bubble"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,12 @@
+{"corrections":[
+{"segment_id":"p7_s7","translation":"Number sentences show the sharing:","box":[334.0,353.0,426.0,381.0],"reason":"shrunk to 0.58 and ran past the note edge; shorter text, box over the free note paper; dropped ⟦0⟧: OCR noise"},
+{"segment_id":"p7_s2","translation":"Use sticks for the oranges to help them share and calculate. How many does each person get?","reason":"more natural wording"},
+{"segment_id":"p7_s4","translation":"⟦0⟧ bundle has ⟦1⟧ sticks. ⟦2⟧ sticks in all for ⟦3⟧ people, so each person...","reason":"run-on sentence"},
+{"segment_id":"p7_s13","translation":"Use the sharing to explain what each step means.","reason":"more natural wording"},
+{"segment_id":"p5_s18","translation":"8 sticks are left. Each monkey gets...","reason":"comma splice"},
+{"segment_id":"p5_s22","translation":"⟦0⟧ bundles shared out, leaving","reason":"unnatural wording; the printed dots that follow complete the ellipsis"},
+{"segment_id":"p6_s4","translation":"(2) Calculate with the column method. Then use how the blocks were shared to explain each step.","reason":"more natural wording"}
+],
+"flags":[
+{"page":9,"issue":"p8_s12_k2 '6 bottles' on the medicine box is set at 0.66, smaller than '8 bottles' on the other box; no free room beside it (girl picture)"}
+]}

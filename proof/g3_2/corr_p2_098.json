@@ -1,0 +1,78 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p97_s17",
+   "translation": "3 cm",
+   "erase": [
+    [
+     113,
+     526,
+     128,
+     538
+    ]
+   ],
+   "reason": "the 3 printed below the rotated label made it read 'cm 3'; erase the 3 and set '3 cm'"
+  },
+  {
+   "segment_id": "p98_s16",
+   "translation": "What is the area of this lawn in square metres? A fence is put around the lawn. How many metres long is the fence?",
+   "reason": "more natural phrasing"
+  },
+  {
+   "segment_id": "p100_s8",
+   "translation": "⟦0⟧. Which figures can be translated to fit exactly onto figure ⟦1⟧? Colour them in any colour you like.",
+   "reason": "shorter so it is set at the size of its siblings"
+  },
+  {
+   "segment_id": "p101_a2_p0",
+   "translation": "(1) Taoqi is on Xiaoxiao's (      ) side;\n      Xiaoxiao is on Taoqi's (      ) side.\n(2) The book is (      ) the pencil\n      case.",
+   "reason": "面 = side; sentences were incomplete"
+  },
+  {
+   "segment_id": "p102_a1_p0",
+   "translation": "(1) The farm is (      ) of the village hall.\n(2) The machinery station is (      ) of\n      the village hall.\n(3) The fish pond is (      ) of the village hall.",
+   "reason": "keep the continuation line indented under its item"
+  },
+  {
+   "segment_id": "p102_s17",
+   "translation": "By height: ⟦0⟧ cm or taller in one group, the others…",
+   "reason": "restore placeholder; smoother ending"
+  },
+  {
+   "segment_id": "p103_s20",
+   "translation": "(⟦0⟧) Which boy skipped the most in ⟦1⟧ minute? How many skips?",
+   "reason": "几号同学 asks which boy; keep that; box widened so it is set at the size of its sibling questions"
+  },
+  {
+   "segment_id": "p103_s20",
+   "box": [
+    69.7,
+    595.3,
+    470.0,
+    612.3
+   ],
+   "reason": "free paper to the right; set at the size of its sibling questions"
+  },
+  {
+   "segment_id": "p103_s21",
+   "translation": "(⟦0⟧) The school's pass mark for the ⟦1⟧-minute skipping test is ⟦2⟧ skips.\n(      ) boys passed, or",
+   "reason": "second line ran into the printed fraction; end the line before it and finish the sentence after it"
+  },
+  {
+   "add": "p103_a1",
+   "page": 103,
+   "box": [
+    244,
+    642,
+    350,
+    657
+   ],
+   "translation": "of all the boys.",
+   "source": "。",
+   "size": 11,
+   "align": "left",
+   "reason": "rest of the sentence after the printed fraction"
+  }
+ ],
+ "flags": []
+}

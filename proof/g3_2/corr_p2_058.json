@@ -1,0 +1,60 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p60_s18",
+   "box": [
+    101,
+    585,
+    163,
+    601
+   ],
+   "reason": "title set at 0.52; use the ribbon up to the scroll roll (not over it)"
+  },
+  {
+   "segment_id": "p61_s17",
+   "box": [
+    340,
+    649,
+    452,
+    668
+   ],
+   "reason": "set at 0.77; widen to the bubble's free width"
+  },
+  {
+   "segment_id": "p62_s8",
+   "translation": "⟦0⟧. Xiaoxiao's family wants to tile their kitchen. There are two kinds of tiles.",
+   "reason": "unnatural 'family's kitchen is to be tiled'"
+  },
+  {
+   "segment_id": "p62_s21",
+   "translation": "Mr Wang has a rectangular sheet of coloured paper, ⟦0⟧ centimetres long and ⟦1⟧ centimetres wide, for the children. What is the largest number of squares with sides of ⟦2⟧ centimetres that he can cut from it?",
+   "reason": "'At most how many' is unidiomatic"
+  },
+  {
+   "segment_id": "p63_s1",
+   "translation": "(⟦0⟧) How many rectangles can you make with ⟦1⟧ cm of wire? Fill in the table.",
+   "reason": "shorter, was shrunk to 0.85"
+  },
+  {
+   "segment_id": "p63_s6",
+   "translation": "The closer the length and width are, the area...",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p64_s9",
+   "translation": "DROP",
+   "reason": "hand lettering inside a pupil's logo drawing"
+  },
+  {
+   "segment_id": "p64_s0",
+   "translation": "Maths Is Fun",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p59_s9",
+   "translation": "⟦0⟧ square metre is the area of a square with sides of ⟦1⟧ metre, that is, a square with sides of ⟦2⟧ decimetres, so...",
+   "reason": "source ends 所以……; the trailing ellipsis was lost"
+  }
+ ],
+ "flags": []
+}

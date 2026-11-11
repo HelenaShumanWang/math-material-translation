@@ -1,0 +1,15 @@
+{"corrections": [
+{"segment_id": "p50_s12", "box": [341, 461, 424, 491], "reason": "the line 'Up to 13 people' ran past the right edge of the lift sign; the sign has free room on the left (kept clear of the sign's left border)"},
+{"segment_id": "p50_s10", "box": [80, 391, 455, 404], "reason": "was set larger than its sibling instruction 'Look and say: about how heavy...'; same size now"},
+{"segment_id": "p52_s5", "translation": "DROP", "reason": "coin inscription (人民) - keep the coin as printed"},
+{"segment_id": "p52_s7", "translation": "DROP", "reason": "coin inscription (元) left in source language; keep the coin as printed"},
+{"restore": [225, 185, 279, 237], "page": 52, "reason": "1-yuan coin: the 人 of the inscription and the rim at upper right were still erased after the DROP; put the printed coin back"},
+{"segment_id": "p53_s1", "translation": "⟦0⟧. Which figure has the largest area? Which has the smallest?", "reason": "shorter, set at the same size as the other numbered instructions"},
+{"segment_id": "p53_s7", "translation": "(⟦0⟧) Can you design a pattern with the same area as Figure ②?\nDraw it in Appendix ⟦1⟧, Figure ⟦2⟧.", "box": [70.6, 654.8, 462.3, 683], "reason": "restores 'design' (你能设计) and removes the abbreviation 'Fig.'; two set lines at sibling size instead of a smaller wrapped line"},
+{"segment_id": "p55_s1", "translation": "⟦0⟧. Do you agree with Xiaoxiao? Explain why to a partner.", "reason": "more natural than 'Tell your reason to a partner'"},
+{"segment_id": "p56_s1", "translation": "What is the area of rectangle ①? Cover it with ⟦0⟧ cm² squares.", "reason": "shorter: fits on one line like the other instructions"}
+],
+"flags": [
+{"page": 57, "issue": "'Area of rectangle =' in the pink bar is set noticeably smaller than 'Area of square =' in the matching bar below; same kind of label should be the same size"},
+{"page": 57, "issue": "table header cells 'Length/cm' and 'Width/cm' are set small (0.68) and wrap; cells are narrow"}
+]}

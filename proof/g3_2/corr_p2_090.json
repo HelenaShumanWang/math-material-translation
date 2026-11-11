@@ -1,0 +1,63 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s9",
+   "translation": "(⟦0⟧) What maths questions can you ask from the picture? Tell a partner.",
+   "reason": "British 'maths'"
+  },
+  {
+   "segment_id": "p89_s3_k1",
+   "erase": [
+    [61, 179, 73, 188]
+   ],
+   "reason": "leftover 一 of 一共进了 at the start of the bubble"
+  },
+  {
+   "segment_id": "p89_s3_k1",
+   "box": [62, 176, 158, 191],
+   "reason": "room inside the bubble after erasing 一; keeps 'Bought' from the earlier fix (进了 = the shop bought them in)",
+   "translation": "Bought 200 balls in all"
+  },
+  {
+   "segment_id": "p89_s8",
+   "box": [157, 300, 202, 314],
+   "reason": "150 eggs wrapped; wider box kept inside the basket outline"
+  },
+  {
+   "restore": [203, 304, 215, 319],
+   "page": 89,
+   "reason": "the earlier erase of 150个 took off the bottom right of the basket outline"
+  },
+  {
+   "segment_id": "p90_s9",
+   "box": [358, 252, 456, 270],
+   "reason": "shrunk to 0.69; room in the bubble"
+  },
+  {
+   "segment_id": "p90_s12",
+   "box": [128, 383, 246, 416],
+   "reason": "shrunk to 0.72; room in the bubble"
+  },
+  {
+   "segment_id": "p92_s11",
+   "translation": "Each shelf holds ⟦0⟧ books.",
+   "reason": "overflowed bubble; shorter, same meaning"
+  },
+  {
+   "segment_id": "p94_s4",
+   "translation": "⟦0⟧. These ⟦1⟧ animals want to cross the river at the same time. Which boat should each take? Draw lines to match.",
+   "reason": "同时 = at the same time"
+  },
+  {
+   "segment_id": "p95_s12",
+   "translation": "This is an acute angle. Compared with a right angle, it is ···",
+   "reason": "'so it is ··· than' unnatural"
+  },
+  {
+   "segment_id": "p96_s8",
+   "box": [122, 580, 246, 602],
+   "reason": "wraps badly at 0.8; room in the bubble"
+  }
+ ],
+ "flags": []
+}

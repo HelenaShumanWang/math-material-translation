@@ -1,0 +1,9 @@
+{"corrections": [
+ {"segment_id": "p66_s4", "box": [196.0, 152.5, 229.5, 171.0], "reason": "'48 people' was set at 0.56 on one line; the taller box inside the flag sets it on two lines at 0.72 (tried)"},
+ {"restore": [197.0, 152.0, 202.0, 159.5], "page": 66, "reason": "the erase of '48人' left a red block that cut the flag's black top-left outline (also in the checked edition); source pixels put back, no Chinese glyph in the box (tried)"},
+ {"segment_id": "p70_s9", "box": [346.0, 296.5, 398.0, 323.0], "translation": "is a fraction.", "reason": "on one line out to x 408 the end 'n.' ran onto the bubble's tail outline; set as 'is a / fraction.' beside 1/2 inside the bubble, with its full stop (tried)"}
+],
+ "flags": [
+  {"page": 71, "issue": "Wise Old Man's bubble: the top of the '1' in the first fraction 1/2 has a grey smear and the bubble outline above it is broken. A restore of [329,258,343,277] did not change it, so the damage is probably in the cleaned base image."}
+ ]
+}

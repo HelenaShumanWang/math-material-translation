@@ -1,0 +1,37 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p74_s9",
+   "erase": [
+    [
+     184,
+     386,
+     196,
+     404
+    ]
+   ],
+   "reason": "leftover stroke of 把 under the C"
+  },
+  {
+   "segment_id": "p74_s3",
+   "translation": "There are ⟦0⟧ rows of ducks. Circle",
+   "reason": "shorter so it is not shrunk to 0.72"
+  },
+  {
+   "segment_id": "p76_s2",
+   "translation": "– which is larger? Colour and compare.",
+   "reason": "'3/4 or 1/4 Which is larger?' lacked punctuation"
+  },
+  {
+   "segment_id": "p77_s1",
+   "translation": "⟦0⟧. Colour and compare.",
+   "reason": "full stop like the other instructions"
+  }
+ ],
+ "flags": [
+  {
+   "page": 79,
+   "issue": "p78_s0 heading 'Eating Watermelon' is set on two lines at 0.64: the box already covers the whole green plate; readable, left as is."
+  }
+ ]
+}

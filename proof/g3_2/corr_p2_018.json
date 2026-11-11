@@ -1,0 +1,57 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p20_s34",
+   "translation": "Grades 1, 2 and 3 have ⟦0⟧ pupils in all, with ⟦1⟧ classes in each grade.",
+   "reason": "the bubble reads 一、二、三年级 (Grades 1, 2 and 3; the OCR dropped 一、); shorter to fit; leftover stroke of 一、 erased from over 'Gr'",
+   "erase": [[51, 557, 68, 569]]
+  },
+  {
+   "segment_id": "p20_s33",
+   "translation": "On average, how many pigeons are on each level of each cage?",
+   "reason": "unnatural 'in each level of each pigeon cage'"
+  },
+  {
+   "segment_id": "p20_s22",
+   "translation": "First I find how many books go on each bookcase, then…",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p20_s29",
+   "box": [46, 466, 96, 486],
+   "reason": "Answer: set very small; moved left so it ends before the answer line (box to 108 let it run over the line)"
+  },
+  {
+   "segment_id": "p21_s6",
+   "translation": "(⟦0⟧) How many cases? Circle and calculate.",
+   "box": [69.2, 200.7, 284, 214.6],
+   "reason": "set at 0.67 next to sibling (2) at full size; box widened over free panel space"
+  },
+  {
+   "segment_id": "p23_s17",
+   "reason": "shrunk to 0.73; shorter wording, same meaning",
+   "translation": "⟦0⟧. They typed the same text. How many words a minute did Xiaoxiao type on average?"
+  },
+  {
+   "segment_id": "p24_s27",
+   "box": [74, 488.7, 307, 502.6],
+   "reason": "wraps onto two lines; free paper to the right before the squares"
+  },
+  {
+   "segment_id": "p18_s10",
+   "box": [46, 458.9, 96, 473.4],
+   "reason": "Answer: ran over the start of the answer line; moved left into the free margin"
+  },
+  {
+   "segment_id": "p18_a1_p0",
+   "box": [60, 652, 104, 668],
+   "reason": "second Answer: was set tiny (box too narrow); checked edition had it at normal size"
+  }
+ ],
+ "flags": [
+  {
+   "page": 22,
+   "issue": "Book-cover titles 百科/百科全书 on the slanted encyclopaedia covers (p21_s2-s4 and the front cover) stay in Chinese: tiny rotated cover art, no room for legible English; kept as picture."
+  }
+ ]
+}
