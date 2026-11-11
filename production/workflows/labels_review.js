@@ -81,7 +81,9 @@ With python, group all items by their Chinese (zh with spaces and trailing punct
 differs (ignoring case and a trailing full stop only where the kind allows). For each such group decide whether the Chinese means
 the same thing in each place (look at role, lesson and near): where it does, choose the one best English (correct, natural, fits the
 narrowest "w" of the group, Title Case for headings and section labels) and change the others to it; where the meaning differs by
-context, leave them. Recurring section labels must match exactly: 你知道吗 "Did You Know?", 试一试 "Try It", 练一练 "Practice",
+context, leave them. THE STANDARDS LIST /home/user/math-material-translation/production/label_standards.json is binding: for every
+Chinese it lists, use exactly its English (no rewording, no new choice); choose a standard only for Chinese it does not list, and
+add each new standard you choose to that file (Write tool, same shape) so later volumes follow it. Recurring section labels must match exactly: 你知道吗 "Did You Know?", 试一试 "Try It", 练一练 "Practice",
 数学好玩 "Maths Is Fun", 整理与复习 "Review", 总复习 "Final Review", 做一做 "Do It", 说一说 "Talk About It", 想一想 "Think",
 议一议 "Discuss".
 
