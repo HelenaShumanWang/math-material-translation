@@ -6,7 +6,8 @@ export const meta = {
     { title: 'Check', detail: 'an independent agent re-renders the fixes and corrects what is still wrong' },
   ],
 }
-// args: { volumes: [{ code, title, flags: [{ page, issue }] }], batch: 3 }  (page = 1-based file page)
+// args: { volumes: [{ code, title, flags: [{ page, issue }] } | { code, title, flags_file, pages: [...] }], batch: 3 }
+// (page = 1-based file page; flags_file: a JSON file with a "flags" list of {page, issue})
 const BATCH = (args && args.batch) || 3
 const S = '/home/user/math-material-translation/production'
 
@@ -53,12 +54,17 @@ CORRECTIONS (JSON entries; boxes in PDF points; "page" = page index):
 Character names in pinyin (淘气 Taoqi, 笑笑 Xiaoxiao, 奇思 Qisi, 妙想 Miaoxiang, 小红 Xiaohong); British spelling; yuan as ¥3;
 "2 m" with a space; the same kind of text the same size (a new line rather than shrinking).`
 
+function flagList(v, pages, flags) {
+  if (v.flags_file) return `  (in ${v.flags_file}: the entries of its "flags" list whose "page" is one of ${pages.join(', ')})`
+  return flags.map(f => `  - page ${f.page}: ${f.issue}`).join('\n')
+}
+
 function fixPrompt(v, pages, flags, file) {
   return `You fix defects that earlier reviewers flagged on the English translation of a Chinese primary-school maths textbook
 (北师大版 ${v.title}, volume code ${v.code}). The English is set over cleaned scans of the Chinese pages; corrections in JSON files
 change what is erased and what is set. Your pages (1-based): ${pages.join(', ')}. The flags (written by reviewers who could not fix
 them with the tools they had; some name things outside their own items):
-${flags.map(f => `  - page ${f.page}: ${f.issue}`).join('\n')}
+${flagList(v, pages, flags)}
 
 For each flag: first look at the page as it renders now (preview) - some flags may already be fixed by later corrections; then fix
 what is still wrong with the tools below, TRY every fix (try_fix.py) and look at the result closely (zoom), and iterate until the
@@ -74,7 +80,7 @@ Write ONE file ${file} (Write tool): {"corrections": [ ...the entries you tried 
 function checkPrompt(v, pages, flags, file) {
   return `You independently check fixes another agent wrote for flagged defects on the English translation of a Chinese
 primary-school maths textbook (北师大版 ${v.title}, volume code ${v.code}). Pages (1-based): ${pages.join(', ')}. The flags were:
-${flags.map(f => `  - page ${f.page}: ${f.issue}`).join('\n')}
+${flagList(v, pages, flags)}
 The fixes are in ${file} ("corrections"; "left" = what the fixer could not fix).
 
 Assume the fixes may be wrong. Render them yourself (try_fix.py with that file, then look closely, zooming into each flagged spot
@@ -90,8 +96,10 @@ Return the structured summary for the file as it stands after your check ("fixed
 
 const jobs = []
 for (const v of args.volumes) {
+  // flags inline ({page, issue} list) or, for long lists, in a file the agents read: flags_file + pages
   const byPage = {}
-  for (const f of v.flags) (byPage[f.page] = byPage[f.page] || []).push(f)
+  for (const f of v.flags || []) (byPage[f.page] = byPage[f.page] || []).push(f)
+  for (const p of v.pages || []) byPage[p] = byPage[p] || []
   const pages = Object.keys(byPage).map(Number).sort((a, b) => a - b)
   for (let i = 0; i < pages.length; i += BATCH) {
     const chunk = pages.slice(i, i + BATCH)
