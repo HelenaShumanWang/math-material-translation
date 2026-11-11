@@ -1,0 +1,3 @@
+{"corrections": [
+ {"segment_id": "p11_s4", "translation": "⟦0⟧ on each plate? How many are left?", "box": [289, 202, 499, 219], "reason": "the second part of the question, after 'If we share them equally, how many', on the free paper to its right; the box starts inside the old one (the earlier box at x 298 did not overlap it and was refused, which left the two parts on top of each other)"}
+]}
