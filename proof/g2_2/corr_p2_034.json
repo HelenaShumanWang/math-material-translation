@@ -1,0 +1,19 @@
+{
+ "corrections": [
+  {"paint": [64, 85, 76, 103], "page": 39, "colour": [0, 156, 88], "reason": "remove leftover white '1' of the title"},
+  {"segment_id": "p33_s2", "translation": "DROP", "reason": "OCR of the spiral binding"},
+  {"segment_id": "p34_s16", "box": [58, 558, 254, 574], "reason": "wrapped at small size; shorter, box widened over free paper; ends before the stones picture", "translation": "⟦0⟧. About how many stones are there?"},
+  {"segment_id": "p35_s31", "translation": "Write: ____", "reason": "answer line was erased with the label"},
+  {"segment_id": "p35_s33", "translation": "Write: ____", "reason": "answer line was erased with the label"},
+  {"segment_id": "p36_s12_k0", "translation": "Play in pairs. Each fills in their own boxes.", "reason": "clearer; short enough to clear the frame"},
+  {"segment_id": "p36_s12_k2", "translation": "writes that digit in", "reason": "reads with the inline boxes picture; ends before the boxes", "box": [225.1, 504.3, 338, 518.5]},
+  {"segment_id": "p36_s12_k3", "translation": "(any one box).", "reason": "reads: writes that digit in [boxes] (any one box).", "box": [366.8, 504.0, 446, 518.2]},
+  {"segment_id": "p36_s6", "translation": "The main peak of Changbai Mountain is about ⟦0⟧ m above sea level.", "reason": "full stop"},
+  {"segment_id": "p37_s1", "translation": "How Long Is the Pencil?", "reason": "title is a question"},
+  {"segment_id": "p37_s11", "translation": "A ⟦0⟧-fen coin is about ⟦1⟧ mm thick.", "box": [273, 437, 405, 455], "reason": "text too small; use mm as in lesson; fill bubble without touching its outline"},
+  {"segment_id": "p39_s0", "box": [62, 84, 180, 104], "reason": "cover the leftover '1' so the title does not read '1 How Long Is 1 km?'"},
+  {"segment_id": "p40_s8", "translation": "In 1 hour the plane flies", "reason": "consistent with train"},
+  {"segment_id": "p40_s3", "translation": "In 1 hour the train goes", "reason": "shorter so it clears the cell border", "box": [198, 197, 320, 213]}
+ ],
+ "flags": []
+}

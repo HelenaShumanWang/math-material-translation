@@ -1,0 +1,121 @@
+{
+ "code": "g2_2",
+ "pass": 2,
+ "flags": [
+  {
+   "file": "corr_p2_001.json",
+   "page": 6,
+   "issue": "'3 plates: 18' (p5_s6_k2) is set smaller than '1 plate: 6' and '2 plates: 12'; a wider box did not help"
+  },
+  {
+   "file": "corr_p2_001.json",
+   "page": 9,
+   "issue": "'2. Build [tree], try it with sticks and fill in.' reads awkwardly because the inline tree picture carries the Chinese comma; 'Use sticks to build' does not fit before it"
+  },
+  {
+   "file": "corr_p2_010.json",
+   "page": 13,
+   "issue": "p12_s3 '22 flowers' is set at 0.53 inside a small pill label; a bigger box overflows the pill."
+  },
+  {
+   "file": "corr_p2_018.json",
+   "page": 20,
+   "issue": "'East: ___, south: ___, west: ___, north: ___.' is set larger than the numbered instructions around it"
+  },
+  {
+   "file": "corr_p2_018.json",
+   "page": 23,
+   "issue": "'10 hundreds make a thousand.' in the Wise Old Man's bubble is set at 0.65 and wraps; the bubble has no more room"
+  },
+  {
+   "file": "corr_p2_018.json",
+   "page": 25,
+   "issue": "'6. Count and talk.' and 'How much money altogether?' are set noticeably larger than the other numbered instructions (3, 4, 5, 7); smaller boxes did not help"
+  },
+  {
+   "file": "corr_p2_026.json",
+   "page": 31,
+   "issue": "Mountain name tags Huangshan (0.54) and Xiangshan (0.63) on the photos are set small and run past their small pink tags; no free room without covering the photos."
+  },
+  {
+   "file": "corr_p2_026.json",
+   "page": 32,
+   "issue": "'2. Fill' (p31_s19) is set smaller than the rest of the instruction 'with > or <...' (p31_s20); the answer circle between them leaves no room to enlarge it."
+  },
+  {
+   "file": "corr_p2_042.json",
+   "page": 42,
+   "issue": "School table: the '1025 people' ... '124 people' cells are set at 0.58-0.64 because the cells are narrow; no room to widen inside the table."
+  },
+  {
+   "file": "corr_p2_042.json",
+   "page": 45,
+   "issue": "Item 6: the source underlines under 三千 / 四千零二十八 stay at the Chinese positions and no longer sit under 'three thousand' / 'four thousand and twenty-eight'; the closing ')' of the Pacific sentence floats beside the third line, away from the '(' on the last line."
+  },
+  {
+   "file": "corr_p2_050.json",
+   "page": 50,
+   "issue": "(1) and (2) of item 2 are set larger (about 11.6 pt) than (3), (4) and the other instructions on the page; the sign table text covers the small tree icons at the left of its rows."
+  },
+  {
+   "file": "corr_p2_050.json",
+   "page": 55,
+   "issue": "'2. Write >, < or = in each ○.' (p54_s4) is set larger than the other numbered instructions 1., 3., 4. The blue circle set inside that line is clipped at its bottom."
+  },
+  {
+   "file": "corr_p2_050.json",
+   "page": 57,
+   "issue": "Counting-frame place-value labels are uneven: the H of the middle frame is smaller than the others and the H of the right frame sits at the left edge of its cell."
+  },
+  {
+   "file": "corr_p2_058.json",
+   "page": 62,
+   "issue": "Table cells of the high-jump names (Xiaoliang, Xiaogang, Xiaoqiang, p61_s19_k1/k3/k5) are too narrow; names are set hyphenated at about 0.5 scale."
+  },
+  {
+   "file": "corr_p2_058.json",
+   "page": 65,
+   "issue": "Gate 2 code hint (p64_s12) is set with tighter line spacing than the Gate 1 hint (p64_s2); same kind of text, uneven look. A box on the segment did not change it."
+  },
+  {
+   "file": "corr_p2_074.json",
+   "page": 79,
+   "issue": "p78_s7_k4 now reads 'goes round __ time'. The word 'exactly' (正好) was dropped so the line fits on one row."
+  },
+  {
+   "file": "corr_p2_074.json",
+   "page": 80,
+   "issue": "p79_s29_k1 'What time is it?' is still set at 0.73. I kept the checked box [98,575,152,596] because the proposed wider box pushed the text out past the bubble outline."
+  },
+  {
+   "file": "corr_p2_074.json",
+   "page": 81,
+   "issue": "p80_s6 '1 minute = __ seconds' is set at 0.58 so that it fits on one line inside the blue plate. It is readable but small."
+  },
+  {
+   "file": "corr_p2_082.json",
+   "page": 82,
+   "issue": "'3 min' and '1 min' option labels (p81_s25, p81_s26) are set small (0.58/0.60); no free room to the left (the children's heads) for a larger box"
+  },
+  {
+   "file": "corr_p2_082.json",
+   "page": 83,
+   "issue": "Row 4(1) mixes sizes: '(1) 1 lesson is' small (0.66), 'min, break is' large; a wider box did not raise the size"
+  },
+  {
+   "file": "corr_p2_082.json",
+   "page": 85,
+   "issue": "'(1) ___ h ___ min passed.' (p84_s13) set at 0.69; a wider box made it far larger than its sibling '(1) ___ min passed.', so left as is"
+  },
+  {
+   "file": "corr_p2_098.json",
+   "page": 99,
+   "issue": "p98_s7_k1 'About 60 ( ) an hour.' stays at 0.74 in its narrow picture cell; no shorter wording keeps the meaning."
+  },
+  {
+   "file": "corr_p2_098.json",
+   "page": 100,
+   "issue": "p99_s9_k2 'Medium' in the narrow first column of the car table is set at 0.54; the cell (about 40 pt wide) has no more room and no shorter unabbreviated word fits."
+  }
+ ]
+}

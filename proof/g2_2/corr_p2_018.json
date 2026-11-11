@@ -1,0 +1,16 @@
+{"corrections": [
+ {"segment_id": "p17_s13", "translation": "dustpans,", "reason": "'dustpans, with' was set at 0.59 and read oddly; '[ ] dustpans, [ ] left.' reads cleanly and sets at full size"},
+ {"restore": [398, 325.5, 404, 345], "page": 17, "reason": "left edge of the second answer box had been erased with 个，还剩; restore it"},
+ {"segment_id": "p21_s42", "translation": "South China Sea Islands", "box": [268, 462.5, 318, 478], "reason": "inset label was left in Chinese; set in two lines in the free space just under the inset frame (inside the frame it covered a dash of the boundary line and the old label frame)"},
+ {"paint": [285.4, 454.7, 310.9, 462.4], "page": 21, "colour": [253, 253, 252], "reason": "the emptied label frame of the inset kept a grey smear and frame lines; clear it now the label sits under the inset (box offset found by render: image is shifted about 3.6 pt right)"},
+ {"restore": [395.5, 567, 401.5, 589], "page": 24, "reason": "the ten-rod picture after 'I have 30' had been erased; restore it"},
+ {"restore": [188.5, 629, 193.5, 651], "page": 24, "reason": "the ten-rod picture after 'Swap with me for 20' had been erased; restore it"},
+ {"segment_id": "p24_s16", "erase": [[402, 576, 408, 586]], "reason": "Chinese full stop left after the rod picture"},
+ {"segment_id": "p24_s15", "erase": [[190.5, 576, 196, 584]], "reason": "Chinese full stop left after the flat picture"},
+ {"segment_id": "p24_s18", "erase": [[395.5, 634, 401, 643]], "reason": "Chinese full stop left after the flat picture"}
+],
+ "flags": [
+  {"page": 25, "issue": "'6. Count and talk.' and 'How much money altogether?' are set noticeably larger than the other numbered instructions (3, 4, 5, 7); smaller boxes did not help"},
+  {"page": 23, "issue": "'10 hundreds make a thousand.' in the Wise Old Man's bubble is set at 0.65 and wraps; the bubble has no more room"},
+  {"page": 20, "issue": "'East: ___, south: ___, west: ___, north: ___.' is set larger than the numbered instructions around it"}
+ ]}

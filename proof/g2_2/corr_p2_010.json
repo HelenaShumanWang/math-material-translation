@@ -1,0 +1,105 @@
+{
+ "corrections": [
+  {
+   "merge": [
+    "p9_s7",
+    "p9_s8"
+   ],
+   "translation": "2 × 6 = 12: build 2 houses. 4 sticks are left, not enough for another.",
+   "reason": "one bubble sentence split in two"
+  },
+  {
+   "segment_id": "p9_s7",
+   "box": [
+    350,
+    336,
+    458,
+    384
+   ],
+   "reason": "keep merged text inside the bubble"
+  },
+  {
+   "segment_id": "p9_s5",
+   "translation": "Think about building the houses above. Look and say.",
+   "box": [
+    76,
+    298,
+    470,
+    315.8
+   ],
+   "reason": "wrapped; shorter, box over free paper to its right"
+  },
+  {
+   "segment_id": "p11_s0",
+   "box": [
+    61,
+    84,
+    136,
+    106
+   ],
+   "reason": "heading set at 0.54; use the rest of the banner"
+  },
+  {
+   "segment_id": "p11_s3",
+   "translation": "If we share them equally, how many",
+   "reason": "fragment before the strawberry picture; 'Equally, how many' was unnatural; box runs up to where the picture sits",
+   "box": [
+    77.1,
+    202,
+    298,
+    219
+   ]
+  },
+  {
+   "segment_id": "p11_s4",
+   "translation": "⟦0⟧ on each plate? How many are left?",
+   "box": [
+    298,
+    202,
+    499,
+    219
+   ],
+   "reason": "was set at 0.64 beside a full-size fragment; shorter, on the free paper to the right"
+  },
+  {
+   "segment_id": "p11_s10",
+   "translation": "How many plates can you fill? How many are left?",
+   "box": [
+    203.2,
+    385,
+    499,
+    404
+   ],
+   "reason": "wrapped at 0.85; free paper to the right"
+  },
+  {
+   "segment_id": "p13_s10",
+   "translation": "Oh, I see! The ⟦0⟧ people left over need ⟦1⟧ more boat, so at least ⟦2⟧ boats are needed.",
+   "reason": "'they' had no referent; source has no subject"
+  },
+  {
+   "segment_id": "p13_s4",
+   "translation": "What maths information does the picture show? Discuss.",
+   "reason": "British 'maths'"
+  },
+  {
+   "merge": [
+    "p15_s2_k1",
+    "p15_s2_k2"
+   ],
+   "translation": "1 star takes 9 cm of ribbon.",
+   "reason": "one bubble sentence set at two sizes"
+  },
+  {
+   "segment_id": "p15_s3",
+   "translation": "⟦0⟧ outfit takes ⟦1⟧ metres of flowered cloth.",
+   "reason": "British spelling metres"
+  }
+ ],
+ "flags": [
+  {
+   "page": 13,
+   "issue": "p12_s3 '22 flowers' is set at 0.53 inside a small pill label; a bigger box overflows the pill."
+  }
+ ]
+}

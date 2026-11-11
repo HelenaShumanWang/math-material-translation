@@ -1,0 +1,77 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p97_s1",
+   "translation": "Eye exercises take about",
+   "reason": "shorter, fits one line"
+  },
+  {
+   "segment_id": "p97_s3",
+   "translation": "Tying laces takes about",
+   "reason": "shorter, was shrunk to 0.81 and wrapped"
+  },
+  {
+   "segment_id": "p97_s14",
+   "box": [
+    149,
+    258,
+    186,
+    270
+   ],
+   "reason": "was set larger than the sibling ( ) min labels and ran into the clock"
+  },
+  {
+   "segment_id": "p98_s10",
+   "translation": "Which sticks can make a rectangle?",
+   "reason": "shorter, was shrunk to 0.81"
+  },
+  {
+   "segment_id": "p98_s14",
+   "translation": "⟦0⟧. Write each number in the right circle.",
+   "box": [
+    58,
+    492,
+    266,
+    506
+   ],
+   "reason": "shorter; free paper up to the divider; was shrunk"
+  },
+  {
+   "split": "p98_s12",
+   "translations": [
+    "4 cm",
+    "2 cm",
+    "3 cm",
+    "2 cm",
+    "5 cm",
+    "4 cm"
+   ],
+   "reason": "each length belongs beside its own stick"
+  },
+  {
+   "segment_id": "p98_s12_k3",
+   "box": [
+    194,
+    415,
+    230,
+    431
+   ],
+   "reason": "align with the other lengths"
+  },
+  {
+   "segment_id": "p99_s12",
+   "translation": "How many cars are fast, medium and slow?",
+   "reason": "shorter, same questions, fits one line"
+  }
+ ],
+ "flags": [
+  {
+   "page": 100,
+   "issue": "p99_s9_k2 'Medium' in the narrow first column of the car table is set at 0.54; the cell (about 40 pt wide) has no more room and no shorter unabbreviated word fits."
+  },
+  {
+   "page": 99,
+   "issue": "p98_s7_k1 'About 60 ( ) an hour.' stays at 0.74 in its narrow picture cell; no shorter wording keeps the meaning."
+  }
+ ]
+}

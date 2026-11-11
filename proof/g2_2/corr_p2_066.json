@@ -1,0 +1,10 @@
+{"corrections": [
+{"split": "p67_s15", "at": [234, 352], "translations": ["(      ) angles left", "(      ) angles left", "(      ) angles left"], "reason": "three separate answers, one under each square; set as one run they crowd together"},
+{"segment_id": "p68_s4", "box": [373, 264, 437, 292], "reason": "shrunk to 0.79; the rest of the speech bubble is free (kept off the bubble's outline)"},
+{"segment_id": "p68_s10", "box": [372, 527, 464, 569], "reason": "shrunk to 0.86; the rest of the speech bubble is free (last line kept above the bubble's bottom outline)"},
+{"segment_id": "p70_s1", "box": [391, 106, 459, 134], "reason": "shrunk to 0.77; the rest of the speech bubble is free (last line kept off the outline)"},
+{"segment_id": "p70_s10", "box": [378, 279, 454, 306], "reason": "shrunk to 0.81; the rest of the speech bubble is free (last line kept above the bottom outline)"},
+{"segment_id": "p72_s2", "box": [279, 330, 404, 347], "reason": "shrunk to 0.79; the rest of the speech bubble is free"},
+{"segment_id": "p72_s5", "box": [302, 406.5, 342, 419], "reason": "'Pull right' wrapped onto two lines; one line, raised so it clears the slanted stick of the parallelogram"}
+],
+"flags": []}

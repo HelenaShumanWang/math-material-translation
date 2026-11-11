@@ -1,0 +1,38 @@
+{
+ "corrections": [
+  {"segment_id": "p49_s12", "translation": "⟦0⟧ How many ⟦1⟧ trees in 2 years? And", "reason": "fragment reads with the second tree picture and 'trees?'"},
+  {"segment_id": "p50_i200_26_t", "box": [60, 544.8, 106, 557.6], "reason": "Answer: ran into the answer line"},
+  {"paint": [273, 551, 281, 559], "page": 50, "colour": [255, 255, 255], "reason": "Chinese full stop after answer line"},
+  {"segment_id": "p52_s11", "box": [60, 375.6, 106, 390.0], "reason": "Answer: ran into the answer line"},
+  {"segment_id": "p52_s20", "box": [56, 543.0, 102, 557.4], "reason": "Answer: ran into the answer line"},
+  {"paint": [273, 384, 281, 392], "page": 52, "colour": [255, 255, 255], "reason": "Chinese full stop"},
+  {"paint": [273, 551, 281, 559], "page": 52, "colour": [255, 255, 255], "reason": "Chinese full stop"},
+  {"add": "p53_a1", "page": 53, "box": [345, 421, 356, 432], "translation": "m", "source": "米", "size": 9, "reason": "unit on slanted label 144米", "align": "left"},
+  {"add": "p53_a2", "page": 53, "box": [413, 427, 424, 438], "translation": "m", "source": "米", "size": 9, "reason": "unit 128米", "align": "left"},
+  {"add": "p53_a3", "page": 53, "box": [416, 470, 426, 482], "translation": "m", "source": "米", "size": 9, "reason": "unit 230米", "align": "left"},
+  {"add": "p53_a4", "page": 53, "box": [329, 494, 341, 506], "translation": "m", "source": "米", "size": 9, "reason": "unit 213米", "align": "left"},
+  {"segment_id": "p54_s29", "box": [224.5, 583, 505, 603], "reason": "same size as siblings"},
+  {"segment_id": "p54_s30", "box": [224.5, 604, 505, 637], "reason": "same size as siblings"},
+  {"segment_id": "p54_s31", "box": [224.5, 638, 505, 682], "reason": "same size as siblings"},
+  {"segment_id": "p56_s15", "translation": "BLANK", "reason": "Answer: was set much smaller than the second Answer: on the page; re-set by p56_a14"},
+  {"add": "p56_a14", "page": 56, "box": [60, 386, 108, 400], "translation": "Answer:", "source": "答：", "size": 10.5, "align": "left", "reason": "Answer: before the answer line, same size on both"},
+  {"segment_id": "p56_s24", "translation": "BLANK", "reason": "Answer: was set larger than the first; re-set by p56_a15"},
+  {"add": "p56_a15", "page": 56, "box": [60, 567, 108, 581], "translation": "Answer:", "source": "答：", "size": 10.5, "align": "left", "reason": "Answer: before the answer line, same size on both"},
+  {"paint": [273, 394, 281, 402], "page": 56, "colour": [255, 255, 255], "reason": "Chinese full stop"},
+  {"paint": [273, 575, 281, 583], "page": 56, "colour": [255, 255, 255], "reason": "Chinese full stop"},
+  {"segment_id": "p49_s13", "box": [337.0, 426, 366.0, 441], "reason": "same size as its sentence"},
+  {"segment_id": "p50_s17", "translation": "BLANK", "reason": "H set much smaller than the other place labels; re-set by p50_a5"},
+  {"add": "p50_a5", "page": 50, "box": [190.5, 514, 203, 524], "translation": "H", "source": "百", "reason": "hundreds label at the size of its siblings", "align": "center"},
+  {"segment_id": "p50_s19", "translation": "BLANK", "reason": "O set much smaller than the other place labels; re-set by p50_a6"},
+  {"add": "p50_a6", "page": 50, "box": [272.5, 514, 285, 524], "translation": "O", "source": "个", "reason": "ones label at the size of its siblings", "align": "center"},
+  {"restore": [352, 432, 362, 437], "page": 53, "reason": "road outline cut by the erase of 米 after 144"},
+  {"restore": [413.5, 468.5, 416.2, 472.8], "page": 53, "reason": "road outline cut by the erase of 米 after 230"},
+  {"restore": [339.5, 492, 343, 495.5], "page": 53, "reason": "road outline cut by the erase of 米 after 213"},
+  {"restore": [344, 432, 352, 447], "page": 54, "reason": "bubble outline erased next to the 248-stamps text"}
+ ],
+ "flags": [
+  {"page": 50, "issue": "(1) and (2) of item 2 are set larger (about 11.6 pt) than (3), (4) and the other instructions on the page; the sign table text covers the small tree icons at the left of its rows."},
+  {"page": 55, "issue": "'2. Write >, < or = in each ○.' (p54_s4) is set larger than the other numbered instructions 1., 3., 4. The blue circle set inside that line is clipped at its bottom."},
+  {"page": 57, "issue": "Counting-frame place-value labels are uneven: the H of the middle frame is smaller than the others and the H of the right frame sits at the left edge of its cell."}
+ ]
+}

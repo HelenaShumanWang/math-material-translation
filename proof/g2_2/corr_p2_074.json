@@ -1,0 +1,97 @@
+{
+ "corrections": [
+  {
+   "split": "p76_s9",
+   "at": [
+    184,
+    309
+   ],
+   "translations": [
+    "Trace 3 rectangles.",
+    "Trace 3 squares.",
+    "Trace 3 parallelograms."
+   ],
+   "reason": "one line over three cells"
+  },
+  {
+   "restore": [
+    459,
+    566,
+    466,
+    586
+   ],
+   "page": 76,
+   "reason": "the cell split erased a piece of the right dotted border of the frame"
+  },
+  {
+   "split": "p78_s7",
+   "translations": [
+    "Move the hands and fill in.",
+    "The clock face has __ large divisions and __ small divisions.",
+    "1 large division for the hour hand is __ hour.",
+    "1 small division for the minute hand is __ minute; 1 large one is __ minutes.",
+    "When the hour hand moves 1 large division, the minute hand goes round __ time."
+   ],
+   "reason": "keep the lines of the exercise as in the book; the last line takes the whole sentence (the separate '圈。' paragraph p78_s8 is blanked)"
+  },
+  {
+   "segment_id": "p78_s7_k4",
+   "box": [
+    75,
+    489,
+    468,
+    508
+   ],
+   "reason": "one line across the row, where the blanked '圈。' was"
+  },
+  {
+   "segment_id": "p79_s29_k0",
+   "box": [
+    106,
+    553,
+    180,
+    570
+   ],
+   "translation": "I set, you say",
+   "reason": "use the whole banner"
+  },
+  {
+   "segment_id": "p80_s6",
+   "box": [
+    214,
+    331,
+    311,
+    349
+   ],
+   "translation": "⟦0⟧ minute = __ seconds",
+   "reason": "one line inside the plate, clear of its rounded ends"
+  },
+  {
+   "segment_id": "p80_s2",
+   "translation": "The second hand is the longest and fastest. ⟦0⟧ small division takes ⟦1⟧ second.",
+   "reason": "meaning: moving 1 small division takes 1 second"
+  },
+  {
+   "segment_id": "p80_s8",
+   "translation": "I clap about ___ times in ⟦0⟧ minute.",
+   "reason": "first person like the other two cells"
+  },
+  {
+   "segment_id": "p80_s9",
+   "translation": "I write my name about ___ times in ⟦0⟧ minute.",
+   "reason": "source is a statement, not an order"
+  },
+  {
+   "segment_id": "p80_s10",
+   "translation": "My heart beats about ___ times in ⟦0⟧ minute.",
+   "reason": "restore placeholder ⟦0⟧; box kept inside the cell border",
+   "box": [
+    339,
+    496,
+    456,
+    534
+   ]
+  }
+ ],
+ "flags": []
+}

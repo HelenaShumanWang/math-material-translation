@@ -1,0 +1,24 @@
+{"corrections": [
+{"split": "p2_s15", "translations": ["3. 0 makes numbers endless.", "4. What else can 0 do?"], "reason": "two separate notepad items run together as one paragraph, set small and over the 1->10->100 example; each now sits on its own line"},
+{"segment_id": "p2_s15_k0", "box": [112, 365, 254, 382], "reason": "free notepad paper to the right of item 3, so it is set at the same size as items 1, 2 and 4"},
+{"restore": [140, 302, 190, 314], "page": 2},
+{"restore": [150, 342, 190, 354], "page": 2},
+{"restore": [128, 383, 240, 391], "page": 2},
+{"restore": [180, 409, 248, 417], "page": 2, "reason": "the erase under item 4 took the bottom-right of the notepad's blue border"},
+{"restore": [226, 404, 248, 409], "page": 2},
+{"paint": [239, 395, 247, 403], "page": 2, "colour": [255, 255, 255], "reason": "green dot of the Chinese '!' left after 'What else can 0 do?'"},
+{"paint": [120, 378, 127, 385], "page": 2, "colour": [255, 255, 255], "reason": "full stop of the handwritten '3.' left below item 3"},
+{"segment_id": "p6_s6", "translation": "Fireworks", "box": [282, 213, 309, 226], "reason": "label on the fireworks box was left in Chinese; give it the box face"},
+{"segment_id": "p6_s4", "translation": "⟦0⟧. The Lantern Festival", "reason": "natural title, no stray full stop"},
+{"segment_id": "p7_s2", "translation": "How many squares can ⟦0⟧ sticks make? How many are left over?", "reason": "shorter, so it is no longer shrunk to 0.76"},
+{"segment_id": "p7_s12_k0", "translation": "Sticks", "reason": "table header was set at 0.53 in a narrow cell"},
+{"add": "p7_a1", "page": 7, "box": [257, 326, 296, 342], "translation": "(stick)", "source": "（根）", "size": 11, "align": "left", "reason": "the unit after the circled remainder 1 was erased with no English: 13 ÷ 4 = 3 (squares) …… 1 (stick)"},
+{"segment_id": "p8_s5", "box": [130, 210, 185, 228], "reason": "old box cut the left half off the answer box before 'left over'"},
+{"segment_id": "p8_a1_p0", "box": [333, 211, 387, 228], "reason": "old box cut the left half off the answer box before 'left over'"},
+{"restore": [106, 206, 130, 229], "page": 8},
+{"restore": [307, 206, 331, 229], "page": 8}
+],
+"flags": [
+{"page": 6, "issue": "'3 plates: 18' (p5_s6_k2) is set smaller than '1 plate: 6' and '2 plates: 12'; a wider box did not help"},
+{"page": 9, "issue": "'2. Build [tree], try it with sticks and fill in.' reads awkwardly because the inline tree picture carries the Chinese comma; 'Use sticks to build' does not fit before it"}
+]}

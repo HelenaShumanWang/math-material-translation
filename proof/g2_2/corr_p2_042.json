@@ -1,0 +1,158 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p41_s11",
+   "translation": "Share and calculate. Using how you shared, explain what each step of the column method means.",
+   "reason": "'Using the sharing' is unnatural"
+  },
+  {
+   "segment_id": "p42_s8",
+   "translation": "How big is ⟦0⟧ hundred million? Is hundred millions the place after ten thousands?",
+   "reason": "shrunk to 0.69; more natural question"
+  },
+  {
+   "segment_id": "p46_s10",
+   "translation": "⟦0⟧ hundreds plus ⟦1⟧ hundreds…",
+   "reason": "source ends with an ellipsis; erase leftover ellipsis dot of the source",
+   "erase": [
+    [
+     327.5,
+     300,
+     331.5,
+     304.5
+    ]
+   ]
+  },
+  {
+   "segment_id": "p46_s18",
+   "translation": "⟦0⟧ hundreds minus ⟦1⟧ hundreds…",
+   "reason": "source ends with an ellipsis"
+  },
+  {
+   "segment_id": "p46_s15",
+   "erase": [
+    [
+     272.5,
+     392.5,
+     279.5,
+     400.5
+    ]
+   ],
+   "reason": "Chinese full stop 。 left at the end of the answer line"
+  },
+  {
+   "segment_id": "p46_s23",
+   "erase": [
+    [
+     272.5,
+     585,
+     279.5,
+     593
+    ]
+   ],
+   "reason": "Chinese full stop 。 left at the end of the answer line"
+  },
+  {
+   "segment_id": "p48_s20",
+   "erase": [
+    [
+     272.5,
+     515,
+     279.5,
+     522
+    ]
+   ],
+   "reason": "Chinese full stop 。 left at the end of the answer line"
+  },
+  {
+   "segment_id": "p48_s29",
+   "erase": [
+    [
+     272.5,
+     668.5,
+     279.5,
+     675.5
+    ]
+   ],
+   "reason": "Chinese full stop 。 left at the end of the answer line"
+  },
+  {
+   "segment_id": "p45_s24",
+   "erase": [
+    [
+     138.5,
+     610.5,
+     145.5,
+     618
+    ]
+   ],
+   "reason": "Chinese full stop 。 left after the quoted symbol"
+  },
+  {
+   "segment_id": "p45_s25",
+   "erase": [
+    [
+     342.5,
+     607.5,
+     349.5,
+     615
+    ]
+   ],
+   "reason": "Chinese full stop 。 left after the quoted symbol"
+  },
+  {
+   "segment_id": "p47_s22",
+   "translation": "(⟦0⟧) How many more metres on Tuesday than Monday? Wednesday than Tuesday?",
+   "reason": "shrunk to 0.58; shorter wording, same question"
+  },
+  {
+   "segment_id": "p44_s10",
+   "erase": [
+    [
+     186,
+     388,
+     191.5,
+     393.5
+    ]
+   ],
+   "reason": "Chinese full stop 。 left after the heading of item 8"
+  },
+  {
+   "segment_id": "p44_s16",
+   "erase": [
+    [
+     431.5,
+     503,
+     437.5,
+     509
+    ]
+   ],
+   "reason": "Chinese full stop 。 left after the bead"
+  },
+  {
+   "paint": [
+    197.5,
+    502.5,
+    204.5,
+    510
+   ],
+   "page": 44,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "remains of the Chinese full stop 。 after the rod picture (white background inside the cloud)"
+  }
+ ],
+ "flags": [
+  {
+   "page": 45,
+   "issue": "Item 6: the source underlines under 三千 / 四千零二十八 stay at the Chinese positions and no longer sit under 'three thousand' / 'four thousand and twenty-eight'; the closing ')' of the Pacific sentence floats beside the third line, away from the '(' on the last line."
+  },
+  {
+   "page": 42,
+   "issue": "School table: the '1025 people' ... '124 people' cells are set at 0.58-0.64 because the cells are narrow; no room to widen inside the table."
+  }
+ ]
+}

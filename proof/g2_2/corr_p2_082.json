@@ -1,0 +1,13 @@
+{"corrections": [
+{"segment_id": "p82_s6", "translation": "min, break is", "reason": "dropped ⟦0⟧: OCR noise (328.11.0); 'break is' completes the sentence"},
+{"segment_id": "p83_s5", "translation": "How long is it from Taoqi getting up to starting breakfast? Look and talk about it.", "box": [78, 376, 465, 412], "reason": "second line ran into the speech bubble; shorter box and wording keep it clear"},
+{"segment_id": "p86_s0", "translation": "⟦0⟧. What else do you need to watch out for during the task?", "reason": "shorter, more natural; was shrunk to 0.87"},
+{"segment_id": "p86_s25_k1", "translation": "When I meet a problem, I can think about what to do first and what to do next.", "box": [74.8, 570.9, 320.6, 612.3], "reason": "one sentence over both lines of the self-check cell (k2 is blanked); was set at 0.77 crammed in the first line"},
+{"segment_id": "p87_s9", "translation": "show it: 112 112 112…", "reason": "dropped ⟦0⟧ (112112112) written out with the grouping shown in the picture; single ellipsis"},
+{"segment_id": "p88_s6", "translation": "If we put out more flowers, the next pot should be… and the one after that…", "reason": "punctuation: doubled ellipses"}
+],
+"flags": [
+{"page": 82, "issue": "'3 min' and '1 min' option labels (p81_s25, p81_s26) are set small (0.58/0.60); no free room to the left (the children's heads) for a larger box"},
+{"page": 83, "issue": "Row 4(1) mixes sizes: '(1) 1 lesson is' small (0.66), 'min, break is' large; a wider box did not raise the size"},
+{"page": 85, "issue": "'(1) ___ h ___ min passed.' (p84_s13) set at 0.69; a wider box made it far larger than its sibling '(1) ___ min passed.', so left as is"}
+]}

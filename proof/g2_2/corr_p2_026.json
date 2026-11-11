@@ -1,0 +1,112 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s12",
+   "translation": "Can you count from 9887 to 10000?",
+   "reason": "shrunk to 0.70; shorter"
+  },
+  {
+   "segment_id": "p25_s15",
+   "translation": "Talk about large numbers in everyday life.",
+   "reason": "wrapped onto a second line"
+  },
+  {
+   "segment_id": "p25_s2",
+   "box": [
+    352,
+    128,
+    462,
+    162
+   ],
+   "reason": "0.69; use full bubble"
+  },
+  {
+   "segment_id": "p25_s14",
+   "box": [
+    292,
+    503,
+    388,
+    524
+   ],
+   "reason": "0.70; use bubble"
+  },
+  {
+   "segment_id": "p27_s12",
+   "box": [
+    143,
+    295,
+    199,
+    330
+   ],
+   "reason": "0.59; use bubble"
+  },
+  {
+   "segment_id": "p27_s14",
+   "box": [
+    406,
+    305,
+    463,
+    328
+   ],
+   "reason": "0.62; use bubble"
+  },
+  {
+   "segment_id": "p27_s19_k1",
+   "box": [
+    234,
+    405,
+    346,
+    428
+   ],
+   "reason": "0.51; free room"
+  },
+  {
+   "segment_id": "p28_s15",
+   "translation": "⟦0⟧. Read. Write each number of years in digits and show it on the abacus.",
+   "reason": "shrunk 0.79; shorter"
+  },
+  {
+   "segment_id": "p29_s15",
+   "translation": "The earliest Chinese way of recording numbers appeared in oracle bone inscriptions from the ⟦0⟧th to the ⟦1⟧th century BC. For example, ⟦2⟧ was written as =∩X∩. For convenience, from the ⟦3⟧th century BC numbers were also shown with counting rods. For example, ⟦4⟧ was written as ⟦5⟧=TTT.",
+   "reason": "8 is drawn with three rods (TTT), not TT; replaced misread ⟦6⟧"
+  },
+  {
+   "segment_id": "p32_s6",
+   "translation": "Maths game.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p30_s13_k1",
+   "translation": "4-digit numbers are greater than 3-digit…",
+   "box": [
+    341,
+    316,
+    401,
+    341
+   ],
+   "reason": "overflowed bubble; shorter, box inside bubble"
+  },
+  {
+   "segment_id": "p30_s13_k1",
+   "erase": [
+    [
+     362,
+     331,
+     390,
+     341
+    ]
+   ],
+   "reason": "printed ellipsis dots left under the English"
+  }
+ ],
+ "flags": [
+  {
+   "page": 31,
+   "issue": "Mountain name tags Huangshan (0.54) and Xiangshan (0.63) on the photos are set small and run past their small pink tags; no free room without covering the photos."
+  },
+  {
+   "page": 32,
+   "issue": "'2. Fill' (p31_s19) is set smaller than the rest of the instruction 'with > or <...' (p31_s20); the answer circle between them leaves no room to enlarge it."
+  }
+ ]
+}

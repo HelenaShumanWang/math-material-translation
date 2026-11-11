@@ -1,0 +1,68 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s5",
+   "translation": "Write down your favourite animal and put it in the box.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p89_s7",
+   "translation": "Do it Xiaoxiao's way and organise the results.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p90_s28",
+   "translation": "Don't be a fussy eater, and you'll grow up healthy!",
+   "reason": "UK idiom; 'so you can' awkward"
+  },
+  {
+   "segment_id": "p90_s32",
+   "translation": "(⟦0⟧) Talk about it: what eating advice can you give?",
+   "reason": "shorter, natural; avoids wrap"
+  },
+  {
+   "segment_id": "p92_s9_k1",
+   "translation": "Number of votes",
+   "box": [
+    346,
+    369.6,
+    431,
+    384.7
+   ],
+   "reason": "set at 0.56; shorter label, full cell"
+  },
+  {
+   "segment_id": "p93_s19",
+   "translation": "To solve problems, I learned to draw pictures, or make a list and try.",
+   "reason": "'to list and try' unnatural"
+  },
+  {
+   "segment_id": "p94_s4",
+   "translation": "⟦0⟧. Talk with your partner about how to tell east, south, west and north in everyday life, and complete the direction board on the right.",
+   "reason": "'in life' unnatural"
+  },
+  {
+   "segment_id": "p94_s7",
+   "translation": "In the picture, trace one of each shape you have learned. Say what features squares and rectangles have, and how you found them.",
+   "reason": "word order: 'learned from the picture' misleads"
+  },
+  {
+   "segment_id": "p94_s25",
+   "erase": [
+    [
+     127.3,
+     591.8,
+     130.3,
+     595
+    ]
+   ],
+   "reason": "stray closing quote mark left after the tick"
+  },
+  {
+   "segment_id": "p96_s24",
+   "translation": "(⟦0⟧) Ask a maths question and try to answer it.",
+   "reason": "natural UK phrasing"
+  }
+ ],
+ "flags": []
+}
