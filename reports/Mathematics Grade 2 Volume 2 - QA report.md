@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA passed after 3 rounds: 0 errors, 818 warnings (2095.6 s); proofread: 2195 corrections applied; output file checks: 0 error(s)
+**Result:** QA passed after 3 rounds: 0 errors, 818 warnings (2095.6 s); proofread: 2197 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数 (zh → en, 109 page(s), 2156 translatable segment(s))
 
@@ -193,7 +193,7 @@
 | warning | 95 | p94_s7 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | 从图中各描出一个你学过的图形，并说一说正方形、长方形有什么特点，这些特点是怎么得到的？ | In the picture, trace one of each shape you have learned. S… |
 | warning | 96 | p95_s3 | Reviewed by the proofreader: Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 3.将41个鸡蛋全部放在蛋托里，至少需要蛋托。 | 3. Put all 41 eggs in egg trays. At least egg trays are nee… |
 | warning | 98 | p97_s0 | Reviewed by the proofreader: Remove the symbol(s) ✓: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 11.选一选，画 | 11. Tick (✓) the best answer. |
-| warning | 101 | p100_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What did you learn this term? |
+| warning | 101 | p100_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What Did You Learn This Term? |
 
 ### `glossary` — 0 errors, 53 warnings
 
@@ -587,7 +587,7 @@
 | warning | 19 | p18_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 到操场上辨认东、南、西、北，说说操场的四个方向各有什么。在附页1的图1上记下来，并标明方向 | Go to the playground and find east, south, west and north. … |
 | warning | 20 | p19_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "1") | 4.（1）和爸爸、妈妈说一说，家里的门朝哪个方向？ | 4. (1) Talk with Mum and Dad: which direction does your fro… |
 | warning | 20 | p19_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "(2)") | (2)观察夜晚的星空，找一找北斗星。 | (2) Observe the night sky and find the Big Dipper. |
-| warning | 20 | p19_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.读一读，讲一讲。 | 5. Read and tell. |
+| warning | 20 | p19_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.读一读，讲一讲。 | 5. Read and retell. |
 | warning | 20 | p19_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "10") | 得数大于10的朝北走，其余的朝西走 | If the answer is greater than 10, go north; otherwise go we… |
 | warning | 22 | p21_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.借助方向板，填一填 | 1. Use the direction board to fill in the blanks. |
 | warning | 22 | p21_s45 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 余数小于3的朝东走，其余的朝南走 | If the remainder is less than 3, go east; otherwise go sout… |
@@ -617,7 +617,7 @@
 | warning | 29 | p28_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "4") | 1.想一想，每个数中的“4”各表示多少？用线连一连。 | 1. Think. What does the "4" in each number stand for? Draw … |
 | warning | 30 | p29_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.数一数，填一填 | 3. Count and fill in. |
 | warning | 30 | p29_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 各投5次 | 5 throws each. |
-| warning | 30 | p29_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.读一读，讲一讲 | 5. Read and tell. |
+| warning | 30 | p29_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.读一读，讲一讲 | 5. Read and retell. |
 | warning | 30 | p29_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦6⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦6⟧ = "TT") | 中国最早记录数字的方法出现于公元前16一前11世纪的甲骨文。例如，2656表示为二。为方便起见，公元前5世纪又出现了用… | The earliest Chinese way of recording numbers appeared in o… |
 | warning | 31 | p30_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1865", ⟦1⟧ = "8", ⟦2⟧ = "8") | 1865的百位上的数是8，表示8个百。泰山···· | The digit in the hundreds place of 1865 is 8, which represe… |
 | warning | 32 | p31_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）按照从大到小的顺序排列四个小动物收的玉米数量。 | (2) Arrange the amounts of corn harvested by the four anima… |
@@ -754,7 +754,7 @@
 | warning | 59 | p58_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "178") | 一共178元 | ¥178 in total |
 | warning | 59 | p58_s28 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "500") | 共有500个座位 | 500 seats in total |
 | warning | 59 | p58_s31 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | （3）座位够吗？座位数和学生数相差多少？ | (3) Are there enough seats? What is the difference between … |
-| warning | 59 | p58_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.回家。 | 4. Going home. |
+| warning | 59 | p58_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.回家。 | 4. Fly home. |
 | warning | 60 | p59_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "300", ⟦1⟧ = "44") | 付给售货员阿姨300元，找回44元，对吗？ | They paid the saleswoman ¥300 and got ¥44 change. Is that r… |
 | warning | 60 | p59_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "256") | 共256元 | ¥256 in total |
 | warning | 60 | p59_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "118") | 科普丛书每套118元 | Science books: ¥118 a set |
@@ -805,7 +805,7 @@
 | warning | 74 | p73_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "3", ⟦2⟧ = "2") | （1）用附页3图2中的七巧板拼出一个平行四边形。 | (1) Make a parallelogram with the tangram (Appendix 3, Figu… |
 | warning | 74 | p73_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）用小棒摆出一个平行四边形。 | (2) Use sticks to make a parallelogram. |
 | warning | 74 | p73_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.从下面的图案中分别找出三种你认识的图形。 | 2. In each pattern below, find three shapes you know. |
-| warning | 74 | p73_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.读一读，讲一讲。 | 5. Read and tell. |
+| warning | 74 | p73_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.读一读，讲一讲。 | 5. Read and retell. |
 | warning | 76 | p75_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.在下面的图形中分别找出两个你学过的图形，描一描，说一说。 | 1. Find two shapes you know in each figure below, trace the… |
 | warning | 76 | p75_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.在全班同学设计的图案中选择一个你最喜欢的，描在下面的方格纸上。 | 4. Pick your favourite of your classmates' patterns and tra… |
 | warning | 76 | p75_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 找出3个平行四边形， | Find 3 parallelograms |
