@@ -1,0 +1,331 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p81_s15",
+   "translation": "BLANK",
+   "reason": "OCR misread 7 as 汉 and set it as a heading; reset by p81_a1"
+  },
+  {
+   "add": "p81_a1",
+   "page": 81,
+   "box": [331, 327, 380, 341],
+   "translation": "14 and 7",
+   "source": "14和7",
+   "size": 8.5,
+   "align": "left",
+   "reason": "the pair 14 and 7, at the size of the other pairs"
+  },
+  {
+   "segment_id": "p81_s4",
+   "box": [68, 167, 197, 191],
+   "reason": "text runs onto the answer line; room above"
+  },
+  {
+   "segment_id": "p81_s25",
+   "translation": "Greatest common factor",
+   "reason": "words in wrong order"
+  },
+  {
+   "segment_id": "p82_s4",
+   "translation": "Like this, dividing the numerator and denominator of a fraction by a common factor does not change its value. This is called reducing a fraction.",
+   "box": [310.7, 366.0, 460.6, 421.5],
+   "reason": "stray 'Cannot be reduced' inserted mid-sentence; keep off the 1/3 line"
+  },
+  {
+   "segment_id": "p82_s10",
+   "translation": "cannot be reduced",
+   "reason": "fits the sentence after the fraction 1/3"
+  },
+  {
+   "segment_id": "p82_s12",
+   "translation": "any further, so it is in lowest terms.",
+   "box": [312.4, 444.0, 460.0, 460.0],
+   "reason": "more natural; room to the right in the panel",
+   "erase": [[396, 445, 412, 460]]
+  },
+  {
+   "merge": ["p83_s2", "p83_s3"],
+   "translation": "1. (1) What fraction of all the matches were won, drawn and lost?",
+   "reason": "one question split in two; second fragment mistranslated"
+  },
+  {
+   "segment_id": "p83_s1",
+   "translation": "This season we played ⟦0⟧ matches: we won ⟦1⟧, drew ⟦2⟧ and lost ⟦3⟧.",
+   "reason": "consistent 'matches'"
+  },
+  {
+   "segment_id": "p83_s5",
+   "translation": "(⟦0⟧) Give another example to show how to reduce a fraction, and discuss it with your partner.",
+   "reason": "missing space; consistent term 'reduce'"
+  },
+  {
+   "segment_id": "p83_s6",
+   "translation": "⟦0⟧. Circle the fractions in lowest terms and reduce the others.",
+   "reason": "consistent term"
+  },
+  {
+   "segment_id": "p83_s7",
+   "box": [55.3, 309.8, 240, 324],
+   "reason": "wraps in a tight box; free paper to the right"
+  },
+  {
+   "segment_id": "p83_s9",
+   "translation": "⟦0⟧. In",
+   "reason": "reads with s10"
+  },
+  {
+   "segment_id": "p83_s10",
+   "translation": "write >, < or =.",
+   "box": [102.0, 478.2, 268, 494.1],
+   "erase": [[196, 478, 268, 495]],
+   "reason": "'<' and 'or =' were missing; leftover 或“=”。 erased"
+  },
+  {
+   "line": "p84_i336_51",
+   "translation": "Mark the multiples of 4 in the table above with \"○\" and the multiples of 6 with \"△\".",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "line": "p84_i336_94",
+   "translation": "Which numbers are marked with both \"○\" and \"△\"? What do they have in common?",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "split": "p84_s8",
+   "translations": [
+    "The multiples that 4 and 6 share are their common multiples; the smallest is their least common multiple.",
+    "The common multiples of 4 and 6 are",
+    "The least common multiple of 4 and 6 is"
+   ],
+   "reason": "three lines run together as one paragraph"
+  },
+  {
+   "segment_id": "p84_s1",
+   "translation": "The multiples of ⟦0⟧ are…",
+   "reason": "ellipsis of the bubble"
+  },
+  {
+   "segment_id": "p84_s2",
+   "translation": "The multiples of ⟦0⟧ are…",
+   "reason": "ellipsis of the bubble"
+  },
+  {
+   "segment_id": "p84_s5",
+   "translation": "The numbers with both marks are ⟦0⟧, …",
+   "reason": "several numbers carry both marks"
+  },
+  {
+   "segment_id": "p84_s10",
+   "box": [62, 603, 143, 617],
+   "reason": "label covered the arrowhead; room on the left"
+  },
+  {
+   "segment_id": "p84_s15",
+   "translation": "Multiples of ⟦0⟧",
+   "reason": "match the other Venn label; box kept off the arrowhead",
+   "box": [378, 603, 458, 619]
+  },
+  {
+   "restore": [144, 605, 155, 616],
+   "page": 84,
+   "reason": "arrowhead of the left arrow"
+  },
+  {
+   "restore": [370, 606, 378, 617],
+   "page": 84,
+   "reason": "arrowhead of the right arrow"
+  },
+  {
+   "segment_id": "p84_s16",
+   "translation": "Common multiples of ⟦0⟧ and ⟦1⟧",
+   "reason": "label style"
+  },
+  {
+   "segment_id": "p84_s8_k1",
+   "box": [75, 515, 300, 529],
+   "reason": "one line above its answer line"
+  },
+  {
+   "segment_id": "p84_s8_k2",
+   "box": [75, 535, 300, 548],
+   "reason": "sits above its answer line, clear of it"
+  },
+  {
+   "line": "p85_i340_1",
+   "translation": "1. In the table below, mark the multiples of 3 with \"○\" and the multiples of 5 with \"△\".",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "line": "p85_i340_52",
+   "translation": "Which numbers are marked with both \"○\" and \"△\"? What do they have in common?",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "segment_id": "p85_s2",
+   "box": [68, 342, 205, 376],
+   "reason": "overflowed left; room above and below"
+  },
+  {
+   "segment_id": "p85_s3",
+   "translation": "and the least common multiple is",
+   "box": [299, 342, 372, 376],
+   "reason": "joins the sentence; room for two lines"
+  },
+  {
+   "segment_id": "p85_s13",
+   "box": [96, 544, 161, 564],
+   "reason": "ribbon is wider; stop before the scroll curl"
+  },
+  {
+   "segment_id": "p85_s14",
+   "translation": "To find the greatest common factor and the least common multiple of two numbers, you can also use the method on the right.",
+   "reason": "term: factor, not divisor"
+  },
+  {
+   "segment_id": "p86_s15",
+   "translation": "DROP",
+   "reason": "handwritten working: keep the picture, only 所以 is set in English (p86_a1)"
+  },
+  {
+   "add": "p86_a1",
+   "page": 86,
+   "box": [283, 499, 310, 515],
+   "translation": "so",
+   "source": "所以",
+   "size": 11,
+   "align": "center",
+   "reason": "所以 in the handwritten working"
+  },
+  {
+   "segment_id": "p86_s17",
+   "translation": "From the figure we can see 2/7 > 1/6.",
+   "reason": "handwritten working misread by OCR"
+  },
+  {
+   "segment_id": "p86_s3",
+   "translation": "Part of the campus the dormitory covers:",
+   "reason": "article, same wording as the other labels"
+  },
+  {
+   "segment_id": "p86_s12",
+   "translation": "Changing fractions with different denominators into equal fractions with the same denominator is called finding a common denominator.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p87_s2",
+   "translation": "Of this book, I have read",
+   "reason": "English word order before the fraction"
+  },
+  {
+   "segment_id": "p87_s3",
+   "translation": "Of this book, I have read",
+   "box": [108, 150, 172, 167],
+   "reason": "word order; keep text off the fraction 1/4 and inside the bubble"
+  },
+  {
+   "segment_id": "p87_s4",
+   "translation": "Of this book, I have read",
+   "box": [344, 182, 415, 197],
+   "reason": "word order; keep text off the fraction 3/8 and inside the bubble"
+  },
+  {
+   "segment_id": "p87_s6",
+   "translation": "Who has read more pages, Taoqi or Xiaoxiao? Explain how you worked it out.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p87_s11",
+   "translation": "⟦0⟧. China has set up more than two thousand nature reserves. The chart shows what fraction of all the reserves is at each level.",
+   "reason": "clearer"
+  },
+  {
+   "segment_id": "p87_s13",
+   "translation": "Provincial",
+   "reason": "shorter label, was shrunk"
+  },
+  {
+   "segment_id": "p87_s17",
+   "translation": "and",
+   "box": [189, 500, 207, 516],
+   "reason": "left in Chinese; room between the fractions"
+  },
+  {
+   "segment_id": "p87_s20",
+   "translation": "⟦0⟧. At the forest sports day, a little rabbit and a little goat ran a race. In the same time, the goat ran this fraction of the course:",
+   "reason": "reads with the fractions on the next line",
+   "box": [57, 527, 460, 551]
+  },
+  {
+   "segment_id": "p87_s21",
+   "translation": "BLANK",
+   "reason": "said at the end of s20"
+  },
+  {
+   "add": "p87_a1",
+   "page": 87,
+   "box": [125, 554, 222, 569],
+   "translation": ", and the rabbit ran",
+   "source": "，小兔跑了全程的",
+   "reason": "text between the fractions was erased and not set",
+   "size": 9
+  },
+  {
+   "restore": [223, 547, 240, 575],
+   "page": 87,
+   "reason": "fraction 6/7 was erased"
+  },
+  {
+   "segment_id": "p87_s22",
+   "translation": ". Who ran faster?",
+   "reason": "tense"
+  },
+  {
+   "segment_id": "p87_s24",
+   "translation": "Ice lollies sold",
+   "reason": "UK term for the pictured ice lolly"
+  },
+  {
+   "line": "p88_i352_1",
+   "translation": "1. Draw \"○\" on the factors of 12 and \"△\" on the factors of 30.",
+   "force": true,
+   "reason": "only text in the box"
+  },
+  {
+   "segment_id": "p88_s2",
+   "translation": "and the greatest common factor is",
+   "box": [268, 199, 342, 222],
+   "reason": "term; overlapped the answer line"
+  },
+  {
+   "line": "p88_i352_66",
+   "pieces": [[105, 121, "BLANK"]],
+   "reason": "比 before 1/2; English label reads '1/2 is greater than these fractions'"
+  },
+  {
+   "line": "p88_i352_67",
+   "pieces": [[297, 314, "BLANK"]],
+   "reason": "比 before 1/2"
+  },
+  {
+   "segment_id": "p88_s12",
+   "translation": "is less than these fractions",
+   "reason": "maths term"
+  },
+  {
+   "restore": [121, 597, 137, 622],
+   "page": 88,
+   "reason": "lower half of the fraction 1/2 was erased"
+  },
+  {
+   "segment_id": "p88_s11",
+   "box": [138, 600, 285, 615],
+   "translation": "is greater than these fractions",
+   "reason": "maths term; same size as the label on the right"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,33 @@
+{
+ "corrections": [
+  {"segment_id": "p57_s0", "translation": "Try It", "reason": "试一试 is the section title"},
+  {"segment_id": "p57_s1", "translation": "The area of a parallelogram billboard is ⟦0⟧ and its height is ⟦1⟧. How many metres long is the base that goes with this height?", "reason": "British spelling, more natural"},
+  {"merge": ["p57_s5", "p57_s6"], "translation": "Let the base for this height be x m.", "reason": "one sentence split over two lines; wraps badly"},
+  {"segment_id": "p57_s19", "translation": "(⟦0⟧) The base of this parking space is ⟦1⟧ and the matching height is ⟦2⟧. What is its area?", "reason": "missing space after (2); more natural"},
+  {"segment_id": "p58_s0", "translation": "⟦0⟧. The area of a parallelogram flower bed is ⟦1⟧. How many metres is the height to the long side in the figure?", "reason": "British spelling, more natural"},
+  {"segment_id": "p58_s4", "translation": "(⟦0⟧) Are their areas the same? Explain why.", "reason": "complete sentence with full stop"},
+  {"segment_id": "p58_s13", "translation": "How many small parallelograms like the one on the right are needed to make the large one on the left? Explain your thinking.", "reason": "拼成 = put together to make"},
+  {"segment_id": "p59_s3", "translation": "Can you turn the triangle into a shape we know?", "reason": "shrunk to 0.71; shorter"},
+  {"segment_id": "p59_s19", "translation": "The base is like the rectangle's length, and the height is like...", "reason": "shrunk; shorter"},
+  {"segment_id": "p59_s10", "box": [278, 360, 312, 373], "reason": "label set large over the triangle; small box below base line", "translation": "base"},
+  {"split": "p59_s20", "translations": ["Area of a triangle =", "If S is the area of a triangle, and a and h are its", "base and height, then the formula for the area", "of a triangle can be written as:"], "reason": "first line is its own formula line with a blank; merged text ran over the answer line"},
+  {"segment_id": "p59_s20_k0", "box": [92, 576, 189, 591], "reason": "= sat on the start of the answer line"},
+  {"segment_id": "p59_s14", "translation": "BLANK", "reason": "高 erased; English set by p59_a1 left of the height line, where there is room inside the triangle"},
+  {"add": "p59_a1", "page": 59, "box": [244, 439.5, 275, 451], "translation": "height", "source": "高", "size": 8, "align": "right", "reason": "right of the height line the label crossed the triangle's side"},
+  {"restore": [275, 439.5, 281, 457], "page": 59, "reason": "height line under the new label box"},
+  {"segment_id": "p60_s0", "translation": "Try It", "reason": "试一试 is the section title"},
+  {"segment_id": "p60_s2", "translation": "Using the triangle area formula...", "erase": [[60, 199, 113, 217]], "box": [60, 172, 112, 214], "reason": "公式…… left in the bubble (dots too)"},
+  {"merge": ["p60_s5", "p60_s7"], "translation": "I'll solve it with an equation...", "reason": "one bubble sentence split in two"},
+  {"segment_id": "p60_s15", "translation": "Their bases are 3 cm and their heights are the same...", "erase": [[270, 352, 306, 369]], "box": [268, 324, 334, 368], "reason": "样…… left in bubble; set too small"},
+  {"segment_id": "p60_s23", "translation": "⟦0⟧. Explain how to find the area of a triangle. Measure and find the areas of the two triangles on the right.", "box": [56.7, 588, 273, 634], "reason": "ran into the triangle; shorter and kept in its column"},
+  {"segment_id": "p61_s0", "translation": "⟦0⟧. A triangular flag has an area of ⟦1⟧ and a height of ⟦2⟧. How many centimetres is the base that goes with this height?", "box": [55.6, 77.4, 335, 118], "reason": "ran into the triangle"},
+  {"segment_id": "p61_s6", "translation": "As shown, Taoqi marks the midpoint of the\nbase. He says, \"If I join it to the top, the two\nsmall triangles have equal areas.\" Do you\nagree? Discuss with your partner.", "reason": "ran into the triangle: shorter, broken into lines that fit beside it"},
+  {"segment_id": "p62_s9", "translation": "h", "reason": "one-character height label left in Chinese"},
+  {"segment_id": "p62_s13", "translation": "The new parallelogram's height and the trapezoid's height...", "reason": "shrunk to 0.78; shorter"},
+  {"segment_id": "p62_s14", "translation": "Area of a trapezoid =", "box": [78, 576, 177, 590], "reason": "= was lost and the answer line struck through the text"},
+  {"segment_id": "p63_s7", "translation": "Can you draw another trapezoid that fits?", "reason": "shrunk to 0.76; shorter"},
+  {"segment_id": "p64_s2", "translation": "(⟦0⟧) Talk about it: which two figures have equal areas?", "reason": "enumerator placeholder missing; 说一说 omitted"},
+  {"segment_id": "p64_s4", "translation": "(2) Which two figures can be put together to make a parallelogram? Discuss with your partner.", "box": [284.9, 192.8, 464.3, 223.1], "reason": "enumerator (2) missing"}
+ ],
+ "flags": []
+}

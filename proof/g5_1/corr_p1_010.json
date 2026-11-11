@@ -1,0 +1,426 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p9_s2",
+   "translation": "⟦0⟧ cubic gift boxes use ⟦1⟧ of ribbon.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p9_s3",
+   "translation": "On average, how many metres of ribbon does each rectangular gift box use? And each cubic gift box? Use the column method for each, and explain what each step means.",
+   "reason": "column method"
+  },
+  {
+   "split": "p9_s17",
+   "translations": [
+    "On average, how heavy is each apple?",
+    "Qisi spent ¥6.12 on these apples. On average,",
+    "how much does each apple cost?"
+   ],
+   "reason": "lines follow (1) and (2)"
+  },
+  {
+   "segment_id": "p9_s26",
+   "box": [
+    190,
+    572,
+    228,
+    586.5
+   ],
+   "reason": "use whole cell"
+  },
+  {
+   "segment_id": "p9_s28",
+   "box": [
+    268,
+    584,
+    305,
+    599
+   ],
+   "reason": "use whole cell"
+  },
+  {
+   "split": "p9_s30",
+   "at": [
+    425
+   ],
+   "translations": [
+    "jiao",
+    "fen"
+   ],
+   "reason": "two cells"
+  },
+  {
+   "segment_id": "p9_s35",
+   "translation": "In words: one hundred and thirty-two yuan, five jiao, zero fen",
+   "reason": "British usage, label"
+  },
+  {
+   "segment_id": "p10_s1",
+   "translation": "Wow, so expensive! Taoqi must have talked too long!",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p10_s10",
+   "translation": "Multiply the dividend and the divisor by ⟦0⟧: the quotient stays the same.",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p10_s13",
+   "translation": "= ⟦0⟧ (min)",
+   "reason": "match line above"
+  },
+  {
+   "segment_id": "p10_s15",
+   "translation": "Circle, then use the column method. Discuss with a partner.",
+   "reason": "column method"
+  },
+  {
+   "segment_id": "p10_s17",
+   "translation": "⟦0⟧ is ⟦1⟧ groups of ⟦2⟧, ⟦3⟧ is ⟦4⟧ groups of 0.1 …",
+   "reason": "dropped ⟦5⟧: misread 0.1……"
+  },
+  {
+   "segment_id": "p10_s3",
+   "translation": "International calls: ¥⟦0⟧ per minute",
+   "reason": "shrunk; shorter"
+  },
+  {
+   "segment_id": "p10_s13",
+   "box": [
+    212,
+    359,
+    262,
+    372
+   ],
+   "reason": "smaller box, size like line above"
+  },
+  {
+   "segment_id": "p11_s5",
+   "translation": "Calculate and check, then discuss with a partner.",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p11_s6",
+   "translation": "Decimal division is tricky. Be careful!",
+   "reason": "dropped ⟦0⟧: OCR noise; shorter"
+  },
+  {
+   "segment_id": "p11_s11",
+   "translation": "2.5 m/min",
+   "reason": "⟦0⟧. ⟦1⟧ is the misread number 2.5"
+  },
+  {
+   "segment_id": "p12_s0",
+   "translation": "⟦0⟧. Taoqi's mother wants to pour ⟦1⟧ of oil into glass bottles. If she uses only small bottles, how many does she need at least? What if she uses only large bottles?",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p12_s3",
+   "translation": "⟦0⟧. Use the column method and check.",
+   "reason": "column method"
+  },
+  {
+   "split": "p12_s26",
+   "translations": [
+    "Name",
+    "Total price (¥)",
+    "Mass (kg)",
+    "Unit price (¥/kg)"
+   ],
+   "reason": "table column cells"
+  },
+  {
+   "segment_id": "p12_s30",
+   "box": [
+    383,
+    601.5,
+    451,
+    615.4
+   ],
+   "reason": "use whole cell"
+  },
+  {
+   "segment_id": "p13_s3",
+   "translation": "(⟦0⟧) How much is each pencil\nsharpener on average?",
+   "box": [
+    291,
+    136,
+    458,
+    158
+   ],
+   "reason": "same size as (1): break line over free paper"
+  },
+  {
+   "segment_id": "p13_s6",
+   "translation": "DROP",
+   "reason": "erase damaged the quotient; restore picture"
+  },
+  {
+   "segment_id": "p13_s7",
+   "translation": "DROP",
+   "reason": "erase damaged the quotient; restore picture"
+  },
+  {
+   "segment_id": "p13_s12",
+   "translation": "DROP",
+   "reason": "restore picture"
+  },
+  {
+   "segment_id": "p13_s14",
+   "translation": "DROP",
+   "reason": "restore picture"
+  },
+  {
+   "segment_id": "p13_s28",
+   "translation": "⟦0⟧. Use the column method, explain what each step means, and check.",
+   "reason": "column method"
+  },
+  {
+   "split": "p15_s2",
+   "translations": [
+    "Bank of China",
+    "× October 2012",
+    "1 US dollar = 6.31 yuan",
+    "1 euro = 8.19 yuan",
+    "1 Hong Kong dollar = 0.81 yuan",
+    "1 Singapore dollar = 5.11 yuan",
+    "100 Japanese yen = 7.89 yuan",
+    "100 Thai baht = 20.32 yuan"
+   ],
+   "reason": "board lines run together"
+  },
+  {
+   "restore": [
+    55,
+    498,
+    68.5,
+    517
+   ],
+   "page": 16,
+   "reason": "calculator icon"
+  },
+  {
+   "restore": [
+    55,
+    568,
+    68,
+    586
+   ],
+   "page": 16,
+   "reason": "calculator icon"
+  },
+  {
+   "paint": [
+    68,
+    567,
+    72,
+    587
+   ],
+   "page": 16,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "left stroke of 元 beside the calculator icon"
+  },
+  {
+   "restore": [
+    55,
+    631,
+    70,
+    649
+   ],
+   "page": 16,
+   "reason": "calculator icon"
+  },
+  {
+   "restore": [
+    121,
+    221,
+    134,
+    236
+   ],
+   "page": 13,
+   "reason": "quotient digit 9 and point lost"
+  },
+  {
+   "add": "p13_a1",
+   "page": 13,
+   "box": [
+    184,
+    223,
+    193.5,
+    235.5
+   ],
+   "translation": "BLANK",
+   "source": "个",
+   "reason": "measure word 个 after the number; English writes 8 (   )"
+  },
+  {
+   "add": "p13_a2",
+   "page": 13,
+   "box": [
+    190,
+    271,
+    200,
+    282
+   ],
+   "translation": "BLANK",
+   "source": "个",
+   "reason": "measure word 个 after the number; English writes 8 (   )"
+  },
+  {
+   "add": "p13_a3",
+   "page": 13,
+   "box": [
+    398,
+    211,
+    408,
+    223
+   ],
+   "translation": "BLANK",
+   "source": "个",
+   "reason": "measure word 个 after the number; English writes 8 (   )"
+  },
+  {
+   "add": "p13_a4",
+   "page": 13,
+   "box": [
+    405,
+    286,
+    415,
+    298
+   ],
+   "translation": "BLANK",
+   "source": "个",
+   "reason": "measure word 个 after the number; English writes 8 (   )"
+  },
+  {
+   "segment_id": "p14_s8",
+   "translation": "⟦0⟧. Aunt Wang bought ⟦1⟧ of apples, paid ¥⟦2⟧ and got ¥⟦3⟧ change. How much did",
+   "reason": "shrunk; shorter"
+  },
+  {
+   "segment_id": "p14_s9",
+   "translation": "the apples cost? How much were they per kilogram?",
+   "reason": "continues line above"
+  },
+  {
+   "segment_id": "p15_s17",
+   "translation": "How many Hong Kong dollars can you get for ⟦0⟧ yuan? Euros? Singapore dollars?",
+   "box": [
+    78,
+    543.5,
+    466,
+    557.5
+   ],
+   "reason": "shrunk; shorter, room to the right"
+  },
+  {
+   "add": "p15_a1",
+   "page": 15,
+   "box": [
+    238,
+    335,
+    272,
+    349
+   ],
+   "align": "left",
+   "translation": "(yuan)",
+   "source": "（元）",
+   "reason": "unit after 42.28 lost"
+  },
+  {
+   "split": "p16_s19",
+   "translations": [
+    "1. Taoqi went to a science camp in Hong Kong and",
+    "BLANK"
+   ],
+   "reason": "second line starts after the calculator icon"
+  },
+  {
+   "segment_id": "p16_s19_k0",
+   "box": [
+    57,
+    482.7,
+    284,
+    497
+   ],
+   "reason": "room up to the picture"
+  },
+  {
+   "split": "p16_s21",
+   "translations": [
+    "2. Taoqi's dad is going to study in France. He took 6000 yuan to the bank",
+    "BLANK"
+   ],
+   "reason": "second line starts after the calculator icon"
+  },
+  {
+   "segment_id": "p16_s22",
+   "translation": "⟦0⟧. Xiaoxiao's mum went on a tour to Singapore and came home with ⟦1⟧",
+   "reason": "second line set after the icon"
+  },
+  {
+   "add": "p16_a1",
+   "page": 16,
+   "box": [
+    72,
+    634,
+    400,
+    647
+   ],
+   "align": "left",
+   "translation": "Singapore dollars left. How many yuan is that?",
+   "source": "",
+   "reason": "second line of 3., beside the calculator icon",
+   "size": 9
+  },
+  {
+   "add": "p16_a2",
+   "page": 16,
+   "box": [
+    72,
+    500,
+    284,
+    514
+   ],
+   "align": "left",
+   "size": 9,
+   "translation": "bought 1 pencil case. How many yuan is that?",
+   "source": "1个铅笔盒。折合人民币多少元？",
+   "reason": "second line of 1., beside the calculator icon"
+  },
+  {
+   "add": "p16_a3",
+   "page": 16,
+   "box": [
+    72,
+    570,
+    400,
+    584
+   ],
+   "align": "left",
+   "size": 9,
+   "translation": "to change into euros. How many euros can he get?",
+   "source": "元，能兑换多少欧元？",
+   "reason": "second line of 2., beside the calculator icon"
+  }
+ ],
+ "flags": [
+  {
+   "page": 16,
+   "issue": "p15_s17 (5000 yuan question) shortened to one line ('... Euros? Singapore dollars?'); still set a little smaller than the 600 yuan question above it; no free paper below it before the calculator picture."
+  },
+  {
+   "page": 14,
+   "issue": "Division diagrams kept as printed (DROP) with only the measure word 个 erased: reads '8 (   )', '32 (   )' etc.; the blank expects a place-value unit (tenths)."
+  },
+  {
+   "page": 15,
+   "issue": "p14_s8 (question 9, first line) is a 'heading' segment and is set a little larger than its second line p14_s9; readable, no segment size control."
+  }
+ ]
+}

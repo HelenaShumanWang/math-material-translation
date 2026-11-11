@@ -1,0 +1,185 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s6",
+   "translation": "(⟦0⟧) Use axial symmetry or translation to design a badge for your class. Explain your design to your partner.",
+   "reason": "'design intent' unnatural"
+  },
+  {
+   "segment_id": "p34_s2",
+   "translation": "On sports day, two classes lined up in the formations below. How many students are in each class?",
+   "reason": "more natural, shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p34_s9",
+   "translation": "From ⟦0⟧, can you say which number is a multiple of which, and which is a factor of which?",
+   "reason": "more natural, shorter"
+  },
+  {
+   "segment_id": "p35_s4",
+   "translation": "(2) From the number sentences, say which number is a multiple of which, and which is a factor of which.",
+   "reason": "enumerator (2) lost in the picture; box starts where the (2) was, in line with (1)",
+   "box": [223.1, 151.5, 442.2, 183.1]
+  },
+  {
+   "segment_id": "p35_s12",
+   "translation": "DROP",
+   "reason": "OCR of the publisher watermark"
+  },
+  {
+   "segment_id": "p35_s11",
+   "box": [56.4, 405.1, 185.0, 417.8],
+   "reason": "label wrapped in a narrow box; free paper to the right; full stop like its sibling labels",
+   "translation": "⟦0⟧. I write, you say."
+  },
+  {
+   "segment_id": "p35_s14",
+   "translation": "⟦0⟧ and ⟦1⟧ are factors of ⟦2⟧, and ⟦3⟧ is a multiple of ⟦4⟧ and ⟦5⟧.",
+   "reason": "comma splice"
+  },
+  {
+   "segment_id": "p35_s15",
+   "translation": "⟦0⟧. Who can find them fastest?",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p35_s18",
+   "translation": "Which numbers are multiples of both ⟦0⟧ and ⟦1⟧?",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p36_s17",
+   "translation": "The ones digits are …",
+   "reason": "natural; the dots erased and set with the English so the label is not shrunk",
+   "box": [136.9, 572.9, 232.0, 583.5],
+   "erase": [[184, 574, 210, 582.3]]
+  },
+  {
+   "segment_id": "p36_s19",
+   "erase": [[330, 626, 372, 652]],
+   "reason": "red 偶数 left visible in the line"
+  },
+  {
+   "segment_id": "p37_s4",
+   "translation": "Odd.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p37_s6",
+   "translation": "Even.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p37_s13",
+   "translation": "Which card could you draw to make a multiple of ⟦1⟧ with \"⟦0⟧\"? Which to make a multiple of ⟦3⟧ with \"⟦2⟧\"?",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p37_s14",
+   "translation": "There are ten number cards, ⟦0⟧ to ⟦1⟧, in the bag.",
+   "reason": "natural; no ~"
+  },
+  {
+   "segment_id": "p37_s18",
+   "translation": "The sum must be odd.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p38_s0",
+   "translation": "Exploration: Features of Multiples of ⟦0⟧",
+   "reason": "consistent with p37 heading"
+  },
+  {
+   "segment_id": "p38_s6",
+   "translation": "⟦0⟧, ... the ones digits have no pattern...",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p38_s11",
+   "translation": "BLANK",
+   "reason": "OCR of 是 and of '15,' that belong to s12's sentence; 15 now set in s12"
+  },
+  {
+   "segment_id": "p38_s12",
+   "translation": "Is that so? Let me check a few numbers: ⟦0⟧, ⟦1⟧; 15,",
+   "reason": "carries 15, whose OCR was the stray p38_s11"
+  },
+  {
+   "segment_id": "p39_s1",
+   "box": [57.0, 124.2, 485.0, 135.2],
+   "reason": "wraps; free paper right"
+  },
+  {
+   "split": "p39_s5",
+   "translations": [
+    "Is a multiple of 3.",
+    "Is a multiple of both 2 and 3.",
+    "Is a multiple of both 3 and 5."
+   ],
+   "reason": "three conditions joined as prose"
+  },
+  {
+   "segment_id": "p39_s9",
+   "translation": "Is a multiple of ⟦0⟧, ⟦1⟧ and ⟦2⟧.",
+   "reason": "shorter, same meaning"
+  },
+  {
+   "segment_id": "p39_s10",
+   "translation": "Find the multiples of ⟦0⟧ in the hundred chart and colour them.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p39_s11",
+   "translation": "(⟦0⟧) Look at the multiples of ⟦1⟧. What features do they have?",
+   "reason": "consistent term"
+  },
+  {
+   "segment_id": "p39_s12",
+   "translation": "(⟦0⟧) What is special about their arrangement?",
+   "reason": "shorter, keeps 特征; box into the free paper on the right",
+   "box": [296.5, 506.3, 468.0, 519.6]
+  },
+  {
+   "merge": ["p40_s2", "p40_s3", "p40_s4"],
+   "translation": "You can make three rectangles: 1×12, 2×6 and 3×4.",
+   "reason": "one sentence split over three lines"
+  },
+  {
+   "segment_id": "p40_s1",
+   "translation": "In how many ways can you make a rectangle from ⟦0⟧ small squares? Draw them on the grid below and discuss with your partner.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p37_s1",
+   "translation": "⟦0⟧. Circle the multiples of ⟦1⟧ below, and tell your partner how you decided.",
+   "reason": "shorter so it fits one line"
+  },
+  {
+   "paint": [329, 632, 374, 652],
+   "page": 36,
+   "colour": [248, 208, 224],
+   "reason": "red 偶数 not removed by erase; inside the pink box only"
+  },
+  {
+   "restore": [290, 328, 313, 343],
+   "page": 39,
+   "reason": "put back the (1) enumerator"
+  },
+  {
+   "restore": [122, 392, 195.3, 444],
+   "page": 35,
+   "reason": "the dropped watermark OCR (p35_s12) was still erased: white strip over the blackboard and picture edge"
+  },
+  {
+   "restore": [104, 419, 122, 444],
+   "page": 35,
+   "reason": "same, below the kept 。"
+  },
+  {
+   "restore": [106, 389, 122, 404],
+   "page": 35,
+   "reason": "same, the picture's lower edge above the kept 。"
+  }
+ ],
+ "flags": []
+}

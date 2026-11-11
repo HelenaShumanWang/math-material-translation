@@ -1,0 +1,121 @@
+{
+ "code": "g5_1",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 1,
+   "issue": "Cover: the blue arc where 数学 stood is repainted in flat bands of the arc colour (the strokes covered it); a slight step is visible at the arc's top edge under 'Mathematics' on close zoom."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 4,
+   "issue": "'Unit 2 Symmetry and Translation' is set smaller (about 0.76) than the other contents lines and its leader dots are erased; the erase also nicks the grey publisher watermark there."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 14,
+   "issue": "Division diagrams kept as printed (DROP) with only the measure word 个 erased: reads '8 (   )', '32 (   )' etc.; the blank expects a place-value unit (tenths)."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 15,
+   "issue": "p14_s8 (question 9, first line) is a 'heading' segment and is set a little larger than its second line p14_s9; readable, no segment size control."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 16,
+   "issue": "p15_s17 (5000 yuan question) shortened to one line ('... Euros? Singapore dollars?'); still set a little smaller than the 600 yuan question above it; no free paper below it before the calculator picture."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 20,
+   "issue": "'Did You Know?' banner title (p19_s29) is still set at about 0.54: the scroll banner has no more room."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 20,
+   "issue": "Did You Know box (p19_s30): the repeating-decimal dots over 0.6, 3.27 and 0.1875 are red paint fixes placed on the current line layout of p19_s30; if that text, its box or the font changes, the dots must be moved."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 30,
+   "issue": "Labels '5 squares right' / '3 squares left' (p29_s10/s11) sit at 0.76-0.77 in narrow boxes whose erase also took some grid lines and a sliver of the pink parallelogram; unchanged from the checked edition."
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 39,
+   "issue": "a small leftover comma from '15,' in the picture stays to the left of '1+5=6' in the middle speech bubble (the checked edition has it too). An erase of it also wiped out '1+5=6', so I took the erase back out."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 52,
+   "issue": "p51_s12: the tiny cover label 百科全书 on the encyclopedia in the shelf (14x6 pt) stays in Chinese; no English word fits on the book cover."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 68,
+   "issue": "Item 5: 'of his pocket money, Miaoxiang' (p67_s28) is set noticeably smaller than the rest of the line because the space between the 1/5 and 3/5 pictures is narrow. It is readable but small."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 69,
+   "issue": "A Chinese full stop is left after '1/2 > 1/3' in the left bubble. It sits on the watermark, so painting over it would leave a flat patch, and I left it."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 71,
+   "issue": "Heading 'Sharing Cakes' still set small (scale 0.54) on two lines: the green title plate is too small for the English, and there is no free room inside it."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 77,
+   "issue": "4. (1)/(2): the two '&' (for 和, 'and' does not fit between the fractions) are set at different sizes (0.74 vs 1.0)."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 81,
+   "issue": "'Factors of 12:' / 'Factors of 18:' before the hand-drawn circled numbers wrap over two lines in the narrow space left of the numbers."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 97,
+   "issue": "China map on page 097 (ids p96_*): only the larger provinces are in English; many small province labels (Inner Mongolia, Gansu, Ningxia, Shaanxi, Shanxi, Hebei, Beijing, Tianjin, Shandong, Jiangsu, Anhui, Shanghai, Zhejiang, Jiangxi, Fujian, Hunan, Guangdong, Liaoning, Henan, Chongqing, Taiwan, Hong Kong, Macao) stay in Chinese because the cells are too small; a relabelled English map would be needed."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 104,
+   "issue": "p103_s15 'Almost there, adjust a little more.' is a heading-role paragraph and still prints larger than its sibling lines (……腿还多 etc.)."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 105,
+   "issue": "Lot slips in the boy's hands (先/后, first/second) stay in Chinese: slips too narrow for English (p104_s14 DROPped)."
+  },
+  {
+   "file": "corr_p1_106.json",
+   "page": 109,
+   "issue": "'Yellow face up' (p108_s13) is set smaller than 'Red face up' beside it in the same table row; the cell is too narrow for one size."
+  },
+  {
+   "file": "corr_p1_106.json",
+   "page": 111,
+   "issue": "Table colour headings 白/黄 are too narrow for 'White'/'Yellow'; set as W/Y with a key 'W = white, Y = yellow' added to question 2."
+  },
+  {
+   "file": "corr_p1_106.json",
+   "page": 112,
+   "issue": "Q4 (1)/(2) (p111_s17, p111_s18) are still set small (about 0.65) on one line in the narrow panel; legible but smaller than the other questions."
+  },
+  {
+   "file": "corr_p1_106.json",
+   "page": 112,
+   "issue": "Q1 (2), Q2 'Sort the numbers...' and Q3 'Match.' are set noticeably smaller than Q1 (1) (not changed by this file)."
+  },
+  {
+   "file": "corr_p1_114.json",
+   "page": 116,
+   "issue": "Ball-table header cells are all set small (about 0.7) so Red/Blue match Colour/Times/Yellow; the cells are too narrow for larger English."
+  }
+ ]
+}

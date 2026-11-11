@@ -1,0 +1,254 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p97_s5",
+   "erase": [
+    [
+     62,
+     298,
+     116,
+     314
+    ]
+   ],
+   "reason": "leftover glyphs of 活动任务 under the English"
+  },
+  {
+   "segment_id": "p97_s7",
+   "translation": "Planning",
+   "reason": "label set at 0.53; shorter"
+  },
+  {
+   "segment_id": "p97_s10",
+   "translation": "What transport to take and how long the journey takes…",
+   "reason": "British term, natural"
+  },
+  {
+   "segment_id": "p97_s14",
+   "translation": "DROP",
+   "reason": "OCR noise of the dotted border"
+  },
+  {
+   "split": "p98_s9",
+   "translations": [
+    "Bus type",
+    "Air-con coach",
+    "Ordinary bus",
+    "Minibus"
+   ],
+   "reason": "table column cells run together; short cell text so it is not set tiny"
+  },
+  {
+   "split": "p98_s4",
+   "translations": [
+    "Palace Museum",
+    "Adult 60",
+    "Student 20"
+   ],
+   "reason": "header cell and price cell joined"
+  },
+  {
+   "split": "p98_s5",
+   "translations": [
+    "Beihai Park",
+    "Adult 10",
+    "Student 5"
+   ],
+   "reason": "header cell and price cell joined"
+  },
+  {
+   "segment_id": "p98_s6",
+   "translation": "Price per person (¥)",
+   "reason": "spacing, natural"
+  },
+  {
+   "segment_id": "p98_s8",
+   "translation": "Return fare",
+   "reason": "shrunk to 0.62; shorter"
+  },
+  {
+   "segment_id": "p98_s12",
+   "translation": "I did a survey…",
+   "box": [
+    334,
+    220,
+    388,
+    248
+   ],
+   "erase": [
+    [
+     335,
+     235,
+     386,
+     248
+    ]
+   ],
+   "reason": "second bubble line 一下…… left in Chinese"
+  },
+  {
+   "segment_id": "p99_s6",
+   "translation": "(⟦0⟧) Departure time: ⟦1⟧; return time: ⟦2⟧. Travel time: Beijing's traffic is heavy, so about ⟦3⟧ hours; visiting time: about ⟦4⟧ hours.",
+   "reason": "natural English"
+  },
+  {
+   "segment_id": "p99_s11",
+   "translation": "Travel",
+   "box": [
+    156,
+    313,
+    190,
+    329
+   ],
+   "reason": "left in Chinese; shorter word, whole header cell"
+  },
+  {
+   "merge": [
+    "p99_s7",
+    "p99_s9"
+   ],
+   "translation": "(3) Beihai Park visit: morning, about 2 hours; bring your own lunch. Palace Museum visit: afternoon, about 3 hours.",
+   "reason": "one item (3) on two lines; set at different sizes"
+  },
+  {
+   "segment_id": "p99_s19",
+   "translation": "⟦0⟧ Notes:",
+   "reason": "spacing, plural"
+  },
+  {
+   "segment_id": "p99_s20",
+   "translation": "① Safety first",
+   "box": [
+    151,
+    378,
+    240,
+    394
+   ],
+   "reason": "set at 0.54; free paper to the right"
+  },
+  {
+   "segment_id": "p99_s23",
+   "box": [
+    61,
+    469,
+    125,
+    485
+   ],
+   "reason": "set at 0.53; use the whole tag"
+  },
+  {
+   "segment_id": "p99_s24",
+   "translation": "How did I do in this activity? (Colour in the ☆ after each item; colouring all ⟦0⟧ is the best.)",
+   "reason": "natural English"
+  },
+  {
+   "segment_id": "p99_s26",
+   "translation": "The record sheet uses maths and is short and clear.",
+   "reason": "shrunk to 0.72; shorter"
+  },
+  {
+   "segment_id": "p99_s28",
+   "translation": "I shared ideas actively with classmates.",
+   "reason": "self-assessment voice, consistent with other items"
+  },
+  {
+   "segment_id": "p99_s29",
+   "translation": "I reflected carefully and improved the plan.",
+   "reason": "self-assessment voice"
+  },
+  {
+   "segment_id": "p100_s3",
+   "translation": "I made this!",
+   "reason": "shrunk to 0.66; shorter"
+  },
+  {
+   "segment_id": "p100_s10",
+   "translation": "I notice that each extra triangle needs ⟦0⟧ more sticks.",
+   "reason": "remove stick(s), natural"
+  },
+  {
+   "segment_id": "p100_s15",
+   "translation": "I notice that ⟦1⟧ triangles need 1 stick fewer than ⟦3⟧…",
+   "reason": "dropped ⟦0⟧ and ⟦2⟧: OCR noise (400.23.x); ⟦4⟧ misread '1··.···' written as 1"
+  },
+  {
+   "merge": [
+    "p100_s23",
+    "p100_s25"
+   ],
+   "translation": "Let me make them and see.",
+   "reason": "one bubble 我摆一摆，试一试 split in two"
+  },
+  {
+   "segment_id": "p100_s28",
+   "translation": "So I made 18 triangles in all.",
+   "reason": "Xiaoxiao is speaking"
+  },
+  {
+   "segment_id": "p102_s7",
+   "translation": "DROP",
+   "reason": "watermark misread as 帅池"
+  },
+  {
+   "segment_id": "p102_s12",
+   "translation": "Legs",
+   "reason": "shrunk to 0.56; header sits with Chickens/Rabbits"
+  },
+  {
+   "segment_id": "p102_s4",
+   "translation": "I've heard of the \"chickens and rabbits\" problem, but I can't solve it.",
+   "reason": "shrunk; shorter"
+  },
+  {
+   "segment_id": "p102_s18",
+   "translation": "I notice that with ⟦0⟧ more chicken and ⟦1⟧ fewer rabbit, there are ⟦2⟧ fewer legs…",
+   "reason": "natural English"
+  },
+  {
+   "segment_id": "p103_s4",
+   "translation": "Legs",
+   "reason": "overflows its column"
+  },
+  {
+   "segment_id": "p103_s11",
+   "translation": "Legs",
+   "reason": "shrunk to 0.61"
+  },
+  {
+   "split": "p103_s20",
+   "translations": [
+    "Rabbits",
+    "Legs"
+   ],
+   "reason": "two header cells joined"
+  },
+  {
+   "segment_id": "p103_s15",
+   "box": [
+    262,
+    325,
+    425,
+    338
+   ],
+   "reason": "set larger than its sibling lines; box matched to them"
+  },
+  {
+   "segment_id": "p103_s24",
+   "translation": "Lele's money box holds ⟦0⟧-jiao and ⟦1⟧-jiao coins: ⟦2⟧ coins worth ¥⟦3⟧ in total. How many ⟦4⟧-jiao and ⟦5⟧-jiao coins are there? Solve it with a table.",
+   "reason": "shorter so it does not run into the table"
+  },
+  {
+   "segment_id": "p104_s14",
+   "translation": "DROP",
+   "reason": "character on a tiny lot slip; English cannot be set there"
+  }
+ ],
+ "flags": [
+  {
+   "page": 105,
+   "issue": "Lot slips in the boy's hands (先/后, first/second) stay in Chinese: slips too narrow for English (p104_s14 DROPped)."
+  },
+  {
+   "page": 104,
+   "issue": "p103_s15 'Almost there, adjust a little more.' is a heading-role paragraph and still prints larger than its sibling lines (……腿还多 etc.)."
+  }
+ ]
+}

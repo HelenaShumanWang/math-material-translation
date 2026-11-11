@@ -1,0 +1,207 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s1",
+   "translation": "⟦0⟧. Which of these are axially symmetric figures? Give your reasons.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p26_s1",
+   "translation": "Taoqi drew the whole house (see figure ②) from one half of an axially symmetric house (see figure ①). Is his drawing correct?",
+   "reason": "clearer word order"
+  },
+  {
+   "segment_id": "p26_s2",
+   "translation": "When Taoqi's house is folded in half, the two sides don't match exactly, so his drawing…",
+   "erase": [
+    [
+     217,
+     226,
+     237,
+     236
+    ]
+   ],
+   "reason": "natural phrasing; erase leftover source ellipsis"
+  },
+  {
+   "segment_id": "p27_s1",
+   "translation": "⟦0⟧. Draw the point symmetric to each point about the dashed line. Say how you did it.",
+   "reason": "shorter so it fits one line at sibling size"
+  },
+  {
+   "segment_id": "p27_s2",
+   "translation": "⟦0⟧. Draw the figure symmetric to each figure about the dashed line.",
+   "reason": "shorter; was shrunk to 0.82"
+  },
+  {
+   "segment_id": "p27_s5",
+   "translation": "Look and think: how can you turn “⟦1⟧” into “⟦2⟧”?",
+   "reason": "dropped ⟦0⟧: OCR crop of the 4. icon (printed in picture); natural phrasing"
+  },
+  {
+   "segment_id": "p28_s0",
+   "translation": "Translation",
+   "box": [
+    64,
+    84,
+    124,
+    105
+   ],
+   "reason": "UK term matches body text; banner has room"
+  },
+  {
+   "segment_id": "p28_s2",
+   "translation": "Draw the flag after it is translated ⟦0⟧ squares to the left, and discuss with your partner. Can you answer Xiaoxiao's question?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p28_s4",
+   "box": [
+    276,
+    298,
+    447,
+    326
+   ],
+   "reason": "use second line of bubble; was shrunk to 0.82"
+  },
+  {
+   "segment_id": "p28_s3",
+   "box": [
+    67,
+    296,
+    276,
+    345
+   ],
+   "reason": "shorter; keep boy's text clear of Xiaoxiao's question",
+   "translation": "As shown, move one point of the flag ⟦0⟧ squares to the left, then draw the flag from the new point, just like the original…"
+  },
+  {
+   "segment_id": "p28_s5",
+   "translation": "Draw the flag on the right after it is translated ⟦0⟧ squares up, and talk about it.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p28_s6",
+   "translation": "Remember: a translated flag keeps the same size and shape!",
+   "reason": "shorter; was shrunk to 0.75"
+  },
+  {
+   "segment_id": "p29_s4",
+   "translation": "(⟦0⟧) The house is translated ____ squares ____, then ____ squares ____.",
+   "reason": "blanks were wrong order (direction, squares)"
+  },
+  {
+   "merge": [
+    "p29_s5",
+    "p29_s6"
+   ],
+   "translation": "(2) The trapezoid is translated ____ squares ____, then ____ squares ____.",
+   "reason": "s6 is the fragment 平移了格 of question (2); they overlapped"
+  },
+  {
+   "segment_id": "p29_s8",
+   "translation": "⟦0⟧. Move the pieces on the right to make an axially symmetric figure. Say and draw how they should be translated.",
+   "reason": "拼成 = put together; natural phrasing"
+  },
+  {
+   "segment_id": "p29_s9",
+   "translation": "⟦0⟧. Draw each triangle after the given translation. Say what shape each parallelogram has become.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p30_s1",
+   "box": [
+    69,
+    117,
+    470,
+    129
+   ],
+   "reason": "fit on one line as in source"
+  },
+  {
+   "segment_id": "p31_s4",
+   "translation": "⟦0⟧. Shade ⟦1⟧ squares in each grid below to make an axially symmetric figure.",
+   "reason": "shorter; fits one line"
+  },
+  {
+   "segment_id": "p31_s6",
+   "translation": "Use the grid paper in Figure ⟦1⟧ of Appendix ⟦0⟧ to design a pattern using axial symmetry or translation. Share and display it in class.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p32_s1",
+   "translation": "⟦0⟧. Which of the figures below are axially symmetric? Explain how you decided.",
+   "reason": "remove repetition"
+  },
+  {
+   "segment_id": "p32_s3",
+   "translation": "⟦0⟧. Reflect each figure in the dashed line, then tell your partner how you did it.",
+   "reason": "shorter, standard UK term; fits one line"
+  },
+  {
+   "segment_id": "p32_s4",
+   "translation": "⟦0⟧. Draw, then tell your partner how you drew it.",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p32_s6",
+   "translation": "Translate ⟦0⟧ squares right",
+   "reason": "restore missing placeholder"
+  },
+  {
+   "segment_id": "p28_s7",
+   "translation": "On the grid paper, draw the boat after it is translated ⟦0⟧ squares left, then ⟦1⟧ squares up.",
+   "reason": "shorter, fits one line"
+  },
+  {
+   "paint": [
+    359.5,
+    267.3,
+    380.5,
+    270.8
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "red underline remnant of the source answer blank under 'translated' in (1)"
+  },
+  {
+   "paint": [
+    325,
+    323.6,
+    346,
+    327.1
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "red underline remnant of the source answer blank below (2)"
+  },
+  {
+   "restore": [
+    65.5,
+    494,
+    69,
+    512
+   ],
+   "page": 27,
+   "reason": "bring back the dots of the 4. bug icon the erase smeared"
+  }
+ ],
+ "flags": [
+  {
+   "page": 27,
+   "issue": "p26_s1 (opening question) is set centred instead of left-aligned beside the green bullet; the checked edition set it left-aligned."
+  },
+  {
+   "page": 30,
+   "issue": "Labels '5 squares right' / '3 squares left' (p29_s10/s11) sit at 0.76-0.77 in narrow boxes whose erase also took some grid lines and a sliver of the pink parallelogram; unchanged from the checked edition."
+  }
+ ]
+}

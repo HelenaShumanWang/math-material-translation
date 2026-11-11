@@ -1,0 +1,600 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p73_s0",
+   "translation": "Try It",
+   "reason": "heading 试一试"
+  },
+  {
+   "segment_id": "p73_s1",
+   "translation": "What fraction of the red strip is the blue strip? Here is Taoqi's idea. Can you follow it?",
+   "reason": "natural question form"
+  },
+  {
+   "segment_id": "p73_s4",
+   "translation": "The blue strip fits into the red strip exactly ⟦0⟧ times, so as a fraction of the red strip,",
+   "reason": "fragment must lead into s6 and the fraction 1/3"
+  },
+  {
+   "segment_id": "p73_s6",
+   "translation": "the blue strip is",
+   "reason": "reads with the 1/3 after it"
+  },
+  {
+   "segment_id": "p73_s8",
+   "translation": "What fraction of the red strip is the yellow strip?",
+   "reason": "natural question form"
+  },
+  {
+   "segment_id": "p73_s11",
+   "translation": "We can use division:",
+   "reason": "shrunk to 0.66; shorter"
+  },
+  {
+   "segment_id": "p73_s12",
+   "translation": "The yellow strip is longer than the red strip, so the answer is greater than ⟦0⟧.",
+   "reason": "full stop; 'answer'"
+  },
+  {
+   "segment_id": "p73_s16",
+   "translation": "This big tin holds ⟦1⟧ of tea.",
+   "reason": "dropped ⟦0⟧: OCR crop of the bubble outline printed as a stray mark"
+  },
+  {
+   "merge": [
+    "p73_s21",
+    "p73_s22"
+   ],
+   "translation": "2. Share 10 bars of chocolate equally among 3 people. How many bars does each person get? What about 4 people? 5 people? Draw, share them out, and tell your partner how you did it.",
+   "reason": "one exercise split by OCR; first line set too small"
+  },
+  {
+   "restore": [
+    216,
+    228,
+    234,
+    262
+   ],
+   "page": 73,
+   "reason": "fraction 1/3 in Taoqi's bubble was damaged"
+  },
+  {
+   "segment_id": "p74_s1",
+   "translation": "Tell your partner how you worked it out.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p74_s2",
+   "translation": "÷",
+   "reason": "'as a fraction of' wrapped over three lines in a 49 pt gap; triangles ÷ circles = fraction is the lesson's relation"
+  },
+  {
+   "segment_id": "p74_s3",
+   "translation": "=",
+   "reason": "goes with ÷"
+  },
+  {
+   "segment_id": "p74_s5",
+   "translation": "÷",
+   "reason": "as s2"
+  },
+  {
+   "segment_id": "p74_s6",
+   "translation": "=",
+   "reason": "as s3"
+  },
+  {
+   "segment_id": "p74_s9",
+   "translation": "The sheep are what fraction of the ducks?",
+   "box": [
+    289.7,
+    249.7,
+    458,
+    263.6
+   ],
+   "reason": "shrunk 0.62; shorter, use free panel room"
+  },
+  {
+   "segment_id": "p74_s10",
+   "translation": "(⟦0⟧) The sheep are what fraction of the rabbits?",
+   "box": [
+    267.6,
+    267.9,
+    458,
+    282.9
+   ],
+   "reason": "shrunk 0.62; shorter"
+  },
+  {
+   "segment_id": "p74_s12",
+   "translation": "The rabbits are what fraction of the sheep?",
+   "reason": "shorter, parallel"
+  },
+  {
+   "segment_id": "p74_s15",
+   "translation": "⟦0⟧. Fill in suitable numbers, then discuss with your partner.",
+   "reason": "shorter so it fits one line; full stop"
+  },
+  {
+   "segment_id": "p74_s20",
+   "translation": "⟦0⟧. How many days will this pack of tablets last?",
+   "reason": "tablet as in bubble"
+  },
+  {
+   "segment_id": "p74_s25",
+   "translation": "To be shared equally by ⟦0⟧ monkeys.",
+   "reason": "shrunk 0.59; shorter"
+  },
+  {
+   "restore": [
+    350,
+    99,
+    378,
+    131
+   ],
+   "page": 74,
+   "reason": "answer fraction ( )/( ) in exercise 4 row 1 was partly erased"
+  },
+  {
+   "segment_id": "p75_s0",
+   "translation": "The Basic Property of Fractions",
+   "reason": "one property (the conclusion below)"
+  },
+  {
+   "segment_id": "p75_s1",
+   "translation": "Write a fraction for each coloured part. Can you get a set of equal fractions?",
+   "reason": "British spelling; natural"
+  },
+  {
+   "segment_id": "p75_s4",
+   "translation": "Look at the sets of equal fractions above. Can you follow Taoqi's and Xiaoxiao's working?",
+   "reason": "shorter, natural"
+  },
+  {
+   "segment_id": "p75_s5",
+   "translation": "What do you notice?",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p75_s12",
+   "translation": "If the numerator and denominator of a fraction are both multiplied by the same non-zero number, the fraction's value stays the same.",
+   "reason": "natural; shrunk"
+  },
+  {
+   "segment_id": "p75_s13",
+   "translation": "If the numerator and denominator of a fraction are both divided by the same non-zero number, the fraction's value stays the same.",
+   "reason": "full stop; parallel with s12"
+  },
+  {
+   "segment_id": "p75_s14",
+   "translation": "BLANK",
+   "reason": "OCR misread of the Wise Old Man's bubble, set as vertical text; the bubble is translated by s15"
+  },
+  {
+   "segment_id": "p75_s15",
+   "translation": "What you found is the basic property of fractions. It is widely used.",
+   "reason": "natural; 应用很广泛 = widely used"
+  },
+  {
+   "segment_id": "p76_s6",
+   "translation": "⟦0⟧. Fill in the brackets with suitable numbers.",
+   "reason": "brackets, as printed"
+  },
+  {
+   "segment_id": "p76_s10",
+   "translation": "⟦0⟧. (⟦1⟧) Write",
+   "reason": "reads with s13"
+  },
+  {
+   "segment_id": "p76_s11",
+   "translation": "&",
+   "box": [
+    127.5,
+    390,
+    147.5,
+    406
+   ],
+   "reason": "left in Chinese; box on the text line"
+  },
+  {
+   "segment_id": "p76_s13",
+   "translation": "as equal fractions with denominator ⟦0⟧.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p76_s15",
+   "translation": "&",
+   "box": [
+    127.5,
+    419,
+    147.5,
+    435
+   ],
+   "reason": "shrunk 0.49 and set too high; box on the text line"
+  },
+  {
+   "segment_id": "p76_s16",
+   "translation": "as equal fractions with numerator ⟦0⟧.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p76_s19",
+   "translation": "First write fractions equal to",
+   "reason": "fragment before the 1/4"
+  },
+  {
+   "segment_id": "p76_s20",
+   "translation": "on the number lines below, then find another set of equal fractions and mark them in the right places.",
+   "reason": "s19 lines held the sentence end; complete it here"
+  },
+  {
+   "segment_id": "p76_s21",
+   "translation": "Can you find more?",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p77_s3",
+   "translation": "⟦0⟧. Each figure below is",
+   "reason": "reads with 1/3 and s4"
+  },
+  {
+   "segment_id": "p77_s4",
+   "translation": "of a shape. Can you draw the whole shapes?",
+   "erase": [
+    [
+     232,
+     219,
+     243,
+     230
+    ]
+   ],
+   "reason": "reads after 1/3; erase the Chinese comma"
+  },
+  {
+   "segment_id": "p77_s5",
+   "translation": "⟦0⟧. Mark the point for each fraction below on the number line, and discuss with your partner.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p77_s7",
+   "translation": "⟦0⟧. On the grid on the right, colour",
+   "reason": "reads with 3/9 and s8"
+  },
+  {
+   "segment_id": "p77_s8",
+   "translation": "of it.",
+   "reason": "reads after 3/9"
+  },
+  {
+   "segment_id": "p77_s9",
+   "translation": "What other fraction does the coloured part show?",
+   "reason": "now a full question"
+  },
+  {
+   "segment_id": "p76_s14",
+   "translation": "(⟦0⟧) Write",
+   "box": [
+    64,
+    418.1,
+    113,
+    434
+   ],
+   "reason": "parallel with (1); box widened left so '(2) Write' stays on one line"
+  },
+  {
+   "segment_id": "p77_s11",
+   "box": [
+    237.8,
+    556,
+    404,
+    576
+   ],
+   "reason": "text ran over the answer fraction; keep it left of it"
+  },
+  {
+   "segment_id": "p77_s12",
+   "box": [
+    261.4,
+    588,
+    416,
+    608
+   ],
+   "reason": "keep left of the answer fraction"
+  },
+  {
+   "segment_id": "p77_s13",
+   "box": [
+    262.2,
+    616,
+    382,
+    640
+   ],
+   "reason": "text ran through the answer fraction"
+  },
+  {
+   "restore": [
+    407,
+    550,
+    432,
+    581
+   ],
+   "page": 77,
+   "reason": "answer fraction (1) damaged"
+  },
+  {
+   "restore": [
+    418,
+    583,
+    443,
+    614
+   ],
+   "page": 77,
+   "reason": "answer fraction damaged"
+  },
+  {
+   "restore": [
+    383,
+    613,
+    409,
+    644
+   ],
+   "page": 77,
+   "reason": "answer fraction damaged"
+  },
+  {
+   "segment_id": "p78_s1",
+   "translation": "(⟦0⟧) In which figures below does the shaded area not make up",
+   "reason": "reads with the 1/3 ? after it (shaded area not 1/3 of the whole figure)"
+  },
+  {
+   "segment_id": "p78_s10",
+   "translation": "⟦0⟧. In",
+   "reason": "stray '____' printed after 'In'"
+  },
+  {
+   "segment_id": "p78_s11",
+   "translation": "write \">\", \"<\" or \"=\".",
+   "box": [
+    108.3,
+    581.4,
+    285,
+    597.3
+   ],
+   "reason": "the '=' option was erased with the Chinese; complete the instruction"
+  },
+  {
+   "segment_id": "p79_s1",
+   "translation": "I sleep ⟦0⟧ hours a day.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p79_s2",
+   "translation": "I sleep ⟦0⟧ hours a day.",
+   "reason": "natural"
+  },
+  {
+   "add": "p79_a1",
+   "page": 79,
+   "box": [
+    69,
+    216,
+    90,
+    229.5
+   ],
+   "translation": "(2)",
+   "source": "（2）",
+   "align": "left",
+   "reason": "the enumerator (2) of this sub-question was erased"
+  },
+  {
+   "segment_id": "p79_s12",
+   "translation": "Xiaopang",
+   "box": [
+    357,
+    320,
+    400,
+    331
+   ],
+   "reason": "name in pinyin (小胖)"
+  },
+  {
+   "segment_id": "p79_s13",
+   "translation": "One lap takes me",
+   "reason": "the bubble says 'to run one lap'"
+  },
+  {
+   "segment_id": "p79_s14",
+   "translation": "BLANK",
+   "reason": "用 is covered by s13; ⟦0⟧ was an OCR crop that left a smear"
+  },
+  {
+   "restore": [
+    104,
+    382,
+    182,
+    396
+   ],
+   "page": 79,
+   "reason": "bottom of the 40/60 fraction and the bubble outline were erased"
+  },
+  {
+   "segment_id": "p79_s16",
+   "translation": "Xiaomei",
+   "reason": "dropped ⟦0⟧: OCR crop of the path, not text"
+  },
+  {
+   "segment_id": "p79_s18",
+   "translation": "hour.",
+   "box": [
+    385.5,
+    353,
+    412,
+    368
+   ],
+   "reason": "shrunk 0.57; room in the bubble"
+  },
+  {
+   "segment_id": "p79_s19",
+   "translation": "Xiaozhuang",
+   "box": [
+    278,
+    370,
+    326,
+    385
+   ],
+   "reason": "name in pinyin (小壮)"
+  },
+  {
+   "segment_id": "p79_s23",
+   "translation": "⟦0⟧. Guess and draw: how many fish did each of them catch?",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p79_s24",
+   "translation": "Of my fish,",
+   "reason": "shrunk 0.77; shorter"
+  },
+  {
+   "segment_id": "p79_s26",
+   "translation": "Of my fish,",
+   "reason": "parallel with s24"
+  },
+  {
+   "segment_id": "p79_s28",
+   "translation": "My fish ÷ Dangdang's fish =",
+   "box": [
+    372,
+    530,
+    428,
+    564
+   ],
+   "reason": "text ran over the 2/3; short form that reads into the fraction (my fish are 2/3 of Dangdang's)"
+  },
+  {
+   "split": "p80_s5",
+   "translations": [
+    "Factors of 12: 1, 2, 3, 4, 6, 12",
+    "Factors of 18: 1, 2, 3, 6, 9, 18"
+   ],
+   "reason": "two separate lines; OCR misread 4.6 and garbled line 2"
+  },
+  {
+   "segment_id": "p80_s14",
+   "translation": "Which factors do ⟦0⟧ and ⟦1⟧ have in common? Discuss your method with your partner.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p80_s15",
+   "translation": "I just check which factors of ⟦0⟧ are also factors of ⟦1⟧…",
+   "reason": "shorter; ellipsis"
+  },
+  {
+   "split": "p80_s16",
+   "at": [
+    162
+   ],
+   "translations": [
+    "Factors of 12:",
+    "DROP"
+   ],
+   "reason": "handwritten circled numbers misread (02.3); keep them in the picture"
+  },
+  {
+   "split": "p80_s18",
+   "at": [
+    162
+   ],
+   "translations": [
+    "Factors of 18:",
+    "DROP"
+   ],
+   "reason": "handwritten numbers misread (U.23.6); keep them in the picture"
+  },
+  {
+   "merge": [
+    "p80_s21",
+    "p80_s22"
+   ],
+   "translation": "The factors that 12 and 18 share are their common factors. The largest of these is their greatest common factor.",
+   "reason": "one sentence split over two lines; first part set at 0.75"
+  },
+  {
+   "split": "p80_s23",
+   "translations": [
+    "Common factors of 12 and 18:",
+    "Greatest common factor of 12 and 18:"
+   ],
+   "reason": "two separate fill-in lines, each with its own answer line"
+  },
+  {
+   "restore": [
+    162,
+    349,
+    242,
+    401
+   ],
+   "page": 80,
+   "reason": "the hand-drawn ovals joining the common factors were cut between the two lines"
+  }
+  ,{
+   "restore": [
+    278,
+    423,
+    312,
+    453
+   ],
+   "page": 79,
+   "reason": "13.(1) answer fraction ( )/( ) lost its bar and full stop; the checked edition had it"
+  },
+  {
+   "restore": [
+    130,
+    601,
+    137.5,
+    612
+   ],
+   "page": 80,
+   "reason": "arrowhead pointing to 'Factors of 12' in the Venn diagram was erased"
+  },
+  {
+   "restore": [
+    380,
+    601,
+    388,
+    612
+   ],
+   "page": 80,
+   "reason": "arrowhead pointing to 'Factors of 18' in the Venn diagram was erased"
+  },
+  {
+   "segment_id": "p80_s25",
+   "box": [
+    48,
+    597.5,
+    129,
+    613.4
+   ],
+   "reason": "keep the label clear of the restored arrowhead"
+  },
+  {
+   "segment_id": "p80_s30",
+   "box": [
+    390,
+    598.4,
+    470,
+    616.3
+   ],
+   "reason": "keep the label clear of the restored arrowhead"
+  }
+ ],
+ "flags": [
+  {
+   "page": 77,
+   "issue": "4. (1)/(2): the two '&' (for 和, 'and' does not fit between the fractions) are set at different sizes (0.74 vs 1.0)."
+  },
+  {
+   "page": 81,
+   "issue": "'Factors of 12:' / 'Factors of 18:' before the hand-drawn circled numbers wrap over two lines in the narrow space left of the numbers."
+  }
+ ]
+}

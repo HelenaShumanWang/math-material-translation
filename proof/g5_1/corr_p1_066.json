@@ -1,0 +1,762 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p65_s0",
+   "translation": "⟦0⟧. As shown, the area of a right-angled triangle is ⟦1⟧ and one side next to the right angle is ⟦2⟧. How long is the other one?",
+   "reason": "UK term; 'leg' is not used"
+  },
+  {
+   "segment_id": "p65_s3",
+   "translation": "(⟦0⟧) If the top of this trapezoid is increased by ⟦1⟧ and the bottom decreased by ⟦2⟧, how does the new area compare with the original?",
+   "reason": "shorter so it does not run into the trapezoid"
+  },
+  {
+   "segment_id": "p65_s5",
+   "translation": "(⟦0⟧) What if the top is increased by ⟦1⟧ and the bottom decreased by ⟦2⟧?",
+   "reason": "match (2)"
+  },
+  {
+   "segment_id": "p65_s10",
+   "translation": "(⟦0⟧) If the height is increased by ⟦1⟧ and the base decreased by ⟦2⟧, how does the new area compare with the original?",
+   "reason": "shorter so it does not run into the parallelogram"
+  },
+  {
+   "restore": [
+    136,
+    371,
+    155,
+    398
+   ],
+   "page": 66,
+   "reason": "fraction 1/4 was erased"
+  },
+  {
+   "restore": [
+    169,
+    377,
+    194,
+    395
+   ],
+   "page": 66,
+   "reason": "two-square shape was erased"
+  },
+  {
+   "segment_id": "p66_s9",
+   "translation": ". Draw the figure.",
+   "box": [
+    194,
+    378.4,
+    281.5,
+    391.7
+   ],
+   "reason": "start after the shape"
+  },
+  {
+   "segment_id": "p66_s3",
+   "translation": "The circled bones make up",
+   "box": [
+    348,
+    205,
+    434,
+    223
+   ],
+   "erase": [
+    [
+     406,
+     234,
+     416,
+     245
+    ]
+   ],
+   "reason": "set above the fraction; erase Chinese full stop"
+  },
+  {
+   "segment_id": "p66_s6",
+   "translation": "When a whole is divided equally into several parts, one or more of the parts can be shown by a fraction.",
+   "box": [
+    80.8,
+    336,
+    456,
+    355
+   ],
+   "reason": "use the whole pink bar, two lines"
+  },
+  {
+   "segment_id": "p66_s10",
+   "translation": "Taoqi's drawing",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p66_s11",
+   "translation": "Xiaoxiao's drawing",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p66_s12",
+   "translation": "Qisi's drawing",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p66_s17",
+   "translation": "The numbers differ, so",
+   "reason": "shorter, fits at normal size"
+  },
+  {
+   "segment_id": "p66_s19",
+   "translation": "why is each still",
+   "reason": "reads on to 1/2 ?"
+  },
+  {
+   "segment_id": "p66_s18",
+   "translation": "Of all your pencils, take out",
+   "erase": [
+    [
+     174,
+     604,
+     185,
+     617
+    ]
+   ],
+   "reason": "erase Chinese full stop"
+  },
+  {
+   "segment_id": "p67_s2",
+   "translation": "⟦0⟧. Tick the right",
+   "box": [
+    56.1,
+    163.6,
+    133,
+    176.0
+   ],
+   "reason": "one line that ends before the box: 'Tick the right [box].'"
+  },
+  {
+   "segment_id": "p67_s3",
+   "translation": ".",
+   "erase": [
+    [
+     180,
+     160,
+     226,
+     178
+    ]
+   ],
+   "reason": "tick mark and Chinese quotes/full stop no longer needed"
+  },
+  {
+   "restore": [
+    157,
+    183,
+    170,
+    213
+   ],
+   "page": 67,
+   "reason": "fraction 1/3 was erased"
+  },
+  {
+   "split": "p67_s6",
+   "translations": [
+    "is",
+    ", which of the three sticks below is it?"
+   ],
+   "reason": "the stick picture stands between the two lines"
+  },
+  {
+   "segment_id": "p67_s9",
+   "translation": ", then",
+   "reason": "short fragment before the 3/4 fraction"
+  },
+  {
+   "segment_id": "p67_s10",
+   "translation": "of it is which shape below?",
+   "reason": "natural order"
+  },
+  {
+   "segment_id": "p67_s14",
+   "translation": "(     ) strawberries.",
+   "box": [
+    96,
+    448.7,
+    190,
+    462.6
+   ],
+   "reason": "one line, full answer blank",
+   "erase": [
+    [
+     91,
+     446,
+     99,
+     465
+    ]
+   ]
+  },
+  {
+   "segment_id": "p67_s17",
+   "translation": "(     ) strawberries.",
+   "reason": "opening bracket was erased; one line in the cell",
+   "box": [
+    212,
+    448.4,
+    305,
+    462.9
+   ]
+  },
+  {
+   "segment_id": "p67_s20",
+   "translation": "(     ) strawberries.",
+   "reason": "opening bracket was erased; one line in the cell",
+   "box": [
+    333,
+    448.4,
+    440,
+    462
+   ]
+  },
+  {
+   "restore": [
+    399,
+    422,
+    413,
+    450
+   ],
+   "page": 67,
+   "reason": "fraction 2/3 in the third cell was erased"
+  },
+  {
+   "segment_id": "p67_s24",
+   "translation": "(⟦0⟧) In our class,",
+   "reason": "grammar: '(2) Our class has 1/4 of the boys like' was wrong"
+  },
+  {
+   "segment_id": "p67_s26",
+   "translation": "(⟦0⟧) Experts say ending free plastic bags could cut their use nationwide by",
+   "erase": [
+    [
+     439,
+     590,
+     449,
+     602
+    ]
+   ],
+   "reason": "shorter, one line; erase Chinese full stop"
+  },
+  {
+   "segment_id": "p67_s27",
+   "translation": "⟦0⟧. To help the disaster area, Qisi donated",
+   "reason": "fragment before the 1/5 fraction"
+  },
+  {
+   "restore": [
+    274,
+    618,
+    290,
+    648
+   ],
+   "page": 67,
+   "reason": "fraction 1/5 was erased"
+  },
+  {
+   "segment_id": "p67_s28",
+   "translation": "of his pocket money, Miaoxiang",
+   "reason": "fits on one line: '..., Miaoxiang 3/5 of hers.'"
+  },
+  {
+   "segment_id": "p67_s29",
+   "translation": "of hers.",
+   "reason": "was a wrong name",
+   "box": [
+    435.7,
+    630.1,
+    472,
+    642.9
+   ]
+  },
+  {
+   "segment_id": "p67_s30",
+   "translation": "Did Miaoxiang definitely donate more money than Qisi? Explain why.",
+   "reason": "'hers' moved to the first line"
+  },
+  {
+   "segment_id": "p68_s0",
+   "translation": "Fractions Revisited (2)",
+   "reason": "same title as part (1)"
+  },
+  {
+   "segment_id": "p68_s1",
+   "translation": "Use the strip in Figure ⟦1⟧ of Appendix ⟦0⟧ to measure the length and width of your maths book.",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p68_s6",
+   "translation": "Can you help Taoqi go on measuring? Look, then measure with the strip in Figure ⟦1⟧ of Appendix ⟦0⟧.",
+   "reason": "shorter, consistent wording"
+  },
+  {
+   "segment_id": "p68_s10",
+   "translation": "Fold it again. This part is about",
+   "box": [
+    325.7,
+    248,
+    411.0,
+    279
+   ],
+   "reason": "set above the fraction"
+  },
+  {
+   "restore": [
+    352.5,
+    279,
+    365,
+    302
+   ],
+   "page": 68,
+   "reason": "fraction 1/4 was erased"
+  },
+  {
+   "segment_id": "p68_s12",
+   "translation": "of the strip.",
+   "reason": "reads on from the fraction",
+   "box": [
+    365.1,
+    282,
+    420,
+    300
+   ]
+  },
+  {
+   "segment_id": "p68_s13",
+   "translation": "DROP",
+   "reason": "OCR of the publisher watermark"
+  },
+  {
+   "segment_id": "p68_s14",
+   "translation": "Here is a \"fraction wall\". Fill it in and think. What do you notice?",
+   "box": [
+    75.4,
+    341.3,
+    440,
+    354.6
+   ],
+   "reason": "shorter; free paper to the right"
+  },
+  {
+   "segment_id": "p68_s15",
+   "translation": "×",
+   "reason": "9 x 1/9 is 1"
+  },
+  {
+   "segment_id": "p68_s16",
+   "translation": "is ⟦0⟧.",
+   "reason": "full stop"
+  },
+  {
+   "paint": [
+    75,
+    656,
+    93,
+    672
+   ],
+   "page": 68,
+   "colour": "border",
+   "reason": "erase leftover 像; sentence starts with the fractions"
+  },
+  {
+   "segment_id": "p68_s19",
+   "translation": "… Fractions like these are called unit fractions.",
+   "reason": "sentence now starts with the fractions"
+  },
+  {
+   "segment_id": "p67_s6_k0",
+   "box": [
+    172,
+    191.3,
+    187,
+    203.8
+   ],
+   "reason": "'is' where 是 stood"
+  },
+  {
+   "segment_id": "p67_s6_k1",
+   "box": [
+    217,
+    191.3,
+    405.1,
+    203.8
+   ],
+   "reason": "after the stick picture"
+  },
+  {
+   "restore": [
+    187,
+    190,
+    217,
+    202
+   ],
+   "page": 67,
+   "reason": "stick picture was erased"
+  },
+  {
+   "split": "p69_s2",
+   "translations": [
+    "Object",
+    "BLANK"
+   ],
+   "reason": "header cell and first row cell were joined"
+  },
+  {
+   "add": "p69_a1",
+   "page": 69,
+   "box": [
+    303,
+    147,
+    338,
+    163
+   ],
+   "translation": "Exercise book",
+   "source": "作业本",
+   "size": 7.5,
+   "align": "center",
+   "reason": "set inside the first column; the split line was centred over the next column"
+  },
+  {
+   "restore": [
+    339,
+    143,
+    347,
+    167
+   ],
+   "page": 69,
+   "reason": "table column border was erased"
+  },
+  {
+   "segment_id": "p69_s9",
+   "translation": "Of ⟦1⟧, ⟦0⟧ is",
+   "reason": "natural order before the fraction"
+  },
+  {
+   "segment_id": "p69_s12",
+   "translation": "Of ⟦1⟧, ⟦0⟧ is",
+   "reason": "natural order before the fraction"
+  },
+  {
+   "segment_id": "p69_s16",
+   "translation": "¥⟦0⟧ = (    ) jiao",
+   "reason": "yuan as ¥"
+  },
+  {
+   "segment_id": "p69_s17",
+   "translation": "Of ¥⟦1⟧, ⟦0⟧ jiao is",
+   "reason": "natural order, shorter"
+  },
+  {
+   "segment_id": "p69_s18",
+   "translation": "Of ¥⟦1⟧, ⟦0⟧ jiao is",
+   "reason": "natural order, shorter"
+  },
+  {
+   "restore": [
+    270,
+    340,
+    292,
+    374
+   ],
+   "page": 69,
+   "reason": "answer fraction was damaged"
+  },
+  {
+   "restore": [
+    417,
+    340,
+    447,
+    374
+   ],
+   "page": 69,
+   "reason": "answer fraction was damaged"
+  },
+  {
+   "segment_id": "p69_s20",
+   "translation": "(⟦0⟧) ⟦1⟧ ×",
+   "reason": "unchanged"
+  },
+  {
+   "segment_id": "p69_s21",
+   "translation": "= (    ),",
+   "reason": "3 x 1/10 = ( )"
+  },
+  {
+   "segment_id": "p69_s22",
+   "translation": "= (    ) ×",
+   "reason": "7/10 = ( ) x 1/10"
+  },
+  {
+   "segment_id": "p69_s23",
+   "translation": "(    ) ×",
+   "reason": "( ) x 1/10 = 1"
+  },
+  {
+   "segment_id": "p69_s24",
+   "translation": "= ⟦0⟧.",
+   "reason": "( ) x 1/10 = 1"
+  },
+  {
+   "restore": [
+    114.5,
+    466,
+    127.5,
+    491
+   ],
+   "page": 69,
+   "reason": "fraction 1/10 was erased"
+  },
+  {
+   "restore": [
+    282.5,
+    465,
+    308,
+    492
+   ],
+   "page": 69,
+   "reason": "fraction 1/10 was erased"
+  },
+  {
+   "segment_id": "p69_s26",
+   "translation": "⟦0⟧. Sort the fractions into the circles: closer to ⟦1⟧ or closer to ⟦2⟧? Try to explain why.",
+   "reason": "shorter so it is set at the size of the other instructions"
+  },
+  {
+   "segment_id": "p70_s3",
+   "translation": "First share 4 cakes, 1 each. Then share the last cake: each person gets",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p70_s5",
+   "translation": "as \"one and one quarter\".",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p70_s7",
+   "translation": "I shared them one by one. How does each person get",
+   "box": [
+    326,
+    324,
+    404.5,
+    354
+   ],
+   "reason": "keep clear of the fraction 5/20"
+  },
+  {
+   "segment_id": "p70_s9",
+   "translation": "⟦0⟧ ×",
+   "reason": "was left in Chinese; 5 x 1/4 is 5/4"
+  },
+  {
+   "segment_id": "p70_s10",
+   "translation": "is",
+   "reason": "5 x 1/4 is 5/4"
+  },
+  {
+   "segment_id": "p70_s11",
+   "translation": "Learn these terms and talk.",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p70_s12",
+   "translation": "BLANK",
+   "reason": "像 dropped; sentence starts with the fractions"
+  },
+  {
+   "segment_id": "p70_s14",
+   "translation": "BLANK",
+   "reason": "像 dropped; sentence starts with the fractions"
+  },
+  {
+   "segment_id": "p70_s13",
+   "translation": "… Fractions like these are proper fractions.",
+   "reason": "sentence starts with the fractions"
+  },
+  {
+   "segment_id": "p70_s15",
+   "translation": "… Fractions like these are improper fractions.",
+   "reason": "sentence starts with the fractions; free paper to the right",
+   "box": [
+    204.4,
+    528.9,
+    440,
+    540.9
+   ]
+  },
+  {
+   "restore": [
+    90,
+    492,
+    118,
+    521
+   ],
+   "page": 70,
+   "reason": "fraction 1/2 and its comma were erased"
+  },
+  {
+   "restore": [
+    180,
+    521,
+    201,
+    548
+   ],
+   "page": 70,
+   "reason": "fraction 9/4 was damaged"
+  },
+  {
+   "segment_id": "p70_s16",
+   "translation": "Which are proper and which improper? Write them in the",
+   "reason": "one line"
+  },
+  {
+   "merge": [
+    "p70_s18",
+    "p70_s19"
+   ],
+   "translation": "Proper fractions are all less than 1. Improper fractions are 1 or more.",
+   "reason": "one sentence split by OCR"
+  },
+  {
+   "merge": [
+    "p71_s0",
+    "p71_s2"
+   ],
+   "translation": "9 sausages are to be shared equally among 4 puppies…",
+   "reason": "one sentence split by OCR"
+  },
+  {
+   "segment_id": "p71_s3",
+   "translation": "⟦0⟧. How many sausages does each puppy get?",
+   "reason": "puppies, as in the bubble"
+  },
+  {
+   "segment_id": "p71_s5",
+   "translation": "(⟦0⟧) Write the number of sausages each puppy gets as a fraction.",
+   "reason": "puppies"
+  },
+  {
+   "merge": [
+    "p71_s8",
+    "p71_s9"
+   ],
+   "translation": "4. On average, how many mooncakes does each person get? Draw, share them out and talk with a partner.",
+   "reason": "one instruction split by OCR; was set smaller"
+  },
+  {
+   "split": "p71_s10",
+   "translations": [
+    "5. As shown, fill each",
+    "mixed number."
+   ],
+   "reason": "second line ends the sentence"
+  },
+  {
+   "segment_id": "p71_s11",
+   "translation": "above with an improper fraction, each",
+   "reason": "fragment between the two boxes"
+  },
+  {
+   "segment_id": "p71_s12",
+   "translation": "below with a",
+   "reason": "fragment after the second box"
+  },
+  {
+   "segment_id": "p72_s5",
+   "translation": "cake, so ⟦0⟧",
+   "erase": [
+    [
+     398,
+     236,
+     409,
+     249
+    ]
+   ],
+   "reason": "1/2 cake, not cakes; erase Chinese full stop"
+  },
+  {
+   "segment_id": "p72_s7",
+   "translation": "gets",
+   "box": [
+    141,
+    296,
+    162,
+    310
+   ],
+   "reason": "room in the bubble"
+  },
+  {
+   "segment_id": "p72_s8",
+   "translation": "cakes, so ⟦0⟧",
+   "erase": [
+    [
+     287,
+     298,
+     297,
+     310
+    ]
+   ],
+   "reason": "erase Chinese full stop"
+  },
+  {
+   "segment_id": "p72_s10",
+   "translation": "What is the relationship between fractions and division? Talk with your partner. Can you show it using letters?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p72_s16",
+   "translation": "DROP",
+   "reason": "OCR noise in the handwritten working"
+  },
+  {
+   "segment_id": "p72_s19",
+   "translation": "DROP",
+   "reason": "OCR noise in the handwritten working"
+  },
+  {
+   "paint": [
+    257,
+    365,
+    268,
+    378
+   ],
+   "page": 72,
+   "colour": "border",
+   "reason": "Chinese full stop after the answer line"
+  },
+  {
+   "segment_id": "p67_s5",
+   "translation": "(⟦0⟧) If a stick's",
+   "reason": "shorter so it is not set smaller than (2)"
+  },
+  {
+   "add": "p66_a1",
+   "page": 66,
+   "box": [403, 235.5, 428, 245],
+   "translation": "of all.",
+   "source": "总数的",
+   "size": 7.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "'of the total' was lost when the text moved above the fraction"
+  },
+  {
+   "paint": [370, 422.5, 375.5, 429],
+   "page": 70,
+   "colour": "border",
+   "reason": "Chinese full stop after 5/4"
+  },
+  {
+   "segment_id": "p71_s10_k1",
+   "box": [69, 547, 160, 557],
+   "reason": "same size as the first line"
+  }
+ ],
+ "flags": [
+  {
+   "page": 71,
+   "issue": "Heading 'Sharing Cakes' still set small (scale 0.54) on two lines: the green title plate is too small for the English, and there is no free room inside it."
+  }
+ ]
+}
