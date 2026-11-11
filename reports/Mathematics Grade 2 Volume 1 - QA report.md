@@ -1,8 +1,8 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 293 errors, 40 warnings (1884.7 s); proofread: 727 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 9 errors, 963 warnings (3595.3 s); proofread: 2733 corrections applied; output file checks: 0 error(s)
 
-**Document:** 数学 (zh → en, 119 page(s), 1851 translatable segment(s))
+**Document:** 数学 (zh → en, 119 page(s), 2133 translatable segment(s))
 
 **Checks run:** `completeness`, `placeholders`, `numbers`, `untranslated`, `target_script`, `glossary`, `length_ratio`, `formatting`, `layout_fit`, `image_text`, `llm_review`, `output_checks`
 
@@ -10,385 +10,1024 @@
 
 | Round | Errors | Warnings | Re-translated | Passed | Duration |
 |---|---|---|---|---|---|
-| 1 | 535 | 307 | 391 segment(s) | no | 500.1 s |
-| 2 | 278 | 339 | 255 segment(s) | no | 467.1 s |
-| 3 | 274 | 300 | 0 segment(s) | no | 159.2 s |
+| 1 | 325 | 291 | 302 segment(s) | no | 577.2 s |
+| 2 | 269 | 344 | 249 segment(s) | no | 598.5 s |
+| 3 | 256 | 342 | 0 segment(s) | no | 216.6 s |
 
-- Round 1: llm_review ×589, layout_fit ×81, untranslated ×79, target_script ×43, formatting ×19, glossary ×19, completeness ×7, image_text ×2, length_ratio ×2, placeholders ×1
-- Round 2: llm_review ×513, layout_fit ×78, formatting ×8, untranslated ×4, completeness ×3, placeholders ×3, image_text ×2, length_ratio ×2, numbers ×2, glossary ×1, target_script ×1
-- Round 3: llm_review ×479, layout_fit ×69, completeness ×7, formatting ×4, glossary ×3, untranslated ×3, image_text ×2, length_ratio ×2, placeholders ×2, target_script ×2, numbers ×1
+- Round 1: llm_review ×468, layout_fit ×99, formatting ×24, untranslated ×8, completeness ×6, glossary ×6, image_text ×2, length_ratio ×1, placeholders ×1, target_script ×1
+- Round 2: llm_review ×526, layout_fit ×71, completeness ×3, formatting ×3, numbers ×3, glossary ×2, image_text ×2, placeholders ×1, target_script ×1, untranslated ×1
+- Round 3: llm_review ×503, layout_fit ×78, formatting ×6, completeness ×2, glossary ×2, image_text ×2, placeholders ×2, untranslated ×2, numbers ×1
 
-## Final issues (333)
+## Final issues (972)
 
-### `completeness` — 119 errors, 0 warnings
-
-| Severity | Page | Segment | Message | Source | Translation |
-|---|---|---|---|---|---|
-| error | 3 | p2_s12 | The segment has no translation; translate the complete source text | 18=bxb |  |
-| error | 4 | p3_s3 | The segment has no translation; translate the complete source text | - 4 元 |  |
-| error | 4 | p3_s8 | The segment has no translation; translate the complete source text | 72元- 68元 |  |
-| error | 5 | p4_s6 | The segment has no translation; translate the complete source text | 产 |  |
-| error | 8 | p7_s14 | The translation "−" contains no words; translate the complete source text | 一 | − |
-| error | 10 | p9_s9 | The segment has no translation; translate the complete source text | 52+6=58（人) |  |
-| error | 14 | p13_s13 | The segment has no translation; translate the complete source text | 就圆 |  |
-| error | 14 | p13_s14 | The segment has no translation; translate the complete source text | 元 |  |
-| error | 14 | p13_s15 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 14 | p13_s18 | The segment has no translation; translate the complete source text | 倾分 |  |
-| error | 14 | p13_s26 | The segment has no translation; translate the complete source text | 伍角 |  |
-| error | 14 | p13_s29 | The segment has no translation; translate the complete source text | 贰角 |  |
-| error | 14 | p13_s7 | The segment has no translation; translate the complete source text | 练习本 |  |
-| error | 15 | p14_s16 | The segment has no translation; translate the complete source text | 元 |  |
-| error | 15 | p14_s17 | The segment has no translation; translate the complete source text | 元 |  |
-| error | 15 | p14_s18 | The segment has no translation; translate the complete source text | 元 |  |
-| error | 15 | p14_s19 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 15 | p14_s20 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 15 | p14_s21 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 15 | p14_s3 | The segment has no translation; translate the complete source text | 征分 |  |
-| error | 16 | p15_s12 | The segment has no translation; translate the complete source text | 伍拾圆 |  |
-| error | 16 | p15_s15 | The segment has no translation; translate the complete source text | 中国之民银行 |  |
-| error | 16 | p15_s16 | The segment has no translation; translate the complete source text | 中国 |  |
-| error | 16 | p15_s17 | The segment has no translation; translate the complete source text | Ta1048760 |  |
-| error | 16 | p15_s18 | The segment has no translation; translate the complete source text | 贰拾回 |  |
-| error | 16 | p15_s19 | The segment has no translation; translate the complete source text | 中国人民银行 |  |
-| error | 16 | p15_s20 | The segment has no translation; translate the complete source text | 中国公民银行 |  |
-| error | 16 | p15_s21 | The segment has no translation; translate the complete source text | 贰角 |  |
-| error | 16 | p15_s22 | The segment has no translation; translate the complete source text | 伍角 |  |
-| error | 16 | p15_s6 | The segment has no translation; translate the complete source text | 光长银村 |  |
-| error | 16 | p15_s7 | The segment has no translation; translate the complete source text | 中 |  |
-| error | 16 | p15_s8 | The segment has no translation; translate the complete source text | 国之民银行 |  |
-| error | 16 | p15_s9 | The segment has no translation; translate the complete source text | 民银行 |  |
-| error | 17 | p16_s13 | The segment has no translation; translate the complete source text | 就团 |  |
-| error | 17 | p16_s17 | The segment has no translation; translate the complete source text | 张 |  |
-| error | 17 | p16_s18 | The segment has no translation; translate the complete source text | 张 |  |
-| error | 17 | p16_s20 | The segment has no translation; translate the complete source text | 张 |  |
-| error | 17 | p16_s22 | The translation "=" contains no words; translate the complete source text | 合 | = |
-| error | 18 | p17_s5 | The segment has no translation; translate the complete source text | 68.5.0和1辆 |  |
-| error | 18 | p17_s7 | The segment has no translation; translate the complete source text | 买了1盒 |  |
-| error | 19 | p18_s9 | The segment has no translation; translate the complete source text | 他有3张1元 |  |
-| error | 30 | p29_s5 | The translation "?" contains no words; translate the complete source text | 吗？ | ? |
-| error | 34 | p33_s15 | The segment has no translation; translate the complete source text | 五五六七八 |  |
-| error | 34 | p33_s20 | The segment has no translation; translate the complete source text | 三五九 |  |
-| error | 51 | p50_s19 | The segment has no translation; translate the complete source text | 曹操 |  |
-| error | 51 | p50_s20 | The segment has no translation; translate the complete source text | 曹操 |  |
-| error | 51 | p50_s21 | The segment has no translation; translate the complete source text | 张飞 |  |
-| error | 51 | p50_s22 | The segment has no translation; translate the complete source text | 张飞 |  |
-| error | 51 | p50_s23 | The segment has no translation; translate the complete source text | 关羽 |  |
-| error | 51 | p50_s24 | The segment has no translation; translate the complete source text | 兵 |  |
-| error | 51 | p50_s25 | The segment has no translation; translate the complete source text | 赵云 |  |
-| error | 51 | p50_s26 | The segment has no translation; translate the complete source text | 关羽 |  |
-| error | 51 | p50_s27 | The segment has no translation; translate the complete source text | 兵 |  |
-| error | 51 | p50_s28 | The segment has no translation; translate the complete source text | 赵云 |  |
-| error | 51 | p50_s29 | The segment has no translation; translate the complete source text | 兵 |  |
-| error | 61 | p60_s7 | The segment has no translation; translate the complete source text | 作量一量师汇 |  |
-| error | 63 | p62_s14 | The segment has no translation; translate the complete source text | 个 |  |
-| error | 63 | p62_s15 | The segment has no translation; translate the complete source text | 个 |  |
-| error | 63 | p62_s16 | The segment has no translation; translate the complete source text | 个 |  |
-| error | 63 | p62_s17 | The segment has no translation; translate the complete source text | 个 |  |
-| error | 67 | p66_s16 | The segment has no translation; translate the complete source text | 还剩 |  |
-| error | 69 | p68_s18 | The segment has no translation; translate the complete source text | 块。 |  |
-| error | 70 | p69_s13 | The segment has no translation; translate the complete source text | 276.18.00个 |  |
-| error | 74 | p73_s13 | The translation "." contains no words; translate the complete source text | 倍。 | . |
-| error | 74 | p73_s17 | The translation "=" contains no words; translate the complete source text | 数是 | = |
-| error | 74 | p73_s19 | The translation "." contains no words; translate the complete source text | 倍 | . |
-| error | 74 | p73_s2 | The translation ":" contains no words; translate the complete source text | 有 | : |
-| error | 74 | p73_s21 | The segment has no translation; translate the complete source text | 倍。 |  |
-| error | 74 | p73_s23 | The translation "." contains no words; translate the complete source text | 倍。 | . |
-| error | 74 | p73_s4 | The translation ":" contains no words; translate the complete source text | 有 | : |
-| error | 74 | p73_s5 | The translation ":" contains no words; translate the complete source text | 有 | : |
-| error | 74 | p73_s6 | The translation ":" contains no words; translate the complete source text | 有 | : |
-| error | 74 | p73_s8 | The translation ":" contains no words; translate the complete source text | 有 | : |
-| error | 75 | p74_s20 | The translation "." contains no words; translate the complete source text | 倍 | . |
-| error | 75 | p74_s24 | The translation "." contains no words; translate the complete source text | 倍 | . |
-| error | 75 | p74_s26 | The translation "." contains no words; translate the complete source text | 倍。 | . |
-| error | 75 | p74_s34 | The translation "." contains no words; translate the complete source text | 倍。 | . |
-| error | 76 | p75_s12 | The translation "." contains no words; translate the complete source text | 倍。 | . |
-| error | 76 | p75_s5 | The translation "." contains no words; translate the complete source text | 倍。 | . |
-| error | 76 | p75_s7 | The translation "." contains no words; translate the complete source text | 倍。 | . |
-| error | 77 | p76_s15 | The segment has no translation; translate the complete source text | q只 |  |
-| error | 77 | p76_s18 | The segment has no translation; translate the complete source text | 答：有 |  |
-| error | 82 | p81_s4 | The segment has no translation; translate the complete source text | 8.1 80801818层8x81 |  |
-| error | 84 | p83_s12 | The segment has no translation; translate the complete source text | 七上 |  |
-| error | 86 | p85_s10 | The segment has no translation; translate the complete source text | 五六 |  |
-| error | 86 | p85_s8 | The segment has no translation; translate the complete source text | 四 |  |
-| error | 94 | p93_s6 | The segment has no translation; translate the complete source text | 房 |  |
-| error | 94 | p93_s7 | The segment has no translation; translate the complete source text | 间 |  |
-| error | 94 | p93_s8 | The segment has no translation; translate the complete source text | 鸟 |  |
-| error | 96 | p95_s2 | The segment has no translation; translate the complete source text | 好好 |  |
-| error | 100 | p99_s11 | The segment has no translation; translate the complete source text | 并尝试解答。 |  |
-| error | 104 | p103_s12 | The segment has no translation; translate the complete source text | ，你知道 |  |
-| error | 111 | p110_s1 | The segment has no translation; translate the complete source text | 中国民银村 |  |
-| error | 111 | p110_s10 | The segment has no translation; translate the complete source text | 一民银行 |  |
-| error | 111 | p110_s11 | The segment has no translation; translate the complete source text | 中国 |  |
-| error | 111 | p110_s13 | The segment has no translation; translate the complete source text | 中国银银行 |  |
-| error | 111 | p110_s14 | The segment has no translation; translate the complete source text | 中国一品第廿 |  |
-| error | 111 | p110_s15 | The segment has no translation; translate the complete source text | 中国一民铭社 |  |
-| error | 111 | p110_s16 | The segment has no translation; translate the complete source text | 伍圆 |  |
-| error | 111 | p110_s18 | The segment has no translation; translate the complete source text | 伍四 |  |
-| error | 111 | p110_s19 | The segment has no translation; translate the complete source text | 伍回 |  |
-| error | 111 | p110_s2 | The segment has no translation; translate the complete source text | 中国民银付 |  |
-| error | 111 | p110_s22 | The segment has no translation; translate the complete source text | 中国人民证付 |  |
-| error | 111 | p110_s23 | The segment has no translation; translate the complete source text | 中国人民限行 |  |
-| error | 111 | p110_s24 | The segment has no translation; translate the complete source text | 中国人民银行 |  |
-| error | 111 | p110_s25 | The segment has no translation; translate the complete source text | 中国民职行 |  |
-| error | 111 | p110_s39 | The segment has no translation; translate the complete source text | 中 |  |
-| error | 111 | p110_s48 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 111 | p110_s50 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 111 | p110_s52 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 111 | p110_s54 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 111 | p110_s55 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 111 | p110_s57 | The segment has no translation; translate the complete source text | 角 |  |
-| error | 111 | p110_s7 | The segment has no translation; translate the complete source text | 值拾圆 |  |
-| error | 111 | p110_s8 | The segment has no translation; translate the complete source text | 中国民银行 |  |
-| error | 111 | p110_s9 | The segment has no translation; translate the complete source text | 中国 |  |
-| error | 115 | p114_s6 | The segment has no translation; translate the complete source text | 张飞关羽 |  |
-| error | 115 | p114_s8 | The segment has no translation; translate the complete source text | 兵 |  |
-| error | 117 | p116_s7 | The segment has no translation; translate the complete source text | 次 |  |
-
-### `formatting` — 49 errors, 0 warnings
+### `glossary` — 1 error, 38 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 6 | p5_s1 | The source does not end with a question mark; do not end the translation with one | 谁的得分高 | Who Scores Higher? |
-| error | 13 | p12_s20 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 姓名淘气笑笑奇思 | Name Taoqi Xiaoxiao Qisi |
-| error | 17 | p16_s12 | Keep the line breaks of the source: it has 0 line break(s), the translation has 4 | 能换_张能换能换能换和张 | = ___ notes = ___ notes = ___ notes = ___ notes and ___ not… |
-| error | 19 | p18_s10 | The source does not end with a question mark; do not end the translation with one | 贵多池 | costs how much more? |
-| error | 21 | p20_s1 | The source does not end with a question mark; do not end the translation with one | 1.圈一圈，数一数一共有多少个 | 1. Circle and count. How many pandas are there in total? |
-| error | 23 | p22_s11 | Remove the symbol(s) □×2: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | (2) 2+2+2+2+2+2=12写成乘法算式:×□= | (2) 2+2+2+2+2+2=12 written as multiplication: □ × □ = □ |
-| error | 34 | p33_s10 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | —五得五二五一十三五十五 | 1 × 5 = 5 2 × 5 = 10 3 × 5 = 15 |
-| error | 35 | p34_s8 | The source does not end with a question mark; do not end the translation with one | 四五 | 4×5? |
-| error | 36 | p35_s12 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 二六二七二八二九 | 2×6= 2×7= 2×8= 2×9= |
-| error | 36 | p35_s6 | Keep the line breaks of the source: it has 0 line break(s), the translation has 4 | 一二得二二二得四二三得六二四得二五 | 1 × 2 = 2 2 × 2 = 4 2 × 3 = 6 2 × 4 = 2 × 5 = |
-| error | 37 | p36_s3 | Start the translation with the list marker "·" exactly as in the source | ·，9分别与2相乘，在得到的数上画圈 | ..., 9: multiply each number by 2 and circle the answers. |
-| error | 40 | p39_s0 | The source does not end with a question mark; do not end the translation with one | 需要几个轮子 | How Many Wheels? |
-| error | 40 | p39_s1 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 1辆车3个轮子2辆车6个轮子3辆车9个轮子 | 1 tricycle: 3 wheels 2 tricycles: 6 wheels 3 tricycles: 9 w… |
-| error | 40 | p39_s15 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 三七三八三九 | 3×7= 3×8= 3×9= |
-| error | 40 | p39_s6 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 一三得三二三得六三三得九三四 | 1 × 3 = 3 2 × 3 = 6 3 × 3 = 9 3 × 4 = |
-| error | 41 | p40_s4 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 二八十六三九二十七四五二十三六十八 | 2 × 8 = 16 3 × 9 = 27 4 × 5 = 20 3 × 6 = 18 |
-| error | 42 | p41_s18 | Start the translation with the list marker "四," exactly as in the source | 四, 14+14=28。 | 14+14=28. |
-| error | 50 | p49_s7 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 爸爸妈妈淘气 | Dad Mom Taoqi |
-| error | 53 | p52_s1 | The source does not end with a question mark; do not end the translation with one | 教室有多长 | How long is the classroom? |
-| error | 55 | p54_s0 | The source does not end with a question mark; do not end the translation with one | 课桌有多长 | How long is the desk? |
-| error | 56 | p55_s2 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 估计（）厘米（）厘米（）厘米 | Estimate () cm () cm () cm |
-| error | 56 | p55_s3 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 测量（）厘米（）厘米（）厘米 | Measured () cm () cm () cm |
-| error | 56 | p55_s4 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 铅笔长橡皮长文具盒长 | Pencil Eraser Pencil case |
-| error | 57 | p56_s0 | The source does not end with a question mark; do not end the translation with one | 1米有多长 | How long is 1 metre? |
-| error | 57 | p56_s14 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 门高约2黄瓜长约20李老师身高约175 | Door: about 2 Cucumber: about 20 Mr Li: about 175 |
-| error | 57 | p56_s15 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 一拆长约15橡皮长约3树高约10 | Hand span: about 15 Eraser: about 3 Tree: about 10 |
-| error | 58 | p57_s9 | The source does not end with a question mark; do not end the translation with one | 看看是多少厘米 | How many centimetres is it? |
-| error | 63 | p62_s13 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 平均分成2份，每份有—平均分成3份，每份有—平均分成6份，每份有—平均分成9份，每份有— | Make 2 equal groups: ____ in each Make 3 equal groups: ____… |
-| error | 66 | p65_s2 | The source ends with a question mark; end the translation with a question mark too | 说一说，可以怎样分？ | Say how we can share them. |
-| error | 69 | p68_s16 | The source does not end with a question mark; do not end the translation with one | 3.（1）每6块橡皮装1盒，可以装 | 3. (1) 6 erasers fill 1 box. How many boxes? |
-| error | 69 | p68_s17 | The source does not end with a question mark; do not end the translation with one | (2）平均装在3个盒子里，每盒装 | (2) Packed equally in 3 boxes. How many in each? |
-| error | 71 | p70_s18 | The source does not end with a question mark; do not end the translation with one | 看谁编的故事多。 | Who can make up more stories? |
-| error | 73 | p72_s3 | The source does not end with a question mark; do not end the translation with one | 说说你是怎么解决的。 | How did you solve it? |
-| error | 76 | p75_s4 | Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 的个数是的 | = ○ × |
-| error | 82 | p81_s1 | The source does not end with a question mark; do not end the translation with one | 有多少张贴画 | How Many Stickers? |
-| error | 82 | p81_s15 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 六得二六三六四六 | 1 × 6 = 2 × 6 = 3 × 6 = 4 × 6 = |
-| error | 84 | p83_s0 | The source does not end with a question mark; do not end the translation with one | 一共有多少天 | How Many Days? |
-| error | 84 | p83_s14 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 七七七上 | 4×7= 5×7= 6×7= |
-| error | 86 | p85_s4 | Keep the line breaks of the source: it has 0 line break(s), the translation has 3 | 球数／个买足球的钱／元买篮球的钱／元你能编出8和9的乘法口诀吗？ | Number of balls Cost of footballs (¥) Cost of basketballs (… |
-| error | 95 | p94_s4 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 可以分成几组每组只数里最大能填几？ | Number of groups Number in each group What is the largest n… |
-| error | 98 | p97_s21 | The source does not end with a question mark; do not end the translation with one | 20元能买几盒 | How many for ¥20? |
-| error | 99 | p98_s18 | The source ends with a question mark; end the translation with a question mark too | 3.括号里最大能填几？ | 3. Fill in the largest number. |
-| error | 103 | p102_s31 | Remove the symbol(s) △: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | （1）每份有5个，有2份。 | (1) Each group has 5 △; there are 2 groups. |
-| error | 103 | p102_s32 | Remove the symbol(s) □: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | （2）先画18个，再把这些平均分成3份。 | (2) First draw 18 □, then divide them equally into 3 groups. |
-| error | 103 | p102_s33 | Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | (3）先画20个，再每4个1份圈一圈。 | (3) First draw 20 ○, then circle every 4 as 1 group. |
-| error | 103 | p102_s34 | Keep the symbol(s) △ of the source in the translation, at the matching position | （4）先画3个△，再画，的个数是△的2倍。 | (4) First draw 3 △, then draw 2 times as many ○. |
-| error | 103 | p102_s34 | Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | （4）先画3个△，再画，的个数是△的2倍。 | (4) First draw 3 △, then draw 2 times as many ○. |
-| error | 107 | p106_s11 | Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 教室高课桌高教室的窗户高 | Classroom Desk Window |
-| error | 109 | p108_s0 | The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What have you learned this term? |
+| error | 14 | p13_s7 | Glossary: translate "练习" as "exercise" | 练习本 | Notebook |
+| warning | 9 | p8_s17 | Reviewed by the proofreader: Glossary: translate "统计" as "statistics" | 3.机灵狗不小心把订报刊的统计表弄脏了。 | 3. Clever Dog accidentally smudged the newspaper order tabl… |
+| warning | 12 | p11_s6_k0 | Reviewed by the proofreader: Glossary: translate "淘气" as "Taoqi" | 笑笑一共用了多少个彩笔帽？淘气用了多少粒南瓜子？ | How many caps did Xiaoxiao use? |
+| warning | 12 | p11_s6_k1 | Reviewed by the proofreader: Glossary: translate "笑笑" as "Xiaoxiao" | 笑笑一共用了多少个彩笔帽？淘气用了多少粒南瓜子？ | How many pumpkin seeds did Taoqi use? |
+| warning | 14 | p13_s35 | Reviewed by the proofreader: Glossary: translate "练习" as "exercise" | 可以买1把尺子和1个练习本 | You can buy 1 ruler and 1 notebook. |
+| warning | 23 | p22_s10 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | （1） 4+4+4=12写成乘法算式： | (1) Write 4+4+4=12 as multiplication: |
+| warning | 23 | p22_s11_k0 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | (2) 2+2+2+2+2+2=12写成乘法算式:×□= | (2) Write 2+2+2+2+2+2=12 as multiplication: |
+| warning | 23 | p22_s13 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 5.把16页和17页的加法算式改写成乘法算式。 | 5. Rewrite the addition sentences on pages 16 and 17 as mul… |
+| warning | 23 | p22_s3 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
+| warning | 23 | p22_s4 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
+| warning | 23 | p22_s5 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
+| warning | 23 | p22_s6_k0 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: |
+| warning | 24 | p23_s3 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式是 | Multiplication: |
+| warning | 24 | p23_s9 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式是 | Multiplication: |
+| warning | 25 | p24_s10 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
+| warning | 25 | p24_s11 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
+| warning | 25 | p24_s12 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
+| warning | 25 | p24_s13 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
+| warning | 28 | p27_s12 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
+| warning | 28 | p27_s13 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
+| warning | 28 | p27_s14 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
+| warning | 28 | p27_s15 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
+| warning | 28 | p27_s16 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 4.把加法算式改写成乘法算式。 | 4. Rewrite each addition as a multiplication sentence. |
+| warning | 38 | p37_s9 | Reviewed by the proofreader: Glossary: translate "找一找" as "Find" | 在你的课间活动中找一找，有没有能用乘法解决的问题？ | Look at your break-time activities. Are there any problems … |
+| warning | 44 | p43_s12 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 你还能提出用乘法解决的问题吗？说说，算一算 | Can you ask another question that can be solved with multip… |
+| warning | 44 | p43_s4 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 船上一共有多少只小猫？说一说，算一算。 | How many kittens are on the boat in all? Talk about it and … |
+| warning | 45 | p44_s6 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | （3）算式5×3=15可以解决什么问题？ | (3) What problem can 5 × 3 = 15 solve? |
+| warning | 48 | p47_s16 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 与同伴合作，再编一道类似的题目，并算一算。 | Work with a partner to make up a similar problem and solve … |
+| warning | 52 | p51_s0 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 10.先把口诀补充完整，再根据口诀写出乘法算式。 | 10. Complete each times-table fact, then write its multipli… |
+| warning | 61 | p60_s11 | Reviewed by the proofreader: Glossary: translate "找一找" as "Find" | 找一找，生活中还有哪些地方用到米或厘米？ | Look around: where else in everyday life do we use metres o… |
+| warning | 61 | p60_s8 | Reviewed by the proofreader: Glossary: translate "找一找" as "Find" | 你知道“限高4米”是什么意思吗？在校园里找一找，4米有多高？ | Do you know what "Max height 4 m" means? Look around your s… |
+| warning | 71 | p70_s14 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | 6.讲故事，并列算式算一算 | 6. Tell a story, then write a number sentence and work it o… |
+| warning | 71 | p70_s4 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 结合算式说一说每个数的意思。 | Say what each number means. |
+| warning | 72 | p71_s15 | Reviewed by the proofreader: Glossary: translate "算一算" as "Calculate" | ？算一算，说一说。 | ? Work it out and explain. |
+| warning | 88 | p87_s3 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 这些算式乘数中都有3 | These all have 3 as a factor. |
+| warning | 88 | p87_s4 | Reviewed by the proofreader: Glossary: translate "算式" as "number sentence" | 348.7.0这些算式的积都是18 | These all have a product of 18. |
+| warning | 100 | p99_s13 | Reviewed by the proofreader: Glossary: translate "倍数" as "multiple" | 我按2的倍数跳，2，4，6，8 | I jump in 2s: 2, 4, 6, 8 |
+| warning | 100 | p99_s15 | Reviewed by the proofreader: Glossary: translate "倍数" as "multiple" | 我按3的倍数跳 | I jump in 3s |
+| warning | 102 | p101_s5 | Reviewed by the proofreader: Glossary: translate "找一找" as "Find" | 1.我们学了哪些长度单位？找一找，生活中有哪些物品的长度大约是1厘米，有哪些大约是1米？ | 1. What units of length have we learned? Look around: which… |
 
-### `glossary` — 36 errors, 0 warnings
+### `layout_fit` — 8 errors, 12 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 9 | p8_s17 | Glossary: translate "统计" as "statistics" | 3.机灵狗不小心把订报刊的统计表弄脏了。 | 3. Clever Dog accidentally smudged the newspaper order tabl… |
-| error | 14 | p13_s35 | Glossary: translate "练习" as "exercise" | 可以买1把尺子和1个练习本 | You can buy 1 ruler and 1 notebook. |
-| error | 23 | p22_s10 | Glossary: translate "算式" as "number sentence" | （1） 4+4+4=12写成乘法算式： | (1) 4+4+4=12 written as multiplication: |
-| error | 23 | p22_s11 | Glossary: translate "算式" as "number sentence" | (2) 2+2+2+2+2+2=12写成乘法算式:×□= | (2) 2+2+2+2+2+2=12 written as multiplication: □ × □ = □ |
-| error | 23 | p22_s13 | Glossary: translate "算式" as "number sentence" | 5.把16页和17页的加法算式改写成乘法算式。 | 5. Rewrite the addition sentences on pages 16 and 17 as mul… |
-| error | 23 | p22_s3 | Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
-| error | 23 | p22_s4 | Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
-| error | 23 | p22_s5 | Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
-| error | 23 | p22_s6 | Glossary: translate "算式" as "number sentence" | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: 88.7.0 × 88.7.1 = 88.7.2 () |
-| error | 23 | p22_s7 | Glossary: translate "算式" as "number sentence" | 2.看图列出乘法算式 | 2. Write multiplication sentences. |
-| error | 24 | p23_s3 | Glossary: translate "算式" as "number sentence" | 乘法算式是 | Multiplication: |
-| error | 24 | p23_s9 | Glossary: translate "算式" as "number sentence" | 乘法算式是 | Multiplication: |
-| error | 25 | p24_s10 | Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
-| error | 25 | p24_s11 | Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
-| error | 25 | p24_s12 | Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
-| error | 25 | p24_s13 | Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
-| error | 28 | p27_s12 | Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
-| error | 28 | p27_s13 | Glossary: translate "算式" as "number sentence" | 加法算式： | Addition: |
-| error | 28 | p27_s14 | Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
-| error | 28 | p27_s15 | Glossary: translate "算式" as "number sentence" | 乘法算式： | Multiplication: |
-| error | 28 | p27_s16 | Glossary: translate "算式" as "number sentence" | 4.把加法算式改写成乘法算式。 | 4. Rewrite each addition as a multiplication sentence. |
-| error | 38 | p37_s9 | Glossary: translate "找一找" as "Find" | 在你的课间活动中找一找，有没有能用乘法解决的问题？ | Look at your break-time activities. Are there any problems … |
-| error | 45 | p44_s7 | Glossary: translate "算式" as "number sentence" | （3）算式5×3=15可以解决什 | (3) What problem can 5×3=15 |
-| error | 48 | p47_s16 | Glossary: translate "算一算" as "Calculate" | 与同伴合作，再编一道类似的题目，并算一算。 | Work with a partner to make up a similar problem and solve … |
-| error | 52 | p51_s0 | Glossary: translate "算式" as "number sentence" | 10.先把口诀补充完整，再根据口诀写出乘法算式。 | 10. Complete each times-table fact, then write its multipli… |
-| error | 61 | p60_s11 | Glossary: translate "找一找" as "Find" | 找一找，生活中还有哪些地方用到米或厘米？ | Look around: where else in everyday life do we use metres o… |
-| error | 61 | p60_s8 | Glossary: translate "找一找" as "Find" | 你知道“限高4米”是什么意思吗？在校园里找一找，4米有多高？ | Do you know what "Max height 4 m" means? Look around your s… |
-| error | 71 | p70_s14 | Glossary: translate "算一算" as "Calculate" | 6.讲故事，并列算式算一算 | 6. Tell a story, write a number sentence and work it out |
-| error | 88 | p87_s1 | Glossary: translate "算式" as "number sentence" | 找出乘数中有3的乘法算式，并完成下表。 | Find the multiplication sentences with 3 as a factor, and c… |
-| error | 88 | p87_s3 | Glossary: translate "算式" as "number sentence" | 这些算式乘数中都有3 | These all have 3 as a factor |
-| error | 88 | p87_s4 | Glossary: translate "算式" as "number sentence" | 348.6.0这些算式的积都是18 | 348.6.0 The products are all 18 |
-| error | 98 | p97_s15 | Glossary: translate "倍数" as "multiple" | 的倍数 | times table |
-| error | 98 | p97_s16 | Glossary: translate "倍数" as "multiple" | 8的倍数 | 8 times table |
-| error | 100 | p99_s13 | Glossary: translate "倍数" as "multiple" | 我按2的倍数跳，2，4，6，8 | I jump in 2s: 2, 4, 6, 8 |
-| error | 100 | p99_s15 | Glossary: translate "倍数" as "multiple" | 我按3的倍数跳 | I jump in 3s |
-| error | 102 | p101_s5 | Glossary: translate "找一找" as "Find" | 1.我们学了哪些长度单位？找一找，生活中有哪些物品的长度大约是1厘米，有哪些大约是1米？ | 1. What units of length have we learned? Look around: which… |
-
-### `layout_fit` — 32 errors, 2 warnings
-
-| Severity | Page | Segment | Message | Source | Translation |
-|---|---|---|---|---|---|
-| error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 秋游 | Autumn Outing |
-| error | 8 | p7_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 秋游 | Autumn Outing |
 | error | 8 | p7_s2 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 25人 | 25 people |
 | error | 8 | p7_s2 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 25人 | 25 people |
-| error | 11 | p10_s14 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 灯笼 | Lanterns |
-| error | 11 | p10_s14 | Shorten the translation to at most 5 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 灯笼 | Lanterns |
-| error | 13 | p12_s20 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 姓名淘气笑笑奇思 | Name Taoqi Xiaoxiao Qisi |
-| error | 13 | p12_s20 | Shorten the translation to at most 19 characters so it fits the original box (the current translation of 24 characters overflows its box; the minimum allowed size is 55%) | 姓名淘气笑笑奇思 | Name Taoqi Xiaoxiao Qisi |
-| error | 14 | p13_s1 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 买文具 | Buying Stationery |
-| error | 14 | p13_s1 | Shorten the translation to at most 14 characters so it fits the original box (the current translation of 17 characters overflows its box; the minimum allowed size is 55%) | 买文具 | Buying Stationery |
-| error | 16 | p15_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买衣服 | Buying Clothes |
-| error | 16 | p15_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 买衣服 | Buying Clothes |
-| error | 19 | p18_s10 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | costs how much more? |
-| error | 19 | p18_s10 | Shorten the translation to at most 17 characters so it fits the original box (the current translation of 20 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | costs how much more? |
-| error | 34 | p33_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 数松果 | Count Pinecones |
-| error | 34 | p33_s1 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 数松果 | Count Pinecones |
-| error | 64 | p63_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
-| error | 64 | p63_s0 | Shorten the translation to at most 12 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 分苹果 | Sharing Apples |
-| error | 66 | p65_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 分糖果 | Sharing Candy |
-| error | 66 | p65_s0 | Shorten the translation to at most 11 characters so it fits the original box (the current translation of 13 characters overflows its box; the minimum allowed size is 55%) | 分糖果 | Sharing Candy |
-| error | 68 | p67_s0 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 分香蕉 | Sharing Bananas |
-| error | 68 | p67_s0 | Shorten the translation to at most 13 characters so it fits the original box (the current translation of 15 characters overflows its box; the minimum allowed size is 55%) | 分香蕉 | Sharing Bananas |
-| error | 72 | p71_s0 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 小熊开店 | Little Bear's Shop |
-| error | 72 | p71_s0 | Shorten the translation to at most 15 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 小熊开店 | Little Bear's Shop |
-| error | 79 | p78_s5 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 列式： | Number sentence: |
-| error | 79 | p78_s5 | Shorten the translation to at most 10 characters so it fits the original box (the current translation of 16 characters overflows its box; the minimum allowed size is 55%) | 列式： | Number sentence: |
-| error | 84 | p83_s14 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 七七七上 | 4×7= 5×7= 6×7= |
-| error | 84 | p83_s14 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 14 characters overflows its box; the minimum allowed size is 55%) | 七七七上 | 4×7= 5×7= 6×7= |
-| error | 86 | p85_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 买球 | Buy Balls |
-| error | 86 | p85_s0 | Shorten the translation to at most 7 characters so it fits the original box (the current translation of 9 characters overflows its box; the minimum allowed size is 55%) | 买球 | Buy Balls |
-| error | 103 | p102_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习 | Exercise |
-| error | 103 | p102_s0 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习 | Exercise |
-| warning | 115 | p114_s4 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 兵 | Soldier |
-| warning | 115 | p114_s4 | The translation overflows its box and was rendered at 33% of the original size; even a much shorter text would not fit, check this box in the preview | 兵 | Soldier |
+| error | 14 | p13_s7 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习本 | Notebook |
+| error | 14 | p13_s7 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 练习本 | Notebook |
+| error | 115 | p114_s2 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 赵云 | Zhao Yun |
+| error | 115 | p114_s2 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 赵云 | Zhao Yun |
+| error | 115 | p114_s9 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 赵云 | Zhao Yun |
+| error | 115 | p114_s9 | Shorten the translation to at most 6 characters so it fits the original box (the current translation of 8 characters overflows its box; the minimum allowed size is 55%) | 赵云 | Zhao Yun |
+| warning | 19 | p18_s10 | Reviewed by the proofreader: Shorten the translation to at most 22 characters so it fits the original box (the current translation of 37 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | How much more does the football cost? |
+| warning | 19 | p18_s10 | Reviewed by the proofreader: Shorten the translation to at most 22 characters so it fits the original box (the current translation of 37 characters overflows its box; the minimum allowed size is 55%) | 贵多池 | How much more does the football cost? |
+| warning | 20 | p19_s10 | Reviewed by the proofreader: Shorten the translation to at most 14 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 数一数，填一填 | Count and fill in. |
+| warning | 20 | p19_s10 | Reviewed by the proofreader: Shorten the translation to at most 14 characters so it fits the original box (the current translation of 18 characters overflows its box; the minimum allowed size is 55%) | 数一数，填一填 | Count and fill in. |
+| warning | 32 | p31_s7 | Reviewed by the proofreader: Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 关羽 | Guan Yu |
+| warning | 32 | p31_s7 | Reviewed by the proofreader: Shorten the translation to at most 5 characters so it fits the original box (the current translation of 7 characters overflows its box; the minimum allowed size is 55%) | 关羽 | Guan Yu |
+| warning | 33 | p32_s7_k0 | Reviewed by the proofreader: Shorten the translation to at most 27 characters so it fits the original box (the current translation of 31 characters overflows its box; the minimum allowed size is 55%) | 用硬纸板剪出蜻蜓的翅膀。管中，用订书钉固定。 | Cut the wings out of cardboard. |
+| warning | 33 | p32_s7_k0 | Reviewed by the proofreader: Shorten the translation to at most 27 characters so it fits the original box (the current translation of 31 characters overflows its box; the minimum allowed size is 55%) | 用硬纸板剪出蜻蜓的翅膀。管中，用订书钉固定。 | Cut the wings out of cardboard. |
+| warning | 57 | p56_s1 | Reviewed by the proofreader: Shorten the translation to at most 24 characters so it fits the original box (the current translation of 28 characters overflows its box; the minimum allowed size is 55%) | 身高1米以上要买票。 | Over 1 m tall? Buy a ticket. |
+| warning | 57 | p56_s1 | Reviewed by the proofreader: Shorten the translation to at most 24 characters so it fits the original box (the current translation of 28 characters overflows its box; the minimum allowed size is 55%) | 身高1米以上要买票。 | Over 1 m tall? Buy a ticket. |
+| warning | 78 | p77_s3 | Reviewed by the proofreader: Shorten the translation to at most 25 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 有个308.3.0。（308.3.1 | There are 308.3.0 308.3.1. |
+| warning | 78 | p77_s3 | Reviewed by the proofreader: Shorten the translation to at most 25 characters so it fits the original box (the current translation of 30 characters overflows its box; the minimum allowed size is 55%) | 有个308.3.0。（308.3.1 | There are 308.3.0 308.3.1. |
 
-### `llm_review` — 33 errors, 34 warnings
+### `completeness` — 0 errors, 235 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 7 | p6_s27 | Reviewer (number): The label "2000年" means the year 2000; dropping 年 removes the year marker. Suggested translation: "2000" | 2000年 | 2000 |
-| error | 7 | p6_s29 | Reviewer (number): The label "2004年" means the year 2004; dropping 年 removes the year marker. Suggested translation: "2004" | 2004年 | 2004 |
-| error | 7 | p6_s30 | Reviewer (number): The label "2008年" means the year 2008; dropping 年 removes the year marker. Suggested translation: "2008" | 2008年 | 2008 |
-| error | 7 | p6_s32 | Reviewer (number): The label "2012年" means the year 2012; dropping 年 removes the year marker. Suggested translation: "2012" | 2012年 | 2012 |
-| error | 10 | p9_s11 | Reviewer (number): The source uses the Chinese dash 一 as a placeholder for the answer; the translation replaced it with an invented blank "____", which is not in the source. Suggested translation: "Answer: The choir now has 一 people." | 答：合唱队现在有—人。 | Answer: The choir now has ____ people. |
-| error | 12 | p11_s2 | Reviewer (meaning): The source says 彩笔帽 (marker/crayon caps), and the sentence ends with an exclamation mark; "made of marker pen caps" changes the material to the pens themselves rather than their caps. Suggested translation: "This butterfly is made of marker caps!" | 这只蝴蝶是用彩笔帽做成的。！ | This butterfly is made of marker pen caps! |
-| error | 14 | p13_s17 | Reviewer (untranslated): Bare '角' unit label should be handled like the previous unit label; keeping 'jiao' is a free choice but inconsistent with the yuan convention for amounts. Suggested translation: "jiao" | 角 | jiao |
-| error | 27 | p26_s11 | Reviewer (terminology): '5个3' is better rendered as '5 threes' or '5 groups of 3' rather than '5 3s'. Suggested translation: "5 threes" | 5个3 | 5 3s |
-| error | 27 | p26_s19 | Reviewer (terminology): '3个5' is better rendered as '3 fives' or '3 groups of 5' rather than '3 5s'. Suggested translation: "3 fives" | 3个5 | 3 5s |
-| error | 27 | p26_s8 | Reviewer (terminology): '2个3' is better rendered as '2 threes' or '2 groups of 3' rather than '2 3s'. Suggested translation: "2 threes" | 2个3 | 2 3s |
-| error | 27 | p26_s9 | Reviewer (terminology): '4个6' is better rendered as '4 sixes' or '4 groups of 6' rather than '4 6s'. Suggested translation: "4 sixes" | 4个6 | 4 6s |
-| error | 47 | p46_s0 | Reviewer (meaning): 'Find a new home' is a literal rendering; the exercise means matching items to their places (找新家). Suggested translation: "5. Find the new home for each." | 5.找新家。 | 5. Find a new home. |
-| error | 50 | p49_s35 | Reviewer (omission): The object of the purchase (1 lamp priced 196.40 yuan) is missing; the amount and the noun were dropped, leaving only the empty placeholder. Suggested translation: "(2) Aunt Li buys 1 lamp for ¥196.40 and pays ¥50. How much change should she get?" | （2）李阿姨买1盏196.40.0，付了50元，应找回多少元？ | (2) Aunt Li buys 1 196.40.0 and pays ¥50. How much change… |
-| error | 58 | p57_s1 | Reviewer (meaning): Source asks "how tall are Xiaoming and Clever Dog respectively"; "respectively" omitted. Suggested translation: "Estimate: how tall are Xiaoming and Clever Dog respectively?" | 估一估，小明和机灵狗分别有多高？ | Estimate: how tall are Xiaoming and Clever Dog? |
-| error | 58 | p57_s27 | Reviewer (number): The garbled digits '228.35.0' from the source are kept; the intended length should be 7 cm as in the cleaned source. Suggested translation: "7 cm" | 228.35.07厘米 | 228.35.07 cm |
-| error | 61 | p60_s2 | Reviewer (omission): Omission of 量一量 (Measure) — the source lists three actions (做一做, 量一量), but only "Do it and measure" is given, dropping the quantifying action which belongs to a different unit. Suggested translation: "5. Do it and measure." | 5.做一做，量一量。 | 5. Do it and measure. |
-| error | 65 | p64_s11 | Reviewer (meaning): Source says 圈一圈，算一算 ('Circle and calculate'); the translation has '算二算' rendered correctly but the source text itself is 算一算 — more importantly the meaning is fine; however the source's repeated 算 is rendered as 'calculate', which matches. This item is actually correct except '算二算' is a typo in the source, not the translation. No change needed. | 3.圈一圈，算二算。 | 3. Circle and calculate. |
-| error | 68 | p67_s7 | Reviewer (meaning): The source gives the measure word 根 (for bananas) without naming bananas in parentheses; the context here is sticks/bamboo, and the translation invents "bananas". Suggested translation: "6" | 6（根） | 6 (bananas) |
-| error | 72 | p71_s13 | Reviewer (meaning): The measure word 辆 is the counted noun (cars); it refers to the vehicles being bought, which is correct, but nothing determines that it should be 'cars' rather than the object sold—however the source only says '辆' and the translation supplies the counted noun, which is acceptable per the measure-word rule. No issue. | 辆 | cars |
-| error | 73 | p72_s10 | Reviewer (number): '4棵。' means '4 trees.' — '棵' (the counted noun) was dropped, leaving only '4.' Suggested translation: "4 trees." | 4棵。 | 4. |
-| error | 73 | p72_s16 | Reviewer (number): The rhyme 四九三十六 means 4 × 9 = 36; the translation is correct. No issue. | 四九三十六 | 4 × 9 = 36 |
-| error | 76 | p75_s21 | Reviewer (terminology): "大客车" is labeled "Large coach" at p75_s18 but rendered "The bus" here; inconsistent terminology. Suggested translation: "(1) The large coach has" | (1）大客车上有 | (1) The bus has |
-| error | 79 | p78_s26 | Reviewer (meaning): 椰树 means "coconut tree" (marginal); "coconut palm" is acceptable but uses a more specialized term than the source. | 椰树 | Coconut palm |
-| error | 93 | p92_s10 | Reviewer (meaning): '卷尺测' means 'measure with a tape measure', not just 'Tape measure'. The translation omits the measurement action. Suggested translation: "Measure with a tape measure" | 卷尺测 | Tape measure |
-| error | 93 | p92_s3 | Reviewer (terminology): Glossary pairs '读一读' => 'Read'; '讲一讲' is rendered 'tell'. 'Read and tell' is acceptable but 'Read and talk' aligns with classroom instructions. Minor. Suggested translation: "Read and talk" | 读一读，讲一讲 | Read and tell |
-| error | 94 | p93_s1 | Reviewer (terminology): Little birds vs birds; source '小鸟' = 'little birds'. Translation 'Birds' drops 'little'. Minor. Suggested translation: "Giraffe and Little Birds" | 长颈鹿与小鸟 | Giraffe and Birds |
-| error | 95 | p94_s0 | Reviewer (terminology): '试一试' = 'Try It' is acceptable; no glossary entry. Minor. | 试一试 | Try It |
-| error | 95 | p94_s18 | Reviewer (meaning): '平均每人搬几盆' = 'how many pots does each person carry on average'; translation correct. | （2）现在有6名同学，平均每人搬几盆？ | (2) There are 6 students now. How many pots does each perso… |
-| error | 97 | p96_s2 | Reviewer (meaning): Source '我身高7厘米' = 'I am 7 cm tall.' Translation correct. Note: likely a small animal, but translation fine. | 我身高7厘米 | I am 7 cm tall. |
-| error | 97 | p96_s3 | Reviewer (number): Source mentions 4 pumpkins per basket (每筐能装4个南瓜); the translation omits the verb 能装 and renders it as 'holds 4 pumpkins', dropping the capacity nuance, but more importantly it omits 摘了54个柿子 context. Actually the main issue: 'Each basket holds 4 pumpkins' loses 'can hold' (能装). Suggested translation: "Each basket can hold 4 pumpkins..." | 每筐能装4个南瓜··· | Each basket holds 4 pumpkins... |
-| error | 97 | p96_s6 | Reviewer (omission): Source '6个··' contains the measure word 个 after the number 6; the translation drops it entirely as '6...'. The counted object is unknown here, but the measure word should not simply vanish; per conventions drop only the parentheses form, not this instance. However, since context is a label with an unknown object, keeping '6' is acceptable. No finding. | 6个·· | 6... |
-| error | 98 | p97_s14 | Reviewer (untranslated): Source 'cmrar' is a garbled/unclear label; the translation copies it verbatim as 'cmrar'. This appears to be a scanning artifact but should be handled as untranslated garbage. | cmrar | cmrar |
-| error | 101 | p100_s8 | Reviewer (meaning): '二（1）班' means Grade 2, Class 1; the translation is correct, though 'Class 1, Grade 2' is the more standard English order. Suggested translation: "3. Talk about Class 1, Grade 2." | 3.说说二（1）班的事。 | 3. Talk about Grade 2, Class 1. |
-| warning | 6 | p5_s3 | Reviewer (format): Two names run together without separation; a separator or line break preserves the table layout. Suggested translation: "Taoqi · Xiaoxiao" | 淘气笑笑 | Taoqi Xiaoxiao |
-| warning | 6 | p5_s8 | Reviewer (grammar): '他们谁说得对？' asks which of them is right, not simply 'Who is right?' Suggested translation: "Which of them is right?" | 他们谁说得对？ | Who is right? |
-| warning | 9 | p8_s18 | Reviewer (format): The tally mark 正 in the source is a counting symbol and must be kept exactly as 正; the translation left it as the placeholder ⟦0⟧ only because the source shows 一班32.22.0二班三班四班, but the tally character is missing, and spacing merges the classes into one string. Suggested translation: "Class 1 正 Class 2 Class 3 Class 4" | 一班32.22.0二班三班四班 | Class 1 32.22.0 Class 2 Class 3 Class 4 |
-| warning | 9 | p8_s25 | Reviewer (format): Heading should be in Title Case per the conventions. Suggested translation: "Math Game." | 数学游戏。 | Math game. |
-| warning | 12 | p11_s3 | Reviewer (grammar): Number agreement: "three kinds of seeds" is acceptable, but the singular "seed" would fit the three-kind construction; check consistency with the following items. Suggested translation: "This owl is made of three kinds of seeds." | 这只猫头鹰是用三种瓜子做成的。 | This owl is made of three kinds of seeds. |
-| warning | 13 | p12_s0 | Reviewer (format): Line breaks were lost: the item contains a newline and the translation does not. Suggested translation: "5. Harvesting Corn." | 5.收玉米。 | 5. Harvesting corn. |
-| warning | 14 | p13_s12 | Reviewer (grammar): '认一认' is the standard heading 'Recognise'; 'recognise' is correct but combined with 'fill in' should be parallel. Suggested translation: "Recognise and Fill In" | 认一认，填一填 | Recognise and fill in |
-| warning | 14 | p13_s25 | Reviewer (grammar): Number agreement: '1 note' is fine, but 'note' should be singular; keep as '1 note'. Suggested translation: "1 note" | 1张 | 1 note |
-| warning | 17 | p16_s27 | Reviewer (grammar): "Read and tell" is unnatural; "Read and discuss" fits 讲一讲 better. Suggested translation: "5. Read and discuss." | 5.读一读，讲一讲。 | 5. Read and tell. |
-| warning | 20 | p19_s0 | Reviewer (format): Heading uses Title Case correctly; "Unit 3 Counting and Multiplication" is correct. | 三数一数与乘法 | Unit 3 Counting and Multiplication |
-| warning | 22 | p21_s6 | Reviewer (format): "(people)" acceptable per measure word convention. | 2+2+2+2=8（人） | 2+2+2+2=8 (people) |
-| warning | 24 | p23_s0 | Reviewer (format): Headings should be in Title Case: 'How Many Dots' is correct. No issue. | 有多少点子 | How Many Dots |
-| warning | 26 | p25_s0 | Reviewer (format): Headings should be in Title Case: 'Animal Party' is correct. No issue. | 动物聚会 | Animal Party |
-| warning | 26 | p25_s11 | Reviewer (format): Money format is correct per convention: ¥6. No issue. | 6元 | ¥6 |
-| warning | 26 | p25_s12 | Reviewer (format): Money format is correct per convention: ¥6. No issue. | 6元 | ¥6 |
-| warning | 26 | p25_s13 | Reviewer (format): Money format is correct per convention: ¥6. No issue. | 6元 | ¥6 |
-| warning | 26 | p25_s9 | Reviewer (format): The sentence 'Look and talk about it. What number sentences can you think of?' combines two clauses; the source '看一看说一说，你能想到哪些算式？' is one sentence. Minor. Suggested translation: "Look and talk about it. What number sentences can you think of?" | 看一看说一说，你能想到哪些算式？ | Look and talk about it. What number sentences can you think… |
-| warning | 27 | p26_s24 | Reviewer (format): The source uses a full-width closing parenthesis '(2）'; the translation uses '(2)'. Not a meaning issue. Suggested translation: "(2) Please ask another math question and try to answer it." | (2）请你再提出一个数学问题，并尝试解答。 | (2) Please ask another math question and try to answer it. |
-| warning | 35 | p34_s7 | Reviewer (grammar): "两人一组试一试" is an instruction to try in pairs; "Try it in pairs." is acceptable but "Try it in groups of two." is closer. Suggested translation: "Try it in groups of two." | 两人一组试一试。 | Try it in pairs. |
-| warning | 42 | p41_s0 | Reviewer (format): 'Bear's Treat' is acceptable as a title, but the source names the character as '小熊' (Little Bear); keeping it as a title-cased heading is fine. No change to meaning. Suggested translation: "Bear's Treat" | 小熊请客 | Bear's Treat |
-| warning | 44 | p43_s4 | Reviewer (grammar): "Calculate" stands alone awkwardly; a textbook would echo the source phrase 'calculate it'. Suggested translation: "How many kittens are there on the boat in all? Talk about it and calculate it." | 船上一共有多少只小猫？说一说，算一算。 | How many kittens are there on the boat in all? Talk about i… |
-| warning | 44 | p43_s9 | Reviewer (grammar): Comma after the opening phrase reads better in a textbook than a period. Suggested translation: "Talk about it: what problem can the number sentence 2×6=12 solve?" | 说一说，算式2×6=12可以解决什么问题？ | Talk about it. What problem can the number sentence 2×6=12 … |
-| warning | 50 | p49_s1 | Reviewer (format): Heading/title should be in Title Case. Suggested translation: "1. Family Jump Rope Contest" | 1.家庭跳绳比赛 | 1. Family jump rope contest |
-| warning | 55 | p54_s12 | Reviewer (format): The Chinese ellipsis "···" is rendered as "..."; the trailing ellipsis style is inconsistent but does not change meaning. Suggested translation: "Usually, when measuring the length of an object, put one end at the 0 mark on the ruler…" | 通常，测量物体的长度时，要把一端对准尺子的0刻度··· | Usually, when measuring the length of an object, put one en… |
-| warning | 58 | p57_s3 | Reviewer (format): Answer blank （） rendered as half-width "()". Suggested translation: "About （）cm tall" | 高约（）厘米 | About () cm tall |
-| warning | 58 | p57_s5 | Reviewer (format): Answer blank （） rendered as half-width "()". Suggested translation: "About （）cm tall" | 高约（）厘米 | About () cm tall |
-| warning | 62 | p61_s0 | Reviewer (format): The unit heading should be in Title Case; "Sharing and Division" is correct, but the bare Chinese numeral should map to "Unit 7" consistently (it does), so no change needed beyond noting format. Suggested translation: "Unit 7 Sharing and Division" | 七分一分与除法 | Unit 7 Sharing and Division |
-| warning | 100 | p99_s12 | Reviewer (format): Spelling 'Colour' is British English; the rest of the material appears to use American English (e.g., 'colors'), so casing/variant should be consistent. Suggested translation: "7. Color." |  |  |
-| warning | 100 | p99_s16 | Reviewer (format): British spelling 'Colour' inconsistent with American English used elsewhere. Suggested translation: "Color the squares of the numbers they land on in different colors." | 分别把它们跳到的数所在的格子涂上不同的颜色。 | Colour the squares of the numbers they land on in different… |
-| warning | 100 | p99_s2 | Reviewer (grammar): Imperative 'Buy' is acceptable but the sentence is a stated plan; a more natural textbook rendering would use 'I want to buy' or 'Buying' consistent with the surrounding dialogue. | 买6根跳绳和5个皮球。 | Buy 6 jump ropes and 5 balls. |
-| warning | 101 | p100_s23 | Reviewer (grammar): '还可以' means 'There is also...' / 'Another way is...'; the bare 'Also' is incomplete and unnatural. Suggested translation: "There is also" | 还可以 | Also |
-| warning | 101 | p100_s7 | Reviewer (format): Multiplication and division expressions should use the multiplication/division signs as in the source; using '×' and '÷' is fine, but note the source uses '8×7' and '35÷5'. No change needed; flagging only for consistency. | 2.说一说，画一画。8×7可以解决什么问题？35÷5呢？ | 2. Talk about it and draw a picture. What problems can 8×7 … |
-| warning | 104 | p103_s24 | Reviewer (format): The placeholder-like digit string '412.32.0' is kept, but the question mark should follow a space consistent with other label items; otherwise unchanged. Suggested translation: "412.32.0?" | 412.32.0吗？ | 412.32.0? |
-| warning | 107 | p106_s10 | Reviewer (grammar): "实际估一估" means estimate in real life in the classroom; "estimate the actual heights" slightly shifts the meaning. Suggested translation: "In the classroom, estimate the real heights." | 在教室里，实际估一估。 | In the classroom, estimate the actual heights. |
+| warning | 3 | p2_s12 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 18=bxb |  |
+| warning | 4 | p3_s13_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 五2～5的乘法口诀··30 |  |
+| warning | 5 | p4_s6 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 产 |  |
+| warning | 8 | p7_s14 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一 |  |
+| warning | 9 | p8_s18_k0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一班32.22.0二班三班四班 |  |
+| warning | 9 | p8_s18_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一班32.22.0二班三班四班 |  |
+| warning | 9 | p8_s18_k2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一班32.22.0二班三班四班 |  |
+| warning | 9 | p8_s18_k3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一班32.22.0二班三班四班 |  |
+| warning | 10 | p9_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 52+6=58（人) |  |
+| warning | 13 | p12_s20_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 淘气 |  |
+| warning | 13 | p12_s20_k2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 笑笑 |  |
+| warning | 13 | p12_s20_k3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 奇思 |  |
+| warning | 14 | p13_s13 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 就圆 |  |
+| warning | 14 | p13_s14 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 元 |  |
+| warning | 14 | p13_s15 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 14 | p13_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 倾分 |  |
+| warning | 14 | p13_s26 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍角 |  |
+| warning | 14 | p13_s29 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰角 |  |
+| warning | 15 | p14_s16 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 元 |  |
+| warning | 15 | p14_s17 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 元 |  |
+| warning | 15 | p14_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 元 |  |
+| warning | 15 | p14_s19 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 15 | p14_s20 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 15 | p14_s21 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 15 | p14_s3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 征分 |  |
+| warning | 16 | p15_s12 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍拾圆 |  |
+| warning | 16 | p15_s15 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国之民银行 |  |
+| warning | 16 | p15_s16 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国 |  |
+| warning | 16 | p15_s17 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | Ta1048760 |  |
+| warning | 16 | p15_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰拾回 |  |
+| warning | 16 | p15_s19 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国人民银行 |  |
+| warning | 16 | p15_s20 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国公民银行 |  |
+| warning | 16 | p15_s21 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰角 |  |
+| warning | 16 | p15_s22 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍角 |  |
+| warning | 16 | p15_s6 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 光长银村 |  |
+| warning | 16 | p15_s7 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中 |  |
+| warning | 16 | p15_s8 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 国之民银行 |  |
+| warning | 16 | p15_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 民银行 |  |
+| warning | 17 | p16_i64_15_t | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 张 |  |
+| warning | 17 | p16_i64_16_t | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 张 |  |
+| warning | 17 | p16_s12_k0 | Reviewed by the proofreader: The translation "= ____" contains no words; translate the complete source text | 能换_张 | = ____ |
+| warning | 17 | p16_s12_k1 | Reviewed by the proofreader: The translation "=" contains no words; translate the complete source text | 能换 | = |
+| warning | 17 | p16_s13 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 就团 |  |
+| warning | 17 | p16_s17 | Reviewed by the proofreader: The translation "=" contains no words; translate the complete source text | 能换 | = |
+| warning | 17 | p16_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 张 |  |
+| warning | 17 | p16_s19 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 张 |  |
+| warning | 17 | p16_s21_k0 | Reviewed by the proofreader: The translation "=" contains no words; translate the complete source text | 能换 | = |
+| warning | 17 | p16_s22 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 张 |  |
+| warning | 17 | p16_s23 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 张 |  |
+| warning | 17 | p16_s24 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 合 |  |
+| warning | 17 | p16_s5 | Reviewed by the proofreader: The translation "," contains no words; translate the complete source text | 要多少 | , |
+| warning | 18 | p17_s3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 5元 |  |
+| warning | 18 | p17_s5 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 68.5.0和1辆 |  |
+| warning | 18 | p17_s6 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 奇思付给售货员20找回多少元？ |  |
+| warning | 18 | p17_s7 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 买了1盒 |  |
+| warning | 23 | p22_s11_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | (2) 2+2+2+2+2+2=12写成乘法算式:×□= |  |
+| warning | 23 | p22_s6_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 乘法算式：×=88.7.088.7.1（88.7.2） |  |
+| warning | 27 | p26_s10 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 5个 |  |
+| warning | 27 | p26_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 4个6 |  |
+| warning | 28 | p27_a1_p0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 个 |  |
+| warning | 29 | p28_s2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 5个4 |  |
+| warning | 30 | p29_s3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 王 |  |
+| warning | 31 | p30_s4 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中 |  |
+| warning | 32 | p31_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 赵云 |  |
+| warning | 33 | p32_s2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 怎样才能开出 |  |
+| warning | 34 | p33_s15 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 五五六七八 |  |
+| warning | 34 | p33_s20 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 三五九 |  |
+| warning | 34 | p33_s21 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 三 |  |
+| warning | 36 | p35_s6_k4 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 二五 |  |
+| warning | 40 | p39_s10 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 三五 |  |
+| warning | 40 | p39_s15 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 三七三八三九 |  |
+| warning | 47 | p46_s21 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | （1）李老师买了8根户，一共花了多少元？ |  |
+| warning | 47 | p46_s23 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 张老师买了7本 |  |
+| warning | 47 | p46_s24 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | ，一共花了多少元？ |  |
+| warning | 47 | p46_s25 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | （3）王老师带了40元，想买4辆 |  |
+| warning | 47 | p46_s26 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | ，够吗？ |  |
+| warning | 47 | p46_s27 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | （4）请你再提出一个数学问题，并尝试解答。 |  |
+| warning | 51 | p50_a1_p0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 51 | p50_a2_p0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 51 | p50_a3_p0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 51 | p50_s24 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 51 | p50_s27 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 51 | p50_s29 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 52 | p51_s1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 三九 |  |
+| warning | 57 | p56_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 小组合作，用尺子量一量。 |  |
+| warning | 59 | p58_s10 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 说一说，估计时你有什么好办法？测量时要注意什么？ |  |
+| warning | 61 | p60_s4 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | DCDDCDDCDD |  |
+| warning | 61 | p60_s7 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 作量一量师汇 |  |
+| warning | 63 | p62_s14 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 个 |  |
+| warning | 63 | p62_s15 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 个 |  |
+| warning | 63 | p62_s16 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 个 |  |
+| warning | 63 | p62_s17 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 个 |  |
+| warning | 63 | p62_s5 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 平均每个铅笔盒放 |  |
+| warning | 66 | p65_s13_k3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第次 |  |
+| warning | 66 | p65_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第次 |  |
+| warning | 66 | p65_s19 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第次 |  |
+| warning | 66 | p65_s20_k0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第次 |  |
+| warning | 67 | p66_s8_k0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 姓名 |  |
+| warning | 67 | p66_s8_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第1次 |  |
+| warning | 67 | p66_s8_k2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第 |  |
+| warning | 67 | p66_s8_k3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 次 |  |
+| warning | 67 | p66_s8_k4 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第3次 |  |
+| warning | 67 | p66_s8_k5 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第4次 |  |
+| warning | 67 | p66_s9_k0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 班级 |  |
+| warning | 67 | p66_s9_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第1次 |  |
+| warning | 67 | p66_s9_k2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第2次 |  |
+| warning | 67 | p66_s9_k3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第3次 |  |
+| warning | 67 | p66_s9_k4 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 第4次 |  |
+| warning | 68 | p67_s10 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 268.17.0除除号数 |  |
+| warning | 69 | p68_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 块。 |  |
+| warning | 70 | p69_s13 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 276.18.00个 |  |
+| warning | 73 | p72_s11 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | (2）平均分给3个小组去栽，每组栽多少棵？ |  |
+| warning | 73 | p72_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 可以栽多少行？ |  |
+| warning | 74 | p73_a1_p0 | Reviewed by the proofreader: The translation "," contains no words; translate the complete source text | 只， | , |
+| warning | 74 | p73_a2_p0 | Reviewed by the proofreader: The translation "," contains no words; translate the complete source text | 只， | , |
+| warning | 74 | p73_a3_p0 | Reviewed by the proofreader: The translation "," contains no words; translate the complete source text | 只， | , |
+| warning | 74 | p73_a4_p0 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 只。 | . |
+| warning | 74 | p73_s13 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 74 | p73_s17 | Reviewed by the proofreader: The translation "=" contains no words; translate the complete source text | 数是 | = |
+| warning | 74 | p73_s19 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍 | . |
+| warning | 74 | p73_s2 | Reviewed by the proofreader: The translation ":" contains no words; translate the complete source text | 有 | : |
+| warning | 74 | p73_s21 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 74 | p73_s23 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 74 | p73_s3 | Reviewed by the proofreader: The translation "," contains no words; translate the complete source text | 只， | , |
+| warning | 74 | p73_s4 | Reviewed by the proofreader: The translation ":" contains no words; translate the complete source text | 有 | : |
+| warning | 74 | p73_s5 | Reviewed by the proofreader: The translation ":" contains no words; translate the complete source text | 有 | : |
+| warning | 74 | p73_s6 | Reviewed by the proofreader: The translation ":" contains no words; translate the complete source text | 有 | : |
+| warning | 74 | p73_s8 | Reviewed by the proofreader: The translation ":" contains no words; translate the complete source text | 有 | : |
+| warning | 75 | p74_a2_p0 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 75 | p74_s19 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 元 | . |
+| warning | 75 | p74_s24 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍 | . |
+| warning | 75 | p74_s26 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 75 | p74_s28 | Reviewed by the proofreader: The translation "=" contains no words; translate the complete source text | 数是的倍 | = |
+| warning | 75 | p74_s33 | Reviewed by the proofreader: The translation "=" contains no words; translate the complete source text | 数是的 | = |
+| warning | 75 | p74_s34 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 76 | p75_s12 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 76 | p75_s5 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 76 | p75_s6_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 的身高是的 |  |
+| warning | 76 | p75_s7 | Reviewed by the proofreader: The translation "." contains no words; translate the complete source text | 倍。 | . |
+| warning | 78 | p77_a2_p0 | Reviewed by the proofreader: The translation "=" contains no words; translate the complete source text | 的个数是 | = |
+| warning | 78 | p77_s0_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 的个数是 |  |
+| warning | 79 | p78_s5 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 列式： |  |
+| warning | 79 | p78_s6 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 列式： |  |
+| warning | 82 | p81_s15 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 六得二六三六四六 |  |
+| warning | 82 | p81_s4 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 8.1 80801818层8x81 |  |
+| warning | 84 | p83_s12 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 七上 |  |
+| warning | 84 | p83_s14 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 七七七上 |  |
+| warning | 84 | p83_s20 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 七八七九 |  |
+| warning | 84 | p83_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一七得二七 |  |
+| warning | 86 | p85_s10 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 五六 |  |
+| warning | 86 | p85_s11 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 八九 |  |
+| warning | 86 | p85_s12 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 九九 |  |
+| warning | 86 | p85_s22 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一九得九二九十八三九二十七 |  |
+| warning | 86 | p85_s4_k3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 你能编出8和9的乘法口诀吗？ |  |
+| warning | 86 | p85_s5 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一八得— |  |
+| warning | 86 | p85_s6 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一九得_ |  |
+| warning | 86 | p85_s8 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 四 |  |
+| warning | 86 | p85_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 三 |  |
+| warning | 92 | p91_s11_k0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一推长 |  |
+| warning | 92 | p91_s11_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一步长 |  |
+| warning | 92 | p91_s14_k0 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 双臂平伸的长度 |  |
+| warning | 93 | p92_s11 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一宽 |  |
+| warning | 93 | p92_s12 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 长 |  |
+| warning | 93 | p92_s3 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 读一读，讲一讲 |  |
+| warning | 93 | p92_s8 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 量一量教室的长和宽 |  |
+| warning | 94 | p93_s13 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 长颈鹿用63块小木板造了几间房子？ |  |
+| warning | 94 | p93_s16 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 还有几间空房子？还能住几只小鸟？ |  |
+| warning | 94 | p93_s6 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 房间 |  |
+| warning | 94 | p93_s7 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 鸟 |  |
+| warning | 96 | p95_s2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 好好 |  |
+| warning | 97 | p96_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 每筐装4个 |  |
+| warning | 97 | p96_s5 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 我身高35厘米 |  |
+| warning | 98 | p97_s14 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | cmrar |  |
+| warning | 99 | p98_s14 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 全 |  |
+| warning | 102 | p101_s0_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 启发 |  |
+| warning | 102 | p101_s11 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 启发 |  |
+| warning | 104 | p103_s12 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | ，你知道 |  |
+| warning | 104 | p103_s20_k1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 要付多少元？ |  |
+| warning | 104 | p103_s24 | Reviewed by the proofreader: The translation "?" contains no words; translate the complete source text | 412.32.0吗？ | ? |
+| warning | 106 | p105_s1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹角 |  |
+| warning | 106 | p105_s2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹角 |  |
+| warning | 111 | p110_s1 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国民银村 |  |
+| warning | 111 | p110_s10 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 一民银行 |  |
+| warning | 111 | p110_s11 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国 |  |
+| warning | 111 | p110_s13 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国银银行 |  |
+| warning | 111 | p110_s14 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国一品第廿 |  |
+| warning | 111 | p110_s15 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国一民铭社 |  |
+| warning | 111 | p110_s16 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍圆 |  |
+| warning | 111 | p110_s18 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍四 |  |
+| warning | 111 | p110_s19 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍回 |  |
+| warning | 111 | p110_s2 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国民银付 |  |
+| warning | 111 | p110_s20 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰圆 |  |
+| warning | 111 | p110_s21 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 宽圆 |  |
+| warning | 111 | p110_s22 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国人民证付 |  |
+| warning | 111 | p110_s23 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国人民限行 |  |
+| warning | 111 | p110_s24 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国人民银行 |  |
+| warning | 111 | p110_s25 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国民职行 |  |
+| warning | 111 | p110_s29 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍角 |  |
+| warning | 111 | p110_s30 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍角 |  |
+| warning | 111 | p110_s31 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍角 |  |
+| warning | 111 | p110_s32 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍角 |  |
+| warning | 111 | p110_s34 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 元 |  |
+| warning | 111 | p110_s35 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰角 |  |
+| warning | 111 | p110_s36 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰角 |  |
+| warning | 111 | p110_s37 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰角 |  |
+| warning | 111 | p110_s38 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰角 |  |
+| warning | 111 | p110_s39 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中 |  |
+| warning | 111 | p110_s40 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 元 |  |
+| warning | 111 | p110_s41 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹鱼 |  |
+| warning | 111 | p110_s42 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹角 |  |
+| warning | 111 | p110_s43 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹角 |  |
+| warning | 111 | p110_s44 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹角 |  |
+| warning | 111 | p110_s48 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 111 | p110_s50 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 111 | p110_s52 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 111 | p110_s54 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 111 | p110_s55 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 111 | p110_s57 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 角 |  |
+| warning | 111 | p110_s58 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍分 |  |
+| warning | 111 | p110_s59 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 伍分 |  |
+| warning | 111 | p110_s60 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰分 |  |
+| warning | 111 | p110_s61 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰分 |  |
+| warning | 111 | p110_s62 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 贰分 |  |
+| warning | 111 | p110_s63 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹分 |  |
+| warning | 111 | p110_s64 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹分 |  |
+| warning | 111 | p110_s65 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 壹分 |  |
+| warning | 111 | p110_s7 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 值拾圆 |  |
+| warning | 111 | p110_s8 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国民银行 |  |
+| warning | 111 | p110_s9 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 中国 |  |
+| warning | 115 | p114_i450_17_t | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 口 |  |
+| warning | 115 | p114_i450_6_t | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 口 |  |
+| warning | 115 | p114_s10 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 115 | p114_s12 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 出口 |  |
+| warning | 115 | p114_s4 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
+| warning | 115 | p114_s8 | Reviewed by the proofreader: The segment has no translation; translate the complete source text | 兵 |  |
 
-### `numbers` — 22 errors, 0 warnings
+### `formatting` — 0 errors, 40 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 3 | p2_s5 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 石广泉水一瓶1 元5角 | Mineral water ¥1.50 |
-| error | 4 | p3_s2 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 2元5角 | ¥2.50 |
-| error | 4 | p3_s7 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 5 角 | .50 |
-| error | 14 | p13_s11 | Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 9元8角 | ¥9.80 |
-| error | 14 | p13_s3 | Number "1" from the source is missing in the translation; keep every number exactly as written in the source | 1角 | ¥0.10 |
-| error | 14 | p13_s4 | Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 8角 | ¥0.80 |
-| error | 14 | p13_s5 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 5角 | ¥0.50 |
-| error | 14 | p13_s6 | Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 1元2角 | ¥1.20 |
-| error | 14 | p13_s8 | Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 2角 | ¥0.20 |
-| error | 14 | p13_s9 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 6元5角 | ¥6.50 |
-| error | 15 | p14_s41 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 1元5角 | ¥1.50 |
-| error | 15 | p14_s42 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 7角5分 | ¥0.75 |
-| error | 15 | p14_s42 | Number "7" from the source is missing in the translation; keep every number exactly as written in the source | 7角5分 | ¥0.75 |
-| error | 18 | p17_s15 | Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 1元2角 | ¥1.20 |
-| error | 18 | p17_s16 | Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 8角 | ¥0.80 |
-| error | 18 | p17_s2 | Number "6" from the source is missing in the translation; keep every number exactly as written in the source | 6角 | ¥0.60 |
-| error | 19 | p18_s12 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 2元5角 | ¥2.50 |
-| error | 19 | p18_s15 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 1元5角 | ¥1.50 |
-| error | 48 | p47_s12 | Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 8角 | ¥0.80 |
-| error | 48 | p47_s13 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 1元5角 | ¥1.50 |
-| error | 48 | p47_s14 | Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 5角 | ¥0.50 |
-| error | 101 | p100_s22 | Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 怎样拿出12元8角？ | How can you pay ¥12.80? |
+| warning | 4 | p3_s3 | Reviewed by the proofreader: Start the translation with the list marker "-" exactly as in the source | - 4 元 | ¥4 |
+| warning | 6 | p5_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 谁的得分高 | Who Scores Higher? |
+| warning | 12 | p11_s2 | The source ends with a exclamation mark; end the translation with a exclamation mark too | 这只蝴蝶是用彩笔帽做成的。！ | This butterfly is made of marker pen caps. |
+| warning | 19 | p18_s10 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 贵多池 | How much more does the football cost? |
+| warning | 20 | p19_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 有多少块糖 | How Many Candies? |
+| warning | 21 | p20_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 1.圈一圈，数一数一共有多少个 | 1. Circle and count. How many pandas are there in total? |
+| warning | 23 | p22_s11_k0 | Reviewed by the proofreader: Keep the symbol(s) □ of the source in the translation, at the matching position | (2) 2+2+2+2+2+2=12写成乘法算式:×□= | (2) Write 2+2+2+2+2+2=12 as multiplication: |
+| warning | 24 | p23_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 有多少点子 | How Many Dots? |
+| warning | 35 | p34_s8 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 四五 | 4 × 5? |
+| warning | 37 | p36_s3 | Reviewed by the proofreader: Start the translation with the list marker "·" exactly as in the source | ·，9分别与2相乘，在得到的数上画圈 | ..., 9: multiply each number by 2 and circle the answers. |
+| warning | 40 | p39_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 需要几个轮子 | How Many Wheels? |
+| warning | 42 | p41_s1 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | 数一数，填一填。1串有几个红果？2串呢？ | Count and fill in. How many red berries are on 1 skewer? On… |
+| warning | 42 | p41_s18 | Reviewed by the proofreader: Start the translation with the list marker "四," exactly as in the source | 四, 14+14=28。 | 14+14=28. |
+| warning | 53 | p52_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 教室有多长 | How Long Is the Classroom? |
+| warning | 53 | p52_s3 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 看一看有几把尺子长 | How many rulers long? |
+| warning | 53 | p52_s4 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 看看有几本书长。 | How many books long? |
+| warning | 53 | p52_s5 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 看看有多少个脚印长 | How many footprints long? |
+| warning | 54 | p53_s5 | The source does not end with a exclamation mark; do not end the translation with one | 右面的木条要比左面的木条长 | The right one is longer! |
+| warning | 55 | p54_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 课桌有多长 | How Long Is the Desk? |
+| warning | 57 | p56_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 1米有多长 | How Long Is 1 Metre? |
+| warning | 58 | p57_s9 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 看看是多少厘米 | How many cm is it? |
+| warning | 66 | p65_s2 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | 说一说，可以怎样分？ | Say how we can share them. |
+| warning | 69 | p68_s16 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 3.（1）每6块橡皮装1盒，可以装 | 3. (1) 6 erasers fill 1 box. How many boxes? |
+| warning | 71 | p70_s18 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 看谁编的故事多。 | Who makes up the most? |
+| warning | 73 | p72_s3 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 说说你是怎么解决的。 | How did you solve it? |
+| warning | 76 | p75_s4 | Reviewed by the proofreader: Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 的个数是的 | = ○ × |
+| warning | 82 | p81_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 有多少张贴画 | How Many Stickers? |
+| warning | 84 | p83_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 一共有多少天 | How Many Days? |
+| warning | 86 | p85_s15 | Reviewed by the proofreader: Keep the line breaks of the source: it has 0 line break(s), the translation has 2 | 1个9比10少1 2个9比20少2，3个9比30少， | 1 × 9 is 1 less than 10, 2 × 9 is 2 less than 20, 3 × 9 is … |
+| warning | 94 | p93_s17 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | 共造了几间房子？已经住了几间房子？ | How many houses were built in all? How many are already liv… |
+| warning | 98 | p97_s21 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 20元能买几盒 | How many for ¥20? |
+| warning | 99 | p98_s18 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | 3.括号里最大能填几？ | 3. Fill in the largest possible number. |
+| warning | 102 | p101_s9 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | 3.说一说，在生活中可以用什么方法对长度进行估计？ | 3. How can we estimate lengths in everyday life? Talk about… |
+| warning | 103 | p102_s31 | Reviewed by the proofreader: Remove the symbol(s) △: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | （1）每份有5个，有2份。 | (1) Each group has 5 △; there are 2 groups. |
+| warning | 103 | p102_s32 | Reviewed by the proofreader: Remove the symbol(s) □: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | （2）先画18个，再把这些平均分成3份。 | (2) First draw 18 □, then divide them equally into 3 groups. |
+| warning | 103 | p102_s33 | Reviewed by the proofreader: Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | (3）先画20个，再每4个1份圈一圈。 | (3) First draw 20 ○, then circle every 4 as 1 group. |
+| warning | 103 | p102_s34 | Reviewed by the proofreader: Keep the symbol(s) △ of the source in the translation, at the matching position | （4）先画3个△，再画，的个数是△的2倍。 | (4) First draw 3 △, then draw 2 times as many ○. |
+| warning | 103 | p102_s34 | Reviewed by the proofreader: Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | （4）先画3个△，再画，的个数是△的2倍。 | (4) First draw 3 △, then draw 2 times as many ○. |
+| warning | 106 | p105_s25 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | (2）笑笑买了一种花，正好用完12元。在小组里说一说她可能买了哪种花，买了几枝？ | (2) Xiaoxiao spent exactly ¥12 on one kind of flower. Which… |
+| warning | 109 | p108_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What did you learn this term? |
 
-### `untranslated` — 2 errors, 0 warnings
+### `length_ratio` — 0 errors, 6 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| error | 30 | p29_s3 | 1 letter(s) of the source script remain untranslated ("王"); translate all text into English | 王 | 王 |
-| error | 31 | p30_s4 | 1 letter(s) of the source script remain untranslated ("中"); translate all text into English | 中 | 中 |
+| warning | 4 | p3_s8_k0 | The translation looks too short: 3 characters for 8 translatable source characters (ratio 0.38, about 2.60 expected); check that nothing was omitted | 72元- 68元 | ¥72 |
+| warning | 4 | p3_s8_k1 | The translation looks too short: 3 characters for 8 translatable source characters (ratio 0.38, about 2.60 expected); check that nothing was omitted | 72元- 68元 | ¥68 |
+| warning | 6 | p5_s2_k0 | The translation looks too short: 7 characters for 9 translatable source characters (ratio 0.78, about 2.60 expected); check that nothing was omitted | 第一次第二次第三次 | Throw 1 |
+| warning | 6 | p5_s2_k1 | The translation looks too short: 7 characters for 9 translatable source characters (ratio 0.78, about 2.60 expected); check that nothing was omitted | 第一次第二次第三次 | Throw 2 |
+| warning | 6 | p5_s2_k2 | The translation looks too short: 7 characters for 9 translatable source characters (ratio 0.78, about 2.60 expected); check that nothing was omitted | 第一次第二次第三次 | Throw 3 |
+| warning | 23 | p22_s6_k0 | The translation looks too short: 15 characters for 33 translatable source characters (ratio 0.45, about 2.60 expected); check that nothing was omitted | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: |
 
-### `image_text` — 0 errors, 4 warnings
+### `llm_review` — 0 errors, 35 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
-| warning | 19 | p18_i72_13 | The text '比' was left in the source language (inline pictograms the OCR cannot read (left in the picture)): the line is built around symbols or pictures the OCR could not read - check the page in the preview | 比 |  |
-| warning | 19 | p18_i72_13 | The text '比' was left in the source language (inline pictograms the OCR cannot read (left in the picture)): the line is built around symbols or pictures the OCR could not read - check the page in the preview | 比 |  |
-| warning | 105 | p104_i416_19 | The text '比黄书包' was left in the source language (inline pictograms the OCR cannot read (left in the picture)): the line is built around symbols or pictures the OCR could not read - check the page in the preview | 比黄书包 |  |
-| warning | 105 | p104_i416_19 | The text '比黄书包' was left in the source language (inline pictograms the OCR cannot read (left in the picture)): the line is built around symbols or pictures the OCR could not read - check the page in the preview | 比黄书包 |  |
+| warning | 1 | p0_s9 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): Adding the missing space restores the intended name; matching the correct text is acceptable but the source has "NORMALUNIVERSITY" — this is a faithful restoration, no real problem. | BEIJING NORMALUNIVERSITY PRESS | BEIJING NORMAL UNIVERSITY PRESS |
+| warning | 7 | p6_s1 | Reviewer (grammar): Missing space after the enumerator; source has no space but English convention keeps '1. Dart-throwing contest.' which is fine, but the wording 'Dart-throwing contest' is acceptable. No real issue. | 1.投飞镖比赛。 | 1. Dart-throwing contest. |
+| warning | 7 | p6_s27 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): The label 2000年 is a table column heading meaning 'Year 2000'; translating it as bare '2000' drops the word 'year' and loses the heading meaning. Suggested translation: "2000" | 2000年 | 2000 |
+| warning | 7 | p6_s29 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): 2004年 drops 'year' from the column heading. Suggested translation: "2004" | 2004年 | 2004 |
+| warning | 7 | p6_s30 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): 2008年 drops 'year' from the column heading. Suggested translation: "2008" | 2008年 | 2008 |
+| warning | 7 | p6_s32 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): 2012年 drops 'year' from the column heading. Suggested translation: "2012" | 2012年 | 2012 |
+| warning | 12 | p11_s25 | Earlier automatic review, text kept by the proofreading: Reviewer (terminology): 填一填 corresponds to the glossary term "Fill in" and 算一算 to "Calculate"; the translation uses lowercase and omits the standard capitalized wording of the instruction pair. Suggested translation: "4. Fill In, Calculate." | 4.填一填，算一算。 | 4. Fill in and calculate. |
+| warning | 13 | p12_s6 | Earlier automatic review, text kept by the proofreading: Reviewer (number): The source reads 48.6.0 and 48.6.1, but the translation has a space inside the first reference (48.6.0 and 48.6.1) making it 48.6.0 instead of the reference number. Suggested translation: "48.6.0 and 48.6.1" | 48.6.0和48.6.1 | 48.6.0 and 48.6.1 |
+| warning | 14 | p13_s27 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): Source '了！' is the tail of '太简单了！' (Too easy!), translation just '!' drops content; combine with p13_s23. Suggested translation: "Too easy!" |  |  |
+| warning | 31 | p30_s11 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): "做一做" in this hands-on context means "make/try", not "look"; "Look and try" loses the making sense. Suggested translation: "Look and make." | 看一看，做一做。 | Look and try. |
+| warning | 34 | p33_s10 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): Source rhymes 一五得五/二五一十/三五十五 render as '1 × 5 = 5 2 × 5 = 10 3 × 5 = 15' — this is correct per rhyme convention; no change needed. | —五得五二五一十三五十五 | 1 × 5 = 5 2 × 5 = 10 3 × 5 = 15 |
+| warning | 52 | p51_s23 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): Source 8支 names the counted objects (pens/brushes); measure-word convention: write the object when context gives it. Context is art supplies, so "8 pens" (or the named item). Keep number. Suggested translation: "8 pens" | 8支 | 8 |
+| warning | 52 | p51_s24 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): Source 7个 names counted objects; write the object (e.g., "7") — context art supplies; provide noun. Suggested translation: "7" | 7个 | 7 |
+| warning | 52 | p51_s25 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): Source 9支 names counted objects; write the object. Suggested translation: "9 pens" | 9支 | 9 |
+| warning | 52 | p51_s26 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): Source 6盒 names counted objects (boxes); write the object. Suggested translation: "6 boxes" | 6盒 | 6 |
+| warning | 57 | p56_s2 | Reviewer (grammar): Because the sentence is split across items, this fragment begins lowercase mid-sentence; it should read as the continuation "must buy a ticket." which is fine, but capitalize if standalone. Suggested translation: "must buy a ticket." |  |  |
+| warning | 58 | p57_s0 | Reviewer (format): Heading "Try It" is acceptable, but "试一试" as an exercise heading is often "Try It"; fine. No change needed beyond casing consistency. Suggested translation: "Try It" | 试一试 | Try It |
+| warning | 58 | p57_s16 | Earlier automatic review, text kept by the proofreading: Reviewer (terminology): Glossary pairs 填一填 => Fill in; the item should keep 'Fill in' consistent with the standard rendering rather than 'Fill in.' alone is fine, but 'Fill in' matches glossary — no change needed here beyond consistency (see other 'Fill in' items). | 2.填一填。 | 2. Fill in. |
+| warning | 58 | p57_s7 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): "2 Xiaomings" treats a person's name as a countable object; the intended meaning is that the door is about twice Xiaoming's height. Suggested translation: "The door is about as tall as 2 Xiaomings stacked... / The door is about twice as tall as Xiaoming..." | 门大约有2个小明那么高····· | The door is about 2 Xiaomings tall… |
+| warning | 58 | p57_s8 | Reviewer (grammar): The colon after 'Measure' is awkward; the source is a single instruction sentence. Suggested translation: "Measure how long the blackboard is." | 量一量，黑板有多长？ | Measure: how long is the blackboard? |
+| warning | 65 | p64_s4 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): The translation adds "carry" and "them all", which are absent from the source; the source only says how many rabbits are needed for one trip. Suggested translation: "rabbits to move them all in one trip." | 只小兔才能一次运走。 | rabbits to carry them all in one trip. |
+| warning | 72 | p71_s13 | Reviewer (grammar): Placeholder: measure word '辆' after an answer blank is the counted noun; 'cars' is acceptable. | 辆 | cars |
+| warning | 75 | p74_s6 | Earlier automatic review, text kept by the proofreading: Reviewer (omission): The source asks "how many yuan" (多少元); the translation drops the currency. Add "yuan". Suggested translation: "How much did the fox spend in yuan?" | 狐狸花了多少元？ | How much did the fox spend? |
+| warning | 76 | p75_s22 | Reviewer (format): Source "位乘客。" is a fragment ending an answer blank; the translation is fine but should include the blank and period consistently with the preceding item. Suggested translation: "passengers." | 位乘客。 | passengers. |
+| warning | 79 | p78_s21 | Reviewer (grammar): "我有多大" means "how big/how old am I" in a guessing game; "how old" is fine but the sentence lacks a question mark matching the playful tone. Also punctuation: add question mark. Suggested translation: "4. Guess how big I am." | 4.猜猜我有多大 | 4. Guess how old I am. |
+| warning | 79 | p78_s27 | Earlier automatic review, text kept by the proofreading: Reviewer (terminology): 柏树 is the tree 'cypress'; capitalised label is fine, but 松树/苹果树 use 'tree' while cypress stands alone — acceptable, though consistency could be improved. | 柏树 | Cypress |
+| warning | 95 | p94_s6 | Reviewer (format): Multiplication-table rhymes are written as facts per convention; "四六二十四四七二十八" should be "4 × 6 = 24, 4 × 7 = 28". This is correct, but the ellipsis style should match. | 我想到四六二十四四七二十八·· | I think of 4 × 6 = 24, 4 × 7 = 28… |
+| warning | 97 | p96_s2 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): "我身高7厘米" is likely a small animal/picture context; translation "I am 7 cm tall" is correct but may need context. No change. | 我身高7厘米 | I am 7 cm tall. |
+| warning | 99 | p98_s29 | Earlier automatic review, text kept by the proofreading: Reviewer (terminology): Multiplication-table rhyme '七八五十六' should be written as the multiplication fact '7 × 8 = 56' — the translation is correct; no change needed. | 七八五十六 | 7 × 8 = 56 |
+| warning | 99 | p98_s8 | Earlier automatic review, text kept by the proofreading: Reviewer (meaning): Source means 'if we buy only one kind of prize at a time, how many of each kind can we buy?'; 'how many of each' with 'only one kind' is slightly contradictory. Suggested translation: "If we buy only one kind of prize at a time, how many of each kind can we buy?" | 只买一种奖品，分别能买多少呢？ | If we buy only one kind of prize, how many of each can we b… |
+| warning | 100 | p99_s0 | Earlier automatic review, text kept by the proofreading: Reviewer (terminology): The glossary pairs 填一填 with "Fill in", which is used here; no issue. However the source phrase has a period; fine. No finding. | 5.填一填。 | 5. Fill in. |
+| warning | 103 | p102_s28 | Reviewer (grammar): "What does 7×8 mean?" is acceptable, but for multiplication meaning "What does 7×8 represent?" is clearer; minor wording only. Suggested translation: "What does 7×8 mean?" | 7×8表示什么意思？ | What does 7×8 mean? |
+| warning | 107 | p106_s1 | Earlier automatic review, text kept by the proofreading: Reviewer (terminology): Glossary renders 填一填 as "Fill in"; the heading form should read "Fill in" followed by a period. Suggested translation: "1. Fill in." | 1.填一填。 | 1. Fill in. |
+| warning | 115 | p114_s11 | Reviewer (format): Same label 出 translated 'exit' (p114_s5) and 'Exit' here; casing inconsistency across identical labels. Suggested translation: "Exit" | 出 | Exit |
+| warning | 117 | p116_s13 | Reviewer (format): Standalone 次 label rendered 'time' lowercase; label casing should be consistent with 'Time ___.' Suggested translation: "Time" |  |  |
+
+### `numbers` — 0 errors, 99 warnings
+
+| Severity | Page | Segment | Message | Source | Translation |
+|---|---|---|---|---|---|
+| warning | 3 | p2_s5 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 石广泉水一瓶1 元5角 | Mineral water ¥1.50 |
+| warning | 4 | p3_s13_k0 | Reviewed by the proofreader: Number "30" from the source is missing in the translation; keep every number exactly as written in the source | 五2～5的乘法口诀··30 | Unit 5 Multiplication Facts for 2–5 |
+| warning | 4 | p3_s2 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 2元5角 | ¥2.50 |
+| warning | 4 | p3_s6 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 1元5 角 | ¥1.50 |
+| warning | 4 | p3_s8_k0 | Reviewed by the proofreader: Number "68" from the source is missing in the translation; keep every number exactly as written in the source | 72元- 68元 | ¥72 |
+| warning | 4 | p3_s8_k1 | Reviewed by the proofreader: Number "72" from the source is missing in the translation; keep every number exactly as written in the source | 72元- 68元 | ¥68 |
+| warning | 6 | p5_s0 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 一 加与20.0.0减 | Unit 1 Addition and Subtraction |
+| warning | 6 | p5_s0 | Reviewed by the proofreader: Number "20" from the source is missing in the translation; keep every number exactly as written in the source | 一 加与20.0.0减 | Unit 1 Addition and Subtraction |
+| warning | 8 | p7_a91_p0 | Reviewed by the proofreader: Number "45" from the source is missing in the translation; keep every number exactly as written in the source | 45人 | people |
+| warning | 10 | p9_s16 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 我比叔叔36.26.0小5岁。 | I am 5 years younger than Uncle. |
+| warning | 10 | p9_s16 | Reviewed by the proofreader: Number "26" from the source is missing in the translation; keep every number exactly as written in the source | 我比叔叔36.26.0小5岁。 | I am 5 years younger than Uncle. |
+| warning | 10 | p9_s16 | Reviewed by the proofreader: Number "36" from the source is missing in the translation; keep every number exactly as written in the source | 我比叔叔36.26.0小5岁。 | I am 5 years younger than Uncle. |
+| warning | 13 | p12_s9 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 收的玉米比48.10.0和玉米？的总数少10根，收了多少根 | The goat picked 10 fewer ears than the monkey and the fox t… |
+| warning | 13 | p12_s9 | Reviewed by the proofreader: Number "10" from the source is missing in the translation; keep every number exactly as written in the source | 收的玉米比48.10.0和玉米？的总数少10根，收了多少根 | The goat picked 10 fewer ears than the monkey and the fox t… |
+| warning | 13 | p12_s9 | Reviewed by the proofreader: Number "48" from the source is missing in the translation; keep every number exactly as written in the source | 收的玉米比48.10.0和玉米？的总数少10根，收了多少根 | The goat picked 10 fewer ears than the monkey and the fox t… |
+| warning | 14 | p13_s11 | Reviewed by the proofreader: Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 9元8角 | ¥9.80 |
+| warning | 14 | p13_s3 | Reviewed by the proofreader: Number "1" from the source is missing in the translation; keep every number exactly as written in the source | 1角 | ¥0.10 |
+| warning | 14 | p13_s4 | Reviewed by the proofreader: Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 8角 | ¥0.80 |
+| warning | 14 | p13_s5 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 5角 | ¥0.50 |
+| warning | 14 | p13_s6 | Reviewed by the proofreader: Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 1元2角 | ¥1.20 |
+| warning | 14 | p13_s8 | Reviewed by the proofreader: Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 2角 | ¥0.20 |
+| warning | 14 | p13_s9 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 6元5角 | ¥6.50 |
+| warning | 15 | p14_s41 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 1元5角 | ¥1.50 |
+| warning | 15 | p14_s42 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 7角5分 | ¥0.75 |
+| warning | 15 | p14_s42 | Reviewed by the proofreader: Number "7" from the source is missing in the translation; keep every number exactly as written in the source | 7角5分 | ¥0.75 |
+| warning | 18 | p17_s15 | Reviewed by the proofreader: Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 1元2角 | ¥1.20 |
+| warning | 18 | p17_s16 | Reviewed by the proofreader: Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 8角 | ¥0.80 |
+| warning | 18 | p17_s2 | Reviewed by the proofreader: Number "6" from the source is missing in the translation; keep every number exactly as written in the source | 6角 | ¥0.60 |
+| warning | 19 | p18_s12 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 2元5角 | ¥2.50 |
+| warning | 19 | p18_s15 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 1元5角 | ¥1.50 |
+| warning | 19 | p18_s8_k0 | Reviewed by the proofreader: Number "1" from the source is missing in the translation; keep every number exactly as written in the source | 淘气想买1个 | Taoqi wants to buy |
+| warning | 21 | p20_s4 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | （1）横着看，每行有80.6.0上个格子，有行，一共有—个格子。 | (1) Each row has ___ squares, ___ rows, ___ squares in all. |
+| warning | 21 | p20_s4 | Reviewed by the proofreader: Number "6" from the source is missing in the translation; keep every number exactly as written in the source | （1）横着看，每行有80.6.0上个格子，有行，一共有—个格子。 | (1) Each row has ___ squares, ___ rows, ___ squares in all. |
+| warning | 21 | p20_s4 | Reviewed by the proofreader: Number "80" from the source is missing in the translation; keep every number exactly as written in the source | （1）横着看，每行有80.6.0上个格子，有行，一共有—个格子。 | (1) Each row has ___ squares, ___ rows, ___ squares in all. |
+| warning | 23 | p22_s6_k0 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: |
+| warning | 23 | p22_s6_k0 | Reviewed by the proofreader: Number "1" from the source is missing in the translation; keep every number exactly as written in the source | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: |
+| warning | 23 | p22_s6_k0 | Reviewed by the proofreader: Number "2" from the source is missing in the translation; keep every number exactly as written in the source | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: |
+| warning | 23 | p22_s6_k0 | Reviewed by the proofreader: Number "7" from the source is missing in the translation; keep every number exactly as written in the source | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: |
+| warning | 23 | p22_s6_k0 | Reviewed by the proofreader: Number "88" from the source is missing in the translation; keep every number exactly as written in the source | 乘法算式：×=88.7.088.7.1（88.7.2） | Multiplication: |
+| warning | 26 | p25_s14 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 100.18.0摆一个三角形需要3根小棒，摆6个需要几根小棒？ | One triangle needs 3 sticks. How many sticks do 6 triangles… |
+| warning | 26 | p25_s14 | Reviewed by the proofreader: Number "100" from the source is missing in the translation; keep every number exactly as written in the source | 100.18.0摆一个三角形需要3根小棒，摆6个需要几根小棒？ | One triangle needs 3 sticks. How many sticks do 6 triangles… |
+| warning | 26 | p25_s14 | Reviewed by the proofreader: Number "18" from the source is missing in the translation; keep every number exactly as written in the source | 100.18.0摆一个三角形需要3根小棒，摆6个需要几根小棒？ | One triangle needs 3 sticks. How many sticks do 6 triangles… |
+| warning | 34 | p33_s0 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 五2~5的乘法口132.0.0诀 | Unit 5 Multiplication Facts for 2–5 |
+| warning | 34 | p33_s0 | Reviewed by the proofreader: Number "132" from the source is missing in the translation; keep every number exactly as written in the source | 五2~5的乘法口132.0.0诀 | Unit 5 Multiplication Facts for 2–5 |
+| warning | 36 | p35_s1 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 140.1.01双2根，2双4根·· | 1 pair, 2 chopsticks; 2 pairs, 4… |
+| warning | 36 | p35_s1 | Reviewed by the proofreader: Number "1" from the source is missing in the translation; keep every number exactly as written in the source | 140.1.01双2根，2双4根·· | 1 pair, 2 chopsticks; 2 pairs, 4… |
+| warning | 36 | p35_s1 | Reviewed by the proofreader: Number "140" from the source is missing in the translation; keep every number exactly as written in the source | 140.1.01双2根，2双4根·· | 1 pair, 2 chopsticks; 2 pairs, 4… |
+| warning | 39 | p38_s42 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 152.48.0买7张成人票 | 7 adult tickets, please. |
+| warning | 39 | p38_s42 | Reviewed by the proofreader: Number "152" from the source is missing in the translation; keep every number exactly as written in the source | 152.48.0买7张成人票 | 7 adult tickets, please. |
+| warning | 39 | p38_s42 | Reviewed by the proofreader: Number "48" from the source is missing in the translation; keep every number exactly as written in the source | 152.48.0买7张成人票 | 7 adult tickets, please. |
+| warning | 44 | p43_s3 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 地上有2组花，每组有5朵。172.5.0 | 2 groups of flowers on the ground, 5 in each. |
+| warning | 44 | p43_s3 | Reviewed by the proofreader: Number "172" from the source is missing in the translation; keep every number exactly as written in the source | 地上有2组花，每组有5朵。172.5.0 | 2 groups of flowers on the ground, 5 in each. |
+| warning | 44 | p43_s3 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 地上有2组花，每组有5朵。172.5.0 | 2 groups of flowers on the ground, 5 in each. |
+| warning | 48 | p47_s0 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 整理与188.0.0复习 | Summary and Review |
+| warning | 48 | p47_s0 | Reviewed by the proofreader: Number "188" from the source is missing in the translation; keep every number exactly as written in the source | 整理与188.0.0复习 | Summary and Review |
+| warning | 48 | p47_s12 | Reviewed by the proofreader: Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 8角 | ¥0.80 |
+| warning | 48 | p47_s13 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 1元5角 | ¥1.50 |
+| warning | 48 | p47_s14 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 5角 | ¥0.50 |
+| warning | 55 | p54_s10 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 216.19.0长4厘米 | 4 cm long. |
+| warning | 55 | p54_s10 | Reviewed by the proofreader: Number "19" from the source is missing in the translation; keep every number exactly as written in the source | 216.19.0长4厘米 | 4 cm long. |
+| warning | 55 | p54_s10 | Reviewed by the proofreader: Number "216" from the source is missing in the translation; keep every number exactly as written in the source | 216.19.0长4厘米 | 4 cm long. |
+| warning | 55 | p54_s13 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 216.23.0长5厘米 | 5 cm long. |
+| warning | 55 | p54_s13 | Reviewed by the proofreader: Number "216" from the source is missing in the translation; keep every number exactly as written in the source | 216.23.0长5厘米 | 5 cm long. |
+| warning | 55 | p54_s13 | Reviewed by the proofreader: Number "23" from the source is missing in the translation; keep every number exactly as written in the source | 216.23.0长5厘米 | 5 cm long. |
+| warning | 58 | p57_s27 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 228.35.07厘米 | 7 cm |
+| warning | 58 | p57_s27 | Reviewed by the proofreader: Number "228" from the source is missing in the translation; keep every number exactly as written in the source | 228.35.07厘米 | 7 cm |
+| warning | 58 | p57_s27 | Reviewed by the proofreader: Number "35" from the source is missing in the translation; keep every number exactly as written in the source | 228.35.07厘米 | 7 cm |
+| warning | 60 | p59_s11_k0 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 书本长约26（）。：房子宽约5（）。！粉笔长约7（） | Book: about 26 ( ) long. |
+| warning | 60 | p59_s11_k0 | Reviewed by the proofreader: Number "7" from the source is missing in the translation; keep every number exactly as written in the source | 书本长约26（）。：房子宽约5（）。！粉笔长约7（） | Book: about 26 ( ) long. |
+| warning | 60 | p59_s11_k1 | Reviewed by the proofreader: Number "26" from the source is missing in the translation; keep every number exactly as written in the source | 书本长约26（）。：房子宽约5（）。！粉笔长约7（） | House: about 5 ( ) wide. |
+| warning | 60 | p59_s11_k1 | Reviewed by the proofreader: Number "7" from the source is missing in the translation; keep every number exactly as written in the source | 书本长约26（）。：房子宽约5（）。！粉笔长约7（） | House: about 5 ( ) wide. |
+| warning | 60 | p59_s11_k2 | Reviewed by the proofreader: Number "26" from the source is missing in the translation; keep every number exactly as written in the source | 书本长约26（）。：房子宽约5（）。！粉笔长约7（） | Chalk: about 7 ( ) long. |
+| warning | 60 | p59_s11_k2 | Reviewed by the proofreader: Number "5" from the source is missing in the translation; keep every number exactly as written in the source | 书本长约26（）。：房子宽约5（）。！粉笔长约7（） | Chalk: about 7 ( ) long. |
+| warning | 68 | p67_s15 | Reviewed by the proofreader: Number "25" from the source is missing in the translation; keep every number exactly as written in the source | 把60页和61页的问题用除法算式表示268.25.r | Write the problems on pages 60 and 61 as division number se… |
+| warning | 68 | p67_s15 | Reviewed by the proofreader: Number "268" from the source is missing in the translation; keep every number exactly as written in the source | 把60页和61页的问题用除法算式表示268.25.r | Write the problems on pages 60 and 61 as division number se… |
+| warning | 68 | p67_s4 | Reviewed by the proofreader: Number "1" from the source is missing in the translation; keep every number exactly as written in the source | 每4根1份能分成3份 | 4 in each share makes 3 shares. |
+| warning | 68 | p67_s5 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 上面这样的问题，都可以用除法表示山268.9.0 | Problems like these can all be shown with division. |
+| warning | 68 | p67_s5 | Reviewed by the proofreader: Number "268" from the source is missing in the translation; keep every number exactly as written in the source | 上面这样的问题，都可以用除法表示山268.9.0 | Problems like these can all be shown with division. |
+| warning | 68 | p67_s5 | Reviewed by the proofreader: Number "9" from the source is missing in the translation; keep every number exactly as written in the source | 上面这样的问题，都可以用除法表示山268.9.0 | Problems like these can all be shown with division. |
+| warning | 73 | p72_s6_k1 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 288.10.0共有 24棵树苗 | 24 saplings in all. |
+| warning | 73 | p72_s6_k1 | Reviewed by the proofreader: Number "10" from the source is missing in the translation; keep every number exactly as written in the source | 288.10.0共有 24棵树苗 | 24 saplings in all. |
+| warning | 73 | p72_s6_k1 | Reviewed by the proofreader: Number "288" from the source is missing in the translation; keep every number exactly as written in the source | 288.10.0共有 24棵树苗 | 24 saplings in all. |
+| warning | 74 | p73_s18 | Reviewed by the proofreader: Number "4" from the source is missing in the translation; keep every number exactly as written in the source | 的(4) | × |
+| warning | 79 | p78_s0 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 练习六312.0.0 | Exercise 6 |
+| warning | 79 | p78_s0 | Reviewed by the proofreader: Number "312" from the source is missing in the translation; keep every number exactly as written in the source | 练习六312.0.0 | Exercise 6 |
+| warning | 88 | p87_s4 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 348.7.0这些算式的积都是18 | These all have a product of 18. |
+| warning | 88 | p87_s4 | Reviewed by the proofreader: Number "348" from the source is missing in the translation; keep every number exactly as written in the source | 348.7.0这些算式的积都是18 | These all have a product of 18. |
+| warning | 88 | p87_s4 | Reviewed by the proofreader: Number "7" from the source is missing in the translation; keep every number exactly as written in the source | 348.7.0这些算式的积都是18 | These all have a product of 18. |
+| warning | 90 | p89_s4 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 把自己旧的玩具、图书、工艺356.4.0品等拿来与同学交换或出售。 | Bring your old toys, books, crafts and so on to swap with o… |
+| warning | 90 | p89_s4 | Reviewed by the proofreader: Number "356" from the source is missing in the translation; keep every number exactly as written in the source | 把自己旧的玩具、图书、工艺356.4.0品等拿来与同学交换或出售。 | Bring your old toys, books, crafts and so on to swap with o… |
+| warning | 90 | p89_s4 | Reviewed by the proofreader: Number "4" from the source is missing in the translation; keep every number exactly as written in the source | 把自己旧的玩具、图书、工艺356.4.0品等拿来与同学交换或出售。 | Bring your old toys, books, crafts and so on to swap with o… |
+| warning | 90 | p89_s7 | Reviewed by the proofreader: Number "1" from the source is missing in the translation; keep every number exactly as written in the source | 需要找1块场地，各班划分 | We need to find a site and divide it among the classes. |
+| warning | 101 | p100_s16 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 我要买2碗粥，400.27.04张肉饼。 | I want to buy 2 bowls of porridge and 4 meat pies. |
+| warning | 101 | p100_s16 | Reviewed by the proofreader: Number "27" from the source is missing in the translation; keep every number exactly as written in the source | 我要买2碗粥，400.27.04张肉饼。 | I want to buy 2 bowls of porridge and 4 meat pies. |
+| warning | 101 | p100_s16 | Reviewed by the proofreader: Number "400" from the source is missing in the translation; keep every number exactly as written in the source | 我要买2碗粥，400.27.04张肉饼。 | I want to buy 2 bowls of porridge and 4 meat pies. |
+| warning | 101 | p100_s22 | Reviewed by the proofreader: Number "8" from the source is missing in the translation; keep every number exactly as written in the source | 怎样拿出12元8角？ | How can you pay ¥12.80? |
+| warning | 104 | p103_s24 | Reviewed by the proofreader: Number "0" from the source is missing in the translation; keep every number exactly as written in the source | 412.32.0吗？ | ? |
+| warning | 104 | p103_s24 | Reviewed by the proofreader: Number "32" from the source is missing in the translation; keep every number exactly as written in the source | 412.32.0吗？ | ? |
+| warning | 104 | p103_s24 | Reviewed by the proofreader: Number "412" from the source is missing in the translation; keep every number exactly as written in the source | 412.32.0吗？ | ? |
+
+### `placeholders` — 0 errors, 498 warnings
+
+| Severity | Page | Segment | Message | Source | Translation |
+|---|---|---|---|---|---|
+| warning | 3 | p2_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "5") | 石广泉水一瓶1 元5角 | Mineral water ¥1.50 |
+| warning | 4 | p3_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "45") | 45元 | ¥45 |
+| warning | 4 | p3_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "- 4") | - 4 元 | ¥4 |
+| warning | 5 | p4_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 每个6元 | ¥6 each |
+| warning | 5 | p4_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 每个8元 | ¥8 each |
+| warning | 5 | p4_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6", ⟦1⟧ = "9") | 八6～9的乘法口诀 | Unit 8 Multiplication Facts for 6–9 |
+| warning | 5 | p4_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 每个7元 | ¥7 each |
+| warning | 6 | p5_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "20.0.0") | 一 加与20.0.0减 | Unit 1 Addition and Subtraction |
+| warning | 6 | p5_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧, ⟦6⟧, ⟦7⟧, ⟦8⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "23", ⟦1⟧ = "24", ⟦2⟧ = "1", ⟦3⟧ = "29", ⟦4⟧ = "30", ⟦5⟧ = "1", ⟦6⟧ = "44", ⟦7⟧ = "41", ⟦8⟧ = "3") | 23比24少1，29比30少1，44比41多3，我获胜 | 23 is 1 less than 24, 29 is 1 less than 30, and 44 is 3 mor… |
+| warning | 6 | p5_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 每人套3次，总分高的获胜！ | 3 throws each. The higher total wins! |
+| warning | 6 | p5_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24", ⟦1⟧ = "30") | 淘气第一次得24分第二次得30分· | Taoqi scored 24 points on the first throw and 30 points on … |
+| warning | 6 | p5_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24", ⟦1⟧ = "23") | 我第一次得24分，笑笑第一次得23分，我第一次得分比笑笑高， | On the first throw I scored 24 points and Xiaoxiao scored 2… |
+| warning | 7 | p6_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.三个小组一共有多少人？ | 2. How many people are in the three groups altogether? |
+| warning | 7 | p6_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.下表是我国运动员在近几届奥运会上获得的奖牌数。 | 4. The table shows the medals Chinese athletes won at recen… |
+| warning | 7 | p6_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "0") | 每人投3次，投到靶外得0分。总分高的获胜！ | 3 throws each. A miss scores 0. The higher total wins! |
+| warning | 7 | p6_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | (3）奇思一共得了多少分？妙想呢？ | (3) How many points did Qisi get in total? What about Miaox… |
+| warning | 8 | p7_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "90") | 可乘90人 | Seats 90 |
+| warning | 8 | p7_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "38") | 我们车上有38人 | Our bus has 38 people. |
+| warning | 8 | p7_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "45") | 45人.. | 45 people… |
+| warning | 9 | p8_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.机灵狗不小心把订报刊的统计表弄脏了。 | 3. Clever Dog accidentally smudged the newspaper order tabl… |
+| warning | 9 | p8_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）说一说，从图中你知道了哪些数学信息？ | (1) Talk about it: what maths information can you find in t… |
+| warning | 9 | p8_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）从购物小票中，你知道了哪些数学信息？ | (1) What maths information can you find on the shopping rec… |
+| warning | 10 | p9_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "52") | 合唱队原有52人 | 52 people at first |
+| warning | 10 | p9_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 淘气今年8岁，阿姨呢？ | Taoqi is 8 this year. How old is the aunt? |
+| warning | 10 | p9_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "36.26.0") | 我比叔叔36.26.0小5岁。 | I am 5 years younger than Uncle. |
+| warning | 10 | p9_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "75") | 图书角原来有75本书 | There were 75 books at first. |
+| warning | 10 | p9_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "46", ⟦1⟧ = "12") | 借出46本，还回 12 本。 | 46 books were lent out and 12 returned. |
+| warning | 10 | p9_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9", ⟦1⟧ = "15") | 今年有9人毕业了又新加入15人。 | This year 9 people graduated and 15 people joined. |
+| warning | 11 | p10_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "75", ⟦2⟧ = "35", ⟦3⟧ = "28") | 3.美术课上，同学们一共带来了75个易拉罐做灯笼和向日葵。做灯笼用了35个，做向日葵用了28个，还剩下多少个易拉罐？ | 3. In art class, the students brought 75 cans in total to m… |
+| warning | 11 | p10_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "16") | 我比淘气少16张 | 16 fewer than Taoqi |
+| warning | 11 | p10_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "45") | 我有45张画片 | I have 45 cards |
+| warning | 11 | p10_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "27") | 我比笑笑多27张 | 27 more than Xiaoxiao |
+| warning | 11 | p10_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "56") | 车上原有56人 | 56 people at first |
+| warning | 11 | p10_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "89", ⟦2⟧ = "35", ⟦3⟧ = "18") | 5.商店里原来有89台电脑，卖出去35台后，又运进18台，现在商店里有多少台电脑？ | 5. A shop had 89 computers. It sold 35 and then received 18… |
+| warning | 11 | p10_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）和同伴说一说，现在车上的人数多了还是少了？ | (1) Talk with your partner. Are there more or fewer people … |
+| warning | 11 | p10_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "27") | 下来27人 | 27 got off |
+| warning | 11 | p10_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "19") | 上了19人 | 19 got on |
+| warning | 12 | p11_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "100") | （2）给你100元，你想买哪两种玩具？还剩多少元？ | (2) With ¥100, which two toys would you buy? How much is le… |
+| warning | 12 | p11_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "100") | （4）买哪几种玩具正好需要花100元？请你给出一个答案。 | (4) Which toys cost exactly ¥100 in all? Give one answer. |
+| warning | 12 | p11_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "46", ⟦1⟧ = "34", ⟦2⟧ = "16") | 用了46个红笔帽34个黄笔帽，16个蓝笔帽。 | I used 46 red caps, 34 yellow caps and 16 blue caps. |
+| warning | 12 | p11_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "80", ⟦1⟧ = "25", ⟦2⟧ = "39") | 一共用了80粒葵花子，西瓜子比葵花子少25粒，南瓜子比西瓜子少39粒。 | I used 80 sunflower seeds, 25 fewer watermelon seeds than s… |
+| warning | 12 | p11_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.买玩具。 | 2. Buying toys. |
+| warning | 13 | p12_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.收玉米。 | 5. Harvesting corn. |
+| warning | 13 | p12_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "36") | 36根 | 36 ears |
+| warning | 13 | p12_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6", ⟦1⟧ = "1") | 6.二（1）班开展“争做环保小卫士”活动，下面是三个小队上周末收集废电池的情况。 | 6. Class 2(1) held a "Be a Little Eco Guardian" activity. T… |
+| warning | 13 | p12_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）第三小队收集了多少节废电池？ | (1) How many used batteries did Team 3 collect? |
+| warning | 13 | p12_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "23") | （2）第四小队收集废电池的节数比第一小队和第二小队的总和少23节。第四小队收集了多少节？ | (2) Team 4 collected 23 fewer used batteries than Team 1 an… |
+| warning | 13 | p12_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "18") | 18根 | 18 ears |
+| warning | 13 | p12_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）淘气第三次跳了多少下？笑笑呢？ | (1) How many jumps did Taoqi make in Round 3? What about Xi… |
+| warning | 13 | p12_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）奇思获得第二名，他的总成绩可能是多少？他第三次可能跳了多少下？ | (2) Qisi came second. What might his total score be? How ma… |
+| warning | 13 | p12_s26 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "30") | 在空格里填数，使横着、竖着、斜着三个数相加的和都是30。 | Fill in the squares so each row, column and diagonal adds u… |
+| warning | 13 | p12_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "45") | 45根 | 45 ears |
+| warning | 14 | p13_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 买1支钢笔可以怎样付钱？ | How can you pay for 1 pen? |
+| warning | 14 | p13_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1角 | ¥0.10 |
+| warning | 14 | p13_s31 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 用1元买1把尺子，应找回多少钱？ | You pay ¥1 for 1 ruler. How much change should you get? |
+| warning | 14 | p13_s33 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 和同伴说一说，1元正好可以买哪些物品？ | Talk with your partner. What can you buy with exactly ¥1? |
+| warning | 14 | p13_s34 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 可以买2支铅笔 | You can buy 2 pencils. |
+| warning | 14 | p13_s35 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 可以买1把尺子和1个练习本 | You can buy 1 ruler and 1 notebook. |
+| warning | 14 | p13_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8角 | ¥0.80 |
+| warning | 14 | p13_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5角 | ¥0.50 |
+| warning | 14 | p13_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2角 | ¥0.20 |
+| warning | 15 | p14_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "(4) 1") | (4) 1张 | (4) 1 note |
+| warning | 15 | p14_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "(5) 1") | (5) 1张 | (5) 1 note |
+| warning | 15 | p14_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1张 | 1 note |
+| warning | 15 | p14_s26 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 十1张 | +1 note |
+| warning | 15 | p14_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 十1张 | +1 note |
+| warning | 15 | p14_s30 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "+1") | +1张 | +1 note |
+| warning | 15 | p14_s37 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "3") | (3）和同伴说一说，3元正好可以买哪些物品？ | (3) Talk with your partner. What can you buy with exactly ¥… |
+| warning | 15 | p14_s41 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "5") | 1元5角 | ¥1.50 |
+| warning | 15 | p14_s42 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7", ⟦1⟧ = "5") | 7角5分 | ¥0.75 |
+| warning | 15 | p14_s43 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1元 | ¥1 |
+| warning | 15 | p14_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 用附页1中的人民币换一换 | Try it with the money in Appendix 1. |
+| warning | 16 | p15_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "26") | 26元 | ¥26 |
+| warning | 16 | p15_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "31") | 31元 | ¥31 |
+| warning | 16 | p15_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "23") | 23元 | ¥23 |
+| warning | 16 | p15_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "41") | 41元 | ¥41 |
+| warning | 17 | p16_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1张 | 1 |
+| warning | 17 | p16_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1张 | 1 |
+| warning | 17 | p16_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1张 | 1 |
+| warning | 17 | p16_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | (1）买1盏 | (1) To buy 1 |
+| warning | 17 | p16_s30 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧, ⟦6⟧, ⟦7⟧, ⟦8⟧, ⟦9⟧, ⟦10⟧, ⟦11⟧, ⟦12⟧, ⟦13⟧, ⟦14⟧, ⟦15⟧, ⟦16⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "18", ⟦1⟧ = "8", ⟦2⟧ = "8", ⟦3⟧ = "10", ⟦4⟧ = "10", ⟦5⟧ = "5", ⟦6⟧ = "2", ⟦7⟧ = "1", ⟦8⟧ = "5", ⟦9⟧ = "2", ⟦10⟧ = "1", ⟦11⟧ = "5", ⟦12⟧ = "2", ⟦13⟧ = "1", ⟦14⟧ = "18", ⟦15⟧ = "8", ⟦16⟧ = "8") | 一次记者招待会上，一位记者问道：“中国一共有多少钱？”周恩来总理幽默地回答说：“我们有18元8角8分。”事实上，当时使… | At a press conference, a reporter asked, "How much money do… |
+| warning | 17 | p16_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "48") | 48元 | ¥48 |
+| warning | 17 | p16_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "15") | 15元 | ¥15 |
+| warning | 17 | p16_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "45") | 45元 | ¥45 |
+| warning | 19 | p18_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "30") | 30元可以买哪两样物品？ | Which two things can I buy with ¥30? |
+| warning | 20 | p19_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "5", ⟦2⟧ = "5") | 5块5块地数，5 | Count 5 by 5: 5, |
+| warning | 20 | p19_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1", ⟦2⟧ = "1") | 1块1块地数，1 | Count 1 by 1: 1, |
+| warning | 20 | p19_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "2", ⟦2⟧ = "2") | 2块2块地数，2 | Count 2 by 2: 2, |
+| warning | 21 | p20_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.圈一圈，数一数一共有多少个 | 1. Circle and count. How many pandas are there in total? |
+| warning | 21 | p20_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.每盘有—块蛋糕，有—盘，一共有—块蛋糕。 | 2. Each plate has ___ cupcakes, ___ plates, ___ cupcakes in… |
+| warning | 21 | p20_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "1") | 4.（1）小青蛙每次跳格，跳了—次，一共跳了—格。 | 4. (1) The frog jumps ___ spaces each time, ___ times, ___ … |
+| warning | 21 | p20_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2）小青蛙每次跳格，跳了—次，一共跳了—格。 | (2) The frog jumps ___ spaces each time, ___ times, ___ spa… |
+| warning | 22 | p21_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "2") | 4个2相加，也可以用乘法表示。 | 2 added 4 times can also be written as multiplication. |
+| warning | 22 | p21_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦2⟧ = "4 4×2") | 2×4读作2乘4 4×2读作4乘2。 | 2×4 is read as 2 times 4. 4×2 is read as 4 times 2. |
+| warning | 22 | p21_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "=8(") | =8(人) | =8(people) |
+| warning | 22 | p21_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "=8 (") | =8 (人） | =8 (people) |
+| warning | 22 | p21_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "6") | 4表示什么？6从哪儿来？ | What does 4 mean? Where is 6 from? |
+| warning | 22 | p21_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4表示·.· | 4 means… |
+| warning | 22 | p21_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 有4架小飞机，每架小飞机上有·· | There are 4 little planes. Each plane has… |
+| warning | 22 | p21_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "4", ⟦2⟧ = "6", ⟦3⟧ = "8", ⟦4⟧ = "8") | 数一数，2，4，6，8有8人坐小飞机。 | Count: 2, 4, 6, 8. There are 8 people on the little planes. |
+| warning | 23 | p22_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | (1）一共有多少只鸟？ | (1) How many birds in all? |
+| warning | 23 | p22_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "16", ⟦2⟧ = "17") | 5.把16页和17页的加法算式改写成乘法算式。 | 5. Rewrite the addition sentences on pages 16 and 17 as mul… |
+| warning | 23 | p22_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2）一共有多少个小矮人？ | (2) How many dwarves in all? |
+| warning | 24 | p23_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 用附页2中的点子图照样子做一做，说一说。 | Do the same on the dot grid in Appendix 2 and talk about it. |
+| warning | 24 | p23_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4列 | of 4. |
+| warning | 24 | p23_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 7列。 | of 7. |
+| warning | 24 | p23_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3×8") | 圈一圈，在图上用两种方法表示3×8。 | Circle the dots to show 3×8 in two ways. |
+| warning | 24 | p23_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "5") | 每列4个，共5列。 | 4 in each column, 5 columns. |
+| warning | 24 | p23_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "3") | 每行2个，共3行 | 2 in each row, 3 rows. |
+| warning | 25 | p24_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.分别用两种方法在图上表示算式。 | 1. Show each number sentence on the dot grids in two ways. |
+| warning | 25 | p24_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.我说你摆 | 2. I say, you make. |
+| warning | 25 | p24_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "3") | 我摆5行3列 | I make 5 rows of 3. |
+| warning | 25 | p24_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）一共有多少人？ | (1) How many people? |
+| warning | 26 | p25_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3×6") | 想一想，用3×6还能解决生活中的哪些问题？ | Think: what other everyday problems can you solve with 3×6? |
+| warning | 26 | p25_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "100.18.0") | 100.18.0摆一个三角形需要3根小棒，摆6个需要几根小棒？ | One triangle needs 3 sticks. How many sticks do 6 triangles… |
+| warning | 27 | p26_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.画一画，说一说。 | 4. Draw and explain. |
+| warning | 27 | p26_s30 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "5×2") | 5.请你说出两个能用5×2解决的问题。 | 5. Give two problems that can be solved with 5×2. |
+| warning | 28 | p27_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.画一画，说一说。 | 1. Draw and explain. |
+| warning | 28 | p27_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.把加法算式改写成乘法算式。 | 4. Rewrite each addition as a multiplication sentence. |
+| warning | 28 | p27_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "3", ⟦2⟧ = "2") | 小青蛙1步跳3格，2步跳 | 1 jump = 3 spaces, 2 jumps = |
+| warning | 29 | p28_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8.每样东西各买了多少？ | 8. How many of each did they buy? |
+| warning | 31 | p30_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 1.用1张正方形的纸照样子做一做。 | 1. Take 1 square sheet of paper and do as shown. |
+| warning | 31 | p30_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.怎样剪出下面的图案？说一说，做一做。 | 2. How do you cut out the patterns below? Explain and do it. |
+| warning | 32 | p31_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 曹操先向下走2格，遇到关羽走不动了。 | First Cao Cao moves down 2 squares, then Guan Yu blocks his… |
+| warning | 32 | p31_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4个人物只能横向或纵向移动。 | The 4 pieces can only move sideways or up and down. |
+| warning | 33 | p32_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.做一个风车玩一玩， | 4. Make a pinwheel and play with it. |
+| warning | 33 | p32_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.竹蜻蜓是我国古人特别喜欢玩的一种玩具。看一看，做一做。 | 2. The bamboo dragonfly is a toy people in ancient China lo… |
+| warning | 34 | p33_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "5", ⟦2⟧ = "132.0.0") | 五2~5的乘法口132.0.0诀 | Unit 5 Multiplication Facts for 2–5 |
+| warning | 34 | p33_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 想一想，怎样记住5的乘法口诀？ | Think: how can you remember the facts for 5? |
+| warning | 34 | p33_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 只要记住五六三十再加一个5，就是五七三十五了 | Just remember 5 × 6 = 30, then add one more 5 to get 5 × 7 … |
+| warning | 34 | p33_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 数一数，填一填。1堆有几个 | Count and fill in. How many in 1 pile of |
+| warning | 34 | p33_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | ？2堆呢？ | ? And 2 piles? |
+| warning | 35 | p34_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.先在图上圈一圈，再数一数，说一说 | 5. First circle groups in the picture, then count and expla… |
+| warning | 35 | p34_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）一共有多少个杯子？ | (1) How many cups in all? |
+| warning | 35 | p34_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）用了多少个扣子？ | (2) How many buttons in all? |
+| warning | 35 | p34_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.对口令。 | 3. Ask and answer. |
+| warning | 35 | p34_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.填一填 | 4. Fill in. |
+| warning | 36 | p35_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "140.1.0", ⟦1⟧ = "1", ⟦2⟧ = "2", ⟦3⟧ = "2", ⟦4⟧ = "4") | 140.1.01双2根，2双4根·· | 1 pair, 2 chopsticks; 2 pairs, 4… |
+| warning | 36 | p35_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 想一想，怎样记住2的乘法口诀？ | Think: how can you remember the facts for 2? |
+| warning | 36 | p35_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 后一句口诀中的结果，总比前一句的多 2。 | Each answer is always 2 more than the one before. |
+| warning | 36 | p35_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 知道了二五一十，再加一个2，就知道了二六十二。 | If you know 2 × 5 = 10, add one more 2 and you get 2 × 6 = … |
+| warning | 36 | p35_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "2") | 用小棒摆一摆，填一填。1双有几根？2双呢？ | Lay out sticks and fill in. How many chopsticks in 1 pair? … |
+| warning | 36 | p35_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 你能编出2的乘法口诀吗？ | Can you make up the multiplication facts for 2? |
+| warning | 37 | p36_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.先在图上圈一圈，再数一数，说一说。 | 5. First circle groups in the picture, then count and expla… |
+| warning | 37 | p36_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9", ⟦1⟧ = "2") | ·，9分别与2相乘，在得到的数上画圈 | ..., 9: multiply each number by 2 and circle the answers. |
+| warning | 37 | p36_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.说一说，做一做 | 3. Say it, then do it. |
+| warning | 38 | p37_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5×2") | 说一说，5×2能解决操场上的什么问题？ | Discuss: what playground problems can 5×2 solve? |
+| warning | 38 | p37_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "5", ⟦2⟧ = "3") | 有3组都是5盆另一组有3盆。 | There are 3 groups of 5 pots, and another group of 3 pots. |
+| warning | 39 | p38_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.看一看，说一说，算一算 | 1. Look, discuss and calculate. |
+| warning | 39 | p38_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.在 | 3. Fill |
+| warning | 39 | p38_s39 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "1") | 买2张成人票和1张学生票 | 2 adult tickets and 1 student ticket, please. |
+| warning | 39 | p38_s42 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "152.48.0") | 152.48.0买7张成人票 | 7 adult tickets, please. |
+| warning | 39 | p38_s43 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 买5张学生票。 | 5 student tickets, please. |
+| warning | 40 | p39_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 想一想，怎样记住3的乘法口诀？ | Think: how can you remember the facts for 3? |
+| warning | 40 | p39_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 后一句口诀中的结果比前一句多3。 | Each answer is 3 more than the one before. |
+| warning | 40 | p39_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 你能编出3的乘法口诀吗？ | Can you make up the multiplication facts for 3? |
+| warning | 41 | p40_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.看一看，说一说，填一填 | 1. Look, discuss and fill in. |
+| warning | 41 | p40_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.找规律，填一填 | 3. Find the pattern and fill in. |
+| warning | 41 | p40_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.找朋友。 | 2. Find the pairs. |
+| warning | 41 | p40_s33 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.先在图上圈一圈，再数一数，说一说。 | 5. First circle groups in the picture, then count and expla… |
+| warning | 42 | p41_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "14+14=28") | 四, 14+14=28。 | 14+14=28. |
+| warning | 42 | p41_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 你能编出4的乘法口诀吗？ | Can you make up the multiplication facts for 4? |
+| warning | 44 | p43_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "5") | 树上有3组小鸟每组有5只。 | 3 groups of birds in the tree, 5 in each. |
+| warning | 44 | p43_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦2⟧ = "172.5.0") | 地上有2组花，每组有5朵。172.5.0 | 2 groups of flowers on the ground, 5 in each. |
+| warning | 44 | p43_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2×6=12") | 说一说，算式2×6=12可以解决什么问题？ | Talk about it. What problem can the number sentence 2×6=12 … |
+| warning | 45 | p44_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.看图回答问题 | 1. Answer from the picture. |
+| warning | 45 | p44_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | （4）请你再提出一个用乘法解决的数学问题，并尝试解答。 | (4) Ask another multiplication question and try to answer i… |
+| warning | 45 | p44_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.填一填 | 3. Fill in. |
+| warning | 45 | p44_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 每层楼高约3米，这座楼高大约多少米？ | Each floor is about 3 m high. About how tall is the buildin… |
+| warning | 45 | p44_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）说一说，图中有哪些数学信息？ | (1) Talk about it. What maths information is in the picture? |
+| warning | 45 | p44_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 矿泉水2元 | Water ¥2 |
+| warning | 45 | p44_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "7") | (2）买7瓶矿泉水需要多少元？ | (2) How much do 7 bottles of water cost? |
+| warning | 47 | p46_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.找新家。 | 5. Find a new home. |
+| warning | 47 | p46_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 6.“蓝猫商店”部分商品价格如下 | 6. Some prices at the Blue Cat Store: |
+| warning | 47 | p46_s33 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "16") | 得数是16的气球都是我打的，请涂上红色。 | I popped all the balloons whose answer is 16. Colour them r… |
+| warning | 47 | p46_s34 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 得数是24的气球都是我打的，请涂上蓝色。 | I popped all the balloons whose answer is 24. Colour them b… |
+| warning | 47 | p46_s42 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 我的目标是算式中有7的气球，你能算出得数吗？请涂上黄色。 | My targets are the balloons with 7 in the number sentence. … |
+| warning | 48 | p47_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "188.0.0") | 整理与188.0.0复习 | Summary and Review |
+| warning | 48 | p47_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 每人发1瓶水，一共需要多少瓶水？ | 1 bottle of water each. How many bottles are needed? |
+| warning | 48 | p47_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "35", ⟦2⟧ = "26") | 每人发1个面包，已经买了35个豆沙面包，26个麦香面包，再买多少个原味面包就够了？ | Each person gets 1 bun. We have already bought 35 red bean … |
+| warning | 48 | p47_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8角 | ¥0.80 |
+| warning | 48 | p47_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5角 | ¥0.50 |
+| warning | 48 | p47_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "3", ⟦2⟧ = "4", ⟦3⟧ = "5") | 边摆边说2，3，4，5的乘法口诀。 | Place counters and say the multiplication facts for 2, 3, 4… |
+| warning | 48 | p47_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4×6") | 说一说，画一画，4×6可以解决什么问题？ | Talk and draw: what problems can 4×6 solve? |
+| warning | 48 | p47_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "10") | 故事会小组下周比赛老师让我用10元钱买奖品，可以买什么呢？ | The storytelling group has a contest next week. The teacher… |
+| warning | 50 | p49_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "36") | 36下 | 36 skips |
+| warning | 50 | p49_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "17") | 17下 | 17 skips |
+| warning | 50 | p49_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25") | 25下 | 25 skips |
+| warning | 50 | p49_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "86") | 86下 | 86 skips |
+| warning | 50 | p49_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 24 下 | 24 skips |
+| warning | 50 | p49_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "30") | 30下 | 30 skips |
+| warning | 50 | p49_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "78") | 78下 | 78 skips |
+| warning | 50 | p49_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "100", ⟦2⟧ = "2") | 2.王阿姨有100元，打算买2盏台灯 | 2. Aunt Wang has ¥100 and plans to buy 2 desk lamps. |
+| warning | 50 | p49_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "35") | 又运来35台 | 35 more arrived. |
+| warning | 50 | p49_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）现在的电视机比原来多还是少？ | (1) Are there more or fewer TVs now than before? |
+| warning | 50 | p49_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）现在有多少台电视机？ | (2) How many TVs are there now? |
+| warning | 50 | p49_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25") | 25下 | 25 skips |
+| warning | 50 | p49_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "28") | 28下 | 28 skips |
+| warning | 51 | p50_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | (1） 1张 | (1) 1 |
+| warning | 51 | p50_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 7.看图列式。 | 7. Write number sentences. |
+| warning | 51 | p50_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8.用两种方法在方格纸中涂色表示算式。 | 8. Colour in two ways to show each number sentence. |
+| warning | 51 | p50_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "(2)") | (2)张 | (2) ___ |
+| warning | 51 | p50_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 合起来是1张 | together make 1 |
+| warning | 52 | p51_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "10") | 10.先把口诀补充完整，再根据口诀写出乘法算式。 | 10. Complete each times-table fact, then write its multipli… |
+| warning | 52 | p51_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "12", ⟦1⟧ = "5", ⟦2⟧ = "2") | 12.做一辆小火车需要5个易拉罐做车厢，每节车厢需要2个瓶盖做轮子。做一辆这样的小火车一共需要几个瓶盖？ | 12. A toy train needs 5 cans as carriages, and each carriag… |
+| warning | 52 | p51_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "13") | 13.买下面的美术用品各需要多少元？ | 13. How much does it cost to buy each kind of art supply be… |
+| warning | 52 | p51_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 每支2元 | ¥2 each |
+| warning | 52 | p51_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 每个3元 | ¥3 each |
+| warning | 52 | p51_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 每支4元 | ¥4 each |
+| warning | 52 | p51_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 每盒5元 | ¥5 per box |
+| warning | 52 | p51_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "11") | 11.送信。 | 11. Deliver the mail. |
+| warning | 54 | p53_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.用易拉罐摆一摆，看谁摆得高。 | 1. Stack cans and see whose tower is the tallest. |
+| warning | 54 | p53_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.说一说。 | 2. Talk about it. |
+| warning | 54 | p53_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 这两根木条的长度都是3个回形针的总长，所以它们一样长 | Each stick is as long as 3 paper clips, so they are the sam… |
+| warning | 55 | p54_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "216.19.0") | 216.19.0长4厘米 | 4 cm long. |
+| warning | 55 | p54_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 长5厘米 | 5 cm long. |
+| warning | 55 | p54_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "0") | 通常，测量物体的长度时，要把一端对准尺子的0刻度··· | Usually, when measuring the length of an object, put one en… |
+| warning | 55 | p54_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "216.23.0") | 216.23.0长5厘米 | 5 cm long. |
+| warning | 55 | p54_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 什么物体的长度大约是1厘米？ | What objects are about 1 centimetre long? |
+| warning | 56 | p55_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.估一估，量一量。 | 1. Estimate and measure. |
+| warning | 56 | p55_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.说一说各是几厘米。 | 3. Say how many centimetres long each one is. |
+| warning | 57 | p56_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1米有多长 | How Long Is 1 Metre? |
+| warning | 57 | p56_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1米到小华这里 | 1 m is here on Xiaohua. |
+| warning | 57 | p56_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1米到小芳这里 | 1 m is here on Xiaofang. |
+| warning | 57 | p56_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "100", ⟦1⟧ = "1") | 认一认，想一想100根这样的小棒接起来，才够1米长呢！ | Look and think. It takes 100 sticks like this, joined end t… |
+| warning | 57 | p56_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "14") | 该摆第14根了.·· | Time for the 14th stick… |
+| warning | 57 | p56_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "=100", ⟦2⟧ = "m") | 1米=100厘米，米可以用m表示。 | 1 m = 100 cm. The metre can be written as m. |
+| warning | 58 | p57_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 这是1米 | This is 1 m. |
+| warning | 58 | p57_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 剩下的长度不够1米。 | The rest is less than 1 m. |
+| warning | 58 | p57_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1", ⟦2⟧ = "1", ⟦3⟧ = "1") | 1.找一把1米长的尺子，估一估，1米大约相当于几支铅笔长？找一找生活中哪些物体的长大约是1米。 | 1. Find a 1 m ruler. Estimate: about how many pencils long … |
+| warning | 58 | p57_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "17") | 铅笔长约17 | Pencil: about 17 |
+| warning | 58 | p57_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "3") | (2）橡皮长约3 | (2) Eraser: about 3 |
+| warning | 58 | p57_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "8") | (3）旗杆高约8 | (3) Flagpole: about 8 |
+| warning | 58 | p57_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "3") | （4）房子高约3 | (4) House: about 3 |
+| warning | 58 | p57_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "60") | （5）毛巾长约60 | (5) Towel: about 60 |
+| warning | 58 | p57_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6", ⟦1⟧ = "35") | （6）丝瓜长约35 | (6) Loofah: about 35 |
+| warning | 58 | p57_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.谁猜得对？ | 3. Whose guess is right? |
+| warning | 58 | p57_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "228.35.0") | 228.35.07厘米 | 7 cm |
+| warning | 59 | p58_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "100") | （1）全长是100厘米，也就是米。 | (1) The total length is 100 cm, which is ___ m. |
+| warning | 59 | p58_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "70") | 已经爬了70厘米，还剩厘米。 | has crawled 70 cm and has ___ cm left. |
+| warning | 59 | p58_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 6.四人一组，用尺子互相量一量臂长，并将结果填在表中。 | 6. In groups of four, measure each other's arm length with … |
+| warning | 59 | p58_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7", ⟦1⟧ = "4") | 7.连续做4次立定跳远，把每次跳远的成绩记录下来。 | 7. Do the standing long jump 4 times in a row and record th… |
+| warning | 60 | p59_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.在括号里填上合适的长度单位（厘米或米） | 2. Fill in each bracket with the right unit (cm or m). |
+| warning | 60 | p59_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 杯子高约9（） | Cup: about 9 ( ) tall. |
+| warning | 60 | p59_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 树高约8（）。 | Tree: about 8 ( ) tall. |
+| warning | 60 | p59_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 黑板宽约1（） | Blackboard: about 1 ( ) wide. |
+| warning | 60 | p59_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.量一量，填一填。 | 3. Measure and fill in. |
+| warning | 61 | p60_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "1") | 4.剪一根1米长的绳子，用这根绳子比一比你家中的下面物体。 | 4. Cut a piece of string 1 m long and compare it with the t… |
+| warning | 61 | p60_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | （比1米长的画“✓”，比1米短的画“×”） | (Put "✓" if longer than 1 m and "×" if shorter than 1 m) |
+| warning | 61 | p60_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 车高3米 | 3 m tall |
+| warning | 61 | p60_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "=3", ⟦2⟧ = "1", ⟦3⟧ = "=10") | 米和厘米是国际上通用的长度单位，我们国家也有自已的长度单位，比如尺和寸。它们之间的关系是：1米=3尺，1尺=10寸。 | The metre and the centimetre are units of length used all o… |
+| warning | 61 | p60_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 比一比，1尺有多长？1寸呢？ | Compare: how long is 1 chi? And 1 cun? |
+| warning | 61 | p60_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.做一做，量一量。 | 5. Do it and measure. |
+| warning | 61 | p60_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "5") | （2） 5个小朋友手拉手，量一量一共有多长 | (2) 5 children hold hands. Measure how long they are in tot… |
+| warning | 61 | p60_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | （3）先估计，从你们的座位处走到讲台处大约有多长？再同桌合 | (3) First estimate how far it is from your seat to the teac… |
+| warning | 61 | p60_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "4") | 你知道“限高4米”是什么意思吗？在校园里找一找，4米有多高？ | Do you know what "Max height 4 m" means? Look around your s… |
+| warning | 61 | p60_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 限高4米 | Max height 4 m |
+| warning | 62 | p61_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 我1根1根地分。 | I share them out 1 by 1. |
+| warning | 62 | p61_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "2") | 这么多的萝卜，我2根2根地分。 | So many carrots! I'll share them out 2 by 2. |
+| warning | 63 | p62_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.用小圆片代替橘子摆一摆，填一填 | 5. Use counters for oranges. Arrange and fill in. |
+| warning | 64 | p63_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 分成3堆，每堆一样多，可以怎样分？ | Make 3 piles with the same number in each. How can you shar… |
+| warning | 64 | p63_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 我1个1个地分 | I share them out 1 by 1. |
+| warning | 64 | p63_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "2") | 我2个2个地分 | I share them out 2 by 2. |
+| warning | 64 | p63_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 每袋装4个，需要几个袋子？ | Each bag holds 4 apples. How many bags are needed? |
+| warning | 64 | p63_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 我4个摆一堆 | I make piles of 4. |
+| warning | 65 | p64_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）一共收了多少个西瓜？ | (1) How many watermelons in all? |
+| warning | 65 | p64_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 每只小兔拿4根 | Each rabbit carries 4 carrots. |
+| warning | 65 | p64_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.圈一圈，填一填。 | 2. Circle and fill in. |
+| warning | 66 | p65_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "50", ⟦1⟧ = "4") | 50块糖果平均分给4个人。 | 50 pieces of candy are shared equally among 4 people. |
+| warning | 66 | p65_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 生4 | Pupil 4 |
+| warning | 66 | p65_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 生1 | Pupil 1 |
+| warning | 66 | p65_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 生2 | Pupil 2 |
+| warning | 66 | p65_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 生3 | Pupil 3 |
+| warning | 66 | p65_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 生4 | Pupil 4 |
+| warning | 66 | p65_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 笑笑前两次每次分1块····淘气 | Xiaoxiao gave 1 piece each time in the first two rounds... … |
+| warning | 66 | p65_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 你是怎样分的？利用附页4填一填 | How did you share? Fill in Appendix 4. |
+| warning | 66 | p65_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "5") | 这么多，可以5块5块地分。 | So many! We can share them out 5 by 5. |
+| warning | 66 | p65_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1", ⟦2⟧ = "2", ⟦3⟧ = "2") | 可以1块1块地分，也可以2块2块地分 | We can share them out 1 by 1, or 2 by 2. |
+| warning | 66 | p65_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 生1 | Pupil 1 |
+| warning | 66 | p65_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 生2 | Pupil 2 |
+| warning | 66 | p65_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 生3 | Pupil 3 |
+| warning | 67 | p66_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.分一分，填一填。 | 1. Share and fill in. |
+| warning | 67 | p66_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）把一些豆子放在袋子中，一位小朋友抓一把豆子。 | (1) Put some beans in a bag, and one child takes a handful … |
+| warning | 67 | p66_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧, ⟦6⟧, ⟦7⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "2", ⟦2⟧ = "2", ⟦3⟧ = "3", ⟦4⟧ = "3", ⟦5⟧ = "2", ⟦6⟧ = "3", ⟦7⟧ = "6") | （2）如果手中的豆子能平均分成2份，得2分；能平均分成3份，得3分；如果既能平均分成2份又能平均分成3份，得6分；其他… | (2) If the beans in your hand can be shared equally into 2 … |
+| warning | 67 | p66_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 我已经得了2分 | I have 2 points already. |
+| warning | 67 | p66_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 又能平均分成3份。 | They also make 3 equal groups. |
+| warning | 67 | p66_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "3") | (3）每人做3次。 | (3) Each person plays 3 times. |
+| warning | 67 | p66_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | （4）总分高的获胜。 | (4) The one with the higher total score wins. |
+| warning | 67 | p66_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "70", ⟦1⟧ = "3") | 学校买来70本图书，平均分给二年级的3个班。 | The school bought 70 books to share equally among the 3 Gra… |
+| warning | 67 | p66_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）说一说可以怎样分。 | (1) Say how you can share. |
+| warning | 67 | p66_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）说一说可以怎样分。 | (1) Say how you can share. |
+| warning | 67 | p66_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2）分一分，把分的过程记录下来。 | (2) Share them and record how you shared. |
+| warning | 67 | p66_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2）分一分，把分的过程记录下来。 | (2) Share them and record how you shared. |
+| warning | 68 | p67_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "12", ⟦1⟧ = "12", ⟦2⟧ = "2", ⟦3⟧ = "2", ⟦4⟧ = "6", ⟦5⟧ = "6") | 我知道了，12指的是12根香蕉2指的是平均分给2只猴子，6指的是每只猴子分到6根。 | I get it! 12 means 12 bananas, 2 means sharing equally amon… |
+| warning | 68 | p67_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦2⟧ = "268.25.r") | 把60页和61页的问题用除法算式表示268.25.r | Write the problems on pages 60 and 61 as division number se… |
+| warning | 68 | p67_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "6") | 平均分成2份每份有6根。 | 2 equal shares, 6 bananas each. |
+| warning | 68 | p67_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "1", ⟦2⟧ = "3") | 每4根1份能分成3份 | 4 in each share makes 3 shares. |
+| warning | 68 | p67_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "268.9.0") | 上面这样的问题，都可以用除法表示山268.9.0 | Problems like these can all be shown with division. |
+| warning | 68 | p67_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 6（根） | 6 (bananas) |
+| warning | 69 | p68_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.圈一圈，填一填，并说说算式中每个数表示什么意思 | 1. Circle, fill in, and say what each number in the number … |
+| warning | 69 | p68_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "1") | 每4架飞机编成1组，可以编成 | With 4 planes in 1 group, you can make |
+| warning | 69 | p68_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "1", ⟦2⟧ = "6", ⟦3⟧ = "1") | 3.（1）每6块橡皮装1盒，可以装 | 3. (1) 6 erasers fill 1 box. How many boxes? |
+| warning | 69 | p68_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.说一说，画一画。 | 4. Talk about it and draw it. |
+| warning | 69 | p68_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "16", ⟦1⟧ = "4", ⟦2⟧ = "1", ⟦3⟧ = "4") | 16个小朋友，4人1组，可以分成4组 | 16 children, 4 in 1 group, make 4 groups |
+| warning | 69 | p68_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "1") | 每4条1份 | 4 fish in 1 share |
+| warning | 69 | p68_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "3", ⟦2⟧ = "1") | （2）每3架飞机编成1组，可以编成 | (2) With 3 planes in 1 group, you can make |
+| warning | 70 | p69_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.圈一圈，填一填，并说说算式中每个数表示什么意思， | 1. Circle, fill in, and say what each number in the number … |
+| warning | 70 | p69_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "2", ⟦2⟧ = "1") | （1）每2辆汽车编成1组，可以编成 | (1) With 2 cars in 1 group, you can make |
+| warning | 70 | p69_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "4", ⟦2⟧ = "1") | （2）每4辆汽车编成1组，可以编成 | (2) With 4 cars in 1 group, you can make |
+| warning | 70 | p69_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "8", ⟦2⟧ = "1") | （3）每8辆汽车编成1组，可以编成 | (3) With 8 cars in 1 group, you can make |
+| warning | 72 | p71_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "40") | 我有40元，可以买几个 | I have ¥40. How many |
+| warning | 72 | p71_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦1⟧ = "O") | 我有21元，可以买几个O？284.30.0 | I have ¥21. How many 284.30.0 can I buy? |
+| warning | 73 | p72_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "27") | 共有27粒米 | 27 grains of rice |
+| warning | 73 | p72_s46 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.结合日常生活，提出一个可以用除法解决的问题，并尝试解答。 | 5. Think of daily life. Ask a question you can solve by div… |
+| warning | 74 | p73_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "(4)") | 的(4) | × |
+| warning | 75 | p74_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "2") | 我买了1支笔花了2元。 | I bought 1 pen for ¥2. |
+| warning | 75 | p74_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2元 | ¥2 |
+| warning | 75 | p74_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2元 | ¥2 |
+| warning | 75 | p74_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2元 | ¥2 |
+| warning | 75 | p74_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2元) | ¥2 |
+| warning | 75 | p74_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2元) | ¥2 |
+| warning | 75 | p74_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2元 | ¥2 |
+| warning | 75 | p74_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "6") | 我买了3支笔花了6元。 | I bought 3 pens for ¥6. |
+| warning | 75 | p74_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.圈一圈，填一填。 | 1. Circle and fill in. |
+| warning | 75 | p74_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.画一画，填一填。 | 2. Draw and fill in. |
+| warning | 75 | p74_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 我花的钱是小免的4倍。 | I spent 4 times as much as the rabbit. |
+| warning | 75 | p74_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2元 | ¥2 |
+| warning | 75 | p74_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2元 | ¥2 |
+| warning | 75 | p74_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2元 | ¥2 |
+| warning | 76 | p75_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.画一画，填一填 | 3. Draw and fill in. |
+| warning | 76 | p75_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 我们有4只 | There are 4 of us. |
+| warning | 76 | p75_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 我车上的乘客数是面包车上的4倍 | I have 4 times as many passengers as the van. |
+| warning | 76 | p75_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 我车上有6位乘客 | I have 6 passengers. |
+| warning | 76 | p75_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 面包车上的乘客数是我车上的2倍。 | The van has 2 times as many passengers as I do. |
+| warning | 76 | p75_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | (1）大客车上有 | (1) The bus has |
+| warning | 76 | p75_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.气象组调查了近日来的天气情况，见下表。 | 5. The weather group recorded the recent weather in the tab… |
+| warning | 77 | p76_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "12") | 我们有12只 | There are 12 of us. |
+| warning | 77 | p76_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 9只 | 9 |
+| warning | 77 | p76_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 9只 | 9 |
+| warning | 77 | p76_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "q") | q只 | 9 |
+| warning | 77 | p76_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 9只 | 9 |
+| warning | 77 | p76_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 我们有4只 | There are 4 of us. |
+| warning | 77 | p76_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 什么是“2倍”？画一画，并举例说一说。 | What does "2 times" mean? Draw and give an example. |
+| warning | 77 | p76_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "1", ⟦2⟧ = "2") | 我收集的画片数是淘气的2倍，就是把淘气收集的看成1份我有这样的2份 | I have 2 times as many picture cards as Taoqi: if Taoqi's c… |
+| warning | 77 | p76_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 我们有9只 | There are 9 of us. |
+| warning | 77 | p76_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 我们的只数是小鸟的3倍 | There are 3 times as many of us as birds. |
+| warning | 78 | p77_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.像淘气那样说一说 | 3. Say it like Taoqi does. |
+| warning | 78 | p77_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 铅笔盒的价钱是转笔刀的3倍。 | The pencil case costs 3 times as much as the sharpener. |
+| warning | 78 | p77_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.估一估，量一量，算一算。 | 4. Estimate, measure and calculate. |
+| warning | 78 | p77_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）估一估，红绳的长度是黄绳的多少倍？与同伴交流你的方法。 | (1) Estimate: how many times as long as the yellow rope is … |
+| warning | 78 | p77_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2）分别量出红绳和黄绳的长度，算一算，自己的估计准确吗？ | (2) Measure each rope and calculate. Was your estimate accu… |
+| warning | 78 | p77_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.画一画，算一算。 | 2. Draw and calculate. |
+| warning | 78 | p77_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 我的画片数是机灵狗的3倍。 | I have 3 times as many cards as Clever Dog. |
+| warning | 78 | p77_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）淘气有多少张画片？ | (1) How many cards does Taoqi have? |
+| warning | 78 | p77_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）笑笑的画片数是机灵狗的多少倍？ | (2) How many times as many cards as Clever Dog does Xiaoxia… |
+| warning | 79 | p78_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "312.0.0") | 练习六312.0.0 | Exercise 6 |
+| warning | 79 | p78_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.圈一圈，填一填，并说说算式中每个数表示什么意思 | 1. Circle, fill in, and say what each number in the number … |
+| warning | 79 | p78_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.填一填 | 3. Fill in. |
+| warning | 79 | p78_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 我们的只数是的2倍。 | There are 2 times as many of us as turtles. |
+| warning | 79 | p78_s18 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 我们的只数是的3倍。 | There are 3 times as many of us as turtles. |
+| warning | 79 | p78_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 我们的只数是的5倍。 | There are 5 times as many of us as rabbits. |
+| warning | 79 | p78_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "3") | 我的岁数是4的3倍。 | My age is 3 times 4. |
+| warning | 79 | p78_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "7") | 我的岁数是3的7倍。 | My age is 7 times 3. |
+| warning | 79 | p78_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "5") | 2的5倍是我的岁数。 | 5 times 2 is my age. |
+| warning | 79 | p78_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3只蚂蚁顶一片树叶回家，需要多少片树叶？ | Every 3 ants carry one leaf home. How many leaves are neede… |
+| warning | 79 | p78_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24", ⟦1⟧ = "4") | 共包了24个包子平均放在4个笼屉里每笼放了几个？ | 24 buns are put equally into 4 steamer baskets. How many bu… |
+| warning | 80 | p79_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.像笑笑那样说一说 | 5. Say it like Xiaoxiao does. |
+| warning | 80 | p79_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 小汽车的价钱是魔方的2倍。 | The toy car costs 2 times as much as the Rubik's cube. |
+| warning | 80 | p79_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "30") | （3） 30元正好可以买什么？请给出两种买法 | (3) What can you buy for exactly ¥30? Give two ways. |
+| warning | 80 | p79_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 笔筒里铅笔的支数是毛笔的5倍。 | There are 5 times as many pencils in the pen holder as brus… |
+| warning | 80 | p79_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）彩笔的支数是毛笔的几倍？ | (1) How many times as many coloured pens as brushes are the… |
+| warning | 80 | p79_s26 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2）笔筒里有多少支铅笔？ | (2) How many pencils are there in the pen holder? |
+| warning | 80 | p79_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | （3）这三种笔一共有多少支？ | (3) How many brushes, coloured pens and pencils are there i… |
+| warning | 80 | p79_s28 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 9.找一找生活中与“倍”有关的实际问题。 | 9. Find real-life problems about "times". |
+| warning | 80 | p79_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 6.连一连 | 6. Match. |
+| warning | 81 | p80_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "10") | 10.掷一次骰子，朝上的面是几，就将棋子放在相应的位置，再根据要求移动棋子。与同伴一起玩，看看谁的步数少。 | 10. Roll a die once and put your counter on the number that… |
+| warning | 81 | p80_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24÷4") | 找到火星地图到达24÷4 | Find the Mars map: go to 24÷4 |
+| warning | 81 | p80_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "26+24") | 看到火星人到达26+24 | See a Martian: go to 26+24 |
+| warning | 81 | p80_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "17+18") | 找到火星人脚印到达17+18 | Find Martian footprints: go to 17+18 |
+| warning | 81 | p80_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "63-28") | 找到矿石到达63-28 | Find ore: go to 63-28 |
+| warning | 81 | p80_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "6") | 穿过岩石到达5的6倍 | Get through the rocks: go to 6 times 5 |
+| warning | 81 | p80_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "71-26") | 穿过大峡谷到达71-26 | Cross the big canyon: go to 71-26 |
+| warning | 81 | p80_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "81-41") | 与指挥部取得联系到达81-41 | Contact the command post: go to 81-41 |
+| warning | 81 | p80_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "45-20") | 获得足够氧气到达45-20 | Get enough oxygen: go to 45-20 |
+| warning | 81 | p80_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "85-75") | 遇到风暴退到85-75 | Hit a storm: go back to 85-75 |
+| warning | 81 | p80_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5×7") | 战胜风暴到达5×7 | Beat the storm: go to 5×7 |
+| warning | 81 | p80_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "5") | 温度太高退到3的5倍 | Too hot: go back to 5 times 3 |
+| warning | 81 | p80_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25÷5") | 找到食物到达25÷5 | Find food: go to 25÷5 |
+| warning | 81 | p80_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "62-47") | 遇到沙暴退到62-47 | Hit a sandstorm: go back to 62-47 |
+| warning | 81 | p80_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "12+8") | 看到火星化石到达12+8 | See a Mars fossil: go to 12+8 |
+| warning | 82 | p81_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6", ⟦1⟧ = "9") | 八6~9的乘法口诀 | Unit 8 Multiplication Facts for 6 to 9 |
+| warning | 82 | p81_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 你能编出6的乘法口诀吗？ | Can you make up the multiplication facts for 6? |
+| warning | 83 | p82_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.算一算，墙上有多少张手抄报？ | 1. Calculate. How many posters are on the wall? |
+| warning | 83 | p82_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "6×9=") | 5. 6×9=？圈一圈，填一填 | 5. 6×9=? Circle and fill in. |
+| warning | 83 | p82_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.填一填 | 2. Fill in. |
+| warning | 83 | p82_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.找朋友。 | 3. Find the pairs. |
+| warning | 83 | p82_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.算一算，每个图中有多少格子？ | 4. Calculate. How many squares are in each picture? |
+| warning | 84 | p83_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 再过2个星期就开运动会了。 | In 2 weeks it's sports day. |
+| warning | 84 | p83_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 再过3个星期就是我的生日 | In 3 weeks it's my birthday. |
+| warning | 84 | p83_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 再过9个星期就放假了。 | In 9 weeks it's the holidays. |
+| warning | 84 | p83_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 你能编出7的乘法口诀吗？ | Can you make up the facts for 7? |
+| warning | 85 | p84_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.读一读，讲一讲。 | 4. Read and tell. |
+| warning | 85 | p84_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.看口诀写算式。 | 2. Write number sentences for each fact. |
+| warning | 86 | p85_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦3⟧ = "1 2") | 1个9比10少1 2个9比20少2，3个9比30少， | 1 × 9 is 1 less than 10, 2 × 9 is 2 less than 20, 3 × 9 is … |
+| warning | 87 | p86_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.对口令 | 3. Ask and answer. |
+| warning | 87 | p86_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1只螃蟹 | 1 crab |
+| warning | 87 | p86_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "9") | （1） 9个皮球多少元？ | (1) How much do 9 balls cost? |
+| warning | 87 | p86_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 皮球8元 | Ball ¥8 |
+| warning | 87 | p86_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 键子5元 | Jianzi ¥5 |
+| warning | 87 | p86_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "30", ⟦2⟧ = "4") | （3） 30元买4个网球，够吗？ | (3) Is ¥30 enough for 4 tennis balls? |
+| warning | 88 | p87_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "18") | 找出积是18的乘法算式，并填一填 | Find the number sentences whose product is 18, and fill in. |
+| warning | 88 | p87_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 这些算式乘数中都有3 | These all have 3 as a factor. |
+| warning | 88 | p87_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "348.7.0") | 348.7.0这些算式的积都是18 | These all have a product of 18. |
+| warning | 89 | p88_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.把乘法口诀填完整 | 1. Complete the multiplication facts. |
+| warning | 89 | p88_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "38") | 我们有38人 | 38 of us in all. |
+| warning | 89 | p88_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.做一个转盘，转一转，算一算 | 4. Make a spinner, spin it, and calculate. |
+| warning | 89 | p88_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 有5张空桌 | 5 empty tables. |
+| warning | 90 | p89_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "356.4.0") | 把自己旧的玩具、图书、工艺356.4.0品等拿来与同学交换或出售。 | Bring your old toys, books, crafts and so on to swap with o… |
+| warning | 90 | p89_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 需要找1块场地，各班划分 | We need to find a site and divide it among the classes. |
+| warning | 90 | p89_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "3", ⟦2⟧ = "12", ⟦3⟧ = "2") | 我有1套汽车玩具，共3辆我标价12元，换2本自己喜欢的书也可以。 | I have 1 set of toy cars, 3 cars in all. My price is ¥12, o… |
+| warning | 91 | p90_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "2") | 这套故事书一共有5本，每本2元。 | This set has 5 storybooks, ¥2 each. |
+| warning | 91 | p90_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "12", ⟦1⟧ = "2") | 这套汽车玩具12元，我想换2本我喜欢的书。 | This toy car set is ¥12. I'd like to swap it for 2 books I … |
+| warning | 91 | p90_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.在上面的活动中，你用到了哪些数学知识？你有什么收获和感想？ | 1. In the activity above, what maths knowledge did you use?… |
+| warning | 92 | p91_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 生1 | Pupil 1 |
+| warning | 92 | p91_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 生2 | Pupil 2 |
+| warning | 92 | p91_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 生3 | Pupil 3 |
+| warning | 92 | p91_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 生4 | Pupil 4 |
+| warning | 93 | p92_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "50", ⟦1⟧ = "130") | 我每步长约50厘米，上学时，数一数走了多少步，就能估计出我从家到学校有多远。我的身高是130厘米，如果我 | Each of my steps is about 50 cm. On the way to school, I co… |
+| warning | 94 | p93_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "42") | 共有42只小鸟 | 42 birds in all |
+| warning | 94 | p93_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 造一间房子需要7块小木板。 | One house needs 7 small boards. |
+| warning | 95 | p94_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "81", ⟦2⟧ = "9") | 1. 81个气球，平均分成9组，每组几个？画图表示你是怎么算的。 | 1. Share 81 balloons equally into 9 groups. How many in eac… |
+| warning | 95 | p94_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8", ⟦1⟧ = "1") | 8根装1篮可以装几篮？ | 8 carrots fill 1 basket. How many baskets? |
+| warning | 95 | p94_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 运走2篮，还剩下几根萝卜？ | Take away 2 baskets. How many carrots are left? |
+| warning | 95 | p94_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "48") | 我们拔了48根萝卜。 | We pulled up 48 carrots. |
+| warning | 95 | p94_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "4") | （1）如果每人搬4盆，需要多少人？ | (1) 4 pots each. How many people are needed? |
+| warning | 96 | p95_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.小兔安家。 | 4. Rabbits find a home. |
+| warning | 96 | p95_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 有24只小兔 | 24 rabbits in all |
+| warning | 96 | p95_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "4") | （1）有4间房子，平均每间住几只小兔？ | (1) There are 4 houses. How many rabbits in each? |
+| warning | 96 | p95_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "4") | (2）如果每间房子住4只小兔，需要几间房子？ | (2) If 4 rabbits live in each house, how many houses are ne… |
+| warning | 97 | p96_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "54", ⟦1⟧ = "6") | 54个柿子，每盒装6个，需要装几盒？ | 54 persimmons, 6 in each box. How many boxes are needed? |
+| warning | 98 | p97_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 老师发给我们24张彩纸，我们小组的同学要平均分 | The teacher gave us 24 sheets of coloured paper. Our group … |
+| warning | 98 | p97_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）根据上面的信息，请你提出两个可以用乘法解决的问题。 | (1) Using the information above, pose two multiplication pr… |
+| warning | 98 | p97_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "36") | （2）李老师买了同一种商品，正好花了36元，他可能买了什么？买了多少？ | (2) Teacher Li bought only one kind of item and spent exact… |
+| warning | 98 | p97_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.送信。 | 3. Deliver the mail. |
+| warning | 98 | p97_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8的倍数 | Multiples of 8 |
+| warning | 98 | p97_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 我买2盒多少元？ | How much for 2 boxes? |
+| warning | 98 | p97_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "9") | 我们第一小组每人穿了一串项链，穿一串项链需要9颗珠子。 | Everyone in our first group made a necklace. Making one nec… |
+| warning | 98 | p97_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 我用了24元，我花的钱是小白兔的多少倍？ | I spent ¥24. How many times as much as the rabbit did I spe… |
+| warning | 98 | p97_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "20") | 20元能买几盒 | How many for ¥20? |
+| warning | 99 | p98_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 每天吃6个，几天能吃完？ | Eat 6 a day. How many days to finish? |
+| warning | 99 | p98_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 我们一共有24元，要给兴趣小组的同学买奖品。 | We have ¥24 in total to buy prizes for the students in the … |
+| warning | 100 | p99_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "2", ⟦2⟧ = "4", ⟦3⟧ = "6", ⟦4⟧ = "8") | 我按2的倍数跳，2，4，6，8 | I jump in 2s: 2, 4, 6, 8 |
+| warning | 100 | p99_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 我按3的倍数跳 | I jump in 3s |
+| warning | 100 | p99_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "40") | 我准备用40元购买两种体育用品钱都要用完。 | I plan to spend exactly ¥40 on two kinds of sports equipmen… |
+| warning | 101 | p100_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "38", ⟦1⟧ = "13") | 全班男生折了38只千纸鹤，女生比男生多折了13只，一共折了多少只千纸鹤？ | The boys in the class folded 38 paper cranes, and the girls… |
+| warning | 101 | p100_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "3") | 5.举例说一说“3倍”的意思。 | 5. Explain "3 times" with an example. |
+| warning | 101 | p100_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "1", ⟦2⟧ = "1", ⟦3⟧ = "4") | 价格表粥2元茶鸡蛋1元油条1元肉饼4元 | Price list: porridge ¥2, tea egg ¥1, fried dough stick ¥1, … |
+| warning | 101 | p100_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦1⟧ = "400.27.0") | 我要买2碗粥，400.27.04张肉饼。 | I want to buy 2 bowls of porridge and 4 meat pies. |
+| warning | 101 | p100_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）说一说，你能提出哪些问题？ | (1) Talk about it. What questions can you ask? |
+| warning | 101 | p100_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 7.付钱游戏。 | 7. Paying game. |
+| warning | 101 | p100_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "1") | 3.说说二（1）班的事。 | 3. Talk about Class 2(1). |
+| warning | 101 | p100_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "40", ⟦1⟧ = "22", ⟦2⟧ = "6") | 全班有40人，男生有22人，女生有多少人？把女生平均分成6个小组，每个小组有多少人？ | There are 40 students in the class, and 22 are boys. How ma… |
+| warning | 102 | p101_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "36-8+19", ⟦1⟧ = "36", ⟦2⟧ = "8", ⟦3⟧ = "19") | 我选36-8+19编了一个故事：有36只小鸡在草地上玩，跑走了8只，又来了19只，现在有多少只？ | I chose 36-8+19 and made up a story: There were 36 chicks p… |
+| warning | 102 | p101_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 我拇指的指甲盖长度大约是1厘米。 | My thumbnail is about 1 cm long. |
+| warning | 102 | p101_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | 我把要估计的物品的长度与1厘米或1米比一比。 | I compare the object's length with 1 cm or 1 m. |
+| warning | 102 | p101_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1", ⟦2⟧ = "1", ⟦3⟧ = "5") | 在买早餐中，我提的问题是：我想买1碗粥、1根油条和1个茶鸡蛋，5元够吗？ | In "Buying breakfast", my question was: I want to buy 1 bow… |
+| warning | 102 | p101_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧, ⟦6⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8", ⟦1⟧ = "24", ⟦2⟧ = "24", ⟦3⟧ = "3", ⟦4⟧ = "8", ⟦5⟧ = "8", ⟦6⟧ = "3") | 我们班喜欢吃香蕉的有8人，喜欢吃苹果的有24人。24里面有3个8，是8的3倍。 | In our class, 8 students like bananas and 24 like apples. 2… |
+| warning | 102 | p101_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1", ⟦2⟧ = "1") | 1.我们学了哪些长度单位？找一找，生活中有哪些物品的长度大约是1厘米，有哪些大约是1米？ | 1. What units of length have we learned? Look around: which… |
+| warning | 103 | p102_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "4") | 1.你能在4分钟之内完成吗？看谁能全部做对 | 1. Can you finish within 4 minutes? See who can get them al… |
+| warning | 103 | p102_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.我说你找。 | 2. I say, you find. |
+| warning | 103 | p102_s29 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.填一填，并说一说算式中每个数的意思， | 3. Fill in, and say what each number in the number sentence… |
+| warning | 103 | p102_s31 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "5", ⟦2⟧ = "2") | （1）每份有5个，有2份。 | (1) Each group has 5 △; there are 2 groups. |
+| warning | 103 | p102_s32 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "18", ⟦2⟧ = "3") | （2）先画18个，再把这些平均分成3份。 | (2) First draw 18 □, then divide them equally into 3 groups. |
+| warning | 103 | p102_s33 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "20", ⟦2⟧ = "4", ⟦3⟧ = "1") | (3）先画20个，再每4个1份圈一圈。 | (3) First draw 20 ○, then circle every 4 as 1 group. |
+| warning | 103 | p102_s34 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "3", ⟦2⟧ = "2") | （4）先画3个△，再画，的个数是△的2倍。 | (4) First draw 3 △, then draw 2 times as many ○. |
+| warning | 104 | p103_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | (2）如果用这些钱买，可以买多少本？ | (2) How many notebooks can this money buy? |
+| warning | 104 | p103_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "3") | （2）笑笑的钱够买3个 | (2) Can Xiaoxiao afford 3 |
+| warning | 104 | p103_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "412.32.0") | 412.32.0吗？ | ? |
+| warning | 104 | p103_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 6.运动会。 | 6. Sports day. |
+| warning | 104 | p103_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 参加3项比赛的同学一共有多少人？ | How many students in all took part in the 3 events? |
+| warning | 105 | p104_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "63") | 我今年63岁 | I am 63 this year. |
+| warning | 105 | p104_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 我今年7岁 | I am 7 this year. |
+| warning | 105 | p104_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 我4天看完，平均每天看多少页？ | I finish it in 4 days. How many pages a day on average? |
+| warning | 105 | p104_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "12") | 12.说一说。 | 12. Discuss. |
+| warning | 105 | p104_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "26", ⟦1⟧ = "4") | 有26位乘客，4辆车能坐得下吗？ | There are 26 passengers. Can 4 buses seat them all? |
+| warning | 105 | p104_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 最多坐6位乘客。 | 6 passengers at most. |
+| warning | 105 | p104_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 共24页 | 24 pages in total |
+| warning | 106 | p105_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 剑兰每枝2元 | Gladiolus ¥2 each |
+| warning | 106 | p105_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 菊花每枝3元 | Chrysanthemum ¥3 each |
+| warning | 106 | p105_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 百合每枝6元 | Lily ¥6 each |
+| warning | 106 | p105_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 玫瑰每枝5元 | Rose ¥5 each |
+| warning | 106 | p105_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 康乃馨每枝4元 | Carnation ¥4 each |
+| warning | 106 | p105_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）每枝百合的价钱是剑兰的多少倍？ | (1) A lily costs how many times as much as a gladiolus? |
+| warning | 106 | p105_s26 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "20") | （3）淘气有20元，请你给他配一束花，并说出两种搭配方法。 | (3) Taoqi has ¥20. Make up a bouquet for him. Give two poss… |
+| warning | 106 | p105_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "15") | 15.应付多少钱？ | 15. How much should you pay? |
+| warning | 107 | p106_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.在横线上填写合适的长度单位。 | 2. Write a suitable unit of length on each line. |
+| warning | 107 | p106_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4", ⟦1⟧ = "50") | （4）一张奖状长约50 | (4) A certificate is about 50 |
+| warning | 107 | p106_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.估一估，大约有多高？ | 3. Estimate. About how high? |
