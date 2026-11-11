@@ -1,0 +1,4 @@
+{"corrections": [
+ {"segment_id": "p100_s2_k1", "translation": "On your own", "reason": "独立思考 tag: the paragraph has two parts here, so the whole label goes on the second ('own' was aimed at a third part that does not exist)"},
+ {"segment_id": "p101_s4_k1", "translation": "On your own", "reason": "as p100_s2_k1"}
+]}
