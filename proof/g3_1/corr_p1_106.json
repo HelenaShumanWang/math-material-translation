@@ -1,0 +1,963 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p105_s20",
+   "translation": "⟦1⟧/⟦0⟧",
+   "reason": "dropped ⟦2⟧: OCR crop of 月 shown as a stray glyph; match other month labels"
+  },
+  {
+   "segment_id": "p105_s11",
+   "translation": "BLANK",
+   "reason": "duplicate read of 日; p105_s12 already prints the full Su-Sa row"
+  },
+  {
+   "segment_id": "p106_s19",
+   "translation": "⟦2⟧/⟦0⟧",
+   "reason": "dropped ⟦1⟧ and ⟦3⟧: OCR crops of 年/月 printed as stray glyphs"
+  },
+  {
+   "segment_id": "p106_s20",
+   "translation": "⟦2⟧/⟦0⟧",
+   "reason": "dropped ⟦1⟧: OCR crop of 年; month/year format like siblings"
+  },
+  {
+   "segment_id": "p106_s21",
+   "translation": "⟦2⟧/⟦0⟧",
+   "reason": "dropped ⟦1⟧: OCR crop of 年; month/year format like siblings"
+  },
+  {
+   "merge": [
+    "p106_s23",
+    "p106_s25"
+   ],
+   "translation": "Su Mo Tu We Th Fr Sa",
+   "reason": "日 and 一...六 are one weekday row; 日 was left in Chinese; the row line comes first so the merged row keeps the row's text size"
+  },
+  {
+   "segment_id": "p106_s23",
+   "box": [
+    213.5,
+    567.5,
+    328,
+    581.5
+   ],
+   "reason": "merged weekday row set too small; free calendar paper around it"
+  },
+  {
+   "merge": [
+    "p106_s17",
+    "p106_s13"
+   ],
+   "translation": "Su Mo Tu We Th Fr Sa",
+   "reason": "one weekday row split by the watermark; Tu We were missing"
+  },
+  {
+   "segment_id": "p107_s19",
+   "translation": "⟦1⟧/⟦0⟧",
+   "reason": "dropped ⟦2⟧: OCR crop of 月 printed as a stray glyph; month/year format like siblings"
+  },
+  {
+   "segment_id": "p108_s0",
+   "translation": "Appendix 2",
+   "box": [
+    59.8,
+    61.8,
+    185,
+    89.6
+   ],
+   "reason": "heading left in Chinese; free space to the right; includes the 2"
+  },
+  {
+   "segment_id": "p108_s0",
+   "erase": [
+    [
+     115,
+     64,
+     135,
+     88
+    ]
+   ],
+   "reason": "the 2 of 附页 2 is now in the English heading"
+  },
+  {
+   "segment_id": "p108_s4",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s5",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s6",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s7",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s8",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s11",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s12",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s13",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s14",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s15",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s18",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s19",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s20",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s23",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s24",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s25",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s26",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "segment_id": "p108_s27",
+   "translation": "BLANK",
+   "reason": "weekday header row rebuilt column by column with adds (OCR split it into broken pieces)"
+  },
+  {
+   "add": "p108_a1",
+   "page": 108,
+   "box": [
+    68.0,
+    126.5,
+    90.0,
+    141.5
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a2",
+   "page": 108,
+   "box": [
+    93.4,
+    126.5,
+    115.4,
+    141.5
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a3",
+   "page": 108,
+   "box": [
+    118.8,
+    126.5,
+    140.8,
+    141.5
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a4",
+   "page": 108,
+   "box": [
+    144.2,
+    126.5,
+    166.2,
+    141.5
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a5",
+   "page": 108,
+   "box": [
+    169.6,
+    126.5,
+    191.6,
+    141.5
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a6",
+   "page": 108,
+   "box": [
+    195.0,
+    126.5,
+    217.0,
+    141.5
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a7",
+   "page": 108,
+   "box": [
+    220.4,
+    126.5,
+    242.4,
+    141.5
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a8",
+   "page": 108,
+   "box": [
+    281.5,
+    126.5,
+    303.5,
+    141.5
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a9",
+   "page": 108,
+   "box": [
+    306.9,
+    126.5,
+    328.9,
+    141.5
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a10",
+   "page": 108,
+   "box": [
+    332.3,
+    126.5,
+    354.3,
+    141.5
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a11",
+   "page": 108,
+   "box": [
+    357.7,
+    126.5,
+    379.7,
+    141.5
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a12",
+   "page": 108,
+   "box": [
+    383.1,
+    126.5,
+    405.1,
+    141.5
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a13",
+   "page": 108,
+   "box": [
+    408.5,
+    126.5,
+    430.5,
+    141.5
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a14",
+   "page": 108,
+   "box": [
+    433.9,
+    126.5,
+    455.9,
+    141.5
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a15",
+   "page": 108,
+   "box": [
+    68.0,
+    272,
+    90.0,
+    287
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a16",
+   "page": 108,
+   "box": [
+    93.4,
+    272,
+    115.4,
+    287
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a17",
+   "page": 108,
+   "box": [
+    118.8,
+    272,
+    140.8,
+    287
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a18",
+   "page": 108,
+   "box": [
+    144.2,
+    272,
+    166.2,
+    287
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a19",
+   "page": 108,
+   "box": [
+    169.6,
+    272,
+    191.6,
+    287
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a20",
+   "page": 108,
+   "box": [
+    195.0,
+    272,
+    217.0,
+    287
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a21",
+   "page": 108,
+   "box": [
+    220.4,
+    272,
+    242.4,
+    287
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a22",
+   "page": 108,
+   "box": [
+    281.5,
+    272,
+    303.5,
+    287
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a23",
+   "page": 108,
+   "box": [
+    306.9,
+    272,
+    328.9,
+    287
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a24",
+   "page": 108,
+   "box": [
+    332.3,
+    272,
+    354.3,
+    287
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a25",
+   "page": 108,
+   "box": [
+    357.7,
+    272,
+    379.7,
+    287
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a26",
+   "page": 108,
+   "box": [
+    383.1,
+    272,
+    405.1,
+    287
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a27",
+   "page": 108,
+   "box": [
+    408.5,
+    272,
+    430.5,
+    287
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a28",
+   "page": 108,
+   "box": [
+    433.9,
+    272,
+    455.9,
+    287
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a29",
+   "page": 108,
+   "box": [
+    68.0,
+    418,
+    90.0,
+    433
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a30",
+   "page": 108,
+   "box": [
+    93.4,
+    418,
+    115.4,
+    433
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a31",
+   "page": 108,
+   "box": [
+    118.8,
+    418,
+    140.8,
+    433
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a32",
+   "page": 108,
+   "box": [
+    144.2,
+    418,
+    166.2,
+    433
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a33",
+   "page": 108,
+   "box": [
+    169.6,
+    418,
+    191.6,
+    433
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a34",
+   "page": 108,
+   "box": [
+    195.0,
+    418,
+    217.0,
+    433
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a35",
+   "page": 108,
+   "box": [
+    220.4,
+    418,
+    242.4,
+    433
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a36",
+   "page": 108,
+   "box": [
+    281.5,
+    418,
+    303.5,
+    433
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a37",
+   "page": 108,
+   "box": [
+    306.9,
+    418,
+    328.9,
+    433
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a38",
+   "page": 108,
+   "box": [
+    332.3,
+    418,
+    354.3,
+    433
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a39",
+   "page": 108,
+   "box": [
+    357.7,
+    418,
+    379.7,
+    433
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a40",
+   "page": 108,
+   "box": [
+    383.1,
+    418,
+    405.1,
+    433
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a41",
+   "page": 108,
+   "box": [
+    408.5,
+    418,
+    430.5,
+    433
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a42",
+   "page": 108,
+   "box": [
+    433.9,
+    418,
+    455.9,
+    433
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a43",
+   "page": 108,
+   "box": [
+    68.0,
+    563.5,
+    90.0,
+    578.5
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a44",
+   "page": 108,
+   "box": [
+    93.4,
+    563.5,
+    115.4,
+    578.5
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a45",
+   "page": 108,
+   "box": [
+    118.8,
+    563.5,
+    140.8,
+    578.5
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a46",
+   "page": 108,
+   "box": [
+    144.2,
+    563.5,
+    166.2,
+    578.5
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a47",
+   "page": 108,
+   "box": [
+    169.6,
+    563.5,
+    191.6,
+    578.5
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a48",
+   "page": 108,
+   "box": [
+    195.0,
+    563.5,
+    217.0,
+    578.5
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a49",
+   "page": 108,
+   "box": [
+    220.4,
+    563.5,
+    242.4,
+    578.5
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a50",
+   "page": 108,
+   "box": [
+    281.5,
+    563.5,
+    303.5,
+    578.5
+   ],
+   "translation": "Su",
+   "source": "日",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a51",
+   "page": 108,
+   "box": [
+    306.9,
+    563.5,
+    328.9,
+    578.5
+   ],
+   "translation": "Mo",
+   "source": "一",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a52",
+   "page": 108,
+   "box": [
+    332.3,
+    563.5,
+    354.3,
+    578.5
+   ],
+   "translation": "Tu",
+   "source": "二",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a53",
+   "page": 108,
+   "box": [
+    357.7,
+    563.5,
+    379.7,
+    578.5
+   ],
+   "translation": "We",
+   "source": "三",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a54",
+   "page": 108,
+   "box": [
+    383.1,
+    563.5,
+    405.1,
+    578.5
+   ],
+   "translation": "Th",
+   "source": "四",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a55",
+   "page": 108,
+   "box": [
+    408.5,
+    563.5,
+    430.5,
+    578.5
+   ],
+   "translation": "Fr",
+   "source": "五",
+   "size": 9,
+   "reason": "weekday column label"
+  },
+  {
+   "add": "p108_a56",
+   "page": 108,
+   "box": [
+    433.9,
+    563.5,
+    455.9,
+    578.5
+   ],
+   "translation": "Sa",
+   "source": "六",
+   "size": 9,
+   "reason": "weekday column label"
+  }
+ ],
+ "flags": [
+  {
+   "page": 107,
+   "issue": "7/2014, 7/2015 and 7/2016 month headings (pages 106-108) set larger than their siblings; weekday-row sizes vary a little between month boxes."
+  }
+ ]
+}

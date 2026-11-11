@@ -1,0 +1,206 @@
+{
+ "code": "g3_1",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 3,
+   "issue": "Science Museum label (p2_s19_k0) is set just outside the map card border: no legible room inside the card left of the point"
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 4,
+   "issue": "red/yellow/blue crate fronts (p3_s4, p3_s5): the original erase of 红色黄色/蓝色 wiped the crate outlines into tan blobs; labels are set but the crate drawing needs a redraw/restore"
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 9,
+   "issue": "price tag behind the teacher (only 元 visible, number hidden) is erased and left blank"
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 11,
+   "issue": "酸奶 label on the yoghurt carton (p10_i40_4) is too small for English (renders at scale 0.4); kept in Chinese"
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 12,
+   "issue": "The unit label （条） after the last answer box (p11_i44_29) is dropped by the volume's unit-after-answer-box rule, so the line reads only '= □'"
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 14,
+   "issue": "In question 5 the (3) line (p13_s13) is set larger than the (1)/(2) text above it (p13_s10). Widening p13_s10's box to x0=262 does not move the text, because the kept 1）/(2) number lines (p13_i52_13, p13_i52_16) block the left strip"
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 19,
+   "issue": "toothpaste box print 牙膏 (p18_s3) kept in Chinese: the box is too small for English; treated as packaging print"
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 23,
+   "issue": "title 'Moving Cabbages' (p22_s0) still set at 0.59; a wider box inside the banner did not enlarge it"
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 24,
+   "issue": "merge p23_s17+p23_s18 is listed as REJECTED ('unknown paragraph p23_s18') but it does take effect. Without it the balloon bubble breaks into 'There are' / '1000 red balloons.' (0.64), so it is kept"
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 27,
+   "issue": "Tiny red Chinese is left on the tent banner (家电下乡 / 分期付款) and on the ticket-office signs (售票处, 票). It is too small to set legible English."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 28,
+   "issue": "The hand-drawn sketches are repaired with restores, but a few short gaps remain where a stroke runs under an English label: the Beijing–Baoding arc above 保定, and the Xi'an–Luoyang line under 'Luoyang' in the 813 sketch. The white patches on the yellow map behind 'Beijing' and 'Xi'an' come from the label erase. A paint entry did not cover them, so I removed it."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 31,
+   "issue": "The month headers 'End of month 6' etc. are set at 0.53 in narrow table cells. The placeholder rule blocks a shorter wording such as 'End of June'."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 32,
+   "issue": "'Shuttlecocks' is still set at 0.64 in the narrow space left of the bar."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 33,
+   "issue": "米 on the rice bags is kept as the printed logo (DROP)."
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 34,
+   "issue": "Bubble '20 poplars per bundle' (p33_s3) stays at 0.69: the bubble is too small for the English."
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 41,
+   "issue": "Exercise 4: the (3) question is set at a much larger size than the 4. heading and (1)/(2), which are small (about 0.65); sizes in the 4. panel are uneven."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 46,
+   "issue": "p45_s7 split: '64 baskets' only fits at 0.56 in two lines between the dashed line and the brace; the brace tip is restored by a pixel fix."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 48,
+   "issue": "Slanted distance labels (305/445/205/305 米) keep their slanted numbers; only 米 is replaced by a small horizontal 'm' via ADD, and because 米 touches the route lines the erase leaves short gaps in the lines next to 305 and 445. The Xiaoxiao's home dot and house (p47_s6, OCR noise 188.9.0) are partly erased, as in the checked edition."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 49,
+   "issue": "Vertical '1 厘米' at the grid reads as rotated 'cm' with '1' below."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 50,
+   "issue": "Slanted labels 200米, 240米, 190米 on the park picture and the upper-left 75米 on the pentagon (under the watermark) stay in Chinese; their boxes would cut the picture or edges."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 50,
+   "issue": "Trapezoid of 'Find the perimeter': its left edge (by 110 m) and right edge (by 90 m) are broken where the labels were erased; already so in the checked edition, not repaired (slanted edges)."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 51,
+   "issue": "Slanted labels 140米, 230米, 170米, 160米 on the zoo route and 17分米, 26米, 8厘米 (x2), 5厘米 (x2) on the figures of question 4 stay in Chinese; erasing them would cut figure edges."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 51,
+   "issue": "Table of question 6: 'Book perimeter' etc. are terse for 作业本封面的周长 (perimeter of the exercise book cover), 课桌面的周长, 你的鞋底的周长; longer wording does not fit the cells."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 51,
+   "issue": "Quadrilateral of question 4 (22 m / 18 m / 36 m): parts of its top, left and bottom edges are erased with the labels; already so in the checked edition, not repaired."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 54,
+   "issue": "Slanted labels 21毫米 (triangle), 15厘米 (trapezoid) and 18厘米 (x2, parallelogram) in question 4 stay in Chinese; their boxes overlap the figure edges."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 62,
+   "issue": "Hand-lettered slanted label 2时汽车 ('2 h bus') in the third pupil diagram stays in Chinese (slanted, cannot be set)."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 62,
+   "issue": "Third pupil diagram: the hand-drawn route line under '4 h train' is broken where the slanted 4时火车 was erased (same in the checked edition); a rectangle restore would bring the Chinese back."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 63,
+   "issue": "Map labels New Town and Guangming are set very small (0.53) on the busy map; no free paper next to them without covering the railway."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 65,
+   "issue": "Slanted distance labels 180米 on the two roads keep the Chinese unit 米 (slanted text)."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 70,
+   "issue": "Question 12: (1) is set smaller than (2) and (3), which are set larger than the other numbered sub-questions on the page."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 73,
+   "issue": "The magenta answer underline after (2) remains faintly to the right of the English line, because the erase only removes dark glyphs."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 76,
+   "issue": "The two school timetables were reset row by row with ADDs (labels right-aligned, times beside them); faint bits of the diagonal watermark are cut where the rows were erased."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 83,
+   "issue": "Calendar header labels are set at mixed sizes (Sunday/Monday/Thursday larger than Tuesday/Wednesday/Friday/Saturday); 'Did You Know?' badge text is very small (0.54)."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 85,
+   "issue": "'Did You Know?' badge text very small (0.54); biscuits/sausage labels on the shop shelf at about 0.6."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 87,
+   "issue": "Toothbrush/Toothpaste labels on the small shop signs and in the narrow first table column are set at about 0.55-0.65 scale; no wider room without covering the picture or the price column."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 87,
+   "issue": "The Towel signs on the three shop pictures keep parts of their old frames (Kitten Shop shows a stray bracket, Puppy Shop's Towel is set heavier than the others); the checked edition had clean signs."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 89,
+   "issue": "Cymbal prices sit on flat erase patches that clip the cymbal ring lines slightly."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 91,
+   "issue": "Chinese label 薯片 on the crisps tube (¥4.80 item) is slanted on the picture and stays untranslated; no OCR line covers it"
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 102,
+   "issue": "Vertical '3 cm' label (Q4) and left '4 cm' label (Q5): the numeral stays in the picture and reads bottom-to-top, but 'cm' is set top-to-bottom with a gap. Readable but awkward. The checked edition had the same problem."
+  },
+  {
+   "file": "corr_p1_106.json",
+   "page": 107,
+   "issue": "7/2014, 7/2015 and 7/2016 month headings (pages 106-108) set larger than their siblings; weekday-row sizes vary a little between month boxes."
+  }
+ ]
+}

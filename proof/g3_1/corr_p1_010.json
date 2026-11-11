@@ -1,0 +1,170 @@
+{
+ "corrections": [
+  {
+   "add": "p9_a1",
+   "page": 9,
+   "box": [75, 331, 470, 348],
+   "translation": "Use the situation above to explain the number sentences below, then calculate.",
+   "source": "结合上面的情境说说下面算式的意思，并算一算。",
+   "reason": "untranslated instruction line; same wording as page 11 (2), fits on one line"
+  },
+  {
+   "segment_id": "p10_s6",
+   "translation": "I bought ⟦0⟧ bottles for ¥⟦2⟧.",
+   "reason": "dropped ⟦1⟧: OCR noise; grammar"
+  },
+  {
+   "merge": ["p10_s2", "p10_s4"],
+   "translation": "Tea",
+   "reason": "one label on the jug split in two lines; 绿 was left in Chinese"
+  },
+  {
+   "segment_id": "p10_s31",
+   "box": [73.7, 608.0, 352, 623.9],
+   "reason": "set too small; free room to the right"
+  },
+  {
+   "segment_id": "p11_s0",
+   "translation": "Crossing the River",
+   "reason": "过河 is crossing the river"
+  },
+  {
+   "segment_id": "p11_s13",
+   "translation": "Ask \"⟦0⟧ ⟦1⟧\" to help: work out what is inside the brackets first.",
+   "reason": "⟦0⟧⟦1⟧ are the red brackets; plain ( ) duplicated them; UK term brackets"
+  },
+  {
+   "segment_id": "p11_s16",
+   "translation": "Brackets can change the order of operations. They were first used by the Dutchman Girard.",
+   "reason": "UK term brackets"
+  },
+  {
+   "segment_id": "p12_s3",
+   "translation": "70 people in all. Fill the big bus first; the rest take minibuses. What is the least number of minibuses needed?",
+   "reason": "natural phrasing"
+  },
+  {
+   "merge": ["p13_s16", "p13_s17"],
+   "translation": "6. Xiaoxiao bought one kind of sweets. She paid ¥20 and got ¥2 change. Which kind might she have bought? How many bags did she buy?",
+   "reason": "one question split by OCR; sweets (UK)"
+  },
+  {
+   "segment_id": "p13_s22",
+   "translation": "Add brackets to make the number sentences below true.",
+   "reason": "UK term brackets"
+  },
+  {
+   "segment_id": "p14_s21",
+   "translation": "¥?",
+   "reason": "yuan written as ¥"
+  },
+  {
+   "segment_id": "p14_s25",
+   "translation": "¥?",
+   "reason": "yuan written as ¥"
+  },
+  {
+   "segment_id": "p14_s12",
+   "translation": "How much more is ⟦0⟧ pencil case than ⟦1⟧ pencil box?",
+   "reason": "shorter so it fits"
+  },
+  {
+   "segment_id": "p16_s11",
+   "translation": "From different positions, you see different faces…",
+   "reason": "dangling modifier"
+  },
+  {
+   "segment_id": "p16_s16",
+   "box": [52, 496.6, 92, 511.9],
+   "reason": "name set at 0.52"
+  },
+  {
+   "segment_id": "p10_s8",
+   "translation": "(1) How much cheaper is each box in a case than a single box?",
+   "box": [73, 193.6, 346, 208.1],
+   "reason": "enumerator (1) missing; box kept clear of the girl's skirt (365 put the ? on it)"
+  },
+  {
+   "segment_id": "p13_s3",
+   "translation": "42 people in all.",
+   "box": [386, 72, 446, 88],
+   "reason": "counted noun"
+  },
+  {
+   "segment_id": "p13_s3",
+   "erase": [[382, 76, 393, 86]],
+   "reason": "leftover 一 of 一共"
+  },
+  {
+   "segment_id": "p13_s10",
+   "translation": "(1) Uncle Li has ¥⟦0⟧. He buys ⟦1⟧ bag of rice. How many bags of noodles can he buy with the money left?\n(2) Taoqi bought ⟦2⟧ cups of noodles and ⟦3⟧ bottle of juice for ¥⟦4⟧ in all. How much is a bottle of juice?",
+   "reason": "two questions: enumerators (1) (2) missing"
+  },
+  {
+   "segment_id": "p15_s5",
+   "translation": "⟦0⟧",
+   "reason": "sign too small for a noun; the animal holding it shows what is counted (rabbits)"
+  },
+  {
+   "segment_id": "p15_s6",
+   "translation": "⟦0⟧",
+   "reason": "sign too small for a noun; the animal holding it shows what is counted (monkeys)"
+  },
+  {
+   "segment_id": "p15_s7",
+   "translation": "⟦0⟧",
+   "reason": "sign too small for a noun; the animal holding it shows what is counted (dogs; \"(birds)\" was wrong)"
+  },
+  {
+   "segment_id": "p16_s14",
+   "box": [158, 468, 208, 492.1],
+   "reason": "name set at 0.47"
+  },
+  {
+   "segment_id": "p9_s1",
+   "erase": [[180, 124, 199, 134]],
+   "reason": "leftover source dots of …… after the bubble text"
+  },
+  {
+   "segment_id": "p12_s3",
+   "box": [81.6, 163, 464.9, 187],
+   "reason": "set at 0.64 on one line; room for two lines between the buses and the bubbles"
+  },
+  {
+   "segment_id": "p14_s23",
+   "box": [314, 248.6, 356, 259],
+   "reason": "label sat on the brace over the pencil-case bar"
+  },
+  {
+   "restore": [319, 259.3, 352, 264.9],
+   "page": 14,
+   "reason": "brace over the pencil-case bar erased with 每个10元"
+  },
+  {
+   "paint": [58.9, 496.8, 62.3, 511],
+   "page": 16,
+   "colour": [114, 203, 236],
+   "reason": "left blue frame border erased with 妙想"
+  },
+  {
+   "paint": [161, 476.3, 195, 481.0],
+   "page": 16,
+   "colour": [120, 210, 247],
+   "reason": "top blue frame band erased with 笑笑"
+  }
+ ],
+ "flags": [
+  {
+   "page": 11,
+   "issue": "酸奶 label on the yoghurt carton (p10_i40_4) is too small for English (renders at scale 0.4); kept in Chinese"
+  },
+  {
+   "page": 14,
+   "issue": "In question 5 the (3) line (p13_s13) is set larger than the (1)/(2) text above it (p13_s10); widening p13_s10's box to x0=262 does not move the text, because the kept 1）/(2) number lines (p13_i52_13, p13_i52_16) block the left strip"
+  },
+  {
+   "page": 12,
+   "issue": "The unit label （条） after the last answer box (p11_i44_29) is dropped by the volume's unit-after-answer-box rule, so the line reads only '= □'"
+  }
+ ]
+}

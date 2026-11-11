@@ -1,0 +1,666 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p57_s0",
+   "translation": "Fun Fair",
+   "reason": "shorter title so it can be set larger"
+  },
+  {
+   "segment_id": "p57_s11",
+   "translation": "Too easy! We learned this last lesson.",
+   "reason": "dropped ⟦0⟧: OCR noise '228.15.0'; natural phrasing"
+  },
+  {
+   "segment_id": "p57_s12",
+   "translation": "The first two are right, but the third is wrong.",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p57_s15",
+   "translation": "How much is it for ⟦0⟧ people to ride the spaceship?",
+   "reason": "natural question"
+  },
+  {
+   "segment_id": "p57_s22",
+   "translation": "How much is it for ⟦0⟧ people to ride the electric train?",
+   "reason": "natural question"
+  },
+  {
+   "segment_id": "p57_s21",
+   "erase": [
+    [
+     260,
+     503,
+     273,
+     517
+    ]
+   ],
+   "reason": "Chinese full stop after answer line"
+  },
+  {
+   "segment_id": "p57_s24",
+   "erase": [
+    [
+     260,
+     659,
+     273,
+     673
+    ]
+   ],
+   "reason": "Chinese full stop after answer line"
+  },
+  {
+   "segment_id": "p59_s3",
+   "translation": "Talk about it: what maths questions can you ask?",
+   "reason": "British maths"
+  },
+  {
+   "segment_id": "p59_s13",
+   "erase": [
+    [
+     260,
+     474,
+     273,
+     487
+    ]
+   ],
+   "reason": "Chinese full stop after answer line"
+  },
+  {
+   "segment_id": "p59_s21",
+   "erase": [
+    [
+     260,
+     659,
+     273,
+     673
+    ]
+   ],
+   "reason": "Chinese full stop after answer line"
+  },
+  {
+   "segment_id": "p60_s2",
+   "translation": "These are my mushrooms.",
+   "reason": "shorter, was shrunk to 0.71"
+  },
+  {
+   "segment_id": "p60_s6",
+   "translation": "⟦0⟧",
+   "reason": "basket label: number only, like the other baskets; was left in Chinese"
+  },
+  {
+   "segment_id": "p60_s7",
+   "translation": "⟦0⟧",
+   "reason": "basket label: number only; was left in Chinese"
+  },
+  {
+   "segment_id": "p60_s8",
+   "translation": "⟦0⟧",
+   "reason": "basket label: number only; was left in Chinese"
+  },
+  {
+   "segment_id": "p60_s9",
+   "translation": "⟦0⟧",
+   "reason": "basket of mushrooms, not trees (木 is OCR for 个)"
+  },
+  {
+   "segment_id": "p60_s10",
+   "translation": "⟦0⟧",
+   "reason": "basket of mushrooms, not trees"
+  },
+  {
+   "segment_id": "p60_s11",
+   "translation": "Talk about it: what maths questions can you ask? Try to answer them.",
+   "reason": "British maths"
+  },
+  {
+   "segment_id": "p60_s23",
+   "translation": "⟦0⟧. The forest doctor.",
+   "reason": "article"
+  },
+  {
+   "segment_id": "p60_s26",
+   "translation": "14 students and 1 teacher from Class 3 (2) came.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p60_s28",
+   "translation": "15 students and 1 teacher from Class 3 (1) came.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p60_s30",
+   "translation": "(1) What maths information can you get from the picture? What questions can you ask?",
+   "box": [
+    73.7,
+    589.3,
+    465.0,
+    602.6
+   ],
+   "reason": "enumerator (1) was missing; box widened to the free line; shortened so it stays in the text column"
+  },
+  {
+   "segment_id": "p60_s2",
+   "box": [
+    134,
+    123,
+    230,
+    141
+   ],
+   "reason": "use the whole bubble"
+  },
+  {
+   "split": "p61_s15",
+   "translations": [
+    "Train",
+    "115 km per hour",
+    "Grandma's"
+   ],
+   "reason": "the three hand-drawn labels are different texts: train speed in diagram 2, Grandma's in diagram 3"
+  },
+  {
+   "split": "p61_s16",
+   "translations": [
+    "Bus",
+    "45 km per hour"
+   ],
+   "reason": "two-line label, keep layout like the train label"
+  },
+  {
+   "segment_id": "p61_s14",
+   "translation": "New Station (change)",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p61_s22",
+   "translation": "How many kilometres is it from Taoqi's home to Grandma's in total?",
+   "reason": "shorter, more natural"
+  },
+  {
+   "segment_id": "p61_s26",
+   "erase": [
+    [
+     440,
+     650,
+     454,
+     663
+    ]
+   ],
+   "reason": "Chinese full stop after answer line"
+  },
+  {
+   "segment_id": "p62_s2",
+   "translation": "Train: ⟦0⟧ km per hour. Bus: ⟦1⟧ km per hour.",
+   "reason": "clearer bubble"
+  },
+  {
+   "split": "p62_s3",
+   "translations": [
+    "(1) What maths information do you know?",
+    "Old Town",
+    "Talk about it and draw it."
+   ],
+   "reason": "map label 古城 was joined into the question"
+  },
+  {
+   "segment_id": "p62_s5",
+   "translation": "(⟦0⟧) How far is it from Guangming to New Town?",
+   "reason": "complete question, short enough to set near full size",
+   "box": [
+    258.0,
+    215.7,
+    468.0,
+    231.6
+   ]
+  },
+  {
+   "segment_id": "p62_s8",
+   "translation": "⟦0⟧. Calculate using the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "merge": [
+    "p62_s15",
+    "p62_s17"
+   ],
+   "translation": "(1) Grade 3 students fill 5 rows downstairs, with 9 left over. How many students are there in Grade 3?",
+   "reason": "one question split by OCR; enumerator (1) was missing; 'students' as in (2)"
+  },
+  {
+   "segment_id": "p62_s15",
+   "box": [
+    287.4,
+    341.9,
+    465.7,
+    403.4
+   ],
+   "reason": "start at the enumerator position like (2)"
+  },
+  {
+   "segment_id": "p62_s19",
+   "translation": "⟦0⟧. Uncle Zhang lives in Beijing. At Spring Festival he goes home to Qingdao by train, via Tianjin and Jinan.",
+   "reason": "shorter so it does not run into the table"
+  },
+  {
+   "split": "p62_s20",
+   "translations": [
+    "Beijing–Tianjin",
+    "Beijing–Jinan",
+    "Jinan–Qingdao"
+   ],
+   "reason": "table cells, one per row"
+  },
+  {
+   "split": "p62_s21",
+   "translations": [
+    "122 km",
+    "426 km",
+    "393 km"
+   ],
+   "reason": "table cells, one per row; 122 km was missing"
+  },
+  {
+   "segment_id": "p62_s22",
+   "translation": "Beijing",
+   "reason": "dropped ⟦0⟧: OCR noise '248.32.0' (map dot)"
+  },
+  {
+   "segment_id": "p63_s2",
+   "translation": "⟦1⟧ added ⟦0⟧ times makes 0, so ⟦2⟧.",
+   "erase": [
+    [
+     215,
+     127,
+     230,
+     139.5
+    ]
+   ],
+   "box": [
+    137,
+    126,
+    233,
+    153
+   ],
+   "reason": "leftover '0，' of the first line erased and now said in English; use the whole bubble; erase and box kept off the bubble outline"
+  },
+  {
+   "segment_id": "p63_s7",
+   "translation": "⟦0⟧ times any number is ⟦1⟧.",
+   "box": [
+    180,
+    191,
+    314,
+    209
+   ],
+   "reason": "shorter, fits one line in the pink banner"
+  },
+  {
+   "segment_id": "p63_s8",
+   "translation": "Here are some calculations with ⟦0⟧. Work them out using the column method.",
+   "box": [
+    79.4,
+    230.7,
+    465.0,
+    245.5
+   ],
+   "reason": "竖式 = column method; free line to the right"
+  },
+  {
+   "segment_id": "p63_s15",
+   "translation": "0 times any number is 0, and ⟦0⟧ plus any number…",
+   "erase": [
+    [
+     334,
+     554,
+     342,
+     564
+    ],
+    [
+     415,
+     554,
+     429.5,
+     566
+    ]
+   ],
+   "reason": "leftover '0' and '，' of the first line erased; 0 now in the English; erases and box kept off the bubble outline (inside of the bubble)",
+   "box": [
+    334,
+    553,
+    428,
+    581
+   ]
+  },
+  {
+   "segment_id": "p64_s1",
+   "translation": "⟦0⟧. Use examples to explain why ⟦1⟧ times any number is ⟦2⟧.",
+   "reason": "consistent with the lesson rule"
+  },
+  {
+   "segment_id": "p64_s2",
+   "translation": "⟦0⟧. Calculate using the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p64_s12",
+   "translation": "(⟦0⟧) The puppy takes a letter from the post office to the fox. At least how many metres must it walk there and back?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p64_s17",
+   "translation": "(⟦0⟧) The puppy takes a letter to the fox, then one to the squirrel, then goes back to the post office. At least how many metres must it walk?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p64_s13",
+   "translation": "BLANK",
+   "reason": "tiny sign on the building, too small for English; the label beside it says Post office"
+  },
+  {
+   "segment_id": "p64_s19",
+   "translation": "⟦0⟧.",
+   "reason": "the circle follows; instruction set after it"
+  },
+  {
+   "segment_id": "p64_s20",
+   "translation": "Write \">\", \"<\"",
+   "reason": "instruction around the circle"
+  },
+  {
+   "segment_id": "p64_s21",
+   "translation": "or \"=\" in each circle.",
+   "box": [
+    192,
+    425.2,
+    320,
+    441.1
+   ],
+   "reason": "completes the instruction; free paper to the right"
+  },
+  {
+   "split": "p64_s28",
+   "translations": [
+    "Type",
+    "Insects",
+    "Plants"
+   ],
+   "reason": "three table cells"
+  },
+  {
+   "split": "p64_s29",
+   "at": [
+    204
+   ],
+   "translations": [
+    "Class 3 (1)",
+    "Class 3 (2)"
+   ],
+   "reason": "two header cells"
+  },
+  {
+   "segment_id": "p64_s30",
+   "translation": "Class 3 (⟦0⟧)",
+   "box": [
+    272,
+    556.4,
+    336,
+    568.9
+   ],
+   "reason": "C was hidden; keep inside its cell"
+  },
+  {
+   "segment_id": "p64_s31",
+   "box": [
+    340,
+    556.4,
+    402,
+    568.9
+   ],
+   "reason": "keep inside its cell"
+  },
+  {
+   "segment_id": "p64_s15",
+   "translation": "Fox",
+   "reason": "short label fits inside its frame (the house shows the home)"
+  },
+  {
+   "segment_id": "p64_s18",
+   "translation": "Squirrel",
+   "reason": "was 0.53; short label fits inside its frame"
+  },
+  {
+   "segment_id": "p64_s14",
+   "box": [
+    302.5,
+    233.5,
+    351,
+    245
+   ],
+   "reason": "label frame widened to the right (paint fixes) so Post office fits inside"
+  },
+  {
+   "restore": [
+    463,
+    247,
+    467,
+    263
+   ],
+   "page": 64,
+   "reason": "right border of the fox label frame was erased"
+  },
+  {
+   "segment_id": "p61_s6",
+   "erase": [
+    [
+     241,
+     229,
+     257,
+     243
+    ]
+   ],
+   "reason": "leftover stroke of 米 showed behind 'hour'"
+  },
+  {
+   "segment_id": "p61_s4",
+   "box": [
+    268,
+    192,
+    359.5,
+    205
+   ],
+   "reason": "keep the bus label left of the red bus route"
+  },
+  {
+   "segment_id": "p61_s5",
+   "box": [
+    318,
+    208,
+    355.5,
+    226
+   ],
+   "reason": "keep New Station left of the red bus route"
+  },
+  {
+   "restore": [
+    362.5,
+    186,
+    368,
+    195.5
+   ],
+   "page": 61,
+   "reason": "red bus route above the bus label (checked edition had it)"
+  },
+  {
+   "restore": [
+    360.6,
+    195.5,
+    365.8,
+    207.5
+   ],
+   "page": 61,
+   "reason": "red bus route through the bus label line, clear of the old 行 and 4"
+  },
+  {
+   "restore": [
+    356,
+    207,
+    365.2,
+    225
+   ],
+   "page": 61,
+   "reason": "red bus route erased with the New Station label"
+  },
+  {
+   "segment_id": "p61_s11",
+   "box": [
+    238,
+    369.4,
+    264,
+    382.4
+   ],
+   "reason": "keep Taoqi's left of the oval's tip"
+  },
+  {
+   "restore": [
+    265,
+    365,
+    300,
+    386
+   ],
+   "page": 61,
+   "reason": "left end of the big oval in diagram 2 was erased"
+  },
+  {
+   "restore": [
+    394,
+    369,
+    423.5,
+    383.5
+   ],
+   "page": 61,
+   "reason": "small oval (bus part) in diagram 2 was erased"
+  },
+  {
+   "segment_id": "p61_s10",
+   "box": [
+    181,
+    359,
+    214,
+    372
+   ],
+   "reason": "keep Grandma's right of the route end"
+  },
+  {
+   "restore": [
+    157,
+    361,
+    180,
+    382
+   ],
+   "page": 61,
+   "reason": "end of the route to Grandma's and its dot in diagram 1 were erased"
+  },
+  {
+   "paint": [
+    335.7,
+    233.2,
+    337.2,
+    244.9
+   ],
+   "page": 64,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "old right border of the Post office frame"
+  },
+  {
+   "paint": [
+    336.8,
+    232.2,
+    352.5,
+    233.1
+   ],
+   "page": 64,
+   "colour": [
+    40,
+    40,
+    40
+   ],
+   "reason": "Post office frame top border extended"
+  },
+  {
+   "paint": [
+    336.8,
+    245.0,
+    352.5,
+    245.9
+   ],
+   "page": 64,
+   "colour": [
+    40,
+    40,
+    40
+   ],
+   "reason": "Post office frame bottom border extended"
+  },
+  {
+   "paint": [
+    351.6,
+    232.2,
+    352.5,
+    245.9
+   ],
+   "page": 64,
+   "colour": [
+    40,
+    40,
+    40
+   ],
+   "reason": "Post office frame new right border"
+  },
+  {
+   "restore": [
+    336,
+    252,
+    398,
+    293
+   ],
+   "page": 64,
+   "reason": "road post office-fox, the 150 m frame, the fox's island edge and the top of the right road were erased"
+  },
+  {
+   "paint": [
+    343.6,
+    268.2,
+    376.4,
+    279.0
+   ],
+   "page": 64,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "clear the Chinese 150米 inside its restored frame; 150 m is set there"
+  }
+ ],
+ "flags": [
+  {
+   "page": 62,
+   "issue": "Hand-lettered slanted label 2时汽车 ('2 h bus') in the third pupil diagram stays in Chinese (slanted, cannot be set)."
+  },
+  {
+   "page": 63,
+   "issue": "Map labels New Town and Guangming are set very small (0.53) on the busy map; no free paper next to them without covering the railway."
+  },
+  {
+   "page": 65,
+   "issue": "Slanted distance labels 180米 on the two roads keep the Chinese unit 米 (slanted text)."
+  },
+  {
+   "page": 62,
+   "issue": "Third pupil diagram: the hand-drawn route line under '4 h train' is broken where the slanted 4时火车 was erased (same in the checked edition); a rectangle restore would bring the Chinese back."
+  }
+ ]
+}
