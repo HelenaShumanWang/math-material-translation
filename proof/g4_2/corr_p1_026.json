@@ -1,0 +1,310 @@
+{
+ "corrections": [
+  {
+   "merge": [
+    "p25_s2",
+    "p25_s3"
+   ],
+   "translation": "Xiaoxiao sorted them like this. Do you know why? Talk with a partner and name them.",
+   "reason": "one sentence split over two lines at different sizes"
+  },
+  {
+   "segment_id": "p25_s7",
+   "box": [
+    77.1,
+    513.1,
+    480,
+    526.7
+   ],
+   "reason": "shrunk; free paper to the right"
+  },
+  {
+   "split": "p26_s3",
+   "translations": [
+    "Figures",
+    "are isosceles, figures",
+    "are equilateral,",
+    "Figures",
+    "are right-angled, figures",
+    "are obtuse,",
+    "Figures"
+   ],
+   "reason": "set each piece between the printed answer lines"
+  },
+  {
+   "segment_id": "p26_s4",
+   "translation": "are acute.",
+   "reason": "plural, matches figures"
+  },
+  {
+   "split": "p27_s5",
+   "translations": [
+    "Group ___",
+    "Angle sum"
+   ],
+   "reason": "group label above table and column header are separate"
+  },
+  {
+   "segment_id": "p27_s6",
+   "translation": "Members' names",
+   "reason": "wrongly included next header; left in Chinese"
+  },
+  {
+   "segment_id": "p27_s7",
+   "translation": "Triangle shape",
+   "reason": "shorter header"
+  },
+  {
+   "segment_id": "p27_s4",
+   "translation": "Group activity record sheet",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p27_s9",
+   "box": [
+    78.5,
+    360.0,
+    330,
+    372.5
+   ],
+   "reason": "wraps; free paper right"
+  },
+  {
+   "segment_id": "p27_s11",
+   "translation": "In fact, the three angles of a triangle add up to exactly ⟦0⟧. Measurements are just not exact...",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p28_s3",
+   "translation": "DROP",
+   "reason": "OCR noise of handwritten 180°-60°-40°=80°"
+  },
+  {
+   "segment_id": "p28_s10",
+   "translation": "⟦0⟧. As shown, two identical set squares make a quadrilateral and a triangle.",
+   "reason": "UK term set square; shorter to fit"
+  },
+  {
+   "segment_id": "p28_s11",
+   "translation": "⟦0⟧ Think: what is the angle sum of each shape? Tell a partner how you worked it out.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p28_s12",
+   "translation": "(⟦0⟧) Measure, then work out each angle sum.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p28_s13",
+   "translation": "⟦0⟧. Cut a rectangular piece of paper, then fill in.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p29_s4",
+   "translation": "⟦0⟧. Find the size of each angle below.",
+   "reason": "shorter; one line over free paper",
+   "box": [
+    57.8,
+    339.6,
+    330,
+    352.6
+   ]
+  },
+  {
+   "segment_id": "p29_s11",
+   "translation": "Challenge yourself: explore the angle sum of a quadrilateral.",
+   "reason": "shorter, one line"
+  },
+  {
+   "segment_id": "p30_s1",
+   "translation": "Make triangles with sticks. Which sets below work? Which don't? Discuss with a partner.",
+   "reason": "shorter to fit at full size"
+  },
+  {
+   "segment_id": "p30_s9",
+   "translation": "It's flat - no triangle?",
+   "box": [
+    222,
+    371,
+    306,
+    386
+   ],
+   "reason": "dropped ⟦0⟧: OCR noise of bubble outline; shorter; kept inside the bubble"
+  },
+  {
+   "segment_id": "p30_s19",
+   "translation": "Any two sides of a triangle add up to more than the third.",
+   "box": [
+    158,
+    651.5,
+    372,
+    665
+   ],
+   "reason": "one line across the banner"
+  },
+  {
+   "segment_id": "p31_s8",
+   "translation": "(⟦0⟧ sticks: can they make a triangle? What kind of triangle is it?",
+   "reason": "natural question"
+  },
+  {
+   "split": "p31_s10",
+   "translations": [
+    "Number of sticks",
+    "Triangle possible?"
+   ],
+   "reason": "two table row headers"
+  },
+  {
+   "segment_id": "p31_s11",
+   "translation": "Kind of triangle",
+   "reason": "table header"
+  },
+  {
+   "segment_id": "p32_s3",
+   "translation": "My way:",
+   "reason": "shrunk to 0.56 in small bubble"
+  },
+  {
+   "split": "p32_s4",
+   "translations": [
+    "Group A shapes have two pairs of parallel sides. They are all parallelograms.",
+    "Group B shapes have just one pair of parallel sides. They are all trapeziums."
+   ],
+   "reason": "two sentences on two lines; UK trapezium"
+  },
+  {
+   "segment_id": "p32_s5",
+   "translation": "Which figures below are parallelograms? Which are trapeziums? Find and fill in.",
+   "reason": "UK term"
+  },
+  {
+   "split": "p32_s7",
+   "translations": [
+    "Figures ①",
+    "Figures"
+   ],
+   "reason": "two answer lines"
+  },
+  {
+   "split": "p32_s8",
+   "translations": [
+    "are parallelograms.",
+    "are trapeziums."
+   ],
+   "reason": "two answer lines"
+  },
+  {
+   "segment_id": "p26_s3_k0",
+   "box": [
+    56,
+    211.5,
+    107,
+    226
+   ],
+   "reason": "room left of the pre-filled 4"
+  },
+  {
+   "segment_id": "p26_s3_k3",
+   "box": [
+    56,
+    230,
+    103,
+    244
+   ],
+   "reason": "keep off the answer line"
+  },
+  {
+   "segment_id": "p26_s3_k6",
+   "box": [
+    56,
+    248,
+    103,
+    262
+   ],
+   "reason": "keep off the answer line"
+  },
+  {
+   "segment_id": "p32_s4_k0",
+   "box": [
+    79,
+    321,
+    446,
+    338
+   ],
+   "reason": "use the whole pink panel"
+  },
+  {
+   "segment_id": "p32_s4_k1",
+   "box": [
+    79,
+    342,
+    446,
+    358
+   ],
+   "reason": "use the whole pink panel"
+  },
+  {
+   "segment_id": "p32_s4_k0",
+   "erase": [
+    [
+     361,
+     319,
+     379,
+     337
+    ]
+   ],
+   "reason": "leftover red 平 stroke"
+  },
+  {
+   "segment_id": "p32_s4_k1",
+   "erase": [
+    [
+     343,
+     341,
+     361,
+     359
+    ],
+    [
+     291,
+     341,
+     301,
+     359
+    ]
+   ],
+   "reason": "leftover red 梯 and stroke"
+  },
+  {
+   "segment_id": "p27_s3",
+   "translation": "Group activity: everyone prepares a triangle. Measure and fill in.",
+   "box": [
+    78,
+    210.3,
+    470,
+    224.5
+   ],
+   "reason": "shrunk; free paper to the right; natural wording"
+  },
+  {
+   "segment_id": "p26_s3_k4",
+   "box": [
+    167,
+    230,
+    290,
+    244
+   ],
+   "reason": "keep 'figures' off the answer line"
+  },
+  {
+   "segment_id": "p32_s7_k1",
+   "box": [
+    74,
+    535,
+    112,
+    550
+   ],
+   "reason": "keep 'Figures' off the answer line"
+  }
+ ],
+ "flags": []
+}

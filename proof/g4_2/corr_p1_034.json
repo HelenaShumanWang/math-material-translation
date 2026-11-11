@@ -1,0 +1,351 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s1",
+   "translation": "⟦0⟧. Sort the shapes below and share your method with a partner. Cut out the shapes in Appendix ⟦1⟧, Figure ⟦2⟧ and try it.",
+   "reason": "comma in reference; placeholders"
+  },
+  {
+   "segment_id": "p33_s3",
+   "translation": "Parallelogram",
+   "reason": "capitalise like sibling labels"
+  },
+  {
+   "segment_id": "p33_s5",
+   "translation": "Triangle",
+   "reason": "capitalise like sibling labels"
+  },
+  {
+   "segment_id": "p33_s12",
+   "translation": "Which two shapes below can make a rectangle, a parallelogram or a trapezoid?\nCut out the shapes in Appendix ⟦0⟧, Figure ⟦1⟧ and try.",
+   "reason": "stray fragment 'Which two shapes' belongs to the bubble; line break keeps it clear of the bubble"
+  },
+  {
+   "segment_id": "p33_s13",
+   "translation": "Which two shapes can make both a parallelogram and a trapezoid?",
+   "reason": "bubble is a complete question on its own"
+  },
+  {
+   "segment_id": "p34_s3",
+   "box": [
+    59.8,
+    238.4,
+    440.0,
+    252.0
+   ],
+   "reason": "wraps in a tight box; free paper to the right"
+  },
+  {
+   "split": "p34_s10",
+   "translations": [
+    "Two right triangles: Figure",
+    "Two obtuse triangles: Figure",
+    "A right and an acute triangle: Figure"
+   ],
+   "reason": "three separate fill-in lines; short enough to end before each printed answer line"
+  },
+  {
+   "merge": [
+    "p35_s9",
+    "p35_s10"
+   ],
+   "translation": "1 triangle needs 3 sticks, 2 triangles need 5 sticks, so 5 triangles need (      ) sticks.",
+   "reason": "one sentence split in two overlapping paragraphs"
+  },
+  {
+   "segment_id": "p35_s17",
+   "translation": "What quadrilateral has right angles and two pairs of parallel opposite sides?",
+   "reason": "natural question form"
+  },
+  {
+   "segment_id": "p35_s18",
+   "translation": "What quadrilateral has right angles and only one pair of parallel opposite sides?",
+   "reason": "natural question form"
+  },
+  {
+   "segment_id": "p36_s1",
+   "translation": "Buying Stationery",
+   "reason": "lesson title"
+  },
+  {
+   "segment_id": "p36_s7",
+   "translation": "Adding ⟦0⟧ lots of ¥⟦1⟧ gives ¥⟦2⟧.",
+   "reason": "'copies' unnatural"
+  },
+  {
+   "segment_id": "p36_s9",
+   "translation": "⟦0⟧ (jiao),",
+   "reason": "角 is jiao, not yuan"
+  },
+  {
+   "segment_id": "p36_s13",
+   "box": [
+    79.4,
+    355.5,
+    300.0,
+    371.9
+   ],
+   "erase": [
+    [
+     258,
+     357,
+     268,
+     369
+    ]
+   ],
+   "reason": "wraps in tight box; erase leftover question mark"
+  },
+  {
+   "merge": [
+    "p36_s16",
+    "p36_s17"
+   ],
+   "translation": "0.2 is 2 lots of 0.1, so 4 lots of 0.2 is 8 lots of 0.1, which is 0.8.",
+   "reason": "one sentence in one bubble, second half set too small"
+  },
+  {
+   "merge": [
+    "p36_s21",
+    "p36_s27"
+   ],
+   "translation": "0.4 is 4 lots of 0.1, so 3 lots of 0.4 is 12 lots of 0.1, which is 1.2.",
+   "reason": "one sentence in one bubble; missing link word"
+  },
+  {
+   "segment_id": "p37_s14",
+   "translation": "⟦0⟧. Colour and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "merge": [
+    "p37_s18",
+    "p37_s19"
+   ],
+   "translation": "What does 0.01 × 1000 equal?",
+   "reason": "one question split over two lines"
+  },
+  {
+   "segment_id": "p37_s23",
+   "translation": "I bought ⟦0⟧ kg of coriander.",
+   "reason": "British term"
+  },
+  {
+   "segment_id": "p38_s1",
+   "translation": "Too pricey!",
+   "reason": "scale 0.55: shorter"
+  },
+  {
+   "segment_id": "p38_s2",
+   "translation": "Ant Café",
+   "reason": "consistent with the other signs"
+  },
+  {
+   "segment_id": "p38_s11",
+   "translation": "DROP",
+   "reason": "OCR noise"
+  },
+  {
+   "segment_id": "p38_s13",
+   "translation": "Prices up!",
+   "reason": "scale 0.55: shorter"
+  },
+  {
+   "segment_id": "p38_s15",
+   "translation": "Moving a number's decimal point one place right gives ⟦0⟧ times the number; moving it two places...",
+   "reason": "garbled words from a misread column"
+  },
+  {
+   "segment_id": "p38_s16",
+   "translation": "BLANK",
+   "reason": "duplicate read of the first characters of the bubble's lines"
+  },
+  {
+   "split": "p38_s17",
+   "translations": [
+    "One place right",
+    "Two places right"
+   ],
+   "reason": "two separate lines"
+  },
+  {
+   "segment_id": "p38_s18",
+   "translation": "¥⟦0⟧ ⟦1⟧ fen\n¥⟦2⟧ ⟦3⟧ jiao\n¥⟦4⟧ ⟦5⟧ yuan",
+   "reason": "doubled '=' and lost line breaks"
+  },
+  {
+   "segment_id": "p38_s19",
+   "translation": "T   O   t   h",
+   "reason": "column labels tens, ones, tenths, hundredths; was wrong"
+  },
+  {
+   "segment_id": "p38_s22",
+   "translation": "It gets bigger.",
+   "reason": "scale 0.57: shorter"
+  },
+  {
+   "split": "p38_s28",
+   "translations": [
+    "Moving a number's decimal point one place left multiplies it by (",
+    "Moving a number's decimal point two places left multiplies it by (      )."
+   ],
+   "reason": "two separate fill-in lines"
+  },
+  {
+   "segment_id": "p38_s30",
+   "translation": "Give another example of how moving the decimal point changes a decimal.",
+   "reason": "shorter so it does not wrap into the picture"
+  },
+  {
+   "segment_id": "p38_s31",
+   "translation": "⟦0⟧ m ⟦1⟧ cm,\n⟦2⟧ m ⟦3⟧ dm,\n⟦4⟧ m ⟦5⟧ m,\nthe point moves right…",
+   "reason": "keep the list lines; ellipsis set in the text, leftover dots erased",
+   "erase": [
+    [
+     221,
+     648,
+     245,
+     663
+    ]
+   ]
+  },
+  {
+   "segment_id": "p38_s32",
+   "translation": "¥⟦0⟧ ⟦1⟧ yuan,\n¥⟦2⟧ ⟦3⟧ jiao,\n¥⟦4⟧ ⟦5⟧ fen,\nthe point moves left…",
+   "reason": "keep the list lines; ellipsis set in the text, leftover dot erased",
+   "erase": [
+    [
+     366,
+     649,
+     391,
+     663
+    ]
+   ]
+  },
+  {
+   "segment_id": "p39_s15",
+   "erase": [
+    [
+     389,
+     322,
+     401,
+     335
+    ]
+   ],
+   "reason": "leftover 只 beside the fraction"
+  },
+  {
+   "segment_id": "p39_s21",
+   "translation": "⟦0⟧. Fill in the blanks.",
+   "reason": "complete instruction"
+  },
+  {
+   "segment_id": "p39_s26",
+   "translation": "(      )",
+   "reason": "reads 0.2 is 2 × (  )"
+  },
+  {
+   "segment_id": "p39_s28",
+   "translation": "(      )",
+   "reason": "reads ¥0.5 is ¥0.05 × (  )"
+  },
+  {
+   "segment_id": "p39_s32",
+   "translation": "(      )",
+   "reason": "reads ¥5 is ¥0.05 × (  )"
+  },
+  {
+   "segment_id": "p39_s34",
+   "translation": "(      )",
+   "reason": "reads 0.02 is 2 × (  )"
+  },
+  {
+   "merge": [
+    "p39_s35",
+    "p39_s41"
+   ],
+   "translation": "When the decimal point of 0.5 moves one place right, 5 lots of 0.1 become 5 lots of 1, so 5 is 10 times 0.5.",
+   "reason": "one sentence; '0.5 × 10 times as much' was wrong"
+  },
+  {
+   "segment_id": "p40_s7",
+   "translation": "(⟦0⟧) A newborn baby is about ⟦1⟧ times as tall as the dwarf willow. How tall is a newborn baby, in metres?\n(⟦2⟧) The King of Cypresses, in Bajie Village, Nyingchi County, Tibet, is about ⟦3⟧ years old. It is ⟦4⟧ times as tall as the dwarf willow. How tall is this cypress, in metres?",
+   "reason": "(2) must start a new line; metres; missing bracket"
+  },
+  {
+   "segment_id": "p40_s25",
+   "translation": "Unit price/yuan",
+   "reason": "sentence case"
+  },
+  {
+   "segment_id": "p40_s26",
+   "translation": "Total price/yuan",
+   "reason": "sentence case"
+  },
+  {
+   "split": "p40_s27",
+   "translations": [
+    "Skipping rope",
+    "Pencil case",
+    "School bag",
+    "Eraser"
+   ],
+   "reason": "table cells of one column; each on its own row"
+  },
+  {
+   "segment_id": "p40_s29",
+   "translation": "⟦0⟧",
+   "reason": "counted noun 'sticks' wrong for skipping ropes"
+  },
+  {
+   "segment_id": "p40_s33",
+   "translation": "⟦0⟧",
+   "reason": "'pieces' not allowed; row says erasers"
+  },
+  {
+   "restore": [
+    382,
+    512,
+    409,
+    544
+   ],
+   "page": 38,
+   "reason": "put back the fraction 1/10 and its closing bracket damaged by the erase of p38_s28"
+  },
+  {
+   "segment_id": "p38_s18",
+   "box": [
+    175.0,
+    272.0,
+    236.0,
+    306.0
+   ],
+   "reason": "explicit lines; box kept inside the note's border"
+  },
+  {
+   "segment_id": "p40_s6",
+   "translation": "⟦0⟧. The shortest tree in the world is the dwarf willow. It is usually only ⟦1⟧ m tall.",
+   "reason": "shorter so it is set at the size of the other instructions"
+  },
+  {
+   "segment_id": "p36_s10",
+   "translation": "⟦0⟧ jiao ⟦1⟧ yuan,\nthat is:",
+   "box": [
+    269.0,
+    273.8,
+    358.0,
+    302.5
+   ],
+   "reason": "'yuan' wrapped away from its number"
+  }
+ ],
+ "flags": [
+  {
+   "page": 39,
+   "issue": "p38_s23 (second green-dot question) is set as a heading at 0.69 over two lines, larger than the matching question p38_s14 and touching the dashed frames below; same kind of text should be the same size."
+  },
+  {
+   "page": 39,
+   "issue": "p38_s12 'So many customers!' is set at 0.66 in a very small bubble; no shorter wording keeps the meaning."
+  }
+ ]
+}

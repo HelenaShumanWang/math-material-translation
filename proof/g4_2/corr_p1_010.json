@@ -1,0 +1,1054 @@
+{
+ "corrections": [
+  {
+   "split": "p9_s10",
+   "translations": [
+    "means 2 × 1/10,",
+    "means 2 × 1/100,",
+    "means ( ) × ( )/( ),"
+   ],
+   "reason": "three separate lines; the fractions were erased"
+  },
+  {
+   "merge": [
+    "p9_s10_k0",
+    "p9_s11"
+   ],
+   "translation": "means 2 × 1/10, or 2 × 0.1.",
+   "reason": "one sentence: the line and its continuation"
+  },
+  {
+   "merge": [
+    "p9_s10_k1",
+    "p9_s13"
+   ],
+   "translation": "means 2 × 1/100, or (  ) × (  ).",
+   "reason": "one sentence"
+  },
+  {
+   "merge": [
+    "p9_s10_k2",
+    "p9_s14"
+   ],
+   "translation": "means ( ) × ( )/( ), or ( ) × ( ).",
+   "reason": "one sentence"
+  },
+  {
+   "segment_id": "p9_s10_k0",
+   "box": [
+    213,
+    349,
+    462,
+    368
+   ],
+   "reason": "same size as its sibling lines"
+  },
+  {
+   "segment_id": "p9_s10_k1",
+   "box": [
+    213,
+    375,
+    462,
+    394
+   ],
+   "reason": "same size as its sibling lines"
+  },
+  {
+   "segment_id": "p9_s10_k2",
+   "box": [
+    213,
+    401,
+    462,
+    421
+   ],
+   "reason": "room to the right inside the panel so the line does not wrap"
+  },
+  {
+   "add": "p9_a1",
+   "page": 9,
+   "box": [
+    67.5,
+    258,
+    86,
+    285
+   ],
+   "translation": "H",
+   "source": "百位",
+   "reason": "counting-frame label",
+   "size": 10
+  },
+  {
+   "add": "p9_a2",
+   "page": 9,
+   "box": [
+    88,
+    258,
+    106,
+    285
+   ],
+   "translation": "T",
+   "source": "十位",
+   "reason": "counting-frame label",
+   "size": 10
+  },
+  {
+   "split": "p9_s16",
+   "translations": [
+    "Integer part",
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "cells set one by one below"
+  },
+  {
+   "segment_id": "p9_s25",
+   "translation": "BLANK",
+   "reason": "cells set one by one below"
+  },
+  {
+   "segment_id": "p9_s21",
+   "translation": "BLANK",
+   "reason": "cells set one by one below"
+  },
+  {
+   "split": "p9_s22",
+   "translations": [
+    "BLANK",
+    "BLANK",
+    "BLANK"
+   ],
+   "reason": "cells set one by one below"
+  },
+  {
+   "segment_id": "p9_s20",
+   "translation": "BLANK",
+   "reason": "row labels set one by one below"
+  },
+  {
+   "add": "p9_a3",
+   "page": 9,
+   "box": [
+    58.5,
+    476,
+    72,
+    515.5
+   ],
+   "translation": "Place",
+   "source": "数位",
+   "reason": "row label",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a3_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a4",
+   "page": 9,
+   "box": [
+    58.5,
+    519,
+    72,
+    573.5
+   ],
+   "translation": "Counting unit",
+   "source": "计数单位",
+   "reason": "row label",
+   "size": 5.5
+  },
+  {
+   "segment_id": "p9_a4_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a5",
+   "page": 9,
+   "box": [
+    101.5,
+    476,
+    115,
+    515.5
+   ],
+   "translation": "TTh",
+   "source": "万位",
+   "size": 6.5,
+   "reason": "cell"
+  },
+  {
+   "add": "p9_a6",
+   "page": 9,
+   "box": [
+    117,
+    476,
+    130,
+    515.5
+   ],
+   "translation": "Th",
+   "source": "千位",
+   "size": 6.5,
+   "reason": "cell"
+  },
+  {
+   "add": "p9_a7",
+   "page": 9,
+   "box": [
+    132.5,
+    476,
+    146,
+    515.5
+   ],
+   "translation": "H",
+   "source": "百位",
+   "size": 6.5,
+   "reason": "cell"
+  },
+  {
+   "add": "p9_a8",
+   "page": 9,
+   "box": [
+    148.5,
+    476,
+    161,
+    515.5
+   ],
+   "translation": "T",
+   "source": "十位",
+   "size": 6.5,
+   "reason": "cell"
+  },
+  {
+   "add": "p9_a9",
+   "page": 9,
+   "box": [
+    163.5,
+    476,
+    176,
+    515.5
+   ],
+   "translation": "O",
+   "source": "个位",
+   "size": 6.5,
+   "reason": "cell"
+  },
+  {
+   "add": "p9_a10",
+   "page": 9,
+   "box": [
+    101.5,
+    519,
+    115,
+    573.5
+   ],
+   "translation": "10000",
+   "source": "万",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a10_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a11",
+   "page": 9,
+   "box": [
+    117,
+    519,
+    130,
+    573.5
+   ],
+   "translation": "1000",
+   "source": "千",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a11_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a12",
+   "page": 9,
+   "box": [
+    132.5,
+    519,
+    146,
+    573.5
+   ],
+   "translation": "100",
+   "source": "百",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a12_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a13",
+   "page": 9,
+   "box": [
+    148.5,
+    519,
+    161,
+    573.5
+   ],
+   "translation": "10",
+   "source": "十",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a13_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a14",
+   "page": 9,
+   "box": [
+    163.5,
+    519,
+    176,
+    573.5
+   ],
+   "translation": "1",
+   "source": "一（个）",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "add": "p9_a15",
+   "page": 9,
+   "box": [
+    219.5,
+    476,
+    232,
+    515.5
+   ],
+   "translation": "tenths",
+   "source": "十分位",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a15_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a16",
+   "page": 9,
+   "box": [
+    235,
+    476,
+    248,
+    515.5
+   ],
+   "translation": "hundredths",
+   "source": "百分位",
+   "reason": "cell",
+   "size": 5.5
+  },
+  {
+   "segment_id": "p9_a16_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a17",
+   "page": 9,
+   "box": [
+    250.5,
+    476,
+    263.5,
+    515.5
+   ],
+   "translation": "thousandths",
+   "source": "千分位",
+   "reason": "cell",
+   "size": 5.5
+  },
+  {
+   "segment_id": "p9_a17_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a18",
+   "page": 9,
+   "box": [
+    266.5,
+    476,
+    279,
+    515.5
+   ],
+   "translation": "ten-thousandths",
+   "source": "万分位",
+   "reason": "cell",
+   "size": 5.5
+  },
+  {
+   "segment_id": "p9_a18_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a19",
+   "page": 9,
+   "box": [
+    219.5,
+    519,
+    232,
+    573.5
+   ],
+   "translation": "1/10",
+   "source": "十分之一",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a19_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a20",
+   "page": 9,
+   "box": [
+    235,
+    519,
+    248,
+    573.5
+   ],
+   "translation": "1/100",
+   "source": "百分之一",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a20_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a21",
+   "page": 9,
+   "box": [
+    250.5,
+    519,
+    263.5,
+    573.5
+   ],
+   "translation": "1/1000",
+   "source": "千分之一",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a21_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "add": "p9_a22",
+   "page": 9,
+   "box": [
+    266.5,
+    519,
+    279,
+    573.5
+   ],
+   "translation": "1/10000",
+   "source": "万分之一",
+   "reason": "cell",
+   "size": 7
+  },
+  {
+   "segment_id": "p9_a22_p0",
+   "vertical": true,
+   "reason": "upright cell"
+  },
+  {
+   "segment_id": "p10_s11",
+   "box": [
+    59.2,
+    406.5,
+    360,
+    423
+   ],
+   "reason": "wraps one word onto the frames; free paper to the right"
+  },
+  {
+   "split": "p10_s16",
+   "translations": [
+    "(1) 0.4 has (",
+    "(2) In 14.24, the \"4\" in the ones place means"
+   ],
+   "reason": "two different questions joined"
+  },
+  {
+   "merge": [
+    "p10_s17",
+    "p10_s16_k0",
+    "p10_s18"
+   ],
+   "translation": "(1) There are (      ) 0.1s in 0.4, and (      ) 0.001s in 0.025.",
+   "reason": "one sentence split into three fragments"
+  },
+  {
+   "merge": [
+    "p10_s16_k1",
+    "p10_s19",
+    "p10_s20",
+    "p10_s22",
+    "p10_s23"
+   ],
+   "translation": "(2) In 14.24, the \"4\" in the ones place means (      ) × (      ), and the \"4\" in the hundredths place means (      ) × (      ).",
+   "reason": "one sentence split into five fragments that overlapped"
+  },
+  {
+   "add": "p10_a1",
+   "page": 10,
+   "box": [
+    151,
+    634,
+    207,
+    651
+   ],
+   "translation": "(      ) m",
+   "source": "（ ）米",
+   "reason": "blank and unit were erased with nothing set"
+  },
+  {
+   "add": "p10_a2",
+   "page": 10,
+   "box": [
+    269,
+    634,
+    324,
+    651
+   ],
+   "translation": "(      ) m",
+   "source": "（ ）米",
+   "reason": "blank and unit were erased with nothing set"
+  },
+  {
+   "add": "p10_a3",
+   "page": 10,
+   "box": [
+    269,
+    656,
+    324,
+    672
+   ],
+   "translation": "(      ) m",
+   "source": "（ ）米",
+   "reason": "blank and unit were erased with nothing set"
+  },
+  {
+   "segment_id": "p10_s17",
+   "box": [
+    74,
+    506,
+    430,
+    522
+   ],
+   "reason": "the merged sentence on one row, size of its sibling"
+  },
+  {
+   "segment_id": "p10_s16_k1",
+   "box": [
+    74,
+    527,
+    460,
+    568
+   ],
+   "erase": [
+    [
+     212,
+     546,
+     240,
+     569
+    ]
+   ],
+   "reason": "room for the whole sentence; erase the leftover ）。 of the source line"
+  },
+  {
+   "segment_id": "p11_s14",
+   "translation": "⟦0⟧. Fill",
+   "reason": "'5. In each' wrapped and shrank before the box icon; shorter wording that reads on with the icon"
+  },
+  {
+   "segment_id": "p11_s15",
+   "translation": "with a suitable fraction or decimal.",
+   "reason": "reads on from '5. Fill [box]'"
+  },
+  {
+   "split": "p12_s1",
+   "translations": [
+    "High jump",
+    "Name",
+    "Result (m)",
+    "Wang Hong",
+    "Li Na"
+   ],
+   "reason": "table title and cells were run together as prose over the numbers"
+  },
+  {
+   "split": "p12_s2",
+   "translations": [
+    "Long jump",
+    "Name",
+    "Result (m)",
+    "Zheng Qiang",
+    "Li Ming",
+    "Zhang Hua"
+   ],
+   "reason": "table title and cells were run together as prose over the numbers"
+  },
+  {
+   "segment_id": "p12_s1_k3",
+   "box": [
+    265.5,
+    153.5,
+    297.5,
+    171
+   ],
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p12_s2_k3",
+   "box": [
+    365.5,
+    153.5,
+    404.5,
+    171
+   ],
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p12_s2_k4",
+   "box": [
+    365.5,
+    173,
+    404.5,
+    190
+   ],
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p12_s2_k5",
+   "box": [
+    365.5,
+    192,
+    404.5,
+    209.5
+   ],
+   "reason": "use the whole cell"
+  },
+  {
+   "segment_id": "p12_s9",
+   "reason": "the line 0.8 > 0.69。 is erased with its Chinese full stop and set as the end of the sentence",
+   "translation": "⟦0⟧ m is ⟦1⟧ dm ⟦2⟧ cm,\n⟦3⟧ m is ⟦4⟧ dm,\nso 0.8 > 0.69.",
+   "box": [
+    103.5,
+    274,
+    232,
+    318
+   ],
+   "erase": [
+    [
+     152,
+     305,
+     163,
+     317
+    ]
+   ]
+  },
+  {
+   "segment_id": "p12_s14",
+   "erase": [
+    [
+     152,
+     380,
+     163,
+     392
+    ]
+   ],
+   "reason": "the line 0.8 > 0.69。 is erased with its Chinese full stop and set as the end of the sentence",
+   "translation": "⟦0⟧ is ⟦1⟧ × ⟦2⟧,\n⟦3⟧ is ⟦4⟧ × ⟦5⟧,\nso 0.8 > 0.69.",
+   "box": [
+    103,
+    345,
+    232,
+    392
+   ]
+  },
+  {
+   "segment_id": "p12_s13",
+   "translation": "Li Na jumped higher.",
+   "box": [
+    383,
+    320,
+    457,
+    338
+   ],
+   "reason": "set at 0.63; the rest of the bubble is free"
+  },
+  {
+   "segment_id": "p12_s19",
+   "translation": "O",
+   "reason": "same style as the Tth/Hth column labels"
+  },
+  {
+   "split": "p12_s20",
+   "at": [
+    219
+   ],
+   "translations": [
+    "Tth",
+    "Hth"
+   ],
+   "reason": "two column labels in two cells (standard Tth/Hth headings; the cells are too narrow for the words)"
+  },
+  {
+   "merge": [
+    "p12_s24",
+    "p12_s25"
+   ],
+   "translation": "To compare whole numbers, first look at the highest place…",
+   "reason": "'place' was printed twice"
+  },
+  {
+   "segment_id": "p12_s31",
+   "translation": "Look at the whole-number part first…",
+   "box": [
+    122,
+    609,
+    214,
+    627
+   ],
+   "reason": "fuller sentence like the source; room in the bubble"
+  },
+  {
+   "segment_id": "p13_s33",
+   "translation": "¥⟦0⟧.⟦1⟧",
+   "reason": "the price is ¥8.18, not '8. ¥18'"
+  },
+  {
+   "segment_id": "p13_s27",
+   "translation": "In",
+   "reason": "'Fill in' was set at 0.63 before the box icon and clashed with 'write'"
+  },
+  {
+   "segment_id": "p13_s29",
+   "translation": "⟦0⟧ The largest possible number is (      ).",
+   "erase": [
+    [
+     405,
+     391,
+     430,
+     408
+    ]
+   ],
+   "reason": "the source bracket and Chinese semicolon were left after the English",
+   "box": [
+    199.3,
+    391.5,
+    445,
+    408.5
+   ]
+  },
+  {
+   "segment_id": "p13_s31",
+   "translation": "(⟦0⟧) The number closest to ⟦1⟧ is (      ).",
+   "erase": [
+    [
+     434,
+     414,
+     457,
+     430
+    ]
+   ],
+   "reason": "the source bracket and Chinese full stop were left after the English"
+  },
+  {
+   "segment_id": "p13_s28",
+   "box": [
+    237.3,
+    373,
+    462,
+    388
+   ],
+   "reason": "free paper to the right; it was shrunk"
+  },
+  {
+   "segment_id": "p14_s8",
+   "translation": "BLANK",
+   "reason": "column labels set one by one below (they read 'ones, tenths, hundredths', not H T O)"
+  },
+  {
+   "segment_id": "p14_s9",
+   "translation": "BLANK",
+   "reason": "OCR of the 分 characters of the column labels ('Branch' was nonsense)"
+  },
+  {
+   "add": "p14_a1",
+   "page": 14,
+   "box": [
+    339.5,
+    299,
+    352.5,
+    339
+   ],
+   "translation": "O",
+   "source": "个位",
+   "size": 9,
+   "reason": "column label of the column method"
+  },
+  {
+   "add": "p14_a2",
+   "page": 14,
+   "box": [
+    353,
+    299,
+    368.5,
+    339
+   ],
+   "translation": "Tth",
+   "source": "十分位",
+   "size": 9,
+   "reason": "column label of the column method"
+  },
+  {
+   "add": "p14_a3",
+   "page": 14,
+   "box": [
+    369,
+    299,
+    385,
+    339
+   ],
+   "translation": "Hth",
+   "source": "百分位",
+   "size": 9,
+   "reason": "column label of the column method"
+  },
+  {
+   "segment_id": "p14_s20",
+   "translation": "BLANK",
+   "reason": "column labels set one by one with adds, horizontal like the column method above"
+  },
+  {
+   "segment_id": "p14_s21",
+   "translation": "BLANK",
+   "reason": "set with an add"
+  },
+  {
+   "segment_id": "p14_s22",
+   "translation": "BLANK",
+   "reason": "set with an add ('hundredths' was set at 0.62)"
+  },
+  {
+   "add": "p14_a4",
+   "page": 14,
+   "box": [
+    316,
+    456,
+    333,
+    495
+   ],
+   "translation": "O",
+   "source": "个位",
+   "size": 9,
+   "reason": "column label"
+  },
+  {
+   "add": "p14_a5",
+   "page": 14,
+   "box": [
+    337,
+    456,
+    355,
+    495
+   ],
+   "translation": "Tth",
+   "source": "十分位",
+   "size": 9,
+   "reason": "column label"
+  },
+  {
+   "add": "p14_a6",
+   "page": 14,
+   "box": [
+    358,
+    456,
+    376,
+    495
+   ],
+   "translation": "Hth",
+   "source": "百分位",
+   "size": 9,
+   "reason": "column label"
+  },
+  {
+   "segment_id": "p14_s25",
+   "translation": "Use the column method to calculate, and say how to add and subtract decimals.",
+   "box": [
+    81.4,
+    588,
+    462,
+    603
+   ],
+   "reason": "竖式 is the column method; it was set smaller than the other instructions though the line has free room"
+  },
+  {
+   "segment_id": "p14_s10",
+   "translation": "¥⟦0⟧ + ¥2 =",
+   "reason": "yuan amounts as ¥; dropped ⟦1⟧: its fragment is '+2' with the operator, written out"
+  },
+  {
+   "segment_id": "p14_s12",
+   "translation": "¥⟦0⟧ + ¥0.41 =",
+   "reason": "yuan amounts as ¥ (no wrap); dropped ⟦1⟧: its fragment is '+0.41' with the operator, written out"
+  },
+  {
+   "segment_id": "p14_s14",
+   "translation": "¥⟦0⟧ + ¥2.41 =",
+   "reason": "yuan amounts as ¥; dropped ⟦1⟧: its fragment is '+2.41' with the operator, written out"
+  },
+  {
+   "segment_id": "p14_s19",
+   "translation": "¥⟦0⟧ − ¥0.25 =",
+   "reason": "yuan amounts as ¥ like ¥3 − ¥1 =; the source has = too; dropped ⟦1⟧: its fragment is '-0.25' with the operator, written out"
+  },
+  {
+   "segment_id": "p14_s24",
+   "translation": "¥⟦0⟧ − ¥1.25 =",
+   "reason": "yuan amounts as ¥; dropped ⟦1⟧: its fragment is '-1.25' with the operator, written out"
+  },
+  {
+   "merge": [
+    "p14_s11",
+    "p14_s16"
+   ],
+   "translation": "5 × 0.01 plus 1 × 0.01 is…",
+   "reason": "one sentence in one bubble; 'is' was set apart with the source dots after it"
+  },
+  {
+   "segment_id": "p14_s11",
+   "erase": [
+    [
+     409,
+     354,
+     437,
+     366
+    ]
+   ],
+   "reason": "the source …… left after 是"
+  },
+  {
+   "segment_id": "p15_s13",
+   "translation": "DROP",
+   "reason": "OCR noise: '二' is a misread of the printed equations 5.79 = __ + __ + __ and 7.08 = __ + __, which were erased under 'Unit 2'"
+  },
+  {
+   "restore": [
+    285,
+    366,
+    448,
+    402
+   ],
+   "page": 15,
+   "reason": "the printed equations 5.79 = __ + __ + __ and 7.08 = __ + __ were erased; no Chinese in this area"
+  },
+  {
+   "segment_id": "p15_s10",
+   "translation": "⟦0⟧.⟦1⟧ m",
+   "reason": "the length is 3.16 m, not '3. 16 m'"
+  },
+  {
+   "segment_id": "p15_s23",
+   "box": [
+    70.6,
+    610.3,
+    461.5,
+    656
+   ],
+   "reason": "set much larger than the other numbered instructions; a lower box brings it to their size"
+  },
+  {
+   "segment_id": "p16_s7",
+   "translation": "Mother Giraffe",
+   "reason": "the picture shows giraffes (鹿 is short for 长颈鹿)"
+  },
+  {
+   "segment_id": "p16_s8",
+   "translation": "Father Giraffe",
+   "reason": "the picture shows giraffes"
+  },
+  {
+   "segment_id": "p16_s9",
+   "translation": "How tall is Mother Giraffe?",
+   "reason": "the picture shows giraffes"
+  },
+  {
+   "segment_id": "p16_s20",
+   "translation": "How much taller is Father Giraffe than Xiaohua?",
+   "reason": "the picture shows giraffes"
+  },
+  {
+   "segment_id": "p16_s24",
+   "translation": "How do I do this?",
+   "box": [
+    222,
+    575,
+    298,
+    592
+   ],
+   "reason": "set at 0.53; shorter, and the bubble has room"
+  },
+  {
+   "segment_id": "p16_s1",
+   "erase": [
+    [
+     285,
+     102,
+     292,
+     112
+    ]
+   ],
+   "reason": "Chinese full stop left at the end of the bubble; box over the whole bubble text area",
+   "box": [
+    236,
+    83,
+    292,
+    115
+   ]
+  },
+  {"restore": [232.6, 475, 233.6, 573.5], "page": 9, "reason": "table column line between tenths and hundredths was erased with the Chinese cells"},
+  {"restore": [248.0, 475, 249.0, 573.5], "page": 9, "reason": "table column line between hundredths and thousandths was erased"},
+  {"restore": [263.7, 475, 264.7, 573.5], "page": 9, "reason": "table column line between thousandths and ten-thousandths was erased"},
+  {"restore": [217.5, 516.5, 279.5, 517.8], "page": 9, "reason": "table row line under the decimal place names was erased"},
+  {"paint": [210.5, 480.5, 217.2, 487.6], "page": 12, "colour": [255, 255, 255], "reason": "grey smear of the erased 位 left after 'Tth' in the column header"},
+  {"restore": [196, 466, 206.3, 483], "page": 14, "reason": "right side of the answer box after '¥0.66 − ¥0.25 =' was erased with the 元"},
+  {"restore": [196, 489, 207, 505.5], "page": 14, "reason": "right side of the answer box after '¥3.66 − ¥1.25 =' was erased with the 元"},
+  {"restore": [214.5, 348.8, 226.5, 358], "page": 14, "reason": "the printed + between the picture rows was erased; no Chinese there"}
+ ],
+ "flags": [
+  {
+   "page": 10,
+   "issue": "Rotated rod labels 'Hundredths' and 'Thousandths' over the counting frame and the table header 'decimal point' are set small (0.53-0.61) in their narrow cells; legible but smaller than 'Tenths'."
+  },
+  {
+   "page": 13,
+   "issue": "Table names 'Wang Hong', 'Zheng Qiang', 'Zhang Hua' wrap onto two small lines (0.64-0.68) in their narrow cells; legible."
+  }
+ ]
+}

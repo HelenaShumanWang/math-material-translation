@@ -1,0 +1,600 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p17_s15",
+   "translation": "BLANK",
+   "reason": "fragment folded into s18"
+  },
+  {
+   "segment_id": "p17_s18",
+   "translation": "How many yuan more?",
+   "reason": "贵多少元 = more expensive, not less"
+  },
+  {
+   "line": "p17_i68_25",
+   "translation": "vs",
+   "force": true,
+   "reason": "box holds only 比 between two pictures"
+  },
+  {
+   "restore": [
+    349,
+    442,
+    369,
+    461
+   ],
+   "page": 17,
+   "reason": "pencil picture erased by s17 box; starts right of the 买 remnant"
+  },
+  {
+   "restore": [
+    346.5,
+    454,
+    349.5,
+    461.5
+   ],
+   "page": 17,
+   "reason": "lower tip of the pencil, below the 买 strokes"
+  },
+  {
+   "segment_id": "p17_s16",
+   "translation": "Buy",
+   "box": [
+    331,
+    445.0,
+    347,
+    459.8
+   ],
+   "reason": "capital; keep off pencil"
+  },
+  {
+   "segment_id": "p17_s17",
+   "translation": "and",
+   "box": [
+    369,
+    444.8,
+    392,
+    458.9
+   ],
+   "reason": "typo nd; keep off pencil"
+  },
+  {
+   "segment_id": "p17_s19",
+   "translation": "How much in total?",
+   "erase": [
+    [
+     412,
+     443,
+     429,
+     455
+    ]
+   ],
+   "reason": "erase leftover 一 of 一共"
+  },
+  {
+   "split": "p18_s0",
+   "translations": [
+    "2008 Paralympics Men's Triple Jump",
+    "F11: Top Three Results",
+    "Result (m)"
+   ],
+   "reason": "title lines and a header cell were run together"
+  },
+  {
+   "split": "p18_s2",
+   "translations": [
+    "Place",
+    "1st",
+    "2nd",
+    "3rd"
+   ],
+   "reason": "table column cells"
+  },
+  {
+   "split": "p18_s3",
+   "translations": [
+    "Name",
+    "Li Duan",
+    "Bilalov",
+    "Porras"
+   ],
+   "reason": "table column cells"
+  },
+  {
+   "segment_id": "p18_s1",
+   "translation": "(⟦0⟧) How many metres further did the first-place athlete jump than the second?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p18_s16",
+   "translation": "⟦0⟧. Use the column method.",
+   "reason": "竖式 = column method"
+  },
+  {
+   "segment_id": "p18_s23",
+   "translation": "⟦0⟧. Without changing the value of the numbers below, which ⟦1⟧s can be removed? Which ⟦2⟧s cannot? Why?",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p18_s34",
+   "translation": "Fairy Tales",
+   "reason": "left in Chinese; shorter"
+  },
+  {
+   "segment_id": "p18_s35",
+   "translation": "Maths Stories",
+   "reason": "dropped ⟦0⟧: OCR noise 72.54.0 not on the cover; shorter"
+  },
+  {
+   "split": "p19_s1",
+   "translations": [
+    "Contestant 5",
+    "Professional score: 8.55",
+    "Quality score: 0.88",
+    "Total score: 9.43"
+   ],
+   "reason": "board lines set as one run of prose"
+  },
+  {
+   "split": "p19_s2",
+   "translations": [
+    "Contestant 9",
+    "Professional score: 8.65",
+    "Quality score: 0.40"
+   ],
+   "reason": "board lines set as one run of prose"
+  },
+  {
+   "segment_id": "p19_s3",
+   "translation": "Total score:",
+   "reason": "match the other board"
+  },
+  {
+   "segment_id": "p19_s6",
+   "translation": "Compare their professional scores and their quality scores.",
+   "reason": "closer to source"
+  },
+  {
+   "segment_id": "p19_s7",
+   "translation": "Calculate: how many points higher?",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p19_s21",
+   "erase": [
+    [
+     253,
+     541,
+     262,
+     552
+    ]
+   ],
+   "reason": "leftover Chinese full stop after the answer line"
+  },
+  {
+   "add": "p19_a1",
+   "page": 19,
+   "box": [
+    207,
+    362,
+    242,
+    375
+   ],
+   "translation": "(points)",
+   "source": "(分)",
+   "size": 7.5,
+   "align": "left",
+   "reason": "unit label 分 after the answer line"
+  },
+  {
+   "merge": [
+    "p19_s23",
+    "p19_s24",
+    "p19_s25"
+   ],
+   "translation": "8.65 - 8.55 = 0.10 (points)\n0.88 - 0.40 = 0.48 (points)\n0.48 - 0.10 = 0.38 (points)",
+   "reason": "three working lines set at three sizes; one block, one size"
+  },
+  {
+   "segment_id": "p19_s23",
+   "box": [
+    205,
+    601,
+    325,
+    662
+   ],
+   "reason": "more room on the blank card so the working is not shrunk; kept inside the card outline"
+  },
+  {
+   "segment_id": "p20_s2",
+   "translation": "(⟦0⟧) Estimate: will the joined rope be at least ⟦1⟧ m long? Discuss with a partner.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p20_s3",
+   "translation": "(⟦0⟧) What is the actual length of the joined rope?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p20_s9",
+   "translation": "(⟦0⟧) Can all these animals cross together?",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p20_s11",
+   "translation": "⟦0⟧ Another little deer comes along. It weighs ⟦1⟧ kg. If these animals cross the river in two groups, how could they be split up?",
+   "reason": "natural phrasing"
+  },
+  {
+   "split": "p20_s12",
+   "translations": [
+    "2.36 kg",
+    "2.15 kg"
+   ],
+   "reason": "two labels of different animals"
+  },
+  {
+   "merge": [
+    "p20_s16",
+    "p20_s20"
+   ],
+   "translation": "I am 1.9 m tall. I have grown 1.1 m in 3 years.",
+   "reason": "one sentence in one bubble"
+  },
+  {
+   "merge": [
+    "p20_s17",
+    "p20_s19"
+   ],
+   "translation": "It is 0.52 m taller than me.",
+   "reason": "one sentence in one bubble"
+  },
+  {
+   "segment_id": "p20_s22",
+   "translation": "(⟦0⟧) Ask another maths question and try to answer it.",
+   "box": [
+    78.0,
+    534.0,
+    440,
+    547.4
+   ],
+   "reason": "free paper to the right; stops the wrap"
+  },
+  {
+   "segment_id": "p20_s23",
+   "translation": "Draw three lines in colour on the figure on the right so that the sum of the numbers on each line is:",
+   "box": [
+    74.8,
+    567.5,
+    340,
+    602.1
+   ],
+   "reason": "shrunk; shorter and more room"
+  },
+  {
+   "segment_id": "p20_s30",
+   "translation": "(⟦0⟧) exactly ⟦1⟧.",
+   "reason": "follows the instruction"
+  },
+  {
+   "segment_id": "p20_s31",
+   "translation": "(2) closest to ⟦0⟧.",
+   "reason": "enumerator (2) was lost",
+   "box": [
+    74.3,
+    633.0,
+    170,
+    646.3
+   ]
+  },
+  {
+   "segment_id": "p20_s32",
+   "translation": "⟦0⟧ the greatest possible.",
+   "reason": "follows the instruction"
+  },
+  {
+   "segment_id": "p21_s1",
+   "translation": "⟦0⟧. Write each shaded part as a fraction and as a decimal.",
+   "reason": "natural phrasing"
+  },
+  {
+   "split": "p21_s2",
+   "translations": [
+    "Fraction (",
+    "Decimal ("
+   ],
+   "reason": "two answer lines"
+  },
+  {
+   "split": "p21_s3",
+   "translations": [
+    "Fraction (",
+    "Decimal ("
+   ],
+   "reason": "two answer lines"
+  },
+  {
+   "split": "p21_s4",
+   "translations": [
+    "Fraction (",
+    "Decimal ("
+   ],
+   "reason": "two answer lines"
+  },
+  {
+   "merge": [
+    "p21_s6",
+    "p21_s11"
+   ],
+   "translation": "3. Xiaoxiao used a calculator to work out 13.79 + 2.34, but she keyed in 13.19 + 2.34 by mistake. To correct the mistake, whose idea do you agree with? Talk about it with a partner.",
+   "reason": "one exercise; s6 was set smaller than its siblings"
+  },
+  {
+   "merge": [
+    "p21_s35",
+    "p21_s39"
+   ],
+   "translation": "(3) How would you fill in the seventh row?\nWhat about the eighth row?",
+   "reason": "two lines of one question; s39 was set huge and pushed into the margin"
+  },
+  {
+   "segment_id": "p21_s35",
+   "box": [
+    70.0,
+    591.3,
+    272,
+    629.3
+   ],
+   "reason": "one block left of the pyramid, one size"
+  },
+  {
+   "segment_id": "p21_s55",
+   "translation": "Seventh row →",
+   "reason": "arrow erased with the Chinese; keep it in the text"
+  },
+  {
+   "segment_id": "p22_s11",
+   "translation": "(1) Which bicycle's seat is closer to the ground?",
+   "reason": "enumerator (1) was lost; box from the erased (1) so it is not shrunk",
+   "box": [
+    77,
+    196.4,
+    330,
+    208.6
+   ]
+  },
+  {
+   "segment_id": "p22_s14",
+   "translation": "(⟦0⟧) With a parent, measure the seat height and the length of your bicycle at home.",
+   "reason": "stray 'Children's Palace' removed; shorter"
+  },
+  {
+   "segment_id": "p22_s15",
+   "translation": "⟦0⟧. On Sunday, Xiaoxiao will first go to the Children's Palace, then visit her grandmother, and then go straight home.",
+   "reason": "proper name capitalised"
+  },
+  {
+   "merge": [
+    "p22_s34",
+    "p22_s36"
+   ],
+   "translation": "(3) I paid ¥50 for 1 pencil case and 1 schoolbag and got ¥2.20 change. Is that right?",
+   "reason": "one question split by OCR; printed at two sizes"
+  },
+  {
+   "segment_id": "p23_s2",
+   "translation": "What shapes have we learnt? Discuss and sort them.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p23_s4",
+   "translation": "Sorted by …",
+   "reason": "the ellipsis of the bubble was erased"
+  },
+  {
+   "segment_id": "p23_s6",
+   "translation": "Use sticks to make a quadrilateral frame and a triangle frame. Pull on them. What do you notice?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p23_s8",
+   "translation": "Can you say what other differences there are between triangles and quadrilaterals?",
+   "reason": "closer to source"
+  },
+  {
+   "segment_id": "p23_s1",
+   "box": [
+    65,
+    109,
+    140,
+    131
+   ],
+   "reason": "set at 0.65; room left on the banner"
+  },
+  {
+   "segment_id": "p24_s1",
+   "translation": "⟦0⟧. Taoqi sorted the shapes as shown on the right. Do you know how he was thinking? Discuss with a partner.",
+   "reason": "tense"
+  },
+  {
+   "segment_id": "p24_s5",
+   "translation": "Are there other examples like this in everyday life?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p24_s6",
+   "translation": "⟦0⟧. Taoqi folds a rectangular sheet of paper as shown on the right. Make a guess.",
+   "reason": "natural phrasing"
+  },
+  {
+   "merge": [
+    "p24_s7",
+    "p24_s8"
+   ],
+   "translation": "(1) How can Taoqi cut out a square and a rectangle with one cut?",
+   "reason": "one question split by OCR; enumerator doubled ((1))"
+  },
+  {
+   "segment_id": "p24_s9",
+   "translation": "⟦0⟧ How could you cut it to get a triangle and a quadrilateral?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p24_s10",
+   "translation": "Challenge yourself: build a bridge with toothpicks.",
+   "reason": "capitalisation"
+  },
+  {
+   "segment_id": "p24_s12",
+   "box": [
+    101.8,
+    557,
+    165,
+    571.5
+   ],
+   "reason": "set at 0.54; more room on the ribbon; kept off the scroll rod"
+  },
+  {
+   "segment_id": "p24_s7",
+   "box": [
+    71.2,
+    385,
+    338,
+    410
+   ],
+   "reason": "merged text set much larger than its sibling (2); a two-line box keeps the size close"
+  },
+  {
+   "segment_id": "p19_s10",
+   "box": [
+    341,
+    362.8,
+    374,
+    375
+   ],
+   "reason": "(points) was set over the answer line; keep it after the line"
+  },
+  {
+   "segment_id": "p21_s2_k0",
+   "box": [
+    131.5,
+    137.8,
+    163,
+    152.5
+   ],
+   "reason": "leave room to write before the )"
+  },
+  {
+   "segment_id": "p21_s2_k1",
+   "box": [
+    131.8,
+    155.3,
+    163,
+    170.6
+   ],
+   "reason": "leave room to write before the )"
+  },
+  {
+   "segment_id": "p21_s3_k0",
+   "box": [
+    265,
+    137.8,
+    297,
+    152.2
+   ],
+   "reason": "leave room to write before the )"
+  },
+  {
+   "segment_id": "p21_s3_k1",
+   "box": [
+    265.3,
+    155.6,
+    297,
+    170.6
+   ],
+   "reason": "leave room to write before the )"
+  },
+  {
+   "segment_id": "p21_s4_k0",
+   "box": [
+    400.5,
+    138.6,
+    432,
+    151.7
+   ],
+   "reason": "leave room to write before the )"
+  },
+  {
+   "segment_id": "p21_s4_k1",
+   "box": [
+    399.7,
+    155.3,
+    432,
+    170.9
+   ],
+   "reason": "leave room to write before the )"
+  },
+  {
+   "restore": [
+    455.5,
+    156,
+    462.5,
+    170.5
+   ],
+   "page": 21,
+   "reason": "closing ) of the third Decimal ( ) answer was erased"
+  },
+  {
+   "paint": [
+    212.5,
+    659.5,
+    218.5,
+    665.5
+   ],
+   "page": 21,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "red leftover of the erased arrow after 'Seventh row →'"
+  },
+  {
+   "paint": [
+    143,
+    559.5,
+    158,
+    570.5
+   ],
+   "page": 24,
+   "colour": [
+    254,
+    229,
+    125
+   ],
+   "reason": "white erase blotch left on the ribbon"
+  }
+ ],
+ "flags": [
+  {
+   "page": 23,
+   "issue": "Slanted map labels '1.6千米' and '0.85千米' (lines p22_i88_21, p22_i88_19) stay in Chinese: a rectangular erase cuts the road lines and the watermark; forced line translation set them huge over the map. Needs hand work to set '1.6 km' / '0.85 km' on the slant."
+  },
+  {
+   "page": 21,
+   "issue": "'3 years ago' tab label (p20_s13) is set at 0.62; the tab has no more room (a bigger box only makes it wrap)."
+  },
+  {
+   "page": 18,
+   "issue": "'Buy' (p17_s16) is set at about 0.7; the gap between the box edge and the pencil picture leaves no more room."
+  },
+  {
+   "page": 22,
+   "issue": "'Fraction (' / 'Decimal (' labels (split parts of p21_s2..s4) are set at about 0.56 so a gap stays before the printed ')' for writing the answer."
+  },
+  {
+   "page": 23,
+   "issue": "'(2) Which bicycle is longer?' keeps the printed serif (2) and is set larger than (1), (3), (4) around it (not changed in this file)."
+  }
+ ]
+}

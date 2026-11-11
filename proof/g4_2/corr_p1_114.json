@@ -1,0 +1,21 @@
+{
+ "corrections": [
+  {
+   "add": "p114_a1",
+   "page": 114,
+   "box": [
+    246,
+    361,
+    280,
+    377
+   ],
+   "translation": "Figure 1",
+   "source": "图1",
+   "size": 11,
+   "align": "center",
+   "color": 0,
+   "reason": "caption 图1 still in Chinese; Figure 2 already translated"
+  }
+ ],
+ "flags": []
+}

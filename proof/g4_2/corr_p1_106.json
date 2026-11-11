@@ -1,0 +1,590 @@
+{
+ "corrections": [
+  {
+   "split": "p105_s3",
+   "translations": [
+    "bicycle",
+    "bus"
+   ],
+   "reason": "two row labels"
+  },
+  {
+   "split": "p105_s7",
+   "translations": [
+    "Group",
+    "Group 1 Group 2 Group 3 Group 4 Group 5 Group 6",
+    "Mass/kg"
+   ],
+   "reason": "header cell, group cells and row label are separate"
+  },
+  {
+   "split": "p105_s7_k1",
+   "at": [
+    209.1,
+    250.8,
+    292.5,
+    334.3,
+    376.0
+   ],
+   "translations": [
+    "Group 1",
+    "Group 2",
+    "Group 3",
+    "Group 4",
+    "Group 5",
+    "Group 6"
+   ],
+   "reason": "one header cell per group, cut at the table's column lines"
+  },
+  {
+   "paint": [
+    199.0,
+    332.8,
+    245.0,
+    336.2
+   ],
+   "page": 105,
+   "colour": "border",
+   "reason": "printed answer blank of (1) ran under 'collected'; the English carries its own ___"
+  },
+  {
+   "paint": [
+    239.0,
+    353.8,
+    287.0,
+    357.2
+   ],
+   "page": 105,
+   "colour": "border",
+   "reason": "printed answer blank of (2) ran under 'collected'; the English carries its own ___"
+  },
+  {
+   "segment_id": "p105_s9",
+   "translation": "(⟦0⟧) On average, each group collected ___ kg.",
+   "box": [
+    72.3,
+    343.6,
+    330.0,
+    358.0
+   ],
+   "reason": "the printed blank ran under 'collected'; the sentence now carries its own blank and unit (the kg label is erased)"
+  },
+  {
+   "segment_id": "p105_s10",
+   "translation": "BLANK",
+   "reason": "'kg' is now part of (2)"
+  },
+  {
+   "segment_id": "p105_s11",
+   "translation": "(⟦0⟧) At ⟦1⟧ jiao per kg, the newspaper collected is worth ¥___ in total.",
+   "reason": "shorter to match sibling size; the printed blank after it is erased since the English carries its own ¥___",
+   "erase": [
+    [
+     381.5,
+     375.0,
+     439.0,
+     380.5
+    ]
+   ]
+  },
+  {
+   "paint": [
+    182.6,
+    160.5,
+    183.7,
+    178.0
+   ],
+   "page": 105,
+   "colour": [
+    50,
+    50,
+    50
+   ],
+   "reason": "left table border under 'bus'/'truck' was erased"
+  },
+  {
+   "paint": [
+    182.6,
+    162.2,
+    225.9,
+    162.9
+   ],
+   "page": 105,
+   "colour": [
+    50,
+    50,
+    50
+   ],
+   "reason": "bus/truck row line in the label column was erased"
+  },
+  {
+   "paint": [
+    182.6,
+    176.9,
+    225.9,
+    177.7
+   ],
+   "page": 105,
+   "colour": [
+    50,
+    50,
+    50
+   ],
+   "reason": "bottom table line under 'truck' was erased"
+  },
+  {
+   "segment_id": "p105_s16",
+   "box": [
+    120,
+    540,
+    366,
+    554
+   ],
+   "reason": "title wraps; free paper either side"
+  },
+  {
+   "merge": [
+    "p107_s1",
+    "p107_s2"
+   ],
+   "translation": "What maths problems have you found in your daily life and studies? Write them down. Can you solve them?",
+   "reason": "one two-line paragraph; first line was set too small"
+  },
+  {
+   "segment_id": "p108_s1",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s2",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s3",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s4",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s5",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s6",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s7",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s8",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s9",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s10",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s11",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s12",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s13",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s14",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s15",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s16",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s17",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s18",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s19",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s20",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s21",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s22",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s23",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s24",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s25",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s26",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s27",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s28",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "segment_id": "p108_s29",
+   "translation": "DROP",
+   "reason": "banknote/coin inscription: kept as printed"
+  },
+  {
+   "restore": [
+    217,
+    116,
+    278,
+    135
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s1 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    228,
+    145,
+    268,
+    166
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s2 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    117,
+    204,
+    154,
+    219
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s3 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    112,
+    215,
+    148,
+    240
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s4 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    216,
+    216,
+    250,
+    240
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s5 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    318,
+    214,
+    353,
+    241
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s6 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    421,
+    215,
+    456,
+    241
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s7 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    113,
+    274,
+    148,
+    299
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s8 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    215,
+    274,
+    251,
+    299
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s9 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    319,
+    274,
+    353,
+    299
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s10 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    422,
+    274,
+    456,
+    299
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s11 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    208,
+    320,
+    256,
+    337
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s12 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    216,
+    333,
+    250,
+    358
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s13 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    318,
+    332,
+    355,
+    358
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s14 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    289,
+    391,
+    312,
+    411
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s15 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    162,
+    456,
+    184,
+    476
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s16 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    264,
+    455,
+    287,
+    477
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s17 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    289,
+    477,
+    312,
+    498
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s18 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    315,
+    478,
+    336,
+    497
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s19 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    137,
+    521,
+    159,
+    541
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s20 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    366,
+    521,
+    388,
+    541
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s21 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    136,
+    542,
+    159,
+    563
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s22 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    162,
+    542,
+    185,
+    562
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s23 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    188,
+    542,
+    210,
+    563
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s24 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    213,
+    542,
+    235,
+    563
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s25 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    238,
+    542,
+    261,
+    563
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s26 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    264,
+    542,
+    286,
+    563
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s27 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    289,
+    542,
+    312,
+    563
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s28 (inscription kept as printed)"
+  },
+  {
+   "restore": [
+    137,
+    586,
+    158,
+    606
+   ],
+   "page": 108,
+   "reason": "restore note/coin under p108_s29 (inscription kept as printed)"
+  }
+ ],
+ "flags": []
+}

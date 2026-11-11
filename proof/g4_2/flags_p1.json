@@ -1,0 +1,156 @@
+{
+ "code": "g4_2",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 1,
+   "issue": "Cover title: the erase of 数学 still leaves a small white notch in the top of the light-blue arc under 'Mathematics' (the checked edition had the same)."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 5,
+   "issue": "Unit 4 line: a faint light patch remains where 四 was erased on the gradient background (p4_a2 box)."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 6,
+   "issue": "Ruler label '1 cm' (p5_a3) is set a little right of where 厘米 was (about x 329 instead of 311) despite a left-aligned box; still next to its pointer arrow."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 10,
+   "issue": "Rotated rod labels 'Hundredths' and 'Thousandths' over the counting frame and the table header 'decimal point' are set small (0.53-0.61) in their narrow cells; legible but smaller than 'Tenths'."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 13,
+   "issue": "Table names 'Wang Hong', 'Zheng Qiang', 'Zhang Hua' wrap onto two small lines (0.64-0.68) in their narrow cells; legible."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 18,
+   "issue": "'Buy' (p17_s16) is set at about 0.7. The gap between the box edge and the pencil picture leaves no more room."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 21,
+   "issue": "'3 years ago' tab label (p20_s13) is set at 0.62. The tab has no more room: a bigger box only makes it wrap."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 22,
+   "issue": "'Fraction (' / 'Decimal (' labels (split parts of p21_s2 to p21_s4) are set at about 0.56 so that a gap stays before the printed ')' for writing the answer. A wider box makes the layout run up to the ')'."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 23,
+   "issue": "Slanted map labels '1.6千米' and '0.85千米' (lines p22_i88_21, p22_i88_19) are still in Chinese. A rectangular erase would cut the road lines and the watermark, and forcing a line translation set them very large over the map. They need hand work to set '1.6 km' / '0.85 km' along the slant."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 23,
+   "issue": "'(2) Which bicycle is longer?' keeps the printed serif (2) and is set larger than (1), (3) and (4) around it. This file does not change it."
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 39,
+   "issue": "p38_s23 (second green-dot question) is set as a heading at 0.69 over two lines, larger than the matching question p38_s14 and touching the dashed frames below; same kind of text should be the same size."
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 39,
+   "issue": "p38_s12 'So many customers!' is set at 0.66 in a very small bubble; no shorter wording keeps the meaning."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 42,
+   "issue": "Table row labels p41_s36/p41_s38 ('Decimal places in the first multiplier', 'Decimal places in the product') are set very small (0.57-0.65) in narrow fixed cells; p41_s31 heading wraps onto a second line right above the table."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 51,
+   "issue": "Slight smudge on the wall/ground where 米 of the slanted 2.7 m label was erased."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 52,
+   "issue": "Faint ghost marks of the erased Chinese title remain around 'Review'."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 65,
+   "issue": "p64_s16: in the bubble 'x frogs have x mouths, 2×x eyes and 4×x legs', the letter x after × looks like a second × sign ('2××') at this size. Spaces around × would help, but the expressions are protected placeholders."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 67,
+   "issue": "'(1) Taoqi makes gates with small squares.' and the '1 gate' label are set smaller than their siblings ('(2) Xiaoxiao ...', '2 gates') even with larger boxes."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 70,
+   "issue": "'2000毫升' on the kettle (slanted print) stays in Chinese: setting '2000 mL' over it erased the kettle; needs a hand-made patch."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 72,
+   "issue": "'Solution: x+2-2=10-2' is typed over the pupil's handwritten working (red -2 lost); acceptable but differs from the picture style."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 79,
+   "issue": "The tiny printed column headers of the invoice (编号, 货品名称, 规格, 数量, 单价, 金额, 小写金额, 合计金额) are still in Chinese; there is no room to set them. The unit column (张/把) is blanked."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 79,
+   "issue": "The 'Did You Know?' badge (p78_s30) is set at 0.54 scale because the badge is small."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 79,
+   "issue": "The comic-book cover titles (连环画) are now set as 'Comics' at about 0.55 scale on the small dark-green covers. They can only be read when zoomed in, and there is a slight smudge where the yellow title was erased."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 85,
+   "issue": "Flow-chart labels now sit in explicit small boxes (about 8-10 pt) so the restored arrows show; the second chart's 'Make tea' (p84_s25) is at 0.56 scale, squeezed between arrowhead and paper edge."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 86,
+   "issue": "Pancake circle labels (p85_s8-s13) remain at about 0.71-0.75 scale; circles are too small for 'Pancake 1, front' at full size."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 90,
+   "issue": "Vertical weekday labels under both egg graphs are set rotated at 0.57-0.76 scale (Monday, Wednesday smallest); no room in the narrow columns."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 95,
+   "issue": "Weekday headers of both tables are set at mixed sizes (Wednesday small, Friday/Sunday full size) because the cells are narrow; legible."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 96,
+   "issue": "Red Army name table: the English names (e.g. Wang Jiaxiang, Zhang Wentian) are set at about 0.5 scale because the name cells are narrow; legible but small."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 99,
+   "issue": "Pupil names under the two bar charts are now set in their own cells but small (about half size); the cells are only about 30 pt wide."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 100,
+   "issue": "The tiny handwritten notes on the column-method card in the 'Share ideas' box (扩大到原来的10倍 twice, 缩小到原来的1/100) are kept in Chinese (DROP): any English overlay covered the handwritten working. They could be added as small English notes ('10 times as large', '1/100 as large') if a hand-lettering tool exists."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 100,
+   "issue": "The middle handwritten line (扩大到原来的10倍) on the column-method card is partly faded in the output; a restore does not reach that picture (pixel fixes act on the page's largest image)."
+  }
+ ]
+}

@@ -1,0 +1,394 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p57_s5",
+   "translation": "(1) What shape do you see from the top?",
+   "reason": "OCR lost the enumerator (1)"
+  },
+  {
+   "segment_id": "p57_s6",
+   "translation": "(2) What shape do you see from the left?",
+   "reason": "enumerator (2) was erased with the line"
+  },
+  {
+   "segment_id": "p57_s11",
+   "translation": "(⟦0⟧) Which look like Figure ⟦1⟧ from the front?",
+   "reason": "shorter so it ends before the answer line"
+  },
+  {
+   "segment_id": "p57_s12",
+   "translation": "(⟦0⟧) Which look like Figure ⟦1⟧ from the front?",
+   "reason": "shorter so it ends before the answer line"
+  },
+  {
+   "segment_id": "p57_s13",
+   "translation": "⟦0⟧. Build with ⟦1⟧ cubes so the front view is",
+   "reason": "shorter, fits on one line before the picture"
+  },
+  {
+   "segment_id": "p58_s2",
+   "translation": "Please build a solid figure with ⟦0⟧ cubes. From the front you see ⟦1⟧ squares.",
+   "reason": "number agreement"
+  },
+  {
+   "segment_id": "p58_s3",
+   "translation": "There are ⟦0⟧ ways. Which one is it?",
+   "reason": "more natural"
+  },
+  {
+   "segment_id": "p58_s10",
+   "translation": "Built differently. Are they all OK?",
+   "reason": "shorter, was shrunk to 0.67"
+  },
+  {
+   "segment_id": "p58_s11",
+   "translation": "Woof! How fun!",
+   "reason": "shorter, was shrunk to 0.67"
+  },
+  {
+   "segment_id": "p58_s9",
+   "translation": "Front view:\nso ⟦0⟧ of them can go like this ...",
+   "reason": "keep the printed two-square picture after 'Front view:'"
+  },
+  {
+   "segment_id": "p59_s2",
+   "translation": "Use ⟦0⟧ cubes to build a solid figure.",
+   "reason": "full sentence"
+  },
+  {
+   "segment_id": "p60_s1",
+   "translation": "Taoqi used ⟦0⟧ cubes to build a solid figure. The shapes seen from the front, the right and the top are shown below. Can you build this solid figure?",
+   "reason": "tense"
+  },
+  {
+   "segment_id": "p60_s5",
+   "translation": "First I look from the front. It might be ...",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p60_s6",
+   "translation": "Then I look from the right. It might be ...",
+   "reason": "natural wording; Chinese ellipsis dots were left after the English",
+   "erase": [
+    [
+     301.8,
+     267.0,
+     312.0,
+     270.3
+    ]
+   ]
+  },
+  {
+   "segment_id": "p60_s7",
+   "translation": "Finally I look from the top. I'm sure it is ...",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p60_s8",
+   "translation": "Xiaoxiao used ⟦0⟧ cubes to build a solid figure. Here are the shapes seen from the front, right and top. Build it.",
+   "reason": "tense; shorter so it does not run into the figures"
+  },
+  {
+   "segment_id": "p61_s1",
+   "translation": "⟦0⟧. Xiaoxiao used ⟦1⟧ cubes to build a solid figure. Here are the shapes seen from the top, the right and the front.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p61_s5",
+   "translation": "(⟦0⟧) Which one is it? Put a ✓ under it.",
+   "reason": "the tick of the source was lost; sentence incomplete"
+  },
+  {
+   "segment_id": "p61_s7",
+   "translation": "⟦0⟧. Taoqi used ⟦1⟧ cubes to build a solid figure. The shapes seen from the front, the right and the top are shown below. Can you build this solid figure?",
+   "reason": "tense"
+  },
+  {
+   "segment_id": "p61_s11",
+   "translation": "⟦0⟧. Draw the shapes of each solid seen from the front, the top and the right, then look at the real solid to check.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p62_s5",
+   "erase": [
+    [
+     378,
+     173,
+     387,
+     184
+    ]
+   ],
+   "reason": "Chinese full stop left after the shape",
+   "box": [
+    341,
+    168.7,
+    357.5,
+    181.4
+   ]
+  },
+  {
+   "segment_id": "p62_s7",
+   "translation": "Solids that look like",
+   "reason": "fragment before the shape picture; fits one line"
+  },
+  {
+   "segment_id": "p62_s8",
+   "translation": "from the right: (",
+   "reason": "fragment after the picture"
+  },
+  {
+   "segment_id": "p62_s9",
+   "translation": ") solids. They are (",
+   "reason": "fragment between the blanks"
+  },
+  {
+   "segment_id": "p62_s9",
+   "erase": [
+    [
+     426,
+     457,
+     435,
+     468
+    ]
+   ],
+   "reason": "Chinese full stop after the last bracket"
+  },
+  {
+   "split": "p62_s11",
+   "translations": [
+    "From the top",
+    "From the front"
+   ],
+   "reason": "two labels of two different pictures"
+  },
+  {
+   "segment_id": "p62_s12",
+   "translation": "Which one is built correctly? Put a ✓ by the correct one.",
+   "reason": "the tick of the source was lost; sentence incomplete"
+  },
+  {
+   "segment_id": "p63_s2",
+   "translation": "(⟦0⟧) Left view is Figure ⟦1⟧:",
+   "reason": "asks which solids have Figure A as left view; shorter so it ends before the answer line"
+  },
+  {
+   "segment_id": "p63_s2",
+   "erase": [
+    [
+     287,
+     281,
+     298,
+     293
+    ],
+    [
+     287,
+     303,
+     298,
+     315
+    ]
+   ],
+   "reason": "Chinese full stops after the answer lines"
+  },
+  {
+   "segment_id": "p63_s3",
+   "translation": "(⟦0⟧) Front view is Figure ⟦1⟧:",
+   "reason": "asks which solids have Figure B as front view; shorter so it ends before the answer line"
+  },
+  {
+   "segment_id": "p63_s4",
+   "translation": "(⟦0⟧) What other solids look like Figure ⟦1⟧ from the left? What other solids look like Figure ⟦2⟧ from the front? Think and build them.",
+   "reason": "natural wording"
+  },
+  {
+   "merge": [
+    "p63_s5",
+    "p63_s6",
+    "p63_s7"
+   ],
+   "translation": "5. What shapes do you see when you look at the solids below from the front, the top and the right? Draw them on the grid paper.",
+   "reason": "one sentence split into three fragments at different sizes"
+  },
+  {
+   "segment_id": "p64_s2",
+   "translation": "⟦0⟧ frogs have ⟦1⟧ legs... It goes on for ever!",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p64_s4",
+   "translation": "Let's ask letters to help.",
+   "reason": "natural wording"
+  },
+  {
+   "segment_id": "p64_s8",
+   "translation": "⟦0⟧ frogs ⟦1⟧ legs.",
+   "reason": "full stop as in the sibling labels"
+  },
+  {
+   "segment_id": "p64_s8",
+   "erase": [
+    [
+     310,
+     360,
+     322,
+     374
+    ]
+   ],
+   "reason": "Chinese full stop left after the label"
+  },
+  {
+   "segment_id": "p64_s12",
+   "translation": "⟦0⟧ × a shows ...",
+   "reason": "translate 表示了"
+  },
+  {
+   "segment_id": "p64_s12",
+   "erase": [
+    [
+     384,
+     416,
+     397,
+     432
+    ]
+   ],
+   "reason": "Chinese 了 left in the bubble"
+  },
+  {
+   "segment_id": "p64_s15",
+   "translation": "⟦0⟧ frogs have ⟦1⟧ mouths, ⟦2⟧ × a eyes and ⟦3⟧ legs.",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p64_s16",
+   "translation": "⟦0⟧ frogs have ⟦1⟧ mouths, ⟦2⟧ eyes and ⟦3⟧ legs.",
+   "reason": "grammar"
+  },
+  {
+   "merge": [
+    "p64_s19",
+    "p64_s18"
+   ],
+   "translation": "Mum is 26 years older than me...",
+   "reason": "one sentence split over two lines; British Mum"
+  },
+  {
+   "segment_id": "p60_s5",
+   "erase": [
+    [
+     149,
+     244,
+     159,
+     254
+    ]
+   ],
+   "reason": "stray dot of the Chinese ellipsis left in the bubble"
+  },
+  {
+   "restore": [
+    419,
+    454,
+    424.6,
+    469
+   ],
+   "page": 62,
+   "reason": "closing bracket lost with the erased full stop"
+  },
+  {
+   "segment_id": "p64_s10",
+   "translation": "The numbers of frogs and legs are different, so ...",
+   "erase": [
+    [
+     140,
+     422,
+     172,
+     436
+    ]
+   ],
+   "reason": "Chinese ellipsis left under the English; put it in the text; shorter so it stays inside the bubble (was 0.76, over the outline)"
+  },
+  {
+   "segment_id": "p64_s12",
+   "box": [
+    383,
+    402,
+    437,
+    430
+   ],
+   "reason": "use the whole bubble; was shrunk to 0.68"
+  },
+  {
+   "segment_id": "p59_s4",
+   "erase": [
+    [
+     435.5,
+     183.3,
+     439.4,
+     187.0
+    ]
+   ],
+   "reason": "Chinese full stop left after the picture in the bubble"
+  },
+  {
+   "segment_id": "p58_s7",
+   "translation": "Oh, it's this one.",
+   "reason": "full stop as in the sibling bubbles"
+  },
+  {
+   "segment_id": "p62_s3",
+   "translation": "From the left",
+   "box": [
+    341,
+    138,
+    398,
+    152.5
+   ],
+   "reason": "was shrunk to 0.64; use the free top of the bubble"
+  },
+  {
+   "segment_id": "p62_s5",
+   "translation": "it's",
+   "box": [
+    341,
+    168.7,
+    357.5,
+    181.4
+   ],
+   "reason": "reads 'From the left it's [picture]'"
+  },
+  {
+   "restore": [
+    183.0,
+    139.0,
+    189.0,
+    152.6
+   ],
+   "page": 62,
+   "reason": "outline of the first bubble (intact in the checked edition) was erased"
+  },
+  {
+   "restore": [
+    117.0,
+    435.6,
+    141.0,
+    441.5
+   ],
+   "page": 64,
+   "reason": "bottom outline of the frog-count bubble (intact in the checked edition) was erased"
+  },
+  {
+   "segment_id": "p64_s10",
+   "box": [
+    123,
+    397,
+    193,
+    437
+   ],
+   "reason": "keep the text off the wavy bubble outline"
+  }
+ ],
+ "flags": [
+  {
+   "page": 65,
+   "issue": "p64_s16: in the bubble 'x frogs have x mouths, 2×x eyes and 4×x legs' the letter x after × looks like a second × sign ('2××') at this size; spaces around × would help but the expressions are protected placeholders."
+  }
+ ]
+}

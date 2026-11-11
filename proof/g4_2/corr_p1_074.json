@@ -1,0 +1,371 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p73_s14",
+   "translation": "If both sides of an equation are divided by the same number (not ⟦0⟧), the equation holds.",
+   "reason": "dropped ⟦1⟧: OCR noise 292.11.0 (watermark) printed after the sentence"
+  },
+  {
+   "segment_id": "p74_s21",
+   "translation": "(⟦0⟧) What is the least horizontal length for a ramp ⟦1⟧ m high? And for ⟦2⟧ m or ⟦3⟧ m?",
+   "reason": "shrunk to 0.75; shorter, same meaning"
+  },
+  {
+   "segment_id": "p74_s22",
+   "translation": "(⟦0⟧) The open space in front of a building is ⟦1⟧ m long. What is the greatest possible height of the ramp here?",
+   "reason": "unnatural 'so what is'"
+  },
+  {
+   "merge": [
+    "p75_s5",
+    "p75_s6"
+   ],
+   "translation": "Do you understand this game? How did the Wise Old Man guess the answer? Think about it and discuss.",
+   "reason": "one sentence split over two lines; second part printed as 'Talk About It'"
+  },
+  {
+   "merge": [
+    "p75_s7",
+    "p75_s10",
+    "p75_s9"
+   ],
+   "translation": "The last step was adding 20 to get 80, so 80 − 20 = 60, then 60 ÷ 2 = 30.",
+   "reason": "one bubble split into three lines at different sizes"
+  },
+  {
+   "segment_id": "p75_s12",
+   "translation": "Solution: Let the number be x.",
+   "reason": "handwritten x erased with the line; sentence incomplete"
+  },
+  {
+   "segment_id": "p75_s15",
+   "translation": "Call Taoqi's number \"x\".",
+   "erase": [
+    [
+     238,
+     446,
+     272,
+     460
+    ]
+   ],
+   "reason": "leftover “x”。 overlapped the English; now said in the translation"
+  },
+  {
+   "segment_id": "p75_s25",
+   "translation": "The equal relationship is…",
+   "reason": "consistent term; was 'equality relationship'; box widened to the bubble so it is not set tiny",
+   "box": [
+    318,
+    564,
+    402,
+    586
+   ]
+  },
+  {
+   "line": "p76_i304_22",
+   "translation": "It is 4 times the area of Taihu Lake",
+   "force": true,
+   "reason": "only text in the box, no pictures (比 false alarm)"
+  },
+  {
+   "merge": [
+    "p76_i304_22_t",
+    "p76_s20"
+   ],
+   "translation": "It is 1400 km² more than 4 times the area of Taihu Lake in our country.",
+   "reason": "one sentence over two lines; first line was left in Chinese"
+  },
+  {
+   "segment_id": "p76_s19",
+   "translation": "The smallest sea in the world is the Sea of Marmara. Its area is ⟦0⟧ km².",
+   "reason": "placeholder restored; shorter"
+  },
+  {
+   "split": "p76_s21",
+   "translations": [
+    "x km²",
+    "Taihu",
+    "Sea of Marmara"
+   ],
+   "reason": "three separate labels of the bar diagram run together"
+  },
+  {
+   "segment_id": "p76_s25",
+   "translation": "¥⟦0⟧ altogether.",
+   "reason": "yuan as ¥; placeholder restored"
+  },
+  {
+   "segment_id": "p76_s27",
+   "translation": "Pencil case: ¥⟦0⟧.",
+   "reason": "yuan as ¥; placeholder restored"
+  },
+  {
+   "merge": [
+    "p77_s3",
+    "p77_s2",
+    "p77_s4"
+   ],
+   "translation": "(1) An adult's foot is about 1/7 of their height. If an adult's height is a m, their foot is about (      ) m long.",
+   "reason": "one sentence split into three pieces set at different sizes (the first as a heading, running off the page); α is a misread of a"
+  },
+  {
+   "segment_id": "p77_s5",
+   "translation": "(⟦0⟧) The figure on the right is made of an equilateral triangle and a square. Its perimeter is (      ).",
+   "erase": [
+    [
+     214,
+     190,
+     242,
+     207
+    ]
+   ],
+   "reason": "placeholder restored; leftover ）。 erased and the blank set in the sentence"
+  },
+  {
+   "segment_id": "p77_s6",
+   "translation": "(⟦0⟧) Apples cost ¥⟦1⟧ per kg and pears ¥⟦2⟧ per kg. Buying ⟦3⟧ kg of apples and ⟦4⟧ kg of pears costs ¥(      ) altogether.",
+   "reason": "set smaller than siblings; shorter, yuan as ¥"
+  },
+  {
+   "segment_id": "p77_s7",
+   "translation": "BLANK",
+   "reason": "duplicate: the blank and 'in total' are already in s6"
+  },
+  {
+   "segment_id": "p77_s8",
+   "translation": "2. State the equal relationship in each picture, then match it to an equation.",
+   "reason": "wrapped to two lines and the second ran into the scales picture; shorter"
+  },
+  {
+   "merge": [
+    "p77_s23",
+    "p77_s24"
+   ],
+   "translation": "3. Below is how Taoqi solved x + 5 = 20 by drawing.",
+   "reason": "one sentence split in two with a gap"
+  },
+  {
+   "segment_id": "p77_s25",
+   "translation": "(⟦0⟧) Can you understand it? Discuss with a partner.",
+   "box": [
+    265,
+    452,
+    466,
+    477
+   ],
+   "reason": "set smaller than siblings; room for two lines"
+  },
+  {
+   "segment_id": "p77_s26",
+   "translation": "(⟦0⟧) Solve ⟦1⟧ and discuss with a partner the reason for each step.",
+   "box": [
+    265,
+    479,
+    466,
+    530
+   ],
+   "reason": "set smaller; free paper below"
+  },
+  {
+   "segment_id": "p77_s28",
+   "translation": "” stands for what number?",
+   "reason": "closing quote erased; question reads 4. “?” stands for what number?",
+   "box": [
+    99,
+    564,
+    250,
+    579
+   ]
+  },
+  {
+   "split": "p78_s6",
+   "translations": [
+    "21 cm",
+    "x cm"
+   ],
+   "reason": "two separate measurement labels run together and shrunk to 0.48"
+  },
+  {
+   "segment_id": "p78_s7",
+   "translation": "155 cm",
+   "reason": "dropped ⟦0⟧: misread -155 (the dash is the arrow line); 155 written out"
+  },
+  {
+   "split": "p78_s8",
+   "translations": [
+    "¥x",
+    "Comics"
+   ],
+   "reason": "price label and cover title are separate; cover title was left in Chinese"
+  },
+  {
+   "split": "p78_s9",
+   "translations": [
+    "¥x",
+    "Comics"
+   ],
+   "reason": "price label and cover title are separate; cover title was left in Chinese"
+  },
+  {
+   "segment_id": "p78_s8_k1",
+   "translation": "BLANK",
+   "reason": "cover title set by p78_a71: the split part left the Chinese on the cover"
+  },
+  {
+   "segment_id": "p78_s9_k1",
+   "translation": "BLANK",
+   "reason": "cover title set by p78_a72: the split part left the Chinese on the cover"
+  },
+  {
+   "add": "p78_a71",
+   "page": 78,
+   "box": [
+    282,
+    222.5,
+    305,
+    231
+   ],
+   "translation": "Comics",
+   "source": "连环画",
+   "reason": "cover title 连环画 of the first comic book was still in Chinese"
+  },
+  {
+   "add": "p78_a72",
+   "page": 78,
+   "box": [
+    321,
+    222.5,
+    343,
+    231
+   ],
+   "translation": "Comics",
+   "source": "连环画",
+   "reason": "cover title 连环画 of the second comic book was still in Chinese"
+  },
+  {
+   "split": "p78_s10",
+   "translations": [
+    "¥x",
+    "Comics"
+   ],
+   "reason": "price label and cover title are separate"
+  },
+  {
+   "segment_id": "p78_s16",
+   "translation": "Invoice",
+   "box": [
+    192,
+    346,
+    223,
+    355
+   ],
+   "reason": "left in Chinese; 发票联 = invoice copy, free paper to the left"
+  },
+  {
+   "segment_id": "p78_s19",
+   "translation": "Guangming School",
+   "box": [
+    188,
+    355,
+    262,
+    366
+   ],
+   "reason": "left in Chinese; free underline to the right"
+  },
+  {
+   "segment_id": "p78_s20",
+   "translation": "BLANK",
+   "reason": "unit column (单位 张 把) read as noise 'each each' set vertically"
+  },
+  {
+   "segment_id": "p78_s21",
+   "translation": "BLANK",
+   "reason": "first characters of 桌子/椅子 read as one vertical line; names are set by s22/s23"
+  },
+  {
+   "segment_id": "p78_s22",
+   "translation": "Desk",
+   "box": [
+    195,
+    377,
+    240,
+    386
+   ],
+   "reason": "桌子 row: item name; was left in Chinese"
+  },
+  {
+   "segment_id": "p78_s23",
+   "translation": "Chair",
+   "box": [
+    195,
+    386,
+    240,
+    395
+   ],
+   "reason": "椅子 row: item name; was left in Chinese"
+  },
+  {
+   "split": "p78_s26",
+   "translations": [
+    "Two hundred and thirty",
+    "Li Jie"
+   ],
+   "reason": "amount in words and signature are separate; OCR noise 312.33.0 dropped"
+  },
+  {
+   "segment_id": "p78_s31",
+   "translation": "More than ⟦0⟧ years ago, an ancient Egyptian papyrus already had problems that amount to solving simple equations. In China, The Nine Chapters on the Mathematical Art, written around the ⟦1⟧st century AD, records solving problems with sets of equations, so it already had the idea of equations. Around the ⟦2⟧th century, Chinese mathematicians began to use special symbols for unknowns.",
+   "reason": "'As early as more than' unnatural; placeholders restored"
+  },
+  {
+   "segment_id": "p79_s2",
+   "translation": "Floors and walls are often tiled. Here are some common tiling patterns.",
+   "reason": "shrunk to 0.70; shorter, 'tiling patterns for tiles' redundant"
+  },
+  {
+   "segment_id": "p79_s4",
+   "translation": "Which shapes can tessellate?",
+   "reason": "'figures' -> shapes, consistent with the bubbles"
+  },
+  {
+   "segment_id": "p79_s5",
+   "translation": "Why can some shapes tessellate?",
+   "reason": "'figures' -> shapes, consistent"
+  },
+  {
+   "segment_id": "p80_s5",
+   "translation": "Reflection",
+   "box": [
+    60,
+    331,
+    127,
+    347
+   ],
+   "reason": "shrunk to 0.53/0.62 even with the box; 'Reflection' fits the small badge"
+  },
+  {
+   "segment_id": "p80_s7",
+   "translation": "I numbered the angles of each shape in order. After tessellating, I found…",
+   "reason": "unnatural wording; dotted ellipsis"
+  },
+  {
+   "segment_id": "p80_s9",
+   "translation": "Tessellation has to do with the angles of the shapes…",
+   "reason": "more natural; shapes, consistent term"
+  }
+ ],
+ "flags": [
+  {
+   "page": 79,
+   "issue": "The tiny printed column headers of the invoice (编号, 货品名称, 规格, 数量, 单价, 金额, 小写金额, 合计金额) are still in Chinese; there is no room to set them. The unit column (张/把) is blanked."
+  },
+  {
+   "page": 79,
+   "issue": "The 'Did You Know?' badge (p78_s30) is set at 0.54 scale because the badge is small."
+  },
+  {
+   "page": 79,
+   "issue": "The comic-book cover titles (连环画) are now set as 'Comics' at about 0.55 scale on the small dark-green covers; legible only when zoomed, with a slight smudge where the yellow title was erased."
+  }
+ ]
+}
