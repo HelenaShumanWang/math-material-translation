@@ -68,5 +68,12 @@
  "北/东/南/西 (compass)": "N / E / S / W",
  "星期一…星期日 (table and calendar cells)": "Mon … Sun",
  "N元N角 (price tags)": "¥1.50 style",
- "竖式": "column method"
+ "竖式": "column method",
+ "十分位/百分位/千分位/万分位 (narrow place-value cells)": "Tth / Hth / Thth / TTth",
+ "成绩/米": "Result (m)",
+ "单价/元": "Unit price (¥)",
+ "总价/元": "Total price (¥)",
+ "乘数": "Multiplier",
+ "人数 (pupil counts in class surveys)": "Pupils",
+ "画“正”字": "Tally"
 }
