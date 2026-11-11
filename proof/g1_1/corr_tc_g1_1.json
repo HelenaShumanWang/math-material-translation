@@ -1,9 +1,24 @@
 {
  "corrections": [
   {
+   "segment_id": "p92_s12",
+   "translation": "Self-Check",
+   "reason": "consistency: recurring section 自我评价 -> \"Self-Check\" (Title Case section label) as in the other volumes"
+  },
+  {
+   "segment_id": "p29_s5",
+   "translation": "Discuss and calculate.",
+   "reason": "consistency: 说一说，算一算 -> \"Discuss and calculate.\" as in Grade 2 Volume 1 and Grade 3; shorter"
+  },
+  {
+   "segment_id": "p72_s1",
+   "translation": "1. Look at the picture and answer.",
+   "reason": "consistency: 看图回答问题 -> \"Look at the picture and answer.\" (natural English; fits the narrowest box unshrunk)"
+  },
+  {
    "segment_id": "p24_s6",
    "translation": "Who's tallest? Shortest?",
-   "reason": "consistency: 谁最高？谁最矮 -> \"Who's tallest? Shortest?\" as in the Review; shorter where the label had to shrink"
+   "reason": "consistency: 谁最高？谁最矮 -> \"Who's tallest? Shortest?\" as in the Review; shorter where the label shrank"
   },
   {
    "segment_id": "p60_s6",
@@ -11,9 +26,14 @@
    "reason": "consistency: 淘气的房间 -> \"Taoqi's room\" as in the other label; the ellipsis is not in the Chinese"
   },
   {
-   "segment_id": "p92_s12",
-   "translation": "Self-Check",
-   "reason": "consistency: recurring 自我评价 -> \"Self-Check\" (self-assessment, Title Case section label) in both volumes"
+   "segment_id": "p104_s0",
+   "translation": "What Did You Learn This Term?",
+   "reason": "consistency: end-of-term page heading 本学期你学到了什么 -> \"What Did You Learn This Term?\" in every volume (Title Case as a heading)"
+  },
+  {
+   "segment_id": "p57_s0",
+   "translation": "Consolidate and Apply",
+   "reason": "consistency: recurring section 巩固应用 -> \"Consolidate and Apply\" as in the other volumes; shorter where the label shrank"
   }
  ]
 }
