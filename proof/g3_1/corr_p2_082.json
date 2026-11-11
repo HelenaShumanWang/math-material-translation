@@ -1,0 +1,149 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p81_s9",
+   "translation": "On ⟦1⟧ September (month ⟦0⟧), we all start work or school.",
+   "reason": "\"day 1 of month 9\" is unnatural; date written the British way, month number kept"
+  },
+  {
+   "segment_id": "p81_s12",
+   "erase": [[218, 334, 229, 348]],
+   "box": [130, 332.5, 242, 375],
+   "reason": "erase leftover source circle glyph at end of first line; widen box inside the bubble so \"marked\" is not clipped"
+  },
+  {
+   "segment_id": "p82_s8",
+   "translation": "Look at the 4 boxed numbers on the calendar. What do you notice?",
+   "box": [82.2, 198.1, 420, 212.3],
+   "reason": "\"What do you notice?\" is the natural question; widened onto free paper so it matches its sibling instruction size (was 0.82)"
+  },
+  {
+   "segment_id": "p83_s41",
+   "translation": "BLANK",
+   "reason": "the 分 cell is set by p83_a1 at the size of its sibling labels (its own OCR size, 7.2 pt, made 'fen' smaller than 'jiao')"
+  },
+  {
+   "add": "p83_a1",
+   "page": 83,
+   "box": [443.0, 536.5, 461.5, 549.5],
+   "translation": "fen",
+   "source": "分",
+   "size": 9.3,
+   "align": "left",
+   "color": 2301728,
+   "reason": "'fen' at the 9.3 pt of 'yuan ____ jiao' beside it, after the printed blank"
+  },
+  {
+   "segment_id": "p85_s17",
+   "translation": "At which shop is the pencil case cheaper? Explain how you worked it out.",
+   "reason": "shorter wording, same meaning: fits one line at full size"
+  },
+  {
+   "segment_id": "p86_s22",
+   "translation": "BLANK",
+   "reason": "set by p86_a1: its OCR size (10.7 pt) kept it smaller than (1) and (3) whatever the wording"
+  },
+  {
+   "add": "p86_a1",
+   "page": 86,
+   "box": [73.4, 301.5, 463.0, 317.5],
+   "translation": "(2) Where is the towel cheapest? Explain how you know.",
+   "source": "（2）到哪个商店买毛巾便宜？说一说你是怎么想的。",
+   "size": 12.1,
+   "align": "left",
+   "color": 2301728,
+   "reason": "smaller_than_siblings: set at the 12.1 pt of (1) and (3); shorter wording with the same meaning fits one line"
+  },
+  {
+   "split": "p87_s9",
+   "at": [396],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "segment_id": "p87_s9_k0",
+   "translation": "BLANK",
+   "reason": "set by p87_a1 at a size that fits the column"
+  },
+  {
+   "segment_id": "p87_s9_k1",
+   "translation": "BLANK",
+   "reason": "set by p87_a2 at a size that fits the column"
+  },
+  {
+   "add": "p87_a1",
+   "page": 87,
+   "box": [370.0, 301.0, 395.5, 317.5],
+   "translation": "yuan",
+   "source": "元",
+   "size": 10.5,
+   "align": "center",
+   "color": 15539236,
+   "reason": "column label over the ones column; at 14.4 pt the English ran wider than the column"
+  },
+  {
+   "add": "p87_a2",
+   "page": 87,
+   "box": [396.5, 301.0, 417.0, 317.5],
+   "translation": "jiao",
+   "source": "角",
+   "size": 10.5,
+   "align": "center",
+   "color": 15539236,
+   "reason": "column label over the tenths column; at 14.4 pt 'jiao' ran into the grandpa's hair"
+  },
+  {
+   "split": "p87_s15",
+   "at": [279],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "split": "p88_s9",
+   "at": [137],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "split": "p88_s10",
+   "at": [252.5],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "split": "p88_s11",
+   "at": [385.5],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "split": "p88_s18",
+   "at": [162],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "split": "p88_s19",
+   "at": [279.5],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "split": "p88_s20",
+   "at": [411.2],
+   "translations": ["yuan", "jiao"],
+   "reason": "元/角 are column labels over the ones and tenths columns of the column method; one label per column"
+  },
+  {
+   "segment_id": "p88_s30",
+   "translation": "¥10.6",
+   "reason": "image says 10.6 (OCR misread 10.5); misread placeholder replaced by the correct number"
+  }
+ ],
+ "flags": [
+  {
+   "page": 87,
+   "issue": "Toothbrush/Toothpaste labels on the three shop counters and in the price tables are set at scale 0.49-0.65 because the cells are about 33-40 pt wide; no shorter standard word exists, so they stay small."
+  }
+ ]
+}

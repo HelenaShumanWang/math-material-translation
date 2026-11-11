@@ -1,0 +1,123 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p35_s18",
+   "translation": "A small boat costs ⟦0⟧ times as much as a ball. How much is the small boat?",
+   "box": [
+    79.4,
+    508.5,
+    460,
+    522.7
+   ],
+   "reason": "shrunk to 0.84 and wrapping; shorter, use free room to the right"
+  },
+  {
+   "segment_id": "p36_s31",
+   "translation": "Lilies\n¥⟦0⟧ each",
+   "reason": "consistent with the other price labels"
+  },
+  {
+   "segment_id": "p36_s35",
+   "translation": "Chrysanthemums\n¥⟦0⟧ each",
+   "reason": "consistent with the other price labels"
+  },
+  {
+   "segment_id": "p38_s3",
+   "translation": "Share between ⟦0⟧: each gets…",
+   "erase": [
+    [
+     188,
+     116,
+     198,
+     125
+    ]
+   ],
+   "reason": "more natural; erase stray dot left from the Chinese ellipsis"
+  },
+  {
+   "segment_id": "p39_s18",
+   "translation": "Calculate. What do you notice?",
+   "box": [
+    78.5,
+    550.5,
+    226,
+    564.9
+   ],
+   "reason": "wraps after 'you'; widen into free paper"
+  },
+  {
+   "segment_id": "p40_s8",
+   "translation": "(⟦0⟧) The shoes cost how many times as much as the gloves?",
+   "reason": "awkward word order"
+  },
+  {
+   "segment_id": "p40_s9",
+   "erase": [
+    [
+     313,
+     320,
+     350,
+     335
+    ]
+   ],
+   "reason": "Chinese 少元？ left below the line"
+  },
+  {
+   "segment_id": "p40_s23",
+   "translation": "(⟦0⟧) If she buys only pens, how many can she buy?",
+   "reason": "match the 'Pen' label"
+  },
+  {
+   "segment_id": "p40_s31",
+   "translation": "Set square",
+   "box": [
+    68,
+    631.8,
+    107.5,
+    644.9
+   ],
+   "reason": "capitalise like Diary; widen inside cell"
+  },
+  {
+   "segment_id": "p40_s33",
+   "translation": "Pen",
+   "reason": "shorter, fits at full size; capitalise"
+  },
+  {
+   "segment_id": "p40_s37",
+   "translation": "Markers",
+   "reason": "capitalise like Diary"
+  },
+  {
+   "segment_id": "p40_s39",
+   "translation": "Pencil case",
+   "box": [
+    279,
+    631.6,
+    321,
+    644.3
+   ],
+   "reason": "capitalise; widen inside cell"
+  },
+  {
+   "segment_id": "p36_s32",
+   "translation": "Roses\n¥⟦0⟧ each",
+   "reason": "consistent label layout"
+  },
+  {
+   "segment_id": "p36_s36",
+   "translation": "Carnations\n¥⟦0⟧ each",
+   "reason": "consistent label layout"
+  }
+ ],
+ "flags": [
+  {
+   "page": 39,
+   "issue": "p38_s28 'This book has 180 pages.' is set at 0.64 in its small speech bubble; no free room inside the bubble"
+  },
+  {
+   "page": 41,
+   "issue": "item labels 'Set square' and 'Pencil case' set at about 0.66-0.70, smaller than 'Diary'/'Markers' in the neighbouring cells; cells are too narrow"
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "corrections": [
+  {
+   "add": "p4_a1",
+   "page": 4,
+   "box": [55, 395, 200, 418],
+   "translation": "7 Years, Months\nand Days",
+   "source": "七 年、月、日",
+   "size": 16,
+   "align": "left",
+   "color": 2301728,
+   "reason": "contents entry set much smaller than its siblings: re-set at their size (16), wrapped like entry 8; box reaches 200 so the Chinese 日 is erased"
+  },
+  {
+   "segment_id": "p5_s30",
+   "translation": "With addition and multiplication, what do you work out first, and what next?",
+   "box": [76, 571.5, 450, 585.9],
+   "reason": "shorter, parallel to p.3 wording; use free paper on the right"
+  },
+  {
+   "segment_id": "p5_s25",
+   "translation": "Do you understand Taoqi's and Xiaoxiao's number sentences?",
+   "box": [76.3, 453.3, 355, 466.9],
+   "reason": "set small; free paper right of the line"
+  },
+  {
+   "segment_id": "p6_s2",
+   "translation": "With subtraction and multiplication, what comes first? What next?",
+   "reason": "shorter for the bubble (scale 0.72)"
+  },
+  {
+   "segment_id": "p6_s12",
+   "translation": "Use the shopping picture to explain each number sentence, then calculate.",
+   "reason": "shorter so it fits on one line"
+  },
+  {
+   "segment_id": "p6_s19",
+   "translation": "How many police cats altogether?",
+   "box": [289.1, 476.6, 460, 492],
+   "reason": "wrapped onto a second line; shorter, same meaning"
+  },
+  {
+   "segment_id": "p7_s19",
+   "translation": "Each car needs ⟦0⟧ wheels.",
+   "box": [94, 475, 167, 504],
+   "reason": "set at 0.77; more room in the bubble, clear of its border and tail"
+  },
+  {
+   "segment_id": "p8_s26",
+   "translation": "How much cheaper is each maths book now? Talk about it, then fill in.",
+   "box": [79.7, 379.3, 440, 393.7],
+   "reason": "set at 0.75 and ran past the content margin; 'now' already says compared with before, so one line at the size of the question above"
+  },
+  {
+   "segment_id": "p8_s45",
+   "translation": "Multiply and divide first, then add and subtract.",
+   "reason": "shorter for the bubble (scale 0.7)"
+  },
+  {
+   "restore": [56, 569, 75.5, 589],
+   "page": 5,
+   "reason": "green bullet before the question clipped by the line erase"
+  }
+ ],
+ "flags": [
+  {
+   "page": 9,
+   "issue": "p8_s20 label on the tiny English-book picture is set as the abbreviation 'Eng.'; 'English' does not fit inside the book outline (tried: it overruns the dashed frame)."
+  }
+ ]
+}

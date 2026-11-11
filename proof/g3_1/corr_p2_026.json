@@ -1,0 +1,145 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s14",
+   "translation": "⟦0⟧. Talk about it, then write a number sentence and solve.",
+   "reason": "source asks to write a number sentence (列式)"
+  },
+  {
+   "segment_id": "p27_s21",
+   "translation": "Answer:",
+   "box": [
+    68,
+    403.4,
+    107,
+    416.1
+   ],
+   "reason": "label ran onto the answer line"
+  },
+  {
+   "segment_id": "p27_s23",
+   "translation": "Answer:",
+   "box": [
+    68,
+    492,
+    107,
+    505
+   ],
+   "reason": "same size and place as the first Answer: label"
+  },
+  {
+   "segment_id": "p28_s28",
+   "translation": "(⟦0⟧) The museum is ⟦1⟧ m from the cinema. How many metres is the park from the cinema?",
+   "box": [
+    73.4,
+    628.2,
+    464,
+    643.7
+   ],
+   "reason": "shorter; was shrunk to 0.66"
+  },
+  {
+   "segment_id": "p29_s12",
+   "translation": "Taoqi drew this diagram. Do you understand it? Discuss with a partner.",
+   "reason": "shorter; was shrunk to 0.77"
+  },
+  {
+   "segment_id": "p29_s16",
+   "translation": "I see! Each day's reading minus the day before's reading is that day's distance.",
+   "reason": "shorter, more natural in the small bubble"
+  },
+  {
+   "segment_id": "p30_s12",
+   "translation": "(⟦0⟧) How much electricity did Lele's family use in total from July to December (months ⟦1⟧–⟦2⟧)?",
+   "reason": "shorter; was shrunk to 0.70 and ran past the margin"
+  },
+  {
+   "segment_id": "p31_s21",
+   "translation": "⟦0⟧. Which way is shorter from Qisi's home to the sports field? By how many metres?",
+   "box": [
+    57.0,
+    315.8,
+    470,
+    328.8
+   ],
+   "reason": "wrapped onto the map picture; free paper to the right"
+  },
+  {
+   "segment_id": "p31_s9",
+   "translation": "Class 3(⟦0⟧)",
+   "box": [
+    205,
+    179.4,
+    258,
+    193.3
+   ],
+   "reason": "set smaller than its sibling class labels"
+  },
+  {
+   "segment_id": "p31_s25",
+   "translation": "Sports field",
+   "box": [
+    422,
+    400.5,
+    484,
+    416.1
+   ],
+   "reason": "wrapped; free paper to the right"
+  },
+  {
+   "segment_id": "p32_s1",
+   "translation": "I can take ⟦0⟧ bags each trip.",
+   "box": [
+    358,
+    85,
+    468,
+    98
+   ],
+   "reason": "shrunk to 0.77; wider bubble room"
+  },
+  {
+   "segment_id": "p32_s5",
+   "translation": "⟦0⟧. Below is the distance table for the main stations on the Qinghai–Tibet Railway, Golmud to Lhasa.",
+   "box": [
+    59.8,
+    232.2,
+    470,
+    245.2
+   ],
+   "reason": "shorter; was shrunk to 0.75"
+  },
+  {
+   "segment_id": "p32_s9",
+   "translation": "Amdo",
+   "box": [
+    74,
+    369.9,
+    124.4,
+    384.7
+   ],
+   "reason": "shrunk to 0.69; free paper left of label"
+  },
+  {
+   "segment_id": "p32_s13",
+   "translation": "Damxung",
+   "box": [
+    48,
+    426,
+    99,
+    444
+   ],
+   "reason": "shrunk to 0.65; free paper left of label"
+  },
+  {
+   "segment_id": "p31_s35",
+   "translation": "Grade 1 has ⟦0⟧ fewer pupils than Grade 2.",
+   "reason": "match 'pupils' in the table"
+  },
+  {
+   "segment_id": "p31_s37",
+   "translation": "⟦0⟧\npupils",
+   "reason": "ran past the table cell; break like '216 pupils'"
+  }
+ ],
+ "flags": []
+}

@@ -1,0 +1,24 @@
+{"corrections": [
+ {"segment_id": "p70_s4", "translation": "My birthday is ⟦1⟧/⟦0⟧. This year's Spring Festival is…", "reason": "British day/month order (20/5); 5/20 is not a date to UK pupils"},
+ {"segment_id": "p71_s1", "translation": "Use Appendix ⟦0⟧ to record the number of days in February (month ⟦3⟧) for ⟦1⟧–⟦2⟧ in the table. What do you find?", "reason": "'days in month 2 of' unnatural; name February as the table does"},
+ {"segment_id": "p72_s22", "translation": "I've just had my birthday: the last day of September (month ⟦0⟧).", "reason": "more natural speech for the bubble; name September as p71_s1 names February"},
+ {"segment_id": "p72_s27", "box": [100, 558, 165, 572], "reason": "heading wrapped at 0.54; set on one line on the ribbon, clear of the scroll at its right end"},
+ {"segment_id": "p72_s6", "translation": "BLANK", "reason": "weekday labels were set at different sizes and alignments; reset as one centred set below"},
+ {"segment_id": "p72_s7", "translation": "BLANK", "reason": "weekday labels were set at different sizes and alignments; reset as one centred set below"},
+ {"segment_id": "p72_s8", "translation": "BLANK", "reason": "weekday labels were set at different sizes and alignments; reset as one centred set below"},
+ {"segment_id": "p72_s11", "translation": "BLANK", "reason": "weekday labels were set at different sizes and alignments; reset as one centred set below"},
+ {"segment_id": "p72_s13", "translation": "BLANK", "reason": "weekday labels were set at different sizes and alignments; reset as one centred set below"},
+ {"segment_id": "p72_s14", "translation": "BLANK", "reason": "weekday labels were set at different sizes and alignments; reset as one centred set below"},
+ {"segment_id": "p72_s15", "translation": "BLANK", "reason": "weekday labels were set at different sizes and alignments; reset as one centred set below"},
+ {"add": "p72_a11", "page": 72, "box": [65.3, 188.5, 117.8, 201.0], "translation": "Sun", "source": "星期日", "size": 9, "align": "center", "reason": "weekday header set centred in its own cell, all at one size"},
+ {"add": "p72_a12", "page": 72, "box": [121.8, 188.5, 173.5, 201.0], "translation": "Mon", "source": "星期一", "size": 9, "align": "center", "reason": "weekday header set centred in its own cell, all at one size"},
+ {"add": "p72_a13", "page": 72, "box": [177.5, 188.5, 230.0, 201.0], "translation": "Tue", "source": "星期二", "size": 9, "align": "center", "reason": "weekday header set centred in its own cell, all at one size"},
+ {"add": "p72_a14", "page": 72, "box": [234.0, 188.5, 286.6, 201.0], "translation": "Wed", "source": "星期三", "size": 9, "align": "center", "reason": "weekday header set centred in its own cell, all at one size"},
+ {"add": "p72_a15", "page": 72, "box": [290.6, 188.5, 343.2, 201.0], "translation": "Thu", "source": "星期四", "size": 9, "align": "center", "reason": "weekday header set centred in its own cell, all at one size"},
+ {"add": "p72_a16", "page": 72, "box": [347.2, 188.5, 398.8, 201.0], "translation": "Fri", "source": "星期五", "size": 9, "align": "center", "reason": "weekday header set centred in its own cell, all at one size"},
+ {"add": "p72_a17", "page": 72, "box": [402.8, 188.5, 455.3, 201.0], "translation": "Sat", "source": "星期六", "size": 9, "align": "center", "reason": "weekday header set centred in its own cell, all at one size"},
+ {"restore": [231.0, 187.3, 233.0, 202.2], "page": 72, "reason": "the Tue/Wed cell border in the weekday row was erased with the old label; restored from the source"}
+],
+ "flags": [
+ {"page": 70, "issue": "Speech bubble 'I type 41 characters a minute.' (p69_s8) is set at 0.59; a larger box made it wrap off-centre, so it was left as is."}
+ ]}

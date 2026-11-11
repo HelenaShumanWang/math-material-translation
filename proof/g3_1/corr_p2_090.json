@@ -1,0 +1,92 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s10_k1",
+   "translation": "BLANK",
+   "reason": "set at 0.53; reset as a two-line add below"
+  },
+  {
+   "add": "p89_a1",
+   "page": 89,
+   "box": [
+    68,
+    401,
+    232,
+    432
+   ],
+   "translation": "13 yuan+1 yuan 4 jiao\n=14 yuan 4 jiao",
+   "source": "13元+1元4角=14元4角",
+   "size": 9,
+   "align": "left",
+   "reason": "line was set at 0.53; two lines at sibling size"
+  },
+  {
+   "segment_id": "p89_s10_k0",
+   "translation": "BLANK",
+   "reason": "reset as add at the same size as its sibling lines (it overflows into the middle column once k1 is reset)"
+  },
+  {
+   "add": "p89_a2",
+   "page": 89,
+   "box": [
+    68,
+    381,
+    232,
+    399
+   ],
+   "translation": "6 jiao+8 jiao=14 jiao=1 yuan 4 jiao",
+   "source": "6角+8角=14角=1元4角",
+   "size": 9,
+   "align": "left",
+   "reason": "same size as the other working lines"
+  },
+  {
+   "segment_id": "p89_s27",
+   "translation": "⟦0⟧ jiao is…",
+   "reason": "source has ……"
+  },
+  {
+   "segment_id": "p89_s28",
+   "translation": "⟦0⟧ jiao is…",
+   "reason": "source has ……"
+  },
+  {
+   "segment_id": "p89_s17",
+   "translation": "Miaoxiang paid ¥⟦0⟧. How much change should she get?",
+   "reason": "natural wording; keep placeholder"
+  },
+  {
+   "segment_id": "p91_s7",
+   "translation": "There are many decimals in everyday life. Look and read.",
+   "box": [
+    78.5,
+    315.5,
+    440,
+    330.5
+   ],
+   "reason": "natural wording; box widened into free space so it stays on one line"
+  },
+  {
+   "segment_id": "p92_s3",
+   "translation": "The river is\n⟦0⟧ m wide.",
+   "box": [
+    79,
+    204,
+    148,
+    226
+   ],
+   "reason": "set at 0.67; use the rest of the bubble, kept clear of its left outline"
+  },
+  {
+   "segment_id": "p95_s36",
+   "translation": "⟦0⟧. What have you learned about years, months and days? Summarise it and tell your partner.",
+   "reason": "'sort it out' means fix a problem in British English"
+  }
+ ],
+ "flags": [
+  {
+   "page": 95,
+   "issue": "Row labels of the phone-bill table are set at different sizes (Dad larger than Mum/Total); cosmetic only."
+  }
+ ]
+}

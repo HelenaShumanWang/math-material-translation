@@ -1,0 +1,66 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p59_s19",
+   "translation": "Don't forget to add the number you carried!",
+   "reason": "shorter, same meaning; was shrunk to 0.75"
+  },
+  {
+   "segment_id": "p60_s23",
+   "translation": "⟦0⟧. Forest doctor.",
+   "reason": "match the style of sibling headings"
+  },
+  {
+   "merge": [
+    "p62_s3_k0",
+    "p62_s3_k2"
+   ],
+   "translation": "(1) What maths information do you know? Talk about it and draw it.",
+   "reason": "one question split by OCR; second half sat next to the Old Town label"
+  },
+  {
+   "segment_id": "p62_s5",
+   "translation": "(⟦0⟧) How far is Guangming from New Town?",
+   "reason": "shorter, was shrunk to 0.78"
+  },
+  {
+   "segment_id": "p62_s7",
+   "translation": "(⟦0⟧) How far is Lele's home from Old Town?",
+   "reason": "shorter so it does not run into item 2; restore placeholder"
+  },
+  {
+   "segment_id": "p62_s24",
+   "translation": "(⟦0⟧) How far is it from Tianjin to Jinan?",
+   "reason": "shorter, was shrunk to 0.77"
+  },
+  {
+   "segment_id": "p62_s28",
+   "translation": "(⟦0⟧) How far is it from Beijing to Qingdao?",
+   "reason": "shorter, was shrunk to 0.72"
+  },
+  {
+   "segment_id": "p64_s19",
+   "translation": "⟦0⟧. Fill",
+   "reason": "sentence reads around the printed circle: 4. Fill O with >, < or ="
+  },
+  {
+   "segment_id": "p62_s3_k1",
+   "box": [
+    231,
+    186,
+    257,
+    205
+   ],
+   "reason": "map label shrank to 0.56 after the merge; two lines right of the rail and above the Old Town station so it does not cover the track"
+  },
+  {
+   "merge": [
+    "p64_s20",
+    "p64_s21"
+   ],
+   "translation": "with \">\", \"<\" or \"=\".",
+   "reason": "one sentence split by OCR at a quote mark; merged to close the gap"
+  }
+ ],
+ "flags": []
+}

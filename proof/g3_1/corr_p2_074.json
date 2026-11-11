@@ -1,0 +1,27 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p76_s10",
+   "translation": "'s Saturday Timetable",
+   "box": [229.5, 561.0, 345.0, 575.2],
+   "align": "left",
+   "reason": "a name blank precedes the title (____ 星期六时间表), as in the checked edition; box widened to the right and left-aligned so the text starts after the name blank instead of covering it"
+  },
+  {
+   "segment_id": "p76_s2",
+   "translation": "I started football at ⟦0⟧:⟦1⟧ and played for ⟦2⟧ h ⟦3⟧ min.",
+   "reason": "past tense (踢了); keep placeholders"
+  },
+  {
+   "segment_id": "p78_s7_k1",
+   "translation": "With a ruler, 1 step is",
+   "reason": "more natural, shorter; reads on to '___ cm'"
+  },
+  {
+   "segment_id": "p79_s5",
+   "translation": "I arranged them like this, in order.",
+   "reason": "要按顺序 = you need to go in order; smoother"
+  }
+ ],
+ "flags": []
+}

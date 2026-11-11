@@ -1,0 +1,81 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p18_s3",
+   "translation": "DROP",
+   "reason": "brand name printed on the toothpaste tube (OCR of 牙膏 logo); keep picture"
+  },
+  {
+   "segment_id": "p18_s10",
+   "translation": "Work with a partner. Act out the scene above to check your choice.",
+   "reason": "shorter so it fits one line like its siblings"
+  },
+  {
+   "segment_id": "p18_s9",
+   "box": [
+    82.5,
+    379.8,
+    495,
+    393.7
+   ],
+   "reason": "shrunk; free paper right"
+  },
+  {
+   "segment_id": "p20_a3_p0",
+   "translation": "3(3)",
+   "reason": "match sibling class labels 3(1), 3(2)"
+  },
+  {
+   "segment_id": "p21_s2",
+   "translation": "Spend ¥⟦0⟧, get a gift pack",
+   "reason": "consistent with (3) 'gift pack'"
+  },
+  {
+   "segment_id": "p21_s14",
+   "translation": "(⟦0⟧) Buy one of each item. Which three items get the gift pack? Calculate.",
+   "reason": "dangling participle"
+  },
+  {
+   "segment_id": "p21_s26",
+   "translation": "(⟦0⟧) If you buy ⟦1⟧ bags of each kind, is that enough for ⟦2⟧ sweets?",
+   "reason": "够 = enough"
+  },
+  {
+   "segment_id": "p22_s0",
+   "translation": "Cabbage Trucks",
+   "box": [
+    64,
+    66,
+    160,
+    89.5
+   ],
+   "reason": "title shrunk to 0.65 and wrapped; shorter title, rest of banner free"
+  },
+  {
+   "segment_id": "p22_s3",
+   "box": [
+    372.8,
+    126,
+    457,
+    141
+   ],
+   "reason": "shrunk; rest of bubble free"
+  },
+  {
+   "segment_id": "p24_s4",
+   "box": [
+    421,
+    219.7,
+    466,
+    236
+   ],
+   "reason": "shrunk to 0.62; free grass right"
+  }
+ ],
+ "flags": [
+  {
+   "page": 24,
+   "issue": "Table header labels Literature/Biography are set much smaller than Science and Total (cells too narrow); consider uniform size."
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{"corrections": [
+ {"segment_id": "p99_s6", "translation": "Yogurt", "box": [327.0, 156.0, 347.0, 170.0], "reason": "yoghurt bottle label was left in Chinese; slightly larger box on the bottle label; 'Yogurt' matches the question's spelling and fits inside the label ('Yoghurt' ran past it)"},
+ {"segment_id": "p99_s24", "box": [70.6, 492.5, 345.0, 503.0], "reason": "(1) was set much larger than (2) and (3); a lower box brings it near the sibling size"},
+ {"merge": ["p100_s6", "p100_s7"], "translation": "(1) Xiaoxiao spent (     ) minutes on her homework.", "reason": "the enumerator (1) and its sentence were split: '(1)' stood alone under a big separate sentence"},
+ {"segment_id": "p100_s9", "translation": "(⟦0⟧) What is Xiaoxiao doing at these times?", "box": [261.4, 318.0, 495.0, 333.4], "reason": "set smaller than sibling instructions; free paper to the right"},
+ {"segment_id": "p100_s22", "translation": "(⟦0⟧) How many pupils does Grade 3 have?", "reason": "shorter wording, same meaning, so it fits at sibling size"},
+ {"segment_id": "p100_s23", "translation": "(2) Which three classes could share a boat? Give a plan.", "reason": "shorter wording so it fits at sibling size"},
+ {"segment_id": "p98_s15_k0", "box": [236.0, 269.9, 290.0, 282.0], "reason": "'12 noon' was pushed against the right border of its dashed cell (中午12时); centred in its own cell like the others"},
+ {"segment_id": "p98_s15_k1", "box": [303.0, 269.9, 364.0, 282.0], "reason": "'7 a.m.' was jammed against the left border of its dashed cell (上午7时); centred in its own cell"}
+],
+ "flags": [
+ {"page": 100, "issue": "p99_s24 '(1) How many kilometres...' is centred and starts further right than (2) and (3); it should be left-aligned with them (segment align not settable; moving the box left shifts it unpredictably and at x0 50-60 knocks out the Zhengzhou label p99_s18)."}
+ ]}

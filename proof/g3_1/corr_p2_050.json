@@ -1,0 +1,67 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p51_s9",
+   "translation": "Add the lengths of the ⟦0⟧ sides. ⟦1⟧ (cm)",
+   "reason": "restore placeholders"
+  },
+  {
+   "segment_id": "p51_s13",
+   "translation": "Taoqi wants to fence a ⟦0⟧ m by ⟦1⟧ m rectangular vegetable patch against a wall.",
+   "box": [
+    81.6,
+    513.1,
+    468.0,
+    527.5
+   ],
+   "reason": "smoother; shrunk"
+  },
+  {
+   "segment_id": "p52_s10",
+   "translation": "⟦0⟧. Taoqi used a ⟦1⟧ cm piece of string to make a square. What is the side length of the square?",
+   "reason": "more natural question"
+  },
+  {
+   "segment_id": "p54_s6_k1",
+   "box": [
+    98.0,
+    404.0,
+    338.0,
+    454.0
+   ],
+   "reason": "set at 0.54; free paper below it before 9."
+  },
+  {
+   "segment_id": "p55_s2",
+   "translation": "How many ants are there in total? Circle groups on the dot diagram and calculate.",
+   "reason": "circle what: groups of dots; kept short enough for one line"
+  },
+  {
+   "segment_id": "p56_s18",
+   "translation": "(⟦0⟧) Lele's mum bought her family ⟦1⟧ vests and ⟦2⟧ sweater. How much did she pay in total?",
+   "reason": "restore placeholders; shorter so it is set at sibling size"
+  },
+  {
+   "segment_id": "p56_s21",
+   "translation": "⟦0⟧. Can the lorry take them all in one trip?",
+   "reason": "say what carries them (the lorry in the picture)"
+  },
+  {
+   "segment_id": "p56_s15_k1",
+   "translation": "Minibus passengers",
+   "reason": "shorter; the small vehicle is a minibus"
+  },
+  {
+   "segment_id": "p56_s23_k1",
+   "translation": "Holds 90 baskets",
+   "box": [
+    366.0,
+    590.0,
+    446.0,
+    607.0
+   ],
+   "reason": "set at 0.65; room in the bubble"
+  }
+ ],
+ "flags": []
+}

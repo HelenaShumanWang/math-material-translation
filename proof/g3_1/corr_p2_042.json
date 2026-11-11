@@ -1,0 +1,9 @@
+{"corrections": [
+{"segment_id": "p44_s6", "translation": "A big cuboid or cube shows at most three faces. Why does this small cube", "reason": "fragment before the cube picture; the old English broke off mid-question and repeated what p44_s7 says"},
+{"segment_id": "p44_s7", "translation": "also show only three faces? And a ball?", "reason": "rest of the question after the cube picture (最多也只能看到三个面呢？球呢？), which was missing; tried and renders cleanly"},
+{"segment_id": "p47_s28", "translation": "(⟦0⟧) Work out how far Uncle Li drove each day. On which day did he drive the most? The least?", "reason": "'Which day was the most?' is unnatural"},
+{"restore": [115.5, 423.9, 117.8, 437.6], "page": 47, "reason": "the Mon/Tue header split at 116 wiped the table's column line between Mon and Tue (at 116.3-117.0); bring it back from the source"},
+{"segment_id": "p47_s22_k0", "translation": "Mon", "box": [69.5, 424.6, 106.7, 437.4], "reason": "place Mon in its own cell (58-116) as Wed-Fri sit in theirs, clear of the column line"},
+{"segment_id": "p47_s22_k1", "translation": "Tue", "box": [128.5, 424.6, 165.7, 437.4], "reason": "place Tue in its own cell (117-175) as Wed-Fri sit in theirs, clear of the column line"}
+],
+"flags": []}
