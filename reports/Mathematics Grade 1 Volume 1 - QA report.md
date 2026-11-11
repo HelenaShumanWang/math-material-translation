@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 2 errors, 505 warnings (1303.3 s); proofread: 2130 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 2 errors, 505 warnings (1303.3 s); proofread: 2134 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 109 page(s), 1240 translatable segment(s))
 
@@ -203,7 +203,7 @@
 | warning | 99 | p98_s12_k2 | Reviewed by the proofreader: Remove the symbol(s) △ ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 边画，下面画 | △ to its left and ○ below it. |
 | warning | 101 | p100_s13 | Reviewed by the proofreader: Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 6.在400.13.0里填上 | 6. Fill in each ○ with >, < or =. |
 | warning | 103 | p102_s8 | Reviewed by the proofreader: Remove the symbol(s) ○ ✓: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | 17.最重的画最轻的画 | 17. Draw ✓ for the heaviest and ○ for the lightest. |
-| warning | 105 | p104_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What did you learn this term? |
+| warning | 105 | p104_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What Did You Learn This Term? |
 
 ### `glossary` — 0 errors, 61 warnings
 
@@ -494,7 +494,7 @@
 | warning | 71 | p70_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 左边第3个是什么？ | What is 3rd to its left? |
 | warning | 71 | p70_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.做一做 | 5. Do it. |
 | warning | 72 | p71_s4 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 在黑板的上面、国旗的下面有8个大字···· | Above the blackboard and below the national flag there are … |
-| warning | 73 | p72_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.看图回答问题 | 1. Answer from the picture. |
+| warning | 73 | p72_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.看图回答问题 | 1. Look at the picture and answer. |
 | warning | 73 | p72_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "1", ⟦2⟧ = "4") | (2）从右往左数，小明排第1，小红排第4 | (2) Counting from right to left, Xiaoming is 1st and Xiaoho… |
 | warning | 73 | p72_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "6") | 3.说一说你的文具盒的上、下、前、后、左、右6个面。 | 3. Talk about the 6 faces of your pencil case: top, bottom,… |
 | warning | 74 | p73_s0 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "292.0.0") | 六292.0.0认识图形 | Unit 6 Recognising Shapes |
