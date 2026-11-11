@@ -1,0 +1,376 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p81_s12",
+   "translation": "⟦0⟧. Calculate these, then discuss with your partner.",
+   "reason": "missing object and full stop"
+  },
+  {
+   "segment_id": "p81_s20",
+   "translation": "⟦0⟧. How long is a bundle of wire?",
+   "reason": "unnatural phrasing; shorter so it is not shrunk"
+  },
+  {
+   "split": "p82_s1",
+   "translations": [
+    "Race walking results",
+    "Time/min"
+   ],
+   "reason": "table title and column header joined"
+  },
+  {
+   "split": "p82_s3",
+   "translations": [
+    "Squirrel",
+    "Monkey",
+    "Rabbit"
+   ],
+   "reason": "row labels of three rows joined"
+  },
+  {
+   "segment_id": "p82_s12",
+   "translation": "On average the rabbit walks ⟦1⟧ m in ⟦0⟧ min, so its speed is ⟦2⟧ m/min. Can you give the speeds of the squirrel and the monkey?",
+   "reason": "dropped ⟦3⟧: OCR crop of the red slash, printed a second '/'"
+  },
+  {
+   "segment_id": "p82_s12",
+   "erase": [
+    [
+     268,
+     438,
+     281,
+     450
+    ]
+   ],
+   "reason": "red 速 left in the bubble"
+  },
+  {
+   "segment_id": "p82_s16",
+   "translation": "A plane flies at about ⟦0⟧ km/min.",
+   "reason": "restore placeholder"
+  },
+  {
+   "segment_id": "p82_s17",
+   "translation": "Sound travels at about ⟦0⟧ m/s.",
+   "reason": "spacing 'm/ s', shorter"
+  },
+  {
+   "segment_id": "p82_s18",
+   "translation": "Light travels\nat about\n⟦0⟧0,000\nkm/s.",
+   "reason": "30万 = 300,000; '30 km/s' was wrong; line breaks so 'km/s' is not cut at the slash"
+  },
+  {
+   "segment_id": "p83_s0",
+   "translation": "Try It",
+   "reason": "heading 试一试 was mistranslated 'a ruler.'"
+  },
+  {
+   "segment_id": "p83_s1",
+   "translation": "Think, then fill in.",
+   "reason": "capitalisation"
+  },
+  {
+   "segment_id": "p83_s21",
+   "box": [
+    88,
+    382,
+    212,
+    400
+   ],
+   "reason": "shrunk to 0.66; free room in the pink band"
+  },
+  {
+   "merge": [
+    "p83_s29",
+    "p83_s30"
+   ],
+   "translation": "2. Do you know the first cosmic velocity? For a spacecraft to orbit the Earth, it must be launched at a speed of at least 7.9 km/s. This speed is called the first cosmic velocity. A person walks at about 4 km/h. Compare the two speeds. What do you notice?",
+   "reason": "one paragraph split in two, set at different sizes"
+  },
+  {
+   "segment_id": "p84_s22",
+   "translation": "Unit price/yuan",
+   "reason": "stray space"
+  },
+  {
+   "split": "p85_s14",
+   "translations": [
+    "Title",
+    "Unit price/yuan   Sales/yuan",
+    "Children's Comics",
+    "Maths Stories",
+    "Cartoon Stories"
+   ],
+   "reason": "table cells printed as one run"
+  },
+  {
+   "segment_id": "p85_s17",
+   "translation": "⟦0⟧ If the school spends ¥⟦1⟧ on Cartoon Stories, about how many copies can it buy?",
+   "reason": "drop Chinese title marks"
+  },
+  {
+   "segment_id": "p86_s5",
+   "translation": "Travels ⟦1⟧ km in ⟦0⟧ h.",
+   "reason": "dropped ⟦2⟧: OCR crop of bubble outline"
+  },
+  {
+   "segment_id": "p86_s9",
+   "translation": "⟦0⟧ Both leave City ⟦1⟧ for City ⟦2⟧ together. The van goes the long way round the mountain; the coach takes the short tunnel route. Which arrives first?",
+   "reason": "set smaller than siblings; shorter, coach consistent with (1)"
+  },
+  {
+   "segment_id": "p86_s10",
+   "translation": "⟦0⟧ On the actual journey, the coach stopped to rest for ⟦1⟧ min. Work out which vehicle arrives first.",
+   "reason": "大客车 = coach, as in (1)"
+  },
+  {
+   "segment_id": "p87_s10",
+   "translation": "We usually write ⟦0⟧⟦1⟧ ℃ for ⟦2⟧ ℃ above zero and −⟦3⟧ ℃ for ⟦4⟧ ℃ below zero.",
+   "reason": "⟦0⟧ is the red + itself; text printed a second +"
+  },
+  {
+   "add": "p87_a1",
+   "page": 87,
+   "box": [
+    154,
+    348,
+    172,
+    360
+   ],
+   "translation": "Cold",
+   "source": "冷",
+   "reason": "冷 label beside the blue arrow left in Chinese; dark like 'Hot', not red",
+   "size": 7,
+   "color": 2105376
+  },
+  {
+   "merge": [
+    "p87_s21",
+    "p87_s23"
+   ],
+   "translation": "I'll look for them on the thermometer…",
+   "reason": "one bubble sentence split in two"
+  },
+  {
+   "merge": [
+    "p87_s22",
+    "p87_s24"
+   ],
+   "translation": "−2℃ is 2℃ lower than 0℃…",
+   "reason": "one bubble sentence split in two"
+  },
+  {
+   "segment_id": "p88_s6",
+   "translation": "Changchun ⟦0⟧℃",
+   "reason": "dropped ⟦1⟧: OCR crop of the label",
+   "box": [
+    149,
+    277,
+    203,
+    289.1
+   ]
+  },
+  {
+   "segment_id": "p88_s9",
+   "translation": "Qingdao 0℃",
+   "box": [
+    106,
+    330.5,
+    152,
+    342.7
+   ],
+   "reason": "⟦0⟧ 'C' misread of 0, dropped ⟦1⟧ OCR crop; was left in Chinese"
+  },
+  {
+   "split": "p88_s22",
+   "translations": [
+    "Lowest/℃",
+    "Highest/℃"
+   ],
+   "reason": "two row labels joined"
+  },
+  {
+   "split": "p82_s10",
+   "translations": [
+    "Rabbit per minute: 240 ÷ 3 = 80 (m)",
+    "Squirrel per minute: 280 ÷ 4 = 70 (m)",
+    "The rabbit is faster."
+   ],
+   "reason": "three blackboard lines run together"
+  },
+  {
+   "segment_id": "p84_s0",
+   "translation": "Beijing ⟦0⟧\nTianjin ⟦1⟧",
+   "box": [
+    155,
+    76,
+    208,
+    101
+   ],
+   "reason": "two sign lines kept whole; inside the sign"
+  },
+  {
+   "split": "p84_s7",
+   "at": [
+    251,
+    269
+   ],
+   "translations": [
+    "Milk",
+    "Milk",
+    "Milk"
+   ],
+   "reason": "one label per carton"
+  },
+  {
+   "split": "p84_s6",
+   "at": [
+    251,
+    269
+   ],
+   "translations": [
+    "220ml",
+    "220ml",
+    "220ml"
+   ],
+   "reason": "net content per carton; OCR garbage removed"
+  },
+  {
+   "segment_id": "p84_s4",
+   "translation": "⟦0⟧. Look and discuss.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p85_s18",
+   "translation": "(⟦0⟧) Based on this day's sales, estimate the monthly sales of Children's Comics.",
+   "reason": "drop Chinese title marks; shorter"
+  },
+  {
+   "segment_id": "p87_s7",
+   "erase": [
+    [
+     227,
+     231,
+     236,
+     243
+    ]
+   ],
+   "reason": "remains of 北 printed over Taipei"
+  },
+  {
+   "add": "p88_a1",
+   "page": 88,
+   "box": [
+    111,
+    310,
+    156,
+    322
+   ],
+   "translation": "Tianjin −2℃",
+   "source": "天津 −2℃",
+   "size": 7,
+   "align": "left",
+   "reason": "map label left in Chinese"
+  },
+  {
+   "split": "p88_s17",
+   "translations": [
+    "year ___ month ___ day",
+    "Hong Kong",
+    "Taipei"
+   ],
+   "reason": "date line and two table headers joined"
+  },
+  {
+   "segment_id": "p81_s20",
+   "box": [
+    56.7,
+    409,
+    228,
+    424.3
+   ],
+   "reason": "wrapped onto two lines; free room to the right"
+  },
+  {
+   "segment_id": "p81_s1",
+   "box": [
+    56.7,
+    103.7,
+    470,
+    117.6
+   ],
+   "reason": "'same.' wrapped onto a second line; free room to the right"
+  },
+  {
+   "segment_id": "p82_s10_k1",
+   "box": [
+    297.6,
+    327.1,
+    455,
+    343.6
+   ],
+   "reason": "'(m)' wrapped onto a second line over the board"
+  },
+  {
+   "segment_id": "p83_s13",
+   "translation": "⟦0⟧h)",
+   "reason": "'( h)' stray space"
+  },
+  {
+   "segment_id": "p84_s16",
+   "translation": "Rice",
+   "box": [
+    339,
+    411,
+    359,
+    421
+   ],
+   "reason": "米 on the rice sack is rice, not 'm'"
+  },
+  {
+   "split": "p85_s14_k1",
+   "at": [
+    212
+   ],
+   "translations": [
+    "Unit price/yuan",
+    "Sales/yuan"
+   ],
+   "reason": "two header cells set across the column rule"
+  },
+  {
+   "restore": [
+    136,
+    272,
+    148.5,
+    287
+   ],
+   "page": 88,
+   "reason": "flat green patch left of the Changchun label: map back"
+  },
+  {
+   "restore": [
+    148,
+    288,
+    172,
+    297
+   ],
+   "page": 88,
+   "reason": "flat pink patch under the Changchun label: map back"
+  }
+ ],
+ "flags": [
+  {
+   "page": 89,
+   "issue": "Changchun map label (p88_s6) sits on a flat pink/grey painted rectangle left by the erase of 长春 -8℃; looks patchy over the map"
+  },
+  {
+   "page": 88,
+   "issue": "a small dark dot stays under '0℃' in the right bubble (p87_s22 merged with p87_s24); erase and paint of that spot did not remove it, so it is probably drawn by the text layer"
+  },
+  {
+   "page": 89,
+   "issue": "Tianjin −2℃ added label (p88_a1) erases a white rectangle that removes the province lines and the Tianjin dot behind the old Chinese label"
+  }
+ ]
+}

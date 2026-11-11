@@ -1,0 +1,166 @@
+{
+ "code": "g4_1",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 1,
+   "issue": "Cover: the box of 'Mathematics' whitened part of the pale blue arc above SHUXUE and faint strokes of 数学 show above the title; the characters reach into the gradient arc, so a restore would bring them back (the checked edition had the same)."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 3,
+   "issue": "Handwritten column labels on the blue caterpillar ball (千万 百万 十万 万) stay in Chinese: an add or erase there whitens the crayon colouring of the ball; the checked edition also kept them. The 'The same!' bubble outline has a small gap at its top right (as in the checked edition)."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 5,
+   "issue": "'60 m' is set horizontally beside the slanted road (the source label runs along it). 'Maths Is Fun' is forced as one line by the section-label rule and touches the first dot of its leader."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 7,
+   "issue": "Exercise 3 note: the five-line English slightly overlaps the two paper clips at the top of the note; the layout grows the box upwards whatever box is given."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 8,
+   "issue": "Place-value table header: 'Period' is set much larger than the three two-line period headers; the 10 times label between 10 0000 and 100 0000 is set small (0.59)."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 10,
+   "issue": "The Taiwan, Macao and Guangdong number words beside the table rows (p9_s23 parts, p9_s24) are set at different small sizes; the long number words do not fit the narrow space left of the table at one size."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 11,
+   "issue": "The bubble '一百二十亿零八十' (p10_s13, 'twelve billion and eighty') shows a paler rectangle left of the English from an earlier erase; the three other number-word bubbles are set small (about 0.55) because the words are long."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 12,
+   "issue": "Tiny province labels on the map (Heilongjiang, Shanghai, Guangdong, Guizhou, Chongqing, Fujian, Guangxi, Macao, Hong Kong, Beijing, Shanxi, Hebei, Tianjin, Shaanxi, Henan and others never read by OCR) stay in Chinese: no room for English at a readable size. The five callouts needed by the exercise are in English."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 16,
+   "issue": "The 'Vertical'/'Horizontal' row labels of the rod numerals start left of the beige strip (x 62); the strip's erased left end is painted back beige, the labels' left part sits on white paper."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 28,
+   "issue": "Slanted label 1厘米 on the upper arm of the angle beside the ruler (p27, x~250-275pt, y~270-290pt) is still Chinese; slanted text cannot be set by line, should read '1 cm'."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 32,
+   "issue": "Map: the middle character 三 of the vertical ring-road label 东三环 (x~438-442pt, y~147-158pt) still leaves a small dark mark on the orange road; erase/paint attempts either left it or hid the English. The English 'East 3rd Ring Road' (add p31_a1) is set along the road at small size, like the other map labels."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 45,
+   "issue": "Map labels Zhengzhou and Wuhan are set smaller (about 5-6 pt) than Changsha and Shaoguan, on small flat-colour backings over the mountains: there is no more room between the bubble and the railway."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 46,
+   "issue": "Place-value chart header labels (B, HM, TM, M, HTh, TTh) are set very small (about 5 pt) in their one-character cells; TTh is set upright."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 49,
+   "issue": "Question 3 asks about the 'underlined numbers', but the English paragraph has no underlines (the Chinese underlines 3735200, 1334000, 1000000000, 十万, 一百二十万, 十七万)."
+  },
+  {
+   "file": "corr_p1_042.json",
+   "page": 49,
+   "issue": "Road names Zhongshan Road and Nanjing Road are set small (about 5 pt) to fit their bands; Huanghe Road and Changjiang Road are set above the upper ends of their diagonal roads, whose bands were redrawn under the erased Chinese."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 51,
+   "issue": "Price labels on the shop shelves (p50_s1, p50_s2, p50_s7, p50_s8) are set at 0.53-0.56; the labels have no free room around them."
+  },
+  {
+   "file": "corr_p1_050.json",
+   "page": 57,
+   "issue": "Station signs are shortened pinyin (Sanjia for 三家店, Qili for 七里庄); full names Sanjiadian / Qilizhuang do not fit the small signs."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 62,
+   "issue": "(2) 'How much will all this fruit sell for in total?' (p61_s15) is set larger than its sibling (1) (p61_s14); its '(2)' stays in the green icon of the picture."
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 62,
+   "issue": "p61_s17 ('6. We often use the column method...') is set smaller than the other numbered instructions even with a wider box."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 66,
+   "issue": "Guangming Road label (p65_s22) and Bus 4 tag are set very small (0.52/0.68) in the tight space under the route line"
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 69,
+   "issue": "the note's opening quote marks before the piece icons have no closing quotes (adding them to the English pushed the text out of its box)"
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 88,
+   "issue": "A small dark dot stays under '0℃' in the right bubble (p87_s22 merged with p87_s24). Neither an erase nor a paint of that spot removed it, so the text layer probably draws it. The checked edition had the same remnant."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 89,
+   "issue": "Changchun map label (p88_s6) sat on flat pink/grey rectangles left by the erase of 长春 -8℃. Two restores and a wider box now bring most of the map back. A small flat patch remains just left of the label."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 89,
+   "issue": "The added Tianjin −2℃ label (p88_a1) erases a white rectangle. This removes the province lines and the Tianjin dot that were behind the old Chinese label."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 90,
+   "issue": "heading p89_s0 'Positive and Negative Numbers' still set at 0.54 in the green banner; a box extension did not enlarge it"
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 91,
+   "issue": "merged question (2) (p90_s14) is set much larger than (1) and 3.; same kind of text should share one size"
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 102,
+   "issue": "Prize wheel (p101): the rotated sector texts (公园门票, 谢谢, 欢迎再来, 足球/比赛门票) stay in Chinese; rotated text cannot be set. The OCR fragments Park/Race were dropped."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 102,
+   "issue": "Cinema sign 光明影院 (hand-lettered, slanted on the building) stays in Chinese; would read 'Guangming Cinema'."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 103,
+   "issue": "Mind map (numbers): the oval outlines around Integers, Positive integers, 0, Negative integers, Natural numbers, Fractions/decimals were erased with the Chinese; English labels float without their bubbles."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 103,
+   "issue": "Mind map (numbers): the connecting lines from Numbers to Integers and to Fractions/decimals were erased with the Chinese and cannot be restored without the Chinese; the labels stand without them."
+  },
+  {
+   "file": "corr_p1_106.json",
+   "page": 108,
+   "issue": "Map labels Bus 2, Radio Building, Bus 1 (0.7) and Department Store, Miaoxiang's House (0.64-0.66) stay small: the map leaves no free room around them without covering the routes."
+  },
+  {
+   "file": "corr_p1_106.json",
+   "page": 109,
+   "issue": "Option labels 'Must be a girl' and the box labels 'Names of all teachers in the school' etc. are set slightly smaller (0.72-0.79) than sibling labels; acceptable, left as is."
+  }
+ ]
+}

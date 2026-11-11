@@ -1,0 +1,30 @@
+{
+ "corrections": [
+  {"segment_id": "p17_s5", "box": [130, 343, 188.5, 361.5], "reason": "bubble has room; keep inside the outline"},
+  {"segment_id": "p17_s6", "box": [307, 367.5, 404, 387], "reason": "bubble has room; keep inside the outline"},
+  {"segment_id": "p17_s2", "translation": "The National Library of China covers about two hundred and fifty thousand square metres. By the end of ⟦0⟧ its collection had reached thirty-one million one hundred and ninety thousand items, fifth among the world's national libraries.", "reason": "natural phrasing; erase the printed blue underlines that struck through the English", "erase": [[270, 254, 326, 263], [344, 273, 443, 278]]},
+  {"segment_id": "p17_s16", "translation": "⟦0⟧. Make a place-value chart, write these numbers in it and read them.", "reason": "shorter to fit at full size"},
+  {"segment_id": "p18_s0", "translation": "⟦0⟧. The table shows the average distances of the eight planets from the Sun. Read the numbers and rewrite them in units of ten thousand.", "reason": "shorter"},
+  {"split": "p18_s1", "translations": ["Planet", "Distance/km", "Distance/10000 km", "Mercury"], "reason": "table header cells"},
+  {"segment_id": "p18_s1_k3", "box": [110, 123, 162, 136], "reason": "Mercury cell after split"},
+  {"split": "p18_s2", "translations": ["Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"], "reason": "table column cells"},
+  {"segment_id": "p18_s3", "translation": "(⟦0⟧) Which planet has the smallest average distance from the Sun? Which has the largest?", "reason": "faithful parallel question"},
+  {"segment_id": "p18_s5", "translation": "⟦0⟧. Use the five digits ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧ and ⟦5⟧ to write these numbers.", "reason": "shorter to fit"},
+  {"segment_id": "p19_s0", "translation": "Unit 2", "erase": [[224, 66, 241, 95]], "reason": "dropped ⟦0⟧: OCR crop of 线; erase leftover glyph"},
+  {"segment_id": "p19_s6", "translation": "Straight line", "reason": "capitalised label, matches s14"},
+  {"segment_id": "p19_s9", "translation": "(1) A line segment has two endpoints.\n(2) It has a definite length.", "erase": [[61, 386, 78, 401]], "box": [61, 372, 185, 400], "reason": "restore enumerators, erase leftover (2)"},
+  {"segment_id": "p19_s17", "translation": "The length of line segment ⟦0⟧ is the distance between points ⟦1⟧ and ⟦2⟧.", "reason": "full stop"},
+  {"segment_id": "p21_s5", "translation": "I'll extend the two lines and draw them on paper.", "reason": "natural"},
+  {"add": "p21_a1", "page": 21, "box": [393, 586, 444, 600], "translation": "Draw.", "source": "画一画。", "reason": "bubble left in Chinese"},
+  {"segment_id": "p22_s2", "translation": "⟦0⟧. Which two sides of each figure are perpendicular? Check with a set square.", "reason": "shorter, avoids wrap into figures"},
+  {"segment_id": "p22_s7", "translation": "Line ⟦0⟧ is the riverbank and point O is where Taoqi is.", "reason": "dropped ⟦1⟧: misread 0 for letter O; shorter"},
+  {"segment_id": "p23_s1", "translation": "Talk about translations in everyday life. Slide a pencil on squared paper and draw.", "reason": "shorter"},
+  {"segment_id": "p23_s4", "translation": "Find two pairs of parallel line segments and trace them in different colours.", "reason": "shorter"},
+  {"segment_id": "p23_s7", "box": [130, 553.5, 219.5, 567.5], "reason": "keep text inside the bubble outline"},
+  {"segment_id": "p24_s3", "translation": "⟦0⟧. Can you use what you have learned to explain why?", "reason": "natural word order"},
+  {"segment_id": "p24_s5", "translation": "Is the picture straight?", "reason": "say what is asked about"},
+  {"segment_id": "p21_s7", "translation": "BLANK", "reason": "label set whole by add p21_a2"},
+  {"add": "p21_a2", "page": 21, "box": [76, 410, 205, 426], "translation": "Do It and Recognise", "source": "做一做，认一认。", "align": "left", "size": 11, "reason": "label 做一做，认一认: OCR read only 做一做"}
+ ],
+ "flags": []
+}

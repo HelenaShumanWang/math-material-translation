@@ -1,0 +1,302 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p73_s0",
+   "translation": "Try It",
+   "reason": "wrong translation 'a ruler.'"
+  },
+  {
+   "segment_id": "p73_s17",
+   "translation": "⟦0⟧. At the start of the new term, the school took ⟦1⟧ books from the library to add to the \"Little Book Corner\" in each of its ⟦2⟧ classes. On average, how many books can each class get?",
+   "reason": "smoother, closer to source"
+  },
+  {
+   "segment_id": "p74_s0",
+   "translation": "⟦0⟧. First estimate how many digits each quotient has and tell your partner why, then calculate.",
+   "reason": "full stop; each quotient"
+  },
+  {
+   "segment_id": "p74_s16",
+   "translation": "⟦0⟧. Teacher Li took ¥⟦1⟧ to buy sports equipment.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p74_s21",
+   "translation": "(⟦0⟧) How many skipping ropes can be bought with the money left?",
+   "reason": "dangling participle"
+  },
+  {
+   "paint": [
+    400,
+    84,
+    410,
+    95
+   ],
+   "page": 75,
+   "colour": [
+    220,
+    75,
+    80
+   ],
+   "reason": "leftover yellow of 五 on the flag"
+  },
+  {
+   "restore": [
+    405,
+    76,
+    436,
+    84.3
+   ],
+   "page": 75,
+   "reason": "flat fill sticks out above the flag edge; widened so the whole top outline of the Grade 5 flag comes back"
+  },
+  {
+   "merge": [
+    "p75_s4",
+    "p75_s3"
+   ],
+   "translation": "Up to 24 passengers.",
+   "reason": "one sentence split in two"
+  },
+  {
+   "segment_id": "p75_s9",
+   "translation": "Up to ⟦0⟧ passengers.",
+   "reason": "natural"
+  },
+  {
+   "merge": [
+    "p75_s5",
+    "p75_s6"
+   ],
+   "translation": "Grade 3\n192 pupils",
+   "reason": "one flag"
+  },
+  {
+   "merge": [
+    "p75_s1",
+    "p75_s7"
+   ],
+   "translation": "Grade 4\n184 pupils",
+   "reason": "one flag; 184人 left in Chinese"
+  },
+  {
+   "merge": [
+    "p75_s2",
+    "p75_s8"
+   ],
+   "translation": "Grade 5\n230 pupils",
+   "reason": "one flag"
+  },
+  {
+   "segment_id": "p75_s17",
+   "erase": [
+    [
+     252,
+     396,
+     264,
+     409
+    ]
+   ],
+   "reason": "Chinese full stop after the answer line"
+  },
+  {
+   "segment_id": "p75_s26",
+   "erase": [
+    [
+     252,
+     575,
+     264,
+     589
+    ]
+   ],
+   "reason": "Chinese full stop after the answer line"
+  },
+  {
+   "segment_id": "p75_s10",
+   "translation": "All Grade 3 pupils go in small buses. How many buses are needed? Estimate first, then use the column method.",
+   "reason": "column method; pupils"
+  },
+  {
+   "segment_id": "p75_s18",
+   "translation": "All Grade 4 pupils go in large buses. How many buses are needed?",
+   "reason": "small vs large buses"
+  },
+  {
+   "segment_id": "p75_s23",
+   "translation": "so try ⟦0⟧",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p75_s27",
+   "translation": "What puzzled you when trying a quotient? How did you solve it? Discuss with your partner.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p75_s21",
+   "translation": "Your remainder is the same as the divisor, so the quotient ⟦0⟧ is too small. It should be ⟦1⟧.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p76_s0",
+   "translation": "Try It",
+   "reason": "wrong translation 'a ruler.'"
+  },
+  {
+   "segment_id": "p76_s10",
+   "translation": "⟦0⟧. Fill in each",
+   "reason": "first half of the instruction before the circle"
+  },
+  {
+   "segment_id": "p76_s11",
+   "translation": "with >, < or = without calculating.",
+   "reason": "second half after the circle; no duplication"
+  },
+  {
+   "segment_id": "p76_s16",
+   "translation": "⟦0⟧ kg per box",
+   "reason": "label; natural"
+  },
+  {
+   "segment_id": "p76_s17",
+   "translation": "⟦0⟧ kg per box",
+   "reason": "truncated 'a bo'"
+  },
+  {
+   "segment_id": "p76_s7",
+   "translation": "When trying a quotient, you often can't get it right first time. Just adjust it as you go!",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p76_s11",
+   "box": [
+    173.8,
+    454.1,
+    347.2,
+    467.2
+   ],
+   "reason": "match size of first half"
+  },
+  {
+   "split": "p77_s18",
+   "translations": [
+    "Month",
+    "Emails"
+   ],
+   "reason": "two table header cells read as one paragraph"
+  },
+  {
+   "segment_id": "p77_s17",
+   "translation": "⟦0⟧. The magazine I Am a Little Host was launched in month ⟦2⟧ of ⟦1⟧. The table shows how many emails its editors received from readers in the first ⟦3⟧ months.",
+   "reason": "clearer; 'from readers' was missing"
+  },
+  {
+   "segment_id": "p77_s22",
+   "translation": "(⟦0⟧) Ask another maths question and try to answer it.",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p77_s15",
+   "translation": "(⟦0⟧) Xiaoming is ⟦1⟧. How many times as old as Xiaoming is the ginkgo tree?",
+   "reason": "shorter, natural; fits one line"
+  },
+  {
+   "segment_id": "p77_s16",
+   "translation": "⟦0⟧ The museum is ⟦1⟧ m tall. How many times as tall as the museum is the ginkgo tree?",
+   "reason": "shorter; fits one line"
+  },
+  {
+   "segment_id": "p78_s23",
+   "translation": "School starts on ⟦1⟧ September (month ⟦0⟧).",
+   "reason": "\"1 9\" unreadable; the calendar label says August in words, so name the month"
+  },
+  {
+   "segment_id": "p78_s8",
+   "translation": "⟦0⟧. Fill in the boxes, then tell your partner how you tried the quotients.",
+   "reason": "object missing"
+  },
+  {
+   "segment_id": "p78_s14",
+   "translation": "All answers have remainders",
+   "reason": "clearer"
+  },
+  {
+   "segment_id": "p79_s0",
+   "translation": "⟦0⟧. Estimate which is nearest your age. Mark its",
+   "reason": "shorter so it fits one line before the circle"
+  },
+  {
+   "segment_id": "p79_s1",
+   "translation": "with ✓.",
+   "reason": "the tick was erased with the Chinese; 'with a' was incomplete"
+  },
+  {
+   "line": "p79_i316_20",
+   "translation": "Lele",
+   "force": true,
+   "reason": "name header in the table, only text in the cell"
+  },
+  {
+   "segment_id": "p79_s1",
+   "box": [
+    329.7,
+    63.8,
+    395,
+    78.5
+   ],
+   "reason": "free paper where the erased “✓”。 stood"
+  },
+  {
+   "segment_id": "p79_s21",
+   "translation": "⟦0⟧. For a speech contest, Miaoxiang wrote a speech of about ⟦1⟧ characters. Her speech lasts ⟦2⟧ minutes.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p79_s14",
+   "translation": "⟦0⟧. The table below shows how long Taoqi, Xiaoxiao, Qisi and Lele usually practise typing each day, and their results in one test (in the test, each chose their own article). Using this record, ask two maths questions and try to answer them.",
+   "reason": "British 'practise' (verb), maths"
+  },
+  {
+   "segment_id": "p79_s23",
+   "translation": "(⟦0⟧) If Miaoxiang wants to give a ⟦1⟧-minute speech, about how many characters long should her speech be?",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p80_s21",
+   "translation": "If the dividend and the divisor are both multiplied or divided by the same number (not zero), the quotient stays the same.",
+   "box": [
+    80,
+    471,
+    428,
+    494
+   ],
+   "reason": "set at 0.69 in a tight box; pink band has room for two lines"
+  },
+  {
+   "segment_id": "p80_s22",
+   "translation": "This is the unchanging quotient rule.",
+   "box": [
+    277,
+    509.5,
+    388,
+    526
+   ],
+   "reason": "set at 0.69; two lines inside the bubble, clear of its outline"
+  },
+  {
+   "paint": [
+    122.6,
+    412.2,
+    126.6,
+    426.6
+   ],
+   "page": 79,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "leftover dark stroke of an erased character crosses \"lasts\" in item 8"
+  }
+ ],
+ "flags": []
+}

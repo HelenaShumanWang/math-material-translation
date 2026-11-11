@@ -1,0 +1,182 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s2",
+   "translation": "The first satellite China launched took ⟦1⟧ minutes for ⟦0⟧ orbit of the Earth.",
+   "reason": "more natural; 'our country' -> China"
+  },
+  {
+   "segment_id": "p33_s3",
+   "translation": "Estimate: how long do ⟦0⟧ orbits of the Earth take? Discuss with a partner.",
+   "reason": "capital Earth, natural phrasing; shorter so it is not shrunk to 0.75"
+  },
+  {
+   "segment_id": "p33_s6",
+   "translation": "more than ⟦0⟧ min.",
+   "reason": "比...多 = more than"
+  },
+  {
+   "segment_id": "p33_s23",
+   "translation": "Calculate and discuss: what should you watch out for in column multiplication?",
+   "reason": "garbled; 竖式 = column method"
+  },
+  {
+   "segment_id": "p33_s25",
+   "translation": "Step 2 works out",
+   "reason": "shrunk to 0.68; shorter"
+  },
+  {
+   "segment_id": "p34_s0",
+   "translation": "Try It",
+   "reason": "translation field was 'a ruler.'"
+  },
+  {
+   "segment_id": "p34_s4",
+   "translation": "How could you work these out? Discuss your ideas with a partner.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p34_s12",
+   "translation": "(⟦0⟧) How many calls did Aunt Guo answer in the ⟦2⟧th month of ⟦1⟧? Estimate, then calculate.",
+   "reason": "shrunk to 0.72; shorter"
+  },
+  {
+   "merge": [
+    "p34_s15",
+    "p34_s16"
+   ],
+   "translation": "At the 60th National Day parade, each soldier marching past Tian'anmen took 128 steps, each 75 cm long. How many centimetres did each soldier march in total? How many metres is that?",
+   "reason": "one question split over fragments at different sizes; 米？ line folded in"
+  },
+  {
+   "segment_id": "p34_s17",
+   "translation": "BLANK",
+   "reason": "米？ is now inside the merged question"
+  },
+  {
+   "split": "p35_s14",
+   "translations": [
+    "Each recorder",
+    "Was",
+    "Now"
+   ],
+   "reason": "sign label and two column heads over the prices"
+  },
+  {
+   "segment_id": "p36_s4",
+   "translation": "Below is one of the stands. About how many spectators are in it?",
+   "reason": "question mark missing",
+   "box": [
+    80.2,
+    333.5,
+    420,
+    347
+   ]
+  },
+  {
+   "segment_id": "p37_s2",
+   "translation": "⟦0⟧. Estimate how many soybeans are in the picture. How did you do it? Share with your group or class.",
+   "reason": "shrunk 0.76; shorter"
+  },
+  {
+   "merge": [
+    "p37_s6",
+    "p37_s7"
+   ],
+   "translation": "5. Choose a newspaper and estimate the number of words on one page. Use words, pictures or number sentences to explain how you estimated.",
+   "reason": "one sentence split over two lines at different sizes"
+  },
+  {
+   "segment_id": "p37_s8",
+   "translation": "The newspaper I chose has pictures. This is how I dealt with them…",
+   "reason": "trailing dot OCR; ellipsis",
+   "erase": [
+    [
+     245,
+     636,
+     257,
+     649
+    ]
+   ]
+  },
+  {
+   "segment_id": "p37_s9",
+   "translation": "The headline is in big print. I dealt with it like this…",
+   "reason": "ellipsis as in source"
+  },
+  {
+   "segment_id": "p38_s7",
+   "translation": "I can work out ⟦0⟧: enter ⟦1⟧, then ×, then ⟦3⟧, then =. The number on the screen is the answer.",
+   "reason": "dropped ⟦2⟧: misread X for ×, written out; 日 is the = key; shorter to fit bubble"
+  },
+  {
+   "segment_id": "p38_s8",
+   "translation": "Wrong key? Press",
+   "reason": "bubble: Wrong key? Press [CE] to clear it."
+  },
+  {
+   "segment_id": "p38_s9",
+   "translation": "BLANK",
+   "reason": "box joins 按 and 除 of two lines; 'Press ÷' was wrong (除 is part of 清除 'clear'); words now in s8/s11"
+  },
+  {
+   "segment_id": "p38_s11",
+   "translation": "to clear it",
+   "reason": "end of bubble sentence"
+  },
+  {
+   "segment_id": "p38_s12",
+   "translation": "Set each other some calculations and work them out together with a calculator.",
+   "reason": "shorter, ran into bubble"
+  },
+  {
+   "segment_id": "p39_s8",
+   "translation": "⟦0⟧. What can go in the brackets? Estimate, then check with a calculator.",
+   "reason": "shrunk 0.76 vs siblings; shorter, same task"
+  },
+  {
+   "split": "p39_s9",
+   "translations": [
+    "Calculation",
+    "Product range"
+   ],
+   "reason": "two table row headers set as one run"
+  },
+  {
+   "segment_id": "p39_s21",
+   "translation": "How many families could the wasted power supply for a year?",
+   "reason": "'year?' had slipped into s23"
+  },
+  {
+   "segment_id": "p39_s23",
+   "translation": "Use the five digits ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧ to make a two-digit number and a three-digit number. Find their product with a calculator. The larger product wins.",
+   "reason": "removed stray 'year?' belonging to s21"
+  },
+  {
+   "segment_id": "p39_s24",
+   "translation": "Three-digit number: ⟦0⟧. Two-digit number: ⟦1⟧. Product: ⟦2⟧.",
+   "reason": "shorter for bubble"
+  },
+  {
+   "segment_id": "p39_s25",
+   "translation": "Three-digit number: ⟦0⟧. Two-digit number: ⟦1⟧. Product: ⟦2⟧.",
+   "reason": "shorter for bubble, grammar"
+  },
+  {
+   "segment_id": "p40_s2",
+   "translation": "Calculate, then look carefully and say what you notice.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p40_s9",
+   "translation": "Without calculating, can you write the products of ⟦0⟧ and ⟦1⟧?",
+   "reason": "shrunk 0.68; shorter"
+  },
+  {
+   "segment_id": "p40_s10",
+   "translation": "I'll first work out 99×99, 999×999 and 9999×9999, then see what is special about the products.",
+   "reason": "dropped ⟦0⟧ ⟦1⟧: placeholder ⟦1⟧ ran two products together without a comma (OCR); written out"
+  }
+ ],
+ "flags": []
+}

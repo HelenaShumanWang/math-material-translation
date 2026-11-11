@@ -1,0 +1,367 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p25_s1",
+   "translation": "Can you make a \"moving angle\"? Try it and think.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p25_s5",
+   "translation": "The wider the opening, the angle...",
+   "box": [
+    357,
+    191,
+    445,
+    211
+   ],
+   "reason": "speaker trails off; no blank in source; more room in bubble",
+   "erase": [
+    [
+     445,
+     195,
+     453,
+     203
+    ]
+   ]
+  },
+  {
+   "segment_id": "p25_s6",
+   "translation": "Watch the angles made as the strip turns. Name them and say what you notice.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p25_s11",
+   "translation": "This is a full angle",
+   "reason": "周角 is a full angle, not a reflex angle"
+  },
+  {
+   "segment_id": "p25_s12",
+   "translation": "A straight angle is bigger than an obtuse angle.",
+   "box": [
+    118,
+    502,
+    197,
+    526
+   ],
+   "reason": "shrunk to 0.56 and ran over the bubble outline; set inside the bubble on three lines"
+  },
+  {
+   "segment_id": "p26_s5",
+   "translation": "⟦0⟧. Fold a piece of paper. Compare with your deskmate and talk: are the angles you folded the same size?",
+   "reason": "duplicated words removed"
+  },
+  {
+   "merge": [
+    "p27_s5",
+    "p27_s7"
+   ],
+   "translation": "I'll try with a ruler.",
+   "reason": "one sentence split over two lines; s7 printed wrong text"
+  },
+  {
+   "segment_id": "p27_s3",
+   "translation": "So comfy!",
+   "reason": "shorter, natural",
+   "box": [
+    72,
+    141,
+    130,
+    156
+   ]
+  },
+  {
+   "segment_id": "p27_s9",
+   "translation": "1 cm",
+   "reason": "label under the ruler reads 1厘米"
+  },
+  {
+   "segment_id": "p27_s10",
+   "translation": "Taoqi measures ∠⟦0⟧ like this. Try it yourself.",
+   "reason": "angle sign missing; natural phrasing"
+  },
+  {
+   "segment_id": "p27_s11",
+   "translation": "Think and identify",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p27_s13",
+   "translation": "I made an angle the same size as ∠1 and used it to measure.",
+   "reason": "replaced ⟦0⟧: OCR misread '21' for ∠1; tense"
+  },
+  {
+   "segment_id": "p27_s16",
+   "translation": "Divide a circle into ⟦0⟧ equal parts. The angle made by ⟦1⟧ part is called ⟦2⟧ degree (written 1°). We usually use ⟦4⟧ as the unit for measuring angles. ⟦5⟧ full angle ⟦6⟧, ⟦7⟧ straight angle = 180°, 1 right angle ⟦9⟧.",
+   "reason": "replaced ⟦3⟧ (misread 1 for 1°) and ⟦8⟧ (misread '=180°1'); missing comma before 1 right angle"
+  },
+  {
+   "segment_id": "p27_s17",
+   "translation": "If the folded angle were a bit smaller, it would be more accurate.",
+   "reason": "conditional grammar"
+  },
+  {
+   "segment_id": "p27_s18",
+   "translation": "Use the picture above to estimate: about how many degrees is each slide's angle?",
+   "reason": "more natural, shorter"
+  },
+  {
+   "segment_id": "p28_s1",
+   "translation": "⟦0⟧. Count and talk: compare the sizes of ∠⟦1⟧, ∠⟦2⟧ and ∠⟦3⟧ below.",
+   "reason": "angle signs restored"
+  },
+  {
+   "segment_id": "p28_s2",
+   "translation": "⟦0⟧. Estimate: how many degrees is each angle below?",
+   "reason": "grammar; fits one line"
+  },
+  {
+   "segment_id": "p28_s4",
+   "translation": "Can you mark angles of ⟦0⟧,",
+   "reason": "sentence continues with the printed 60°, 90°... line"
+  },
+  {
+   "segment_id": "p28_s6",
+   "translation": "and ⟦0⟧ on the figure?",
+   "reason": "end of question (1)"
+  },
+  {
+   "segment_id": "p28_s8",
+   "translation": "(⟦0⟧) Can you find two ⟦1⟧ angles in the figure? Mark them.",
+   "reason": "text of (1) had leaked into (2)"
+  },
+  {
+   "segment_id": "p28_s9",
+   "translation": "(⟦0⟧) Use Figure ⟦1⟧ in the appendix to cut out an angle you want.",
+   "reason": "natural phrasing"
+  },
+  {
+   "merge": [
+    "p29_s2",
+    "p29_s6"
+   ],
+   "translation": "A protractor divides a semicircle into 180 equal parts.",
+   "reason": "one sentence split over two lines, set at two sizes"
+  },
+  {
+   "segment_id": "p29_s7",
+   "translation": "centre",
+   "reason": "British spelling; shorter label"
+  },
+  {
+   "merge": [
+    "p29_s16",
+    "p29_s15"
+   ],
+   "translation": "Is it 70° or 110°?",
+   "reason": "one question split over two lines, second set smaller"
+  },
+  {
+   "segment_id": "p29_s9",
+   "translation": "Can you find ⟦0⟧ and ⟦1⟧ angles on the protractor? Draw them on the pictures above and discuss with your partner.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p29_s10",
+   "translation": "Estimate, then measure the two angles below. How did you measure?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p29_s14",
+   "translation": "First put the centre of the protractor on the vertex of the angle, then line up the zero line with one side of the angle, then...",
+   "reason": "British spelling"
+  },
+  {
+   "split": "p30_s4",
+   "translations": [
+    "Estimate",
+    "Measure"
+   ],
+   "reason": "two table row labels"
+  },
+  {
+   "segment_id": "p30_s2",
+   "translation": "⟦0⟧. Use a protractor to measure each angle of the set square.",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p30_s3",
+   "translation": "⟦0⟧. Estimate each angle below, then measure it. Was your estimate close?",
+   "reason": "shorter, fits one line above the table"
+  },
+  {
+   "segment_id": "p30_s11",
+   "translation": "⟦0⟧. What different angles can you draw with a pair of set squares?",
+   "reason": "shorter so it fits one line beside the leaf mark",
+   "box": [
+    57,
+    525,
+    470,
+    539
+   ]
+  },
+  {
+   "segment_id": "p31_s2",
+   "translation": "Dongzhimenwai Street",
+   "box": [
+    292,
+    112,
+    376,
+    125
+   ],
+   "reason": "left in Chinese; room along the road"
+  },
+  {
+   "segment_id": "p31_s3",
+   "translation": "Sanlitun Middle Street",
+   "reason": "word order"
+  },
+  {
+   "segment_id": "p31_s6",
+   "translation": "Xindong Road",
+   "reason": "word order",
+   "erase": [
+    [
+     325,
+     151,
+     338,
+     175
+    ]
+   ]
+  },
+  {
+   "segment_id": "p31_s16",
+   "box": [
+    57,
+    383,
+    200,
+    395
+   ],
+   "reason": "set at heading size; match sibling instructions"
+  },
+  {
+   "segment_id": "p31_s19",
+   "translation": "⟦0⟧ Draw two parallel lines on the grid.",
+   "reason": "shrunk to 0.63; shorter"
+  },
+  {
+   "segment_id": "p31_s20",
+   "translation": "⟦0⟧. Cut out Figure ⟦1⟧ from the appendix, then fold it and try.",
+   "reason": "shrunk to 0.79; shorter"
+  },
+  {
+   "segment_id": "p32_s5",
+   "translation": "⟦0⟧. Find and discuss.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p32_s7",
+   "translation": "(⟦0⟧) In the figure, find a pair of parallel lines and a pair of perpendicular lines.",
+   "reason": "garbled duplicate text"
+  },
+  {
+   "segment_id": "p32_s11",
+   "translation": "(⟦0⟧) Find the parallel lines in the two pictures, before and after the translation.",
+   "reason": "incomplete"
+  },
+  {
+   "segment_id": "p32_s12",
+   "translation": "⟦0⟧. (⟦1⟧) Draw the shortest route from the lab to the teaching building.",
+   "reason": "duplicated word"
+  },
+  {
+   "merge": [
+    "p32_s15",
+    "p32_s17"
+   ],
+   "translation": "Draw the shortest route from the lab to the field.",
+   "reason": "one sentence split over two lines; wrong destination"
+  },
+  {
+   "segment_id": "p32_s13",
+   "translation": "Lab",
+   "reason": "consistent with the instruction"
+  },
+  {
+   "segment_id": "p32_s16",
+   "translation": "Teaching building ·",
+   "reason": "was only 'building'"
+  },
+  {
+   "segment_id": "p31_s5",
+   "translation": "BLANK",
+   "reason": "first character of 东三环, set by add p31_a1"
+  },
+  {
+   "segment_id": "p31_s9",
+   "translation": "BLANK",
+   "reason": "last character of 东三环, set by add p31_a1"
+  },
+  {
+   "add": "p31_a1",
+   "page": 31,
+   "box": [
+    438,
+    124,
+    442,
+    200
+   ],
+   "translation": "East 3rd Ring Road",
+   "source": "东三环",
+   "reason": "vertical road label left in Chinese; set along the ring road"
+  },
+  {
+   "segment_id": "p27_s6",
+   "box": [
+    322,
+    217,
+    386,
+    248
+   ],
+   "reason": "shrunk to 0.61; shorter and use the whole bubble",
+   "translation": "Is there a tool just for measuring angles?"
+  },
+  {
+   "segment_id": "p29_s3",
+   "erase": [
+    [
+     449,
+     151,
+     455,
+     157
+    ]
+   ],
+   "reason": "leftover dot of the Chinese ellipsis; small box so the bubble outline is not painted over"
+  },
+  {
+   "segment_id": "p25_s14",
+   "box": [
+    77,
+    558,
+    470,
+    572
+   ],
+   "reason": "wrapped onto the picture below; the checked edition had it on one line"
+  },
+  {
+   "segment_id": "p26_s2",
+   "box": [
+    60,
+    176,
+    470,
+    189
+   ],
+   "translation": "⟦0⟧. Look at each clock face and write the name of the angle between the hour and minute hands.",
+   "reason": "second line ran into the clock pictures; wider box and shorter wording keep it clear"
+  }
+ ],
+ "flags": [
+  {
+   "page": 28,
+   "issue": "Slanted label 1厘米 on the upper arm of the angle beside the ruler (p27, x~250-275pt, y~270-290pt) is still Chinese; slanted text cannot be set by line, should read '1 cm'."
+  },
+  {
+   "page": 32,
+   "issue": "Map: the middle character 三 of the vertical ring-road label 东三环 (x~438-442pt, y~147-158pt) still leaves a small dark mark on the orange road; erase/paint attempts either left it or hid the English. The English 'East 3rd Ring Road' (add p31_a1) is set along the road at small size, like the other map labels."
+  }
+ ]
+}

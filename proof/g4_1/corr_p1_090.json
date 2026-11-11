@@ -1,0 +1,343 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s10",
+   "translation": "DROP",
+   "reason": "OCR noise of the passbook header (photo print)"
+  },
+  {
+   "segment_id": "p89_s5",
+   "translation": "A right answer scores ⟦0⟧ points, written ⟦1⟧; a wrong answer loses ⟦2⟧ points, written ⟦3⟧.",
+   "reason": "shorter, more natural"
+  },
+  {
+   "segment_id": "p89_s31",
+   "translation": "I find that\nhelp us show quantities with opposite meanings.",
+   "reason": "dropped ⟦0⟧: OCR crop of the printed signs \"+\" \"-\", which stay in the picture after 'I find that'"
+  },
+  {
+   "segment_id": "p89_s21",
+   "translation": "−¥127",
+   "reason": "minus sign goes before the currency sign"
+  },
+  {
+   "split": "p90_s2",
+   "translations": [
+    "Date",
+    "Amount (¥)",
+    "4 May",
+    "6 May"
+   ],
+   "reason": "table header and date cells were set as one run"
+  },
+  {
+   "split": "p90_s3",
+   "translations": [
+    "4 May",
+    "6 May"
+   ],
+   "reason": "two dates in two rows"
+  },
+  {
+   "split": "p90_s4",
+   "translations": [
+    "Dad's wages received ¥1500",
+    "Water, electricity, gas paid ¥200"
+   ],
+   "reason": "two list rows"
+  },
+  {
+   "split": "p90_s6",
+   "translations": [
+    "12 May",
+    "Phone bill paid ¥120",
+    "15 May",
+    "Mum's wages received ¥1400"
+   ],
+   "reason": "four list cells"
+  },
+  {
+   "segment_id": "p90_s7",
+   "translation": "⟦0⟧. In the diagram below, each space stands for ⟦1⟧ m. Xiaoxiao starts at her home.",
+   "reason": "stray N removed"
+  },
+  {
+   "segment_id": "p90_s8",
+   "translation": "N",
+   "reason": "compass letter"
+  },
+  {
+   "segment_id": "p90_s9",
+   "translation": "E",
+   "reason": "compass letter"
+  },
+  {
+   "segment_id": "p90_s13",
+   "translation": "(⟦0⟧) If walking ⟦1⟧ m east from home is written as ⟦2⟧ m, then walking ⟦3⟧ m west from home can be written as",
+   "reason": "natural phrasing, spacing"
+  },
+  {
+   "line": "p90_i360_23",
+   "translation": "m.",
+   "force": true,
+   "reason": "unit after the printed blank left in Chinese"
+  },
+  {
+   "merge": [
+    "p90_s14",
+    "p90_s15"
+   ],
+   "translation": "(2) If Xiaoxiao is now at the supermarket, she walked ____ m to the ____ of her home. This can be written as ____ m.",
+   "reason": "one question split by OCR; Chinese left; OCR noise in fragment"
+  },
+  {
+   "segment_id": "p90_s16",
+   "translation": "⟦0⟧. On average, pupils in Taoqi's class skip ⟦1⟧ times a minute. If Xiaoxiao's score is written as \"−⟦2⟧\", think and fill in the table.",
+   "reason": "left untranslated"
+  },
+  {
+   "segment_id": "p90_s20",
+   "translation": "Miaoxiang",
+   "reason": "name left in Chinese"
+  },
+  {
+   "split": "p90_s21",
+   "translations": [
+    "Skips",
+    "Written as"
+   ],
+   "reason": "two row labels"
+  },
+  {
+   "segment_id": "p90_s23",
+   "translation": "Did You Know?",
+   "reason": "left in Chinese"
+  },
+  {
+   "segment_id": "p90_s25",
+   "translation": "DROP",
+   "reason": "counting-rod picture read as text"
+  },
+  {
+   "segment_id": "p90_s26",
+   "translation": "DROP",
+   "reason": "counting-rod picture read as text"
+  },
+  {
+   "split": "p90_s28",
+   "translations": [
+    "Long ago, negatives had their own notation: red counting rods meant positive,",
+    "black ones negative; or upright rods positive, slanted rods negative. In writing,",
+    "a slash on the last digit showed a negative number.",
+    "Write a negative number, then",
+    "show it in this way."
+   ],
+   "reason": "the last two lines are a separate bubble"
+  },
+  {
+   "segment_id": "p91_s0",
+   "translation": "Maths Is Fun",
+   "reason": "British spelling"
+  },
+  {
+   "merge": [
+    "p91_s2",
+    "p91_s5"
+   ],
+   "translation": "Do an experiment and try it out.",
+   "reason": "one bubble split in two"
+  },
+  {
+   "segment_id": "p92_s0",
+   "translation": "Experiment",
+   "reason": "set at 0.53 in a small banner"
+  },
+  {
+   "segment_id": "p92_s6",
+   "translation": "⟦0⟧. Share your experiment results with your partners.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p92_s9",
+   "translation": "⟦0⟧. Use your experiment data to answer these questions.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p92_s8",
+   "translation": "Our group got it right on the second try.",
+   "reason": "shorter, was set at 0.69"
+  },
+  {
+   "segment_id": "p93_s6",
+   "translation": "From the experiment data: if each person washes their hands ⟦0⟧ times a day for ⟦1⟧ seconds, then by washing the water-saving way, ⟦2⟧ people save enough water in a year for a family for a month.",
+   "reason": "shorter, ran over the frame"
+  },
+  {
+   "segment_id": "p93_s10",
+   "translation": "How I did in this activity (colour the ☆ after each item; colouring all ⟦0⟧ means the best):",
+   "reason": "British spelling"
+  },
+  {
+   "segment_id": "p93_s13",
+   "translation": "Our group shared the work well and I joined in.",
+   "reason": "shorter, set at 0.76"
+  },
+  {
+   "segment_id": "p94_s2",
+   "translation": "Inspector, after a few days of investigation we have narrowed it down to ⟦0⟧ suspects. Here is their information.",
+   "reason": "same term as the heading line"
+  },
+  {
+   "segment_id": "p94_s3",
+   "translation": "Born in ⟦0⟧, holds a Bank A card",
+   "reason": "article, same as siblings"
+  },
+  {
+   "segment_id": "p94_s6",
+   "translation": "Born in ⟦0⟧, holds a Bank C card",
+   "reason": "article, same as siblings"
+  },
+  {
+   "segment_id": "p94_s7",
+   "translation": "Born in ⟦0⟧, holds a Bank A card",
+   "reason": "article, same as siblings"
+  },
+  {
+   "segment_id": "p94_s12",
+   "translation": "⟦0⟧. How did the inspector work out who the suspect is?",
+   "reason": "consistent term"
+  },
+  {
+   "segment_id": "p94_s11",
+   "translation": "Card no. 6665430571258064",
+   "reason": "shorter, was set at 0.57"
+  },
+  {
+   "segment_id": "p94_s16",
+   "erase": [
+    [
+     397,
+     555,
+     435,
+     568
+    ]
+   ],
+   "reason": "leftover 于…… under the bubble text"
+  },
+  {
+   "segment_id": "p94_s21",
+   "translation": "Birth month",
+   "reason": "parallel with Birth year / Birth day"
+  },
+  {
+   "segment_id": "p94_s25",
+   "translation": "The ⟦0⟧th digit: ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧ mean male; 0, 2, ⟦7⟧, ⟦8⟧, ⟦9⟧ mean female.",
+   "reason": "⟦6⟧ misread '0 2' replaced by '0, 2'"
+  },
+  {
+   "segment_id": "p95_s0",
+   "translation": "⟦0⟧. This is how bank card numbers are coded. Use it to find the suspect.",
+   "reason": "shorter, wrapped"
+  },
+  {
+   "segment_id": "p95_s1",
+   "translation": "Issuing bank code",
+   "reason": "shorter, set at 0.73"
+  },
+  {
+   "segment_id": "p95_s2",
+   "translation": "Bank's own code",
+   "reason": "shorter, natural"
+  },
+  {
+   "segment_id": "p95_s4",
+   "translation": "These are the banks some of the codes stand for.",
+   "reason": "shorter, matches 'Issuing bank code'"
+  },
+  {
+   "segment_id": "p95_s5",
+   "translation": "Issuing bank code",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p95_s6",
+   "translation": "Issuing bank code",
+   "reason": "shorter"
+  },
+  {
+   "segment_id": "p95_s10",
+   "translation": "Bank A",
+   "reason": "duplicated"
+  },
+  {
+   "segment_id": "p95_s11",
+   "translation": "Bank B",
+   "reason": "duplicated"
+  },
+  {
+   "segment_id": "p95_s12",
+   "translation": "Bank A",
+   "reason": "duplicated"
+  },
+  {
+   "segment_id": "p95_s13",
+   "translation": "Bank B",
+   "reason": "duplicated"
+  },
+  {
+   "segment_id": "p95_s16",
+   "translation": "Tells boys from girls.",
+   "reason": "parallel with sibling bubbles"
+  },
+  {
+   "segment_id": "p95_s17",
+   "translation": "Shows the class.",
+   "reason": "shorter, parallel"
+  },
+  {
+   "segment_id": "p95_s18",
+   "translation": "No repeats across grades.",
+   "reason": "shorter, clearer"
+  },
+  {
+   "segment_id": "p95_s23",
+   "translation": "Room number",
+   "reason": "label, no full stop"
+  },
+  {
+   "segment_id": "p95_s24",
+   "translation": "Phone number",
+   "reason": "label"
+  },
+  {
+   "segment_id": "p95_s25",
+   "translation": "Barcode",
+   "reason": "label"
+  },
+  {
+   "segment_id": "p95_s26",
+   "translation": "Postcode",
+   "reason": "British term"
+  },
+  {
+   "segment_id": "p96_s2",
+   "translation": "Go in at any hole, move forward, then come out at any hole.",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p96_s7",
+   "translation": "First count the short segments: ⟦0⟧, ⟦1⟧, ⟦2⟧; then the longer ones: ⟦3⟧, ⟦4⟧; finally the longest: ⟦5⟧.",
+   "reason": "shorter, tidier"
+  }
+ ],
+ "flags": [
+  {
+   "page": 90,
+   "issue": "heading p89_s0 'Positive and Negative Numbers' still set at 0.54 in the green banner; a box extension did not enlarge it"
+  },
+  {
+   "page": 91,
+   "issue": "merged question (2) (p90_s14) is set much larger than (1) and 3.; same kind of text should share one size"
+  }
+ ]
+}
