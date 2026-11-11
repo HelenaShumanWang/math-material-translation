@@ -1,0 +1,24 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p108_s5",
+   "translation": "3 cm",
+   "box": [
+    452.4,
+    578.0,
+    466.6,
+    616.0
+   ],
+   "erase": [
+    [
+     452,
+     603,
+     466,
+     615
+    ]
+   ],
+   "reason": "OCR missed the number 3 of the vertical label 3厘米; erase the leftover 3 and set 3 cm"
+  }
+ ],
+ "flags": []
+}

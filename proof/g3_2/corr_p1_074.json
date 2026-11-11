@@ -1,0 +1,239 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p73_s1",
+   "translation": "Colour the small squares in ⟦0⟧ colours: red, yellow and blue. What fraction of the shape is each colour? Try with Figure ⟦2⟧ in Appendix ⟦1⟧.",
+   "reason": "3rd line ran into the grid; shorter, natural",
+   "box": [81.6, 99.5, 470.0, 136.1]
+  },
+  {
+   "segment_id": "p73_s2",
+   "translation": "The red part is",
+   "reason": "shorter label beside the fraction"
+  },
+  {
+   "segment_id": "p73_s3",
+   "translation": "The yellow part is",
+   "reason": "was shrunk and ran into the fraction"
+  },
+  {
+   "segment_id": "p73_s4",
+   "translation": "The blue part is",
+   "reason": "match siblings"
+  },
+  {
+   "segment_id": "p73_s12",
+   "translation": "small squares is",
+   "box": [257.0, 421.5, 323.5, 433.1],
+   "reason": "ran over the 1/9 fraction"
+  },
+  {
+   "restore": [325, 415, 339, 440],
+   "page": 73,
+   "reason": "1/9 fraction damaged by the erase"
+  },
+  {
+   "segment_id": "p73_s13",
+   "translation": "; ⟦0⟧ of them are",
+   "reason": "the comma between the two fractions was erased: reads 1/9; 4 of them are 4/9"
+  },
+  {
+   "segment_id": "p73_s14",
+   "box": [78.8, 486.0, 398.0, 514.0],
+   "reason": "set small on one line into the boy's hand; two lines clear of the boy"
+  },
+  {
+   "segment_id": "p74_s3",
+   "translation": "There are ⟦0⟧ rows of ducks. Circle",
+   "reason": "wrapped at sibling size; shorter fits one line",
+   "box": [81.6, 188.2, 244.6, 203.2]
+  },
+  {
+   "restore": [246, 178, 264, 212],
+   "page": 74,
+   "reason": "3/5 fraction after p74_s3 was erased"
+  },
+  {
+   "split": "p74_s4",
+   "at": [134.6, 172.3, 210.0, 247.0],
+   "translations": ["Row 1", "Row 2", "Row 3", "Row 4", "Row 5"],
+   "reason": "five column labels set as one line"
+  },
+  {
+   "segment_id": "p74_s9",
+   "translation": "Colour ⟦0⟧ triangles red. Red is",
+   "reason": "wrapped onto the fraction"
+  },
+  {
+   "segment_id": "p74_s10",
+   "translation": "Colour ⟦0⟧ triangles yellow. Yellow is",
+   "reason": "wrapped onto the fraction"
+  },
+  {
+   "segment_id": "p74_s11",
+   "translation": "Colour ⟦0⟧ triangles blue. Blue is",
+   "reason": "wrapped onto the fraction"
+  },
+  {
+   "merge": ["p74_s12", "p74_s13"],
+   "translation": "(2) What fraction of the 8 small triangles is each colour? Tell your partner.",
+   "reason": "one sentence split, 'partner.' set larger"
+  },
+  {
+   "segment_id": "p75_s5",
+   "translation": "⟦0⟧. ⟦1⟧ children have a group photo taken.",
+   "reason": "full stop, natural"
+  },
+  {
+   "segment_id": "p75_s6",
+   "translation": "Of all the children, boys are",
+   "box": [284.6, 488.0, 409.0, 512.0],
+   "reason": "fraction after it; text ran over the fraction"
+  },
+  {
+   "restore": [409, 478, 442, 520],
+   "page": 75,
+   "reason": "boys fraction damaged"
+  },
+  {
+   "restore": [445, 498, 458, 512],
+   "page": 75,
+   "reason": "full stop after the boys fraction (checked edition had it)"
+  },
+  {
+   "split": "p75_s7",
+   "translations": ["In this photo,", "children have braids."],
+   "reason": "two lines around the fraction"
+  },
+  {
+   "segment_id": "p75_s8",
+   "translation": "of the",
+   "reason": "reads: In this photo, [frac] of the children have braids."
+  },
+  {
+   "restore": [398, 515, 431, 557],
+   "page": 75,
+   "reason": "braids fraction damaged"
+  },
+  {
+   "segment_id": "p75_s9",
+   "translation": "Fractions on a clock. Can you show the shaded parts as fractions?",
+   "box": [68.6, 595.0, 470.0, 609.2],
+   "reason": "dropped ⟦0⟧: OCR noise of the 7. icon; one line"
+  },
+  {
+   "line": "p76_i304_20",
+   "translation": "I set them, you compare.",
+   "force": true,
+   "reason": "only text in the box, no pictures"
+  },
+  {
+   "segment_id": "p76_s5",
+   "translation": "Find fractions with the same denominator below. Colour and compare.",
+   "box": [82.2, 292.3, 460.0, 305.3],
+   "reason": "second line touched the grids"
+  },
+  {
+   "segment_id": "p77_s2",
+   "translation": "DROP",
+   "reason": "OCR noise 'No. 0' covering the 4/5 and 5/5 fractions"
+  },
+  {
+   "segment_id": "p77_s3",
+   "translation": "⟦0⟧. Colour a group of fractions with the same denominator, then order them.",
+   "reason": "was shrunk to 0.78"
+  },
+  {
+   "segment_id": "p77_s5",
+   "translation": "⟦0⟧. Xiaoxiao brought a basket of ⟦1⟧ apples.",
+   "box": [57.5, 442.8, 258.0, 455.8],
+   "reason": "full stop; room to the right"
+  },
+  {
+   "split": "p77_s9",
+   "translations": ["Coloured part", "Uncoloured part"],
+   "reason": "two table rows"
+  },
+  {
+   "segment_id": "p78_s0",
+   "box": [62.0, 66.0, 133.0, 89.0],
+   "reason": "use the whole banner; was 0.54"
+  },
+  {
+   "segment_id": "p78_s5",
+   "box": [81.0, 330.0, 330.0, 344.1],
+   "reason": "fill the gap where the erased start of the sentence stood"
+  },
+  {
+   "segment_id": "p79_s7",
+   "box": [62.6, 553.0, 145.7, 577.0],
+   "reason": "wrap inside bubble like its sibling"
+  },
+  {
+   "restore": [147, 548, 160, 580],
+   "page": 79,
+   "reason": "3/9 fraction erased"
+  },
+  {
+   "restore": [160, 562, 169, 575],
+   "page": 79,
+   "reason": "full stop after 3/9 (checked edition had it)"
+  },
+  {
+   "segment_id": "p80_s2",
+   "translation": "⟦0⟧. Think and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p80_s4",
+   "translation": "Pears are",
+   "reason": "match Apples"
+  },
+  {
+   "segment_id": "p80_s6",
+   "translation": "Apples are",
+   "reason": "ran into the fraction"
+  },
+  {
+   "restore": [410, 298, 444, 338],
+   "page": 80,
+   "reason": "apples fraction damaged"
+  },
+  {
+   "segment_id": "p80_s10",
+   "translation": "(⟦0⟧) Boys are",
+   "reason": "reads: (2) Boys are [frac] of the total and girls are [frac]."
+  },
+  {
+   "segment_id": "p80_s11",
+   "box": [250.5, 612.0, 383.0, 638.0],
+   "reason": "old box covered the first fraction's numerator; shorter to fit one line; starts clear of the first fraction",
+   "translation": "of the total and girls are"
+  },
+  {
+   "restore": [218, 609, 247, 638],
+   "page": 80,
+   "reason": "numerator of first fraction"
+  },
+  {
+   "restore": [384, 609, 414, 650],
+   "page": 80,
+   "reason": "numerator of second fraction"
+  },
+  {
+   "restore": [418, 624, 430, 638],
+   "page": 80,
+   "reason": "full stop after the girls fraction"
+  }
+ ],
+ "flags": [
+  {
+   "page": 77,
+   "issue": "p76_s1 \"and\" between 3/4 and 1/4 is set at scale 0.5: no free room between the two fractions."
+  },
+  {
+   "page": 79,
+   "issue": "p78_s0 heading \"Eating Watermelon\" still set at 0.64 inside the small banner even with the whole banner as box."
+  }
+ ]
+}

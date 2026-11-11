@@ -1,0 +1,204 @@
+{
+ "corrections": [
+  {
+   "line": "p9_i36_18",
+   "translation": "Answer:",
+   "reason": "answer label left in Chinese"
+  },
+  {
+   "segment_id": "p9_s7",
+   "translation": "Use the picture below to explain what each step of the column method means.",
+   "reason": "terminology: column method"
+  },
+  {
+   "segment_id": "p10_s1",
+   "translation": "⟦0⟧. Share out the blocks and use the column method. Use the sharing to explain each step.",
+   "reason": "terminology: column method"
+  },
+  {
+   "segment_id": "p10_s12",
+   "translation": "(⟦0⟧) How many times as tall as the frog is the giraffe?",
+   "reason": "missing (2 enumerator placeholder"
+  },
+  {
+   "segment_id": "p10_s14",
+   "translation": "A giraffe is ⟦0⟧ cm tall.",
+   "box": [
+    273,
+    470,
+    358,
+    501
+   ],
+   "reason": "two separate panels; giraffe text on left page only"
+  },
+  {
+   "segment_id": "p10_s15",
+   "translation": "A frog is only ⟦0⟧ cm tall.",
+   "box": [
+    363,
+    470,
+    447,
+    502
+   ],
+   "reason": "frog sentence restored in full on right page; placeholder was missing; no-break space keeps '4 cm' together"
+  },
+  {
+   "segment_id": "p11_s6",
+   "translation": "⟦0⟧ divided by any number other than ⟦1⟧ is 0.",
+   "reason": "final 0 of the rule was lost",
+   "box": [
+    249,
+    237,
+    410,
+    252
+   ]
+  },
+  {
+   "segment_id": "p11_s14",
+   "translation": "What now?",
+   "reason": "shorter so it fits the small bubble (scale 0.6)"
+  },
+  {
+   "segment_id": "p12_s10",
+   "translation": "⟦0⟧. On average, how many chairs are moved on each trip in the afternoon?",
+   "reason": "grammar"
+  },
+  {
+   "segment_id": "p12_s12",
+   "translation": "We need ⟦0⟧ trips to move the rest this afternoon.",
+   "box": [
+    318,
+    562,
+    430,
+    579
+   ],
+   "reason": "meaning (need 4 trips to finish), placeholder, fit"
+  },
+  {
+   "segment_id": "p12_s11",
+   "translation": "There are ⟦0⟧ chairs in all. ⟦1⟧ were moved in the morning.",
+   "erase": [
+    [
+     77,
+     567,
+     92,
+     575
+    ]
+   ],
+   "reason": "the first character 一 of 一共 was left as a stroke over 'There'"
+  },
+  {
+   "segment_id": "p13_s11",
+   "translation": "Not enough for ⟦0⟧? Write ⟦1⟧.",
+   "reason": "placeholders"
+  },
+  {
+   "segment_id": "p13_s15",
+   "translation": "Write it like this:",
+   "reason": "shorter, consistent with the other note"
+  },
+  {
+   "line": "p14_i56_8",
+   "translation": "200 ÷ 2 = 100, and 502",
+   "force": true,
+   "reason": "only text in the box, no pictures"
+  },
+  {
+   "merge": [
+    "p14_s6",
+    "p14_i56_8_t"
+   ],
+   "translation": "200 ÷ 2 = 100, and 502 is much bigger than 200, so the quotient must be more than 100. 26 is wrong.",
+   "reason": "one sentence split between line and paragraph"
+  },
+  {
+   "segment_id": "p14_s7",
+   "translation": "I checked with multiplication: ⟦0⟧ is wrong too.",
+   "reason": "placeholder"
+  },
+  {
+   "segment_id": "p14_s8",
+   "translation": "Use the column method to calculate, then check.",
+   "reason": "terminology"
+  },
+  {
+   "segment_id": "p14_s12",
+   "translation": "Talk with a partner about what each step of the column method means.",
+   "reason": "terminology"
+  },
+  {
+   "segment_id": "p14_s15",
+   "translation": "⟦0⟧. Lele's family took ⟦1⟧ photos on their trip and put them equally into ⟦2⟧ albums. How many photos are in each album?",
+   "reason": "bubble text had leaked into the question"
+  },
+  {
+   "segment_id": "p14_s16",
+   "translation": "How did you work it out? Tell a partner.",
+   "reason": "complete bubble text"
+  },
+  {
+   "split": "p15_s9",
+   "translations": [
+    "Dividend",
+    "Divisor"
+   ],
+   "reason": "two row labels of the table"
+  },
+  {
+   "segment_id": "p15_s12",
+   "translation": "We have ⟦0⟧ classes.",
+   "reason": "dropped ⟦1⟧: OCR noise 60.39.0"
+  },
+  {
+   "segment_id": "p15_s13",
+   "translation": "We have ⟦0⟧ classes.",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p15_s14",
+   "translation": "We have ⟦0⟧ classes.",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p15_s15",
+   "translation": "Grade 3: ⟦0⟧ pots",
+   "box": [
+    62,
+    398,
+    132,
+    412
+   ],
+   "reason": "use the whole sign (scale 0.66)"
+  },
+  {
+   "merge": [
+    "p16_s2",
+    "p16_s5"
+   ],
+   "translation": "(2) 216 pine cones are put equally into 2 baskets. How many go in each basket? Circle first, then write a number sentence.",
+   "reason": "one question split in two sizes"
+  },
+  {
+   "segment_id": "p16_s6",
+   "translation": "⟦0⟧. Fill in the largest possible number.",
+   "reason": "shorter, shrunk to 0.76"
+  },
+  {
+   "segment_id": "p15_s10",
+   "translation": "Quotient",
+   "box": [
+    62,
+    325,
+    122,
+    339
+   ],
+   "reason": "use the whole label cell (scale 0.69)"
+  }
+ ],
+ "flags": [
+  {
+   "page": 16,
+   "issue": "Table row labels: 'Dividend' (split piece of p15_s9) is set smaller than 'Divisor' and 'Quotient'; no box can be given to a split piece."
+  }
+ ]
+}

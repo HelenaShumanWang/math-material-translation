@@ -1,0 +1,141 @@
+{
+ "code": "g3_2",
+ "pass": 1,
+ "flags": [
+  {
+   "file": "corr_p1_001.json",
+   "page": 3,
+   "issue": "Price labels (Cabbage/Carrot/Pepper) set as one run over the three vegetables at 0.68; a per-vegetable cut would read better."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 4,
+   "issue": "Faint erase residue remains to the right of several contents entries (also in the checked edition)."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 7,
+   "issue": "Item (1) is set as an add (p6_a1, left-aligned, size 10) over a BLANKed p6_s3, because p6_s3 rendered centred."
+  },
+  {
+   "file": "corr_p1_001.json",
+   "page": 9,
+   "issue": "Q3 sentences are now set per cell line (75 ★ ... / 96 ● ...); the inline star/dot pictures are typed as ★/● glyphs - check against the red star / orange dot pictures."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 11,
+   "issue": "Book picture (giraffe/frog): the English is set in two different sizes. The erased areas show as faint white patches on the grey page gradient. The checked edition had the same patches."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 16,
+   "issue": "Table row labels: 'Dividend' (split piece of p15_s9) is set slightly smaller than 'Divisor' and 'Quotient'. A split piece cannot take a box. 'Quotient' is left-aligned in its widened cell."
+  },
+  {
+   "file": "corr_p1_010.json",
+   "page": 17,
+   "issue": "The '100' pine-cone labels (from earlier correction files) leave a faint ghost of 个 inside the label boxes, and the right '100' sits close to the top edge of its box."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 22,
+   "issue": "Book-cover titles 百科 / 百科全书 on the eight tilted encyclopaedia covers (p21_s2-s4 and unlisted lines) stay in Chinese: too small and slanted to set English; left as picture."
+  },
+  {
+   "file": "corr_p1_018.json",
+   "page": 23,
+   "issue": "The five '1 min' labels of the bar diagram (p22_s8-s12) slightly overrun their hand-drawn cells; no wider room inside the cells."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 26,
+   "issue": "Price tags repainted white inside to remove leftover strokes; tiny grey specks at the very bottom edge of the tags may remain."
+  },
+  {
+   "file": "corr_p1_026.json",
+   "page": 32,
+   "issue": "Figure ①/③ labels and the 'Practice 1' line are set at about 0.71-0.73 (narrow grid cells / long line); readable."
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 41,
+   "issue": "(1)/(2) questions (p40_s18/p40_s20) are set on one line at about 0.75/0.69, smaller than (3) 'How much in total?'; the plate has no more room, and (2) sits right-aligned after its enumerator"
+  },
+  {
+   "file": "corr_p1_034.json",
+   "page": 41,
+   "issue": "'Did You Know?' banner title is set at 0.54 to stay off the rolled scroll end"
+  },
+  {
+   "file": "corr_p1_058.json",
+   "page": 61,
+   "issue": "The 'Did You Know?' banner (p60_s18) is still set on two lines at about 0.69, even with the widened box. The banner ribbon is small."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 69,
+   "issue": "second table header cell 'Football' (p68_s13) has a stray vertical stroke through it from the picture (also in the previous render). A paint correction does not remove it."
+  },
+  {
+   "file": "corr_p1_066.json",
+   "page": 70,
+   "issue": "p69_s8 bubble: a dark smudge (watermark residue) sits under the circled 1 in 'position ① or ②'; picture cleanup needed. A paint correction does not remove it (it lies above the picture layer)."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 77,
+   "issue": "p76_s1 \"and\" between 3/4 and 1/4 is set at scale 0.5: no free room between the two fractions."
+  },
+  {
+   "file": "corr_p1_074.json",
+   "page": 79,
+   "issue": "p78_s0 heading \"Eating Watermelon\" still set at 0.64 inside the small banner even with the whole banner as box."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 88,
+   "issue": "p87_s26 'and' between the fractions 1/8 and 3/8 in item 4 is set at 0.61. The gap between the fractions is too narrow for a bigger size, but it can still be read."
+  },
+  {
+   "file": "corr_p1_082.json",
+   "page": 88,
+   "issue": "The ribbon label 'Review and Discuss' is set on two lines at 0.68 inside the ribbon. Putting it on one line made it run past the end of the ribbon, so the two lines are kept."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 90,
+   "issue": "'Review and Discuss' in the split ribbon (p89_s0_k1, and p93_s0_k1 on page 94) is set at 0.66; a wider box spills off the ribbon, which is not extended for a split part (page 96's ribbon is)."
+  },
+  {
+   "file": "corr_p1_090.json",
+   "page": 95,
+   "issue": "Timetable: 'Shenyang North' in the 目的站 cells is set at about 0.67 scale (narrow column); acceptable but small."
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 98,
+   "issue": "banner 'Review and Discuss' set small (0.58) in the narrow banner"
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 99,
+   "issue": "item (5) p98_s8 is set larger than items (1)-(6) because of its role; the text is right and a box does not change its size"
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 102,
+   "issue": "(2) The book is ... set slightly smaller (0.76) than (1) in the same bubble; bubble has no more room"
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 103,
+   "issue": "item (2) of question 2 (machinery station) wraps to a second line without hanging indent; no free room before the map"
+  },
+  {
+   "file": "corr_p1_098.json",
+   "page": 103,
+   "issue": "table cell '140 cm or over' and banner 'Review and Discuss' are set small (scale ~0.55) in their narrow cells"
+  }
+ ]
+}
