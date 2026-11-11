@@ -1,6 +1,6 @@
 # QA report
 
-**Result:** QA FAILED after 3 rounds: 9 errors, 963 warnings (3595.3 s); proofread: 2733 corrections applied; output file checks: 0 error(s)
+**Result:** QA FAILED after 3 rounds: 9 errors, 966 warnings (3595.3 s); proofread: 2732 corrections applied; output file checks: 0 error(s)
 
 **Document:** 数学 (zh → en, 119 page(s), 2133 translatable segment(s))
 
@@ -18,7 +18,7 @@
 - Round 2: llm_review ×526, layout_fit ×71, completeness ×3, formatting ×3, numbers ×3, glossary ×2, image_text ×2, placeholders ×1, target_script ×1, untranslated ×1
 - Round 3: llm_review ×503, layout_fit ×78, formatting ×6, completeness ×2, glossary ×2, image_text ×2, placeholders ×2, untranslated ×2, numbers ×1
 
-## Final issues (972)
+## Final issues (975)
 
 ### `glossary` — 1 error, 38 warnings
 
@@ -337,7 +337,7 @@
 | warning | 6 | p5_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 谁的得分高 | Who Scores Higher? |
 | warning | 12 | p11_s2 | The source ends with a exclamation mark; end the translation with a exclamation mark too | 这只蝴蝶是用彩笔帽做成的。！ | This butterfly is made of marker pen caps. |
 | warning | 19 | p18_s10 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 贵多池 | How much more does the football cost? |
-| warning | 20 | p19_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 有多少块糖 | How Many Candies? |
+| warning | 20 | p19_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 有多少块糖 | How Many Sweets? |
 | warning | 21 | p20_s1 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 1.圈一圈，数一数一共有多少个 | 1. Circle and count. How many pandas are there in total? |
 | warning | 23 | p22_s11_k0 | Reviewed by the proofreader: Keep the symbol(s) □ of the source in the translation, at the matching position | (2) 2+2+2+2+2+2=12写成乘法算式:×□= | (2) Write 2+2+2+2+2+2=12 as multiplication: |
 | warning | 24 | p23_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 有多少点子 | How Many Dots? |
@@ -372,7 +372,7 @@
 | warning | 103 | p102_s34 | Reviewed by the proofreader: Keep the symbol(s) △ of the source in the translation, at the matching position | （4）先画3个△，再画，的个数是△的2倍。 | (4) First draw 3 △, then draw 2 times as many ○. |
 | warning | 103 | p102_s34 | Reviewed by the proofreader: Remove the symbol(s) ○: they are not in the source (a picture in the book is not a symbol; leave it out rather than inventing one) | （4）先画3个△，再画，的个数是△的2倍。 | (4) First draw 3 △, then draw 2 times as many ○. |
 | warning | 106 | p105_s25 | Reviewed by the proofreader: The source ends with a question mark; end the translation with a question mark too | (2）笑笑买了一种花，正好用完12元。在小组里说一说她可能买了哪种花，买了几枝？ | (2) Xiaoxiao spent exactly ¥12 on one kind of flower. Which… |
-| warning | 109 | p108_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What did you learn this term? |
+| warning | 109 | p108_s0 | Reviewed by the proofreader: The source does not end with a question mark; do not end the translation with one | 本学期你学到了什么 | What Did You Learn This Term? |
 
 ### `length_ratio` — 0 errors, 6 warnings
 
@@ -529,7 +529,7 @@
 | warning | 104 | p103_s24 | Reviewed by the proofreader: Number "32" from the source is missing in the translation; keep every number exactly as written in the source | 412.32.0吗？ | ? |
 | warning | 104 | p103_s24 | Reviewed by the proofreader: Number "412" from the source is missing in the translation; keep every number exactly as written in the source | 412.32.0吗？ | ? |
 
-### `placeholders` — 0 errors, 498 warnings
+### `placeholders` — 0 errors, 501 warnings
 
 | Severity | Page | Segment | Message | Source | Translation |
 |---|---|---|---|---|---|
@@ -596,6 +596,7 @@
 | warning | 14 | p13_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2角 | ¥0.20 |
 | warning | 15 | p14_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "(4) 1") | (4) 1张 | (4) 1 note |
 | warning | 15 | p14_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "(5) 1") | (5) 1张 | (5) 1 note |
+| warning | 15 | p14_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 2.填一填 | 2. Fill in. |
 | warning | 15 | p14_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1张 | 1 note |
 | warning | 15 | p14_s26 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 十1张 | +1 note |
 | warning | 15 | p14_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 十1张 | +1 note |
@@ -613,6 +614,7 @@
 | warning | 17 | p16_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1张 | 1 |
 | warning | 17 | p16_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1张 | 1 |
 | warning | 17 | p16_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | (1）买1盏 | (1) To buy 1 |
+| warning | 17 | p16_s29 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 5.读一读，讲一讲。 | 5. Read and retell. |
 | warning | 17 | p16_s30 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧, ⟦4⟧, ⟦5⟧, ⟦6⟧, ⟦7⟧, ⟦8⟧, ⟦9⟧, ⟦10⟧, ⟦11⟧, ⟦12⟧, ⟦13⟧, ⟦14⟧, ⟦15⟧, ⟦16⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "18", ⟦1⟧ = "8", ⟦2⟧ = "8", ⟦3⟧ = "10", ⟦4⟧ = "10", ⟦5⟧ = "5", ⟦6⟧ = "2", ⟦7⟧ = "1", ⟦8⟧ = "5", ⟦9⟧ = "2", ⟦10⟧ = "1", ⟦11⟧ = "5", ⟦12⟧ = "2", ⟦13⟧ = "1", ⟦14⟧ = "18", ⟦15⟧ = "8", ⟦16⟧ = "8") | 一次记者招待会上，一位记者问道：“中国一共有多少钱？”周恩来总理幽默地回答说：“我们有18元8角8分。”事实上，当时使… | At a press conference, a reporter asked, "How much money do… |
 | warning | 17 | p16_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "48") | 48元 | ¥48 |
 | warning | 17 | p16_s7 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "15") | 15元 | ¥15 |
@@ -651,6 +653,7 @@
 | warning | 27 | p26_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.画一画，说一说。 | 4. Draw and explain. |
 | warning | 27 | p26_s30 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5", ⟦1⟧ = "5×2") | 5.请你说出两个能用5×2解决的问题。 | 5. Give two problems that can be solved with 5×2. |
 | warning | 28 | p27_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.画一画，说一说。 | 1. Draw and explain. |
+| warning | 28 | p27_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.看一看，填一填 | 3. Look and fill in. |
 | warning | 28 | p27_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 4.把加法算式改写成乘法算式。 | 4. Rewrite each addition as a multiplication sentence. |
 | warning | 28 | p27_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "3", ⟦2⟧ = "2") | 小青蛙1步跳3格，2步跳 | 1 jump = 3 spaces, 2 jumps = |
 | warning | 29 | p28_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8.每样东西各买了多少？ | 8. How many of each did they buy? |
@@ -698,7 +701,7 @@
 | warning | 44 | p43_s2 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "5") | 树上有3组小鸟每组有5只。 | 3 groups of birds in the tree, 5 in each. |
 | warning | 44 | p43_s3 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦2⟧ = "172.5.0") | 地上有2组花，每组有5朵。172.5.0 | 2 groups of flowers on the ground, 5 in each. |
 | warning | 44 | p43_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2×6=12") | 说一说，算式2×6=12可以解决什么问题？ | Talk about it. What problem can the number sentence 2×6=12 … |
-| warning | 45 | p44_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.看图回答问题 | 1. Answer from the picture. |
+| warning | 45 | p44_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | 1.看图回答问题 | 1. Look at the picture and answer. |
 | warning | 45 | p44_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | （4）请你再提出一个用乘法解决的数学问题，并尝试解答。 | (4) Ask another multiplication question and try to answer i… |
 | warning | 45 | p44_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 3.填一填 | 3. Fill in. |
 | warning | 45 | p44_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 每层楼高约3米，这座楼高大约多少米？ | Each floor is about 3 m high. About how tall is the buildin… |
@@ -718,19 +721,19 @@
 | warning | 48 | p47_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧, ⟦3⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "3", ⟦2⟧ = "4", ⟦3⟧ = "5") | 边摆边说2，3，4，5的乘法口诀。 | Place counters and say the multiplication facts for 2, 3, 4… |
 | warning | 48 | p47_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4×6") | 说一说，画一画，4×6可以解决什么问题？ | Talk and draw: what problems can 4×6 solve? |
 | warning | 48 | p47_s6 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "10") | 故事会小组下周比赛老师让我用10元钱买奖品，可以买什么呢？ | The storytelling group has a contest next week. The teacher… |
-| warning | 50 | p49_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "36") | 36下 | 36 skips |
-| warning | 50 | p49_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "17") | 17下 | 17 skips |
-| warning | 50 | p49_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25") | 25下 | 25 skips |
-| warning | 50 | p49_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "86") | 86下 | 86 skips |
-| warning | 50 | p49_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 24 下 | 24 skips |
-| warning | 50 | p49_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "30") | 30下 | 30 skips |
-| warning | 50 | p49_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "78") | 78下 | 78 skips |
+| warning | 50 | p49_s10 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "36") | 36下 | 36 jumps |
+| warning | 50 | p49_s11 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "17") | 17下 | 17 jumps |
+| warning | 50 | p49_s12 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25") | 25下 | 25 jumps |
+| warning | 50 | p49_s13 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "86") | 86下 | 86 jumps |
+| warning | 50 | p49_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "24") | 24 下 | 24 jumps |
+| warning | 50 | p49_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "30") | 30下 | 30 jumps |
+| warning | 50 | p49_s16 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "78") | 78下 | 78 jumps |
 | warning | 50 | p49_s17 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧, ⟦2⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2", ⟦1⟧ = "100", ⟦2⟧ = "2") | 2.王阿姨有100元，打算买2盏台灯 | 2. Aunt Wang has ¥100 and plans to buy 2 desk lamps. |
 | warning | 50 | p49_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "35") | 又运来35台 | 35 more arrived. |
 | warning | 50 | p49_s25 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）现在的电视机比原来多还是少？ | (1) Are there more or fewer TVs now than before? |
 | warning | 50 | p49_s27 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | （2）现在有多少台电视机？ | (2) How many TVs are there now? |
-| warning | 50 | p49_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25") | 25下 | 25 skips |
-| warning | 50 | p49_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "28") | 28下 | 28 skips |
+| warning | 50 | p49_s8 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "25") | 25下 | 25 jumps |
+| warning | 50 | p49_s9 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "28") | 28下 | 28 jumps |
 | warning | 51 | p50_s1 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1", ⟦1⟧ = "1") | (1） 1张 | (1) 1 |
 | warning | 51 | p50_s14 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "7") | 7.看图列式。 | 7. Write number sentences. |
 | warning | 51 | p50_s15 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "8") | 8.用两种方法在方格纸中涂色表示算式。 | 8. Colour in two ways to show each number sentence. |
@@ -1023,8 +1026,8 @@
 | warning | 106 | p105_s19 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "2") | 剑兰每枝2元 | Gladiolus ¥2 each |
 | warning | 106 | p105_s20 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3") | 菊花每枝3元 | Chrysanthemum ¥3 each |
 | warning | 106 | p105_s21 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "6") | 百合每枝6元 | Lily ¥6 each |
-| warning | 106 | p105_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 玫瑰每枝5元 | Rose ¥5 each |
-| warning | 106 | p105_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 康乃馨每枝4元 | Carnation ¥4 each |
+| warning | 106 | p105_s22 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "5") | 玫瑰每枝5元 | Roses ¥5 each |
+| warning | 106 | p105_s23 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "4") | 康乃馨每枝4元 | Carnations ¥4 each |
 | warning | 106 | p105_s24 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "1") | （1）每枝百合的价钱是剑兰的多少倍？ | (1) A lily costs how many times as much as a gladiolus? |
 | warning | 106 | p105_s26 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧, ⟦1⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "3", ⟦1⟧ = "20") | （3）淘气有20元，请你给他配一束花，并说出两种搭配方法。 | (3) Taoqi has ¥20. Make up a bouquet for him. Give two poss… |
 | warning | 106 | p105_s5 | Reviewed by the proofreader: Placeholder problem: missing placeholders: ⟦0⟧. Keep every ⟦n⟧ placeholder of the source exactly once, unchanged, at the matching position (⟦0⟧ = "15") | 15.应付多少钱？ | 15. How much should you pay? |
