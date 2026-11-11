@@ -1,0 +1,62 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p35_s1",
+   "translation": "1 pair, 2 chopsticks; 2 pairs, 4…",
+   "box": [
+    259,
+    119.5,
+    379,
+    133
+   ],
+   "reason": "say what is counted; keep inside the bubble outline (wider box cut the left outline and ran the ellipsis over the right one)"
+  },
+  {
+   "restore": [
+    246,
+    113,
+    262,
+    120
+   ],
+   "page": 35,
+   "reason": "bubble outline the erase cut at top-left"
+  },
+  {
+   "restore": [
+    246,
+    120,
+    254.5,
+    132.5
+   ],
+   "page": 35,
+   "reason": "bubble outline the erase cut at left"
+  },
+  {
+   "segment_id": "p36_s20",
+   "box": [
+    57,
+    559,
+    440,
+    575
+   ],
+   "reason": "same instruction fits one line on p35; free paper to the right above the bubble"
+  },
+  {
+   "segment_id": "p37_s2",
+   "translation": "It can show the total number of red flags.",
+   "reason": "shorter so it fits the bubble"
+  },
+  {
+   "segment_id": "p38_s42",
+   "translation": "⟦1⟧ adult tickets, please.",
+   "box": [
+    271,
+    578,
+    349,
+    596
+   ],
+   "reason": "set too small; use the rest of the bubble, clear of the tail"
+  }
+ ],
+ "flags": []
+}

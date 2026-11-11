@@ -1,0 +1,96 @@
+{
+ "code": "g2_1",
+ "pass": 2,
+ "flags": [
+  {
+   "file": "corr_p2_001.json",
+   "page": 5,
+   "issue": "Small Chinese sign on the amusement-park arch in the Unit 6 picture (动物乐园) is kept in the picture; too small and curved to set English."
+  },
+  {
+   "file": "corr_p2_001.json",
+   "page": 9,
+   "issue": "Table header cells Class 1-4 are very narrow; English set at about 0.61-0.68 scale."
+  },
+  {
+   "file": "corr_p2_010.json",
+   "page": 13,
+   "issue": "(2) of exercise 5 (p12_s9) is set noticeably larger than (1) and the other questions; a smaller box made it misaligned, so left as is"
+  },
+  {
+   "file": "corr_p2_010.json",
+   "page": 15,
+   "issue": "Chinese full stops (。) after the pictures in exercise 1 are left in the picture"
+  },
+  {
+   "file": "corr_p2_026.json",
+   "page": 28,
+   "issue": "'lots of' (p27_a1_p0) between two answer boxes is set at 0.59; no room between the boxes for a larger size."
+  },
+  {
+   "file": "corr_p2_026.json",
+   "page": 28,
+   "issue": "'spaces, 3 jumps =' and 'spaces, 6 jumps =' (p27_s3, p27_s4) wrap onto two lines between the answer boxes, as in the checked edition; no wider room."
+  },
+  {
+   "file": "corr_p2_026.json",
+   "page": 32,
+   "issue": "Vertical labels 'Cao Cao' (0.67) and 'Guan Yu' (0.57) on the narrow strips of the game-board pieces are very small; 'Soldier' is set in the empty board cell next to the soldier piece."
+  },
+  {
+   "file": "corr_p2_050.json",
+   "page": 51,
+   "issue": "Klotski boards: the vertical 'Cao Cao' labels (p50_s19, p50_s20) are set at 0.55-0.59 in white on the dark tile and are nearly unreadable; the other name labels are also tiny (0.57-0.66)."
+  },
+  {
+   "file": "corr_p2_050.json",
+   "page": 52,
+   "issue": "Q10: '3 × 9 =' (p51_s1) is set larger than '2 × 7 =' and '4 × 5 =' beside it."
+  },
+  {
+   "file": "corr_p2_050.json",
+   "page": 57,
+   "issue": "'Work in groups and measure with a ruler.' (p56_s9) is set much larger than its sibling 'Compare and say.' (p56_s8)."
+  },
+  {
+   "file": "corr_p2_058.json",
+   "page": 59,
+   "issue": "p58_s10 'Talk about it...' is set larger than its siblings and wraps to a second line beside the '5.' enumerator; shorter wording still wraps"
+  },
+  {
+   "file": "corr_p2_058.json",
+   "page": 63,
+   "issue": "p62_s5 'Shared equally, each pencil case holds' wraps to a second line that sits beside the '3.' enumerator; no shorter wording fits the gap before the answer box"
+  },
+  {
+   "file": "corr_p2_074.json",
+   "page": 79,
+   "issue": "'Number sentence:' labels (p78_s5, p78_s6) are set at 0.55/0.63 in a tight space beside the answer boxes; no free paper to enlarge them."
+  },
+  {
+   "file": "corr_p2_082.json",
+   "page": 86,
+   "issue": "'Can you make up the facts for 8 and 9?' (p85_s4_k3) is set at 0.86, smaller than the other green-dot instructions; a wider box ([77,279,360,295]) did not enlarge it."
+  },
+  {
+   "file": "corr_p2_090.json",
+   "page": 93,
+   "issue": "p92_s8 'Measure the length and width of the classroom.' is set much smaller than the other green-bullet instructions on the page (size matched to the table labels); a wider box does not change it"
+  },
+  {
+   "file": "corr_p2_090.json",
+   "page": 94,
+   "issue": "p93_s13 'How many houses did the giraffe build with 63 boards?' is set smaller than the other green-bullet questions (size matched to the Answer labels)"
+  },
+  {
+   "file": "corr_p2_098.json",
+   "page": 99,
+   "issue": "4. Cat and mouse: the '8 × 9 = 72' label box looks extended to the right with its right border not closed (render artefact, same in checked edition); minor"
+  },
+  {
+   "file": "corr_p2_098.json",
+   "page": 99,
+   "issue": "2. table: the pen cell shows only '( )' with a small blue line artefact below it where 支 was erased; other cells say 'boxes', 'books'; minor"
+  }
+ ]
+}

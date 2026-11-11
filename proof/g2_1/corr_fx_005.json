@@ -1,0 +1,23 @@
+{"corrections": [
+{"paint": [345.0, 235.2, 347.8, 239.6], "page": 4, "colour": [220, 220, 82], "reason": "arch sign 动物游乐园: paint the curved yellow band in steps, inside its outline"},
+{"paint": [346.4, 234.3, 347.9, 235.4], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"paint": [350.6, 232.9, 352, 233.9], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"paint": [347.8, 233.6, 352, 238.7], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"paint": [352, 232.1, 358.5, 238.5], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"paint": [358.5, 232.8, 362, 239.8], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"paint": [362, 234.5, 365, 242.1], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"paint": [365, 237, 367.5, 244.4], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"paint": [367.5, 240.5, 369.3, 243.2], "page": 4, "colour": [220, 220, 82], "reason": "arch sign band"},
+{"add": "p4_a2", "page": 4, "box": [348, 233.6, 358.5, 238.4], "translation": "Animal", "source": "动物游", "size": 3.4, "align": "center", "color": 2301728, "reason": "sign on the arch (curved band: two words stepped along it)"},
+{"add": "p4_a3", "page": 4, "box": [358.6, 234.8, 366.4, 239.8], "translation": "Park", "source": "乐园", "size": 3.4, "align": "center", "color": 2301728, "reason": "sign on the arch"},
+{"segment_id": "p8_s18_k0", "translation": "BLANK", "reason": "header set as an add with a fixed size inside its cell"},
+{"segment_id": "p8_s18_k1", "translation": "BLANK", "reason": "header set as an add with a fixed size inside its cell"},
+{"segment_id": "p8_s18_k2", "translation": "BLANK", "reason": "header set as an add with a fixed size inside its cell"},
+{"segment_id": "p8_s18_k3", "translation": "BLANK", "reason": "header set as an add with a fixed size inside its cell"},
+{"add": "p8_a1", "page": 8, "box": [118.6, 391.3, 145.2, 409.2], "translation": "Class\n1", "source": "一班", "size": 7.0, "align": "center", "color": 2301728, "reason": "table header: same two-line layout and size in all four narrow cells, inside the grid lines"},
+{"add": "p8_a2", "page": 8, "box": [147.1, 391.3, 173.8, 409.2], "translation": "Class\n2", "source": "二班", "size": 7.0, "align": "center", "color": 2301728, "reason": "table header: same two-line layout and size in all four narrow cells"},
+{"add": "p8_a3", "page": 8, "box": [175.5, 391.3, 202.3, 409.2], "translation": "Class\n3", "source": "三班", "size": 7.0, "align": "center", "color": 2301728, "reason": "table header: same two-line layout and size in all four narrow cells"},
+{"add": "p8_a4", "page": 8, "box": [203.8, 391.3, 234.9, 409.2], "translation": "Class\n4", "source": "四班", "size": 7.0, "align": "center", "color": 2301728, "reason": "table header: same two-line layout and size in all four narrow cells"},
+{"segment_id": "p12_s9", "box": [99.8, 212.5, 464.6, 239.5], "reason": "shorter box: now the same size as (1) and the other questions, first line level with the printed (2)"}
+],
+"left": []}

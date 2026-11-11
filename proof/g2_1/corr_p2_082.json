@@ -1,0 +1,13 @@
+{"corrections": [
+{"segment_id": "p81_s17", "erase": [[450, 340, 461, 350]], "reason": "leftover Chinese glyph 口 at right edge of the thought bubble"},
+{"segment_id": "p83_s2", "translation": "In 3 weeks it's my birthday.", "reason": "'more' not in source; matches the sibling bubbles"},
+{"segment_id": "p84_s1", "translation": "⟦0⟧. Write number sentences for the pictures and calculate.", "box": [57, 128, 395, 144], "reason": "was shrunk; free paper to the right lets it set at full size"},
+{"segment_id": "p84_s3", "translation": "2. Write number sentences for each fact.", "reason": "看口诀写算式: the sentences come from the given facts"},
+{"segment_id": "p85_s20", "translation": "Use your ⟦0⟧ fingers for the facts for ⟦1⟧ too. Can you carry on?", "reason": "was shrunk to 0.86; shorter wording, same meaning"},
+{"segment_id": "p87_s39", "translation": "Looking across, I see…", "reason": "echoes 'What do you notice?'; short enough to fit"},
+{"segment_id": "p87_s40", "translation": "Looking down, I see…", "reason": "parallel to the other bubble"},
+{"segment_id": "p86_s10", "box": [248, 330, 446, 354], "reason": "(4) was set clearly larger than (1)-(3); a lower box brings it to their size"}
+],
+"flags": [
+{"page": 86, "issue": "'Can you make up the facts for 8 and 9?' (p85_s4_k3) is set at 0.86, smaller than the other green-dot instructions; a wider box did not enlarge it."}
+]}

@@ -1,0 +1,4 @@
+{"corrections": [
+  {"segment_id": "p106_s3", "box": [70.3, 221.5, 449.9, 237.0], "reason": "sentence was set far larger than the other instructions because its box is taller than one line; normal line-height box gives the same size as its siblings (tried and checked)"}
+],
+ "flags": []}

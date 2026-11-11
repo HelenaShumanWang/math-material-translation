@@ -1,0 +1,10 @@
+{"corrections": [
+{"segment_id": "p93_s16", "box": [75.7, 579.7, 470, 595.6], "reason": "green-bullet question shrunk to 0.84 while blank paper lies to its right"},
+{"segment_id": "p92_s9", "translation": "Pacing", "reason": "步测 means measuring by pacing; 'Steps' is unclear as a column heading"},
+{"segment_id": "p96_s1", "translation": "We grew ⟦0⟧ pumpkins this year…", "reason": "keep the number placeholder; normal ellipsis instead of OCR dots"},
+{"segment_id": "p94_s4_k2", "translation": "Largest number in the box?", "box": [100.0, 313.0, 266.0, 331.0], "reason": "'What's the largest number?' left out what is asked: the largest number that can go in the box (□里最大能填几)"}
+],
+"flags": [
+{"page": 93, "issue": "p92_s8 'Measure the length and width of the classroom.' is set much smaller than the other green-bullet instructions on the page (size matched to the table labels); a wider box does not change it"},
+{"page": 94, "issue": "p93_s13 'How many houses did the giraffe build with 63 boards?' is set smaller than the other green-bullet questions (size matched to the Answer labels)"}
+]}

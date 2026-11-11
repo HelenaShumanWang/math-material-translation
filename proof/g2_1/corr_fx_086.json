@@ -1,0 +1,110 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p85_s4_k3",
+   "translation": "BLANK",
+   "reason": "re-set as an add at the size of the other green-dot instructions (as a split piece it was shrunk to 0.86)"
+  },
+  {
+   "add": "p85_a30",
+   "page": 85,
+   "box": [
+    77,
+    278,
+    305,
+    296
+   ],
+   "translation": "Can you make up the facts for 8 and 9?",
+   "source": "你能编出8和9的乘法口诀吗?",
+   "size": 11.3,
+   "align": "left",
+   "color": 2301728,
+   "reason": "green-dot instruction at the size of the others on the page"
+  },
+  {
+   "segment_id": "p93_s13",
+   "translation": "BLANK",
+   "reason": "re-set as an add at the size of the other green-dot questions"
+  },
+  {
+   "add": "p93_a5",
+   "page": 93,
+   "box": [
+    77,
+    494,
+    450,
+    511
+   ],
+   "translation": "How many houses did the giraffe build with 63 boards?",
+   "source": "长颈鹿用63块小木板造了几间房子?",
+   "size": 13.2,
+   "align": "left",
+   "color": 2301728,
+   "reason": "green-dot question at the size of 'Think: ...'"
+  },
+  {
+   "segment_id": "p93_s16",
+   "translation": "BLANK",
+   "reason": "re-set as an add at the size of the other green-dot questions"
+  },
+  {
+   "add": "p93_a6",
+   "page": 93,
+   "box": [
+    77,
+    579,
+    500,
+    596
+   ],
+   "translation": "How many houses are empty? How many more birds can move in?",
+   "source": "还有几间空房子?还能住几只小鸟?",
+   "size": 13.2,
+   "align": "left",
+   "color": 2301728,
+   "reason": "green-dot question at the size of 'Think: ...'; slightly shorter wording to fit one line"
+  },
+  {
+   "segment_id": "p92_s8",
+   "translation": "BLANK",
+   "reason": "re-set as an add at the size of the other green-dot instructions"
+  },
+  {
+   "add": "p92_a10",
+   "page": 92,
+   "box": [
+    77,
+    349,
+    440,
+    366
+   ],
+   "translation": "Measure the length and width of the classroom.",
+   "source": "量一量教室的长和宽。",
+   "size": 13.2,
+   "align": "left",
+   "color": 2301728,
+   "reason": "green-dot instruction at the size of the others on the page"
+  },
+  {
+   "segment_id": "p92_s3",
+   "translation": "BLANK",
+   "reason": "re-set as an add at the size of the other green-dot instructions"
+  },
+  {
+   "add": "p92_a11",
+   "page": 92,
+   "box": [
+    77.7,
+    174,
+    300,
+    190
+   ],
+   "translation": "Read and tell.",
+   "source": "读一读，讲一讲。",
+   "size": 13.2,
+   "align": "left",
+   "color": 2301728,
+   "reason": "green-dot instruction at the size of the others on the page"
+  }
+ ],
+ "left": []
+}

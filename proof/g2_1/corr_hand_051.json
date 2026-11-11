@@ -1,0 +1,5 @@
+{"corrections": [
+ {"add": "p50_a1", "page": 50, "box": [192.5, 569, 215.5, 581], "translation": "BLANK", "source": "兵", "reason": "no 'Soldier' label in an empty cell: it suggested a piece there; the soldier tiles show their soldier, their 兵 strips are erased"},
+ {"add": "p50_a2", "page": 50, "box": [259.5, 611, 283, 623], "translation": "BLANK", "source": "兵", "reason": "as p50_a1"},
+ {"add": "p50_a3", "page": 50, "box": [366, 584, 392, 604], "translation": "BLANK", "source": "兵", "reason": "as p50_a1"}
+]}

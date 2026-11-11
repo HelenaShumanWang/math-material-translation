@@ -1,0 +1,182 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p56_s7",
+   "translation": "⟦0⟧ m = ⟦1⟧ cm. The metre can be written as ⟦2⟧.",
+   "reason": "space after =; keep the protected placeholders"
+  },
+  {
+   "segment_id": "p56_s14_k0",
+   "box": [
+    72,
+    603,
+    133,
+    620
+   ],
+   "erase": [
+    [
+     152.5,
+     613,
+     159.5,
+     620.5
+    ]
+   ],
+   "reason": "taller box so the text is not tiny; erase leftover Chinese full stop"
+  },
+  {
+   "segment_id": "p56_s14_k1",
+   "box": [
+    72,
+    626,
+    155,
+    643
+   ],
+   "erase": [
+    [
+     176.5,
+     637,
+     183.5,
+     644
+    ]
+   ],
+   "reason": "taller box; erase leftover full stop"
+  },
+  {
+   "segment_id": "p56_s14_k2",
+   "box": [
+    72,
+    649,
+    194,
+    666
+   ],
+   "erase": [
+    [
+     215,
+     661,
+     222,
+     668
+    ]
+   ],
+   "reason": "taller box; erase leftover full stop"
+  },
+  {
+   "segment_id": "p56_s15_k0",
+   "box": [
+    229,
+    603,
+    325,
+    620
+   ],
+   "erase": [
+    [
+     348.5,
+     613,
+     355.5,
+     620.5
+    ]
+   ],
+   "reason": "taller box; erase leftover full stop"
+  },
+  {
+   "segment_id": "p56_s15_k1",
+   "box": [
+    229,
+    626,
+    321,
+    643
+   ],
+   "erase": [
+    [
+     340.5,
+     637,
+     347.5,
+     644
+    ]
+   ],
+   "reason": "taller box; erase leftover full stop"
+  },
+  {
+   "segment_id": "p56_s15_k2",
+   "box": [
+    229,
+    649,
+    311,
+    666
+   ],
+   "erase": [
+    [
+     332.5,
+     661,
+     339.5,
+     668
+    ]
+   ],
+   "reason": "taller box; erase leftover full stop"
+  },
+  {
+   "segment_id": "p56_s16",
+   "translation": "Think: how long is ⟦0⟧ cm? And ⟦1⟧ m?",
+   "reason": "shorter so '1 m' is not split across lines"
+  },
+  {
+   "segment_id": "p55_s13",
+   "erase": [
+    [
+     446,
+     422,
+     453,
+     429.5
+    ]
+   ],
+   "reason": "erase leftover Chinese full stop after the tick"
+  },
+  {
+   "segment_id": "p50_a3_p0",
+   "box": [
+    366,
+    584,
+    392,
+    604
+   ],
+   "reason": "Soldier was set outside the board; keep it in the cell next to the soldier tile"
+  },
+  {
+   "segment_id": "p50_s2",
+   "erase": [
+    [
+     303.5,
+     118.5,
+     311,
+     126.5
+    ]
+   ],
+   "reason": "erase leftover Chinese full stop after the note"
+  },
+  {
+   "segment_id": "p50_s5",
+   "erase": [
+    [
+     445,
+     150,
+     452,
+     157
+    ]
+   ],
+   "reason": "erase leftover Chinese full stop after the note"
+  }
+ ],
+ "flags": [
+  {
+   "page": 51,
+   "issue": "Klotski boards: the vertical 'Cao Cao' labels (p50_s19, p50_s20) are set at 0.55-0.59 in white on the dark tile and are nearly unreadable; the other name labels are also tiny (0.57-0.66)."
+  },
+  {
+   "page": 52,
+   "issue": "Q10: '3 × 9 =' (p51_s1) is set larger than '2 × 7 =' and '4 × 5 =' beside it."
+  },
+  {
+   "page": 57,
+   "issue": "'Work in groups and measure with a ruler.' (p56_s9) is set much larger than its sibling 'Compare and say.' (p56_s8)."
+  }
+ ]
+}

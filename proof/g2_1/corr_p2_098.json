@@ -1,0 +1,11 @@
+{"corrections": [
+{"merge": ["p100_s2_k1", "p100_s2_k2"], "translation": "On your own", "reason": "badge 独立思考 was set as 'On your' (tiny) + 'own' (large); one text at one size"},
+{"merge": ["p101_s4_k1", "p101_s4_k2"], "translation": "On your own", "reason": "badge 独立思考 was set as 'On your' (tiny) + 'own' (large); one text at one size"},
+{"restore": [227, 635, 256, 653], "page": 103, "reason": "croissant picture of 8(2) was erased by p103_s24's box; restore it (no Chinese in this box)"},
+{"segment_id": "p103_s24", "box": [256, 634.7, 281.2, 653.7], "translation": "?", "reason": "set the question mark after the restored croissant instead of on top of it; ⟦0⟧ was OCR noise (412.32.0) and stays out"},
+{"segment_id": "p103_s11", "translation": "(⟦0⟧) Taoqi's money buys just ⟦1⟧ pencil cases. How much has he got?", "reason": "smaller_than_siblings: shorter wording, now set at the size of the other numbered instructions"}
+],
+"flags": [
+{"page": 99, "issue": "4. Cat and mouse: the '8 × 9 = 72' label box looks extended to the right with its right border not closed (render artefact); minor"},
+{"page": 99, "issue": "2. table: the pen cell shows only '( )' with a small blue line artefact below it where 支 was erased; other cells say 'boxes', 'books'; minor"}
+]}

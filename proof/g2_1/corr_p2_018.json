@@ -1,0 +1,10 @@
+{"corrections":[
+{"segment_id":"p18_s11","box":[75,409,445,432],"reason":"set larger than the other questions and wrapped; one line over the free paper to the right"},
+{"merge":["p20_s4","p20_s5_k0"],"translation":"(1) Each row has ___ squares, ___ rows, ___ squares in all.","reason":"one sentence split in two pieces with a gap between them"},
+{"merge":["p20_s6","p20_s5_k1"],"translation":"(2) Each column has ___ squares, ___ columns, ___ squares in all.","reason":"one sentence split in two pieces with a gap between them"},
+{"segment_id":"p20_s7","box":[57,413,478,430],"reason":"wraps one word; free paper to the right"},
+{"segment_id":"p20_s8","box":[71,549,478,567],"reason":"wraps one word; free paper to the right"},
+{"segment_id":"p23_s6","erase":[[168,177,175,187]],"reason":"leftover Chinese full stop after '3 rows.'"},
+{"segment_id":"p24_s9","translation":"⟦0⟧ How many bottles","reason":"the '?' is printed after the bottle picture; avoid a double '?'"}
+],
+"flags":[]}

@@ -1,0 +1,83 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p27_s5",
+   "box": [
+    90.1,
+    237.5,
+    125.0,
+    252.5
+   ],
+   "reason": "spaces. set larger than the rest of the sentence"
+  },
+  {
+   "segment_id": "p27_s3",
+   "translation": "spaces, ⟦0⟧ jumps =",
+   "reason": "格 after the box was dropped; the checked edition had \"spaces\""
+  },
+  {
+   "segment_id": "p27_s4",
+   "translation": "spaces, ⟦0⟧ jumps =",
+   "reason": "格 after the box was dropped; the checked edition had \"spaces\""
+  },
+  {
+   "segment_id": "p27_s6",
+   "translation": "⟦0⟧. Arrange and fill in.",
+   "reason": "full stop like sibling instructions"
+  },
+  {
+   "segment_id": "p27_s10",
+   "translation": "⟦0⟧. Look and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p28_s0",
+   "translation": "⟦0⟧. Think and match.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p28_s10",
+   "translation": "⟦0⟧. Explain and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p28_s12",
+   "translation": "Think and fill in.",
+   "reason": "full stop"
+  },
+  {
+   "segment_id": "p30_s9",
+   "translation": "⟦0⟧. The top-row patterns are cut from the bottom-row paper. Match them.",
+   "reason": "shorter so it is set at sibling size"
+  },
+  {
+   "segment_id": "p30_s12",
+   "box": [
+    264.0,
+    558.5,
+    318.0,
+    576.5
+   ],
+   "reason": "use the bubble's free room; text was 0.68"
+  },
+  {
+   "segment_id": "p32_s6",
+   "translation": "Push one end of the wings into the straw and fix them with a staple.",
+   "reason": "wings are plural"
+  }
+ ],
+ "flags": [
+  {
+   "page": 28,
+   "issue": "'lots of' (p27_a1_p0) between two answer boxes is set at 0.59; no room between the boxes for a larger size."
+  },
+  {
+   "page": 28,
+   "issue": "'spaces, 3 jumps =' and 'spaces, 6 jumps =' (p27_s3, p27_s4) wrap onto two lines between the answer boxes, as in the checked edition; no wider room."
+  },
+  {
+   "page": 32,
+   "issue": "Vertical labels 'Cao Cao' (0.67) and 'Guan Yu' (0.57) on the narrow strips of the game-board pieces are very small; 'Soldier' is set in the empty board cell next to the soldier piece."
+  }
+ ]
+}

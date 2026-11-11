@@ -1,0 +1,10 @@
+{"corrections": [
+  {"restore": [318.5, 564, 342, 588], "page": 98, "reason": "8 × 9 = 72 plate ran on past its right border; put back the scan's border and white paper"},
+  {"segment_id": "p98_s14", "translation": "DROP", "reason": "the 支 under it is erased and re-set by the pen-cell add p98_a1"},
+  {"add": "p98_a1", "page": 98, "box": [183, 377, 253, 392.6], "translation": "(      ) pens", "source": "（ ）支", "size": 9.28, "align": "left", "color": 2301728, "reason": "pen cell had only the scan's ( ) and a blue smear where 支 was erased; set like the other cells (box reaches past the column line so the OCR line of the next cell does not squeeze it; size kept under 0.75 of 'How many' so that row header is not pulled down)"},
+  {"restore": [248.4, 376, 250.4, 393.5], "page": 98, "reason": "keep the table's column line that the pen-cell add box reaches over"},
+  {"segment_id": "p98_s17", "translation": "(    ) cases", "reason": "个 cell (pencil case) had no unit; set like the other cells"}
+],
+"left": [
+  {"page": 99, "issue": "not flagged: in item 4 the label '6 × 8 = 48' is set noticeably larger than '7 × 8 = 56' and '5 × 7 = 35' (about 9.9 pt against 9.4 pt). Pre-existing; not changed here."}
+]}

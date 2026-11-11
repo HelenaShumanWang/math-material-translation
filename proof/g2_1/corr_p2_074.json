@@ -1,0 +1,68 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p74_s5",
+   "translation": "The calf spent how many times as much as the rabbit?",
+   "box": [92, 228, 274, 250],
+   "reason": "set at 0.69; slightly shorter wording and a bit more room inside the panel"
+  },
+  {
+   "split": "p75_s6",
+   "at": [341, 356],
+   "translations": ["'s height =", "DROP", "×"],
+   "reason": "restore the dog picture the box erased"
+  },
+  {
+   "segment_id": "p75_s7",
+   "translation": ".",
+   "reason": "sentence now reads boy's height = dog × □."
+  },
+  {
+   "segment_id": "p76_s5",
+   "translation": "Draw and calculate: how many times as many dragonflies as butterflies?",
+   "box": [78, 271, 470, 287],
+   "reason": "symbol-only question unnatural; full question as in checked edition"
+  },
+  {
+   "segment_id": "p76_s8",
+   "translation": "Answer: There are ____ times as many dragonflies as butterflies.",
+   "reason": "more natural English"
+  },
+  {
+   "segment_id": "p76_s2",
+   "box": [91, 146, 156, 161],
+   "reason": "use the rest of the bubble; set at 0.68"
+  },
+  {
+   "segment_id": "p76_s3",
+   "box": [347, 142, 413, 157],
+   "reason": "use the rest of the bubble, clear of its right outline"
+  },
+  {
+   "segment_id": "p76_s1",
+   "box": [257, 116, 330, 132],
+   "reason": "use the rest of the bubble, clear of its right outline"
+  },
+  {
+   "segment_id": "p77_s9",
+   "box": [72, 360, 462, 377],
+   "reason": "wraps at 0.79 and touches next item; free paper to the right"
+  },
+  {
+   "segment_id": "p77_s7",
+   "erase": [[411, 253, 419, 262]],
+   "reason": "leftover Chinese full stop beside the bubble text (tight box so the bubble outline stays)"
+  },
+  {
+   "segment_id": "p79_s16",
+   "box": [259, 336, 470, 357],
+   "reason": "set at 0.71, smaller than (2)-(4); free paper to the right"
+  }
+ ],
+ "flags": [
+  {
+   "page": 79,
+   "issue": "'Number sentence:' labels (p78_s5, p78_s6) are set at 0.55/0.63 in a tight space beside the answer boxes; no free paper to enlarge them."
+  }
+ ]
+}

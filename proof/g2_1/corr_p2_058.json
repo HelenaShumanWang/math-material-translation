@@ -1,0 +1,10 @@
+{"corrections": [
+{"segment_id": "p59_s10", "translation": "2. Fill in each bracket with the right unit (cm or m).", "box": [57.0, 328.5, 440.0, 344.4], "erase": [[366, 334, 377, 345]], "reason": "the Chinese full stop after （厘米或米） was left under the English 'm)'; erased, line kept on one row"},
+{"segment_id": "p60_s13", "translation": "The metre and the centimetre are units of length used all over the world. China also has its own units of length, such as the chi and the cun. They are related like this: 1 metre = 3 chi, 1 chi = 10 cun.", "reason": "spaces around = in the equations (1 metre = 3 chi, 1 chi = 10 cun); fragments =3 and =10 written out"},
+{"segment_id": "p63_s1", "box": [298, 124.5, 378, 155], "reason": "bubble text shrunk to 0.73; box uses the rest of the speech bubble but stays inside its outline"},
+{"segment_id": "p64_s2", "box": [285, 128, 350, 160], "reason": "bubble text shrunk to 0.74; box uses the rest of the speech bubble"}
+],
+"flags": [
+{"page": 59, "issue": "p58_s10 'Talk about it...' is set larger than its siblings and wraps to a second line beside the '5.' enumerator; shorter wording still wraps"},
+{"page": 63, "issue": "p62_s5 'Shared equally, each pencil case holds' wraps to a second line that sits beside the '3.' enumerator; no shorter wording fits the gap before the answer box"}
+]}

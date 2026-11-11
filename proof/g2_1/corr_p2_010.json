@@ -1,0 +1,194 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p9_s15",
+   "translation": "I'm ⟦0⟧ years older than you.",
+   "reason": "speaker's full sentence"
+  },
+  {
+   "segment_id": "p10_s6",
+   "box": [
+    287,
+    212,
+    459,
+    246
+   ],
+   "reason": "room for same size"
+  },
+  {
+   "split": "p12_s12",
+   "translations": [
+    "Team",
+    "Batteries"
+   ],
+   "reason": "two table cells"
+  },
+  {
+   "segment_id": "p13_s3",
+   "box": [
+    254,
+    184,
+    287,
+    199.6
+   ],
+   "reason": "use plate width"
+  },
+  {
+   "segment_id": "p13_s12",
+   "translation": "Recognise and fill in.",
+   "reason": "punctuation"
+  },
+  {
+   "segment_id": "p14_s2",
+   "translation": "⟦0⟧ __ coins",
+   "reason": "fit one line"
+  },
+  {
+   "segment_id": "p14_s25",
+   "box": [
+    66,
+    439.7,
+    104,
+    457.2
+   ],
+   "reason": "fit one line"
+  },
+  {
+   "segment_id": "p15_s5",
+   "translation": "Recognise the notes.",
+   "reason": "认一认 is recognise the notes"
+  },
+  {
+   "segment_id": "p15_s13",
+   "translation": "If Mum buys ⟦0⟧",
+   "reason": "one sentence around the picture"
+  },
+  {
+   "segment_id": "p15_s14",
+   "translation": ", how can she pay?",
+   "reason": "one sentence around the picture"
+  },
+  {
+   "segment_id": "p16_s20",
+   "box": [
+    241.5,
+    372.5,
+    270.4,
+    387.2
+   ],
+   "reason": "align 1 with rows above"
+  },
+  {
+   "segment_id": "p16_s26",
+   "erase": [
+    [
+     380,
+     435,
+     392,
+     447
+    ]
+   ],
+   "reason": "Chinese full stop left"
+  },
+  {
+   "segment_id": "p14_s6",
+   "translation": "⟦0⟧ __ notes",
+   "reason": "fit one line like (1)"
+  },
+  {
+   "segment_id": "p14_s8",
+   "translation": "⟦0⟧ __ notes",
+   "reason": "fit one line like (1)"
+  },
+  {
+   "segment_id": "p14_s29",
+   "box": [
+    66,
+    469.4,
+    104,
+    487.3
+   ],
+   "reason": "fit one line"
+  },
+  {
+   "segment_id": "p14_s32",
+   "box": [
+    66,
+    499.2,
+    104,
+    515.9
+   ],
+   "reason": "fit one line"
+  },
+  {
+   "segment_id": "p13_s25",
+   "translation": "⟦0⟧",
+   "reason": "cell too narrow for 'note'; picture shows the note"
+  },
+  {
+   "segment_id": "p13_s28",
+   "translation": "⟦0⟧",
+   "reason": "cell too narrow"
+  },
+  {
+   "segment_id": "p13_s30",
+   "translation": "⟦0⟧",
+   "reason": "cell too narrow; was 0.6"
+  },
+  {
+   "segment_id": "p15_s13",
+   "box": [
+    76,
+    382,
+    158.5,
+    399
+   ],
+   "reason": "one line, kept clear of the shirt picture"
+  },
+  {
+   "segment_id": "p14_s8",
+   "box": [
+    70.6,
+    202.4,
+    144,
+    222
+   ],
+   "reason": "fit one line"
+  },
+  {
+   "segment_id": "p14_s30",
+   "box": [
+    150,
+    469,
+    198,
+    487
+   ],
+   "reason": "fit one line"
+  },
+  {
+   "segment_id": "p14_s15",
+   "translation": "⟦0⟧. Fill in.",
+   "reason": "full stop like the other instructions"
+  },
+  {
+   "restore": [
+    159,
+    379,
+    175.5,
+    402
+   ],
+   "page": 15,
+   "reason": "shirt picture was cut by the erase of 件; stops before the Chinese comma"
+  }
+ ],
+ "flags": [
+  {
+   "page": 13,
+   "issue": "(2) of exercise 5 (p12_s9) is set noticeably larger than (1) and the other questions; a smaller box made it misaligned, so left as is"
+  },
+  {
+   "page": 15,
+   "issue": "Chinese full stops (。) after the pictures in exercise 1 are left in the picture"
+  }
+ ]
+}

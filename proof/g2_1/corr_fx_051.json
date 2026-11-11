@@ -1,0 +1,114 @@
+{
+ "corrections": [
+  {
+   "paint": [
+    208.0,
+    515.0,
+    216.8,
+    546.0
+   ],
+   "page": 50,
+   "colour": [
+    222,
+    230,
+    226
+   ]
+  },
+  {
+   "segment_id": "p50_s19",
+   "translation": "Cao Cao",
+   "box": [
+    208.0,
+    515.5,
+    216.8,
+    545.5
+   ],
+   "reason": "larger readable label on a plain plate"
+  },
+  {
+   "paint": [
+    383.4,
+    515.0,
+    392.2,
+    546.0
+   ],
+   "page": 50,
+   "colour": [
+    222,
+    230,
+    226
+   ]
+  },
+  {
+   "segment_id": "p50_s20",
+   "translation": "Cao Cao",
+   "box": [
+    383.4,
+    515.5,
+    392.2,
+    545.5
+   ],
+   "reason": "larger readable label on a plain plate"
+  },
+  {
+   "segment_id": "p51_s1",
+   "translation": "BLANK",
+   "reason": "re-set at the size of its siblings"
+  },
+  {
+   "add": "p51_a1",
+   "page": 51,
+   "box": [
+    80.2,
+    101.6,
+    185.0,
+    116.6
+   ],
+   "translation": "3 × 9 =",
+   "source": "三九",
+   "size": 12.3,
+   "align": "left",
+   "color": 2235675
+  },
+  {
+   "restore": [
+    112.6,
+    116.6,
+    146.0,
+    119.6
+   ],
+   "page": 51
+  },
+  {
+   "segment_id": "p56_s9",
+   "translation": "BLANK",
+   "reason": "re-set at the size of its sibling Compare and say."
+  },
+  {
+   "add": "p56_a3",
+   "page": 56,
+   "box": [
+    286.6,
+    427.5,
+    500.0,
+    442.4
+   ],
+   "translation": "Work in groups and measure with a ruler.",
+   "source": "小组合作，用尺子量一量。",
+   "size": 10.5,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p56_s7",
+   "translation": "1 m = 100 cm. The metre can be written as m.",
+   "reason": "doubled ="
+  }
+ ],
+ "left": [
+  {
+   "page": 51,
+   "issue": "Klotski: the other name labels (Zhang Fei, Guan Yu, Zhao Yun, about 0.57-0.78) stay small: they fill the narrow coloured strips of their tiles and cannot grow without covering the faces. The 'Soldier' labels (p50_a1/a2/a3) sit in EMPTY cells next to the soldier tiles, which could make readers think a piece is there; the tiles' own strips are too narrow for the word."
+  }
+ ]
+}

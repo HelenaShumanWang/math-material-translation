@@ -1,0 +1,63 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p66_s11",
+   "translation": "sticks,",
+   "reason": "comma: sentence continues with 'with ... left'"
+  },
+  {
+   "segment_id": "p67_s8",
+   "translation": "How do we write the other ways as division number sentences?",
+   "reason": "more natural, shorter"
+  },
+  {
+   "segment_id": "p68_s14",
+   "translation": "(⟦0⟧) In ⟦1⟧ equal groups, each has",
+   "reason": "shorter, set smaller than siblings"
+  },
+  {
+   "segment_id": "p68_s17",
+   "translation": "(⟦0⟧) Put them equally in ⟦1⟧ boxes. Each has",
+   "reason": "shorter, scale 0.63"
+  },
+  {
+   "segment_id": "p69_s12",
+   "translation": "(⟦0⟧) Put them equally in ⟦1⟧ baskets. Each has",
+   "reason": "shorter, was shrunk to 0.71"
+  },
+  {
+   "segment_id": "p69_s14",
+   "translation": "(⟦0⟧) ⟦1⟧ in each basket. We need",
+   "reason": "shorter, scale 0.74"
+  },
+  {
+   "segment_id": "p70_s0",
+   "translation": "⟦0⟧. Write two number sentences for each picture.",
+   "reason": "natural"
+  },
+  {
+   "segment_id": "p70_s4",
+   "translation": "Say what each number means.",
+   "reason": "shorter, scale 0.69"
+  },
+  {
+   "segment_id": "p71_s12",
+   "translation": "Answer: ¥⟦0⟧ buys",
+   "reason": "text ran over the answer line"
+  },
+  {
+   "segment_id": "p71_s17",
+   "translation": "Answer: ¥⟦0⟧ buys",
+   "reason": "text ran over the answer line"
+  },
+  {
+   "merge": [
+    "p72_s7",
+    "p72_s10"
+   ],
+   "translation": "4 trees in each row.",
+   "reason": "one bubble sentence; pieces overlapped"
+  }
+ ],
+ "flags": []
+}

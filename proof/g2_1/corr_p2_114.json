@@ -1,0 +1,9 @@
+{"corrections": [
+ {"segment_id": "p114_s4", "translation": "BLANK", "reason": "兵 label ran past its 1x1 soldier card (the card looked twice as wide); re-set inside the card by p114_a4"},
+ {"add": "p114_a4", "page": 114, "box": [328.2, 242.5, 340.0, 256.0], "translation": "Sol-\ndier", "source": "兵", "size": 5, "align": "center", "color": 4625, "reason": "Soldier set on two lines inside the soldier card, at the size of the other card labels"},
+ {"segment_id": "p114_s8", "translation": "BLANK", "reason": "兵 label ran past its 1x1 soldier card; re-set inside the card by p114_a8"},
+ {"add": "p114_a8", "page": 114, "box": [424.3, 504.6, 436.0, 518.0], "translation": "Sol-\ndier", "source": "兵", "size": 5, "align": "center", "color": 69649, "reason": "Soldier set on two lines inside the soldier card, same as the other soldiers"},
+ {"segment_id": "p114_s10", "translation": "BLANK", "reason": "兵 label re-set inside its card by p114_a10, the same way as the other two soldiers"},
+ {"add": "p114_a10", "page": 114, "box": [424.3, 539.0, 436.0, 552.0], "translation": "Sol-\ndier", "source": "兵", "size": 5, "align": "center", "color": 265741, "reason": "Soldier set on two lines inside the soldier card, same as the other soldiers"}
+],
+ "flags": []}

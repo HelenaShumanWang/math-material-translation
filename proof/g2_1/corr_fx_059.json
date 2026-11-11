@@ -1,0 +1,85 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p78_s5",
+   "translation": "BLANK",
+   "reason": "re-set as add at the size of the sibling label"
+  },
+  {
+   "segment_id": "p78_s6",
+   "translation": "BLANK",
+   "reason": "re-set as add at the size of the sibling label"
+  },
+  {
+   "add": "p78_a90",
+   "page": 78,
+   "box": [
+    87,
+    226,
+    126.5,
+    246.5
+   ],
+   "translation": "Number sentence:",
+   "source": "列式：",
+   "size": 8.2,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "add": "p78_a91",
+   "page": 78,
+   "box": [
+    277.5,
+    226,
+    316,
+    246.5
+   ],
+   "translation": "Number sentence:",
+   "source": "列式：",
+   "size": 8.2,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p58_s10",
+   "translation": "BLANK",
+   "reason": "re-set as add at sibling body size on one line"
+  },
+  {
+   "add": "p58_a90",
+   "page": 58,
+   "box": [
+    73.7,
+    230.5,
+    500,
+    246
+   ],
+   "translation": "Talk about it: how can you estimate well? What should you watch for when measuring?",
+   "source": "说一说，估计时你有什么好办法？测量时要注意什么？",
+   "size": 10.85,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p62_s5",
+   "translation": "BLANK",
+   "reason": "re-set as add: two lines rising into the free paper above, so no line sits beside 3."
+  },
+  {
+   "add": "p62_a90",
+   "page": 62,
+   "box": [
+    80.2,
+    286.8,
+    206,
+    311.5
+   ],
+   "translation": "Shared equally, each pencil case holds",
+   "source": "平均每个铅笔盒放",
+   "size": 10.2,
+   "align": "left",
+   "color": 2301728
+  }
+ ],
+ "left": []
+}

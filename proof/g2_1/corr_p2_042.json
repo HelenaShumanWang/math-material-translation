@@ -1,0 +1,41 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p41_s14",
+   "box": [76.8, 538.6, 470.0, 554.7],
+   "reason": "shrunk to 0.76; free paper to the right on the same line"
+  },
+  {
+   "segment_id": "p41_s17",
+   "box": [110.0, 583.0, 190.0, 615.0],
+   "reason": "shrunk to 0.76; rest of the bubble is free"
+  },
+  {
+   "segment_id": "p43_s3",
+   "box": [282.0, 313.0, 358.0, 347.0],
+   "reason": "shrunk to 0.75; rest of the bubble is free"
+  },
+  {
+   "segment_id": "p43_s12",
+   "translation": "Can you ask another question that can be solved with multiplication? Talk about it and work it out.",
+   "reason": "consistent wording with the other 'work it out' instructions"
+  },
+  {
+   "segment_id": "p45_s3",
+   "translation": "⟦0⟧. Use the dot grid to say the ⟦1⟧, ⟦2⟧, ⟦3⟧ and ⟦4⟧ times tables.",
+   "reason": "shorter standard UK wording for 乘法口诀 on one line"
+  },
+  {
+   "segment_id": "p46_s28",
+   "box": [56.7, 500.0, 200.0, 516.0],
+   "reason": "shrunk to 0.62 by a tight box; free paper beside it"
+  },
+  {
+   "segment_id": "p47_s0",
+   "translation": "Summary and Review",
+   "box": [150.0, 81.6, 370.0, 104.3],
+   "reason": "整理与复习 is the unit review heading; full title, box centred under the Chinese heading (the old box let it run off-centre to the right)"
+  }
+ ],
+ "flags": []
+}

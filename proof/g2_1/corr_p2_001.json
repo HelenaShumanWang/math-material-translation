@@ -1,0 +1,25 @@
+{
+ "corrections": [
+  {"segment_id": "p3_s4", "erase": [[414, 323, 422, 331]], "reason": "stray leader dot"},
+  {"segment_id": "p4_s1", "erase": [[203, 321, 249, 331]], "reason": "leader dots left"},
+  {"segment_id": "p4_s8", "erase": [[244, 636, 252, 645]], "reason": "stray leader dot"},
+  {"segment_id": "p5_s6", "erase": [[242, 361, 249, 370]], "reason": "leftover dot"},
+  {"segment_id": "p7_s8", "translation": "First take away one team,", "reason": "shorter, larger"},
+  {"segment_id": "p7_s9", "translation": "First find how many people in all,", "reason": "shorter, larger"},
+  {"segment_id": "p7_s10", "translation": "then...", "reason": "source 再……"},
+  {"segment_id": "p7_s11", "translation": "then...", "erase": [[147, 409.5, 173, 421.5]], "box": [134.9, 409.9, 172, 420.9], "reason": "source 再……; Chinese ellipsis dots were left after 'then'"},
+  {"segment_id": "p8_s26", "erase": [[287.6, 565.4, 291.0, 568.9]], "reason": "Chinese full stop left (tight box so the bubble outline is kept)"},
+  {"segment_id": "p8_s18_k0", "box": [121.5, 391.5, 147, 408.5], "reason": "inside its table cell, same as sibling headers"},
+  {"segment_id": "p8_s18_k1", "box": [149.5, 391.5, 175.5, 408.5], "reason": "inside its table cell"},
+  {"segment_id": "p8_s18_k2", "box": [178, 391.5, 204, 408.5], "reason": "inside its table cell"},
+  {"segment_id": "p8_s18_k3", "box": [206.5, 391.5, 236.5, 408.5], "reason": "inside its table cell"},
+  {"segment_id": "p8_s18_k0", "translation": "Class\n1", "reason": "same two-line layout for all four headers"},
+  {"segment_id": "p8_s18_k1", "translation": "Class\n2", "reason": "same two-line layout for all four headers"},
+  {"segment_id": "p8_s18_k2", "translation": "Class\n3", "reason": "same two-line layout for all four headers"},
+  {"segment_id": "p8_s18_k3", "translation": "Class\n4", "reason": "same two-line layout for all four headers"}
+ ],
+ "flags": [
+  {"page": 5, "issue": "Small Chinese sign on the amusement-park arch in the Unit 6 picture (动物乐园) is kept in the picture; too small and curved to set English."},
+  {"page": 9, "issue": "Table header cells Class 1-4 are very narrow; English set at about 0.61-0.68 scale."}
+ ]
+}
