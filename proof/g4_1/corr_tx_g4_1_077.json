@@ -1,0 +1,124 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p78_s23",
+   "translation": "School starts on 1 September",
+   "reason": "too long: '(month 9)' is a calque; label had to shrink and takes no full stop"
+  },
+  {
+   "segment_id": "p89_s13",
+   "translation": "March",
+   "reason": "unnatural: 3月 is March; volume uses month names (4 May)"
+  },
+  {
+   "segment_id": "p89_s20",
+   "translation": "April",
+   "reason": "unnatural: 4月 is April; volume uses month names (4 May)"
+  },
+  {
+   "segment_id": "p89_s27",
+   "translation": "May",
+   "reason": "unnatural: 5月 is May; volume uses month names (4 May)"
+  },
+  {
+   "segment_id": "p89_s8",
+   "translation": "Charity shop results over 3 months",
+   "reason": "too long: 爱心超市 is a charity shop, 'Loving Heart Supermarket' is a calque; label shrank 9.1->6.6"
+  },
+  {
+   "segment_id": "p89_s34",
+   "translation": "−10, 0,",
+   "reason": "inconsistent: negative numbers use the minus sign elsewhere in this unit (−¥127, −8℃)"
+  },
+  {
+   "segment_id": "p82_s14",
+   "translation": "Look and discuss",
+   "reason": "inconsistent: 看一看，说一说 is 'Look and discuss' elsewhere (p85, p90)"
+  },
+  {
+   "segment_id": "p84_s21",
+   "translation": "Speed/(km/h)",
+   "reason": "wrong: stray space in the column header"
+  },
+  {
+   "segment_id": "p88_s17_k0",
+   "translation": "Date: ________",
+   "reason": "unnatural: 'year ___ month ___ day' copies the Chinese date blank; English forms say 'Date:'"
+  },
+  {
+   "segment_id": "p91_s2",
+   "translation": "Try an experiment.",
+   "reason": "too long: shrank 11.9->6.7; same meaning without doubled do/try"
+  },
+  {
+   "segment_id": "p96_s1",
+   "translation": "Mouse holes",
+   "reason": "wrong: 鼠 is a mouse, not a mole, and the task has several holes; a title label takes no full stop"
+  },
+  {
+   "segment_id": "p98_s3",
+   "translation": "Tails up",
+   "reason": "case: short picture label takes no full stop"
+  },
+  {
+   "segment_id": "p98_s4",
+   "translation": "Heads up",
+   "reason": "case: short picture label takes no full stop; matches 'Tails up'"
+  },
+  {
+   "segment_id": "p83_s9",
+   "translation": "Took 10 min",
+   "reason": "case: picture label in sentence case"
+  },
+  {
+   "segment_id": "p102_s2",
+   "translation": "Think alone",
+   "reason": "inconsistent: 独立思考 tag reads 'Think alone' on p104"
+  },
+  {
+   "segment_id": "p107_s3",
+   "translation": "N",
+   "reason": "inconsistent: compass marks are 'N' elsewhere (p65, p91, p104); box is 13 pt wide"
+  },
+  {
+   "segment_id": "p107_s14",
+   "translation": "N",
+   "reason": "inconsistent: compass marks are 'N' elsewhere; box is 14 pt wide"
+  },
+  {
+   "segment_id": "p107_s5",
+   "translation": "E",
+   "reason": "inconsistent: compass marks are 'E' elsewhere; box is 16 pt wide"
+  },
+  {
+   "segment_id": "p107_s17",
+   "translation": "E",
+   "reason": "inconsistent: compass marks are 'E' elsewhere; box is 17 pt wide"
+  },
+  {
+   "segment_id": "p107_s28",
+   "translation": "Miaoxiang's home",
+   "reason": "inconsistent: other ...家 map labels read 'Miaoxiang's home', 'Xiaoxiao's home'; also had to shrink"
+  },
+  {
+   "segment_id": "p107_a4_p0",
+   "translation": "Grandma's home",
+   "reason": "inconsistent: matches the other ...家 map labels ('... home', sentence case)"
+  },
+  {
+   "segment_id": "p108_s8",
+   "translation": "Class 3(1) boys' names",
+   "reason": "too long: shrank 11.7->9.5; shorter form keeps 'names' (the box holds name slips)"
+  },
+  {
+   "segment_id": "p108_s13",
+   "translation": "Class 3(1) girls' names",
+   "reason": "too long: shrank 12.1->9.6; shorter form keeps 'names' (the box holds name slips)"
+  },
+  {
+   "segment_id": "p108_s15",
+   "translation": "Class 3(2) students' names",
+   "reason": "too long: shrank 11.9->9.3; shorter form keeps 'names' (the box holds name slips)"
+  }
+ ]
+}

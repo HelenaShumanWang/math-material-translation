@@ -1,0 +1,139 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p21_s1",
+   "translation": "Look and say.",
+   "reason": "consistency: 看一看，说一说 -> \"Look and say.\"; 看一看，说一说 is the same \"look and talk\" prompt everywhere; the short form used in most volumes fits every box"
+  },
+  {
+   "segment_id": "p82_s14",
+   "translation": "Look and say.",
+   "reason": "consistency: 看一看，说一说 -> \"Look and say.\"; 看一看，说一说 is the same \"look and talk\" prompt everywhere; the short form used in most volumes fits every box"
+  },
+  {
+   "segment_id": "p89_s1",
+   "translation": "Look and say.",
+   "reason": "consistency: 看一看，说一说 -> \"Look and say.\"; 看一看，说一说 is the same \"look and talk\" prompt everywhere; the short form used in most volumes fits every box"
+  },
+  {
+   "segment_id": "p82_s11",
+   "translation": "Let's learn.",
+   "reason": "consistency: 认一认 -> \"Let's learn.\"; 认一认 is the same \"get to know\" prompt in every place; one short natural wording that fits the narrowest box (w 48)"
+  },
+  {
+   "segment_id": "p5_s2",
+   "translation": "Count and learn.",
+   "reason": "consistency: 数一数，认一认 -> \"Count and learn.\"; same prompt; matches 认一认 wording and the other volumes"
+  },
+  {
+   "segment_id": "p19_s3",
+   "translation": "Look and say.",
+   "reason": "consistency: 认一认，说一说 -> \"Look and say.\"; same prompt; majority wording, shorter"
+  },
+  {
+   "segment_id": "p89_s32",
+   "translation": "Look and say.",
+   "reason": "consistency: 认一认，说一说 -> \"Look and say.\"; same prompt; majority wording, shorter"
+  },
+  {
+   "segment_id": "p83_s1",
+   "translation": "Think and fill in.",
+   "reason": "consistency: 想一想，填一填 -> \"Think and fill in.\"; same prompt; majority wording with full stop like other instruction labels"
+  },
+  {
+   "segment_id": "p102_s2",
+   "translation": "On your own",
+   "reason": "consistency: 独立思考 -> \"On your own\"; 独立思考 tag in the Final Review boxes; sentence case like its partner tag \"Share ideas\"; one wording in every volume"
+  },
+  {
+   "segment_id": "p103_s0_k1",
+   "translation": "On your",
+   "reason": "consistency: 独立 -> \"On your\"; 独立思考 tag (split over two lines) said the same as elsewhere: \"On your own\""
+  },
+  {
+   "segment_id": "p103_s18_k1",
+   "translation": "On your",
+   "reason": "consistency: 独立 -> \"On your\"; 独立思考 tag (split over two lines) said the same as elsewhere: \"On your own\""
+  },
+  {
+   "segment_id": "p103_s0_k2",
+   "translation": "own",
+   "reason": "consistency: 思考 -> \"own\"; second line of the split 独立思考 tag, so the tag reads \"On your own\" as elsewhere"
+  },
+  {
+   "segment_id": "p103_s18_k2",
+   "translation": "own",
+   "reason": "consistency: 思考 -> \"own\"; second line of the split 独立思考 tag, so the tag reads \"On your own\" as elsewhere"
+  },
+  {
+   "segment_id": "p46_s0",
+   "translation": "My Progress",
+   "reason": "consistency: 我的成长足迹 -> \"My Progress\"; same review section heading; shortest of the current versions (the longer ones had shrunk)"
+  },
+  {
+   "segment_id": "p46_s5",
+   "translation": "My Questions",
+   "reason": "consistency: 我提出的问题 -> \"My Questions\"; same review section heading; majority wording"
+  },
+  {
+   "segment_id": "p93_s9",
+   "translation": "Self-Check",
+   "reason": "consistency: 自我评价 -> \"Self-Check\"; same section heading in Maths Is Fun; short Title Case form used in other volumes"
+  },
+  {
+   "segment_id": "p110_s0",
+   "translation": "What Have You Learned This Term?",
+   "reason": "consistency: 本学期你学到了什么 -> \"What Have You Learned This Term?\"; same end-of-book page title; Title Case heading"
+  },
+  {
+   "segment_id": "p2_s1",
+   "translation": "Dear children,",
+   "reason": "consistency: 亲爱的小朋友 -> \"Dear children,\"; same letter greeting; comma as in every other volume"
+  },
+  {
+   "segment_id": "p102_s1_k0",
+   "translation": "Review and Share",
+   "reason": "consistency: 回顾与交流 -> \"Review and Share\"; same Final Review section label; shorter of the two versions (交流 = share)"
+  },
+  {
+   "segment_id": "p41_s3",
+   "translation": "Calculate.",
+   "reason": "consistency: 算一算 -> \"Calculate.\"; same prompt; majority wording"
+  },
+  {
+   "segment_id": "p102_s1_k1",
+   "translation": "Number and Algebra",
+   "reason": "consistency: 数与代数 -> \"Number and Algebra\"; curriculum strand name; majority and correct form"
+  },
+  {
+   "segment_id": "p104_s0_k1",
+   "translation": "Number and Algebra",
+   "reason": "consistency: 数与代数 -> \"Number and Algebra\"; curriculum strand name; majority and correct form"
+  },
+  {
+   "segment_id": "p91_s6",
+   "translation": "Task",
+   "reason": "consistency: 活动任务 -> \"Task\"; same Maths Is Fun section label; shorter form (the longer one had shrunk)"
+  },
+  {
+   "segment_id": "p7_s6",
+   "translation": "Make 10, carry 1.",
+   "reason": "consistency: 满十进1 -> \"Make 10, carry 1.\"; same rule (ten in one place makes 1 in the next); digits for numbers"
+  },
+  {
+   "segment_id": "p56_a1_p0",
+   "translation": "Qisi's home",
+   "reason": "consistency: 奇思家 -> \"Qisi's home\"; same place label; majority wording"
+  },
+  {
+   "segment_id": "p4_s13",
+   "translation": "Unit 8 Probability",
+   "reason": "consistency: 八可能性 -> \"Unit 8 Probability\"; contents entry must match the unit heading"
+  },
+  {
+   "segment_id": "p84_s16",
+   "translation": "m",
+   "reason": "consistency: 米 -> \"m\"; 米 is the metre unit (m) in a maths table, not \"rice\""
+  }
+ ]
+}

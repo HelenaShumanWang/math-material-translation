@@ -1,0 +1,129 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p65_s2",
+   "translation": "Xiaohong's home",
+   "reason": "wrong: stray OCR code 260.2.0 removed"
+  },
+  {
+   "segment_id": "p69_s16",
+   "translation": "4 × 20 = 80",
+   "reason": "wrong: leading stray OCR dots removed"
+  },
+  {
+   "segment_id": "p51_s4",
+   "translation": "First 5−2=3, then 3×3=9, finally 9÷9=1.",
+   "reason": "wrong: letter x used for the multiplication sign"
+  },
+  {
+   "segment_id": "p75_s23",
+   "translation": "so try 3…",
+   "reason": "wrong: stray full stop before the ellipsis"
+  },
+  {
+   "segment_id": "p57_s0",
+   "translation": "Associative Law of Multiplication",
+   "reason": "inconsistent: 乘法结合律; matches 'Associative Law of Addition' in the same-size box"
+  },
+  {
+   "segment_id": "p46_s0",
+   "translation": "My Learning Journey",
+   "reason": "unnatural: 'Growth Footprints' is a literal rendering of 成长足迹"
+  },
+  {
+   "segment_id": "p60_s1",
+   "translation": "Look closely at (80+4)×25, then calculate.",
+   "reason": "unnatural: 'observe the features of' is literal"
+  },
+  {
+   "segment_id": "p60_s9",
+   "translation": "Look closely at 34×72+34×28, then calculate.",
+   "reason": "unnatural: 'observe the features of' is literal"
+  },
+  {
+   "segment_id": "p47_s13",
+   "translation": "Number of Pupils in Primary Schools, 2007–2012",
+   "reason": "wrong: Chinese wave dash; English uses an en dash for a year range"
+  },
+  {
+   "segment_id": "p47_s16",
+   "translation": "Rounded (10,000s)",
+   "reason": "too long: shrank to 8.0; shorter with the same meaning"
+  },
+  {
+   "segment_id": "p54_s6",
+   "translation": "16 spotted cows",
+   "reason": "too long: shrank to 7.1; 花牛 = spotted cows"
+  },
+  {
+   "segment_id": "p63_s26",
+   "translation": "(3) Can you make these calculations simpler?",
+   "reason": "too long: shrank to 8.0; 'these' is shorter, same meaning"
+  },
+  {
+   "segment_id": "p73_s18",
+   "translation": "Book Corner",
+   "reason": "too long: heading shrank from 20.2 to 11.4; natural UK term"
+  },
+  {
+   "segment_id": "p75_s4",
+   "translation": "Seats 24",
+   "reason": "too long: sign shrank to 5.8; short sign wording, no full stop"
+  },
+  {
+   "segment_id": "p75_s9",
+   "translation": "Seats 46",
+   "reason": "too long: sign shrank to 5.8; matches the 24-seat bus sign"
+  },
+  {
+   "segment_id": "p46_s5",
+   "translation": "Questions I Asked",
+   "reason": "case: section heading beside 'My Maths Diary' and 'What I Learned'"
+  },
+  {
+   "segment_id": "p59_s1",
+   "translation": "Tiling the Kitchen",
+   "reason": "case: scenario title, like 'Buying Stationery'"
+  },
+  {
+   "segment_id": "p64_s11",
+   "translation": "Shopping mall",
+   "reason": "case: map label in sentence case like 'Library'"
+  },
+  {
+   "segment_id": "p64_s12",
+   "translation": "Xiaoxiao's home",
+   "reason": "case: map label in sentence case; matches 'Xiaohong's home'"
+  },
+  {
+   "segment_id": "p65_s7",
+   "translation": "Threshing ground",
+   "reason": "case: map label in sentence case"
+  },
+  {
+   "segment_id": "p56_s35",
+   "translation": "=40 (yuan)",
+   "reason": "inconsistent: unit written with a space elsewhere ('=72 (yuan)')"
+  },
+  {
+   "segment_id": "p56_s36",
+   "translation": "=40 (yuan)",
+   "reason": "inconsistent: unit written with a space elsewhere ('=72 (yuan)')"
+  },
+  {
+   "segment_id": "p59_s7",
+   "translation": "=80 (tiles)",
+   "reason": "inconsistent: matches p59_s11 '=80 (tiles)'"
+  },
+  {
+   "segment_id": "p59_s9",
+   "translation": "=80 (tiles)",
+   "reason": "inconsistent: matches p59_s11 '=80 (tiles)'"
+  },
+  {
+   "segment_id": "p59_s14",
+   "translation": "=80 (tiles)",
+   "reason": "inconsistent: matches p59_s11 '=80 (tiles)'"
+  }
+ ]
+}

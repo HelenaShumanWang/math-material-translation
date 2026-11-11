@@ -1,0 +1,20 @@
+{"corrections": [
+{"segment_id": "p12_s2", "translation": "9600000", "reason": "wrong: 960万 = 9600000; 'ten thousand' phrasing is not English and the volume writes 万 numbers as digits (p13/p14); shorter"},
+{"segment_id": "p12_s3", "translation": "8500000", "reason": "wrong: 850万 = 8500000; digit convention as on p13/p14; shorter"},
+{"segment_id": "p12_s4", "translation": "10000000", "reason": "wrong: 1000万 = 10000000; digit convention; shorter"},
+{"segment_id": "p12_s5", "translation": "7900000", "reason": "wrong: 790万 = 7900000; digit convention; shorter"},
+{"segment_id": "p12_s6", "translation": "8000000", "reason": "wrong: 800万 = 8000000 on the number line; digit convention"},
+{"segment_id": "p12_s7", "translation": "9000000", "reason": "wrong: 900万 = 9000000 on the number line; digit convention"},
+{"segment_id": "p5_s9", "translation": "Count in thousands", "reason": "inconsistent: UK 'count in', as on p6 'Count in thousands, up to one hundred thousand'"},
+{"segment_id": "p5_s10", "translation": "Count in ones", "reason": "inconsistent: UK 'count in', matching the other counting labels"},
+{"segment_id": "p5_s18", "translation": "Count in ones", "reason": "inconsistent: UK 'count in', matching the other counting labels"},
+{"segment_id": "p5_s19", "translation": "Count in ten thousands", "reason": "inconsistent: UK 'count in', matching the other counting labels"},
+{"segment_id": "p9_s26", "translation": "First I group the digits…", "reason": "too long: shrank 9.5 to 6.6; shorter, same meaning, matches 'First group the digits' on the same page"},
+{"segment_id": "p10_s1", "translation": "1. Answer these questions.", "reason": "unnatural: 'as required' is Chinglish; shorter where it shrank 10.7 to 8.9"},
+{"segment_id": "p14_s18", "translation": "4. Complete the table.", "reason": "unnatural: 'as required' is Chinglish; shorter where it shrank 10.9 to 8.6"},
+{"segment_id": "p19_s3", "translation": "Recognise and discuss", "reason": "case: activity prompt in sentence case, not Title Case; no full stop as the Chinese has none (same as p89 'Recognise and discuss')"},
+{"segment_id": "p21_s1", "translation": "Look and discuss", "reason": "case: activity prompt in sentence case; no full stop as the Chinese has none (same as p89 'Look and discuss')"},
+{"segment_id": "p21_a2_p0", "translation": "Do it and recognise.", "reason": "case: activity prompt in sentence case; Chinese ends with 。 (compare '3. Do it and discuss.')"},
+{"segment_id": "p25_s4", "translation": "Pin two card strips together at one end.", "reason": "unnatural: card strips are fastened with a pin, not nailed; amended to keep 'card' (硬纸条); still shorter where it shrank"},
+{"segment_id": "p32_s16", "translation": "Classroom block", "reason": "unnatural: 'Teaching building' is Chinglish for 教学楼 and had a stray '·'; shorter"}
+]}
