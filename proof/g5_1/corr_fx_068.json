@@ -1,0 +1,129 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p67_s27",
+   "translation": "⟦0⟧. Pocket money for a disaster area: Qisi gave",
+   "reason": "'pocket money' moved here so the narrow gap between the fractions takes a short phrase at full size"
+  },
+  {
+   "segment_id": "p67_s28",
+   "translation": "of his, and Miaoxiang gave",
+   "reason": "fits the gap between 1/5 and 3/5 at body size; keeps a verb before 3/5 (followed by 'of hers.')",
+   "box": [
+    291.8,
+    630.4,
+    411.0,
+    642.6
+   ],
+   "align": "left"
+  },
+  {
+   "segment_id": "p67_s30",
+   "translation": "Did Miaoxiang definitely give more money than Qisi? Explain why.",
+   "reason": "matches 'gave' in the first line"
+  },
+  {
+   "paint": [
+    150.8,
+    406.3,
+    153.3,
+    408.8
+   ],
+   "page": 68,
+   "colour": [
+    180,
+    172,
+    165
+   ],
+   "reason": "Chinese full stop after 1/2 > 1/3, painted in the watermark grey it sits on"
+  },
+  {
+   "paint": [
+    100,
+    79.4,
+    152,
+    107.9
+   ],
+   "page": 70,
+   "colour": [
+    205,
+    118,
+    46
+   ],
+   "reason": "lengthen the title plate's frame over free paper (bottom kept clear of the bubble below)"
+  },
+  {
+   "paint": [
+    100,
+    107.9,
+    112,
+    108.8
+   ],
+   "page": 70,
+   "colour": [
+    205,
+    118,
+    46
+   ],
+   "reason": "frame bottom continues at its old depth until the bubble starts"
+  },
+  {
+   "paint": [
+    100,
+    80.9,
+    150,
+    81.7
+   ],
+   "page": 70,
+   "colour": [
+    213,
+    172,
+    116
+   ],
+   "reason": "continue the frame's top highlight"
+  },
+  {
+   "paint": [
+    100,
+    106.5,
+    150,
+    107.2
+   ],
+   "page": 70,
+   "colour": [
+    240,
+    200,
+    150
+   ],
+   "reason": "continue the frame's bottom highlight"
+  },
+  {
+   "paint": [
+    100,
+    83.3,
+    148,
+    105.4
+   ],
+   "page": 70,
+   "colour": [
+    1,
+    156,
+    88
+   ],
+   "reason": "lengthen the green title plate so the English fits on one line"
+  },
+  {
+   "segment_id": "p70_s0",
+   "translation": "Sharing Cakes",
+   "box": [
+    62,
+    84,
+    147,
+    105
+   ],
+   "align": "center",
+   "reason": "one line on the lengthened plate"
+  }
+ ],
+ "left": []
+}

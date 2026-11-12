@@ -1,0 +1,100 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p103_s13",
+   "translation": "BLANK",
+   "reason": "set again by an add at the same size and indent as its sibling lines"
+  },
+  {
+   "add": "p103_a4",
+   "page": 103,
+   "box": [262, 284.5, 468, 298],
+   "translation": "So many legs! There must be too many rabbits.",
+   "source": "这么多腿，一定是兔子太多了。",
+   "size": 8.5,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p103_s14",
+   "translation": "BLANK",
+   "reason": "set again by an add at one size with its sibling lines"
+  },
+  {
+   "add": "p103_a2",
+   "page": 103,
+   "box": [262, 304, 468, 318],
+   "translation": "Still too many legs, so fewer rabbits.",
+   "source": "腿还多，兔子数应减少",
+   "size": 8.5,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p103_s15",
+   "translation": "BLANK",
+   "reason": "heading-role line set too large; set again by an add at its siblings' size"
+  },
+  {
+   "add": "p103_a1",
+   "page": 103,
+   "box": [262, 323.5, 468, 339],
+   "translation": "Almost there, adjust a little more.",
+   "source": "差不多了，再调一点儿",
+   "size": 8.5,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p103_s16",
+   "translation": "BLANK",
+   "reason": "set again by an add at one size with its sibling lines"
+  },
+  {
+   "add": "p103_a3",
+   "page": 103,
+   "box": [262, 343, 468, 372],
+   "translation": "Fewer than 94 legs now, so the number of rabbits should be between 10 and 15.",
+   "source": "腿数比94少了，兔子数应该在10和15之间。",
+   "size": 8.5,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "segment_id": "p108_s12",
+   "translation": "BLANK",
+   "reason": "set again by an add at the size of Yellow face up"
+  },
+  {
+   "segment_id": "p108_s13",
+   "translation": "BLANK",
+   "reason": "set again by an add at the size of Red face up"
+  },
+  {
+   "add": "p108_a1",
+   "page": 108,
+   "box": [205, 398, 265, 410.5],
+   "translation": "Red face up",
+   "source": "红色面朝上",
+   "size": 7.9,
+   "align": "center",
+   "color": 2301728
+  },
+  {
+   "add": "p108_a2",
+   "page": 108,
+   "box": [269.5, 398, 329, 410.5],
+   "translation": "Yellow face up",
+   "source": "黄色面朝上",
+   "size": 7.9,
+   "align": "center",
+   "color": 2301728
+  }
+ ],
+ "left": [
+  {
+   "page": 105,
+   "issue": "Lot slips 先/后 in the boy's hands stay in Chinese (p104_s14 DROP kept): each slip is about 7 x 7 pt and tilted; '1st'/'2nd' tried at 4-5 pt was unreadable, the layout pushed the text off the slip and the erase whitened/clipped the slip edges."
+  }
+ ]
+}

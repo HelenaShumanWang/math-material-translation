@@ -1,0 +1,145 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p14_s8",
+   "translation": "BLANK",
+   "reason": "question 9 set as one add over two lines"
+  },
+  {
+   "segment_id": "p14_s9",
+   "translation": "BLANK",
+   "reason": "question 9 set as one add over two lines"
+  },
+  {
+   "add": "p14_a1",
+   "page": 14,
+   "box": [
+    54.1,
+    403,
+    497,
+    430
+   ],
+   "translation": "9. Aunt Wang bought 9.5 kg of apples, paid ¥30 and got ¥7.2 change. How much did the apples cost? How much were they per kilogram?",
+   "source": "9.王阿姨买了9.5kg苹果，给售货员30元，找回7.2元。买苹果花了多少元？每千克苹果多少元？",
+   "size": 10.8,
+   "align": "left",
+   "reason": "one paragraph, one size (the first line was a larger heading)"
+  },
+  {
+   "segment_id": "p15_s17",
+   "translation": "BLANK",
+   "reason": "set as an add at the size of the 600 yuan question"
+  },
+  {
+   "add": "p15_a2",
+   "page": 15,
+   "box": [
+    78,
+    536.5,
+    500,
+    565.5
+   ],
+   "translation": "How many Hong Kong dollars can you get for 5000 yuan? How many euros? How many Singapore dollars?",
+   "source": "5000元人民币能兑换多少港元？欧元呢？新元呢？",
+   "size": 11.9,
+   "align": "left",
+   "reason": "same size as the 600 yuan question, two lines"
+  },
+  {
+   "paint": [
+    201.1,
+    634.5,
+    202.9,
+    636.3
+   ],
+   "page": 19,
+   "colour": [
+    235,
+    219,
+    187
+   ],
+   "reason": "dot moved down onto the 6 of 0.6"
+  },
+  {
+   "paint": [
+    290.4,
+    634.5,
+    292.2,
+    636.3
+   ],
+   "page": 19,
+   "colour": [
+    235,
+    219,
+    187
+   ],
+   "reason": "dot moved down onto 3.27"
+  },
+  {
+   "paint": [
+    297.0,
+    634.5,
+    298.8,
+    636.3
+   ],
+   "page": 19,
+   "colour": [
+    235,
+    219,
+    187
+   ],
+   "reason": "dot moved down onto 3.27"
+  },
+  {
+   "paint": [
+    201.0,
+    637.6,
+    202.8,
+    639.4
+   ],
+   "page": 19,
+   "colour": [
+    231,
+    43,
+    30
+   ],
+   "reason": "repeating-decimal dot above the 6 of 0.6, just over the digit"
+  },
+  {
+   "paint": [
+    290.0,
+    637.6,
+    291.8,
+    639.4
+   ],
+   "page": 19,
+   "colour": [
+    231,
+    43,
+    30
+   ],
+   "reason": "repeating-decimal dot above the 2 of 3.27"
+  },
+  {
+   "paint": [
+    296.7,
+    637.6,
+    298.5,
+    639.4
+   ],
+   "page": 19,
+   "colour": [
+    231,
+    43,
+    30
+   ],
+   "reason": "repeating-decimal dot above the 7 of 3.27"
+  }
+ ],
+ "left": [
+  {
+   "page": 20,
+   "issue": "'Did You Know?' banner title (p19_s29) is still set at about 0.54 (about 8 pt): the scroll banner has no more room between the boy's face and the rolled end, and two lines would be no larger."
+  }
+ ]
+}

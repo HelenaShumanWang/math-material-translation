@@ -1,0 +1,490 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p29_s10",
+   "translation": "BLANK",
+   "reason": "label re-set at sibling-label size in the free margin left of the grid (p29_a1)"
+  },
+  {
+   "segment_id": "p29_s11",
+   "translation": "BLANK",
+   "reason": "label re-set at sibling-label size in the free margin right of the grid (p29_a2)"
+  },
+  {
+   "add": "p29_a1",
+   "page": 29,
+   "box": [
+    56.0,
+    530.0,
+    109.0,
+    568.0
+   ],
+   "translation": "Translate 5 squares right",
+   "source": "向右平移5格",
+   "size": 9.5,
+   "align": "right",
+   "color": 2301728
+  },
+  {
+   "add": "p29_a2",
+   "page": 29,
+   "box": [
+    413.0,
+    630.0,
+    468.0,
+    668.0
+   ],
+   "translation": "Translate 3 squares left",
+   "source": "向左平移3格",
+   "size": 9.5,
+   "align": "left",
+   "color": 2301728
+  },
+  {
+   "paint": [
+    117.6,
+    536.0,
+    131.1,
+    548.8
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    131.9,
+    536.0,
+    151.1,
+    548.8
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    117.6,
+    549.6,
+    131.1,
+    562.6
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    131.9,
+    549.6,
+    151.1,
+    557.8
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    152.0,
+    558.0,
+    152.6,
+    559.0
+   ],
+   "page": 29,
+   "colour": [
+    235,
+    164,
+    200
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    151.4,
+    559.0,
+    152.6,
+    560.0
+   ],
+   "page": 29,
+   "colour": [
+    235,
+    164,
+    200
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    150.8,
+    560.0,
+    152.6,
+    561.0
+   ],
+   "page": 29,
+   "colour": [
+    235,
+    164,
+    200
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    150.1,
+    561.0,
+    152.6,
+    562.2
+   ],
+   "page": 29,
+   "colour": [
+    235,
+    164,
+    200
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    131.1,
+    536.0,
+    131.9,
+    562.6
+   ],
+   "page": 29,
+   "colour": [
+    62,
+    199,
+    244
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    151.1,
+    536.0,
+    151.9,
+    562.6
+   ],
+   "page": 29,
+   "colour": [
+    62,
+    199,
+    244
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    117.5,
+    548.8,
+    153.0,
+    549.6
+   ],
+   "page": 29,
+   "colour": [
+    62,
+    199,
+    244
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    370.2,
+    635.6,
+    389.4,
+    647.9
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    390.2,
+    635.6,
+    403.2,
+    647.9
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    370.2,
+    648.7,
+    389.4,
+    662.2
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    390.2,
+    648.7,
+    403.2,
+    662.2
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    368.0,
+    639.4,
+    369.4,
+    647.9
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    368.0,
+    648.7,
+    369.4,
+    662.2
+   ],
+   "page": 29,
+   "colour": [
+    255,
+    255,
+    255
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    368.0,
+    635.6,
+    370.8,
+    637.4
+   ],
+   "page": 29,
+   "colour": [
+    235,
+    164,
+    200
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    368.0,
+    637.4,
+    370.2,
+    638.4
+   ],
+   "page": 29,
+   "colour": [
+    235,
+    164,
+    200
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    368.0,
+    638.4,
+    369.6,
+    639.4
+   ],
+   "page": 29,
+   "colour": [
+    235,
+    164,
+    200
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    369.4,
+    635.6,
+    370.2,
+    662.2
+   ],
+   "page": 29,
+   "colour": [
+    62,
+    199,
+    244
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    389.4,
+    635.6,
+    390.2,
+    662.2
+   ],
+   "page": 29,
+   "colour": [
+    62,
+    199,
+    244
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "paint": [
+    367.8,
+    647.9,
+    403.2,
+    648.7
+   ],
+   "page": 29,
+   "colour": [
+    62,
+    199,
+    244
+   ],
+   "reason": "rebuild grid line / pink parallelogram edge / clean cell the old label erase damaged"
+  },
+  {
+   "segment_id": "p38_s12",
+   "translation": "Is that so? Let me check a few numbers: 12, 1+2=3; 15, 1+5=6; 18, 1+8=9; 21…",
+   "box": [
+    175.5,
+    482.7,
+    302.5,
+    536.9
+   ],
+   "erase": [
+    [
+     181.4,
+     512.0,
+     301.0,
+     522.6
+    ],
+    [
+     181.2,
+     526.2,
+     242.6,
+     537.0
+    ]
+   ],
+   "reason": "the whole bubble set in English: the number lines left in the picture (and the stray comma of '15,') erased and set with the sentence"
+  },
+  {
+   "segment_id": "p51_s12",
+   "translation": "BLANK",
+   "reason": "tiny tilted cover title 百科全书 on the book picture: no English fits (scale 0.39); erased and the cover repaired (the bubble names the encyclopedias)"
+  },
+  {
+   "restore": [
+    174.5,
+    369.0,
+    196.5,
+    373.5
+   ],
+   "page": 51,
+   "reason": "cover of the encyclopedia: outline restored, title area painted in the cover colour"
+  },
+  {
+   "restore": [
+    174.5,
+    373.5,
+    178.1,
+    381.5
+   ],
+   "page": 51,
+   "reason": "cover of the encyclopedia: outline restored, title area painted in the cover colour"
+  },
+  {
+   "restore": [
+    193.0,
+    373.5,
+    196.5,
+    381.5
+   ],
+   "page": 51,
+   "reason": "cover of the encyclopedia: outline restored, title area painted in the cover colour"
+  },
+  {
+   "restore": [
+    178.1,
+    377.6,
+    193.0,
+    381.5
+   ],
+   "page": 51,
+   "reason": "cover of the encyclopedia: outline restored, title area painted in the cover colour"
+  },
+  {
+   "paint": [
+    178.0,
+    373.1,
+    191.6,
+    377.7
+   ],
+   "page": 51,
+   "colour": [
+    66,
+    190,
+    234
+   ],
+   "reason": "cover of the encyclopedia: outline restored, title area painted in the cover colour"
+  },
+  {
+   "paint": [
+    191.6,
+    373.3,
+    193.0,
+    376.9
+   ],
+   "page": 51,
+   "colour": [
+    66,
+    190,
+    234
+   ],
+   "reason": "cover of the encyclopedia: outline restored, title area painted in the cover colour"
+  }
+ ],
+ "left": []
+}

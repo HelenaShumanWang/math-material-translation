@@ -1,0 +1,96 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p111_s2",
+   "translation": "1. (1) Write all the factors of 15 and 36, and find their greatest common factor.",
+   "box": [
+    56.4,
+    148.4,
+    462,
+    160.4
+   ],
+   "reason": "same size as Q1 (2), Q2 and Q3"
+  },
+  {
+   "segment_id": "p111_s3",
+   "translation": "(2) Write all the multiples of 3 and 8 up to 50, and find their least common multiple.",
+   "box": [
+    74,
+    166.2,
+    468,
+    180.2
+   ],
+   "reason": "was set too small"
+  },
+  {
+   "segment_id": "p111_s4",
+   "box": [
+    56.7,
+    194.5,
+    320,
+    206
+   ],
+   "reason": "was set too small"
+  },
+  {
+   "segment_id": "p111_s10",
+   "box": [
+    55.8,
+    342.1,
+    200,
+    354.6
+   ],
+   "reason": "was set too small"
+  },
+  {
+   "segment_id": "p111_s17",
+   "box": [
+    97,
+    628.5,
+    255,
+    650
+   ],
+   "reason": "was set too small; two lines"
+  },
+  {
+   "segment_id": "p111_s18",
+   "box": [
+    97,
+    651,
+    255,
+    673
+   ],
+   "reason": "was set too small; two lines"
+  },
+  {
+   "segment_id": "p115_s10",
+   "translation": "Red",
+   "box": [
+    126.7,
+    589.4,
+    150.5,
+    598.9
+   ],
+   "align": "center",
+   "reason": "centred in its cell like Blue and Yellow"
+  },
+  {
+   "segment_id": "p115_s14",
+   "translation": "Red",
+   "box": [
+    341.3,
+    589.4,
+    365.1,
+    598.9
+   ],
+   "align": "center",
+   "reason": "centred in its cell like Blue and Yellow"
+  }
+ ],
+ "left": [
+  {
+   "page": 116,
+   "issue": "Ball-table header cells (Colour/Times/Red/Blue/Yellow) stay small (about 0.7): the cells are about 25 pt wide, so 'Yellow' and 'Colour' cannot be set larger. All five are now the same size, and Red is centred like the others. They can be read."
+  }
+ ]
+}

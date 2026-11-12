@@ -1,0 +1,216 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p76_s11",
+   "translation": "BLANK",
+   "reason": "replaced by add p76_a1 (flag: the two '&' were set at different sizes)"
+  },
+  {
+   "segment_id": "p76_s15",
+   "translation": "BLANK",
+   "reason": "replaced by add p76_a2, same size and place as p76_a1"
+  },
+  {
+   "add": "p76_a1",
+   "page": 76,
+   "box": [
+    130,
+    391.5,
+    145,
+    405
+   ],
+   "translation": "&",
+   "source": "和",
+   "size": 10.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "'&' at body size in both (1) and (2); 'and' does not fit beside the 2/3 at body size"
+  },
+  {
+   "add": "p76_a2",
+   "page": 76,
+   "box": [
+    130,
+    420.5,
+    145,
+    434
+   ],
+   "translation": "&",
+   "source": "和",
+   "size": 10.5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "same size and place as p76_a1"
+  },
+  {
+   "segment_id": "p80_s16_k0",
+   "translation": "BLANK",
+   "reason": "replaced by add p80_a1: one line between the dashed frame and the circled numbers"
+  },
+  {
+   "segment_id": "p80_s18_k0",
+   "translation": "BLANK",
+   "reason": "replaced by add p80_a2"
+  },
+  {
+   "segment_id": "p80_s16_k0",
+   "clip": [
+    105,
+    350,
+    160.3,
+    372
+   ],
+   "reason": "erase only up to the colon: the oval of the circled 1 starts at 161"
+  },
+  {
+   "segment_id": "p80_s18_k0",
+   "clip": [
+    105,
+    378,
+    160.9,
+    400
+   ],
+   "reason": "erase only up to the colon: the oval of the circled 1 starts at 161"
+  },
+  {
+   "add": "p80_a1",
+   "page": 80,
+   "box": [
+    105.8,
+    355,
+    160.3,
+    370
+   ],
+   "translation": "Factors of 12:",
+   "source": "12的因数：",
+   "size": 8,
+   "align": "left",
+   "color": 2301728,
+   "reason": "one line at 8 pt between the dashed frame and the circled numbers (it wrapped over two lines)"
+  },
+  {
+   "add": "p80_a2",
+   "page": 80,
+   "box": [
+    105.8,
+    382.5,
+    160.9,
+    397.5
+   ],
+   "translation": "Factors of 18:",
+   "source": "18的因数：",
+   "size": 8,
+   "align": "left",
+   "color": 2301728,
+   "reason": "one line at 8 pt between the dashed frame and the circled numbers (it wrapped over two lines)"
+  },
+  {
+   "restore": [
+    160.8,
+    349,
+    162.2,
+    401
+   ],
+   "page": 80,
+   "reason": "left edge of the first hand-drawn oval was cut by the erased label"
+  },
+  {
+   "paint": [
+    372.3,
+    575.8,
+    383.8,
+    583.3
+   ],
+   "page": 96,
+   "colour": [
+    227,
+    242,
+    231
+   ],
+   "reason": "end of the slanted label 内蒙古自治区 (Inner Mongolia)"
+  },
+  {
+   "paint": [
+    364.5,
+    583.2,
+    372.3,
+    586.4
+   ],
+   "page": 96,
+   "colour": [
+    227,
+    242,
+    231
+   ],
+   "reason": "middle of the slanted label 内蒙古自治区"
+  },
+  {
+   "paint": [
+    358.6,
+    583.5,
+    364.6,
+    586.4
+   ],
+   "page": 96,
+   "colour": [
+    227,
+    242,
+    231
+   ],
+   "reason": "top of 内 (start of the slanted label 内蒙古自治区)"
+  },
+  {
+   "paint": [
+    364.8,
+    580.9,
+    371.2,
+    583.3
+   ],
+   "page": 96,
+   "colour": [
+    227,
+    242,
+    231
+   ],
+   "reason": "top of 蒙古 in the slanted label"
+  },
+  {
+   "add": "p96_a2",
+   "page": 96,
+   "box": [
+    371,
+    577.4,
+    383.6,
+    583.0
+   ],
+   "translation": "Inner",
+   "source": "内蒙古",
+   "size": 5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "Inner Mongolia (内蒙古自治区, slanted label the OCR never read): first word, inside the province band"
+  },
+  {
+   "add": "p96_a3",
+   "page": 96,
+   "box": [
+    348.5,
+    586.3,
+    372.3,
+    593.3
+   ],
+   "translation": "Mongolia",
+   "source": "自治区",
+   "size": 5,
+   "align": "left",
+   "color": 2301728,
+   "reason": "Inner Mongolia: second word"
+  }
+ ],
+ "left": [
+  {
+   "page": 97,
+   "issue": "China map (p96_*): the small province labels (Gansu, Ningxia, Shaanxi, Shanxi, Hebei, Beijing, Tianjin, Shandong, Jiangsu, Anhui, Shanghai, Zhejiang, Jiangxi, Fujian, Hunan, Guangdong, Liaoning, Henan, Chongqing, Taiwan, Hong Kong, Macao) stay in Chinese: their cells hold 2 characters at ~4 pt and no English name fits legibly; a relabelled English map would be needed. Inner Mongolia, the large one, is now in English (p96_a2/a3)."
+  }
+ ]
+}
