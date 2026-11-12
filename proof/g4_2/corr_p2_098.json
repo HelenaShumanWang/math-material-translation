@@ -1,0 +1,114 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p97_s37",
+   "translation": "(⟦0⟧) Use the table and tally marks to count the boys in each range.",
+   "reason": "shorter, was shrunk to 0.74; keeps 'using the table above'"
+  },
+  {
+   "segment_id": "p98_s2",
+   "translation": "Shuttlecock Kicking Chart",
+   "reason": "same title as the other chart"
+  },
+  {
+   "segment_id": "p99_s13",
+   "translation": "Factor",
+   "reason": "shorter term, was 0.46"
+  },
+  {
+   "segment_id": "p99_s19",
+   "translation": "Factor",
+   "reason": "shorter term, was 0.46"
+  },
+  {
+   "segment_id": "p100_s1",
+   "translation": "⟦0⟧. Which shapes have we learned? Can you organise them?",
+   "reason": "UK spelling, shapes"
+  },
+  {
+   "segment_id": "p100_s2",
+   "translation": "⟦0⟧. Describe the features of each 2D shape you have learned, how these features were found, and give examples of where they are used in everyday life.",
+   "reason": "UK term 2D shape"
+  },
+  {
+   "segment_id": "p100_s3",
+   "translation": "⟦0⟧. Match the 3D shape below to its views from the front, top and right.",
+   "reason": "UK term"
+  },
+  {
+   "segment_id": "p100_s17",
+   "translation": "and say how each was made and what information you can get from it.",
+   "reason": "shorter, was 0.87"
+  },
+  {
+   "segment_id": "p100_s18",
+   "translation": "⟦0⟧. Use an example to explain the mean. How is the mean used in everyday life?",
+   "reason": "shorter, was 0.76"
+  },
+  {
+   "segment_id": "p101_s29",
+   "translation": "(⟦0⟧) Is the money left enough to buy ⟦1⟧ more prizes at ¥⟦2⟧ each?",
+   "reason": "shorter, wrapped"
+  },
+  {
+   "segment_id": "p103_s18",
+   "box": [
+    131,
+    298,
+    199,
+    316
+   ],
+   "reason": "more room in bubble, was 0.71"
+  },
+  {
+   "add": "p103_a1",
+   "page": 103,
+   "box": [
+    227.5,
+    602,
+    247,
+    615.5
+   ],
+   "translation": "89.",
+   "source": "89。",
+   "size": 12,
+   "reason": "Chinese full stop in bubble"
+  },
+  {
+   "segment_id": "p104_s8_k0",
+   "translation": "3. Choose 3 of the 4 sticks below to make a triangle. Its side lengths",
+   "reason": "shorter, was 0.84"
+  },
+  {
+   "segment_id": "p104_s2",
+   "translation": "obtuse",
+   "align": "center",
+   "reason": "label text was set at about 4.5 pt (right-angled triangle shrunk to 0.56) and off-centre; all five name triangles, so the type word alone reads larger"
+  },
+  {
+   "segment_id": "p104_s3",
+   "translation": "right-angled",
+   "align": "center",
+   "reason": "label text was set at about 4.5 pt (right-angled triangle shrunk to 0.56) and off-centre; all five name triangles, so the type word alone reads larger"
+  },
+  {
+   "segment_id": "p104_s4",
+   "translation": "acute",
+   "align": "center",
+   "reason": "label text was set at about 4.5 pt (right-angled triangle shrunk to 0.56) and off-centre; all five name triangles, so the type word alone reads larger"
+  },
+  {
+   "segment_id": "p104_s5",
+   "translation": "equilateral",
+   "align": "center",
+   "reason": "label text was set at about 4.5 pt (right-angled triangle shrunk to 0.56) and off-centre; all five name triangles, so the type word alone reads larger"
+  },
+  {
+   "segment_id": "p104_s6",
+   "translation": "isosceles",
+   "align": "center",
+   "reason": "label text was set at about 4.5 pt (right-angled triangle shrunk to 0.56) and off-centre; all five name triangles, so the type word alone reads larger"
+  }
+ ],
+ "flags": []
+}

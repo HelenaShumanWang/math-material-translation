@@ -1,0 +1,131 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p50_s12",
+   "translation": "(⟦0⟧) How many square metres is the flower bed?",
+   "reason": "British spelling; shorter so it fits at the size of (1) and (3)"
+  },
+  {
+   "segment_id": "p51_s8",
+   "translation": "Ones",
+   "reason": "standard place-value label, capitalised"
+  },
+  {
+   "segment_id": "p51_s9",
+   "translation": "Tenths",
+   "reason": "standard place-value label; dropped ⟦0⟧: the digit 2 is the table cell below, still printed in the picture"
+  },
+  {
+   "segment_id": "p52_s6",
+   "translation": "Why is a triangle stable, but a quadrilateral is not?",
+   "reason": "more natural phrasing"
+  },
+  {
+   "segment_id": "p52_s8",
+   "translation": "Can decimal division also be turned into whole-number division?",
+   "reason": "primary term: whole numbers, not integers"
+  },
+  {
+   "segment_id": "p53_s16",
+   "translation": "⟦0⟧. Write each decimal below in the box where it fits.",
+   "reason": "the boxes are in inequalities; more natural"
+  },
+  {
+   "segment_id": "p54_s2",
+   "translation": "(⟦0⟧) The table shows the scores of divers A and B in the first three optional dives.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p55_s12",
+   "box": [
+    354,
+    567,
+    441,
+    615
+   ],
+   "reason": "text set small; more room inside the same bubble, kept clear of its outline"
+  },
+  {
+   "segment_id": "p56_s10_k1",
+   "translation": "on grid paper.",
+   "reason": "line 1 already says 'draw the shapes'; 'and draw it' repeated the verb and made the sentence ungrammatical"
+  },
+  {
+   "segment_id": "p51_s14",
+   "box": [
+    117,
+    424,
+    258,
+    442
+   ],
+   "reason": "set small; free room in the same banner"
+  },
+  {
+   "segment_id": "p51_s12",
+   "box": [
+    302,
+    306,
+    432,
+    372
+   ],
+   "reason": "set small; free room on the same note"
+  },
+  {
+   "segment_id": "p55_s9",
+   "box": [
+    390,
+    384,
+    453,
+    417
+   ],
+   "reason": "set small; more room inside the same bubble, kept clear of its outline and tail"
+  },
+  {
+   "segment_id": "p51_s25",
+   "translation": "To add or subtract decimals, line up the decimal points. Once they are lined up...",
+   "reason": "shorter, more natural; was shrunk to 0.72"
+  },
+  {
+   "segment_id": "p56_s10_k0",
+   "translation": "Build this",
+   "box": [
+    80.8,
+    557.6,
+    121.0,
+    571.2
+   ],
+   "reason": "keep the English left of the inline cube picture"
+  },
+  {
+   "restore": [
+    121.5,
+    550.5,
+    148.5,
+    569.5
+   ],
+   "page": 56,
+   "reason": "left cube of the inline cube picture was erased with 搭一个"
+  },
+  {
+   "segment_id": "p56_s11",
+   "translation": ", look at it, and draw the shapes you see from the front, the top and the left",
+   "box": [
+    149.0,
+    558.1,
+    474.0,
+    570.3
+   ],
+   "reason": "start right of the restored cube picture so the comma does not cover it"
+  }
+ ],
+ "flags": [
+  {
+   "page": 57,
+   "issue": "'Build this' (p56_s10_k0) is set at 0.76 before the inline cube picture, smaller than the rest of the sentence; its box cannot grow without covering the bullet or the picture."
+  },
+  {
+   "page": 52,
+   "issue": "Place-value table labels: 'Ones' (p51_s8) reads bottom-to-top and 'Tenths' (p51_s9) top-to-bottom; the rotation can't be set with a correction."
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p85_s1",
+   "translation": "Dad, Mum and I want ⟦0⟧ pancake each.",
+   "reason": "每人1张 = one each is needed; 'have' reads as already having them"
+  },
+  {
+   "segment_id": "p85_s21",
+   "translation": "I'll try it using notebooks as pancakes.",
+   "reason": "本子 = exercise books/notebooks, not books; more natural"
+  },
+  {
+   "segment_id": "p86_s2",
+   "translation": "In which seasons are our classmates' birthdays? Let's do a survey together!",
+   "reason": "unnatural 'the birthdays of the classmates in our class'"
+  },
+  {
+   "segment_id": "p88_s6",
+   "translation": "Group: Table of Garlic Sprout Heights after ⟦0⟧ Days",
+   "reason": "restore placeholder ⟦0⟧; title case for table title"
+  },
+  {
+   "segment_id": "p88_s9",
+   "translation": "Group: Bar Graph of Garlic Sprout Heights after ⟦0⟧ Days",
+   "reason": "restore placeholder ⟦0⟧; title case for graph title"
+  },
+  {
+   "segment_id": "p85_s18",
+   "translation": "Each time there are ⟦0⟧ pancakes in the pan.",
+   "box": [
+    306,
+    464,
+    378,
+    499
+   ],
+   "reason": "text set at 0.69; use the rest of the bubble; keep placeholder ⟦0⟧"
+  }
+ ],
+ "flags": []
+}

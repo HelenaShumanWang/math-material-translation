@@ -1,0 +1,24 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p41_a90_p0",
+   "translation": "How is the number of decimal places in the product related to that in the multipliers? Calculate and think.",
+   "reason": "clearer, natural English"
+  },
+  {
+   "segment_id": "p45_s6",
+   "translation": "Partly right. Use the diagram.",
+   "reason": "shorter so it is not shrunk to 0.63"
+  }
+ ],
+ "flags": [
+  {
+   "page": 45,
+   "issue": "p44_s6 price sign: a flat blue block is left at the right end of the sign where the Chinese 元 was erased; cosmetic only."
+  },
+  {
+   "page": 49,
+   "issue": "p48_s3/p48_s4 '24 bottles' carton labels stay small (about 0.6); widening the box to x=181/249 pushed 'bottles' across the carton's right outline and left a flat orange erase patch on the carton face, so those box entries were dropped."
+  }
+ ]
+}

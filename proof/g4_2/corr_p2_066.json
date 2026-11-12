@@ -1,0 +1,18 @@
+{
+ "corrections": [
+  {"segment_id": "p65_s2", "translation": "⟦0⟧ stands for perimeter:", "reason": "shorter so it is not set at 0.74"},
+  {"segment_id": "p65_s18", "erase": [[374, 551, 428, 562]], "reason": "leftover source answer underline after the English sentence"},
+  {"segment_id": "p66_s11", "translation": "(⟦0⟧) Pick an expression with letters from above and give ⟦1⟧ real-life examples it can represent.", "reason": "missing full stop"},
+  {"segment_id": "p67_s4", "translation": "Show how Sister's height relates to Yao Ming's and Xiaoxiao's heights.", "reason": "consistent with the label 'Sister'"},
+  {"segment_id": "p67_s18", "translation": "Xiaoxiao's height − 20 cm = Sister's height", "reason": "consistent naming, shorter"},
+  {"segment_id": "p67_s19", "translation": "Yao Ming's height ÷ 2 = Xiaoxiao's height − 20 cm", "reason": "spacing and minus sign"},
+  {"segment_id": "p67_s13_k1", "box": [264, 495, 484, 509], "reason": "set at 0.67; free bubble space to the right"},
+  {"segment_id": "p69_s2", "translation": "It fills exactly ⟦0⟧ thermos flasks and ⟦1⟧ cup.", "reason": "natural word order"},
+  {"segment_id": "p69_s8", "translation": "⟦0⟧ ml = capacity of each flask ⟦1⟧ ml", "reason": "unit consistent with ml labels on the page"},
+  {"segment_id": "p72_s10", "translation": "⟦0⟧. Write an equation from each picture and solve it.", "reason": "missing full stop"},
+  {"segment_id": "p72_s24", "translation": "⟦0⟧. Grow a pot of garlic sprouts at home or at school. Measure their height every ⟦1⟧ days and record the data.", "reason": "more natural, keeps placeholders"}
+ ],
+ "flags": [
+  {"page": 72, "issue": "p71_s25 'Solution:' beside the handwritten x+2-2=10-2 is set at 0.63; no free room to widen its box without covering the balance drawing."}
+ ]
+}

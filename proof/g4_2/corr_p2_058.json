@@ -1,0 +1,11 @@
+{"corrections": [
+{"segment_id": "p60_s8", "box": [81.1, 383.2, 464.0, 417.2], "translation": "Xiaoxiao used ⟦0⟧ cubes to build a solid figure. The shapes seen from the front, the right and the top are shown below. Please build it.", "reason": "set much larger than the matching instruction above; same wording and box size as the sibling so both are set alike"},
+{"segment_id": "p61_s7", "translation": "⟦0⟧. Taoqi used ⟦1⟧ cubes to build a solid figure. Here are the shapes seen from the front, the right and the top. Can you build it?", "reason": "was shrunk to 0.82; shorter wording with the same meaning is set at sibling size"},
+{"segment_id": "p62_s7", "translation": "Solids whose right view is", "reason": "clearer sentence around the inline picture"},
+{"segment_id": "p62_s8", "translation": ": (", "reason": "was shrunk to 0.87; with the new start a short piece reads correctly"},
+{"segment_id": "p62_s9", "translation": ") of them. They are (", "reason": "reads correctly with the new start: 'Solids whose right view is [ ]: ( ) of them. They are ( )'"},
+{"segment_id": "p64_s2", "translation": "…10 frogs have ⟦1⟧ legs… It never ends!", "reason": "dropped ⟦0⟧: OCR fragment '····10' (dots read with the number), written out as …10; more natural ending"},
+{"segment_id": "p64_s3", "translation": "⟦0⟧ frog, ⟦1⟧ legs;\n⟦2⟧ frogs, ⟦3⟧ legs;\n⟦4⟧ frogs, ⟦5⟧ legs;", "reason": "set as rhyme lines like the source; current text wrapped mid-phrase"},
+{"segment_id": "p64_s14", "translation": "⟦0⟧ frog, ⟦1⟧ mouth,\n⟦2⟧ eyes, ⟦3⟧ legs;\n⟦4⟧ frogs, ⟦5⟧ mouths,\n⟦6⟧ eyes, ⟦7⟧ legs;", "reason": "set as rhyme lines like the source; current text wrapped mid-phrase"}
+],
+"flags": []}

@@ -1,0 +1,70 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p89_s38",
+   "translation": "Complete the bar graph below. Say how many pupils ⟦0⟧ square stands for.",
+   "reason": "match 'Pupils' axis label"
+  },
+  {
+   "segment_id": "p90_s7",
+   "translation": "⟦0⟧. Complete the bar graph, then discuss with a partner. What maths questions can you ask?",
+   "reason": "shorter so it fits one line",
+   "box": [
+    60,
+    364,
+    470,
+    377
+   ]
+  },
+  {
+   "segment_id": "p90_s9_k1",
+   "translation": "Growing days",
+   "reason": "shorter label for narrow cell"
+  },
+  {
+   "segment_id": "p91_s0",
+   "translation": "Garlic Sprouts (2)",
+   "reason": "heading set at 0.55; shorter title that keeps 'sprouts' (蒜苗) fits the banner"
+  },
+  {
+   "segment_id": "p93_s1",
+   "translation": "⟦1⟧ digits are shown for ⟦0⟧ seconds. How many can you remember each time?",
+   "reason": "shorter, avoid running into blackboard",
+   "box": [
+    89,
+    110,
+    468,
+    123
+   ]
+  },
+  {
+   "segment_id": "p93_s20",
+   "translation": "The mean height of our class...",
+   "erase": [
+    [
+     229,
+     653,
+     244,
+     662
+    ]
+   ],
+   "reason": "leftover ellipsis dots from the source; put the ellipsis in the English"
+  },
+  {
+   "segment_id": "p95_s15",
+   "translation": "(⟦0⟧) Use 正 marks to tally the people in each age group in the table above.",
+   "reason": "shorter (scale 0.74)"
+  },
+  {
+   "segment_id": "p95_s27",
+   "translation": "① The oldest of these Red Army veterans was",
+   "reason": "past tense (1934)"
+  },
+  {
+   "segment_id": "p95_s29",
+   "translation": "___ people were under ⟦0⟧. Fraction of the total:",
+   "reason": "more natural, past tense"
+  }
+ ],
+ "flags": []
+}

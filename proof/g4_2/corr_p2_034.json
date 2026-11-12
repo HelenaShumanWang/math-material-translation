@@ -1,0 +1,61 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p33_s7",
+   "translation": "Cut a trapezium and a triangle from one triangular sheet of paper.",
+   "reason": "UK term trapezium"
+  },
+  {
+   "segment_id": "p33_s9",
+   "translation": "Can you cut two trapeziums from one rectangular piece of paper?",
+   "reason": "UK term trapezium"
+  },
+  {
+   "segment_id": "p33_s12",
+   "translation": "Which two shapes below can make a rectangle, a parallelogram or a trapezium?\nCut out the shapes in Appendix ⟦0⟧, Figure ⟦1⟧ and try.",
+   "reason": "UK term trapezium"
+  },
+  {
+   "segment_id": "p33_s13",
+   "translation": "Which two shapes can make both a parallelogram and a trapezium?",
+   "reason": "UK term trapezium"
+  },
+  {
+   "segment_id": "p34_s1",
+   "translation": "⟦0⟧. Use pens of different colours. First circle the shapes with right angles, then circle the shapes with two pairs of parallel opposite sides, and finally circle the quadrilaterals.",
+   "reason": "more natural wording"
+  },
+  {
+   "segment_id": "p34_s11",
+   "translation": "⟦0⟧. What kind of triangle is each one below?",
+   "reason": "natural phrasing"
+  },
+  {
+   "segment_id": "p38_s28_k0",
+   "translation": "Moving the decimal point one place left multiplies a number by (",
+   "reason": "shorter so it is set larger, same meaning"
+  },
+  {
+   "segment_id": "p38_s28_k1",
+   "translation": "Moving the decimal point two places left multiplies a number by (      ).",
+   "reason": "match sibling wording"
+  },
+  {
+   "segment_id": "p39_s16",
+   "translation": "dividing it by 10…",
+   "reason": "replaced ⟦0⟧: OCR read '10.···' (stray full stop), image shows 10……"
+  },
+  {
+   "paint": [287.5, 300.5, 299, 307.2],
+   "page": 38,
+   "colour": [47, 125, 70],
+   "reason": "green blob left of the blackboard rule after erasing the place-value headers"
+  }
+ ],
+ "flags": [
+  {
+   "page": 40,
+   "issue": "Place-value table label 'hundredths' (p39_s40) is set at 0.64 because the cell is narrow; no free room to enlarge it."
+  }
+ ]
+}

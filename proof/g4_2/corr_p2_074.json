@@ -1,0 +1,77 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p74_s14",
+   "translation": "⟦0⟧. A rectangular swimming pool has an area of ⟦1⟧ m² and is ⟦2⟧ m long. How many metres wide is it?",
+   "reason": "British spelling; shorter; keeps 600 m² together on one line"
+  },
+  {
+   "segment_id": "p74_s19",
+   "translation": "If the bed is changed to a rectangle with the same perimeter and a width of ⟦0⟧ m, how long is it? Write an equation and solve it.",
+   "reason": "shorter so it is not shrunk"
+  },
+  {
+   "segment_id": "p75_s8",
+   "box": [
+    311,
+    301,
+    385,
+    322
+   ],
+   "reason": "use the whole bubble"
+  },
+  {
+   "segment_id": "p76_s23",
+   "translation": "⟦0⟧. Write an equation and solve it.",
+   "reason": "full stop like siblings"
+  },
+  {
+   "segment_id": "p78_s0",
+   "translation": "⟦0⟧. Solve the equations.",
+   "reason": "full stop like siblings"
+  },
+  {
+   "segment_id": "p78_s30",
+   "box": [
+    97,
+    573,
+    166,
+    590
+   ],
+   "reason": "use the whole banner"
+  },
+  {
+   "segment_id": "p80_s2",
+   "translation": "⟦0⟧. Share your tessellations with the class. Can triangles tessellate? Quadrilaterals?",
+   "box": [
+    59.5,
+    229.6,
+    466,
+    244.1
+   ],
+   "reason": "fits on one line above the picture"
+  },
+  {
+   "segment_id": "p78_s12",
+   "box": [
+    413,
+    213,
+    444,
+    225
+   ],
+   "reason": "label clipped by the book corner; centred on the cover band so neither end is cut"
+  },
+  {
+   "paint": [
+    192.3,
+    384.5,
+    196.8,
+    400.5
+   ],
+   "page": 79,
+   "colour": "border",
+   "reason": "stray dark stroke left from the erased Chinese between 'tess' and 'ellate'"
+  }
+ ],
+ "flags": []
+}

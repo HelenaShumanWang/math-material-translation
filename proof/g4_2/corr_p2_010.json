@@ -1,0 +1,83 @@
+{
+ "corrections": [
+  {
+   "segment_id": "p14_s4",
+   "translation": "More than ¥⟦0⟧…",
+   "erase": [
+    [
+     229,
+     199,
+     240,
+     210
+    ]
+   ],
+   "reason": "erase leftover Chinese ellipsis dots; keep the trailing ellipsis in English",
+   "box": [
+    166,
+    199,
+    246,
+    210.6
+   ]
+  },
+  {
+   "segment_id": "p14_s5",
+   "translation": "Less than ¥⟦0⟧…",
+   "erase": [
+    [
+     350,
+     199,
+     361,
+     210
+    ]
+   ],
+   "reason": "erase leftover Chinese ellipsis dots; keep the trailing ellipsis in English",
+   "box": [
+    290,
+    198.7,
+    366,
+    211.2
+   ]
+  },
+  {
+   "segment_id": "p13_s28",
+   "translation": "write digits to meet each condition:",
+   "reason": "shorter so it is not shrunk below the (1)/(2) lines"
+  },
+  {
+   "segment_id": "p15_s23",
+   "translation": "A box of apples (including the box) has a mass of ⟦0⟧ kg. After half of the apples are taken out, the mass is ⟦1⟧ kg. What is the mass of all the apples? What is the mass of the box?",
+   "reason": "more natural phrasing ('pouring out', 'in kg')"
+  },
+  {
+   "segment_id": "p16_s1",
+   "translation": "I am ⟦0⟧ m taller than Xiaohua.",
+   "reason": "missing full stop"
+  },
+  {
+   "segment_id": "p16_s2",
+   "translation": "I'm ⟦0⟧ m shorter than Xiaohua.",
+   "reason": "missing full stop; slightly shorter for the small bubble"
+  },
+  {
+   "segment_id": "p9_s19",
+   "translation": "The counting units of the decimal part are:",
+   "reason": "more natural phrasing"
+  },
+  {
+   "segment_id": "p9_s16_k0",
+   "box": [
+    77,
+    459.5,
+    176,
+    472.8
+   ],
+   "reason": "header cell spans the whole whole-number columns; text was shrunk to 0.68"
+  }
+ ],
+ "flags": [
+  {
+   "page": 17,
+   "issue": "'Answer:' labels (p16_s14, p16_s19, p16_s29) sit on the start of the printed answer underline, so the underline runs under the word; minor, not fixable by text."
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+{"corrections": [
+ {"segment_id": "p30_s19", "box": [160, 647, 366, 670], "reason": "rule was set at 0.66 on one line; use the full height of the pink capsule so it wraps to two readable lines"},
+ {"segment_id": "p32_s3", "translation": "This is my way.", "box": [123, 263, 177, 279], "reason": "'My way:' with a colon is unnatural for 我这样分 in a speech bubble; box kept inside the bubble"},
+ {"segment_id": "p32_s2", "translation": "Xiaoxiao sorted them like this. Can you see how? Talk about it and name them.", "reason": "past tense, consistent with the same instruction on page 26"}
+],
+ "flags": []}

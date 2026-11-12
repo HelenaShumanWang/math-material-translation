@@ -1,0 +1,12 @@
+{"corrections": [
+{"restore": [404, 438.5, 415.5, 448], "page": 17, "reason": "the erase of 一 also cut the tip of the red pencil after 'and'; put the scan back over the pencil tip only (no Chinese in this box)"},
+{"restore": [178.5, 580.2, 213, 587.3], "page": 18, "reason": "the erase of the cover title 趣味折纸 smeared the rainbow on the Fun Origami book; put the scan back over the rainbow only (title stays erased)"},
+{"restore": [125.7, 624.3, 146.8, 631.5], "page": 18, "reason": "the erase of the cover title 童话大王 blurred the girl's head on the Fairy Tales book; put the scan back below the title"},
+{"restore": [77, 470.5, 98, 482], "page": 20, "reason": "erase of the vertical label 米 cut off the upper bracket of the '(  ) m' answer bracket; put the scan back (no Chinese in this box)"},
+{"restore": [91.5, 458, 96.5, 471], "page": 20, "reason": "erase also removed the top of the height arrow beside the small tree; restore it (no Chinese in this box)"},
+{"segment_id": "p21_s8", "box": [336.5, 284.5, 374.5, 299], "reason": "'Minus 0.6' set at 0.64 in a tight box; widen to the inside of its bubble (keeps clear of the bubble outline)"},
+{"segment_id": "p21_s9", "box": [379, 276.5, 415.5, 291.5], "reason": "'Minus 60' set at 0.66; widen to the inside of its bubble so the four bubbles match, without touching the outline"},
+{"segment_id": "p18_s5", "translation": "(⟦0⟧) Li Duan's result broke the old world record, which had stood for ⟦1⟧ years, by ⟦2⟧ m. How many metres was the old world record?", "reason": "British spelling: metres"},
+{"segment_id": "p22_s13", "translation": "(⟦0⟧) Ask another maths question and try to answer it.", "reason": "British term: maths"},
+{"segment_id": "p22_s18", "translation": "(⟦0⟧) Ask another maths question and try to answer it.", "reason": "British term: maths"}
+], "flags": []}

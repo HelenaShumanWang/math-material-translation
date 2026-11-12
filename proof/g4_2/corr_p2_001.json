@@ -1,0 +1,98 @@
+{
+ "corrections": [
+  {
+   "restore": [
+    343.5,
+    623,
+    348,
+    648
+   ],
+   "page": 4,
+   "reason": "left border of bus/truck rows erased"
+  },
+  {
+   "restore": [
+    348,
+    634.7,
+    378,
+    636
+   ],
+   "page": 4,
+   "reason": "row line between bus and truck erased"
+  },
+  {
+   "restore": [
+    346,
+    646.3,
+    380,
+    647.2
+   ],
+   "page": 4,
+   "reason": "bottom border of the truck row erased"
+  },
+  {
+   "segment_id": "p4_s6",
+   "box": [
+    348.5,
+    624.8,
+    378,
+    633.4
+   ],
+   "reason": "keep inside cell"
+  },
+  {
+   "segment_id": "p4_s8",
+   "box": [
+    348.5,
+    636.6,
+    378,
+    645.2
+   ],
+   "reason": "keep inside cell, same size as the other row labels"
+  },
+  {
+   "segment_id": "p5_s2",
+   "translation": "Use Appendix ⟦0⟧: try it and say what ¥⟦1⟧ means. What about ⟦2⟧ m?",
+   "reason": "shorter so it is not shrunk to 0.74"
+  },
+  {
+   "segment_id": "p7_s1",
+   "translation": "How long is the blackboard?",
+   "box": [
+    77.1,
+    101.8,
+    200,
+    117.1
+   ],
+   "reason": "黑板 = blackboard, consistent with later text"
+  },
+  {
+   "segment_id": "p7_s16",
+   "translation": "The mass of a quail egg is ⟦0⟧ g.",
+   "reason": "missing full stop"
+  },
+  {
+   "segment_id": "p7_s20",
+   "translation": "kg ⟦0⟧ kg.",
+   "reason": "full stop as in source"
+  },
+  {
+   "segment_id": "p8_s24",
+   "translation": "How many minutes are there in ⟦0⟧ hours? Think about it.",
+   "reason": "natural English, plural hours"
+  },
+  {
+   "segment_id": "p8_s26",
+   "erase": [
+    [
+     363,
+     644,
+     373,
+     653
+    ]
+   ],
+   "reason": "leftover dot of the Chinese ellipsis after the bubble text"
+  }
+ ],
+ "flags": []
+}
